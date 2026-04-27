@@ -1,0 +1,379 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "order": [
+    "rich_text_nJYeLz",
+    "line_xTAq6n",
+    "17590621960c57804d",
+    "scrolling_text_AFUz3K",
+    "product_list_swiper_dDU8F6",
+    "newsletter_KiD4k4",
+    "17622453721470e023",
+    "faq_accordion_DTkWqD",
+    "1749888171f3efd426"
+  ],
+  "sections": {
+    "1749888171f3efd426": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_bced3e8_xft9DB": {
+          "type": "ai_gen_block_bced3e8",
+          "settings": {
+            "enabled": true,
+            "show_status": false,
+            "preload_fonts": true,
+            "preload_hero_images": true,
+            "inline_critical_css": true,
+            "defer_javascript": true,
+            "lazy_load_images": true,
+            "cleanup_bloat": true
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_bced3e8_xft9DB"
+      ],
+      "name": "AI Performance Optimizer",
+      "settings": {}
+    },
+    "17590621960c57804d": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_testimonials_carousel_HTMYwW": {
+          "type": "shopify://apps/judge-me-reviews/blocks/testimonials_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": true,
+            "reviews_selection": "custom_products",
+            "products": [
+              "kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift",
+              "magnetic-gym-bag-uae-gymgear-tiptop360",
+              "smoke-bubble-machine",
+              "kids-drawing-robot",
+              "ai-voice-recorder"
+            ],
+            "star_rating": "4_to_5_star",
+            "max_reviews": 11,
+            "quote_marks_size": "small",
+            "product_name_text_size": "small",
+            "verified_badge_style": "icon",
+            "card_height": "compact",
+            "text_size": "small",
+            "stars_size": "medium",
+            "arrows_position": "bottom",
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "quote_marks_style": "serif",
+            "card_color": "#F9F9F9",
+            "stars_and_quote_marks_color": "#108474",
+            "text_color": "#000000",
+            "arrows_color": "#000000",
+            "show_border": false,
+            "border_color": "#108474",
+            "show_drop_shadow": false,
+            "transition_speed": 5,
+            "header_text": "Advocacy",
+            "show_average_rating": true
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_testimonials_carousel_HTMYwW"
+      ],
+      "custom_css": [
+        "h2 {font-size: 28px;}"
+      ],
+      "settings": {
+        "animation": "",
+        "setwidth": "container-fluid",
+        "paddingsection": "5px 0px 0px 5px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "bgsection": "#ffffff"
+      }
+    },
+    "17622453721470e023": {
+      "type": "apps",
+      "blocks": {
+        "seoant_trust_badges_star_rating_Q7E8Me": {
+          "type": "shopify://apps/seowill-trust-badges/blocks/star_rating/f42f2346-5d14-4b41-a8b9-4b6ee352262e",
+          "settings": {
+            "badge_id": "693ee71687fa7-28212750-421765730070"
+          }
+        }
+      },
+      "block_order": [
+        "seoant_trust_badges_star_rating_Q7E8Me"
+      ],
+      "settings": {
+        "animation": "",
+        "setwidth": "full",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "bgsection": "#ffffff"
+      }
+    },
+    "faq_accordion_DTkWqD": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_DLGzUj": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "How long does shipping take?",
+            "faq_des": "<p>We aim for next day delivery but it can take <strong>1-3 business days</strong>, depending on your location. We always do our best to get your order to you as quickly — and carefully — as possible.</p>"
+          }
+        },
+        "faq_QFWXXq": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Where do you ship?",
+            "faq_des": "<p>We currently ship locally to UAE, and we’re working on expanding! If you’re unsure about shipping to your location, just reach out to us.</p>"
+          }
+        },
+        "faq_ceReL3": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Why Shop With Us?",
+            "faq_des": "<p>\"<strong>We do the digging so you don’t have to.</strong> At TipTop360, we handpick useful, high-quality products that simplify your everyday life. From kids’ toys to smart home helpers — everything we carry is tested, trusted, and delivered fast.\"</p>"
+          }
+        },
+        "faq_fPDTKj": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "What if my item arrives damaged?",
+            "faq_des": "<p>Please contact us within 3 days of delivery with your order number and photos. We’ll replace or refund any item that arrives damaged or not as described — no hassle.</p>"
+          }
+        },
+        "faq_mJUGk3": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Can I speak to someone if I have a question?",
+            "faq_des": "<p>Yes! Email us anytime at <a href=\"mailto:info@tiptop360.com\" target=\"_blank\" title=\"mailto:info@tiptop360.com\">Info@tiptop360.com</a> — our team usually responds within 24 hours, often much faster. or Whatsapp <a href=\"tel:971585156033\" target=\"_blank\" title=\"tel:+971585156033\">+971585156033</a></p>"
+          }
+        },
+        "faq_qzMBzA": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "What is TipTop360?",
+            "faq_des": "<p><strong>TipTop360</strong> is an online store that curates smart, problem-solving products that make life easier. We search, test, and handpick only the most practical, valuable, and feel-good finds — so you don’t have to.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_qzMBzA",
+        "faq_ceReL3",
+        "faq_QFWXXq",
+        "faq_DLGzUj",
+        "faq_fPDTKj",
+        "faq_mJUGk3"
+      ],
+      "settings": {
+        "animation": "",
+        "setwidth": "container-fluid",
+        "bgsection": "#fff5e6",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_pos": "center center",
+        "title_top": "",
+        "title": "Most Asked Questions",
+        "des": "",
+        "align-heading": "center",
+        "title_size": "h4",
+        "e_first_open": false,
+        "e_reverse": true,
+        "e_small": true,
+        "left_html": "",
+        "e_right": false,
+        "paddingsection": "30px 0px 30px 0px",
+        "paddingmobile": "40px 0px 0px 0px",
+        "marginsection": "30px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "line_xTAq6n": {
+      "type": "line",
+      "name": "Divider",
+      "settings": {
+        "animation": "",
+        "paddingsection": "0px 0px 0px 0px",
+        "marginsection": "30px 0px 0px 0px",
+        "bgsection": "#ffffff",
+        "setwidth": "container",
+        "bgborder": "#dddddd",
+        "wborder": "1px"
+      }
+    },
+    "newsletter_KiD4k4": {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": {
+        "animation": "",
+        "setwidth": "container-fluid",
+        "bgsection": "#ffffff",
+        "bg_overlay": "#12395e",
+        "opacity_bg_overlay": 0,
+        "newletter_color": "#12395e",
+        "colorborder": "#222222",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_position": "center center",
+        "bg_inner": true,
+        "title_top": "",
+        "title": "Subscribe and enjoy 10% off on your first order",
+        "des": "",
+        "html_left": false,
+        "html_left_block": "",
+        "paddingsection": "0px 5px 0px 5px",
+        "paddingmobile": "10px 0px 10px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "product_list_swiper_dDU8F6": {
+      "type": "product-list-swiper",
+      "name": "Product list (Swiper)",
+      "settings": {
+        "animation": "",
+        "setwidth": "container-fluid",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_position": "center center",
+        "bgsection": "#ffffff",
+        "title_color": "rgba(0,0,0,0)",
+        "title_top": "",
+        "title": "Discover Our Latest Problem-Solving Innovations",
+        "des": "",
+        "align-heading": "center",
+        "collection": "new-arrivals-top-selling-products-in-uae",
+        "limit": 10,
+        "perviewDesktop": 4,
+        "spaceBetween": 30,
+        "nowrap": true,
+        "arrows": false,
+        "scrollbar": true,
+        "buttonall": "",
+        "buttonall_link": "",
+        "style_btn": "btn-theme",
+        "enable_first_banner": false,
+        "width_banner": 30,
+        "subtitle_banner": "Sub Title",
+        "title_banner": "Title Banner",
+        "size_text": "h2",
+        "des_banner": "Protection from the",
+        "pos_banner": "mid-center",
+        "button_banner": "discover now",
+        "link_banner": "",
+        "style_btn_banner": "btn-underline btn-underline-white",
+        "text_banner_color": "#ffffff",
+        "overlay_banner": "#000000",
+        "opacity_banner": 0.2,
+        "paddingsection": "30px 0px 0px 0px",
+        "paddingmobile": "10px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "rich_text_nJYeLz": {
+      "type": "rich-text",
+      "blocks": {
+        "button_WJnJzP": {
+          "type": "button",
+          "settings": {
+            "button": "EXPLORE SMART FINDS NOW",
+            "link": "shopify://collections/new-arrivals-top-selling-products-in-uae",
+            "style_btn": "btn-theme"
+          }
+        },
+        "paragraph_iLzDEt": {
+          "type": "paragraph",
+          "disabled": true,
+          "settings": {
+            "subtext": "<div style=\"font-family: Arial, sans-serif; color:#12395e; line-height:1.6;\">\n\n  <h1 style=\"font-size:22px; margin:0 0 10px 0; color:#12395e;\">\n    Smart Solutions, Tested Products, Happier Days ⭐\n  </h1>\n\n  <h2 style=\"font-size:18px; margin:0 0 12px 0; color:#12395e; font-weight:600;\">\n    We search the world — you just click “Add to Cart.” 🛒\n  </h2>\n\n  <p style=\"font-size:14px; margin:0 0 16px 0;\">\n    At TipTop360, we carefully curate smart, useful and problem-solving products designed to make your daily life easier, smoother and more enjoyable.\n  </p>\n\n  <h3 style=\"font-size:16px; margin:18px 0 8px 0; color:#12395e;\">\n    ❤️ Curated, Tested & Trusted\n  </h3>\n  <p style=\"font-size:14px; margin:0 0 14px 0;\">\n    Every item we offer is handpicked and tested to ensure it delivers real value. No gimmicks — just practical, innovative solutions that genuinely work.\n  </p>\n\n  <h3 style=\"font-size:16px; margin:18px 0 8px 0; color:#12395e;\">\n    🚀 Fast UAE Delivery & Real Support\n  </h3>\n  <p style=\"font-size:14px; margin:0 0 14px 0;\">\n    Enjoy quick delivery across the UAE, a smooth shopping experience and responsive customer service whenever you need us.\n  </p>\n\n  <h3 style=\"font-size:16px; margin:18px 0 8px 0; color:#12395e;\">\n    🇦🇪 Trusted by Shoppers Across the UAE\n  </h3>\n  <p style=\"font-size:14px; margin:0;\">\n    Thousands rely on TipTop360 for reliable, problem-solving products that improve everyday life. Smart. Useful. Tested. Delivered fast.\n  </p>\n\n</div>"
+          }
+        },
+        "spacer_P8DBFm": {
+          "type": "spacer",
+          "disabled": true,
+          "settings": {
+            "hero-spacer": 8
+          }
+        }
+      },
+      "block_order": [
+        "button_WJnJzP",
+        "paragraph_iLzDEt",
+        "spacer_P8DBFm"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "animation": "",
+        "setwidth": "container-fluid",
+        "bgsection": "#ffffff",
+        "gradient_bg": "",
+        "title_color": "rgba(0,0,0,0)",
+        "title_top": "",
+        "title": "🛒 Brilliant Smart Gadgets & Kids Products. Trusted by 50,000+ UAE Families",
+        "text": "<p>We search the world for innovative, problem-solving products that actually work. Curated. Tested. Trusted. Delivered fast to your door.</p><p><br/><strong>✓ Dubai Municipality & Health Department Approved | ✓ 30-Day Money-Back Guarantee | ✓ Free Next-Day Delivery | ✓ Secure Payment & Cash on Delivery</strong></p>",
+        "align-heading": "center",
+        "align-content": "center",
+        "paddingsection": "30px 0px 0px 0px",
+        "paddingmobile": "10px 0px 5px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "scrolling_text_AFUz3K": {
+      "type": "scrolling-text",
+      "blocks": {
+        "item_EFqhqE": {
+          "type": "item",
+          "settings": {
+            "code": "💸 Cash on Delivery 🇦🇪"
+          }
+        },
+        "item_HAUDPq": {
+          "type": "item",
+          "settings": {
+            "code": "🇦🇪 Free Delivery for orders over 100 AED 🇦🇪"
+          }
+        },
+        "item_Yaggkc": {
+          "type": "item",
+          "settings": {
+            "code": "🚚 Free-Next Day Delivery 🇦🇪"
+          }
+        }
+      },
+      "block_order": [
+        "item_Yaggkc",
+        "item_EFqhqE",
+        "item_HAUDPq"
+      ],
+      "settings": {
+        "animation": "",
+        "size_text": "p",
+        "text_style": "solid",
+        "size_icon": 24,
+        "speed": 10,
+        "scroll_type": "from-right",
+        "background": "#12395e",
+        "gradient_bg": "",
+        "text": "#ffffff",
+        "paddingsection": "10px 0px 10px 0px",
+        "paddingmobile": "10px 0px 10px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "2px 0px 0px 0px"
+      }
+    }
+  }
+}

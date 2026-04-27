@@ -1,0 +1,20 @@
+{
+  "name": "tiptop360-optimizer",
+  "version": "1.0.0",
+  "description": "TipTop360 Shopify SEO + CRO Automation with full backup/revert control",
+  "main": "optimizer.js",
+  "type": "module",
+  "scripts": {
+    "start": "node optimizer.js",
+    "menu": "node optimizer.js menu",
+    "audit": "node optimizer.js audit",
+    "backup": "node optimizer.js backup",
+    "revert-all": "node optimizer.js revert-all",
+    "dry-run": "node optimizer.js dry-run"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "dotenv": "^16.6.1",
+    "node-fetch": "^2.7.0"
+  }
+}

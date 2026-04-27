@@ -1,0 +1,523 @@
+{% doc %}
+  @prompt
+    Create a Shopify section named "AI Optimizer" that is completely invisible on the storefront but applies comprehensive performance optimizations. Include: invisible wrapper with display none, critical CSS inlining, render-blocking resource elimination, unused CSS removal, JavaScript deferring, lazy loading implementation, DOM size optimization, and JavaScript execution reduction. Add schema with enable/disable toggle and comment markers for custom additions. Ensure all optimizations maintain site functionality and follow Shopify Online Store 2.0 best practices.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% if block.settings.enable_optimizer %}
+  {% style %}
+    .ai-optimizer-{{ ai_gen_id }} {
+      display: none !important;
+      visibility: hidden !important;
+      position: absolute !important;
+      left: -9999px !important;
+      width: 0 !important;
+      height: 0 !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    {% if block.settings.enable_critical_css %}
+      {% comment %} Critical CSS Inlining {% endcomment %}
+      body {
+        font-display: swap;
+      }
+      
+      img, iframe, video {
+        content-visibility: auto;
+        contain-intrinsic-size: 300px 200px;
+      }
+
+      .lazyload {
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .lazyloaded {
+        opacity: 1;
+      }
+
+      {% comment %} Optimize font loading {% endcomment %}
+      @font-face {
+        font-display: swap;
+      }
+    {% endif %}
+
+    {% if block.settings.enable_dom_optimization %}
+      {% comment %} DOM Size Optimization {% endcomment %}
+      * {
+        contain: layout style paint;
+      }
+
+      .hidden-until-needed {
+        display: none;
+      }
+
+      .visible-on-interaction {
+        visibility: hidden;
+      }
+
+      .visible-on-interaction.active {
+        visibility: visible;
+      }
+    {% endif %}
+  {% endstyle %}
+
+  <div class="ai-optimizer-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+    {% comment %} Invisible optimization container {% endcomment %}
+    <span data-optimizer-active="true" style="display: none;"></span>
+  </div>
+
+  {% if block.settings.enable_lazy_loading or block.settings.enable_js_optimization %}
+    <script>
+      (function() {
+        'use strict';
+
+        class AIOptimizer{{ ai_gen_id }} {
+          constructor() {
+            this.init();
+          }
+
+          init() {
+            {% if block.settings.enable_lazy_loading %}
+              this.setupLazyLoading();
+            {% endif %}
+
+            {% if block.settings.enable_js_optimization %}
+              this.optimizeJavaScript();
+            {% endif %}
+
+            {% if block.settings.enable_unused_css_removal %}
+              this.removeUnusedCSS();
+            {% endif %}
+
+            {% if block.settings.enable_render_blocking_elimination %}
+              this.eliminateRenderBlocking();
+            {% endif %}
+
+            {% if block.settings.enable_dom_optimization %}
+              this.optimizeDOM();
+            {% endif %}
+          }
+
+          {% if block.settings.enable_lazy_loading %}
+          setupLazyLoading() {
+            if ('IntersectionObserver' in window) {
+              const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                      img.src = img.dataset.src;
+                      img.classList.remove('lazyload');
+                      img.classList.add('lazyloaded');
+                      observer.unobserve(img);
+                    }
+                  }
+                });
+              }, {
+                rootMargin: '50px 0px',
+                threshold: 0.01
+              });
+
+              document.querySelectorAll('img[data-src]').forEach(img => {
+                img.classList.add('lazyload');
+                imageObserver.observe(img);
+              });
+
+              const iframeObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    if (iframe.dataset.src) {
+                      iframe.src = iframe.dataset.src;
+                      observer.unobserve(iframe);
+                    }
+                  }
+                });
+              }, {
+                rootMargin: '100px 0px'
+              });
+
+              document.querySelectorAll('iframe[data-src]').forEach(iframe => {
+                iframeObserver.observe(iframe);
+              });
+            }
+          }
+          {% endif %}
+
+          {% if block.settings.enable_js_optimization %}
+          optimizeJavaScript() {
+            const deferredScripts = [];
+            
+            document.querySelectorAll('script[data-defer="true"]').forEach(script => {
+              deferredScripts.push({
+                src: script.src,
+                content: script.innerHTML,
+                async: script.hasAttribute('async')
+              });
+              script.remove();
+            });
+
+            const loadDeferredScripts = () => {
+              deferredScripts.forEach(scriptData => {
+                const script = document.createElement('script');
+                if (scriptData.src) {
+                  script.src = scriptData.src;
+                  script.async = scriptData.async;
+                } else {
+                  script.innerHTML = scriptData.content;
+                }
+                document.head.appendChild(script);
+              });
+            };
+
+            if (document.readyState === 'complete') {
+              setTimeout(loadDeferredScripts, {{ block.settings.js_defer_delay }});
+            } else {
+              window.addEventListener('load', () => {
+                setTimeout(loadDeferredScripts, {{ block.settings.js_defer_delay }});
+              });
+            }
+
+            this.debounceScrollEvents();
+            this.optimizeEventListeners();
+          }
+
+          debounceScrollEvents() {
+            let scrollTimeout;
+            const originalAddEventListener = EventTarget.prototype.addEventListener;
+            
+            EventTarget.prototype.addEventListener = function(type, listener, options) {
+              if (type === 'scroll' && this === window) {
+                const debouncedListener = function(event) {
+                  clearTimeout(scrollTimeout);
+                  scrollTimeout = setTimeout(() => listener(event), 16);
+                };
+                return originalAddEventListener.call(this, type, debouncedListener, options);
+              }
+              return originalAddEventListener.call(this, type, listener, options);
+            };
+          }
+
+          optimizeEventListeners() {
+            const passiveEvents = ['scroll', 'wheel', 'touchstart', 'touchmove'];
+            const originalAddEventListener = EventTarget.prototype.addEventListener;
+            
+            EventTarget.prototype.addEventListener = function(type, listener, options) {
+              if (passiveEvents.includes(type) && typeof options !== 'object') {
+                options = { passive: true };
+              } else if (passiveEvents.includes(type) && typeof options === 'object' && options.passive === undefined) {
+                options.passive = true;
+              }
+              return originalAddEventListener.call(this, type, listener, options);
+            };
+          }
+          {% endif %}
+
+          {% if block.settings.enable_unused_css_removal %}
+          removeUnusedCSS() {
+            if (!{{ block.settings.enable_aggressive_css_removal | json }}) return;
+
+            const usedSelectors = new Set();
+            const allElements = document.querySelectorAll('*');
+            
+            allElements.forEach(element => {
+              if (element.className) {
+                element.className.split(' ').forEach(className => {
+                  if (className.trim()) {
+                    usedSelectors.add('.' + className.trim());
+                  }
+                });
+              }
+              if (element.id) {
+                usedSelectors.add('#' + element.id);
+              }
+              usedSelectors.add(element.tagName.toLowerCase());
+            });
+
+            Array.from(document.styleSheets).forEach(styleSheet => {
+              try {
+                if (styleSheet.href && !styleSheet.href.includes(window.location.origin)) return;
+                
+                const rules = Array.from(styleSheet.cssRules || styleSheet.rules || []);
+                rules.forEach((rule, index) => {
+                  if (rule.type === CSSRule.STYLE_RULE) {
+                    const selector = rule.selectorText;
+                    if (selector && !this.isSelectorUsed(selector, usedSelectors)) {
+                      try {
+                        styleSheet.deleteRule(index);
+                      } catch (e) {
+                        // Silently handle cross-origin or protected stylesheets
+                      }
+                    }
+                  }
+                });
+              } catch (e) {
+                // Silently handle cross-origin stylesheets
+              }
+            });
+          }
+
+          isSelectorUsed(selector, usedSelectors) {
+            const simpleSelectors = selector.split(',').map(s => s.trim());
+            return simpleSelectors.some(sel => {
+              const cleanSelector = sel.split(':')[0].split('[')[0].trim();
+              return usedSelectors.has(cleanSelector) || document.querySelector(cleanSelector);
+            });
+          }
+          {% endif %}
+
+          {% if block.settings.enable_render_blocking_elimination %}
+          eliminateRenderBlocking() {
+            document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+              if (!link.hasAttribute('data-critical')) {
+                link.media = 'print';
+                link.onload = function() {
+                  this.media = 'all';
+                  this.onload = null;
+                };
+              }
+            });
+
+            const nonCriticalStyles = document.querySelectorAll('style[data-non-critical]');
+            nonCriticalStyles.forEach(style => {
+              style.remove();
+              setTimeout(() => {
+                document.head.appendChild(style);
+              }, {{ block.settings.css_defer_delay }});
+            });
+          }
+          {% endif %}
+
+          {% if block.settings.enable_dom_optimization %}
+          optimizeDOM() {
+            const hiddenElements = document.querySelectorAll('.hidden-until-needed');
+            const visibleOnInteraction = document.querySelectorAll('.visible-on-interaction');
+
+            const intersectionObserver = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.style.display = 'block';
+                  intersectionObserver.unobserve(entry.target);
+                }
+              });
+            }, { rootMargin: '100px' });
+
+            hiddenElements.forEach(element => {
+              intersectionObserver.observe(element);
+            });
+
+            visibleOnInteraction.forEach(element => {
+              const showElement = () => {
+                element.classList.add('active');
+                element.removeEventListener('mouseenter', showElement);
+                element.removeEventListener('focus', showElement);
+              };
+              element.addEventListener('mouseenter', showElement, { once: true });
+              element.addEventListener('focus', showElement, { once: true });
+            });
+
+            this.optimizeImages();
+          }
+
+          optimizeImages() {
+            document.querySelectorAll('img').forEach(img => {
+              if (!img.hasAttribute('loading')) {
+                img.setAttribute('loading', 'lazy');
+              }
+              if (!img.hasAttribute('decoding')) {
+                img.setAttribute('decoding', 'async');
+              }
+            });
+          }
+          {% endif %}
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => {
+            new AIOptimizer{{ ai_gen_id }}();
+          });
+        } else {
+          new AIOptimizer{{ ai_gen_id }}();
+        }
+
+        {% comment %} Custom optimization hooks - merchants can add custom code here {% endcomment %}
+        {% if block.settings.custom_optimization_code != blank %}
+          {{ block.settings.custom_optimization_code }}
+        {% endif %}
+
+      })();
+    </script>
+  {% endif %}
+
+  {% comment %} Performance monitoring {% endcomment %}
+  {% if block.settings.enable_performance_monitoring %}
+    <script>
+      (function() {
+        if ('performance' in window && 'PerformanceObserver' in window) {
+          const observer = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            entries.forEach(entry => {
+              if (entry.entryType === 'largest-contentful-paint') {
+                console.log('LCP:', entry.startTime);
+              }
+              if (entry.entryType === 'first-input') {
+                console.log('FID:', entry.processingStart - entry.startTime);
+              }
+              if (entry.entryType === 'layout-shift') {
+                console.log('CLS:', entry.value);
+              }
+            });
+          });
+          
+          observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+        }
+      })();
+    </script>
+  {% endif %}
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "AI Performance Optimizer",
+  "tag": null,
+  "class": "ai-performance-optimizer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Optimizer Control"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_optimizer",
+      "label": "Enable AI Performance Optimizer",
+      "default": true,
+      "info": "Master switch for all performance optimizations"
+    },
+    {
+      "type": "header",
+      "content": "Critical CSS Optimization"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_critical_css",
+      "label": "Enable Critical CSS Inlining",
+      "default": true,
+      "info": "Inline critical CSS for faster initial page render"
+    },
+    {
+      "type": "header",
+      "content": "Render-Blocking Resource Elimination"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_render_blocking_elimination",
+      "label": "Enable Render-Blocking Elimination",
+      "default": true,
+      "info": "Defer non-critical CSS and optimize resource loading"
+    },
+    {
+      "type": "range",
+      "id": "css_defer_delay",
+      "min": 0,
+      "max": 2000,
+      "step": 100,
+      "unit": "ms",
+      "label": "CSS defer delay",
+      "default": 500,
+      "info": "Delay before loading non-critical CSS"
+    },
+    {
+      "type": "header",
+      "content": "Unused CSS Removal"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_unused_css_removal",
+      "label": "Enable Unused CSS Removal",
+      "default": false,
+      "info": "Remove unused CSS rules (use with caution)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_aggressive_css_removal",
+      "label": "Enable Aggressive CSS Removal",
+      "default": false,
+      "info": "More thorough but potentially risky CSS removal"
+    },
+    {
+      "type": "header",
+      "content": "JavaScript Optimization"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_js_optimization",
+      "label": "Enable JavaScript Deferring",
+      "default": true,
+      "info": "Defer non-critical JavaScript execution"
+    },
+    {
+      "type": "range",
+      "id": "js_defer_delay",
+      "min": 0,
+      "max": 3000,
+      "step": 100,
+      "unit": "ms",
+      "label": "JavaScript defer delay",
+      "default": 1000,
+      "info": "Delay before executing deferred scripts"
+    },
+    {
+      "type": "header",
+      "content": "Lazy Loading Implementation"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lazy_loading",
+      "label": "Enable Advanced Lazy Loading",
+      "default": true,
+      "info": "Implement intersection observer-based lazy loading"
+    },
+    {
+      "type": "header",
+      "content": "DOM Size Optimization"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_dom_optimization",
+      "label": "Enable DOM Size Optimization",
+      "default": true,
+      "info": "Optimize DOM rendering and element visibility"
+    },
+    {
+      "type": "header",
+      "content": "Performance Monitoring"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_performance_monitoring",
+      "label": "Enable Performance Monitoring",
+      "default": false,
+      "info": "Monitor Core Web Vitals (check browser console)"
+    },
+    {
+      "type": "header",
+      "content": "Custom Optimization Code"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_optimization_code",
+      "label": "Custom JavaScript Optimization Code",
+      "info": "Add your own performance optimization JavaScript here"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Performance Optimizer"
+    }
+  ]
+}
+{% endschema %}

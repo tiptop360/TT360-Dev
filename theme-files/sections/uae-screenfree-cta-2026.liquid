@@ -1,0 +1,107 @@
+{% comment %}
+File: sections/uae-screenfree-cta-2026.liquid
+{% endcomment %}
+
+<section class="uae-screenfree-cta-2026" style="background: {{ section.settings.bg_color }};">
+  <div class="page-width cta-inner">
+
+    <h2 class="cta-heading">
+      {{ section.settings.heading }}
+    </h2>
+
+    {% if section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}" 
+         class="cta-btn"
+         style="background: {{ section.settings.button_bg }}; color: {{ section.settings.button_text_color }};">
+        {{ section.settings.button_text }}
+      </a>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+.uae-screenfree-cta-2026 {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.uae-screenfree-cta-2026 .cta-heading {
+  font-size: 34px;
+  margin-bottom: 25px;
+}
+
+.uae-screenfree-cta-2026 .cta-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.uae-screenfree-cta-2026 .cta-btn:hover {
+  transform: translateY(-4px);
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .uae-screenfree-cta-2026 {
+    padding: 60px 15px;
+  }
+
+  .uae-screenfree-cta-2026 .cta-heading {
+    font-size: 24px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "UAE Screen-Free CTA",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Give Your Child a Meaningful Gift Today"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Browse Full Kids Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "UAE Screen-Free CTA"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,231 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "featured-blog": {
+      "type": "featured-blog-posts",
+      "blocks": {
+        "post_TUbMz7": {
+          "type": "post",
+          "settings": {
+            "article": "kids-products/best-kids-electric-toothbrush",
+            "subheading": "Featured post"
+          }
+        },
+        "post_TRUNNt": {
+          "type": "post",
+          "settings": {
+            "article": "kids-products/ai-voice-recorder-with-transcription-chatgpt-powered",
+            "subheading": "Featured post"
+          }
+        },
+        "post_tQFE6K": {
+          "type": "post",
+          "settings": {
+            "article": "kids-products/ai-voice-recorder-transcription-uae-guide",
+            "subheading": "Featured post"
+          }
+        },
+        "post_kLEtfy": {
+          "type": "post",
+          "settings": {
+            "article": "kids-products/kids-u-shaped-electric-toothbrush-uae-dental-care",
+            "subheading": "Featured post"
+          }
+        },
+        "post_D7e7tp": {
+          "type": "post",
+          "settings": {
+            "article": "kids-products/kids-u-shaped-electric-toothbrush-uae-guide",
+            "subheading": "Featured post"
+          }
+        },
+        "f88c8cbd-2f60-4198-8d5e-5c8d6d96e013": {
+          "type": "post",
+          "settings": {
+            "article": "kids-products/never-miss-a-call-again-with-tip-top-360-s-ai-voice-recorder",
+            "subheading": "Featured post",
+            "image": "shopify://shop_images/aiVoxsmartmeetingnotesandmindmap.png"
+          }
+        },
+        "post_Ygrz9Y": {
+          "type": "post",
+          "settings": {
+            "article": "kids-products/kids-drawing-robot-uae-gift-for-kids",
+            "subheading": "Featured post",
+            "image": "shopify://shop_images/Drawing_Robot_uae.jpg"
+          }
+        },
+        "post_tmFJBc": {
+          "type": "post",
+          "settings": {
+            "article": "kids-products/magnetic-gym-bag-uae-review-compact-durable",
+            "subheading": "Featured post"
+          }
+        },
+        "post_QNg8yk": {
+          "type": "post",
+          "settings": {
+            "article": "kids-products/magic-smoke-bubble-machine-best-kids-gift-uae",
+            "subheading": "Featured post"
+          }
+        },
+        "d5010d0b-0b25-4222-b337-1cc65375f775": {
+          "type": "post",
+          "settings": {
+            "article": "kids-products/kids-u-shaped-toothbrush-best-gift-uae-tiptop360",
+            "subheading": "Featured post"
+          }
+        },
+        "post_zc9LeL": {
+          "type": "post",
+          "disabled": true,
+          "settings": {
+            "article": "kids-products/birthday-gifts-uae-top-4-products-best-sellers-tiptop360",
+            "subheading": "Featured post"
+          }
+        },
+        "9a00793d-a77c-4b88-8c07-4739f4123d74": {
+          "type": "post",
+          "disabled": true,
+          "settings": {
+            "article": "kids-products/what-is-a-magnetic-gym-bag-and-how-does-it-work",
+            "subheading": "Featured post"
+          }
+        }
+      },
+      "block_order": [
+        "post_TUbMz7",
+        "post_TRUNNt",
+        "post_tQFE6K",
+        "post_kLEtfy",
+        "post_D7e7tp",
+        "f88c8cbd-2f60-4198-8d5e-5c8d6d96e013",
+        "post_Ygrz9Y",
+        "post_tmFJBc",
+        "post_QNg8yk",
+        "d5010d0b-0b25-4222-b337-1cc65375f775",
+        "post_zc9LeL",
+        "9a00793d-a77c-4b88-8c07-4739f4123d74"
+      ],
+      "disabled": true,
+      "settings": {
+        "animation": "fade",
+        "setwidth": "container",
+        "height_adapt": "550",
+        "enable_btn_blog": true,
+        "enable_btn_line": false,
+        "enable_date": true,
+        "enable_tag": true,
+        "enable_comment": true,
+        "enable_author": true,
+        "enable_short": true,
+        "bgsection": "#f7f7f7",
+        "clsection": "rgba(0,0,0,0)",
+        "arrows": true,
+        "dots": true,
+        "paddingsection": "80px 0px 40px 0px",
+        "paddingmobile": "0px 0px 40px 0px",
+        "marginsection": "0px 0px 88px 0px",
+        "marginmobile": "0px 0px 60px 0px"
+      }
+    },
+    "main": {
+      "type": "blog-template-1",
+      "disabled": true,
+      "settings": {
+        "animation": "fade-up",
+        "blog_layout": "grid",
+        "grid_column": "3",
+        "item_style": "blog-1",
+        "image_size": "landscape",
+        "enable_btn_blog": true,
+        "enable_btn_line": false,
+        "enable_date": true,
+        "enable_tag": true,
+        "enable_comment": true,
+        "enable_short": true,
+        "limit": 6,
+        "sidebar_enable": false,
+        "sidebar_position": "right",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "featured_articles_PJBkfe": {
+      "type": "featured-articles",
+      "name": "Blog posts",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "bgsection": "#ffffff",
+        "title_top": "Sub Title Top",
+        "title": "Blog posts",
+        "des": "",
+        "align-heading": "center",
+        "blog": "kids-products",
+        "item_style": "blog-1",
+        "enable_btn_blog": true,
+        "enable_btn_line": false,
+        "enable_date": true,
+        "enable_tag": true,
+        "enable_comment": true,
+        "enable_short": true,
+        "image_size": "auto",
+        "gutter_padding": 30,
+        "arrows": true,
+        "draggable": true,
+        "dots": true,
+        "infinite": true,
+        "rows": "1",
+        "limit": 5,
+        "show": 3,
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "featured_articles_2_mGQpiU": {
+      "type": "featured-articles-2",
+      "name": "Blog posts special",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "zindex": "0",
+        "bgsection": "#ffffff",
+        "rangebg": 0,
+        "bgbefore": "#E3C9B8",
+        "title_top": "",
+        "title": "Blog posts Special",
+        "des": "",
+        "align-heading": "center",
+        "blog": "{{ blog }}",
+        "image_size": "auto",
+        "reverse": true,
+        "buttonall": "",
+        "buttonall_link": "",
+        "style_btn": "btn-theme",
+        "paddingsection": "20px 0px 0px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "featured-blog",
+    "main",
+    "featured_articles_PJBkfe",
+    "featured_articles_2_mGQpiU"
+  ]
+}

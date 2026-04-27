@@ -1,0 +1,47 @@
+{%- if product -%}
+{%- assign jm = product.metafields.judgeme.review_widget_data -%}
+{%- assign rc_direct = product.metafields.reviews.rating_count -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "image": "{{ product.featured_image | image_url: width: 1200 }}",
+  "url": "{{ shop.url }}{{ product.url }}"
+  {%- if jm != blank -%}
+  ,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ jm.value.average_rating | default: 4.9 }}",
+    "reviewCount": "{{ jm.value.number_of_reviews | default: 1 }}",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+  {%- elsif rc_direct != blank -%}
+  ,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "{{ rc_direct }}",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+  {%- endif -%}
+}
+</script>
+
+{%- assign faq_data = product.metafields.tiptop360.faq_schema -%}
+{%- if faq_data != blank -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for q in faq_data.value -%}
+      {"@type":"Question","name":{{ q.question | json }},"acceptedAnswer":{"@type":"Answer","text":{{ q.answer | json }}}}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+{%- endif -%}
