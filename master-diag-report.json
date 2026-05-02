@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-05-01T06:42:41.086Z",
+  "htmlBlocks": [
+    {
+      "size": 1749,
+      "graph": [
+        "Organization",
+        "WebSite"
+      ],
+      "hasAggregate": false,
+      "position": 203143,
+      "contextBefore": " kids electric toothbrush UAE. Perfect screen-free birthday gift. Order today with free delivery.\"> "
+    },
+    {
+      "size": 1709,
+      "rootType": "Product",
+      "graph": [],
+      "hasAggregate": false,
+      "position": 944414,
+      "contextBefore": " = value; elementSelect.dispatchEvent(new Event('change')); } } </script></div> "
+    }
+  ],
+  "appMarkers": [
+    "template",
+    "custom-variables-qb",
+    "theme"
+  ],
+  "inlineJsTotal": 109667,
+  "inlineJsBlocks": 37,
+  "htmlSize": 602202,
+  "issues": [
+    {
+      "severity": "MEDIUM",
+      "issue": "Zombie tracking tags",
+      "count": 3,
+      "fixable": "NO from code — pixel manager injection",
+      "action": "Manual: Settings → Customer events → delete pixel containing these tags"
+    },
+    {
+      "severity": "LOW",
+      "issue": "AggregateRating missing",
+      "count": 0,
+      "fixable": "YES — Judge.me native should inject. Check Judge.me settings → \"Enable Schema\" toggle",
+      "action": "Manual: Judge.me app → Settings → Toggle \"Inject Schema\" ON"
+    },
+    {
+      "severity": "MEDIUM",
+      "issue": "Inline JS bloat (107.1KB)",
+      "count": 37,
+      "fixable": "PARTIAL — heavy hitters are app-injected, not theme",
+      "action": "Already deferred via tbt-optimization.liquid. Further gains require app removal."
+    }
+  ]
+}

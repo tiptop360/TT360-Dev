@@ -1,0 +1,140 @@
+{% comment %}
+File: sections/uae-screenfree-benefits-2026.liquid
+{% endcomment %}
+
+<section class="uae-screenfree-benefits-2026">
+  <div class="page-width">
+    
+    <h2 class="section-title">
+      {{ section.settings.heading }}
+    </h2>
+
+    <div class="why-boxes">
+      {% for block in section.blocks %}
+        <div class="why-box" {{ block.shopify_attributes }}>
+          
+          {% if block.settings.custom_icon != blank %}
+            <img 
+              src="{{ block.settings.custom_icon | image_url: width: 80 }}" 
+              alt="{{ block.settings.title }}"
+              class="why-icon"
+              loading="lazy"
+            >
+          {% else %}
+            <span class="emoji-icon">
+              {{ block.settings.emoji }}
+            </span>
+          {% endif %}
+
+          <p>{{ block.settings.title }}</p>
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.uae-screenfree-benefits-2026 {
+  padding: 80px 0;
+  background: #f9fafc;
+}
+
+.uae-screenfree-benefits-2026 .section-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 50px;
+}
+
+.uae-screenfree-benefits-2026 .why-boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 25px;
+}
+
+.uae-screenfree-benefits-2026 .why-box {
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.uae-screenfree-benefits-2026 .why-box:hover {
+  transform: translateY(-6px);
+}
+
+.uae-screenfree-benefits-2026 .emoji-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.uae-screenfree-benefits-2026 .why-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.uae-screenfree-benefits-2026 .why-box p {
+  font-weight: 600;
+  font-size: 16px;
+}
+</style>
+
+{% schema %}
+{
+  "name": "UAE Screen-Free Benefits",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Why UAE Parents Are Choosing Screen-Free Gifts"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Box",
+      "settings": [
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji Icon",
+          "default": "📵"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom Icon (Optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Benefit Text",
+          "default": "Reduce Screen Time"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "UAE Screen-Free Benefits",
+      "blocks": [
+        { "type": "benefit" },
+        { "type": "benefit" },
+        { "type": "benefit" },
+        { "type": "benefit" },
+        { "type": "benefit" }
+      ]
+    }
+  ]
+}
+{% endschema %}

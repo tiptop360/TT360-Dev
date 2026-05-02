@@ -1,0 +1,646 @@
+{
+  "issues": {
+    "multipleH1": [
+      {
+        "url": "https://tiptop360.com/pages/about-tiptop360",
+        "count": 2
+      },
+      {
+        "url": "https://tiptop360.com/pages/vision-mission-values",
+        "count": 2
+      }
+    ],
+    "duplicateFAQPage": [
+      {
+        "url": "https://tiptop360.com/products/kids-water-colour-pens-uae",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/tiptop360-gift-card-uae-feel-good-finds-delivered-fast",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/ai-voice-recorder",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/dental-floss-for-kids",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-brushing-stickers-uae",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-dual-tip-markers-uae",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/super-smooth-wax-crayons-12-vivid-colors",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-drawing-marker-set-perfect-match-for-any-drawing-robot",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/my-chores-kids-responsibility-sliding-task-checklist-for-daily-routines-positive-habits",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-electric-u-shaped-toothbrush-replacement-heads",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-drawing-robot",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-strawberry-foam-toothpaste-uae-approved",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-dental-care-monthly-bundle-offer-51",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/magnetic-gym-bag-uae-gymgear-tiptop360",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/color-pencils",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/gift-wrap-1",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/smoke-bubble-machine",
+        "count": 3
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-electric-toothbrush-traditional-replacement-heads",
+        "count": 3
+      }
+    ],
+    "missingAlt": [
+      {
+        "url": "https://tiptop360.com/",
+        "count": 1,
+        "total": 38
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-water-colour-pens-uae",
+        "count": 4,
+        "total": 15
+      },
+      {
+        "url": "https://tiptop360.com/products/tiptop360-gift-card-uae-feel-good-finds-delivered-fast",
+        "count": 4,
+        "total": 15
+      },
+      {
+        "url": "https://tiptop360.com/products/ai-voice-recorder",
+        "count": 4,
+        "total": 29
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift",
+        "count": 4,
+        "total": 54
+      },
+      {
+        "url": "https://tiptop360.com/products/dental-floss-for-kids",
+        "count": 4,
+        "total": 13
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-brushing-stickers-uae",
+        "count": 4,
+        "total": 15
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-dual-tip-markers-uae",
+        "count": 4,
+        "total": 19
+      },
+      {
+        "url": "https://tiptop360.com/products/super-smooth-wax-crayons-12-vivid-colors",
+        "count": 4,
+        "total": 13
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-drawing-marker-set-perfect-match-for-any-drawing-robot",
+        "count": 4,
+        "total": 19
+      },
+      {
+        "url": "https://tiptop360.com/products/my-chores-kids-responsibility-sliding-task-checklist-for-daily-routines-positive-habits",
+        "count": 4,
+        "total": 17
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-electric-u-shaped-toothbrush-replacement-heads",
+        "count": 4,
+        "total": 19
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-drawing-robot",
+        "count": 4,
+        "total": 53
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-strawberry-foam-toothpaste-uae-approved",
+        "count": 4,
+        "total": 19
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-dental-care-monthly-bundle-offer-51",
+        "count": 4,
+        "total": 13
+      },
+      {
+        "url": "https://tiptop360.com/products/magnetic-gym-bag-uae-gymgear-tiptop360",
+        "count": 4,
+        "total": 35
+      },
+      {
+        "url": "https://tiptop360.com/products/color-pencils",
+        "count": 4,
+        "total": 13
+      },
+      {
+        "url": "https://tiptop360.com/products/gift-wrap-1",
+        "count": 4,
+        "total": 19
+      },
+      {
+        "url": "https://tiptop360.com/products/smoke-bubble-machine",
+        "count": 4,
+        "total": 38
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-electric-toothbrush-traditional-replacement-heads",
+        "count": 4,
+        "total": 19
+      },
+      {
+        "url": "https://tiptop360.com/collections/ai-voice-recorder-smart-transcription-recorder-uae",
+        "count": 1,
+        "total": 5
+      },
+      {
+        "url": "https://tiptop360.com/collections/kids-collection-uae",
+        "count": 1,
+        "total": 32
+      },
+      {
+        "url": "https://tiptop360.com/collections/magnetic-gym-bag-uae-hands-free-gym-gear",
+        "count": 1,
+        "total": 5
+      },
+      {
+        "url": "https://tiptop360.com/collections/new-arrivals-top-selling-products-in-uae",
+        "count": 1,
+        "total": 13
+      },
+      {
+        "url": "https://tiptop360.com/collections/problem-solving-products-uae",
+        "count": 1,
+        "total": 19
+      },
+      {
+        "url": "https://tiptop360.com/collections/kids-toys-stem-learning-dental-care-shop-smart-play-uae-copy",
+        "count": 1,
+        "total": 19
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-tiptop360",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-us",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-tiptop360-ai-voice-recorder-features-smart-clear-easy-recording",
+        "count": 1,
+        "total": 4
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-us-magnetic-gym-bag-smart-gym-storage-by-tiptop360",
+        "count": 1,
+        "total": 3
+      },
+      {
+        "url": "https://tiptop360.com/pages/ai-voice-seo",
+        "count": 1,
+        "total": 5
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-ai-vox-voice",
+        "count": 5,
+        "total": 9
+      },
+      {
+        "url": "https://tiptop360.com/pages/best-kids-products-uae",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/contact-tiptop360",
+        "count": 1,
+        "total": 3
+      },
+      {
+        "url": "https://tiptop360.com/pages/faq",
+        "count": 1,
+        "total": 3
+      },
+      {
+        "url": "https://tiptop360.com/pages/faq-tiptop360",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/gdpr-privacy-policy",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/gym-bag-smart-gym-storage",
+        "count": 1,
+        "total": 4
+      },
+      {
+        "url": "https://tiptop360.com/pages/magnetic-gym-bag-smart-gym-storage-by-tiptop360",
+        "count": 2,
+        "total": 9
+      },
+      {
+        "url": "https://tiptop360.com/pages/home-page-2-ai",
+        "count": 5,
+        "total": 9
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap-articles",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap-blogs",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap-collections",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap-pages",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap-products",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/kids-dental-care-in-uae-simple-routine-parent-checklist",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/kids-products",
+        "count": 1,
+        "total": 5
+      },
+      {
+        "url": "https://tiptop360.com/pages/kids-strawberry-foam-toothpaste",
+        "count": 2,
+        "total": 4
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-magnetic-gym-bag",
+        "count": 2,
+        "total": 9
+      },
+      {
+        "url": "https://tiptop360.com/pages/lgpd-privacy-policy",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/refund-policy",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/seo-magnetic-gym-bag-smart-gym-storage-by-tiptop360",
+        "count": 2,
+        "total": 6
+      },
+      {
+        "url": "https://tiptop360.com/pages/shipping-policy-page",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/smoke-bubble-machine",
+        "count": 2,
+        "total": 4
+      },
+      {
+        "url": "https://tiptop360.com/pages/tiptop360-terms-of-service",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/tiptop360-faqs-answers-to-your-tiptop360-questions",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/tiptop360-vision-mission-values",
+        "count": 1,
+        "total": 8
+      },
+      {
+        "url": "https://tiptop360.com/pages/u-shaped-toothbrush",
+        "count": 2,
+        "total": 5
+      },
+      {
+        "url": "https://tiptop360.com/pages/vision-mission-values",
+        "count": 1,
+        "total": 8
+      }
+    ],
+    "brokenImages": [],
+    "jsonLdErrors": [],
+    "inlineStyleErrors": [],
+    "notFound": [],
+    "serverError": [],
+    "duplicateMetaDesc": [],
+    "inlineScripts": [
+      {
+        "url": "https://tiptop360.com/",
+        "count": 60
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-water-colour-pens-uae",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/tiptop360-gift-card-uae-feel-good-finds-delivered-fast",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/ai-voice-recorder",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift",
+        "count": 79
+      },
+      {
+        "url": "https://tiptop360.com/products/dental-floss-for-kids",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-brushing-stickers-uae",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-dual-tip-markers-uae",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/super-smooth-wax-crayons-12-vivid-colors",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-drawing-marker-set-perfect-match-for-any-drawing-robot",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/my-chores-kids-responsibility-sliding-task-checklist-for-daily-routines-positive-habits",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-electric-u-shaped-toothbrush-replacement-heads",
+        "count": 79
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-drawing-robot",
+        "count": 79
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-strawberry-foam-toothpaste-uae-approved",
+        "count": 77
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-dental-care-monthly-bundle-offer-51",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/magnetic-gym-bag-uae-gymgear-tiptop360",
+        "count": 79
+      },
+      {
+        "url": "https://tiptop360.com/products/color-pencils",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/gift-wrap-1",
+        "count": 74
+      },
+      {
+        "url": "https://tiptop360.com/products/smoke-bubble-machine",
+        "count": 79
+      },
+      {
+        "url": "https://tiptop360.com/products/kids-electric-toothbrush-traditional-replacement-heads",
+        "count": 79
+      },
+      {
+        "url": "https://tiptop360.com/collections/ai-voice-recorder-smart-transcription-recorder-uae",
+        "count": 63
+      },
+      {
+        "url": "https://tiptop360.com/collections/kids-collection-uae",
+        "count": 63
+      },
+      {
+        "url": "https://tiptop360.com/collections/magnetic-gym-bag-uae-hands-free-gym-gear",
+        "count": 63
+      },
+      {
+        "url": "https://tiptop360.com/collections/new-arrivals-top-selling-products-in-uae",
+        "count": 63
+      },
+      {
+        "url": "https://tiptop360.com/collections/problem-solving-products-uae",
+        "count": 63
+      },
+      {
+        "url": "https://tiptop360.com/collections/kids-toys-stem-learning-dental-care-shop-smart-play-uae-copy",
+        "count": 63
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-tiptop360",
+        "count": 60
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-us",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-tiptop360-ai-voice-recorder-features-smart-clear-easy-recording",
+        "count": 60
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-us-magnetic-gym-bag-smart-gym-storage-by-tiptop360",
+        "count": 60
+      },
+      {
+        "url": "https://tiptop360.com/pages/ai-voice-seo",
+        "count": 60
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-ai-vox-voice",
+        "count": 62
+      },
+      {
+        "url": "https://tiptop360.com/pages/best-kids-products-uae",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/contact-tiptop360",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/faq",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/faq-tiptop360",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/gdpr-privacy-policy",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/gym-bag-smart-gym-storage",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/magnetic-gym-bag-smart-gym-storage-by-tiptop360",
+        "count": 62
+      },
+      {
+        "url": "https://tiptop360.com/pages/home-page-2-ai",
+        "count": 62
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap-articles",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap-blogs",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap-collections",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap-pages",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/html-sitemap-products",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/kids-dental-care-in-uae-simple-routine-parent-checklist",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/kids-products",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/kids-strawberry-foam-toothpaste",
+        "count": 61
+      },
+      {
+        "url": "https://tiptop360.com/pages/about-magnetic-gym-bag",
+        "count": 62
+      },
+      {
+        "url": "https://tiptop360.com/pages/lgpd-privacy-policy",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/refund-policy",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/seo-magnetic-gym-bag-smart-gym-storage-by-tiptop360",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/shipping-policy-page",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/smoke-bubble-machine",
+        "count": 61
+      },
+      {
+        "url": "https://tiptop360.com/pages/tiptop360-terms-of-service",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/tiptop360-faqs-answers-to-your-tiptop360-questions",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/tiptop360-vision-mission-values",
+        "count": 59
+      },
+      {
+        "url": "https://tiptop360.com/pages/u-shaped-toothbrush",
+        "count": 63
+      },
+      {
+        "url": "https://tiptop360.com/pages/vision-mission-values",
+        "count": 60
+      }
+    ],
+    "multipleCanonical": []
+  },
+  "productsWithMissingAlt": [],
+  "crawled": 60,
+  "timestamp": "2026-04-28T06:37:16.193Z"
+}

@@ -1,0 +1,634 @@
+{% doc %}
+  @prompt
+    Layout — strict two-column split: copy on the left, full-bleed product image on the right, so the eye travels naturally left-to-right.
+    Floating badges — two anchored callout cards over the image ("30 sec" and "360°") reinforce the product's core claims without cluttering the copy area.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-split-layout-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-split-layout__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: {{ block.settings.min_height }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-split-layout__copy-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: {{ block.settings.copy_padding }}px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-split-layout__heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: {{ block.settings.heading_weight }};
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 {{ block.settings.heading_spacing }}px 0;
+    line-height: 1.2;
+  }
+
+  .ai-split-layout__subheading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subheading_size }}px;
+    color: {{ block.settings.subheading_color }};
+    margin: 0 0 {{ block.settings.text_spacing }}px 0;
+    line-height: 1.4;
+  }
+
+  .ai-split-layout__text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+    margin: 0 0 {{ block.settings.button_spacing }}px 0;
+  }
+
+  .ai-split-layout__button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: {{ block.settings.button_padding_v }}px {{ block.settings.button_padding_h }}px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: {{ block.settings.button_weight }};
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .ai-split-layout__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg }};
+    color: {{ block.settings.button_hover_text }};
+  }
+
+  .ai-split-layout__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-split-layout__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-split-layout__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-split-layout__image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .ai-split-layout__badge-{{ ai_gen_id }} {
+    position: absolute;
+    background-color: {{ block.settings.badge_bg_color }};
+    color: {{ block.settings.badge_text_color }};
+    padding: {{ block.settings.badge_padding }}px {{ block.settings.badge_padding | times: 1.5 }}px;
+    border-radius: {{ block.settings.badge_radius }}px;
+    font-size: {{ block.settings.badge_text_size }}px;
+    font-weight: {{ block.settings.badge_weight }};
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+  }
+
+  .ai-split-layout__badge-1-{{ ai_gen_id }} {
+    top: {{ block.settings.badge_1_top }}%;
+    left: {{ block.settings.badge_1_left }}%;
+  }
+
+  .ai-split-layout__badge-2-{{ ai_gen_id }} {
+    top: {{ block.settings.badge_2_top }}%;
+    left: {{ block.settings.badge_2_left }}%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-split-layout__container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .ai-split-layout__copy-{{ ai_gen_id }} {
+      order: {{ block.settings.mobile_copy_order }};
+      padding: {{ block.settings.copy_padding | times: 0.6 }}px;
+    }
+
+    .ai-split-layout__image-wrapper-{{ ai_gen_id }} {
+      order: {{ block.settings.mobile_image_order }};
+      min-height: {{ block.settings.mobile_image_height }}px;
+    }
+
+    .ai-split-layout__heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.7 }}px;
+    }
+
+    .ai-split-layout__subheading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subheading_size | times: 0.8 }}px;
+    }
+
+    .ai-split-layout__text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size | times: 0.9 }}px;
+    }
+
+    .ai-split-layout__badge-{{ ai_gen_id }} {
+      font-size: {{ block.settings.badge_text_size | times: 0.8 }}px;
+      padding: {{ block.settings.badge_padding | times: 0.8 }}px {{ block.settings.badge_padding | times: 1.2 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-split-layout-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-split-layout__container-{{ ai_gen_id }}">
+    <div class="ai-split-layout__copy-{{ ai_gen_id }}">
+      {% if block.settings.heading != blank %}
+        <h2 class="ai-split-layout__heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+      {% endif %}
+
+      {% if block.settings.subheading != blank %}
+        <div class="ai-split-layout__subheading-{{ ai_gen_id }}">{{ block.settings.subheading }}</div>
+      {% endif %}
+
+      {% if block.settings.text != blank %}
+        <div class="ai-split-layout__text-{{ ai_gen_id }}">{{ block.settings.text }}</div>
+      {% endif %}
+
+      {% if block.settings.button_text != blank %}
+        <a href="{{ block.settings.button_link }}" class="ai-split-layout__button-{{ ai_gen_id }}">
+          {{ block.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="ai-split-layout__image-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.product_image %}
+        <img
+          src="{{ block.settings.product_image | image_url: width: 1200 }}"
+          alt="{{ block.settings.product_image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.product_image.width }}"
+          height="{{ block.settings.product_image.height }}"
+          class="ai-split-layout__image-{{ ai_gen_id }}"
+        >
+      {% else %}
+        <div class="ai-split-layout__image-placeholder-{{ ai_gen_id }}">
+          {{ 'product-1' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.badge_1_enable and block.settings.badge_1_text != blank %}
+        <div class="ai-split-layout__badge-{{ ai_gen_id }} ai-split-layout__badge-1-{{ ai_gen_id }}">
+          {{ block.settings.badge_1_text }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.badge_2_enable and block.settings.badge_2_text != blank %}
+        <div class="ai-split-layout__badge-{{ ai_gen_id }} ai-split-layout__badge-2-{{ ai_gen_id }}">
+          {{ block.settings.badge_2_text }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Split layout with badges",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Minimum height",
+      "min": 400,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Copy section"
+    },
+    {
+      "type": "range",
+      "id": "copy_padding",
+      "label": "Padding",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Revolutionary U-Shaped Design"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#12395e"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Heading bottom spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Clean teeth in just 30 seconds"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#7e7e84"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>Experience 360° coverage with our innovative U-shaped toothbrush. Designed for efficiency and comfort, it cleans all surfaces simultaneously.</p>"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#202025"
+    },
+    {
+      "type": "range",
+      "id": "text_spacing",
+      "label": "Text bottom spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "button_weight",
+      "label": "Button weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_v",
+      "label": "Button vertical padding",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_padding_h",
+      "label": "Button horizontal padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#f9655d"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Button hover background",
+      "default": "#12395e"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text",
+      "label": "Button hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_spacing",
+      "label": "Button top spacing",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Product image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Badge 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "badge_1_enable",
+      "label": "Enable badge 1",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "badge_1_text",
+      "label": "Badge 1 text",
+      "default": "30 sec"
+    },
+    {
+      "type": "range",
+      "id": "badge_1_top",
+      "label": "Badge 1 vertical position",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "badge_1_left",
+      "label": "Badge 1 horizontal position",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Badge 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "badge_2_enable",
+      "label": "Enable badge 2",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "badge_2_text",
+      "label": "Badge 2 text",
+      "default": "360°"
+    },
+    {
+      "type": "range",
+      "id": "badge_2_top",
+      "label": "Badge 2 vertical position",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "badge_2_left",
+      "label": "Badge 2 horizontal position",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "Badge style"
+    },
+    {
+      "type": "range",
+      "id": "badge_text_size",
+      "label": "Badge text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "badge_weight",
+      "label": "Badge weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "badge_padding",
+      "label": "Badge padding",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "badge_radius",
+      "label": "Badge border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Badge background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text color",
+      "default": "#12395e"
+    },
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "select",
+      "id": "mobile_copy_order",
+      "label": "Copy position on mobile",
+      "options": [
+        { "value": "1", "label": "Top" },
+        { "value": "2", "label": "Bottom" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_order",
+      "label": "Image position on mobile",
+      "options": [
+        { "value": "1", "label": "Top" },
+        { "value": "2", "label": "Bottom" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "label": "Mobile image height",
+      "min": 200,
+      "max": 500,
+      "step": 50,
+      "unit": "px",
+      "default": 300
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split layout with badges"
+    }
+  ]
+}
+{% endschema %}

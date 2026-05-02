@@ -1,0 +1,55 @@
+{
+  "longTitlesFixed": 11,
+  "redirectChainsFixed": 5,
+  "broken404Found": 4,
+  "broken404": [
+    {
+      "url": "https://tiptop360.com/pages/contact-us",
+      "status": 404
+    },
+    {
+      "url": "https://tiptop360.com/pages/refund-policy",
+      "status": 404
+    },
+    {
+      "url": "https://tiptop360.com/pages/privacy-policy",
+      "status": 404
+    },
+    {
+      "url": "https://tiptop360.com/pages/terms-of-service",
+      "status": 404
+    }
+  ],
+  "chains": [
+    {
+      "from": "/products/%f0%9f%8c%9f-experience-the-magic-smoke-bubble-machine-for-unforgettable-fun",
+      "to": "/products/experience-the-magic-smoke-bubble-machine-for-unforgettable-fun",
+      "finalTo": "https://tiptop360.com/",
+      "hops": 1
+    },
+    {
+      "from": "/products/%f0%9f%8e%81-tiptop360-digital-gift-card-feel-good-finds-delivered-fast",
+      "to": "/products/tiptop360-digital-gift-card-feel-good-finds-delivered-fast",
+      "finalTo": "https://tiptop360.com/collections/best-selling-gifts-in-uae",
+      "hops": 1
+    },
+    {
+      "from": "/products/magnetic-gym-bag-compact-power-maximum-freedom",
+      "to": "/products/gymgear-by-tiptop360-premium-magnetic-gym-bag-for-gym-hiking-outdoor-activities",
+      "finalTo": "/products/magnetic-gym-bag-uae-gymgear-tiptop360",
+      "hops": 1
+    },
+    {
+      "from": "/blogs/new-blog-post/news-kids-drawing-robot-best-birthday-gift-uae",
+      "to": "/blogs/new-blog-post/kids-drawing-robot-uae-gift-for-kids",
+      "finalTo": "https://tiptop360.com/blogs/new-blog-post-tips/kids-drawing-robot-uae-gift-for-kids",
+      "hops": 1
+    },
+    {
+      "from": "/blogs/new-blog-post",
+      "to": "/blogs/new-blog-post-tips",
+      "finalTo": "https://tiptop360.com/blogs/kids-products/",
+      "hops": 1
+    }
+  ]
+}

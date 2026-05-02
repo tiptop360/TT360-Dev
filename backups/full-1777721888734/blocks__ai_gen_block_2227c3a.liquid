@@ -1,0 +1,456 @@
+{% doc %}
+  @prompt
+    Typography: Playfair Display for the headline gives it a premium, editorial feel while DM Sans keeps body text clean and modern
+    Color palette: Warm blush pink background (#FFF5F6) with the product's signature red-pink as the accent — keeps everything cohesive
+    Product card: The tube illustration sits in a deep pink card that bleeds to the bottom edge, mimicking the original's visual anchor
+    Strawberry details: Small berry icons below the card echo the original's decorative fruit elements
+    CTAs: "Add to Cart" in the brand red and a ghost "Learn More" button — both styled for the palette
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-product-hero-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: 60px 40px;
+    border-radius: {{ block.settings.border_radius }}px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .ai-product-hero__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-product-hero__content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .ai-product-hero__headline-{{ ai_gen_id }} {
+    font-family: 'Playfair Display', serif;
+    font-size: {{ block.settings.headline_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.headline_color }};
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .ai-product-hero__description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ai-product-hero__buttons-{{ ai_gen_id }} {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .ai-product-hero__btn-{{ ai_gen_id }} {
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .ai-product-hero__btn-primary-{{ ai_gen_id }} {
+    background-color: {{ block.settings.primary_button_bg }};
+    color: {{ block.settings.primary_button_color }};
+    border-color: {{ block.settings.primary_button_bg }};
+  }
+
+  .ai-product-hero__btn-primary-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.primary_button_hover_bg }};
+    border-color: {{ block.settings.primary_button_hover_bg }};
+  }
+
+  .ai-product-hero__btn-secondary-{{ ai_gen_id }} {
+    background-color: transparent;
+    color: {{ block.settings.secondary_button_color }};
+    border-color: {{ block.settings.secondary_button_border }};
+  }
+
+  .ai-product-hero__btn-secondary-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.secondary_button_hover_bg }};
+    color: {{ block.settings.secondary_button_hover_color }};
+  }
+
+  .ai-product-hero__product-card-{{ ai_gen_id }} {
+    position: relative;
+    background-color: {{ block.settings.card_bg_color }};
+    border-radius: {{ block.settings.card_border_radius }}px {{ block.settings.card_border_radius }}px 0 0;
+    padding: 40px 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ai-product-hero__product-image-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin-bottom: -1px;
+  }
+
+  .ai-product-hero__product-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-product-hero__product-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1 / 1.2;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .ai-product-hero__product-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-product-hero__strawberries-{{ ai_gen_id }} {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .ai-product-hero__strawberry-{{ ai_gen_id }} {
+    width: {{ block.settings.strawberry_size }}px;
+    height: {{ block.settings.strawberry_size }}px;
+    fill: {{ block.settings.strawberry_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-product-hero-{{ ai_gen_id }} {
+      padding: 40px 20px;
+    }
+
+    .ai-product-hero__container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .ai-product-hero__headline-{{ ai_gen_id }} {
+      font-size: {{ block.settings.headline_size | times: 0.6 }}px;
+    }
+
+    .ai-product-hero__description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size | times: 0.9 }}px;
+    }
+
+    .ai-product-hero__buttons-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-product-hero__btn-{{ ai_gen_id }} {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;600&display=swap');
+{% endstyle %}
+
+<div class="ai-product-hero-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-product-hero__container-{{ ai_gen_id }}">
+    <div class="ai-product-hero__content-{{ ai_gen_id }}">
+      {% if block.settings.headline != blank %}
+        <h1 class="ai-product-hero__headline-{{ ai_gen_id }}">
+          {{ block.settings.headline }}
+        </h1>
+      {% endif %}
+
+      {% if block.settings.description != blank %}
+        <div class="ai-product-hero__description-{{ ai_gen_id }}">
+          {{ block.settings.description }}
+        </div>
+      {% endif %}
+
+      <div class="ai-product-hero__buttons-{{ ai_gen_id }}">
+        {% if block.settings.primary_button_label != blank %}
+          <a
+            href="{{ block.settings.primary_button_link }}"
+            class="ai-product-hero__btn-{{ ai_gen_id }} ai-product-hero__btn-primary-{{ ai_gen_id }}"
+          >
+            {{ block.settings.primary_button_label }}
+          </a>
+        {% endif %}
+
+        {% if block.settings.secondary_button_label != blank %}
+          <a
+            href="{{ block.settings.secondary_button_link }}"
+            class="ai-product-hero__btn-{{ ai_gen_id }} ai-product-hero__btn-secondary-{{ ai_gen_id }}"
+          >
+            {{ block.settings.secondary_button_label }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="ai-product-hero__product-card-{{ ai_gen_id }}">
+      <div class="ai-product-hero__product-image-{{ ai_gen_id }}">
+        {% if block.settings.product_image %}
+          <img
+            src="{{ block.settings.product_image | image_url: width: 600 }}"
+            alt="{{ block.settings.product_image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.product_image.width }}"
+            height="{{ block.settings.product_image.height }}"
+          >
+        {% else %}
+          <div class="ai-product-hero__product-placeholder-{{ ai_gen_id }}">
+            {{ 'product-1' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if block.settings.show_strawberries %}
+        <div class="ai-product-hero__strawberries-{{ ai_gen_id }}">
+          {% for i in (1..3) %}
+            <svg class="ai-product-hero__strawberry-{{ ai_gen_id }}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C10.9 2 10 2.9 10 4C10 4.3 10.1 4.6 10.2 4.9C9.5 5 8.9 5.3 8.4 5.8C7.5 6.7 7 8 7 9.5C7 11.4 6.3 13.2 5.1 14.6C3.8 16.1 3 18.1 3 20.2C3 21.2 3.8 22 4.8 22H19.2C20.2 22 21 21.2 21 20.2C21 18.1 20.2 16.1 18.9 14.6C17.7 13.2 17 11.4 17 9.5C17 8 16.5 6.7 15.6 5.8C15.1 5.3 14.5 5 13.8 4.9C13.9 4.6 14 4.3 14 4C14 2.9 13.1 2 12 2ZM9 10C9.6 10 10 10.4 10 11C10 11.6 9.6 12 9 12C8.4 12 8 11.6 8 11C8 10.4 8.4 10 9 10ZM15 10C15.6 10 16 10.4 16 11C16 11.6 15.6 12 15 12C14.4 12 14 11.6 14 11C14 10.4 14.4 10 15 10ZM12 13C12.6 13 13 13.4 13 14C13 14.6 12.6 15 12 15C11.4 15 11 14.6 11 14C11 13.4 11.4 13 12 13ZM9 16C9.6 16 10 16.4 10 17C10 17.6 9.6 18 9 18C8.4 18 8 17.6 8 17C8 16.4 8.4 16 9 16ZM15 16C15.6 16 16 16.4 16 17C16 17.6 15.6 18 15 18C14.4 18 14 17.6 14 17C14 16.4 14.4 16 15 16Z"/>
+            </svg>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "headline",
+      "label": "Headline",
+      "default": "<p>Kids Strawberry Foam Toothpaste</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Make brushing fun with our gentle, fruity foam formula. Designed for kids, loved by parents.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Primary button"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "primary_button_bg",
+      "label": "Background",
+      "default": "#E85D75"
+    },
+    {
+      "type": "color",
+      "id": "primary_button_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "primary_button_hover_bg",
+      "label": "Hover background",
+      "default": "#D14A63"
+    },
+    {
+      "type": "header",
+      "content": "Secondary button"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_color",
+      "label": "Text color",
+      "default": "#E85D75"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_border",
+      "label": "Border color",
+      "default": "#E85D75"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_hover_bg",
+      "label": "Hover background",
+      "default": "#E85D75"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_hover_color",
+      "label": "Hover text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Product card"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card background",
+      "default": "#E85D75"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Strawberry details"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_strawberries",
+      "label": "Show strawberries",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "strawberry_size",
+      "label": "Strawberry size",
+      "min": 20,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "strawberry_color",
+      "label": "Strawberry color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFF5F6"
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline color",
+      "default": "#2C2C2C"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Headline size",
+      "min": 24,
+      "max": 72,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#5C5C5C"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product hero"
+    }
+  ]
+}
+{% endschema %}

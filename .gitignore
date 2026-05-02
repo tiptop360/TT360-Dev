@@ -1,10 +1,5 @@
 node_modules/
 .env
+audits/geo-logs/
 *.bak
-*.MALWARE.bak
-local-backups/
-audits/
-theme-duplicate-*
-theme-files-clean-*
 /tmp/
-broken-links*.json

@@ -1,0 +1,288 @@
+<!doctype html>
+<html class="no-js" lang="{{ shop.locale }}">
+
+<head>
+	<!-- Added by AVADA SEO Suite -->
+	{% include 'avada-seo' %}
+	<!-- /Added by AVADA SEO Suite -->
+{% if template.name == 'product' %}
+  {{ 'product-template.aio.min.css' | asset_url | stylesheet_tag }}
+{% endif %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="theme-color" content="{{ settings.color_header_bg }}">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Robots directives to control indexing -->
+  {% if template.name contains 'search' or template.name contains 'cart' or template.name contains 'customers' or request.path contains '/account' or request.path contains '/orders' %}
+    <meta name="robots" content="noindex, nofollow" />
+  {% else %}
+    <meta name="robots" content="index, follow" />
+  {% endif %}
+  {%- assign current_url = request.path | append: request.query_string | downcase %}
+  {%- if current_url contains 'sort_by=' or current_url contains 'filter=' or current_url contains 'variant=' or current_url contains 'oseid=' or current_url contains 'preview_theme_id=' or current_url contains 'preview_script_id=' or current_url contains 'ls=' or current_url contains 'utm_' %}
+    <meta name="robots" content="noindex, follow">
+  {%- endif %}
+    <!-- Page Title -->
+  <title>
+    {{ page_title }}
+    {% if current_tags %}
+      {% assign meta_tags = current_tags | join: ', ' %}
+      &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}
+    {% endif %}
+    {% if current_page != 1 %}
+      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {% endif %}
+    {% unless page_title contains shop.name %}
+      &ndash; {{ shop.name }}
+    {% endunless %}
+  </title>
+
+  <!-- Meta Description with Fallback -->
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% else %}
+    <meta name="description" content="{{ settings.meta_description | escape }}">
+  {%- endif -%}
+  <!-- Verification & Canonical -->
+  <meta name="google-site-verification" content="Sjb9sxHlGboqXJEYuNtrwWaD3UWXMR5EaECeet2FKdo"/>
+  <link rel="canonical" href="{{ canonical_url }}">
+
+
+<!-- Preload the hero image -->
+  {% if template.name == 'product' %}
+  {% assign hero = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+  {% if hero %}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ hero | image_url: width: 1200 }}"
+      imagesrcset="
+        {{ hero | image_url: width: 600 }} 600w,
+        {{ hero | image_url: width: 900 }} 900w,
+        {{ hero | image_url: width: 1200 }} 1200w
+      "
+      imagesizes="(max-width: 768px) 90vw, 600px"
+    >
+  {% endif %}
+
+{% endif %}
+{% comment %}
+ {%- if tinyscript -%}{%- else -%}{% render 'tiny-script-control' %}{%- endif -%}
+{% endcomment %}
+ {{ content_for_header }}
+    <!-- Favicon -->
+  {%- if settings.favicon != blank -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 32, height: 32 }}" type="image/png">
+  {%- endif -%}
+  {%- render 'social-meta-tags' -%}
+<meta name="google-site-verification" content="BfJnjXpeVlW79p2dU6dQcQ6sD_f8sTAAEnBN5YAW0Ck" />
+
+
+
+  <!-- Connection hints -->
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+
+<link rel="dns-prefetch" href="//cdn.shopify.com">
+<link rel="dns-prefetch" href="//fonts.shopifycdn.com">
+
+
+
+  {%- unless settings.font_family.system? -%}
+  <link rel="preload" as="font" href="{{ settings.font_family | font_url }}" type="font/woff2" crossorigin>
+{%- endunless -%}
+{%- if settings.font_family2.system? == false and settings.font_family2 != settings.font_family -%}
+  <link rel="preload" as="font" href="{{ settings.font_family2 | font_url }}" type="font/woff2" crossorigin>
+{%- endif -%}
+
+
+
+
+  <!-- Social Media Meta Tags -->
+  
+  <!-- JavaScript: jQuery loaded synchronously -->
+  <script defer src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+  <!-- CSS: Header CSS snippet (compiled SCSS) -->
+  {%- render 'header-css' -%}
+
+  <!-- Preload JavaScript bundles to speed up load -->
+  <link rel="preload" href="{{ 'lazysizes.min.js' | asset_url }}" as="script">
+  <link rel="preload" href="{{ 'vendor.s.min.js' | asset_url }}" as="script">
+  <link rel="preload" href="{{ 'swiper-bundle.min.js' | asset_url }}" as="script">
+<!-- Actually load the scripts (preload alone does not execute) -->
+<script src="{{ 'lazysizes.min.js' | asset_url }}" defer></script>
+<script src="{{ 'vendor.s.min.js' | asset_url }}" defer></script>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+
+<!-- Core Theme JavaScript deferred -->
+<script src="{{ 'global.s.min.js' | asset_url }}" defer></script>
+
+
+  <!-- Analytics / Third-Party Script (Clarity) deferred -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "q3nwktubfr");
+  </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MQKGVTCH');</script>
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17211943737">
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://tiptop360.com/#organization",
+      "name": "TipTop360",
+      "legalName": "Sylo Commerce FZ-LLC",
+      "url": "https://tiptop360.com/",
+      "logo": "https://tiptop360.com/cdn/shop/files/Logo.png?v=1760682550&width=200",
+      "sameAs": [
+        "https://www.facebook.com/TipTop360-online-61574240081708/",
+        "https://www.instagram.com/tiptop360_online/",
+        "https://www.tiktok.com/@tiptop360_online"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+971585156033",
+          "contactType": "customer service",
+          "areaServed": "AE",
+          "availableLanguage": ["English"]
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "RAK Free Zone",
+        "addressCountry": "AE"
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "TradeLicense",
+          "value": "45009298"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://tiptop360.com/#website",
+      "url": "https://tiptop360.com/",
+      "name": "TipTop360 - Smart Lifestyle, Kids & Fitness Products in UAE",
+      "description": "TipTop360 offers curated lifestyle, fitness, and kids' products with fast UAE delivery. High-quality products at great prices.",
+      "publisher": {
+        "@id": "https://tiptop360.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://tiptop360.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://tiptop360.com/#webpage",
+      "url": "https://tiptop360.com/",
+      "name": "TipTop360 – Buy Kids, Lifestyle & Fitness Products in UAE",
+      "description": "Shop kids' essentials, lifestyle gadgets, home tools, and fitness products at TipTop360. Fast UAE shipping, COD available, high-quality curated items.",
+      "isPartOf": { "@id": "https://tiptop360.com/#website" },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://tiptop360.com/cdn/shop/files/Logo.png?v=1760682550"
+      }
+    },
+    {
+      "@type": "Store",
+      "@id": "https://tiptop360.com/#store",
+      "name": "TipTop360",
+      "url": "https://tiptop360.com/",
+      "description": "UAE-based online store offering curated kids, lifestyle, and fitness products.",
+      "telephone": "+971585156033",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "RAK Free Zone (as per trade license)",
+        "addressLocality": "Ras Al Khaimah",
+        "addressRegion": "RAK",
+        "addressCountry": "AE"
+      },
+      "openingHours": "Mo-Su 00:00-23:59",
+      "paymentAccepted": [
+        "CashOnDelivery",
+        "Visa",
+        "MasterCard",
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "priceRange": "$$"
+    }
+  ]
+}
+</script>
+
+</head>
+<body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} body-theme {% if settings.productpage == 'product-2' or settings.productpage == 'product-6' or settings.productpage == 'product-7' %} product-hide-breadcrumb {% endif %}">
+  <!-- Google Tag Manager (noscript) -->
+<!-- End Google Tag Manager (noscript) -->
+  <!-- Loading Indicator -->
+  {%- render 'loading' -%}
+
+  <!-- Header Sections -->
+  {%- sections 'header-group' -%}
+
+  <!-- Main page container -->
+  <div class="page-container page-element is-moved-by-drawer">
+    {%- render 'breadcrumb' -%}
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="MainContent" role="main">
+      {% if settings.enable_animationscroll %}
+        <div id="js-scroll">
+          <div data-scroll-section>
+            {%- render 'slideshow' -%}
+          </div>
+          {{ content_for_layout }}
+        </div>
+      {% else %}
+        {%- render 'slideshow' -%}
+        {{ content_for_layout }}
+      {% endif %}
+    </main>
+
+    <!-- Footer Sections -->
+    
+    
+  </div>
+
+  <!-- Extra UI Components -->
+  
+
+  <!-- Custom JS for Cart Visibility and Chat Toggle -->
+  <script>
+    setInterval(function() {
+        if (document.querySelector('.js-mini-cart')?.classList.contains('active')) {
+            document.getElementById('carthike-chat-button-container')?.style.setProperty('display', 'none');
+        } else {
+            document.getElementById('carthike-chat-button-container')?.style.removeProperty('display');
+        }
+    }, 500);
+  </script>
+
+  <!-- Lazy image preloader script (if used in theme) -->
+  {{ 'tiny-img-link-preloader.s.min.js' | asset_url | script_tag }}
+
+</body>
+</html>

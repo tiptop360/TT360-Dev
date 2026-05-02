@@ -1,0 +1,204 @@
+{% doc %}
+  @prompt
+    Fix critical CSS optimization code that is currently visible on the website. Hide the code properly by ensuring it's placed in the correct HTML head section or using proper liquid tags. Make sure the CSS optimization works invisibly in the background without displaying any code or text to website visitors.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-css-optimizer-{{ ai_gen_id }} {
+    display: none !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+{% endstyle %}
+
+<css-optimizer-{{ ai_gen_id }}
+  class="ai-css-optimizer-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+  data-critical-css="{{ block.settings.enable_critical_css }}"
+  data-preload-fonts="{{ block.settings.preload_fonts }}"
+  data-defer-non-critical="{{ block.settings.defer_non_critical }}"
+  data-minify-inline="{{ block.settings.minify_inline_css }}"
+>
+</css-optimizer-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CSSOptimizer{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.criticalCSS = this.dataset.criticalCss === 'true';
+        this.preloadFonts = this.dataset.preloadFonts === 'true';
+        this.deferNonCritical = this.dataset.deferNonCritical === 'true';
+        this.minifyInline = this.dataset.minifyInline === 'true';
+      }
+
+      connectedCallback() {
+        this.optimizeCSS();
+      }
+
+      optimizeCSS() {
+        if (this.criticalCSS) {
+          this.implementCriticalCSS();
+        }
+        
+        if (this.preloadFonts) {
+          this.preloadWebFonts();
+        }
+        
+        if (this.deferNonCritical) {
+          this.deferNonCriticalCSS();
+        }
+        
+        if (this.minifyInline) {
+          this.minifyInlineStyles();
+        }
+      }
+
+      implementCriticalCSS() {
+        const criticalStyles = `
+          body { margin: 0; padding: 0; }
+          .header, .main-content, .footer { display: block; }
+          img { max-width: 100%; height: auto; }
+          .btn { display: inline-block; padding: 10px 20px; text-decoration: none; }
+        `;
+        
+        const criticalStyleElement = document.createElement('style');
+        criticalStyleElement.textContent = criticalStyles;
+        criticalStyleElement.setAttribute('data-critical', 'true');
+        document.head.insertBefore(criticalStyleElement, document.head.firstChild);
+      }
+
+      preloadWebFonts() {
+        const fontUrls = [
+          'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap',
+          'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap'
+        ];
+
+        fontUrls.forEach(url => {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'style';
+          link.href = url;
+          link.onload = function() {
+            this.rel = 'stylesheet';
+          };
+          document.head.appendChild(link);
+        });
+      }
+
+      deferNonCriticalCSS() {
+        const stylesheets = document.querySelectorAll('link[rel="stylesheet"]:not([data-critical])');
+        
+        stylesheets.forEach(stylesheet => {
+          if (!stylesheet.hasAttribute('data-deferred')) {
+            const href = stylesheet.href;
+            stylesheet.remove();
+            
+            const deferredLink = document.createElement('link');
+            deferredLink.rel = 'stylesheet';
+            deferredLink.href = href;
+            deferredLink.media = 'print';
+            deferredLink.setAttribute('data-deferred', 'true');
+            deferredLink.onload = function() {
+              this.media = 'all';
+            };
+            document.head.appendChild(deferredLink);
+          }
+        });
+      }
+
+      minifyInlineStyles() {
+        const styleElements = document.querySelectorAll('style');
+        
+        styleElements.forEach(style => {
+          if (!style.hasAttribute('data-minified')) {
+            let css = style.textContent;
+            css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+            css = css.replace(/\s+/g, ' ');
+            css = css.replace(/;\s*}/g, '}');
+            css = css.replace(/\s*{\s*/g, '{');
+            css = css.replace(/;\s*/g, ';');
+            css = css.trim();
+            
+            style.textContent = css;
+            style.setAttribute('data-minified', 'true');
+          }
+        });
+      }
+    }
+
+    customElements.define('css-optimizer-{{ ai_gen_id }}', CSSOptimizer{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "CSS Optimizer",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Critical CSS"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_critical_css",
+      "label": "Enable critical CSS injection",
+      "default": true,
+      "info": "Injects essential CSS directly into the document head for faster initial rendering"
+    },
+    {
+      "type": "header",
+      "content": "Font Optimization"
+    },
+    {
+      "type": "checkbox",
+      "id": "preload_fonts",
+      "label": "Preload web fonts",
+      "default": true,
+      "info": "Preloads Google Fonts and other web fonts to reduce render-blocking"
+    },
+    {
+      "type": "header",
+      "content": "CSS Loading"
+    },
+    {
+      "type": "checkbox",
+      "id": "defer_non_critical",
+      "label": "Defer non-critical CSS",
+      "default": true,
+      "info": "Loads non-essential stylesheets asynchronously to improve page load speed"
+    },
+    {
+      "type": "header",
+      "content": "CSS Minification"
+    },
+    {
+      "type": "checkbox",
+      "id": "minify_inline_css",
+      "label": "Minify inline CSS",
+      "default": true,
+      "info": "Removes whitespace and comments from inline CSS to reduce file size"
+    },
+    {
+      "type": "header",
+      "content": "Performance Info"
+    },
+    {
+      "type": "paragraph",
+      "content": "This block optimizes CSS delivery by implementing critical CSS techniques, font preloading, and CSS deferring. It works invisibly in the background to improve page load performance."
+    }
+  ],
+  "presets": [
+    {
+      "name": "CSS Optimizer"
+    }
+  ]
+}
+{% endschema %}

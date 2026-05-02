@@ -1,0 +1,437 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "advanced_content_zQDAA8": {
+      "type": "advanced-content",
+      "blocks": {
+        "html_6A9nxf": {
+          "type": "html",
+          "settings": {
+            "code": "",
+            "width": "100%",
+            "align": "auto"
+          }
+        }
+      },
+      "block_order": [
+        "html_6A9nxf"
+      ],
+      "disabled": true,
+      "name": "Advanced Content",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "text_color": "rgba(0,0,0,0)",
+        "bgsection": "#ffffff",
+        "rangebg": 0,
+        "bgbefore": "rgba(0,0,0,0)",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_position": "center center",
+        "zindex": "",
+        "title_top": "",
+        "title": "",
+        "des": "",
+        "align-heading": "center",
+        "padding": true,
+        "gutter_padding": 30,
+        "col_center": false,
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "1776488851afc813c0": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "1776489097b845e3c4": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "17764894835ddb9268": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "17764897598a66c813": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "177649037847091aad": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_bca0fbf_nbzLUd": {
+          "type": "ai_gen_block_bca0fbf",
+          "settings": {
+            "bg_color_start": "#1a0033",
+            "bg_color_end": "#0d001a",
+            "headline": "Smoke Bubble Machine",
+            "gradient_color_1": "#8a2be2",
+            "gradient_color_2": "#00ffff",
+            "gradient_color_3": "#ff1493",
+            "description": "Create magical moments with mesmerizing smoke-filled bubbles",
+            "description_color": "#e0e0e0",
+            "btn_primary_label": "Shop Now",
+            "btn_primary_link": "shopify:\/\/products\/smoke-bubble-machine",
+            "btn_primary_start": "#8a2be2",
+            "btn_primary_end": "#4b0082",
+            "btn_primary_color": "#ffffff",
+            "btn_secondary_label": "",
+            "btn_secondary_link": "",
+            "btn_secondary_border": "#8a2be2",
+            "btn_secondary_color": "#ffffff",
+            "btn_border_radius": 30,
+            "show_stats": true,
+            "stat_1_value": "500+",
+            "stat_1_label": "Bubbles\/min",
+            "stat_2_value": "8hrs",
+            "stat_2_label": "Runtime",
+            "stat_3_value": "RGB",
+            "stat_3_label": "LED Lights",
+            "stat_value_color": "#ffffff",
+            "stat_label_color": "#e0e0e0",
+            "stat_divider_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_bca0fbf_nbzLUd"
+      ],
+      "settings": {}
+    },
+    "blocks_rczGEk": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_15e7c06_CWjNiN": {
+          "type": "ai_gen_block_15e7c06",
+          "settings": {
+            "heading": "",
+            "text": "<p>Create magical memories with the Smoke Bubble Machine in UAE. This next-generation smoke bubble maker produces stunning mist-filled bubbles that captivate everyone who sees them — from birthday parties and Eid celebrations to everyday family fun at home.<\/p><p>Using advanced water-based vapor technology, this smoke bubble toy generates safe, clean, and visually mesmerising bubble cloud effects. It's one of the most popular party bubble machines available in the UAE<\/p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "spacing": 15,
+            "padding_top": 20,
+            "padding_bottom": 20,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 32,
+            "text_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_15e7c06_CWjNiN"
+      ],
+      "name": "Title and text",
+      "settings": {}
+    },
+    "blocks_aVDkLh": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_15e7c06_6XfzWT": {
+          "type": "ai_gen_block_15e7c06",
+          "settings": {
+            "heading": "Why This is the Best Smoke Bubble Machine UAE",
+            "text": "",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "spacing": 15,
+            "padding_top": 20,
+            "padding_bottom": 20,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 32,
+            "text_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_15e7c06_6XfzWT"
+      ],
+      "name": "Title and text",
+      "settings": {}
+    },
+    "screenfree_intro_uae_2026_fQt3iU": {
+      "type": "screenfree-intro-uae-2026",
+      "name": "Screen-Free Intro UAE",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Party_bubble_toy_on_kids_play_table.png",
+        "heading": "",
+        "description": "<h3><strong>Magical Smoke Bubble Effect That Stands Out<\/strong><\/h3><p>Unlike ordinary bubble toys, this premium smoke bubble create bubbles filled with a soft, dreamy fog. Perfect for photos, videos, and unforgettable party moments.<br\/><\/p><h3><strong>Rechargeable Bubble Machine with Long-Lasting Power<\/strong><\/h3><p>This rechargeable bubble machinef eatures a convenient USB charging system, giving you extended playtime on a single charge. Whether hosting a party or playing outdoors, this bubble machine toy UAE delivers non-stop fun<br\/><\/p><h3><strong>Mess-Free & Hassle-Free Bubble Toy Machine<\/strong><\/h3><p>This bubble toy machine uses clean water vapor bubble machine technology — no soap residue, no sticky floors. Ideal for indoor use in UAE homes.<\/p>",
+        "image_position": "left"
+      }
+    },
+    "blocks_hpVMzJ": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7b825c3_rVgQQp": {
+          "type": "ai_gen_block_7b825c3",
+          "settings": {
+            "box_1_title": "<h4>Safe, Durable & Kid-Friendly Design<\/h4>",
+            "box_1_text": "<p>Thissmoke bubble toyis crafted from non-toxic, child-safe materials — lightweight, smooth-edged, and easy for small hands to hold.<br\/><br\/><\/p>",
+            "box_1_link_text": "Learn more",
+            "box_1_link_url": "shopify:\/\/products\/smoke-bubble-machine",
+            "box_2_title": "<h4>Easy One-Button Operation for Instant Fun<\/h4>",
+            "box_2_text": "<p>Thisparty bubble machinecouldn't be simpler. One button press fills the room with smoke bubbles instantly.<br\/><br\/><\/p>",
+            "box_2_link_text": "Learn more",
+            "box_2_link_url": "shopify:\/\/products\/smoke-bubble-machine",
+            "desktop_width_percent": 100,
+            "gap": 30,
+            "padding": 30,
+            "content_gap": 15,
+            "box_background": "#f4f4f4",
+            "border_color": "#e0e0e0",
+            "border_width": 1,
+            "border_radius": 8,
+            "title_color": "#12395e",
+            "title_size": 24,
+            "title_weight": "600",
+            "text_color": "#202025",
+            "text_size": 16,
+            "link_color": "#12395e",
+            "link_hover_color": "#f9655d",
+            "link_size": 16,
+            "link_weight": "500"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7b825c3_rVgQQp"
+      ],
+      "name": "Two boxes",
+      "settings": {}
+    },
+    "blocks_G9aRDN": {
+      "type": "_blocks",
+      "name": "Text block",
+      "settings": {}
+    },
+    "blocks_4YrrgA": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_15e7c06_mqw3dx": {
+          "type": "ai_gen_block_15e7c06",
+          "settings": {
+            "heading": "Perfect Party Bubble Machine for Every Occasion in UAE\\",
+            "text": "<p>#  Kids' birthday parties UAE — make it the highlight<\/p><p># Eid gatherings — add a magical touch<\/p><p>#Family get-togethers — fun for every age<\/p><p>#Indoor playtime — safe and clean at home<\/p><p>#Outdoor activities — picnics, parks, gardens<\/p><p>#Unique gift idea for kids UAE<\/p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "spacing": 15,
+            "padding_top": 10,
+            "padding_bottom": 10,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 32,
+            "text_size": 16
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_15e7c06_DLjp6h": {
+          "type": "ai_gen_block_15e7c06",
+          "settings": {
+            "heading": "How to Use the Smoke Bubble Machine",
+            "text": "<p>1. Fill the reservoir with bubble solution and water<br\/>2. Press the power button to switch it on<br\/>3. Watchsmoke-filled bubblesfloat around you<br\/><br\/><\/p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "spacing": 15,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 32,
+            "text_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_15e7c06_mqw3dx",
+        "ai_gen_block_15e7c06_DLjp6h"
+      ],
+      "name": "Title and text",
+      "settings": {}
+    },
+    "blocks_DRVkjT": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4580350_cQJzyE": {
+          "type": "ai_gen_block_4580350",
+          "settings": {
+            "box_1_title": "Key Features",
+            "box_1_text": "<ul><li>Advanced smoke bubble technology for consistent results<\/li><li>USB rechargeable bubble toy — no batteries needed<\/li><li>Lightweight and portable<\/li><li>Non-toxic, child-safe materials<\/li><li>Indoor and outdoor use<\/li><li>Simple one-button operation<\/li><\/ul>",
+            "box_2_title": "Benefits",
+            "box_2_text": "<ul><li>Promote screen-free activities for children<\/li><li>Creates a beautiful and fun experience<\/li><li>Perfect bubble machine for any occasion<\/li><li>Easily transported for travel, picnic and outings<\/li><li>A popular gift idea in the UAE<\/li><li>Encourages creativity and imaginative play<br\/><br\/><\/li><\/ul>",
+            "desktop_width_percent": 100,
+            "section_padding": 40,
+            "gap_between_boxes": 30,
+            "gap_mobile": 20,
+            "box_padding": 30,
+            "border_radius": 8,
+            "border_width": 1,
+            "border_color": "#e0e0e0",
+            "box_background_color": "#ffffff",
+            "background_color": "#f5f5f5",
+            "text_alignment": "left",
+            "title_size": 24,
+            "title_weight": "600",
+            "title_margin_bottom": 15,
+            "title_color": "#12395e",
+            "text_size": 16,
+            "text_color": "#202025",
+            "list_style": "disc"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4580350_cQJzyE"
+      ],
+      "name": "Two box text section",
+      "settings": {}
+    },
+    "1776074770b4888247": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1d0e2a6_AmFRHt": {
+          "type": "ai_gen_block_1d0e2a6",
+          "settings": {
+            "title": "Buy the best smoke bubble machine UAE today",
+            "text": "<p>Order your Smoke Bubble Machine UAE today. Explore our full range of kids' party toys UAE and outdoor toys for more ideas.<\/p>",
+            "button_text": "Order  now",
+            "button_link": "shopify:\/\/products\/smoke-bubble-machine",
+            "desktop_width_percent": 100,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "padding_vertical": 60,
+            "padding_horizontal": 20,
+            "background_color": "#f4f4f4",
+            "title_color": "#12395e",
+            "text_color": "#202025",
+            "title_size": 44,
+            "title_spacing": 16,
+            "text_size": 16,
+            "text_spacing": 24,
+            "button_bg_color": "#f9655d",
+            "button_text_color": "#ffffff",
+            "button_hover_bg_color": "#12395e",
+            "button_hover_text_color": "#ffffff",
+            "button_font_size": 14,
+            "button_font_weight": "500",
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 20,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 28
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1d0e2a6_AmFRHt"
+      ],
+      "settings": {}
+    },
+    "line_cN6GeE": {
+      "type": "line",
+      "name": "Divider",
+      "settings": {
+        "animation": "",
+        "paddingsection": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "bgsection": "#ffffff",
+        "setwidth": "container",
+        "bgborder": "#dddddd",
+        "wborder": "1px"
+      }
+    },
+    "faq_accordion_wPATVY": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_xgman7": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Can children play with this bubble machine?",
+            "faq_des": "<p>The smoke bubble bubble toy machine is a safe product made with water based mist technology, is not harmful, non-toxic, and does not get hot.<\/p>"
+          }
+        },
+        "faq_RGydNA": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Will the bubble maker get too much water on surfaces if I use it inside?",
+            "faq_des": "<p>No, the bubble maker is designed to be clean and safe when used inside<\/p>"
+          }
+        },
+        "faq_wa3Kjh": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Is it suitable for parties and events?",
+            "faq_des": "<p>The rechargeable bubble machine is really great for parties and events for things like birthdays and special celebrations. It is a lot of fun for people, on these occasions.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_xgman7",
+        "faq_RGydNA",
+        "faq_wa3Kjh"
+      ],
+      "name": "Faqs Accordion",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "bgsection": "#ffffff",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_pos": "center center",
+        "title_top": "",
+        "title": "FAQ",
+        "des": "",
+        "align-heading": "center",
+        "title_size": "h4",
+        "e_first_open": false,
+        "e_reverse": true,
+        "e_small": true,
+        "left_html": "",
+        "e_right": false,
+        "paddingsection": "60px 0px 60px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "advanced_content_zQDAA8",
+    "1776488851afc813c0",
+    "1776489097b845e3c4",
+    "17764894835ddb9268",
+    "17764897598a66c813",
+    "177649037847091aad",
+    "blocks_rczGEk",
+    "blocks_aVDkLh",
+    "screenfree_intro_uae_2026_fQt3iU",
+    "blocks_hpVMzJ",
+    "blocks_G9aRDN",
+    "blocks_4YrrgA",
+    "blocks_DRVkjT",
+    "1776074770b4888247",
+    "line_cN6GeE",
+    "faq_accordion_wPATVY"
+  ]
+}
