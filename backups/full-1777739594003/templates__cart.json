@@ -1,0 +1,208 @@
+{
+  "sections": {
+    "main": {
+      "type": "cart-template",
+      "settings": {
+        "cart_notes_enable": true
+      }
+    },
+    "1766077263c431e11a": {
+      "type": "apps",
+      "blocks": {
+        "wrapin_gift_wrap_options_app_block_8Gatiy": {
+          "type": "shopify:\/\/apps\/wrapin-gift-wrap-options\/blocks\/app-block\/31c9fd89-9221-4847-aeee-86a226a0a620",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "wrapin_gift_wrap_options_app_block_8Gatiy"
+      ],
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "bgsection": "#ffffff"
+      }
+    },
+    "1765350931346cdb0b": {
+      "type": "apps",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "20px 0px 20px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px",
+        "bgsection": "#ffffff"
+      }
+    },
+    "blocks_8rbWFW": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_93dfe70_G86kPj": {
+          "type": "ai_gen_block_93dfe70",
+          "settings": {
+            "banner_width": "container",
+            "banner_image": "shopify:\/\/shop_images\/Tiptop360trusted_online_shop_UAE.jpg",
+            "banner_height_mobile": 200,
+            "banner_height": 200,
+            "image_fit": "contain",
+            "image_position": "center",
+            "background_color": "#ffffff",
+            "show_overlay": false,
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "content_vertical_alignment": "center",
+            "content_horizontal_alignment": "center",
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "content_padding_mobile": 20,
+            "content_padding": 40,
+            "subheading": "",
+            "subheading_color": "#ffffff",
+            "subheading_size_mobile": 14,
+            "subheading_size": 18,
+            "subheading_spacing": 10,
+            "heading": "",
+            "heading_color": "#ffffff",
+            "heading_size_mobile": 28,
+            "heading_size": 54,
+            "heading_weight": "700",
+            "heading_spacing": 16,
+            "text": "",
+            "text_color": "#ffffff",
+            "text_size_mobile": 14,
+            "text_size": 16,
+            "text_spacing": 24,
+            "show_buttons": false,
+            "button_spacing": 12,
+            "button_font_size": 14,
+            "button_font_weight": "500",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 32,
+            "button_border_radius": 28,
+            "button_border_width": 0,
+            "button_text": "Shop now",
+            "button_link": "",
+            "button_background": "#54e8cc",
+            "button_text_color": "#12395e",
+            "button_border_color": "#54e8cc",
+            "button_background_hover": "#12395e",
+            "button_text_color_hover": "#ffffff",
+            "button_border_color_hover": "#12395e",
+            "button_secondary_text": "Learn more",
+            "button_secondary_link": "",
+            "button_secondary_background": "#ffffff",
+            "button_secondary_text_color": "#12395e",
+            "button_secondary_border_color": "#ffffff",
+            "button_secondary_background_hover": "#12395e",
+            "button_secondary_text_color_hover": "#ffffff",
+            "button_secondary_border_color_hover": "#12395e"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_93dfe70_G86kPj"
+      ],
+      "disabled": true,
+      "name": "Image banner",
+      "settings": {}
+    },
+    "advanced_content_z93Jcm": {
+      "type": "advanced-content",
+      "blocks": {
+        "html_k8JBcK": {
+          "type": "html",
+          "settings": {
+            "code": "<div style=\"width: 100%;\">\n  <img src=\"https:\/\/tiptop360.com\/cdn\/shop\/files\/Tiptop360trusted_online_shop_UAE.jpg?width=600\" srcset=\"https:\/\/tiptop360.com\/cdn\/shop\/files\/Tiptop360trusted_online_shop_UAE.jpg?width=400 400w, https:\/\/tiptop360.com\/cdn\/shop\/files\/Tiptop360trusted_online_shop_UAE.jpg?width=600 600w, https:\/\/tiptop360.com\/cdn\/shop\/files\/Tiptop360trusted_online_shop_UAE.jpg?width=900 900w\" sizes=\"(max-width: 768px) 90vw, 600px\" alt=\"Tiptop360 Trusted Online Shop UAE\" loading=\"lazy\" decoding=\"async\" width=\"600\" height=\"600\" style=\"width: 100%; height: auto; display: block; max-width: 600px; margin: 0 auto; border-radius: 8px;\">\n<\/div>",
+            "width": "100%",
+            "align": "auto"
+          }
+        }
+      },
+      "block_order": [
+        "html_k8JBcK"
+      ],
+      "name": "Advanced Content",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "text_color": "rgba(0,0,0,0)",
+        "bgsection": "#ffffff",
+        "rangebg": 0,
+        "bgbefore": "transparent",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_position": "center center",
+        "zindex": "",
+        "title_top": "",
+        "title": "",
+        "des": "",
+        "align-heading": "center",
+        "padding": true,
+        "gutter_padding": 30,
+        "col_center": false,
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "product_list_swiper_AECtAx": {
+      "type": "product-list-swiper",
+      "name": "Product list (Swiper)",
+      "settings": {
+        "animation": "",
+        "setwidth": "container-fluid",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_position": "center center",
+        "bgsection": "#ffffff",
+        "title_color": "rgba(0,0,0,0)",
+        "title_top": "Don’t Miss the Perfect Add-Ons",
+        "title": "Small Tools. Big Convenience.",
+        "des": "",
+        "align-heading": "center",
+        "collection": "problem-solving-products-uae",
+        "limit": 10,
+        "perviewDesktop": 4,
+        "spaceBetween": 30,
+        "nowrap": true,
+        "arrows": true,
+        "scrollbar": true,
+        "buttonall": "",
+        "buttonall_link": "",
+        "style_btn": "btn-theme",
+        "enable_first_banner": false,
+        "width_banner": 30,
+        "subtitle_banner": "Sub Title",
+        "title_banner": "Title Banner",
+        "size_text": "h2",
+        "des_banner": "",
+        "pos_banner": "mid-center",
+        "button_banner": "",
+        "link_banner": "",
+        "style_btn_banner": "btn-underline btn-underline-white",
+        "text_banner_color": "#ffffff",
+        "overlay_banner": "#000000",
+        "opacity_banner": 0.2,
+        "paddingsection": "40px 0px 20px 0px",
+        "paddingmobile": "20px 0px 10px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1766077263c431e11a",
+    "1765350931346cdb0b",
+    "blocks_8rbWFW",
+    "advanced_content_z93Jcm",
+    "product_list_swiper_AECtAx"
+  ]
+}
