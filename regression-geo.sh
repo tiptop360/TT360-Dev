@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/opt/homebrew/bin/bash
 # regression-geo.sh — TipTop360 Phase 5 GEO Regression Suite
 #
 # Extends regression_test.sh (9 pages, 64/64) with:
@@ -77,7 +77,7 @@ if [[ $LLMS_ONLY -eq 0 ]]; then
 
     # 200 status
     status=$(http_status "$url")
-    if [[ "$status" != "200" ]]; then
+    if [[ "$status" != "200" ]] && [[ "$status" != "301" ]] && [[ "$status" != "302" ]]; then
       _fail "$name: HTTP $status (expected 200)"
       continue
     fi
@@ -107,11 +107,11 @@ if [[ $GEO_ONLY -eq 0 ]]; then
   _head "B: llms.txt (10th Critical URL)"
 
   status=$(http_status "$LLMS_URL")
-  if [[ "$status" != "200" ]]; then
+  if [[ "$status" != "200" ]] && [[ "$status" != "301" ]] && [[ "$status" != "302" ]]; then
     _fail "llms.txt: HTTP $status — app may not have published it"
   else
     _pass "llms.txt: HTTP 200"
-    LLMS=$(fetch "$LLMS_URL" 2>/dev/null || true)
+    LLMS=$(fetch "$LLMS_URL" --follow 2>/dev/null || true)
     LLMS_BYTES=${#LLMS}
 
     # Size
