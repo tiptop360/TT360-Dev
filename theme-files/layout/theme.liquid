@@ -26,6 +26,11 @@
   <link rel="canonical" href="{{ canonical_url }}">
   
   {%- comment -%} 2. PERFORMANCE: Corrected pre-connects and preloads {%- endcomment -%}
+  
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://static.klaviyo.com">
+  <link rel="preconnect" href="https://code.jquery.com">
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
   <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
@@ -107,6 +112,17 @@
 
 {%- render 'mobile-first-css' -%}
 {%- render 'blog-author-schema' -%}
+
+  {%- if template == 'index' -%}
+  {%- assign lcp_product = collections['new-arrivals-top-selling-products-in-uae'].products.first -%}
+  {%- if lcp_product and lcp_product.featured_image -%}
+  <link rel="preload" as="image"
+    href="{{ lcp_product.featured_image | image_url: width: 600 }}"
+    imagesrcset="{{ lcp_product.featured_image | image_url: width: 300 }} 300w, {{ lcp_product.featured_image | image_url: width: 600 }} 600w"
+    imagesizes="(max-width: 768px) 100vw, 600px">
+  {%- endif -%}
+  {%- endif -%}
+{%- render 'critical-css' -%}
 </head>
 
 <body class="template-{{ template.name | handle }}">
