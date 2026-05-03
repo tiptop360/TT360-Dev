@@ -151,7 +151,7 @@
   -%}
 
   {%- comment -%} 5. SCRIPTS: Optimized load order {%- endcomment -%}
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+  <!-- jQuery removed: Shopify theme already loads jQuery via api.jquery -->
   <script src="{{ 'lazysizes.min.js' | asset_url }}" defer></script>
   <script src="{{ 'vendor.s.min.js' | asset_url }}" defer></script>
   <script src="{{ 'global.s.min.js' | asset_url }}" defer></script>
