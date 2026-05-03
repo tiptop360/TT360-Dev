@@ -62,9 +62,9 @@ if [[ $LLMS_ONLY -eq 0 ]]; then
   declare -A PAGES=(
     ["Homepage"]="/"
     ["KidsCollection"]="/collections/kids-collection-uae"
-    ["Toothbrush"]="/products/kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift"
+    ["Toothbrush"]="/products/kids-u-shaped-toothbrush-uae"
     ["AiVox"]="/products/ai-voice-recorder"
-    ["GymBag"]="/products/magnetic-gym-bag-uae-gymgear-tiptop360"
+    ["GymBag"]="/products/magnetic-gym-bag-uae"
     ["ColorPencils"]="/products/color-pencils"
     ["About"]="/pages/about-tiptop360"
     ["Cart"]="/cart"
@@ -156,7 +156,7 @@ if [[ $GEO_ONLY -eq 0 ]]; then
 
     # Required product handles
     for handle in \
-      "kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift" \
+      "kids-u-shaped-toothbrush-uae" \
       "ai-voice-recorder"; do
       if echo "$LLMS" | grep -q "$handle"; then
         _pass "llms.txt: Handle '$handle' present"
@@ -201,9 +201,9 @@ if [[ $LLMS_ONLY -eq 0 ]]; then
   _head "C: GEO Signal Checks (top 3 product PDPs)"
 
   declare -A GEO_PAGES=(
-    ["Toothbrush"]="/products/kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift"
+    ["Toothbrush"]="/products/kids-u-shaped-toothbrush-uae"
     ["AiVox"]="/products/ai-voice-recorder"
-    ["GymBag"]="/products/magnetic-gym-bag-uae-gymgear-tiptop360"
+    ["GymBag"]="/products/magnetic-gym-bag-uae"
   )
 
   for name in "${!GEO_PAGES[@]}"; do
@@ -252,7 +252,7 @@ if [[ $LLMS_ONLY -eq 0 ]]; then
   # ─────────────────────────────────────────────────────────────────────────
   _head "D: Schema Spot-Checks"
 
-  TB_URL="${BASE_URL}/products/kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift?x=$RANDOM"
+  TB_URL="${BASE_URL}/products/kids-u-shaped-toothbrush-uae?x=$RANDOM"
   TB_HTML=$(fetch "$TB_URL" 2>/dev/null || true)
 
   # Product schema type
