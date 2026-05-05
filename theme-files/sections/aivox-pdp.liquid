@@ -146,8 +146,43 @@
 <div class="aivox-pdp">
 
 <div class="aivox-topbar">Free UAE Delivery &middot; Cash on Delivery &middot; 1 Year Unlimited Transcription Exclusive</div>
-<div style="background:#05101a;color:#fff;padding:7px 14px;display:flex;align-items:center;justify-content:center;gap:10px;font-family:Inter,sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid rgba(84,232,204,.15);"><span>Exclusive deal ends:</span><span style="background:rgba(84,232,204,.15);border:1px solid rgba(84,232,204,.3);border-radius:4px;padding:3px 9px;font-size:20px;font-weight:600;min-width:36px;text-align:center;color:#54e8cc;" id="avH">--</span><span style="color:#54e8cc;font-size:18px;">:</span><span style="background:rgba(84,232,204,.15);border:1px solid rgba(84,232,204,.3);border-radius:4px;padding:3px 9px;font-size:20px;font-weight:600;min-width:36px;text-align:center;color:#54e8cc;" id="avM">--</span><span style="color:#54e8cc;font-size:18px;">:</span><span style="background:rgba(84,232,204,.15);border:1px solid rgba(84,232,204,.3);border-radius:4px;padding:3px 9px;font-size:20px;font-weight:600;min-width:36px;text-align:center;color:#54e8cc;" id="avS">--</span></div>
-<script>(function(){function t(){var r=86400-(Math.floor(Date.now()/1000)+14400)%86400;if(r<0)r+=86400;var p=function(n){return("0"+n).slice(-2);};var h=document.getElementById("avH");var m=document.getElementById("avM");var s=document.getElementById("avS");if(h&&m&&s){h.textContent=p(Math.floor(r/3600));m.textContent=p(Math.floor(r%3600/60));s.textContent=p(r%60);}}t();setInterval(t,500);})();</script>
+<div style="background:#05101a;color:#fff;padding:7px 14px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:Inter,sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid rgba(84,232,204,.15);"><span>Exclusive deal ends:</span><span id="avDays" style="color:#54e8cc;font-size:14px;font-weight:700;"></span><span style="background:rgba(84,232,204,.15);border:1px solid rgba(84,232,204,.3);border-radius:4px;padding:3px 9px;font-size:20px;font-weight:600;min-width:36px;text-align:center;color:#54e8cc;" id="avH">--</span><span style="color:#54e8cc;">:</span><span style="background:rgba(84,232,204,.15);border:1px solid rgba(84,232,204,.3);border-radius:4px;padding:3px 9px;font-size:20px;font-weight:600;min-width:36px;text-align:center;color:#54e8cc;" id="avM">--</span><span style="color:#54e8cc;">:</span><span style="background:rgba(84,232,204,.15);border:1px solid rgba(84,232,204,.3);border-radius:4px;padding:3px 9px;font-size:20px;font-weight:600;min-width:36px;text-align:center;color:#54e8cc;" id="avS">--</span></div>
+<script>
+(function(){
+  var KEY='avDeadline';
+  var OPTIONS=[86400,129600,172800];
+  function getDeadline(){
+    var d=localStorage.getItem(KEY);
+    var now=Math.floor(Date.now()/1000);
+    if(!d||parseInt(d)<=now){
+      var dur=(!d)?259200:OPTIONS[Math.floor(Math.random()*OPTIONS.length)];
+      d=String(now+dur);
+      localStorage.setItem(KEY,d);
+    }
+    return parseInt(d);
+  }
+  function tick(){
+    var now=Math.floor(Date.now()/1000);
+    var dl=getDeadline();
+    var r=dl-now;
+    if(r<0)r=0;
+    var p=function(n){return("0"+n).slice(-2);};
+    var days=Math.floor(r/86400);
+    var hrs=Math.floor((r%86400)/3600);
+    var mins=Math.floor((r%3600)/60);
+    var secs=r%60;
+    var dEl=document.getElementById('avDays');
+    var hEl=document.getElementById('avH');
+    var mEl=document.getElementById('avM');
+    var sEl=document.getElementById('avS');
+    if(dEl)dEl.textContent=days>0?days+'d ':'';
+    if(hEl)hEl.textContent=p(hrs);
+    if(mEl)mEl.textContent=p(mins);
+    if(sEl)sEl.textContent=p(secs);
+  }
+  tick();setInterval(tick,1000);
+})();
+</script>
 
 <div class="aivox-crumb">
   <a href="/">Home</a> &rsaquo;
