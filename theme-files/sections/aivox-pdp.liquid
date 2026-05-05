@@ -6,6 +6,10 @@
 
 {%- assign variant = product.selected_or_first_available_variant -%}
 
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Product","name":"{{ product.title | escape }}","description":"AI Voice Recorder Dubai. GPT-4, 134 languages, Arabic, 64GB local storage. 1 year unlimited transcription exclusive. Free UAE delivery. AED 450.","brand":{"@type":"Brand","name":"AiVox"},"offers":{"@type":"Offer","price":"{{ product.price | divided_by: 100.0 }}","priceCurrency":"AED","availability":"{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}","url":"{{ shop.url }}{{ product.url }}"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"45","bestRating":"5"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does AiVox transcribe in Arabic?","acceptedAnswer":{"@type":"Answer","text":"Yes. 134 languages including Arabic at 98% accuracy."}},{"@type":"Question","name":"What is the 1-year unlimited transcription deal?","acceptedAnswer":{"@type":"Answer","text":"First year unlimited free. After year 1, 400 minutes free every month permanently. Exclusive to TipTop360."}},{"@type":"Question","name":"Does AiVox need cloud storage?","acceptedAnswer":{"@type":"Answer","text":"No. 64GB built-in local storage. No cloud required."}},{"@type":"Question","name":"Can I pay Cash on Delivery in UAE?","acceptedAnswer":{"@type":"Answer","text":"Yes across all UAE Emirates. AED 450. Next-day delivery."}}]}]}
+</script>
+
 <style>
 .aivox-pdp *{box-sizing:border-box;margin:0;padding:0}
 .aivox-pdp{
@@ -30,7 +34,7 @@
 .aivox-gallery{background:var(--white);border-bottom:1px solid var(--border)}
 .aivox-stage{position:relative;width:100%;height:360px;overflow:hidden;will-change:transform}
 .aivox-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;pointer-events:none}
-.aivox-slide.active{opacity:1;pointer-events:auto;cursor:zoom-in}
+.aivox-slide.active{opacity:1;pointer-events:auto}
 .aivox-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .aivox-arr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(250,248,244,.92);border:none;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:10;color:var(--ink);transition:all .2s;-webkit-tap-highlight-color:transparent;box-shadow:0 2px 8px rgba(14,28,42,.1)}
 .aivox-arr:hover,.aivox-arr:active{background:var(--ink);color:var(--white)}
@@ -115,88 +119,35 @@
 .aivox-faq-item.open .aivox-faq-ic{transform:rotate(45deg);background:var(--ink);color:var(--white)}
 .aivox-faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;font-size:12.5px;color:var(--ink2);line-height:1.7}
 .aivox-faq-item.open .aivox-faq-a{max-height:280px;padding-bottom:15px}
-.aivox-final{background:var(--white);padding:30px 20px;border-top:1px solid var(--border);text-align:center;padding-bottom:80px}
+.aivox-final{background:var(--white);padding:30px 20px;border-top:1px solid var(--border);text-align:center}
 .aivox-final h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:300;color:var(--ink);margin-bottom:6px;line-height:1.2}
 .aivox-final h2 em{font-style:italic;color:var(--teal)}
 .aivox-final p{font-size:12px;color:var(--ink2);margin-bottom:20px;line-height:1.6}
 .aivox-cta-inner{max-width:360px;margin:0 auto}
-.aivox-sticky{position:fixed;bottom:0;left:0;right:0;background:#0e1c2a;border-top:2px solid #54e8cc;padding:11px 18px;display:flex;gap:11px;align-items:center;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.7)}
+.aivox-sticky{position:fixed;bottom:0;left:0;right:0;background:#0e1c2a;border-top:2px solid #54e8cc;padding:11px 18px;display:flex;gap:11px;align-items:center;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.8)}
 .aivox-sticky img{width:42px;height:42px;border-radius:8px;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
 .aivox-sticky-info{flex:1;min-width:0}
 .aivox-sticky-name{font-size:11px;color:rgba(255,255,255,.8);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .aivox-sticky-price{font-family:"Cormorant Garamond",Georgia,serif;font-size:22px;color:#54e8cc;font-weight:700;line-height:1.1}
 .aivox-sticky-btn{background:#54e8cc;color:#0e1c2a;padding:13px 20px;border-radius:50px;font-size:13px;font-weight:700;white-space:nowrap;flex-shrink:0;border:none;cursor:pointer;-webkit-appearance:none;touch-action:manipulation;min-height:48px;display:flex;align-items:center}
-.aivox-sticky-btn:active{background:#439b94;color:#fff}
+.aivox-sticky-btn:hover{background:var(--teal);color:var(--cream)}
 
 
-.aivox-cd-bar{background:#05101a;color:#fff;padding:7px 14px;display:flex;align-items:center;justify-content:center;gap:10px;font-family:Inter,-apple-system,sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid rgba(84,232,204,.15)}
-.aivox-cd-num{background:rgba(84,232,204,.12);border:1px solid rgba(84,232,204,.35);border-radius:4px;padding:3px 9px;font-size:22px;font-weight:600;min-width:36px;text-align:center;line-height:1.2;color:#54e8cc}
-.aivox-cd-sep{font-size:20px;color:#54e8cc}
-.aivox-you-save{font-size:12px;font-weight:700;color:#16a34a;margin-bottom:10px;display:flex;align-items:center;gap:5px}
-.aivox-geo-p{font-size:12px;color:var(--ink2);line-height:1.65;margin-bottom:14px;padding:10px 13px;background:rgba(84,232,204,.05);border-radius:8px;border-left:3px solid var(--mint)}
-h2.aivox-sec-lbl{display:block;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:16px;font-style:normal;border:none;background:none;padding:0}
-.aivox-qty-block{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);margin-bottom:4px}
-.aivox-qty-lbl{font-size:12px;font-weight:600;color:var(--ink);letter-spacing:.3px}
+.aivox-qty-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);margin-bottom:4px}
+.aivox-qty-lbl{font-size:13px;font-weight:600;color:var(--ink)}
 .aivox-qty-ctrl{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
-.aivox-qty-btn{width:40px;height:40px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink);display:flex;align-items:center;justify-content:center;transition:background .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-appearance:none}
-.aivox-qty-btn:hover{background:rgba(14,28,42,.06)}
-.aivox-qty-btn:active{background:rgba(14,28,42,.12)}
-.aivox-qty-val{width:44px;text-align:center;font-size:16px;font-weight:700;color:var(--ink);pointer-events:none}
-.aivox-qty-total{font-size:11px;color:var(--teal);font-weight:600;text-align:center;margin-bottom:16px}
-
-.tt-lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;align-items:center;justify-content:center;cursor:zoom-out;-webkit-tap-highlight-color:transparent}
-.tt-lb-overlay.open{display:flex}
-.tt-lb-img{max-width:96vw;max-height:90vh;object-fit:contain;border-radius:4px;-webkit-user-drag:none;user-select:none}
-.tt-lb-close{position:absolute;top:14px;right:18px;color:#fff;font-size:32px;font-weight:300;cursor:pointer;line-height:1;background:none;border:none;padding:0 8px;z-index:100000}
-.tt-lb-prev,.tt-lb-next{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:36px;font-weight:300;cursor:pointer;background:rgba(255,255,255,.12);border:none;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
-.tt-lb-prev{left:10px}.tt-lb-next{right:10px}
-.aivox-section{margin-bottom:0 !important;padding-bottom:0 !important}
-.aivox-pdp{padding-bottom:0 !important}
+.aivox-qty-btn{width:40px;height:40px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-appearance:none}
+.aivox-qty-btn:active{background:rgba(14,28,42,.08)}
+.aivox-qty-val{width:44px;text-align:center;font-size:16px;font-weight:700;color:var(--ink)}
+.aivox-qty-note{font-size:11px;color:var(--teal);font-weight:600;margin-bottom:14px;min-height:16px}
+.aivox-section{margin-bottom:0;padding-bottom:0}
 </style>
 
 <div class="aivox-pdp">
 
 <div class="aivox-topbar">Free UAE Delivery &middot; Cash on Delivery &middot; 1 Year Unlimited Transcription Exclusive</div>
-<div class="aivox-cd-bar"><span>Exclusive deal ends:</span><span class="aivox-cd-num" id="avH">--</span><span class="aivox-cd-sep">:</span><span class="aivox-cd-num" id="avM">--</span><span class="aivox-cd-sep">:</span><span class="aivox-cd-num" id="avS">--</span></div>
-<script>(function(){var p=function(n){return("0"+n).slice(-2);};function avTick(){var r=86400-(Math.floor(Date.now()/1000)+14400)%86400;if(r<0)r+=86400;var h=document.getElementById("avH");var m=document.getElementById("avM");var s=document.getElementById("avS");if(h&&m&&s){h.textContent=p(Math.floor(r/3600));m.textContent=p(Math.floor(r%3600/60));s.textContent=p(r%60);}}avTick();setInterval(avTick,500);})();</script>
-<script>
-// Lightbox — global scope, works with IIFE slideshow
-window.ttLbSrcs=[];
-window.ttLbIdx=0;
-window.ttLbOpen=function(idx){
-  if(!window.ttLbSrcs.length){
-    document.querySelectorAll(".aivox-slide img").forEach(function(img){
-      window.ttLbSrcs.push(img.src.replace("width=700","width=1400"));
-    });
-  }
-  window.ttLbIdx=idx||0;
-  var lb=document.getElementById("tt-lb-av");
-  var im=document.getElementById("tt-lb-av-img");
-  if(lb&&im&&window.ttLbSrcs[window.ttLbIdx]){
-    im.src=window.ttLbSrcs[window.ttLbIdx];
-    lb.style.display="flex";
-    document.body.style.overflow="hidden";
-  }
-};
-window.ttLbClose=function(){
-  var lb=document.getElementById("tt-lb-av");
-  if(lb){lb.style.display="none";document.body.style.overflow="";}
-};
-window.ttLbNav=function(dir){
-  if(!window.ttLbSrcs.length)return;
-  window.ttLbIdx=(window.ttLbIdx+dir+window.ttLbSrcs.length)%window.ttLbSrcs.length;
-  var im=document.getElementById("tt-lb-av-img");
-  if(im)im.src=window.ttLbSrcs[window.ttLbIdx];
-};
-document.addEventListener("keydown",function(e){
-  var lb=document.getElementById("tt-lb-av");
-  if(!lb||lb.style.display==="none")return;
-  if(e.key==="Escape")window.ttLbClose();
-  if(e.key==="ArrowLeft")window.ttLbNav(-1);
-  if(e.key==="ArrowRight")window.ttLbNav(1);
-});
-</script>
-
+<div style="background:#05101a;color:#fff;padding:7px 14px;display:flex;align-items:center;justify-content:center;gap:10px;font-family:Inter,sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid rgba(84,232,204,.15);"><span>Exclusive deal ends:</span><span style="background:rgba(84,232,204,.15);border:1px solid rgba(84,232,204,.3);border-radius:4px;padding:3px 9px;font-size:20px;font-weight:600;min-width:36px;text-align:center;color:#54e8cc;" id="avH">--</span><span style="color:#54e8cc;font-size:18px;">:</span><span style="background:rgba(84,232,204,.15);border:1px solid rgba(84,232,204,.3);border-radius:4px;padding:3px 9px;font-size:20px;font-weight:600;min-width:36px;text-align:center;color:#54e8cc;" id="avM">--</span><span style="color:#54e8cc;font-size:18px;">:</span><span style="background:rgba(84,232,204,.15);border:1px solid rgba(84,232,204,.3);border-radius:4px;padding:3px 9px;font-size:20px;font-weight:600;min-width:36px;text-align:center;color:#54e8cc;" id="avS">--</span></div>
+<script>(function(){function t(){var r=86400-(Math.floor(Date.now()/1000)+14400)%86400;if(r<0)r+=86400;var p=function(n){return("0"+n).slice(-2);};var h=document.getElementById("avH");var m=document.getElementById("avM");var s=document.getElementById("avS");if(h&&m&&s){h.textContent=p(Math.floor(r/3600));m.textContent=p(Math.floor(r%3600/60));s.textContent=p(r%60);}}t();setInterval(t,500);})();</script>
 
 <div class="aivox-crumb">
   <a href="/">Home</a> &rsaquo;
@@ -205,7 +156,7 @@ document.addEventListener("keydown",function(e){
 </div>
 
 <div class="aivox-gallery">
-  <div class="aivox-stage" id="aivox-stage" style="cursor:zoom-in;" onclick="window.ttLbOpen(window.avCurrentSlide||0);">
+  <div class="aivox-stage" id="aivox-stage">
     <button class="aivox-arr aivox-arr-l" onclick="aivoxSlide(-1,true)" aria-label="Previous image">&#8249;</button>
     <button class="aivox-arr aivox-arr-r" onclick="aivoxSlide(1,true)"  aria-label="Next image">&#8250;</button>
     <span class="aivox-ctr" id="aivox-ctr">1 / {{- product.images.size -}}</span>
@@ -224,6 +175,7 @@ document.addEventListener("keydown",function(e){
 <div class="aivox-info aivox-f1">
   <div class="aivox-cat">AI Voice Recorder &middot; Dubai UAE</div>
   <h1 class="aivox-title">GPT-4 AiVox &mdash;<br><em>Your meetings, written.</em></h1>
+<p style="font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:14px;padding:9px 12px;background:rgba(84,232,204,.05);border-radius:8px;border-left:3px solid var(--mint);">AiVox AI Voice Recorder ({{ product.price | money }}) ships free next-day to Dubai, Abu Dhabi, Sharjah and all UAE Emirates from tiptop360.com. GPT-4 transcription in 134 languages including Arabic at 98% accuracy. 64GB local storage, no cloud. 1 year unlimited transcription exclusive to TipTop360. Cash on Delivery available.</p>
   <div class="aivox-rating">
     <span class="aivox-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
     <span class="aivox-rtxt">4.9 &middot; 45 reviews</span>
@@ -245,7 +197,10 @@ document.addEventListener("keydown",function(e){
     {%- endif -%}
   </div>
 
-  <div class="aivox-deal aivox-f3">
+  {% if product.compare_at_price %}
+<div style="font-size:12px;font-weight:700;color:#16a34a;margin-bottom:10px;">&#10003; You save {{ product.compare_at_price | minus: product.price | money }} today</div>
+{% endif %}
+<div class="aivox-deal aivox-f3">
     <div class="aivox-deal-lbl">TipTop360 Exclusive &mdash; Only Here</div>
     <div class="aivox-deal-h">1 Year Unlimited Transcription<br><em>Then 400 min / month &mdash; no extra cost</em></div>
     <div class="aivox-deal-list" style="margin-top:10px;">
@@ -269,7 +224,25 @@ document.addEventListener("keydown",function(e){
   {%- endif -%}
 
   
-<div class="aivox-qty-block"><span class="aivox-qty-lbl">Quantity</span><div class="aivox-qty-ctrl"><button type="button" class="aivox-qty-btn" onclick="avQtyChange(-1)" aria-label="Decrease">&#8722;</button><span class="aivox-qty-val" id="av-qty-num">1</span><button type="button" class="aivox-qty-btn" onclick="avQtyChange(1)" aria-label="Increase">&#43;</button></div></div><div class="aivox-qty-total" id="av-qty-total-price"></div>
+<script>
+window.avQty=1;
+window.avUnit={{ product.price }};
+window.avQtyChange=function(d){
+  window.avQty=Math.max(1,Math.min(window.avQty+d,10));
+  var n=document.getElementById("avQtyNum");
+  var note=document.getElementById("avQtyNote");
+  var sp=document.getElementById("avStickyP");
+  if(n)n.textContent=window.avQty;
+  var aed=Math.round(window.avQty*window.avUnit/100);
+  if(note)note.textContent=window.avQty>1?"Total: AED "+aed:"";
+  if(sp)sp.textContent=window.avQty>1?"AED "+aed+" x"+window.avQty:"AED "+aed;
+  document.querySelectorAll("input[name=quantity]").forEach(function(el){
+    el.value=window.avQty;
+  });
+};
+</script>
+
+<div class="aivox-qty-row"><span class="aivox-qty-lbl">Quantity</span><div class="aivox-qty-ctrl"><button type="button" class="aivox-qty-btn" onclick="window.avQtyChange(-1)" aria-label="Decrease">&#8722;</button><span class="aivox-qty-val" id="avQtyNum">1</span><button type="button" class="aivox-qty-btn" onclick="window.avQtyChange(1)" aria-label="Increase">&#43;</button></div></div><div class="aivox-qty-note" id="avQtyNote"></div>
 <div class="aivox-f4">
     <form action="/cart/add" method="post" id="aivox-cart-form">
       <input type="hidden" name="id" value="{{- variant.id -}}">
@@ -372,15 +345,14 @@ document.addEventListener("keydown",function(e){
   </div>
 </div>
 
-
 </div>
 
 
-<div id="tt-lb-av" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:99999;align-items:center;justify-content:center;cursor:zoom-out;" onclick="if(event.target===this)window.ttLbClose();">
-  <button onclick="window.ttLbClose()" aria-label="Close" style="position:absolute;top:14px;right:18px;color:#fff;font-size:36px;font-weight:300;background:none;border:none;cursor:pointer;line-height:1;">&#215;</button>
-  <button onclick="window.ttLbNav(-1)" aria-label="Previous" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#fff;font-size:40px;font-weight:300;background:rgba(255,255,255,.1);border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;">&#8249;</button>
-  <img id="tt-lb-av-img" src="" alt="Product image" style="max-width:96vw;max-height:90vh;object-fit:contain;border-radius:4px;">
-  <button onclick="window.ttLbNav(1)" aria-label="Next" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#fff;font-size:40px;font-weight:300;background:rgba(255,255,255,.1);border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;">&#8250;</button>
+<div id="avLb" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:99999;align-items:center;justify-content:center;cursor:zoom-out;" onclick="if(event.target===this)window.avLbClose();">
+<button onclick="window.avLbClose()" style="position:absolute;top:14px;right:18px;color:#fff;font-size:36px;background:none;border:none;cursor:pointer;line-height:1;">&#215;</button>
+<button onclick="window.avLbNav(-1)" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#fff;font-size:40px;background:rgba(255,255,255,.1);border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;">&#8249;</button>
+<img id="avLbImg" src="" alt="" style="max-width:96vw;max-height:90vh;object-fit:contain;border-radius:4px;">
+<button onclick="window.avLbNav(1)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#fff;font-size:40px;background:rgba(255,255,255,.1);border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;">&#8250;</button>
 </div>
 <div class="aivox-sticky">
   {%- if product.featured_image -%}
@@ -388,7 +360,7 @@ document.addEventListener("keydown",function(e){
   {%- endif -%}
   <div class="aivox-sticky-info">
     <div class="aivox-sticky-name">AiVox &middot; GPT-4 &middot; 134 Lang &middot; 64GB</div>
-    <div class="aivox-sticky-price" id="av-sticky-price-el">{{- product.price | money -}}</div>
+    <div class="aivox-sticky-price" id="avStickyP">{{- product.price | money -}}</div>
   </div>
   <form action="/cart/add" method="post" style="margin:0;">
     <input type="hidden" name="id" value="{{- variant.id -}}">
@@ -404,54 +376,20 @@ document.addEventListener("keydown",function(e){
 (function(){
   var IMGS=[{%- for image in product.images -%}{src:'{{- image | image_url: width: 700 -}}',thumb:'{{- image | image_url: width: 120 -}}',alt:'{{- image.alt | default: product.title | escape -}}'}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}];
   var cur=0,timer,slides=document.querySelectorAll('.aivox-slide'),ctrEl=document.getElementById('aivox-ctr'),tc=document.getElementById('aivox-thumbs');
-  IMGS.forEach(function(img,i){var t=document.createElement('div');t.className='aivox-thumb'+(i===0?' on':'');var im=document.createElement('img');im.src=img.thumb;im.alt=img.alt;im.loading='lazy';im.width=52;im.height=52;t.appendChild(im);t.addEventListener('click',function(){aivoxGoTo(i,true);});tc.appendChild(t);});
-  window.aivoxGoTo=function(n,manual){window.avCurrentSlide=(((n%IMGS.length)+IMGS.length)%IMGS.length);slides[cur].classList.remove('active');tc.querySelectorAll('.aivox-thumb')[cur].classList.remove('on');cur=((n%IMGS.length)+IMGS.length)%IMGS.length;slides[cur].classList.add('active');
-    window.aivoxSlide=function(d,manual){aivoxGoTo(cur+d,manual);};
+  IMGS.forEach(function(img,i){var t=document.createElement('div');t.className='aivox-thumb'+(i===0?' on':'');var im=document.createElement('img');im.src=img.thumb;im.alt=img.alt;im.loading='lazy';im.width=52;im.height=52;t.appendChild(im);t.addEventListener('click',function(){aivoxGoTo(i);});tc.appendChild(t);});
+  window.aivoxGoTo=function(n,manual){slides[cur].classList.remove('active');tc.querySelectorAll('.aivox-thumb')[cur].classList.remove('on');cur=((n%IMGS.length)+IMGS.length)%IMGS.length;slides[cur].classList.add('active');var nt=tc.querySelectorAll('.aivox-thumb')[cur];nt.classList.add('on');nt.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});if(ctrEl)ctrEl.textContent=(cur+1)+' / '+IMGS.length;clearInterval(timer);timer=setInterval(function(){window.aivoxSlide(1);},4200);};
+  window.aivoxSlide=function(d,manual){aivoxGoTo(cur+d,manual);};
   var tx=0,stage=document.getElementById('aivox-stage');
-  if(stage){stage.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});stage.addEventListener('touchend',function(e){var dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)window.aivoxSlide(dx>0?1:-1,true);},{passive:true});}
-  timer=setInterval(function(){window.aivoxSlide(0);},4200);
+  if(stage){stage.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});stage.addEventListener('touchend',function(e){var dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)window.aivoxSlide(dx>0?1:-1);},{passive:true});}
+  timer=setInterval(function(){window.aivoxSlide(1);},4200);
   var cf=document.getElementById('aivox-cart-form');
   if(cf){cf.addEventListener('submit',function(e){e.preventDefault();var id=cf.querySelector('[name="id"]').value;fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:parseInt(id),quantity:1})}).then(function(){window.location.href='/cart';}).catch(function(){window.location.href='/cart';});});}
   var FAQS=[['What makes AiVox different from a regular voice recorder?','AiVox uses GPT-4 AI to transcribe at 98% accuracy and auto-generate meeting minutes in under 60 seconds. It has 64GB of local storage so everything stays on the device. A regular recorder only captures raw audio.'],['What exactly is the 1-year unlimited plus 400 min per month deal?','Your entire first year of transcription is unlimited and completely free. After year 1 you get 400 transcription minutes free every month permanently at no extra cost. This exclusive deal is only available when you buy from TipTop360.'],['What is the 64GB local storage and do I need cloud?','No cloud required. AiVox has 64GB of built-in local storage enough for thousands of hours of recordings stored privately on the device. Cloud sync is optional.'],['Does AiVox transcribe in Arabic?','Yes. AiVox transcribes in 134 languages including Arabic and English. It handles bilingual UAE meetings at 98% accuracy.'],['Can I pay Cash on Delivery in UAE?','Yes across all UAE Emirates including Dubai Abu Dhabi Sharjah Ajman and Ras Al Khaimah. AED 450. Order before 5pm for next-day delivery.'],['Does it work without internet?','Yes. The device records offline at full audio quality anywhere. All 64GB local storage is available offline. Transcription processes automatically when you next connect to WiFi.'],['What is the 14-day guarantee?','Return AiVox for any reason within 14 days of delivery for a full refund. No questions asked. TipTop360 processes UAE returns within 48 hours.']];
   var fe=document.getElementById('aivox-faq');
   if(fe){FAQS.forEach(function(pair){var q=pair[0],a=pair[1];var item=document.createElement('div');item.className='aivox-faq-item';var ans=document.createElement('div');ans.className='aivox-faq-a';ans.textContent=a;var ic=document.createElement('span');ic.className='aivox-faq-ic';ic.textContent='+';var hd=document.createElement('div');hd.className='aivox-faq-q';hd.setAttribute('role','button');hd.setAttribute('tabindex','0');hd.setAttribute('aria-expanded','false');var qt=document.createElement('span');qt.textContent=q;hd.appendChild(qt);hd.appendChild(ic);item.appendChild(hd);item.appendChild(ans);fe.appendChild(item);function toggle(){var o=item.classList.contains('open');fe.querySelectorAll('.aivox-faq-item').forEach(function(el){el.classList.remove('open');el.querySelector('.aivox-faq-q').setAttribute('aria-expanded','false');});if(!o){item.classList.add('open');hd.setAttribute('aria-expanded','true');}}hd.addEventListener('click',toggle);hd.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});});}
-
-// ── QUANTITY SELECTOR ────────────────────────────────
-var avQty=1;
-var avUnitPrice={{ product.price | divided_by: 100.0 }};
-function avQtyChange(d){
-  avQty=Math.max(1,Math.min(avQty+d,10));
-  document.getElementById("av-qty-num").textContent=avQty;
-  var tp=document.getElementById("av-qty-total-price");
-  if(tp&&avQty>1)tp.textContent="Total: AED "+Math.round(avQty*avUnitPrice);
-  else if(tp)tp.textContent="";
-  // Update cart form quantity fields
-  document.querySelectorAll("input[name=quantity]").forEach(function(el){
-    el.value=avQty;
-  });
-  // Update sticky price
-  var sp=document.getElementById("av-sticky-price-el");
-  if(sp)sp.textContent="AED "+Math.round(avQty*avUnitPrice)+(avQty>1?" x"+avQty:"");
-}
-
-
 })();
 </script>
 
-
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-{"@type":"Product","name":"{{ product.title | escape }}","description":"AI Voice Recorder Dubai. GPT-4, 134 languages, Arabic, 64GB local storage. 1 year unlimited transcription exclusive. Free UAE delivery. AED 450.","brand":{"@type":"Brand","name":"AiVox"},"offers":{"@type":"Offer","price":"{{ product.price | divided_by: 100.0 }}","priceCurrency":"AED","availability":"{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}","url":"{{ shop.url }}{{ product.url }}","priceValidUntil":"2026-12-31"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"45","bestRating":"5","worstRating":"1"}},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Does AiVox transcribe in Arabic?","acceptedAnswer":{"@type":"Answer","text":"Yes. 134 languages including Arabic at 98% accuracy."}},
-{"@type":"Question","name":"What is the 1-year unlimited transcription deal?","acceptedAnswer":{"@type":"Answer","text":"First year unlimited and free. After year 1, 400 minutes free every month permanently. Exclusive to TipTop360."}},
-{"@type":"Question","name":"Does AiVox need cloud storage?","acceptedAnswer":{"@type":"Answer","text":"No. 64GB built-in local storage. No cloud required."}},
-{"@type":"Question","name":"Can I pay Cash on Delivery in UAE?","acceptedAnswer":{"@type":"Answer","text":"Yes across all UAE Emirates. AED 450. Next-day delivery."}},
-{"@type":"Question","name":"Does AiVox work without internet?","acceptedAnswer":{"@type":"Answer","text":"Yes. Records offline at full quality. Transcription processes when WiFi available."}}
-]},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}"},{"@type":"ListItem","position":2,"name":"Tech","item":"{{ shop.url }}/collections/all"},{"@type":"ListItem","position":3,"name":"{{ product.title | escape }}","item":"{{ shop.url }}{{ product.url }}"}]}
-]}
-</script>
 {%- schema -%}
 {"name":"AiVox PDP","tag":"div","class":"aivox-section","settings":[],"presets":[{"name":"AiVox PDP"}]}
 {%- endschema -%}
