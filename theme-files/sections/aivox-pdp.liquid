@@ -150,6 +150,8 @@ h2.aivox-sec-lbl{display:block;font-size:10px;font-weight:700;letter-spacing:3px
 .tt-lb-close{position:absolute;top:14px;right:18px;color:#fff;font-size:32px;font-weight:300;cursor:pointer;line-height:1;background:none;border:none;padding:0 8px;z-index:100000}
 .tt-lb-prev,.tt-lb-next{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:36px;font-weight:300;cursor:pointer;background:rgba(255,255,255,.12);border:none;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
 .tt-lb-prev{left:10px}.tt-lb-next{right:10px}
+.aivox-section{margin-bottom:0 !important;padding-bottom:0 !important}
+.aivox-pdp{padding-bottom:0 !important}
 </style>
 
 <div class="aivox-pdp">
@@ -157,6 +159,44 @@ h2.aivox-sec-lbl{display:block;font-size:10px;font-weight:700;letter-spacing:3px
 <div class="aivox-topbar">Free UAE Delivery &middot; Cash on Delivery &middot; 1 Year Unlimited Transcription Exclusive</div>
 <div class="aivox-cd-bar"><span>Exclusive deal ends:</span><span class="aivox-cd-num" id="avH">--</span><span class="aivox-cd-sep">:</span><span class="aivox-cd-num" id="avM">--</span><span class="aivox-cd-sep">:</span><span class="aivox-cd-num" id="avS">--</span></div>
 <script>(function(){var p=function(n){return("0"+n).slice(-2);};function avTick(){var r=86400-(Math.floor(Date.now()/1000)+14400)%86400;if(r<0)r+=86400;var h=document.getElementById("avH");var m=document.getElementById("avM");var s=document.getElementById("avS");if(h&&m&&s){h.textContent=p(Math.floor(r/3600));m.textContent=p(Math.floor(r%3600/60));s.textContent=p(r%60);}}avTick();setInterval(avTick,500);})();</script>
+<script>
+// Lightbox — global scope, works with IIFE slideshow
+window.ttLbSrcs=[];
+window.ttLbIdx=0;
+window.ttLbOpen=function(idx){
+  if(!window.ttLbSrcs.length){
+    document.querySelectorAll(".aivox-slide img").forEach(function(img){
+      window.ttLbSrcs.push(img.src.replace("width=700","width=1400"));
+    });
+  }
+  window.ttLbIdx=idx||0;
+  var lb=document.getElementById("tt-lb-av");
+  var im=document.getElementById("tt-lb-av-img");
+  if(lb&&im&&window.ttLbSrcs[window.ttLbIdx]){
+    im.src=window.ttLbSrcs[window.ttLbIdx];
+    lb.style.display="flex";
+    document.body.style.overflow="hidden";
+  }
+};
+window.ttLbClose=function(){
+  var lb=document.getElementById("tt-lb-av");
+  if(lb){lb.style.display="none";document.body.style.overflow="";}
+};
+window.ttLbNav=function(dir){
+  if(!window.ttLbSrcs.length)return;
+  window.ttLbIdx=(window.ttLbIdx+dir+window.ttLbSrcs.length)%window.ttLbSrcs.length;
+  var im=document.getElementById("tt-lb-av-img");
+  if(im)im.src=window.ttLbSrcs[window.ttLbIdx];
+};
+document.addEventListener("keydown",function(e){
+  var lb=document.getElementById("tt-lb-av");
+  if(!lb||lb.style.display==="none")return;
+  if(e.key==="Escape")window.ttLbClose();
+  if(e.key==="ArrowLeft")window.ttLbNav(-1);
+  if(e.key==="ArrowRight")window.ttLbNav(1);
+});
+</script>
+
 
 <div class="aivox-crumb">
   <a href="/">Home</a> &rsaquo;
@@ -165,7 +205,7 @@ h2.aivox-sec-lbl{display:block;font-size:10px;font-weight:700;letter-spacing:3px
 </div>
 
 <div class="aivox-gallery">
-  <div class="aivox-stage" id="aivox-stage" onclick="var idx=Array.from(document.querySelectorAll('.aivox-slide')).findIndex(function(s){return s.classList.contains('active');});ttLbOpen(idx);">
+  <div class="aivox-stage" id="aivox-stage" style="cursor:zoom-in;" onclick="window.ttLbOpen(window.avCurrentSlide||0);">
     <button class="aivox-arr aivox-arr-l" onclick="aivoxSlide(-1,true)" aria-label="Previous image">&#8249;</button>
     <button class="aivox-arr aivox-arr-r" onclick="aivoxSlide(1,true)"  aria-label="Next image">&#8250;</button>
     <span class="aivox-ctr" id="aivox-ctr">1 / {{- product.images.size -}}</span>
@@ -332,10 +372,16 @@ h2.aivox-sec-lbl{display:block;font-size:10px;font-weight:700;letter-spacing:3px
   </div>
 </div>
 
-<div class="tt-lb-overlay" id="tt-lb" onclick="ttLbClose(event)"><button class="tt-lb-close" onclick="ttLbClose()" aria-label="Close">&#215;</button><button class="tt-lb-prev" onclick="ttLbNav(-1,event)" aria-label="Previous">&#8249;</button><img class="tt-lb-img" id="tt-lb-img" src="" alt="Product image"><button class="tt-lb-next" onclick="ttLbNav(1,event)" aria-label="Next">&#8250;</button></div>
 
 </div>
 
+
+<div id="tt-lb-av" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:99999;align-items:center;justify-content:center;cursor:zoom-out;" onclick="if(event.target===this)window.ttLbClose();">
+  <button onclick="window.ttLbClose()" aria-label="Close" style="position:absolute;top:14px;right:18px;color:#fff;font-size:36px;font-weight:300;background:none;border:none;cursor:pointer;line-height:1;">&#215;</button>
+  <button onclick="window.ttLbNav(-1)" aria-label="Previous" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#fff;font-size:40px;font-weight:300;background:rgba(255,255,255,.1);border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;">&#8249;</button>
+  <img id="tt-lb-av-img" src="" alt="Product image" style="max-width:96vw;max-height:90vh;object-fit:contain;border-radius:4px;">
+  <button onclick="window.ttLbNav(1)" aria-label="Next" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#fff;font-size:40px;font-weight:300;background:rgba(255,255,255,.1);border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;">&#8250;</button>
+</div>
 <div class="aivox-sticky">
   {%- if product.featured_image -%}
   <img src="{{- product.featured_image | image_url: width: 100 -}}" alt="{{- product.title | escape -}}" width="42" height="42">
@@ -359,10 +405,8 @@ h2.aivox-sec-lbl{display:block;font-size:10px;font-weight:700;letter-spacing:3px
   var IMGS=[{%- for image in product.images -%}{src:'{{- image | image_url: width: 700 -}}',thumb:'{{- image | image_url: width: 120 -}}',alt:'{{- image.alt | default: product.title | escape -}}'}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}];
   var cur=0,timer,slides=document.querySelectorAll('.aivox-slide'),ctrEl=document.getElementById('aivox-ctr'),tc=document.getElementById('aivox-thumbs');
   IMGS.forEach(function(img,i){var t=document.createElement('div');t.className='aivox-thumb'+(i===0?' on':'');var im=document.createElement('img');im.src=img.thumb;im.alt=img.alt;im.loading='lazy';im.width=52;im.height=52;t.appendChild(im);t.addEventListener('click',function(){aivoxGoTo(i,true);});tc.appendChild(t);});
-  window.aivoxGoTo=function(n,manual){slides[cur].classList.remove('active');tc.querySelectorAll('.aivox-thumb')[cur].classList.remove('on');cur=((n%IMGS.length)+IMGS.length)%IMGS.length;slides[cur].classList.add('active');
-  // Wire click on active slide to open lightbox
-  if(ttLbImgs.length===0&&typeof IMGS!=='undefined')ttLbImgs=IMGS.map(function(x){return x.src;});var nt=tc.querySelectorAll('.aivox-thumb')[cur];nt.classList.add('on');if(manual)nt.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});if(ctrEl)ctrEl.textContent=(cur+1)+' / '+IMGS.length;clearInterval(timer);timer=setInterval(function(){window.aivoxSlide(0);},4200);};
-  window.aivoxSlide=function(d,manual){aivoxGoTo(cur+d,manual);};
+  window.aivoxGoTo=function(n,manual){window.avCurrentSlide=(((n%IMGS.length)+IMGS.length)%IMGS.length);slides[cur].classList.remove('active');tc.querySelectorAll('.aivox-thumb')[cur].classList.remove('on');cur=((n%IMGS.length)+IMGS.length)%IMGS.length;slides[cur].classList.add('active');
+    window.aivoxSlide=function(d,manual){aivoxGoTo(cur+d,manual);};
   var tx=0,stage=document.getElementById('aivox-stage');
   if(stage){stage.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});stage.addEventListener('touchend',function(e){var dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)window.aivoxSlide(dx>0?1:-1,true);},{passive:true});}
   timer=setInterval(function(){window.aivoxSlide(0);},4200);
@@ -390,42 +434,7 @@ function avQtyChange(d){
   if(sp)sp.textContent="AED "+Math.round(avQty*avUnitPrice)+(avQty>1?" x"+avQty:"");
 }
 
-// ── LIGHTBOX ──────────────────────────────────────
-var ttLbImgs=[];var ttLbCur=0;
-// Populate from IMGS array if available
-if(typeof IMGS!=="undefined")ttLbImgs=IMGS.map(function(x){return x.src;});
-function ttLbOpen(idx){
-  ttLbCur=idx;
-  var lb=document.getElementById("tt-lb");
-  var img=document.getElementById("tt-lb-img");
-  if(lb&&img&&ttLbImgs[idx]){
-    img.src=ttLbImgs[idx];
-    lb.classList.add("open");
-    document.body.style.overflow="hidden";
-  }
-}
-function ttLbClose(e){
-  if(e&&e.target!==document.getElementById("tt-lb")&&!e.target.classList.contains("tt-lb-close"))return;
-  var lb=document.getElementById("tt-lb");
-  if(lb)lb.classList.remove("open");
-  document.body.style.overflow="";
-}
-function ttLbNav(dir,e){
-  if(e)e.stopPropagation();
-  ttLbCur=(ttLbCur+dir+ttLbImgs.length)%ttLbImgs.length;
-  var img=document.getElementById("tt-lb-img");
-  if(img)img.src=ttLbImgs[ttLbCur];
-}
-document.addEventListener("keydown",function(e){
-  var lb=document.getElementById("tt-lb");
-  if(!lb||!lb.classList.contains("open"))return;
-  if(e.key==="Escape"){
-    lb.classList.remove("open");
-    document.body.style.overflow="";
-  }
-  if(e.key==="ArrowLeft")ttLbNav(-1,null);
-  if(e.key==="ArrowRight")ttLbNav(1,null);
-});
+
 })();
 </script>
 

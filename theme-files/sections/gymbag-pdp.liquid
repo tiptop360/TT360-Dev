@@ -375,19 +375,36 @@ h2.gb-sec-lbl-light{display:block;font-family:Barlow Condensed,sans-serif;font-s
 
 <div class="gb-sec gb-sec-white">
   <h2 class="gb-sec-lbl">{{ section.settings.faq_title }}</h2>
-  {% for block in section.blocks %}
-  {% if block.type == "faq" %}
-  <div class="gb-faq-item" {{ block.shopify_attributes }}>
-    <div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false">
-      <span>{{ block.settings.question }}</span>
-      <span class="gb-faq-ic">+</span>
-    </div>
-    <div class="gb-faq-a">{{ block.settings.answer }}</div>
-  </div>
-  {% endif %}
-  {% endfor %}
+  <div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>Does the magnetic system work on all gym equipment?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">Yes. GymGear attaches to any ferromagnetic metal surface including squat racks, cable machines, bench frames, locker doors and metal gym walls. If a magnet sticks to it, GymGear sticks to it.</div></div>
+<div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>Can I order both Black and Gray in one order?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">Yes. Use the quantity selectors to choose how many of each color. Both are added to your cart in one order with free next-day UAE delivery.</div></div>
+<div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>Is it suitable for outdoor workouts in UAE heat?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">Absolutely. Sweat-resistant and weatherproof for UAE outdoor gyms and pool conditions. Handles Dubai summer temperatures. Wipes clean in seconds.</div></div>
+<div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>Can I pay Cash on Delivery in UAE?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">Yes across all UAE Emirates including Dubai, Abu Dhabi, Sharjah, Ajman and Ras Al Khaimah. AED 110 per bag. Order before 5pm for next-day delivery.</div></div>
+<div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>How long does the 50% off offer last?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">This is a limited-time promotion. Regular price AED 220. AED 110 is only guaranteed while this offer is active.</div></div>
+<div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>What is the 14-day guarantee?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">Return GymGear for any reason within 14 days for a full refund. No questions asked. Returns processed within 48 hours.</div></div>
 </div>
 
+
+<script>
+// FAQ accordion for static items
+document.querySelectorAll(".gb-faq-q").forEach(function(hd){
+  hd.addEventListener("click",function(){
+    var item=hd.parentElement;
+    var isOpen=item.classList.contains("open");
+    document.querySelectorAll(".gb-faq-item").forEach(function(el){
+      el.classList.remove("open");
+      var q=el.querySelector(".gb-faq-q");
+      if(q)q.setAttribute("aria-expanded","false");
+    });
+    if(!isOpen){
+      item.classList.add("open");
+      hd.setAttribute("aria-expanded","true");
+    }
+  });
+  hd.addEventListener("keydown",function(e){
+    if(e.key==="Enter"||e.key===" "){e.preventDefault();hd.click();}
+  });
+});
+</script>
 <div class="gb-final">
   <h2>{{ section.settings.final_line1 }}<br>{{ section.settings.final_line2 }}<br><em>{{ section.settings.final_italic }}</em></h2>
   <p>{{ section.settings.final_subtext }}</p>
@@ -402,7 +419,12 @@ h2.gb-sec-lbl-light{display:block;font-family:Barlow Condensed,sans-serif;font-s
 </div>
 
 
-<div class="tt-lb-overlay" id="tt-lb" onclick="ttLbClose(event)"><button class="tt-lb-close" onclick="ttLbClose()" aria-label="Close">&#215;</button><button class="tt-lb-prev" onclick="ttLbNav(-1,event)" aria-label="Previous">&#8249;</button><img class="tt-lb-img" id="tt-lb-img" src="" alt="Product image"><button class="tt-lb-next" onclick="ttLbNav(1,event)" aria-label="Next">&#8250;</button></div>
+<div id="gb-lb" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:99999;align-items:center;justify-content:center;" onclick="if(event.target===this)window.gbLbClose();">
+<button onclick="window.gbLbClose()" style="position:absolute;top:14px;right:18px;color:#fff;font-size:36px;background:none;border:none;cursor:pointer;line-height:1;">&#215;</button>
+<button onclick="window.gbLbNav(-1)" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#fff;font-size:40px;background:rgba(255,255,255,.1);border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;">&#8249;</button>
+<img id="gb-lb-img" src="" alt="" style="max-width:96vw;max-height:90vh;object-fit:contain;">
+<button onclick="window.gbLbNav(1)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#fff;font-size:40px;background:rgba(255,255,255,.1);border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;">&#8250;</button>
+</div>
 <div class="gb-sticky">
   {% if product.featured_image %}
   <img src="{{ product.featured_image | image_url: width: 100 }}" alt="{{ product.title | escape }}" width="42" height="42">
@@ -493,41 +515,6 @@ document.querySelectorAll('.gb-faq-q').forEach(function(hd){
   hd.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
 });
 
-// ── LIGHTBOX ──────────────────────────────────────
-var ttLbImgs=[];
-var ttLbCur=0;
-document.querySelectorAll(".gb-slide img").forEach(function(img,i){
-  ttLbImgs.push(img.src);
-  img.style.cursor="zoom-in";
-  img.addEventListener("click",function(e){e.stopPropagation();ttLbOpen(i);});
-});
-function ttLbOpen(idx){
-  ttLbCur=idx;
-  var lb=document.getElementById("tt-lb");
-  var img=document.getElementById("tt-lb-img");
-  if(lb&&img&&ttLbImgs[idx]){
-    img.src=ttLbImgs[idx];
-    lb.classList.add("open");
-    document.body.style.overflow="hidden";
-  }
-}
-function ttLbClose(e){
-  if(e&&e.target.id!=="tt-lb"&&!e.target.classList.contains("tt-lb-close"))return;
-  document.getElementById("tt-lb").classList.remove("open");
-  document.body.style.overflow="";
-}
-function ttLbNav(dir,e){
-  if(e)e.stopPropagation();
-  ttLbCur=(ttLbCur+dir+ttLbImgs.length)%ttLbImgs.length;
-  document.getElementById("tt-lb-img").src=ttLbImgs[ttLbCur];
-}
-document.addEventListener("keydown",function(e){
-  var lb=document.getElementById("tt-lb");
-  if(!lb||!lb.classList.contains("open"))return;
-  if(e.key==="Escape"){lb.classList.remove("open");document.body.style.overflow="";}
-  if(e.key==="ArrowLeft")ttLbNav(-1,null);
-  if(e.key==="ArrowRight")ttLbNav(1,null);
-});
 })();
 </script>
 
@@ -536,10 +523,62 @@ document.addEventListener("keydown",function(e){
 {"@context":"https://schema.org","@graph":[
 {"@type":"Product","name":"{{ product.title | escape }}","description":"GymGear Magnetic Gym Bag. Hands-free magnets snap to any metal gym rack or locker. Weatherproof for UAE heat. Black and Gray. Free next-day delivery across UAE. AED 110.","brand":{"@type":"Brand","name":"GymGear"},"offers":[{%- for variant in product.variants -%}{"@type":"Offer","name":"{{ variant.title | escape }}","price":"{{ variant.price | divided_by: 100.0 }}","priceCurrency":"AED","availability":"{% if variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}","url":"{{ shop.url }}{{ product.url }}"}{% unless forloop.last %},{% endunless %}{%- endfor -%}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"67","bestRating":"5","worstRating":"1"}},
 {"@type":"FAQPage","mainEntity":[
-{%- assign _ff = true -%}{%- for block in section.blocks -%}{%- if block.type == "faq" -%}{% unless _ff %},{% endunless %}{"@type":"Question","name":"{{ block.settings.question | escape }}","acceptedAnswer":{"@type":"Answer","text":"{{ block.settings.answer | escape }}"}}{%- assign _ff = false -%}{%- endif -%}{%- endfor -%}
+{%- assign _ff = true -%}<div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>Does the magnetic system work on all gym equipment?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">Yes. GymGear attaches to any ferromagnetic metal surface including squat racks, cable machines, bench frames, locker doors and metal gym walls. If a magnet sticks to it, GymGear sticks to it.</div></div>
+<div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>Can I order both Black and Gray in one order?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">Yes. Use the quantity selectors to choose how many of each color. Both are added to your cart in one order with free next-day UAE delivery.</div></div>
+<div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>Is it suitable for outdoor workouts in UAE heat?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">Absolutely. Sweat-resistant and weatherproof for UAE outdoor gyms and pool conditions. Handles Dubai summer temperatures. Wipes clean in seconds.</div></div>
+<div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>Can I pay Cash on Delivery in UAE?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">Yes across all UAE Emirates including Dubai, Abu Dhabi, Sharjah, Ajman and Ras Al Khaimah. AED 110 per bag. Order before 5pm for next-day delivery.</div></div>
+<div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>How long does the 50% off offer last?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">This is a limited-time promotion. Regular price AED 220. AED 110 is only guaranteed while this offer is active.</div></div>
+<div class="gb-faq-item"><div class="gb-faq-q" role="button" tabindex="0" aria-expanded="false"><span>What is the 14-day guarantee?</span><span class="gb-faq-ic">+</span></div><div class="gb-faq-a">Return GymGear for any reason within 14 days for a full refund. No questions asked. Returns processed within 48 hours.</div></div>
 ]},
 {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}"},{"@type":"ListItem","position":2,"name":"Fitness","item":"{{ shop.url }}/collections/all"},{"@type":"ListItem","position":3,"name":"{{ product.title | escape }}","item":"{{ shop.url }}{{ product.url }}"}]}
 ]}
+</script>
+
+<script>
+// Lightbox — global scope
+window.gbLbSrcs=[];
+window.gbLbIdx=0;
+window.gbLbOpen=function(idx){
+  if(!window.gbLbSrcs.length){
+    document.querySelectorAll(".gb-slide img").forEach(function(img){
+      window.gbLbSrcs.push(img.src.replace("width=700","width=1400"));
+    });
+  }
+  window.gbLbIdx=(idx||0);
+  var lb=document.getElementById("gb-lb");
+  var im=document.getElementById("gb-lb-img");
+  if(lb&&im&&window.gbLbSrcs[window.gbLbIdx]){
+    im.src=window.gbLbSrcs[window.gbLbIdx];
+    lb.style.display="flex";
+    document.body.style.overflow="hidden";
+  }
+};
+window.gbLbClose=function(){
+  var lb=document.getElementById("gb-lb");
+  if(lb){lb.style.display="none";document.body.style.overflow="";}
+};
+window.gbLbNav=function(dir){
+  if(!window.gbLbSrcs.length)return;
+  window.gbLbIdx=(window.gbLbIdx+dir+window.gbLbSrcs.length)%window.gbLbSrcs.length;
+  var im=document.getElementById("gb-lb-img");
+  if(im)im.src=window.gbLbSrcs[window.gbLbIdx];
+};
+document.addEventListener("keydown",function(e){
+  var lb=document.getElementById("gb-lb");
+  if(!lb||lb.style.display==="none")return;
+  if(e.key==="Escape")window.gbLbClose();
+  if(e.key==="ArrowLeft")window.gbLbNav(-1);
+  if(e.key==="ArrowRight")window.gbLbNav(1);
+});
+document.addEventListener("DOMContentLoaded",function(){
+  document.querySelectorAll(".gb-slide img").forEach(function(img,i){
+    img.style.cursor="zoom-in";
+    img.addEventListener("click",function(e){
+      e.stopPropagation();
+      window.gbLbOpen(i);
+    });
+  });
+});
 </script>
 {% schema %}
 {
