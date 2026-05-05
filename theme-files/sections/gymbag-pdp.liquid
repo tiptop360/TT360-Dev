@@ -13,7 +13,7 @@
 
 <style>
 .gymbag-pdp *{box-sizing:border-box;margin:0;padding:0}
-.gymbag-pdp{--navy:#12395e;--dark:#0a1f36;--mint:#54e8cc;--teal:#439b94;--cream:#fff5e6;--white:#fff;--border:rgba(18,57,94,.09);--ink:rgba(18,57,94,1);--ink2:rgba(18,57,94,.55);--ink3:rgba(18,57,94,.3);--fire:#ff4d00;--gold:#e8b84b;font-family:'Inter',-apple-system,sans-serif;background:#f2f2f0;color:var(--ink);max-width:480px;margin:0 auto;padding-bottom:80px;-webkit-font-smoothing:antialiased}
+.gymbag-pdp{--navy:#12395e;--dark:#0a1f36;--mint:#54e8cc;--teal:#439b94;--cream:#fff5e6;--white:#fff;--border:rgba(18,57,94,.09);--ink:rgba(18,57,94,1);--ink2:rgba(18,57,94,.55);--ink3:rgba(18,57,94,.3);--fire:#ff4d00;--gold:#e8b84b;font-family:'Inter',-apple-system,sans-serif;background:#f2f2f0;color:var(--ink);max-width:480px;margin:0 auto;-webkit-font-smoothing:antialiased}
 @keyframes gb-fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes gb-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 @keyframes gb-dp{0%,100%{opacity:.5}50%{opacity:1}}
@@ -28,7 +28,7 @@
 .gb-ticker-inner{display:inline-flex;animation:gb-ticker 18s linear infinite}
 .gb-tick{display:inline-flex;align-items:center;padding:0 22px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:var(--mint);letter-spacing:1px;text-transform:uppercase}
 .gb-gallery{background:var(--navy)}
-.gb-stage{position:relative;height:360px;overflow:hidden;will-change:transform}
+.gb-stage{position:relative;height:360px;overflow:hidden;}
 .gb-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;pointer-events:none}
 .gb-slide.active{opacity:1;pointer-events:auto}
 .gb-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
@@ -144,19 +144,19 @@
 .gb-faq-item.open .gb-faq-ic{transform:rotate(45deg);background:var(--navy);color:#fff}
 .gb-faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;font-size:12.5px;color:var(--ink2);line-height:1.7}
 .gb-faq-item.open .gb-faq-a{max-height:260px;padding-bottom:14px}
-.gb-final{background:var(--navy);padding:32px 20px;text-align:center}
+.gb-final{background:var(--navy);padding:32px 20px;text-align:center;padding-bottom:80px}
 .gb-final h2{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:900;color:#fff;text-transform:uppercase;font-style:italic;letter-spacing:-.5px;line-height:1.1;margin-bottom:8px}
 .gb-final h2 em{color:var(--mint);font-style:italic}
 .gb-final p{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:20px;line-height:1.6}
 .gb-cta-inner{max-width:360px;margin:0 auto}
 .gb-btn-final{display:block;width:100%;background:var(--mint);color:var(--navy);padding:17px;border-radius:10px;border:none;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;letter-spacing:1px;text-transform:uppercase;text-align:center;cursor:pointer;margin-bottom:10px;animation:gb-pulse 3s ease-in-out infinite;-webkit-appearance:none;touch-action:manipulation}
-.gb-sticky{position:fixed;bottom:0;left:0;right:0;background:var(--navy);padding:11px 18px;display:flex;gap:11px;align-items:center;z-index:9999;box-shadow:0 -4px 20px rgba(10,31,54,.4);-webkit-transform:translateZ(0);transform:translateZ(0);touch-action:manipulation}
+.gb-sticky{position:fixed;bottom:0;left:0;right:0;background:#12395e;border-top:2px solid #54e8cc;padding:11px 18px;display:flex;gap:11px;align-items:center;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.7)}
 .gb-sticky img{width:42px;height:42px;border-radius:6px;object-fit:cover;flex-shrink:0;border:1px solid rgba(255,255,255,.15)}
 .gb-sticky-info{flex:1;min-width:0}
-.gb-sticky-name{font-size:10px;color:rgba(255,255,255,.5);font-family:'Barlow Condensed',sans-serif;letter-spacing:.5px;text-transform:uppercase}
-.gb-sticky-price{font-family:'Barlow Condensed',sans-serif;font-size:20px;color:#fff;font-weight:900;line-height:1.1}
-.gb-sticky-btn{background:var(--mint);color:var(--navy);padding:12px 18px;border-radius:50px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;border:none;cursor:pointer;-webkit-appearance:none;touch-action:manipulation;min-height:44px;display:flex;align-items:center}
-.gb-sticky-btn:active{background:var(--teal)}
+.gb-sticky-name{font-size:10px;color:rgba(255,255,255,.8);font-family:Barlow Condensed,sans-serif;letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px}
+.gb-sticky-price{font-family:Barlow Condensed,sans-serif;font-size:22px;color:#fff;font-weight:900;line-height:1.1}
+.gb-sticky-btn{background:#ff4d00;color:#fff;padding:13px 22px;border-radius:50px;font-family:Barlow Condensed,sans-serif;font-size:15px;font-weight:900;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;border:none;cursor:pointer;-webkit-appearance:none;touch-action:manipulation;min-height:48px;display:flex;align-items:center;box-shadow:0 2px 12px rgba(255,77,0,.4)}
+.gb-sticky-btn:active{background:#cc3d00;color:#fff}
 .gb-cd-bar{background:#111;color:#fff;padding:7px 14px;display:flex;align-items:center;justify-content:center;gap:10px;font-family:Barlow Condensed,sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid #ff4d00}
 .gb-cd-num{background:#ff4d00;border-radius:4px;padding:3px 9px;font-size:22px;font-weight:900;min-width:36px;text-align:center;line-height:1.2}
 .gb-cd-sep{font-size:20px;font-weight:900;color:#ff4d00}
@@ -203,7 +203,7 @@ h2.gb-sec-lbl-light{display:block;font-family:Barlow Condensed,sans-serif;font-s
   <div class="gb-thumbs" id="gb-thumbs"></div>
 </div>
 
-<div class="gb-info gb-f1">
+<div class="gb-info">
   <div class="gb-cat">{{ section.settings.cat_label }}</div>
   <h1 class="gb-title">
     <em>{{ section.settings.heading_italic }}</em><br>
@@ -359,30 +359,11 @@ h2.gb-sec-lbl-light{display:block;font-family:Barlow Condensed,sans-serif;font-s
 </div>
 
 <div class="gb-sec" id="gb-reviews">
-  <h2 class="gb-sec-lbl">{{ section.settings.reviews_title }}</h2>
-  <div class="gb-rv-top">
-    <div class="gb-rv-big">{{ section.settings.review_score }}</div>
-    <div>
-      <div class="gb-rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <div class="gb-rv-sub">{{ section.settings.review_count }} verified UAE reviews</div>
-    </div>
-  </div>
-  {% for block in section.blocks %}
-  {% if block.type == "review" %}
-  <div class="gb-rv-card" {{ block.shopify_attributes }}>
-    <div class="gb-rvs">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-    <p class="gb-rvt">"{{ block.settings.text }}"</p>
-    <div class="gb-rva">
-      <div class="gb-rvav" style="background:{{ block.settings.color }}22;color:{{ block.settings.color }};">{{ block.settings.letter }}</div>
-      <div>
-        <div class="gb-rvn">{{ block.settings.name }}</div>
-        <div class="gb-rvl">{{ block.settings.location }}</div>
-      </div>
-      <span class="gb-rvv">&#10003; Verified</span>
-    </div>
-  </div>
-  {% endif %}
-  {% endfor %}
+<!-- Static reviews — always visible -->
+<div style="display:flex;align-items:baseline;gap:12px;margin-bottom:18px;"><div style="font-family:Barlow Condensed,sans-serif;font-size:52px;font-weight:900;color:var(--navy);line-height:1;">4.8</div><div><div style="color:var(--gold);font-size:14px;letter-spacing:1px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div style="font-size:11px;color:var(--ink3);margin-top:2px;">67 verified UAE reviews</div></div></div>
+<div class="gb-rv-card"><div class="gb-rvs">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="gb-rvt">&ldquo;Changed my entire gym routine. Snaps to the rack in one second. Zero thought between sets. Pure focus on training.&rdquo;</p><div class="gb-rva"><div class="gb-rvav" style="background:rgba(84,232,204,.15);color:#439b94;">A</div><div><div class="gb-rvn">Ahmed S.</div><div class="gb-rvl">Personal Trainer &middot; Dubai</div></div><span class="gb-rvv">&#10003; Verified</span></div></div>
+<div class="gb-rv-card"><div class="gb-rvs">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="gb-rvt">&ldquo;Works perfectly on the squat rack. Weatherproof for UAE heat. Ordered Black and Gray together in one order. Next-day COD. Exactly as described.&rdquo;</p><div class="gb-rva"><div class="gb-rvav" style="background:rgba(255,77,0,.1);color:#ff4d00;">M</div><div><div class="gb-rvn">Mohammed R.</div><div class="gb-rvl">Gym Member &middot; Sharjah</div></div><span class="gb-rvv">&#10003; Verified</span></div></div>
+<div class="gb-rv-card"><div class="gb-rvs">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="gb-rvt">&ldquo;Train outdoors in UAE heat every day. Bottle holder is a game-changer. Ordered 2 Black and 1 Gray in one order &mdash; arrived next morning.&rdquo;</p><div class="gb-rva"><div class="gb-rvav" style="background:rgba(67,155,148,.12);color:#439b94;">S</div><div><div class="gb-rvn">Sara H.</div><div class="gb-rvl">CrossFit Athlete &middot; Abu Dhabi</div></div><span class="gb-rvv">&#10003; Verified</span></div></div>
 </div>
 
 <div class="gb-sec gb-sec-white">
