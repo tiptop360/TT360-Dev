@@ -1,0 +1,453 @@
+{% doc %}
+  @prompt
+    2 ICON BOX AND URL LINK AND icon was abouts us and features 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-icon-box-container-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-icon-box-wrapper-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: {{ block.settings.gap }}px;
+  }
+
+  .ai-icon-box-item-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: {{ block.settings.alignment }};
+    text-align: {{ block.settings.alignment }};
+    padding: {{ block.settings.padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .ai-icon-box-item-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.hover_background_color }};
+    border-color: {{ block.settings.hover_border_color }};
+    transform: translateY(-{{ block.settings.hover_lift }}px);
+  }
+
+  .ai-icon-box-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin-bottom: {{ block.settings.icon_spacing }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-icon-box-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    fill: {{ block.settings.icon_color }};
+    transition: fill 0.3s ease;
+  }
+
+  .ai-icon-box-item-{{ ai_gen_id }}:hover .ai-icon-box-icon-{{ ai_gen_id }} svg {
+    fill: {{ block.settings.hover_icon_color }};
+  }
+
+  .ai-icon-box-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: {{ block.settings.title_weight }};
+    color: {{ block.settings.title_color }};
+    margin: 0 0 {{ block.settings.title_spacing }}px;
+    transition: color 0.3s ease;
+  }
+
+  .ai-icon-box-item-{{ ai_gen_id }}:hover .ai-icon-box-title-{{ ai_gen_id }} {
+    color: {{ block.settings.hover_title_color }};
+  }
+
+  .ai-icon-box-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    margin: 0;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+  }
+
+  .ai-icon-box-item-{{ ai_gen_id }}:hover .ai-icon-box-description-{{ ai_gen_id }} {
+    color: {{ block.settings.hover_description_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-icon-box-wrapper-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstyle %}
+
+<icon-boxes-{{ ai_gen_id }}
+  class="ai-icon-box-container-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-icon-box-wrapper-{{ ai_gen_id }}">
+    <a
+      href="{{ block.settings.box_1_url }}"
+      class="ai-icon-box-item-{{ ai_gen_id }}"
+    >
+      <div class="ai-icon-box-icon-{{ ai_gen_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+      {% if block.settings.box_1_title != blank %}
+        <h3 class="ai-icon-box-title-{{ ai_gen_id }}">{{ block.settings.box_1_title }}</h3>
+      {% endif %}
+      {% if block.settings.box_1_description != blank %}
+        <div class="ai-icon-box-description-{{ ai_gen_id }}">{{ block.settings.box_1_description }}</div>
+      {% endif %}
+    </a>
+
+    <a
+      href="{{ block.settings.box_2_url }}"
+      class="ai-icon-box-item-{{ ai_gen_id }}"
+    >
+      <div class="ai-icon-box-icon-{{ ai_gen_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+        </svg>
+      </div>
+      {% if block.settings.box_2_title != blank %}
+        <h3 class="ai-icon-box-title-{{ ai_gen_id }}">{{ block.settings.box_2_title }}</h3>
+      {% endif %}
+      {% if block.settings.box_2_description != blank %}
+        <div class="ai-icon-box-description-{{ ai_gen_id }}">{{ block.settings.box_2_description }}</div>
+      {% endif %}
+    </a>
+  </div>
+</icon-boxes-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class IconBoxes{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.links = this.querySelectorAll('.ai-icon-box-item-{{ ai_gen_id }}');
+        this.setupAccessibility();
+      }
+
+      setupAccessibility() {
+        this.links.forEach((link) => {
+          link.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              link.click();
+            }
+          });
+        });
+      }
+    }
+
+    customElements.define('icon-boxes-{{ ai_gen_id }}', IconBoxes{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Icon boxes",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Box 1 - About Us"
+    },
+    {
+      "type": "text",
+      "id": "box_1_title",
+      "label": "Title",
+      "default": "About Us"
+    },
+    {
+      "type": "textarea",
+      "id": "box_1_description",
+      "label": "Description",
+      "default": "Learn more about our story and mission"
+    },
+    {
+      "type": "url",
+      "id": "box_1_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Box 2 - Features"
+    },
+    {
+      "type": "text",
+      "id": "box_2_title",
+      "label": "Title",
+      "default": "Features"
+    },
+    {
+      "type": "textarea",
+      "id": "box_2_description",
+      "label": "Description",
+      "default": "Discover what makes us unique"
+    },
+    {
+      "type": "url",
+      "id": "box_2_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between boxes",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Box style"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "header",
+      "content": "Hover effects"
+    },
+    {
+      "type": "range",
+      "id": "hover_lift",
+      "label": "Lift on hover",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "hover_background_color",
+      "label": "Hover background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "hover_border_color",
+      "label": "Hover border",
+      "default": "#12395e"
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Size",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Spacing below icon",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Color",
+      "default": "#12395e"
+    },
+    {
+      "type": "color",
+      "id": "hover_icon_color",
+      "label": "Hover color",
+      "default": "#f9655d"
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Size",
+      "min": 14,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "Spacing below title",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color",
+      "default": "#12395e"
+    },
+    {
+      "type": "color",
+      "id": "hover_title_color",
+      "label": "Hover color",
+      "default": "#12395e"
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Color",
+      "default": "#202025"
+    },
+    {
+      "type": "color",
+      "id": "hover_description_color",
+      "label": "Hover color",
+      "default": "#202025"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon boxes"
+    }
+  ]
+}
+{% endschema %}

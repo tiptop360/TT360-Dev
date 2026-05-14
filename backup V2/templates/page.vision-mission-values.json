@@ -1,0 +1,282 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "advanced_content_zQDAA8": {
+      "type": "advanced-content",
+      "blocks": {
+        "html_6A9nxf": {
+          "type": "html",
+          "settings": {
+            "code": "<div style=\"width:100%; padding:40px 20px; box-sizing:border-box;\">\n  \n  <div style=\"max-width:1000px; margin:0 auto;\">\n\n    <!-- Main Heading -->\n    <h1 style=\"color:#12395E; font-size:32px; margin-bottom:15px; text-align:center; line-height:1.3;\">\n      Understanding TipTop360: Vision, Mission & Values\n    </h1>\n\n    <p style=\"color:#202020; font-size:18px; text-align:center; margin-bottom:40px; line-height:1.6;\">\n      The purpose, promise, and principles that guide everything we do.\n    </p>\n\n    <!-- Vision -->\n    <div style=\"background:#ffffff; padding:30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.05); margin-bottom:30px;\">\n      <h2 style=\"color:#12395E; font-size:24px; margin-top:0;\">\n        🌟 Our Vision\n      </h2>\n      <p style=\"color:#202020; font-size:16px; line-height:1.7;\">\n        To be the most trusted destination for feel-good, everyday products — curated with care, delivered with speed, \n        and loved for making life easier. We believe shopping should bring a sense of joy, simplicity, and confidence. \n        At <strong style=\"color:#12395E;\">TipTop360</strong>, we aim to turn every shopping experience into a moment of delight.\n      </p>\n      <p style=\"color:#202020; font-size:16px; line-height:1.7;\">\n        We envision a future where innovation leads the way — becoming a pioneer in our industry through cutting-edge \n        solutions, exceptional service, and sustainable growth that empowers both customers and communities.\n      </p>\n    </div>\n\n    <!-- Mission -->\n    <div style=\"background:#ffffff; padding:30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.05); margin-bottom:30px;\">\n      <h2 style=\"color:#12395E; font-size:24px; margin-top:0;\">\n        🎯 Our Mission\n      </h2>\n      <p style=\"color:#202020; font-size:16px; line-height:1.7;\">\n        We save you time and effort by handpicking smart, problem-solving finds — delivered fast and backed by personal, \n        human support. Our mission is to make your life easier, whether you're solving everyday challenges or discovering \n        products that make you smile.\n      </p>\n      <p style=\"color:#202020; font-size:16px; line-height:1.7;\">\n        We strive to exceed expectations by building lasting relationships based on trust, collaboration, and integrity. \n        Your success and satisfaction guide every decision we make.\n      </p>\n    </div>\n\n    <!-- Values -->\n    <div style=\"margin-bottom:35px;\">\n      <h2 style=\"color:#12395E; font-size:24px; margin-bottom:20px;\">\n        💛 Our Values\n      </h2>\n\n      <!-- Value 1 -->\n      <div style=\"background:#ffffff; padding:25px; border-left:5px solid #12395E; margin-bottom:20px; border-radius:8px;\">\n        <h3 style=\"color:#202020; margin-top:0; font-size:18px;\">🌟 Curated with Purpose</h3>\n        <p style=\"color:#202020; font-size:15px; line-height:1.7; margin-bottom:0;\">\n          We only offer what we’d use ourselves — no fluff, just smart and useful products. \n          Every item is selected with care to simplify your life and add meaningful value.\n        </p>\n      </div>\n\n      <!-- Value 2 -->\n      <div style=\"background:#ffffff; padding:25px; border-left:5px solid #202020; margin-bottom:20px; border-radius:8px;\">\n        <h3 style=\"color:#202020; margin-top:0; font-size:18px;\">🙋‍♀️ Customer First, Always</h3>\n        <p style=\"color:#202020; font-size:15px; line-height:1.7; margin-bottom:0;\">\n          Every decision starts with your experience. From fast shipping to helpful support, \n          we treat you like family and make your satisfaction our top priority.\n        </p>\n      </div>\n\n      <!-- Value 3 -->\n      <div style=\"background:#ffffff; padding:25px; border-left:5px solid #12395E; margin-bottom:20px; border-radius:8px;\">\n        <h3 style=\"color:#202020; margin-top:0; font-size:18px;\">⚡ Fast, Friendly & Reliable</h3>\n        <p style=\"color:#202020; font-size:15px; line-height:1.7; margin-bottom:0;\">\n          We move quickly, deliver reliably, and treat you like a person — not just an order number. \n          Our team ensures a smooth, efficient, and enjoyable experience from start to finish.\n        </p>\n      </div>\n\n      <!-- Value 4 -->\n      <div style=\"background:#ffffff; padding:25px; border-left:5px solid #202020; border-radius:8px;\">\n        <h3 style=\"color:#202020; margin-top:0; font-size:18px;\">😊 Feel-Good Finds</h3>\n        <p style=\"color:#202020; font-size:15px; line-height:1.7; margin-bottom:0;\">\n          We believe shopping should spark joy. Every product should solve a problem, lighten a load, \n          or make someone smile — elevating your everyday life.\n        </p>\n      </div>\n\n      <!-- Core Principles -->\n      <div style=\"margin-top:30px; padding-top:20px; border-top:1px solid #ddd;\">\n        <p style=\"color:#202020; font-size:15px; line-height:1.7;\">\n          <strong>Integrity, Innovation, and Customer Focus</strong> form the foundation of our culture. \n          We operate transparently and ethically, encourage creativity, actively listen to feedback, \n          and continuously improve to build stronger relationships and mutual success.\n        </p>\n      </div>\n\n    </div>\n\n    <!-- Closing -->\n    <div style=\"text-align:center; margin-top:40px;\">\n      <p style=\"font-size:18px; color:#12395E; font-weight:bold; margin-bottom:10px;\">\n        Built on purpose. Driven by care. Focused on you.\n      </p>\n      <p style=\"font-size:20px; color:#202020; font-weight:bold; margin-top:0;\">\n        That’s the TipTop360 promise.\n      </p>\n    </div>\n\n  </div>\n</div>",
+            "width": "100%",
+            "align": "auto"
+          }
+        }
+      },
+      "block_order": [
+        "html_6A9nxf"
+      ],
+      "name": "Advanced Content",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "text_color": "rgba(0,0,0,0)",
+        "bgsection": "#ffffff",
+        "rangebg": 0,
+        "bgbefore": "rgba(0,0,0,0)",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_position": "center center",
+        "zindex": "",
+        "title_top": "",
+        "title": "",
+        "des": "",
+        "align-heading": "center",
+        "padding": true,
+        "gutter_padding": 30,
+        "col_center": false,
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "screenfree_banner_uae_2026_JF9Nmy": {
+      "type": "screenfree-banner-uae-2026",
+      "name": "Screen-Free Banner UAE",
+      "settings": {
+        "banner_image": "shopify://shop_images/4900.webp",
+        "heading": "Best Screen-Free Gifts for Kids in UAE (2026 Parent Guide)",
+        "heading_color": "#ffffff",
+        "overlay_opacity": 0.2
+      }
+    },
+    "screenfree_intro_uae_2026_fQt3iU": {
+      "type": "screenfree-intro-uae-2026",
+      "name": "Screen-Free Intro UAE",
+      "settings": {
+        "image": "shopify://shop_images/foamtoothpaste_Kidstoothpaste.webp",
+        "heading": "Intro",
+        "description": "<p>Looking for meaningful gifts that keep your child engaged without screens? This UAE parent guide highlights fun, educational, and habit-building kids products available with **free next-day delivery across UAE and cash on delivery</p><p>Whether you're shopping for birthdays, rewards, or everyday learning, these parent-approved picks combine creativity, fun, and practical value.<br/></p>",
+        "image_position": "left"
+      }
+    },
+    "uae_screenfree_benefits_2026_z9TGAi": {
+      "type": "uae-screenfree-benefits-2026",
+      "blocks": {
+        "benefit_qWmYYP": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "📵",
+            "title": "Reduce excessive screen time"
+          }
+        },
+        "benefit_UL9YMc": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "🧠",
+            "title": "Improve focus and creativity"
+          }
+        },
+        "benefit_znE9Bw": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "⏰",
+            "title": "Build healthy daily habits"
+          }
+        },
+        "benefit_JRcjHV": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "🧸",
+            "title": "Encourage independent play"
+          }
+        },
+        "benefit_BQeRCx": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "🚚",
+            "title": "Safe, tested products delivered fast in UAE"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_qWmYYP",
+        "benefit_UL9YMc",
+        "benefit_znE9Bw",
+        "benefit_JRcjHV",
+        "benefit_BQeRCx"
+      ],
+      "name": "UAE Screen-Free Benefits",
+      "settings": {
+        "heading": "Why UAE Parents Are Choosing Screen-Free Gifts"
+      }
+    },
+    "screenfree_age_tabs_uae_2026_43m9bQ": {
+      "type": "screenfree-age-tabs-uae-2026",
+      "blocks": {
+        "age_tab_4MQgiF": {
+          "type": "age_tab",
+          "settings": {
+            "tab_title": "Ages 3–12: Creative & Sensory Play",
+            "products": [
+              "kids-drawing-robot"
+            ]
+          }
+        },
+        "age_tab_WG7NcJ": {
+          "type": "age_tab",
+          "settings": {
+            "tab_title": "Ages 2–12: Fun Daily Routine Builders",
+            "products": [
+              "kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift",
+              "kids-strawberry-foam-toothpaste-uae-approved"
+            ]
+          }
+        },
+        "age_tab_pNx3tg": {
+          "type": "age_tab",
+          "settings": {
+            "tab_title": "Ages 3–14: Active & Outdoor Fun",
+            "products": [
+              "smoke-bubble-machine"
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "age_tab_4MQgiF",
+        "age_tab_WG7NcJ",
+        "age_tab_pNx3tg"
+      ],
+      "custom_css": [
+        ".product-btn:hover {color: white;}"
+      ],
+      "name": "Screen-Free Age Tabs",
+      "settings": {
+        "heading": "Best Screen-Free Gifts by Age"
+      }
+    },
+    "uae_delivery_peace_2026_hMK9B9": {
+      "type": "uae-delivery-peace-2026",
+      "name": "UAE Delivery & Trust",
+      "settings": {
+        "heading": "Fast Delivery & Parent Peace of Mind",
+        "subtext": "Free next-day UAE delivery  | Cash on Delivery | Secure Payments | Real customer support",
+        "bg_color": "#f4f6f9"
+      }
+    },
+    "uae_screenfree_cta_2026_RXkWMg": {
+      "type": "uae-screenfree-cta-2026",
+      "name": "UAE Screen-Free CTA",
+      "settings": {
+        "heading": "Give Your Child a Meaningful Gift Today",
+        "button_text": "Browse Full Kids Collection",
+        "button_link": "https://tiptop360.com/collections/kids-collection-uae",
+        "bg_color": "#ffffff",
+        "button_bg": "#12395e",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "line_cN6GeE": {
+      "type": "line",
+      "name": "Divider",
+      "settings": {
+        "animation": "",
+        "paddingsection": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "bgsection": "#ffffff",
+        "setwidth": "container",
+        "bgborder": "#dddddd",
+        "wborder": "1px"
+      }
+    },
+    "faq_accordion_wPATVY": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_RGydNA": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Are these products safe for children?",
+            "faq_des": "<p>All products are tested and selected for child-friendly use.<br/></p>"
+          }
+        },
+        "faq_wa3Kjh": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "What are the best screen-free gifts for kids in UAE?",
+            "faq_des": "<p>Creative learning toys, interactive drawing tools, and habit-building products like kids toothbrushes are top choices among UAE parents.</p>"
+          }
+        },
+        "faq_iHLNRF": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Do you offer next-day delivery in UAE?",
+            "faq_des": "<p>Yes, free next-day delivery is available across the UAE.</p>"
+          }
+        },
+        "faq_wjXXMJ": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Is cash on delivery available?",
+            "faq_des": "<p>Yes, cash on delivery is available for parent convenience.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_RGydNA",
+        "faq_wa3Kjh",
+        "faq_iHLNRF",
+        "faq_wjXXMJ"
+      ],
+      "name": "Faqs Accordion",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "bgsection": "#ffffff",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_pos": "center center",
+        "title_top": "",
+        "title": "FAQ",
+        "des": "",
+        "align-heading": "center",
+        "title_size": "h4",
+        "e_first_open": false,
+        "e_reverse": true,
+        "e_small": true,
+        "left_html": "",
+        "e_right": false,
+        "paddingsection": "60px 0px 60px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "advanced_content_zQDAA8",
+    "screenfree_banner_uae_2026_JF9Nmy",
+    "screenfree_intro_uae_2026_fQt3iU",
+    "uae_screenfree_benefits_2026_z9TGAi",
+    "screenfree_age_tabs_uae_2026_43m9bQ",
+    "uae_delivery_peace_2026_hMK9B9",
+    "uae_screenfree_cta_2026_RXkWMg",
+    "line_cN6GeE",
+    "faq_accordion_wPATVY"
+  ]
+}

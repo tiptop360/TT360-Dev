@@ -1,0 +1,2100 @@
+{% comment %} tt360-product-body.liquid — Universal high-conversion product section {% endcomment %}
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign product_images  = product.images %}
+{% assign has_video       = false %}
+{% for m in product.media %}
+  {% if m.media_type == 'video' or m.media_type == 'external_video' %}{% assign has_video = true %}{% assign hero_video = m %}{% endif %}
+{% endfor %}
+{%- assign gift_handle  = section.settings.gift_bag_handle | default: 'gift-wrap-1' -%}
+{%- assign gift_product = all_products[gift_handle] -%}
+{%- if gift_product.featured_image -%}
+  {%- assign gift_img_src = gift_product.featured_image | image_url: width: 160 -%}
+{%- else -%}
+  {%- assign gift_img_src = '' -%}
+{%- endif -%}
+
+{%- comment -%} ── PRELOAD HERO IMAGE ── {%- endcomment -%}
+{%- if product_images.size > 0 -%}
+  {%- assign hero_img = product_images[0] -%}
+  <link rel="preload" as="image"
+    imagesrcset="{{ hero_img | image_url: width: 400 }} 400w, {{ hero_img | image_url: width: 800 }} 800w, {{ hero_img | image_url: width: 1200 }} 1200w"
+    imagesizes="(max-width:768px) 100vw, 50vw"
+    href="{{ hero_img | image_url: width: 800 }}">
+{%- endif -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+{%- comment -%} ── META INJECTION ── {%- endcomment -%}
+<script>
+/* Gap removal — definitive walk-up/walk-down approach, no guessing */
+(function(){
+  function rmGap(){
+    var sec=document.getElementById('shopify-section-tt360-product-body');
+    if(!sec)return;
+    /* Zero the section itself */
+    sec.style.setProperty('margin','0','important');
+    sec.style.setProperty('padding','0','important');
+    /* TOP GAP: walk up all ancestors and zero any that have padding-top or margin-top */
+    var el=sec.parentElement;
+    while(el&&el!==document.body&&el!==document.documentElement){
+      try{
+        var cs=window.getComputedStyle(el);
+        var pt=parseFloat(cs.paddingTop)||0;
+        var mt=parseFloat(cs.marginTop)||0;
+        if(pt>0)el.style.setProperty('padding-top','0','important');
+        if(mt>0)el.style.setProperty('margin-top','0','important');
+      }catch(e){}
+      el=el.parentElement;
+    }
+    /* Previous sibling bottom gap */
+    var prev=sec.previousElementSibling;
+    if(prev){prev.style.setProperty('margin-bottom','0','important');prev.style.setProperty('padding-bottom','0','important');}
+    /* BOTTOM GAP: walk forward through all siblings after section */
+    var nxt=sec.nextElementSibling;
+    while(nxt){
+      nxt.style.setProperty('margin-top','0','important');
+      nxt.style.setProperty('padding-top','0','important');
+      nxt=nxt.nextElementSibling;
+    }
+    /* Also zero next siblings of the parent (e.g. footer wrapper) */
+    var par=sec.parentElement;
+    if(par&&par!==document.body){
+      par.style.setProperty('padding-bottom','0','important');
+      par.style.setProperty('margin-bottom','0','important');
+      var ps=par.nextElementSibling;
+      while(ps){
+        ps.style.setProperty('margin-top','0','important');
+        ps.style.setProperty('padding-top','0','important');
+        ps=ps.nextElementSibling;
+      }
+    }
+    /* Footer elements — belt and suspenders */
+    document.querySelectorAll('footer,.site-footer,#footer,#shopify-section-footer,[id*="footer"],[class*="site-footer"]').forEach(function(f){
+      f.style.setProperty('margin-top','0','important');
+      f.style.setProperty('padding-top','0','important');
+    });
+    /* Mobile: zero body padding-bottom (theme adds it for sticky bar) */
+    if(window.innerWidth<=768){
+      document.body.style.setProperty('padding-bottom','0','important');
+    }
+  }
+  rmGap();
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',rmGap);}
+  window.addEventListener('load',function(){rmGap();setTimeout(rmGap,500);});
+})();
+</script>
+
+<script>
+(function(){
+  var t='{{ section.settings.seo_title | escape }}';
+  if(!t) t='{{ product.title | escape }} UAE | Screen-Free STEM Toy | AED {{ current_variant.price | money_without_currency }} | TipTop360';
+  var d='{{ section.settings.seo_description | escape }}';
+  if(!d) d='{{ product.description | strip_html | truncate: 155 | escape }}';
+  if(document.title!==t) document.title=t;
+  var mDesc=document.querySelector('meta[name="description"]');
+  if(mDesc) mDesc.setAttribute('content',d); else{var m=document.createElement('meta');m.name='description';m.content=d;document.head.appendChild(m);}
+  var can=document.querySelector('link[rel="canonical"]');
+  if(can) can.setAttribute('href','{{ shop.url }}/products/{{ product.handle }}'); else{var l=document.createElement('link');l.rel='canonical';l.href='{{ shop.url }}/products/{{ product.handle }}';document.head.appendChild(l);}
+})();
+</script>
+
+{%- comment -%} ── JSON-LD SCHEMA ── {%- endcomment -%}
+<script type="application/ld+json">
+[
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}"},
+      {"@type":"ListItem","position":2,"name":"{{ section.settings.collection_name | default: 'Kids Collection' }}","item":"{{ shop.url }}/collections/{{ section.settings.collection_handle | default: 'kids-collection-uae' }}"},
+      {"@type":"ListItem","position":3,"name":"{{ product.title | escape }}","item":"{{ shop.url }}/products/{{ product.handle }}"}
+    ]
+  },
+  {
+    "@context":"https://schema.org",
+    "@type":"Product",
+    "name":"{{ product.title | escape }}",
+    "description":"{{ product.description | strip_html | truncate: 300 | escape }}",
+    "sku":"{{ current_variant.sku | escape }}",
+    "brand":{"@type":"Brand","name":"{{ product.vendor | escape }}"},
+    "image":[{% for img in product_images limit:5 %}"{{ img | image_url: width: 800 }}"{% unless forloop.last %},{% endunless %}{% endfor %}],
+    "url":"{{ shop.url }}/products/{{ product.handle }}",
+    "offers":{
+      "@type":"Offer",
+      "priceCurrency":"AED",
+      "price":"{{ current_variant.price | money_without_currency }}",
+      {% if current_variant.compare_at_price > current_variant.price %}
+      "priceValidUntil":"{{ 'now' | date: '%Y' | plus: 1 }}-12-31",
+      {% endif %}
+      "availability":"{% if current_variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+      "seller":{"@type":"Organization","name":"TipTop360"},
+      "shippingDetails":{"@type":"OfferShippingDetails","shippingRate":{"@type":"MonetaryAmount","value":"0","currency":"AED"},"deliveryTime":{"@type":"ShippingDeliveryTime","handlingTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":1,"unitCode":"DAY"},"transitTime":{"@type":"QuantitativeValue","minValue":1,"maxValue":2,"unitCode":"DAY"}}},
+      "hasMerchantReturnPolicy":{"@type":"MerchantReturnPolicy","returnPolicyCategory":"https://schema.org/MerchantReturnFiniteReturnWindow","merchantReturnDays":14}
+    },
+    "aggregateRating":{
+      "@type":"AggregateRating",
+      "ratingValue":"{{ section.settings.rating_value | default: '4.9' }}",
+      "reviewCount":"{{ section.settings.review_count | default: '200' }}",
+      "bestRating":"5"
+    }
+  }
+  {%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
+  {%- if faq_blocks.size > 0 -%}
+  ,{
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {%- for block in faq_blocks -%}
+      {"@type":"Question","name":"{{ block.settings.question | escape }}","acceptedAnswer":{"@type":"Answer","text":"{{ block.settings.answer | strip_html | escape }}"}}{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+  {%- endif -%}
+]
+</script>
+
+<style>
+#tt360-pdp *{box-sizing:border-box;margin:0;padding:0}
+#tt360-pdp{
+  --navy:#1A3557;--navy2:#142844;--orange:#F46A1A;
+  --green:#10B981;--gold:#F59E0B;--border:#E2E8F0;
+  --bg2:#F8FAFC;--muted:#64748B;--text:#1E293B;
+  --r:14px;--sh:0 8px 32px rgba(0,0,0,.10);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--text);font-size:15px;line-height:1.6;
+}
+#tt360-pdp a{text-decoration:none;color:inherit}
+#tt360-pdp img{display:block;max-width:100%;height:auto}
+#tt360-pdp button{font-family:inherit;cursor:pointer}
+
+/* ANN BAR */
+#tt360-pdp .t-ann{background:var(--navy);color:#fff;text-align:center;font-size:12px;font-weight:500;padding:9px 12px;display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
+#tt360-pdp .t-ann .s{opacity:.3;margin:0 8px}
+
+/* BREADCRUMB */
+#tt360-pdp .t-bc{background:#F8FAFC;border-bottom:1px solid var(--border);padding:10px 20px;font-size:12px;color:var(--muted)}
+#tt360-pdp .t-bc a{color:var(--muted)}
+#tt360-pdp .t-bc a:hover{color:var(--navy)}
+#tt360-pdp .t-bc span{color:var(--text);font-weight:600}
+
+/* WRAP */
+#tt360-pdp .t-wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* HERO */
+#tt360-pdp .t-hero{padding:28px 20px 0}
+#tt360-pdp .t-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;max-width:1100px;margin:0 auto}
+
+/* GALLERY */
+#tt360-pdp .t-gallery{position:sticky;top:72px}
+#tt360-pdp .t-gal-main{border-radius:var(--r);overflow:hidden;background:var(--bg2);border:1px solid var(--border);aspect-ratio:4/5;position:relative;contain:layout}
+#tt360-pdp .t-gal-main img{width:100%;height:100%;object-fit:cover;transition:opacity .2s;cursor:zoom-in}
+#tt360-pdp .t-gal-badge{position:absolute;top:12px;left:12px;background:var(--orange);color:#fff;font-size:11px;font-weight:800;border-radius:7px;padding:4px 11px;z-index:2}
+#tt360-pdp .t-gal-badge2{position:absolute;top:12px;right:12px;background:var(--navy);color:#fff;font-size:10px;font-weight:700;border-radius:7px;padding:4px 10px;z-index:2}
+#tt360-pdp .t-thumbs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+#tt360-pdp .t-thumb{width:62px;height:62px;border-radius:9px;overflow:hidden;border:2px solid var(--border);cursor:pointer;flex-shrink:0;transition:border-color .15s}
+#tt360-pdp .t-thumb.active{border-color:var(--orange)}
+#tt360-pdp .t-thumb img{width:100%;height:100%;object-fit:cover}
+#tt360-pdp .t-vid-thumb{position:relative;background:var(--navy)}
+#tt360-pdp .t-vid-thumb::after{content:'▶';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;background:rgba(0,0,0,.3)}
+
+/* VIDEO */
+#tt360-pdp .t-vid-wrap{border-radius:var(--r);overflow:hidden;background:#000;aspect-ratio:4/5;position:relative;display:flex;align-items:center;justify-content:center}
+#tt360-pdp .t-vid-wrap video,#tt360-pdp .t-vid-wrap iframe{width:100%;height:100%;object-fit:cover;border:0}
+#tt360-pdp .t-vid-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:rgba(255,255,255,.6);font-size:13px;text-align:center;padding:24px}
+#tt360-pdp .t-vid-placeholder .t-play-ring{width:64px;height:64px;border-radius:50%;border:3px solid rgba(244,106,26,.6);display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--orange)}
+
+/* INFO PANEL */
+#tt360-pdp .t-info{padding-bottom:48px}
+#tt360-pdp .t-badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+#tt360-pdp .t-chip{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:4px 12px;font-size:11px;font-weight:700}
+#tt360-pdp .t-chip-g{background:rgba(16,185,129,.1);color:#059669;border:1px solid rgba(16,185,129,.2)}
+#tt360-pdp .t-chip-o{background:rgba(244,106,26,.1);color:var(--orange);border:1px solid rgba(244,106,26,.2)}
+#tt360-pdp .t-chip-n{background:rgba(26,53,87,.08);color:var(--navy);border:1px solid rgba(26,53,87,.15)}
+
+#tt360-pdp .t-title{font-size:clamp(19px,2.8vw,28px);font-weight:900;color:var(--navy);line-height:1.15;letter-spacing:-.4px;margin-bottom:12px}
+#tt360-pdp .t-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+#tt360-pdp .t-stars{color:var(--gold);font-size:14px;letter-spacing:1px}
+#tt360-pdp .t-rating strong{color:var(--text)}
+#tt360-pdp .t-rating .t-vfy{color:var(--green);font-weight:600}
+
+/* PRICE */
+#tt360-pdp .t-price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px}
+#tt360-pdp .t-price-now{font-size:30px;font-weight:900;color:var(--navy)}
+#tt360-pdp .t-price-was{font-size:15px;color:var(--muted);text-decoration:line-through}
+#tt360-pdp .t-save{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;border-radius:99px;padding:3px 10px;font-size:11.5px;font-weight:800}
+#tt360-pdp .t-stock-tag{font-size:12.5px;color:var(--green);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:5px}
+#tt360-pdp .t-stock-tag.out{color:#DC2626}
+
+/* COLOR SWATCHES */
+#tt360-pdp .t-opt-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:8px;margin-top:16px}
+#tt360-pdp .t-swatches{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
+#tt360-pdp .t-swatch{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+#tt360-pdp .t-swatch-dot{width:34px;height:34px;border-radius:50%;transition:transform .15s;position:relative}
+#tt360-pdp .t-swatch-dot.active{transform:scale(1.12)}
+#tt360-pdp .t-swatch-dot .inn{width:100%;height:100%;border-radius:50%;border:2px solid rgba(0,0,0,.1)}
+#tt360-pdp .t-swatch-name{font-size:11px;color:var(--muted);font-weight:500}
+#tt360-pdp .t-swatch.active .t-swatch-name{color:var(--navy);font-weight:700}
+
+/* AGE / SIZE PILLS */
+#tt360-pdp .t-size-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+#tt360-pdp .t-size-pill{padding:7px 16px;border:2px solid var(--border);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;color:var(--navy);transition:border-color .15s,background .15s;user-select:none}
+#tt360-pdp .t-size-pill.active{border-color:var(--orange);background:rgba(244,106,26,.06);color:var(--orange)}
+#tt360-pdp .t-size-pill:hover:not(.active){border-color:var(--navy)}
+/* BMS ITEM PICKERS */
+#tt360-pdp .t-bms-items{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+#tt360-pdp .t-bms-item{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px}
+#tt360-pdp .t-bms-item-lbl{font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+#tt360-pdp .t-bms-item .t-swatches{gap:6px;margin-bottom:8px;display:flex;flex-wrap:wrap}
+#tt360-pdp .t-bms-item .t-swatch-dot{width:26px;height:26px}
+#tt360-pdp .t-bms-item .t-swatch-dot .inn{width:22px;height:22px}
+#tt360-pdp .t-bms-item .t-swatch-name{font-size:10px}
+#tt360-pdp .t-bms-item .t-size-pills{gap:6px;display:flex;flex-wrap:wrap;margin-bottom:0}
+#tt360-pdp .t-bms-item .t-size-pill{padding:4px 10px;font-size:11px}
+/* BMS CARDS (default) */
+#tt360-pdp .t-bms{margin-bottom:20px}
+#tt360-pdp .t-bms-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:10px}
+#tt360-pdp .t-bms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#tt360-pdp .t-bms-card{border:2px solid var(--border);border-radius:11px;padding:10px 8px;cursor:pointer;text-align:center;transition:border-color .15s,background .15s;position:relative}
+#tt360-pdp .t-bms-card.active{border-color:var(--orange);background:rgba(244,106,26,.04)}
+#tt360-pdp .t-bms-card .t-bms-tag{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:9px;font-weight:800;border-radius:99px;padding:2px 8px;white-space:nowrap}
+#tt360-pdp .t-bms-qty{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:2px}
+#tt360-pdp .t-bms-disc{font-size:11px;color:var(--green);font-weight:700}
+#tt360-pdp .t-bms-price{font-size:12px;color:var(--muted)}
+/* QUANTITY STEPPER (dental bundle) */
+#tt360-pdp .t-qty-stepper{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+#tt360-pdp .t-qty-btn{width:38px;height:38px;border-radius:50%;border:2px solid var(--navy);background:#fff;color:var(--navy);font-size:22px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;line-height:1;padding-bottom:2px}
+#tt360-pdp .t-qty-btn:hover{background:var(--navy);color:#fff}
+#tt360-pdp .t-qty-btn:disabled{opacity:.35;cursor:default}
+#tt360-pdp .t-qty-num{font-size:24px;font-weight:900;color:var(--navy);min-width:28px;text-align:center}
+#tt360-pdp .t-qty-save{font-size:12px;color:var(--green);font-weight:700}
+
+/* ATC */
+#tt360-pdp .t-atc-row{display:flex;gap:10px;margin-bottom:16px}
+#tt360-pdp .t-atc{flex:1;background:var(--orange);color:#fff;border:none;border-radius:12px;padding:15px 20px;font-size:15px;font-weight:800;transition:background .2s;box-shadow:0 4px 18px rgba(244,106,26,.35);display:flex;align-items:center;justify-content:center;gap:8px}
+#tt360-pdp .t-atc:hover{background:#d45a12}
+#tt360-pdp .t-atc.loading{opacity:.7;pointer-events:none}
+#tt360-pdp .t-atc.done{background:var(--green)!important}
+
+/* TRUST ICONS */
+#tt360-pdp .t-trust{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+#tt360-pdp .t-ti{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 8px;text-align:center}
+#tt360-pdp .t-ti-icon{font-size:19px;margin-bottom:4px}
+#tt360-pdp .t-ti-txt{font-size:10px;font-weight:600;color:var(--navy);line-height:1.3}
+
+/* HIGHLIGHTS — full-width card grid (same style as How It Works steps) */
+#tt360-pdp .t-hl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+#tt360-pdp .t-hl-card{text-align:center;position:relative}
+#tt360-pdp .t-hl-card-icon{font-size:38px;margin-bottom:14px;line-height:1}
+#tt360-pdp .t-hl-card-title{font-size:13.5px;font-weight:800;color:var(--navy);margin-bottom:5px;line-height:1.3}
+#tt360-pdp .t-hl-card-desc{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* PROOF STRIP */
+#tt360-pdp .t-proof{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:24px 20px;margin-top:32px}
+#tt360-pdp .t-proof-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+#tt360-pdp .t-ps{text-align:center}
+#tt360-pdp .t-ps-num{font-size:26px;font-weight:900;color:var(--orange)}
+#tt360-pdp .t-ps-lbl{font-size:11px;color:rgba(255,255,255,.65);font-weight:500;margin-top:2px}
+#tt360-pdp .t-ps-div{width:1px;height:36px;background:rgba(255,255,255,.15)}
+
+/* SECTIONS */
+#tt360-pdp .t-sec{padding:44px 20px}
+#tt360-pdp .t-sec-alt{background:var(--bg2)}
+#tt360-pdp .t-lbl{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+#tt360-pdp .t-h2{font-size:clamp(20px,3vw,30px);font-weight:900;color:var(--navy);letter-spacing:-.5px;line-height:1.2;margin-bottom:8px}
+#tt360-pdp .t-sub{font-size:14.5px;color:var(--muted);max-width:480px;line-height:1.65;margin-bottom:28px}
+#tt360-pdp .t-ctr{text-align:center}
+#tt360-pdp .t-ctr .t-sub,#tt360-pdp .t-sub.t-ctr{margin-left:auto;margin-right:auto;text-align:center}
+
+/* VIDEO SECTION */
+#tt360-pdp .t-vid-sec{background:var(--navy);padding:44px 20px}
+#tt360-pdp .t-vid-sec .t-lbl{color:rgba(255,255,255,.6)}
+#tt360-pdp .t-vid-sec .t-h2{color:#fff}
+#tt360-pdp .t-vid-sec .t-sub{color:rgba(255,255,255,.65)}
+#tt360-pdp .t-vid-box{width:100%;max-width:420px;margin:0 auto;border-radius:var(--r);overflow:hidden;border:2px solid rgba(255,255,255,.1);background:rgba(0,0,0,.4);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center}
+#tt360-pdp .t-vid-box video,#tt360-pdp .t-vid-box iframe{width:100%;height:100%;object-fit:cover;border:0}
+#tt360-pdp .t-vid-ph{display:flex;flex-direction:column;align-items:center;gap:14px;color:rgba(255,255,255,.55);font-size:13px;text-align:center;padding:32px}
+#tt360-pdp .t-vid-ph .ring{width:72px;height:72px;border-radius:50%;border:3px solid rgba(244,106,26,.5);display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--orange)}
+
+/* FEATURES */
+#tt360-pdp .t-feat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+#tt360-pdp .t-feat{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:20px 14px;text-align:center;transition:box-shadow .2s,transform .2s}
+#tt360-pdp .t-feat:hover{box-shadow:var(--sh);transform:translateY(-3px)}
+#tt360-pdp .t-fi{font-size:30px;margin-bottom:10px}
+#tt360-pdp .t-ft{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:4px;line-height:1.3}
+#tt360-pdp .t-fd{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* HOW IT WORKS */
+#tt360-pdp .t-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}
+#tt360-pdp .t-steps::before{content:'';position:absolute;top:27px;left:calc(12.5% + 14px);right:calc(12.5% + 14px);height:2px;background:linear-gradient(to right,var(--orange),rgba(244,106,26,.15));z-index:0}
+#tt360-pdp .t-step{text-align:center;position:relative;z-index:1}
+#tt360-pdp .t-step-n{width:52px;height:52px;border-radius:50%;background:var(--orange);color:#fff;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 4px 16px rgba(244,106,26,.35)}
+#tt360-pdp .t-step-t{font-size:13.5px;font-weight:800;color:var(--navy);margin-bottom:5px}
+#tt360-pdp .t-step-d{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* REVIEWS */
+#tt360-pdp .t-rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+#tt360-pdp .t-rc{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:22px;transition:box-shadow .2s}
+#tt360-pdp .t-rc:hover{box-shadow:var(--sh)}
+#tt360-pdp .t-rstars{color:var(--gold);font-size:13px;margin-bottom:10px;letter-spacing:1px}
+#tt360-pdp .t-rtext{font-size:13.5px;color:#334155;line-height:1.7;font-style:italic;margin-bottom:14px}
+#tt360-pdp .t-rauth{display:flex;align-items:center;gap:9px}
+#tt360-pdp .t-rav{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0}
+#tt360-pdp .t-rname{font-size:12.5px;font-weight:700;color:var(--navy)}
+#tt360-pdp .t-rloc{font-size:11px;color:var(--muted)}
+#tt360-pdp .t-rvfy{margin-left:auto;background:rgba(16,185,129,.10);color:#059669;border-radius:5px;padding:2px 7px;font-size:10.5px;font-weight:700;white-space:nowrap}
+
+/* FAQ */
+#tt360-pdp .t-faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+#tt360-pdp .t-faq-item{border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+#tt360-pdp .t-faq-q{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;font-weight:700;font-size:14px;color:var(--navy);cursor:pointer;gap:12px;user-select:none;background:#fff;transition:background .15s}
+#tt360-pdp .t-faq-q:hover{background:var(--bg2)}
+#tt360-pdp .t-faq-icon{font-size:20px;color:var(--orange);font-weight:300;flex-shrink:0;transition:transform .2s;line-height:1}
+#tt360-pdp .t-faq-a{display:none;padding:14px 20px 18px;font-size:13.5px;color:var(--muted);line-height:1.75;border-top:1px solid var(--border);background:#fafcff}
+#tt360-pdp .t-faq-item.open .t-faq-icon{transform:rotate(45deg)}
+#tt360-pdp .t-faq-item.open .t-faq-a{display:block}
+
+/* FINAL CTA */
+#tt360-pdp .t-fcta{background:linear-gradient(135deg,#FFF5EE,#FFF0E5);padding:44px 20px;text-align:center}
+#tt360-pdp .t-fcta .t-h2{margin-bottom:8px}
+#tt360-pdp .t-fcta .t-sub{margin:0 auto 22px}
+#tt360-pdp .t-btn-final{background:var(--orange);color:#fff;border:none;border-radius:14px;padding:16px 44px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 6px 24px rgba(244,106,26,.35);display:inline-flex;align-items:center;gap:8px;transition:background .2s}
+#tt360-pdp .t-btn-final:hover{background:#d45a12}
+#tt360-pdp .t-ftrust{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);font-weight:500}
+
+/* STICKY BAR */
+#tt360-sticky-pdp{display:none;position:fixed;bottom:0;left:0;right:0;background:#1A3557;padding:12px 16px;z-index:900;box-shadow:0 -4px 24px rgba(26,53,87,.25)}
+#tt360-sticky-pdp button{display:flex;align-items:center;justify-content:center;width:100%;background:#F46A1A;color:#fff;font-weight:700;font-size:15px;padding:14px 20px;border-radius:12px;border:none;cursor:pointer;font-family:inherit}
+
+/* TOAST */
+#tt360-toast-pdp{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:opacity .28s,transform .28s;pointer-events:none;white-space:nowrap;box-shadow:0 8px 30px rgba(0,0,0,.2);font-family:'Inter',-apple-system,sans-serif}
+#tt360-toast-pdp.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* RESPONSIVE — TABLET */
+@media(max-width:960px){
+  #tt360-pdp .t-hero-grid{gap:32px}
+  #tt360-pdp .t-feat-grid{grid-template-columns:repeat(3,1fr)}
+  #tt360-pdp .t-rev-grid{grid-template-columns:repeat(2,1fr)}
+  #tt360-pdp .t-hl-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  #tt360-pdp .t-steps{grid-template-columns:repeat(2,1fr)}
+  #tt360-pdp .t-steps::before{display:none}
+  #tt360-pdp .t-sec{padding:36px 18px}
+  #tt360-pdp .t-vid-sec{padding:36px 18px}
+  #tt360-pdp .t-fcta{padding:36px 18px}
+  #tt360-pdp .t-proof{padding:20px 18px}
+}
+/* RESPONSIVE — MOBILE */
+@media(max-width:768px){
+  #tt360-pdp .t-hero-grid{grid-template-columns:1fr;gap:16px}
+  #tt360-pdp .t-gallery{position:static;top:auto}
+  #tt360-pdp .t-gal-main{aspect-ratio:3/2!important;height:auto!important;contain:none!important;overflow:hidden!important;background:#f8fafc}
+  #tt360-pdp .t-gal-main img{width:100%!important;height:100%!important;object-fit:contain!important;display:block}
+  #tt360-pdp .t-hero{padding:12px 12px 0}
+  #tt360-pdp .t-info{padding-bottom:0}
+  #tt360-pdp .t-sec{padding:24px 14px}
+  #tt360-pdp .t-feat-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  #tt360-pdp .t-feat{padding:16px 10px}
+  #tt360-pdp .t-rev-grid{grid-template-columns:1fr}
+  #tt360-pdp .t-atc-row{margin-bottom:10px}
+  #tt360-pdp .t-trust{grid-template-columns:repeat(2,1fr);gap:6px;margin-top:0;margin-bottom:14px}
+  #tt360-pdp .t-proof{padding:16px 14px;margin-top:0}
+  #tt360-pdp .t-proof-inner{gap:12px}
+  #tt360-pdp .t-ps-div{display:none}
+  #tt360-pdp .t-ps-num{font-size:20px}
+  #tt360-pdp .t-hl-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  #tt360-pdp .t-hl-card-icon{font-size:32px;margin-bottom:10px}
+  #tt360-pdp .t-steps{grid-template-columns:repeat(2,1fr);gap:14px}
+  #tt360-pdp .t-step-n{width:44px;height:44px;font-size:16px}
+  #tt360-pdp .t-vid-sec{padding:24px 14px}
+  #tt360-pdp .t-fcta{padding:24px 14px}
+  #tt360-pdp .t-fcta .t-sub{margin-bottom:16px}
+  #tt360-pdp .t-btn-final{padding:14px 28px;font-size:14px}
+  #tt360-pdp .t-h2{font-size:clamp(18px,5vw,24px)}
+  #tt360-pdp .t-sub{font-size:13.5px;margin-bottom:18px}
+
+  #tt360-pdp .t-faq-list{gap:8px}
+  #tt360-pdp .t-faq-q{padding:14px 14px;font-size:13.5px}
+  #tt360-pdp .t-faq-a{padding:12px 14px 14px;font-size:13px}
+  #tt360-pdp .t-hl-row{padding:11px 12px}
+  #tt360-pdp .t-ftrust{gap:8px;font-size:11.5px;margin-top:8px;margin-bottom:0}
+  #tt360-sticky-pdp{display:block}
+  #tt360-pdp{padding-bottom:0}
+  /* TOP GAP — remove space between header and announcement bar */
+  #shopify-section-tt360-product-body{margin-top:0!important;padding-top:0!important}
+  #tt360-pdp .t-ann{margin-top:0!important}
+  /* BOTTOM GAP — remove all space after orange border before footer */
+  #tt360-pdp .t-fcta{padding-bottom:0!important;margin-bottom:0!important}
+  #tt360-pdp{padding-bottom:0!important;margin-bottom:0!important}
+  #shopify-section-tt360-product-body{margin-bottom:0!important;padding-bottom:0!important}
+  body.template-product{padding-bottom:0!important}
+  .site-footer,footer{margin-top:0!important;padding-top:0!important}
+}
+@media(max-width:480px){
+  #tt360-pdp .t-feat-grid{grid-template-columns:1fr 1fr}
+  #tt360-pdp .t-price-now{font-size:24px}
+  #tt360-pdp .t-title{font-size:17px}
+  #tt360-pdp .t-badges{gap:5px}
+  #tt360-pdp .t-chip{font-size:10px;padding:3px 9px}
+  #tt360-pdp .t-thumbs{gap:6px}
+  #tt360-pdp .t-thumb{width:52px;height:52px}
+}
+/* LIGHTBOX */
+#tt360-lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out}
+#tt360-lb.open{display:flex}
+#tt360-lb img{max-width:92vw;max-height:88vh;object-fit:contain;border-radius:8px;box-shadow:0 24px 80px rgba(0,0,0,.6);user-select:none}
+#tt360-lb-close{position:absolute;top:16px;right:20px;color:#fff;font-size:32px;font-weight:300;cursor:pointer;line-height:1;opacity:.8;background:none;border:none;font-family:inherit}
+#tt360-lb-close:hover{opacity:1}
+#tt360-lb-prev,#tt360-lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:none;color:#fff;font-size:26px;padding:12px 16px;border-radius:10px;cursor:pointer;transition:background .15s}
+#tt360-lb-prev{left:12px}#tt360-lb-next{right:12px}
+#tt360-lb-prev:hover,#tt360-lb-next:hover{background:rgba(255,255,255,.25)}
+/* REMOVE SECTION WRAPPER GAPS */
+#shopify-section-tt360-product-body{margin:0!important;padding:0!important}
+/* FOOTER MATCH */
+.site-footer{
+  --footer-bg:#1A3557!important;
+  --footer-text:rgba(255,255,255,.80)!important;
+  --footer-title:#F46A1A!important;
+  --footer-text-hover:#ffffff!important;
+  --footer-head-border:rgba(255,255,255,.12)!important;
+  --bottom-copy-border:rgba(255,255,255,.10)!important;
+}
+.site-footer .site-footer__section-title{font-weight:700!important;letter-spacing:.02em!important}
+.site-footer a{transition:color .15s!important}
+.site-footer .site-footer__list-item a{font-size:13px!important;opacity:.82}
+.site-footer .site-footer__list-item a:hover{opacity:1!important}
+/* GAP REMOVAL */
+#shopify-section-tt360-product-body{margin:0!important;padding:0!important}
+.site-footer{margin-top:0!important}
+#MainContent,main#MainContent,[id="MainContent"],.main-content,.page-container{padding-top:0!important}
+/* GIFT WRAP WIDGET */
+.t-gw{display:flex;align-items:center;gap:12px;background:#FFF5EE;border:2px solid var(--orange);border-radius:13px;padding:12px 20px 12px 14px;margin-bottom:24px}
+.t-gw.t-gw-done{border-color:#10B981;background:rgba(16,185,129,.05)}
+.t-gw-media{width:58px;height:58px;border-radius:9px;overflow:hidden;flex-shrink:0;background:rgba(244,106,26,.1);display:flex;align-items:center;justify-content:center;font-size:26px}
+.t-gw-media img{width:58px;height:58px;object-fit:cover;display:block;border-radius:9px}
+.t-gw-text{flex:1;min-width:0}
+.t-gw-name{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:3px}
+.t-gw-sub{font-size:12px;color:var(--orange);font-weight:700}
+.t-gw-btn{flex-shrink:0;background:var(--orange);color:#fff;border:none;border-radius:9px;padding:8px 13px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;min-width:56px;max-width:80px;text-align:center;transition:background .15s;line-height:1.2}
+.t-gw-btn:hover:not(:disabled){background:#d45a12}
+.t-gw-btn.done{background:#10B981;cursor:default}
+/* CART DRAWER */
+/* CART DRAWER — MOBILE FIRST */
+#tt360-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:8000;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+#tt360-overlay.open{display:block}
+/* Mobile: bottom sheet */
+#tt360-drawer{position:fixed;bottom:-100%;left:0;right:0;height:88dvh;height:88vh;background:#fff;z-index:8001;display:flex;flex-direction:column;transition:bottom .35s cubic-bezier(.4,0,.2,1);box-shadow:0 -8px 40px rgba(0,0,0,.18);font-family:'Inter',-apple-system,sans-serif;border-radius:20px 20px 0 0;overflow:hidden}
+#tt360-drawer.open{bottom:0}
+/* Desktop: right panel */
+@media(min-width:769px){
+  #tt360-drawer{top:0;right:-460px;bottom:auto;left:auto;width:min(440px,100vw);height:100vh;border-radius:0;box-shadow:-8px 0 40px rgba(0,0,0,.18);transition:right .3s cubic-bezier(.4,0,.2,1)}
+  #tt360-drawer.open{right:0;bottom:auto}
+}
+/* Drag handle (mobile only) */
+.t-dr-handle{display:flex;justify-content:center;padding:10px 0 4px;flex-shrink:0}
+.t-dr-handle-bar{width:40px;height:4px;background:#CBD5E1;border-radius:99px}
+@media(min-width:769px){.t-dr-handle{display:none}}
+/* Header */
+.t-dr-head{display:flex;align-items:center;justify-content:space-between;padding:10px 18px 12px;border-bottom:1px solid #E2E8F0;background:#fff;flex-shrink:0}
+.t-dr-head-left{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;color:#1A3557}
+.t-dr-head-count{background:#F46A1A;color:#fff;font-size:11px;font-weight:800;border-radius:99px;padding:2px 8px;min-width:22px;text-align:center;line-height:1.4}
+.t-dr-close{background:none;border:none;font-size:22px;cursor:pointer;color:#64748B;border-radius:8px;line-height:1;width:40px;height:40px;display:flex;align-items:center;justify-content:center;touch-action:manipulation;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+.t-dr-close:hover,.t-dr-close:active{background:#F8FAFC}
+/* Free shipping bar */
+.t-dr-ship{padding:10px 18px;background:#F0FDF4;border-bottom:1px solid #D1FAE5;flex-shrink:0}
+.t-dr-ship-txt{font-size:12px;color:#1A3557;font-weight:600;margin-bottom:6px}
+.t-dr-ship-txt strong{color:#F46A1A}
+.t-dr-ship-bar{height:5px;background:#D1FAE5;border-radius:99px;overflow:hidden}
+.t-dr-ship-fill{height:100%;background:linear-gradient(to right,#F46A1A,#FBBF24);border-radius:99px;transition:width .4s}
+.t-dr-ship.done{background:rgba(16,185,129,.07);border-color:rgba(16,185,129,.2)}
+.t-dr-ship.done .t-dr-ship-txt strong{color:#10B981}
+/* Scrollable body */
+.t-dr-body{flex:1;overflow-y:auto;padding:14px 18px;display:flex;flex-direction:column;gap:12px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+/* Added item */
+.t-dr-added-item{display:grid;grid-template-columns:72px 1fr;gap:12px;background:rgba(16,185,129,.06);border:1.5px solid rgba(16,185,129,.3);border-radius:14px;padding:12px}
+.t-dr-added-img{width:72px;height:72px;border-radius:10px;object-fit:cover;background:#F8FAFC;display:block}
+.t-dr-added-info{min-width:0}
+.t-dr-added-name{font-size:13px;font-weight:700;color:#1A3557;margin-bottom:3px;line-height:1.35}
+.t-dr-added-meta{font-size:12px;color:#64748B;margin-bottom:10px}
+.t-dr-added-row{display:flex;align-items:center;justify-content:space-between}
+/* Qty stepper (shared) */
+.t-dr-qty{display:inline-flex;align-items:center;border:1.5px solid #E2E8F0;border-radius:9px;overflow:hidden;background:#fff}
+.t-dr-q-btn{background:#F8FAFC;border:none;width:36px;height:36px;font-size:18px;font-weight:700;color:#1A3557;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .1s;line-height:1;flex-shrink:0;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.t-dr-q-btn:active{background:#E2E8F0}
+.t-dr-q-btn.danger{color:#DC2626}
+.t-dr-q-num{min-width:34px;text-align:center;font-size:13px;font-weight:800;color:#1A3557;user-select:none}
+.t-dr-line-total{font-size:13px;font-weight:800;color:#1A3557}
+/* Gift card */
+.t-dr-gift-card{border:2px solid #F46A1A;border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px;background:#fff;transition:border-color .15s}
+.t-dr-gift-card.added{border-color:#10B981;background:rgba(16,185,129,.04)}
+.t-dr-gift-img{width:54px;height:54px;border-radius:9px;object-fit:cover;flex-shrink:0;background:#F8FAFC;display:block}
+.t-dr-gift-info{flex:1;min-width:0}
+.t-dr-gift-title{font-size:12.5px;font-weight:700;color:#1A3557;margin-bottom:2px}
+.t-dr-gift-sub{font-size:11.5px;color:#F46A1A;font-weight:700}
+.t-dr-gift-btn{background:#F46A1A;color:#fff;border:none;border-radius:8px;height:34px;padding:0 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s;touch-action:manipulation;font-family:inherit}
+.t-dr-gift-btn:active{background:#d45a12}
+.t-dr-gift-card.added .t-dr-gift-btn{background:#10B981}
+/* Upsell section */
+.t-dr-up-lbl{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#F46A1A}
+/* Skeleton loader */
+@keyframes t-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.t-dr-skel{width:64px;height:64px;border-radius:9px;background:linear-gradient(90deg,#F1F5F9 25%,#E2E8F0 50%,#F1F5F9 75%);background-size:200%;animation:t-shimmer 1.3s infinite;flex-shrink:0}
+.t-dr-up-item{display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:center;border:1.5px solid #E2E8F0;border-radius:12px;padding:10px 12px;transition:border-color .15s;background:#fff}
+.t-dr-up-item:hover{border-color:#CBD5E1}
+.t-dr-up-img{width:64px;height:64px;border-radius:9px;object-fit:cover;flex-shrink:0;display:block;background:#F8FAFC}
+.t-dr-up-info{min-width:0}
+.t-dr-up-name{font-size:12.5px;font-weight:700;color:#1A3557;line-height:1.3;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.t-dr-up-prices{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.t-dr-up-price{font-size:12px;color:#F46A1A;font-weight:800}
+.t-dr-up-was{font-size:11px;color:#94A3B8;text-decoration:line-through;font-weight:500}
+.t-dr-up-save{background:#FEF2F2;color:#DC2626;border-radius:4px;padding:1px 5px;font-size:10px;font-weight:800}
+.t-dr-up-ctrl{display:flex;align-items:center;gap:6px;flex-direction:column;align-items:flex-end}
+.t-dr-up-add{background:#1A3557;color:#fff;border:none;border-radius:8px;height:34px;padding:0 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s;touch-action:manipulation;-webkit-tap-highlight-color:transparent;font-family:inherit;display:flex;align-items:center;justify-content:center}
+.t-dr-up-add:active{background:#0f2035}
+/* Footer */
+.t-dr-foot{padding:12px 18px 16px;border-top:1px solid #E2E8F0;display:flex;flex-direction:column;gap:8px;background:#fff;flex-shrink:0}
+.t-dr-total{display:flex;justify-content:space-between;align-items:baseline}
+.t-dr-total-lbl{font-size:13px;font-weight:600;color:#64748B}
+.t-dr-total-val{font-size:18px;font-weight:900;color:#1A3557}
+.t-dr-checkout{display:flex;align-items:center;justify-content:center;gap:6px;background:#F46A1A;color:#fff;border-radius:13px;padding:15px 20px;font-size:15px;font-weight:800;text-decoration:none;box-shadow:0 4px 18px rgba(244,106,26,.35);transition:background .2s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.t-dr-checkout:hover,.t-dr-checkout:active{background:#d45a12;color:#fff}
+.t-dr-links{display:flex;align-items:center;justify-content:center;gap:0}
+.t-dr-view,.t-dr-cont{flex:1;text-align:center;font-size:12.5px;font-weight:600;padding:4px 0;color:#1A3557;text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit}
+.t-dr-sep{width:1px;height:14px;background:#E2E8F0;flex-shrink:0}
+</style>
+
+<div id="tt360-pdp">
+<div id="tt360-toast-pdp" role="status" aria-live="polite"></div>
+
+{% if section.settings.ann_enable %}
+<div class="t-ann">
+  {{ section.settings.ann_text }}
+</div>
+{% endif %}
+
+<!-- BREADCRUMB -->
+<nav class="t-bc" aria-label="Breadcrumb">
+  <a href="/">Home</a> ›
+  <a href="/collections/{{ section.settings.collection_handle | default: 'kids-collection-uae' }}">{{ section.settings.collection_name | default: 'Kids Collection' }}</a> ›
+  <span>{{ product.title }}</span>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="t-hero">
+  <div class="t-hero-grid">
+
+    <!-- GALLERY -->
+    <div class="t-gallery" role="region" aria-label="Product images">
+      <div class="t-gal-main" id="t-main-media">
+        {% if current_variant.compare_at_price > current_variant.price %}
+          {%- assign save_pct = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round -%}
+          {%- assign save_aed = current_variant.compare_at_price | minus: current_variant.price | divided_by: 100 | floor -%}
+          <div class="t-gal-badge">SAVE AED {{ save_aed }}</div>
+        {% endif %}
+        {% if section.settings.hero_badge2 != blank %}
+          <div class="t-gal-badge2">{{ section.settings.hero_badge2 }}</div>
+        {% endif %}
+        {%- if product_images.size > 0 -%}
+          <img id="t-main-img"
+               src="{{ product_images[0] | image_url: width: 800 }}"
+               srcset="{{ product_images[0] | image_url: width: 400 }} 400w, {{ product_images[0] | image_url: width: 800 }} 800w, {{ product_images[0] | image_url: width: 1200 }} 1200w"
+               sizes="(max-width:768px) 100vw, 50vw"
+               alt="{{ product_images[0].alt | escape | default: product.title | escape }}"
+               width="{{ product_images[0].width }}" height="{{ product_images[0].height }}"
+               fetchpriority="high" loading="eager" decoding="sync">
+        {%- endif -%}
+      </div>
+      <!-- THUMBNAILS -->
+      <div class="t-thumbs" role="list">
+        {%- for img in product_images limit: 7 -%}
+        <div class="t-thumb {% if forloop.first %}active{% endif %}"
+             role="listitem"
+             data-src="{{ img | image_url: width: 800 }}"
+             data-srcset="{{ img | image_url: width: 400 }} 400w, {{ img | image_url: width: 800 }} 800w, {{ img | image_url: width: 1200 }} 1200w"
+             data-alt="{{ img.alt | escape | default: product.title | escape }}"
+             tabindex="0" aria-label="View image {{ forloop.index }}">
+          <img src="{{ img | image_url: width: 120 }}"
+               alt="{{ img.alt | escape | default: product.title | escape }}"
+               width="62" height="62" loading="lazy" decoding="async">
+        </div>
+        {%- endfor -%}
+        {%- if has_video -%}
+        <div class="t-thumb t-vid-thumb"
+             data-media="video" tabindex="0" aria-label="Play product video">
+          <img src="{{ product_images[0] | image_url: width: 120 }}"
+               alt="Product video" width="62" height="62" loading="lazy" decoding="async">
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div class="t-info">
+
+      <!-- BADGES -->
+      {% assign badge_blocks = section.blocks | where: 'type', 'badge' %}
+      {% if badge_blocks.size > 0 %}
+      <div class="t-badges">
+        {% for block in badge_blocks %}
+          {%- assign chip_class = 't-chip-n' -%}
+          {%- if block.settings.style == 'green' -%}{%- assign chip_class = 't-chip-g' -%}{%- endif -%}
+          {%- if block.settings.style == 'orange' -%}{%- assign chip_class = 't-chip-o' -%}{%- endif -%}
+          <span class="t-chip {{ chip_class }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <h1 class="t-title">{{ product.title }}</h1>
+
+      <!-- RATING -->
+      <div class="t-rating">
+        <span class="t-stars" aria-label="{{ section.settings.rating_value | default: '4.9' }} out of 5 stars">
+          {%- assign rv = section.settings.rating_value | default: 4.9 | times: 1 -%}
+          {%- assign full = rv | floor -%}
+          {%- for i in (1..5) -%}{%- if i <= full -%}★{%- else -%}☆{%- endif -%}{%- endfor -%}
+        </span>
+        <strong>{{ section.settings.rating_value | default: '4.9' }}</strong>
+        <span>· {{ section.settings.review_count | default: '200' }}+ {{ section.settings.review_label | default: 'Verified UAE reviews' }}</span>
+        <span class="t-vfy">✓ Verified</span>
+      </div>
+
+      <!-- PRICE -->
+      <div class="t-price-row" id="t-price-row">
+        <span class="t-price-now" id="t-price-now">{{ current_variant.price | money_without_trailing_zeros }}</span>
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <span class="t-price-was" id="t-price-was">{{ current_variant.compare_at_price | money_without_trailing_zeros }}</span>
+          <span class="t-save" id="t-save">SAVE AED {{ save_aed }}</span>
+        {% endif %}
+      </div>
+      <div class="t-stock-tag {% unless current_variant.available %}out{% endunless %}" id="t-stock-tag">
+        {% if current_variant.available %}
+          ✅ In stock — Order before 8PM for <strong>next-day delivery</strong>
+        {% else %}
+          ❌ Out of stock
+        {% endif %}
+      </div>
+
+      <!-- COLOUR PICKER (deduplicated — one swatch per unique colour) -->
+      {%- assign color_option = nil -%}
+      {%- for _opt in product.options_with_values -%}
+        {%- assign _oname = _opt.name | downcase -%}
+        {%- if _oname contains 'color' or _oname contains 'colour' -%}{%- assign color_option = _opt -%}{%- endif -%}
+      {%- endfor -%}
+      {% unless color_option == nil %}
+      <div class="t-opt-lbl">Choose colour — <span id="t-chosen-color">{{ current_variant.options[0] }}</span></div>
+      <div class="t-swatches" role="list">
+        {%- assign shown_colors = '' -%}
+        {% for variant in product.variants %}
+          {%- assign vcolor = variant.options[0] -%}
+          {%- assign vcolor_key = vcolor | downcase | replace: ' ', '' -%}
+          {% if variant.available or section.settings.show_sold_out %}
+            {% unless shown_colors contains vcolor_key %}
+              {%- assign shown_colors = shown_colors | append: vcolor_key | append: '|' -%}
+              <div class="t-swatch {% if current_variant.options[0] == vcolor %}active{% endif %}"
+                   role="listitem" data-color="{{ vcolor | escape }}" tabindex="0" aria-label="{{ vcolor }}">
+                <div class="t-swatch-dot {% if current_variant.options[0] == vcolor %}active{% endif %}">
+                  {%- assign vc = vcolor | downcase -%}
+                  <div class="inn" style="{%- case vc -%}{%- when 'blue' -%}background:#4A90D9{%- when 'pink' -%}background:#E8719A{%- when 'orange' -%}background:#F97316{%- when 'green' -%}background:#34D399{%- when 'red' -%}background:#EF4444{%- when 'yellow' -%}background:#FBBF24{%- when 'purple' -%}background:#8B5CF6{%- when 'black' -%}background:#1E293B{%- when 'white' -%}background:#F8FAFC;border:1px solid #CBD5E1{%- else -%}background:#94A3B8{%- endcase -%}"></div>
+                </div>
+                <span class="t-swatch-name">{{ vcolor }}</span>
+              </div>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endunless %}
+
+      <!-- AGE GROUP / SIZE PICKER -->
+      {%- assign age_opt = nil -%}
+      {%- for opt in product.options_with_values -%}
+        {%- assign oname = opt.name | downcase -%}
+        {%- if oname == 'size' or oname contains 'age' -%}
+          {%- assign age_opt = opt -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {% unless age_opt == nil %}
+      <div class="t-opt-lbl" style="margin-top:14px">Choose age — <span id="t-chosen-age">{{ current_variant.options[1] | default: '' }}</span></div>
+      <div class="t-size-pills" id="t-size-pills" role="list">
+        {% for val in age_opt.values %}
+          <div class="t-size-pill {% if current_variant.options[1] == val %}active{% endif %}"
+               role="listitem" data-age="{{ val | escape }}" tabindex="0" aria-label="{{ val }}">{{ val }}</div>
+        {% endfor %}
+      </div>
+      {% endunless %}
+
+      <!-- BUY MORE & SAVE -->
+      {% if section.settings.bms_enable %}
+      <div class="t-bms">
+        <div class="t-bms-lbl">💰 Buy More & Save
+          {%- if color_option or age_opt -%}<span id="t-bms-selection" style="font-weight:400;text-transform:none;letter-spacing:0;color:#64748B;margin-left:6px;font-size:11px">({{ current_variant.options[0] }}{% if product.options.size > 1 %} · {{ current_variant.options[1] }}{% endif %})</span>{%- endif -%}
+        </div>
+        {% if section.settings.bms_stepper %}
+        <!-- STEPPER MODE -->
+        <div class="t-qty-stepper">
+          <button class="t-qty-btn" id="t-qty-minus" aria-label="Decrease quantity" disabled>−</button>
+          <span class="t-qty-num" id="t-qty-num">1</span>
+          <button class="t-qty-btn" id="t-qty-plus" aria-label="Increase quantity">+</button>
+          <span class="t-qty-save" id="t-qty-save"></span>
+        </div>
+        {% else %}
+        <!-- CARD MODE (default) -->
+        <div class="t-bms-grid">
+          <div class="t-bms-card active" data-qty="1" data-disc="0" tabindex="0" role="button" aria-pressed="true">
+            <div class="t-bms-qty">1×</div>
+            <div class="t-bms-disc" style="color:var(--muted)">Regular price</div>
+            <div class="t-bms-price" id="t-bms-p1">{{ current_variant.price | money_without_trailing_zeros }}</div>
+          </div>
+          <div class="t-bms-card" data-qty="{{ section.settings.bms_qty2 | default: 2 }}" data-disc="{{ section.settings.bms_disc2 | default: 5 }}" tabindex="0" role="button" aria-pressed="false">
+            <div class="t-bms-tag">POPULAR</div>
+            <div class="t-bms-qty">{{ section.settings.bms_qty2 | default: 2 }}×</div>
+            <div class="t-bms-disc">Save {{ section.settings.bms_disc2 | default: 5 }}%</div>
+            <div class="t-bms-price" id="t-bms-p2"></div>
+          </div>
+          <div class="t-bms-card" data-qty="{{ section.settings.bms_qty3 | default: 3 }}" data-disc="{{ section.settings.bms_disc3 | default: 10 }}" tabindex="0" role="button" aria-pressed="false">
+            <div class="t-bms-tag">BEST VALUE</div>
+            <div class="t-bms-qty">{{ section.settings.bms_qty3 | default: 3 }}×</div>
+            <div class="t-bms-disc">Save {{ section.settings.bms_disc3 | default: 10 }}%</div>
+            <div class="t-bms-price" id="t-bms-p3"></div>
+          </div>
+        </div>
+        {% endif %}
+        <div id="t-bms-data"
+             data-price1="{{ section.settings.bms_price1 | default: 0 | times: 100 | round }}"
+             data-price2="{{ section.settings.bms_price2 | default: 0 | times: 100 | round }}"
+             data-price3="{{ section.settings.bms_price3 | default: 0 | times: 100 | round }}"
+             data-orig="{{ section.settings.bms_orig_price | default: 0 | times: 100 | round }}"
+             style="display:none"></div>
+        <!-- Per-item colour + age pickers for multi-buy (populated by JS) -->
+        <div id="t-bms-items" class="t-bms-items" style="display:none"></div>
+      </div><!-- /t-bms -->
+      {% endif %}
+
+      <!-- ADD TO CART -->
+      <div class="t-atc-row">
+        <button class="t-atc" id="t-atc-btn" aria-label="Add to cart">
+          🛒 <span id="t-atc-label">{{ section.settings.atc_text | default: 'Add to Cart' }}</span>
+        </button>
+      </div>
+
+      <!-- TRUST ICONS -->
+      {% assign trust_blocks = section.blocks | where: 'type', 'trust' %}
+      {% if trust_blocks.size > 0 %}
+      <div class="t-trust" role="list" aria-label="Trust signals">
+        {% for block in trust_blocks limit: 4 %}
+        <div class="t-ti" role="listitem" {{ block.shopify_attributes }}>
+          <div class="t-ti-icon">{{ block.settings.icon }}</div>
+          <div class="t-ti-txt">{{ block.settings.label }}</div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- GIFT BOX UPSELL -->
+      {% if section.settings.gift_bag_handle != blank %}
+      <div class="t-gw" id="t-gw">
+        <div class="t-gw-media" id="t-gw-media">
+          {%- if gift_img_src != '' -%}
+            <img src="{{ gift_img_src }}" alt="TipTop Gift Box" width="58" height="58" loading="eager">
+          {%- else -%}
+            <span style="font-size:26px">🎁</span>
+          {%- endif -%}
+        </div>
+        <div class="t-gw-text">
+          <div class="t-gw-name">{{ section.settings.gift_bag_title | default: '🎁 Add Gift Box' }}</div>
+          <div class="t-gw-sub">AED {{ section.settings.gift_bag_price | default: '9' }} — {{ section.settings.gift_bag_sub | default: 'make it special' }}</div>
+        </div>
+        <button class="t-gw-btn" id="t-gw-btn">{{ section.settings.gift_bag_btn | default: '+ Add' }}</button>
+      </div>
+      {% endif %}
+
+
+    </div><!-- /info -->
+  </div><!-- /hero-grid -->
+</section>
+
+<!-- ═══ SOCIAL PROOF STRIP ═══ -->
+<div class="t-proof">
+  <div class="t-proof-inner">
+    <div class="t-ps">
+      <div class="t-ps-num">{{ section.settings.rating_value | default: '4.9' }}★</div>
+      <div class="t-ps-lbl">{{ section.settings.proof_lbl_rating | default: 'Average rating' }}</div>
+    </div>
+    <div class="t-ps-div"></div>
+    <div class="t-ps">
+      <div class="t-ps-num">{{ section.settings.review_count | default: '200' }}+</div>
+      <div class="t-ps-lbl">{{ section.settings.review_label | default: 'Verified UAE reviews' }}</div>
+    </div>
+    <div class="t-ps-div"></div>
+    <div class="t-ps">
+      <div class="t-ps-num">{{ current_variant.price | money_without_trailing_zeros }}</div>
+      <div class="t-ps-lbl">
+        {% if current_variant.compare_at_price > current_variant.price %}
+          Was {{ current_variant.compare_at_price | money_without_trailing_zeros }} · Save AED {{ save_aed }}
+        {% else %}
+          {{ section.settings.proof_lbl_free | default: 'Free next-day delivery' }}
+        {% endif %}
+      </div>
+    </div>
+    <div class="t-ps-div"></div>
+    <div class="t-ps">
+      <div class="t-ps-num">{{ section.settings.proof_num_delivery | default: 'Next Day' }}</div>
+      <div class="t-ps-lbl">{{ section.settings.proof_lbl_shipping | default: 'Delivery across UAE' }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 5 REASONS (highlights as full-width card grid) ═══ -->
+{% assign highlight_blocks = section.blocks | where: 'type', 'highlight' %}
+{% if highlight_blocks.size > 0 %}
+<section class="t-sec t-sec-alt" aria-labelledby="t-feat-title">
+  <div class="t-wrap">
+    {% if section.settings.feat_lbl != blank %}<div class="t-lbl t-ctr">{{ section.settings.feat_lbl }}</div>{% endif %}
+    <h2 class="t-h2 t-ctr" id="t-feat-title">{{ section.settings.feat_title | default: '5 Reasons Every Parent Says Yes' }}</h2>
+    <p class="t-sub t-ctr" style="margin-bottom:36px">{{ section.settings.feat_sub | default: 'Screen-free, teacher-approved, and kids actually want to use it every day.' }}</p>
+    <div class="t-hl-grid">
+      {% for block in highlight_blocks %}
+      <div class="t-hl-card" {{ block.shopify_attributes }}>
+        <div class="t-hl-card-icon">{{ block.settings.icon }}</div>
+        <div class="t-hl-card-title">{{ block.settings.title }}</div>
+        <div class="t-hl-card-desc">{{ block.settings.desc }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ HOW IT WORKS ═══ -->
+{% assign step_blocks = section.blocks | where: 'type', 'step' %}
+{% if step_blocks.size > 0 %}
+<section class="t-sec" aria-labelledby="t-steps-title">
+  <div class="t-wrap">
+    {% if section.settings.steps_lbl != blank %}<div class="t-lbl t-ctr">{{ section.settings.steps_lbl }}</div>{% endif %}
+    <h2 class="t-h2 t-ctr" id="t-steps-title">{{ section.settings.steps_title | default: 'How It Works' }}</h2>
+    <p class="t-sub t-ctr" style="margin-bottom:36px">{{ section.settings.steps_sub }}</p>
+    <div class="t-steps">
+      {% for block in step_blocks %}
+      <div class="t-step" {{ block.shopify_attributes }}>
+        <div class="t-step-n" aria-hidden="true">{{ forloop.index }}</div>
+        <div class="t-step-t">{{ block.settings.title }}</div>
+        <div class="t-step-d">{{ block.settings.desc }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ VIDEO ═══ -->
+{% if section.settings.video_enable %}
+<section class="t-vid-sec t-ctr" aria-labelledby="t-vid-title">
+  <div class="t-wrap">
+    {% if section.settings.video_lbl != blank %}<div class="t-lbl">{{ section.settings.video_lbl }}</div>{% endif %}
+    <h2 class="t-h2" id="t-vid-title">{{ section.settings.video_title | default: 'See It in Action' }}</h2>
+    <p class="t-sub" style="margin-bottom:28px;color:rgba(255,255,255,.65)">{{ section.settings.video_sub }}</p>
+    <div class="t-vid-box">
+      {%- if section.settings.section_video != blank -%}
+        {%- assign vurl = section.settings.section_video -%}
+        {%- if vurl contains 'youtube.com/shorts/' -%}
+          {%- assign vid_id = vurl | split: '/shorts/' | last | split: '?' | first -%}
+          <iframe src="https://www.youtube.com/embed/{{ vid_id }}?rel=0&playsinline=1"
+            allow="autoplay; encrypted-media" allowfullscreen loading="lazy"
+            title="{{ product.title | escape }} video" style="width:100%;height:100%;border:0"></iframe>
+        {%- elsif vurl contains 'youtube.com/watch' -%}
+          {%- assign vid_id = vurl | split: 'v=' | last | split: '&' | first -%}
+          <iframe src="https://www.youtube.com/embed/{{ vid_id }}?rel=0&playsinline=1"
+            allow="autoplay; encrypted-media" allowfullscreen loading="lazy"
+            title="{{ product.title | escape }} video" style="width:100%;height:100%;border:0"></iframe>
+        {%- elsif vurl contains 'youtu.be/' -%}
+          {%- assign vid_id = vurl | split: 'youtu.be/' | last | split: '?' | first -%}
+          <iframe src="https://www.youtube.com/embed/{{ vid_id }}?rel=0&playsinline=1"
+            allow="autoplay; encrypted-media" allowfullscreen loading="lazy"
+            title="{{ product.title | escape }} video" style="width:100%;height:100%;border:0"></iframe>
+        {%- elsif vurl contains 'vimeo.com/' -%}
+          {%- assign vid_id = vurl | split: 'vimeo.com/' | last | split: '?' | first -%}
+          <iframe src="https://player.vimeo.com/video/{{ vid_id }}?dnt=1"
+            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"
+            title="{{ product.title | escape }} video" style="width:100%;height:100%;border:0"></iframe>
+        {%- endif -%}
+      {%- elsif has_video -%}
+        {%- if hero_video.media_type == 'video' -%}
+          <video controls preload="metadata" playsinline
+            poster="{{ product_images[0] | image_url: width: 800 }}"
+            style="width:100%;height:100%;object-fit:cover">
+            {%- for src in hero_video.sources -%}
+            <source src="{{ src.url }}" type="{{ src.mime_type }}">
+            {%- endfor -%}
+          </video>
+        {%- elsif hero_video.media_type == 'external_video' -%}
+          <iframe src="https://www.youtube.com/embed/{{ hero_video.external_id }}?rel=0&playsinline=1"
+            allow="autoplay; encrypted-media" allowfullscreen loading="lazy"
+            title="{{ product.title | escape }} video" style="width:100%;height:100%;border:0"></iframe>
+        {%- endif -%}
+      {%- else -%}
+        <div class="t-vid-ph">
+          <div class="ring">▶</div>
+          <p>{{ section.settings.video_placeholder | default: 'Product video coming soon — check back shortly.' }}</p>
+          <p style="font-size:11px;opacity:.5">Add via Theme Editor → Video Section → paste YouTube/Vimeo URL, or upload video to the product in Admin → Products → Media</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ REVIEWS ═══ -->
+{% assign review_blocks = section.blocks | where: 'type', 'review' %}
+{% if review_blocks.size > 0 %}
+<section class="t-sec" aria-labelledby="t-rev-title">
+  <div class="t-wrap">
+    {% if section.settings.rev_lbl != blank %}<div class="t-lbl t-ctr">{{ section.settings.rev_lbl }}</div>{% endif %}
+    <h2 class="t-h2 t-ctr" id="t-rev-title">{{ section.settings.rev_title | default: 'What Parents Are Saying' }}</h2>
+    <p class="t-sub t-ctr" style="margin-bottom:24px">{{ section.settings.rev_sub }}</p>
+    <div class="t-rev-grid">
+      {% for block in review_blocks %}
+      {%- assign stars = block.settings.stars | default: 5 -%}
+      <div class="t-rc" {{ block.shopify_attributes }}>
+        <div class="t-rstars" aria-label="{{ stars }} stars">
+          {%- for i in (1..5) -%}{%- if i <= stars -%}★{%- else -%}☆{%- endif -%}{%- endfor -%}
+        </div>
+        <p class="t-rtext">"{{ block.settings.text }}"</p>
+        <div class="t-rauth">
+          <div class="t-rav" style="background:{{ block.settings.avatar_color | default: '#1A3557' }}">{{ block.settings.name | slice: 0 }}</div>
+          <div>
+            <div class="t-rname">{{ block.settings.name }}</div>
+            <div class="t-rloc">{{ block.settings.location }}</div>
+          </div>
+          {% if block.settings.verified %}<div class="t-rvfy">✓ Verified</div>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ FAQ ═══ -->
+{% assign faq_blocks = section.blocks | where: 'type', 'faq' %}
+{% if faq_blocks.size > 0 %}
+<section class="t-sec t-sec-alt" aria-labelledby="t-faq-title">
+  <div class="t-wrap">
+    {% if section.settings.faq_lbl != blank %}<div class="t-lbl t-ctr">{{ section.settings.faq_lbl }}</div>{% endif %}
+    <h2 class="t-h2 t-ctr" id="t-faq-title">{{ section.settings.faq_title | default: 'Frequently Asked Questions' }}</h2>
+    <div class="t-faq-list" style="margin-top:24px">
+      {% for block in faq_blocks %}
+      <div class="t-faq-item" {{ block.shopify_attributes }}>
+        <div class="t-faq-q" role="button" tabindex="0" aria-expanded="false">
+          {{ block.settings.question }}
+          <span class="t-faq-icon" aria-hidden="true">+</span>
+        </div>
+        <div class="t-faq-a">{{ block.settings.answer }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="t-fcta" aria-labelledby="t-cta-title">
+  <div class="t-wrap">
+    {% if section.settings.cta_lbl != blank %}<div class="t-lbl">{{ section.settings.cta_lbl }}</div>{% endif %}
+    <h2 class="t-h2" id="t-cta-title">{{ section.settings.cta_title | default: 'Order Now — Free Next Day Delivery' }}</h2>
+    <p class="t-sub">{{ section.settings.cta_sub }}</p>
+    <button class="t-btn-final" onclick="document.getElementById('t-atc-btn').click()">
+      🛒 {{ section.settings.cta_btn | default: 'Add to Cart' }} — {{ current_variant.price | money_without_trailing_zeros }}
+    </button>
+    <div class="t-ftrust">
+      {% if section.settings.cta_trust_1 != blank %}<span>{{ section.settings.cta_trust_1 }}</span>{% endif %}
+      {% if section.settings.cta_trust_2 != blank %}<span>{{ section.settings.cta_trust_2 }}</span>{% endif %}
+      {% if section.settings.cta_trust_3 != blank %}<span>{{ section.settings.cta_trust_3 }}</span>{% endif %}
+      {% if section.settings.cta_trust_4 != blank %}<span>{{ section.settings.cta_trust_4 }}</span>{% endif %}
+    </div>
+  </div>
+</section>
+
+</div><!-- /#tt360-pdp -->
+
+<!-- LIGHTBOX -->
+<div id="tt360-lb" role="dialog" aria-modal="true" aria-label="Full-screen image viewer">
+  <button id="tt360-lb-close" aria-label="Close image viewer">&times;</button>
+  <button id="tt360-lb-prev" aria-label="Previous image">&#8249;</button>
+  <img id="tt360-lb-img" src="" alt="">
+  <button id="tt360-lb-next" aria-label="Next image">&#8250;</button>
+</div>
+
+<!-- CART DRAWER -->
+<div id="tt360-overlay"></div>
+<div id="tt360-drawer" role="dialog" aria-modal="true" aria-label="Your cart">
+  <div class="t-dr-handle"><div class="t-dr-handle-bar"></div></div>
+  <div class="t-dr-head">
+    <div class="t-dr-head-left">
+      🛒 Your Cart
+      <span class="t-dr-head-count" id="t-dr-count">0</span>
+    </div>
+    <button class="t-dr-close" onclick="window.tt360DrawerClose()" aria-label="Close cart">✕</button>
+  </div>
+  <div class="t-dr-ship" id="t-dr-ship">
+    <div class="t-dr-ship-txt" id="t-dr-ship-txt">Loading…</div>
+    <div class="t-dr-ship-bar"><div class="t-dr-ship-fill" id="t-dr-ship-fill" style="width:0%"></div></div>
+  </div>
+  <div class="t-dr-body">
+    <div id="t-dr-added"></div>
+    <div id="t-dr-gift"></div>
+    <div id="t-dr-upsell"></div>
+  </div>
+  <div class="t-dr-foot">
+    <div class="t-dr-total">
+      <span class="t-dr-total-lbl">Order total</span>
+      <span class="t-dr-total-val" id="t-dr-total-val">—</span>
+    </div>
+    <a href="/checkout" class="t-dr-checkout">🔒 Checkout</a>
+    <div class="t-dr-links">
+      <a href="/cart" class="t-dr-view">View full cart</a>
+      <span class="t-dr-sep"></span>
+      <button class="t-dr-cont" onclick="window.tt360DrawerClose()">Continue shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY MOBILE BAR -->
+<div id="tt360-sticky-pdp" aria-label="Add to cart">
+  <button onclick="document.getElementById('t-atc-btn').click()">
+    🛒 {{ section.settings.sticky_text | default: 'Add to Cart' }} — {{ current_variant.price | money_without_trailing_zeros }}
+  </button>
+</div>
+
+<script>
+(function(){
+  'use strict'; /* TT360-ITEM-PICKERS v2 */
+
+  /* ── VARIANT DATA ── */
+  var variants = {{ product.variants | json }};
+  var selectedVarId  = {{ current_variant.id }};
+  var selectedQty    = 1;
+  var selectedDisc   = 0;
+  var basePrice      = {{ current_variant.price }};
+  var comparePrice   = {{ current_variant.compare_at_price | default: 0 }};
+  var bmsOrigPrice   = {{ section.settings.bms_orig_price | default: 0 | times: 100 | round }};
+  var bmsStepperMode = {{ section.settings.bms_stepper | json }};
+  var selectedColor  = '{{ current_variant.options[0] | default: "" | escape }}';
+  var selectedAge    = '{{ current_variant.options[1] | default: "" | escape }}';
+
+  /* ── HELPERS ── */
+  function money(cents){ return 'AED ' + (cents/100).toFixed(0); }
+  function toast(msg){
+    var t=document.getElementById('tt360-toast-pdp');
+    if(!t)return;
+    t.textContent=msg;t.classList.add('show');
+    setTimeout(function(){t.classList.remove('show');},2800);
+  }
+
+  /* ── GALLERY THUMBNAILS ── */
+  document.querySelectorAll('.t-thumb').forEach(function(thumb){
+    thumb.addEventListener('click', function(){
+      document.querySelectorAll('.t-thumb').forEach(function(t){t.classList.remove('active');});
+      thumb.classList.add('active');
+      if(thumb.dataset.media==='video'){
+        var box=document.getElementById('t-main-media');
+        /* Video thumb — swap to video view if available */
+        return;
+      }
+      var img=document.getElementById('t-main-img');
+      if(img && thumb.dataset.src){
+        img.src=thumb.dataset.src;
+        if(thumb.dataset.srcset) img.srcset=thumb.dataset.srcset;
+        if(thumb.dataset.alt) img.alt=thumb.dataset.alt;
+      }
+    });
+    thumb.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){thumb.click();}});
+  });
+
+  /* ── VARIANT HELPERS ── */
+  function findVariant(color,age){
+    return variants.find(function(v){
+      if(age) return v.option1===color&&v.option2===age;
+      return v.option1===color;
+    })||null;
+  }
+  function applyVariant(v){
+    if(!v) return;
+    selectedVarId=v.id; basePrice=v.price; comparePrice=v.compare_at_price||0;
+    updatePriceDisplay();
+    if(v.featured_image&&v.featured_image.src){var img=document.getElementById('t-main-img');if(img){img.src=v.featured_image.src;img.srcset='';}}
+    var st=document.getElementById('t-stock-tag');
+    if(st){st.className='t-stock-tag'+(v.available?'':' out');st.innerHTML=v.available?'✅ In stock — Order before 8PM for <strong>next-day delivery</strong>':'❌ Out of stock';}
+    var sel=document.getElementById('t-bms-selection');
+    if(sel){var lbl=selectedColor;if(selectedAge)lbl+=' · '+selectedAge;sel.textContent='('+lbl+')';}
+    try{var url=new URL(window.location.href);url.searchParams.set('variant',v.id);window.history.replaceState({},'',url.toString());}catch(e){}
+  }
+
+  /* ── COLOUR SWATCHES ── */
+  document.querySelectorAll('.t-swatch').forEach(function(sw){
+    sw.addEventListener('click',function(){
+      selectedColor=sw.dataset.color;
+      document.querySelectorAll('.t-swatch .t-swatch-dot').forEach(function(d){d.classList.remove('active');});
+      sw.querySelector('.t-swatch-dot').classList.add('active');
+      document.querySelectorAll('.t-swatch').forEach(function(s){s.classList.remove('active');});
+      sw.classList.add('active');
+      var cc=document.getElementById('t-chosen-color');if(cc)cc.textContent=selectedColor;
+      document.querySelectorAll('.t-size-pill').forEach(function(pill){
+        var v=findVariant(selectedColor,pill.dataset.age);
+        pill.style.opacity=(v&&v.available)?'1':'0.45';
+      });
+      applyVariant(findVariant(selectedColor,selectedAge));
+    });
+    sw.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')sw.click();});
+  });
+
+  /* ── AGE / SIZE PILLS ── */
+  document.querySelectorAll('.t-size-pill').forEach(function(pill){
+    pill.addEventListener('click',function(){
+      selectedAge=pill.dataset.age;
+      document.querySelectorAll('.t-size-pill').forEach(function(p){p.classList.remove('active');});
+      pill.classList.add('active');
+      var ca=document.getElementById('t-chosen-age');if(ca)ca.textContent=selectedAge;
+      applyVariant(findVariant(selectedColor,selectedAge));
+    });
+    pill.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')pill.click();});
+  });
+
+  /* ── BUY MORE & SAVE ── */
+  function updatePriceDisplay(){
+    var bmsData=document.getElementById('t-bms-data');
+    var price1=bmsData?parseInt(bmsData.dataset.price1)||0:0;
+    var price2=bmsData?parseInt(bmsData.dataset.price2)||0:0;
+    var price3=bmsData?parseInt(bmsData.dataset.price3)||0:0;
+    var origUnit=bmsOrigPrice>0?bmsOrigPrice:(comparePrice>0?comparePrice:basePrice);
+    var pEl=document.getElementById('t-price-now');
+    var saveBadge=document.getElementById('t-save');
+    var priceWas=document.getElementById('t-price-was');
+    var label=document.getElementById('t-atc-label');
+
+    if(bmsStepperMode){
+      /* STEPPER MODE — AED fixed-price tiers */
+      var unitPrice=price1>0?price1:basePrice;
+      var total=unitPrice*selectedQty;
+      var origTotal=origUnit*selectedQty;
+      var savedAed=origTotal-total;
+      var heroPrice=price1>0?price1:basePrice;
+      if(pEl)pEl.textContent=money(heroPrice);
+      if(origUnit>heroPrice&&origUnit>0){
+        if(saveBadge){saveBadge.textContent='SAVE AED '+Math.round((origUnit-heroPrice)/100);saveBadge.style.display='';}
+        if(priceWas){priceWas.textContent=money(origUnit);priceWas.style.display='';}
+      }else{if(saveBadge)saveBadge.style.display='none';if(priceWas)priceWas.style.display='none';}
+      var saveEl=document.getElementById('t-qty-save');
+      if(saveEl){
+        if(savedAed>0){saveEl.textContent='Save AED '+Math.round(savedAed/100);saveEl.style.display='';}
+        else{saveEl.style.display='none';}
+      }
+      if(label){
+        var txt=selectedQty>1?('Add '+selectedQty):('{{ section.settings.atc_text | default: "Add to Cart" }}');
+        if(savedAed>0)txt+=' — Save AED '+Math.round(savedAed/100);
+        txt+=' — '+money(total);
+        label.textContent=txt;
+      }
+    }else{
+      /* CARD MODE — use fixed AED tier prices when set, fall back to % */
+      document.querySelectorAll('.t-bms-card').forEach(function(card){
+        var qty=parseInt(card.dataset.qty)||1;
+        var disc=parseInt(card.dataset.disc)||0;
+        var fixedTotal=qty===1?price1:(qty===2?price2:(qty===3?price3:0));
+        var total=fixedTotal>0?fixedTotal:Math.round(basePrice*(1-disc/100))*qty;
+        var priceEl=card.querySelector('.t-bms-price');
+        if(priceEl)priceEl.textContent=money(total)+' total';
+      });
+      var heroPrice=price1>0?price1:Math.round(basePrice*(1-selectedDisc/100));
+      if(pEl)pEl.textContent=money(heroPrice);
+      if(origUnit>heroPrice&&origUnit>0){
+        if(saveBadge){saveBadge.textContent='SAVE AED '+Math.round((origUnit-heroPrice)/100);saveBadge.style.display='';}
+        if(priceWas){priceWas.textContent=money(origUnit);priceWas.style.display='';}
+      }else{if(saveBadge)saveBadge.style.display='none';if(priceWas)priceWas.style.display='none';}
+      var fixedCardTotal=selectedQty===1?price1:(selectedQty===2?price2:(selectedQty===3?price3:0));
+      var totalPrice=fixedCardTotal>0?fixedCardTotal:Math.round(basePrice*(1-selectedDisc/100))*selectedQty;
+      var savedAed=origUnit*selectedQty-totalPrice;
+      if(label){
+        var txt=selectedDisc>0?'Add '+selectedQty+' × Save '+selectedDisc+'%':'{{ section.settings.atc_text | default: "Add to Cart" }}';
+        if(savedAed>0)txt+=' — Save AED '+Math.round(savedAed/100);
+        txt+=' — '+money(totalPrice);
+        label.textContent=txt;
+      }
+    }
+  }
+
+  /* ── BMS PER-ITEM VARIANT PICKERS ── */
+  var bmsItems=[]; /* [{varId,color,age}, ...] one slot per item in multi-buy */
+
+  function getUniqueColors(){
+    var seen={};
+    return variants.reduce(function(acc,v){
+      if(v.option1&&v.option1.toLowerCase()!=='default title'&&!seen[v.option1]){seen[v.option1]=1;acc.push(v.option1);}
+      return acc;
+    },[]);
+  }
+  function getUniqueAges(){
+    var seen={};
+    return variants.reduce(function(acc,v){
+      if(v.option2&&v.option2.toLowerCase()!=='default title'&&!seen[v.option2]){seen[v.option2]=1;acc.push(v.option2);}
+      return acc;
+    },[]);
+  }
+  function colorDotStyle(color){
+    var c=color.toLowerCase().replace(/\s+/g,'');
+    var map={blue:'#4A90D9',pink:'#E8719A',orange:'#F97316',green:'#34D399',red:'#EF4444',yellow:'#FBBF24',purple:'#8B5CF6',black:'#1E293B',white:'#F8FAFC'};
+    return 'background:'+(map[c]||'#94A3B8')+(c==='white'?';border:1px solid #CBD5E1':'');
+  }
+
+  function renderBmsItemPickers(qty){
+    var container=document.getElementById('t-bms-items');
+    if(!container)return;
+    var colors=getUniqueColors();
+    var ages=getUniqueAges();
+    var hasColors=colors.length>=1;
+    var hasAges=ages.length>0;
+    if(!hasColors&&!hasAges){container.style.display='none';return;}
+    /* Initialise / resize bmsItems array */
+    while(bmsItems.length<qty)bmsItems.push({varId:selectedVarId,color:selectedColor,age:selectedAge});
+    bmsItems=bmsItems.slice(0,qty);
+    var html='';
+    for(var i=0;i<qty;i++){
+      html+='<div class="t-bms-item" data-item="'+i+'">';
+      html+='<div class="t-bms-item-lbl">🛒 Item '+(i+1)+'</div>';
+      if(hasColors){
+        html+='<div class="t-swatches">';
+        colors.forEach(function(c){
+          var active=(bmsItems[i].color===c);
+          html+='<div class="t-swatch'+(active?' active':'')+'" data-color="'+c+'" data-item="'+i+'">';
+          html+='<div class="t-swatch-dot'+(active?' active':'')+'"><div class="inn" style="'+colorDotStyle(c)+'"></div></div>';
+          html+='<span class="t-swatch-name">'+c+'</span>';
+          html+='</div>';
+        });
+        html+='</div>';
+      }
+      if(hasAges){
+        html+='<div class="t-size-pills">';
+        ages.forEach(function(a){
+          var active=(bmsItems[i].age===a);
+          html+='<div class="t-size-pill'+(active?' active':'')+'" data-age="'+a+'" data-item="'+i+'">'+a+'</div>';
+        });
+        html+='</div>';
+      }
+      html+='</div>';
+    }
+    container.innerHTML=html;
+    container.style.display='';
+    bindBmsItemPickers();
+  }
+
+  function bindBmsItemPickers(){
+    var container=document.getElementById('t-bms-items');
+    if(!container)return;
+    container.querySelectorAll('.t-swatch[data-item]').forEach(function(sw){
+      sw.addEventListener('click',function(){
+        var idx=parseInt(sw.dataset.item);
+        bmsItems[idx].color=sw.dataset.color;
+        var v=findVariant(bmsItems[idx].color,bmsItems[idx].age);
+        if(v)bmsItems[idx].varId=v.id;
+        var itemEl=container.querySelector('.t-bms-item[data-item="'+idx+'"]');
+        if(itemEl){
+          itemEl.querySelectorAll('.t-swatch').forEach(function(s){s.classList.remove('active');s.querySelector('.t-swatch-dot').classList.remove('active');});
+          sw.classList.add('active');sw.querySelector('.t-swatch-dot').classList.add('active');
+        }
+      });
+    });
+    container.querySelectorAll('.t-size-pill[data-item]').forEach(function(pill){
+      pill.addEventListener('click',function(){
+        var idx=parseInt(pill.dataset.item);
+        bmsItems[idx].age=pill.dataset.age;
+        var v=findVariant(bmsItems[idx].color,bmsItems[idx].age);
+        if(v)bmsItems[idx].varId=v.id;
+        var itemEl=container.querySelector('.t-bms-item[data-item="'+idx+'"]');
+        if(itemEl){
+          itemEl.querySelectorAll('.t-size-pill').forEach(function(p){p.classList.remove('active');});
+          pill.classList.add('active');
+        }
+      });
+    });
+  }
+
+  /* ── BMS CARD CLICK HANDLERS (card mode only) ── */
+  if(!bmsStepperMode){
+    document.querySelectorAll('.t-bms-card').forEach(function(card){
+      card.addEventListener('click',function(){
+        document.querySelectorAll('.t-bms-card').forEach(function(c){
+          c.classList.remove('active');c.setAttribute('aria-pressed','false');
+        });
+        card.classList.add('active');card.setAttribute('aria-pressed','true');
+        selectedQty=parseInt(card.dataset.qty)||1;
+        selectedDisc=parseInt(card.dataset.disc)||0;
+        if(selectedQty>1){bmsItems=[];renderBmsItemPickers(selectedQty);}
+        else{var el=document.getElementById('t-bms-items');if(el)el.style.display='none';}
+        updatePriceDisplay();
+      });
+      card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')card.click();});
+    });
+  }
+
+  /* ── QTY STEPPER (stepper mode only) ── */
+  if(bmsStepperMode){
+    (function(){
+      var minusBtn=document.getElementById('t-qty-minus');
+      var plusBtn=document.getElementById('t-qty-plus');
+      var numEl=document.getElementById('t-qty-num');
+      if(!minusBtn||!plusBtn||!numEl)return;
+      function setQty(q){
+        selectedQty=Math.max(1,Math.min(10,q));
+        numEl.textContent=selectedQty;
+        minusBtn.disabled=(selectedQty<=1);
+        if(selectedQty>1){bmsItems=[];renderBmsItemPickers(selectedQty);}
+        else{var el=document.getElementById('t-bms-items');if(el)el.style.display='none';}
+        updatePriceDisplay();
+      }
+      minusBtn.addEventListener('click',function(){setQty(selectedQty-1);});
+      plusBtn.addEventListener('click',function(){setQty(selectedQty+1);});
+    })();
+  }
+
+  /* Init price display */
+  updatePriceDisplay();
+
+  /* ── CART DRAWER ── */
+  var giftBagHandle='{{ section.settings.gift_bag_handle | default: "gift-wrap-1" }}';
+  var giftBagPriceLbl='{{ section.settings.gift_bag_price | default: "9" }}';
+  var upsellHandles=['{{ section.settings.upsell_1 }}','{{ section.settings.upsell_2 }}','{{ section.settings.upsell_3 }}'].filter(Boolean);
+  var productCache={};
+  var giftBagData=null;
+  var giftBagVarId=44168885174387; /* gift-wrap-1 default — overwritten after fetch */
+  var giftBagAdded=false;
+
+  window.tt360DrawerClose=function(){
+    document.getElementById('tt360-drawer').classList.remove('open');
+    document.getElementById('tt360-overlay').classList.remove('open');
+    document.body.style.overflow='';
+  };
+  function drawerOpen(){
+    document.getElementById('tt360-drawer').classList.add('open');
+    document.getElementById('tt360-overlay').classList.add('open');
+    document.body.style.overflow='hidden';
+    renderAllCartItems();
+  }
+  window.tt360DrawerOpen=drawerOpen;
+  document.getElementById('tt360-overlay').addEventListener('click',window.tt360DrawerClose);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')window.tt360DrawerClose();});
+
+  /* Swipe down to close (mobile bottom sheet) */
+  (function(){
+    var dr=document.getElementById('tt360-drawer');
+    var startY=0,startT=0,isDragging=false;
+    dr.addEventListener('touchstart',function(e){
+      if(e.touches.length!==1)return;
+      startY=e.touches[0].clientY;startT=Date.now();isDragging=true;
+    },{passive:true});
+    dr.addEventListener('touchmove',function(e){
+      if(!isDragging)return;
+      var dy=e.touches[0].clientY-startY;
+      if(dy>0){dr.style.transform='translateY('+dy+'px)';dr.style.transition='none';}
+    },{passive:true});
+    dr.addEventListener('touchend',function(e){
+      if(!isDragging)return;isDragging=false;
+      var dy=e.changedTouches[0].clientY-startY;
+      var dt=Date.now()-startT;
+      dr.style.transform='';dr.style.transition='';
+      if(dy>80||(dy>40&&dt<250)){window.tt360DrawerClose();}
+    },{passive:true});
+  })();
+
+  function fetchProd(handle,cb){
+    if(!handle){cb(null);return;}
+    if(productCache[handle]){cb(productCache[handle]);return;}
+    fetch('/products/'+handle+'.js').then(function(r){return r.json();}).then(function(p){productCache[handle]=p;cb(p);}).catch(function(){cb(null);});
+  }
+  function fmtMoney(cents){return 'AED '+(cents/100).toFixed(0);}
+
+  function updateCartIcon(count){
+    var selectors='.cart-count,.cart__count,.cart-count-bubble,.header__cart-count,[data-cart-count],[id*="cart-count"],[class*="cart-count"]';
+    document.querySelectorAll(selectors).forEach(function(el){
+      if(el.tagName!=='A'&&el.tagName!=='BUTTON'&&el.tagName!=='SVG'){el.textContent=count;el.setAttribute('aria-label',count+' items');}
+    });
+    /* Try section render for header */
+    fetch('/?sections=header').then(function(r){return r.json();}).then(function(d){
+      if(!d||!d.header)return;
+      var t=document.createElement('div');t.innerHTML=d.header;
+      var nw=t.querySelector('.cart-count,.cart-count-bubble,[data-cart-count]');
+      var cr=document.querySelector('.cart-count,.cart-count-bubble,[data-cart-count]');
+      if(nw&&cr)cr.outerHTML=nw.outerHTML;
+    }).catch(function(){});
+    document.dispatchEvent(new CustomEvent('cart:updated',{detail:{count:count}}));
+    document.dispatchEvent(new CustomEvent('theme:cart:update',{detail:{}}));
+  }
+
+  function renderGiftBag(){
+    var el=document.getElementById('t-dr-gift');
+    if(!el)return;
+    var img=giftBagData&&giftBagData.images&&giftBagData.images[0]?
+      giftBagData.images[0].src:GIFT_IMG_URL;
+    el.innerHTML='<div class="t-dr-gift-card'+(giftBagAdded?' added':'')+'" id="t-drg-card">'+
+      (img?'<img class="t-dr-gift-img" src="'+img+'" alt="TipTop Gift Bag">':'<span style="font-size:32px;flex-shrink:0">🎁</span>')+
+      '<div class="t-dr-gift-info"><div class="t-dr-gift-title">🎁 TipTop Gift Box</div>'+
+      '<div class="t-dr-gift-sub">AED '+giftBagPriceLbl+' — Make it a special gift!</div></div>'+
+      '<button class="t-dr-gift-btn" id="t-drg-btn">'+(giftBagAdded?'✓ Added':'+ Add')+'</button></div>';
+    if(!giftBagAdded){
+      document.getElementById('t-drg-btn').addEventListener('click',function(){
+        this.textContent='…';this.disabled=true;
+        fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:giftBagVarId,quantity:1})})
+          .then(function(){giftBagAdded=true;renderGiftBag();refreshDrawerTotal();})
+          .catch(function(){var b=document.getElementById('t-drg-btn');if(b){b.textContent='+ Add';b.disabled=false;}});
+      });
+    }
+  }
+
+  /* ── DRAWER STATE ── */
+  var drawerQty=selectedQty;
+  var upsellQtyMap={}; /* varId → qty in cart */
+  var FREE_SHIP_THRESHOLD=10000; /* AED 100 in cents */
+
+  /* ── SHIPPING BAR ── */
+  function updateShippingBar(cartTotal){
+    var bar=document.getElementById('t-dr-ship');
+    var txt=document.getElementById('t-dr-ship-txt');
+    var fill=document.getElementById('t-dr-ship-fill');
+    if(!bar||!txt||!fill)return;
+    if(cartTotal>=FREE_SHIP_THRESHOLD){
+      bar.classList.add('done');
+      txt.innerHTML='🎉 <strong>Free delivery unlocked!</strong>';
+      fill.style.width='100%';
+    }else{
+      var remaining=fmtMoney(FREE_SHIP_THRESHOLD-cartTotal);
+      bar.classList.remove('done');
+      txt.innerHTML='Add <strong>'+remaining+'</strong> more for free delivery';
+      fill.style.width=Math.min(Math.round(cartTotal/FREE_SHIP_THRESHOLD*100),99)+'%';
+    }
+  }
+
+  /* ── ITEM COUNT IN HEADER ── */
+  function updateItemCount(n){
+    var el=document.getElementById('t-dr-count');
+    if(el)el.textContent=n;
+  }
+
+  /* ── REFRESH TOTAL + SHIPPING BAR + COUNT ── */
+  function refreshDrawerTotal(){
+    return fetch('/cart.js').then(function(r){return r.json();}).then(function(cart){
+      var tv=document.getElementById('t-dr-total-val');
+      if(tv)tv.textContent=fmtMoney(cart.total_price);
+      var co=document.querySelector('.t-dr-checkout');
+      if(co)co.innerHTML='🔒 Checkout &mdash; '+fmtMoney(cart.total_price);
+      updateCartIcon(cart.item_count);
+      updateItemCount(cart.item_count);
+      updateShippingBar(cart.total_price);
+      return cart;
+    });
+  }
+
+  /* ── ADDED ITEM (main product) ── */
+  function renderAddedItem(){
+    var added=document.getElementById('t-dr-added');
+    if(!added)return;
+    var mainImg=document.getElementById('t-main-img');
+    var imgSrc=mainImg?mainImg.src:'';
+    var unitPrice=Math.round(basePrice*(1-selectedDisc/100));
+    var lineTotal=fmtMoney(unitPrice*drawerQty);
+    added.innerHTML='<div class="t-dr-added-item">'+
+      (imgSrc?'<img class="t-dr-added-img" src="'+imgSrc+'" alt="{{ product.title | escape }}" loading="eager">':'')+
+      '<div class="t-dr-added-info">'+
+        '<div class="t-dr-added-name">{{ product.title | escape }}</div>'+
+        '<div class="t-dr-added-meta">'+fmtMoney(unitPrice)+' each</div>'+
+        '<div class="t-dr-added-row">'+
+          '<div class="t-dr-qty">'+
+            '<button class="t-dr-q-btn'+(drawerQty===1?' danger':'')+'" id="t-dr-q-dec">'+(drawerQty===1?'🗑':'−')+'</button>'+
+            '<span class="t-dr-q-num">'+drawerQty+'</span>'+
+            '<button class="t-dr-q-btn" id="t-dr-q-inc">+</button>'+
+          '</div>'+
+          '<span class="t-dr-line-total">'+lineTotal+'</span>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+    document.getElementById('t-dr-q-dec').addEventListener('click',function(){changeDrawerQty(drawerQty-1);});
+    document.getElementById('t-dr-q-inc').addEventListener('click',function(){changeDrawerQty(drawerQty+1);});
+  }
+
+  /* ── FULL CART RENDER ── */
+  function renderAllCartItems(){
+    var added=document.getElementById('t-dr-added');
+    if(!added)return;
+    fetch('/cart.js').then(function(r){return r.json();}).then(function(cart){
+      if(!cart.items||cart.items.length===0){
+        added.innerHTML='<p style="color:#94A3B8;font-size:13px;text-align:center;padding:16px 0">Your cart is empty</p>';
+        refreshDrawerTotal();return;
+      }
+      var html='';
+      cart.items.forEach(function(item,idx){
+        var line=idx+1;
+        html+='<div class="t-dr-added-item" data-line="'+line+'" data-vid="'+item.variant_id+'">'+
+          (item.image?'<img class="t-dr-added-img" src="'+item.image+'" alt="'+item.title+'" loading="eager">':'')+
+          '<div class="t-dr-added-info">'+
+            '<div class="t-dr-added-name">'+item.product_title+(item.variant_title&&item.variant_title!=='Default Title'?' — '+item.variant_title:'')+'</div>'+
+            '<div class="t-dr-added-meta">'+fmtMoney(item.price)+' each</div>'+
+            '<div class="t-dr-added-row">'+
+              '<div class="t-dr-qty t-dr-qty-line" data-line="'+line+'">'+
+                '<button class="t-dr-q-btn'+(item.quantity===1?' danger':'')+'" data-action="dec">'+(item.quantity===1?'🗑':'−')+'</button>'+
+                '<span class="t-dr-q-num">'+item.quantity+'</span>'+
+                '<button class="t-dr-q-btn" data-action="inc">+</button>'+
+              '</div>'+
+              '<span class="t-dr-line-total">'+fmtMoney(item.line_price)+'</span>'+
+            '</div>'+
+          '</div>'+
+        '</div>';
+      });
+      added.innerHTML=html;
+      added.querySelectorAll('.t-dr-qty-line').forEach(function(ctrl){
+        var line=parseInt(ctrl.dataset.line);
+        ctrl.querySelectorAll('button').forEach(function(btn){
+          btn.addEventListener('click',function(){
+            var qEl=ctrl.querySelector('.t-dr-q-num');
+            var cur=parseInt(qEl?qEl.textContent:1)||1;
+            var next=btn.dataset.action==='inc'?cur+1:cur-1;
+            changeCartItemByLine(line,Math.max(0,next));
+          });
+        });
+      });
+      refreshDrawerTotal();
+    }).catch(function(){});
+  }
+
+  function changeCartItemByLine(line,newQty){
+    fetch('/cart/change.js',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({line:line,quantity:Math.max(0,newQty)})
+    }).then(function(r){return r.json();})
+    .then(function(){renderAllCartItems();})
+    .catch(function(){toast('Could not update quantity');});
+  }
+
+  function changeDrawerQty(newQty){
+    fetch('/cart/change.js',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:selectedVarId,quantity:Math.max(0,newQty)})
+    }).then(function(r){return r.json();})
+    .then(function(){
+      drawerQty=Math.max(0,newQty);
+      renderAllCartItems();
+      refreshDrawerTotal();
+    })
+    .catch(function(){toast('Could not update quantity');});
+  }
+
+  /* ── UPSELL QTY STEPPER ── */
+  function makeQtyStepper(vid,qty){
+    return '<div class="t-dr-qty" data-vid="'+vid+'">'+
+      '<button class="t-dr-q-btn'+(qty===1?' danger':'')+'" data-action="dec">'+(qty===1?'🗑':'−')+'</button>'+
+      '<span class="t-dr-q-num">'+qty+'</span>'+
+      '<button class="t-dr-q-btn" data-action="inc">+</button>'+
+    '</div>';
+  }
+
+  function bindStepperInEl(el,vid){
+    el.querySelectorAll('.t-dr-qty[data-vid="'+vid+'"] button').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var action=this.dataset.action;
+        var current=upsellQtyMap[vid]||0;
+        var next=action==='inc'?current+1:current-1;
+        changeUpsellQty(vid,next,el);
+      });
+    });
+  }
+
+  function changeUpsellQty(vid,newQty,itemEl){
+    fetch('/cart/change.js',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:vid,quantity:Math.max(0,newQty)})
+    }).then(function(r){return r.json();})
+    .then(function(){
+      upsellQtyMap[vid]=Math.max(0,newQty);
+      var ctrl=itemEl.querySelector('.t-dr-up-ctrl');
+      if(!ctrl)return;
+      if(upsellQtyMap[vid]===0){
+        delete upsellQtyMap[vid];
+        /* Restore Add button */
+        ctrl.innerHTML='<button class="t-dr-up-add" style="min-width:60px">Add</button>';
+        ctrl.querySelector('.t-dr-up-add').addEventListener('click',function(){
+          addUpsellItem(vid,ctrl,itemEl);
+        });
+      }else{
+        ctrl.innerHTML=makeQtyStepper(vid,upsellQtyMap[vid]);
+        bindStepperInEl(itemEl,vid);
+      }
+      refreshDrawerTotal();
+    })
+    .catch(function(){toast('Could not update quantity');});
+  }
+
+  function addUpsellItem(vid,ctrl,itemEl){
+    ctrl.innerHTML='<button class="t-dr-up-add" disabled style="min-width:60px">…</button>';
+    fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:vid,quantity:1})
+    }).then(function(){
+      upsellQtyMap[vid]=1;
+      ctrl.innerHTML=makeQtyStepper(vid,1);
+      bindStepperInEl(itemEl,vid);
+      refreshDrawerTotal();
+    })
+    .catch(function(){
+      ctrl.innerHTML='<button class="t-dr-up-add" style="min-width:60px">Add</button>';
+      ctrl.querySelector('.t-dr-up-add').addEventListener('click',function(){
+        addUpsellItem(vid,ctrl,itemEl);
+      });
+    });
+  }
+
+  /* ── RENDER UPSELL PRODUCTS ── */
+  function renderUpsellProducts(products){
+    var el=document.getElementById('t-dr-upsell');
+    if(!el)return;
+    var grid=document.getElementById('t-up-grid');
+    if(!grid)return;
+    var html='';
+    products.slice(0,3).forEach(function(p){
+      var v=p.variants[0];
+      /* Use CDN-sized image for speed */
+      var rawSrc=p.images&&p.images[0]?p.images[0].src:'';
+      var imgSrc=rawSrc?rawSrc.replace(/(\.(jpg|jpeg|png|webp|gif))(\?|$)/i,'_120x120$1$3'):'';
+      var imgHtml=imgSrc
+        ?'<img class="t-dr-up-img" src="'+imgSrc+'" alt="'+p.title.replace(/"/g,'&quot;')+'" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling&&(this.nextElementSibling.style.display=\'block\')">'
+        :'';
+      var skeletonHtml='<div class="t-dr-skel"'+(imgSrc?' style="display:none"':'')+' aria-hidden="true"></div>';
+      var priceHtml=fmtMoney(v.price);
+      var wasHtml=v.compare_at_price&&v.compare_at_price>v.price?
+        '<span class="t-dr-up-was">'+fmtMoney(v.compare_at_price)+'</span>'+
+        '<span class="t-dr-up-save">-'+Math.round((v.compare_at_price-v.price)/v.compare_at_price*100)+'%</span>':'';
+      html+='<div class="t-dr-up-item" data-vid="'+v.id+'">'+
+        imgHtml+skeletonHtml+
+        '<div class="t-dr-up-info">'+
+          '<div class="t-dr-up-name">'+p.title+'</div>'+
+          '<div class="t-dr-up-prices"><span class="t-dr-up-price">'+priceHtml+'</span>'+wasHtml+'</div>'+
+        '</div>'+
+        '<div class="t-dr-up-ctrl"><button class="t-dr-up-add" style="min-width:60px">Add</button></div>'+
+      '</div>';
+    });
+    if(!html){el.innerHTML='';return;}
+    grid.innerHTML=html;
+    grid.querySelectorAll('.t-dr-up-item').forEach(function(item){
+      var vid=parseInt(item.dataset.vid);
+      var ctrl=item.querySelector('.t-dr-up-ctrl');
+      var addBtn=ctrl.querySelector('.t-dr-up-add');
+      addBtn.addEventListener('click',function(){addUpsellItem(vid,ctrl,item);});
+    });
+  }
+
+  function fetchAndRenderHandles(){
+    if(!upsellHandles.length)return;
+    var results=[];var loaded=0;
+    upsellHandles.forEach(function(h,i){
+      fetchProd(h,function(p){
+        loaded++;if(p)results.push({p:p,i:i});
+        if(loaded===upsellHandles.length){
+          results.sort(function(a,b){return a.i-b.i;});
+          renderUpsellProducts(results.map(function(r){return r.p;}));
+        }
+      });
+    });
+  }
+
+  function renderUpsells(){
+    var el=document.getElementById('t-dr-upsell');
+    if(!el)return;
+    upsellQtyMap={};
+    el.innerHTML='<div class="t-dr-up-lbl" style="margin-bottom:8px">You might also like</div>'+
+      '<div id="t-up-grid" style="display:flex;flex-direction:column;gap:10px">'+
+      '<div style="color:#94A3B8;font-size:12px;padding:4px 0">Loading…</div></div>';
+    fetch('/recommendations/products.json?product_id={{ product.id }}&limit=5&intent=related')
+      .then(function(r){return r.json();})
+      .then(function(data){
+        var prods=(data.products||[]).filter(function(p){
+          return p.id!={{ product.id }}&&p.handle!==giftBagHandle&&p.variants[0].available;
+        });
+        if(prods.length>0){renderUpsellProducts(prods);}
+        else{fetchAndRenderHandles();}
+      })
+      .catch(function(){fetchAndRenderHandles();});
+  }
+
+  function openDrawerWithItem(){
+    drawerQty=selectedQty;
+    renderAllCartItems();
+    renderGiftBag();
+    renderUpsells();
+    refreshDrawerTotal();
+    drawerOpen();
+  }
+
+  /* ── GIFT WRAP WIDGET ── */
+  /* Known product data — fetched on load, used for instant add */
+  var GIFT_IMG_URL='{{ gift_img_src }}';
+  var GIFT_VAR_ID=44168885174387;
+
+  function renderGiftWidgetImage(){
+    var media=document.getElementById('t-gw-media');
+    if(!media)return;
+    var src=giftBagData&&giftBagData.images&&giftBagData.images[0]?
+      giftBagData.images[0].src:GIFT_IMG_URL;
+    media.innerHTML='<img src="'+src+'" alt="TipTop Gift Wrap" width="58" height="58" loading="lazy">';
+  }
+
+  function addGiftToCart(onSuccess){
+    var vid=giftBagVarId||GIFT_VAR_ID;
+    fetch('/cart/add.js',{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:vid,quantity:1})
+    }).then(function(){giftBagAdded=true;onSuccess();refreshDrawerTotal();})
+      .catch(function(){toast('Could not add gift wrap — please try again');});
+  }
+
+  /* Inline widget button */
+  var gwBtn=document.getElementById('t-gw-btn');
+  var gwCard=document.getElementById('t-gw');
+  if(gwBtn){
+    gwBtn.addEventListener('click',function(e){
+      e.stopPropagation();
+      if(giftBagAdded)return;
+      gwBtn.textContent='…';gwBtn.disabled=true;
+      addGiftToCart(function(){
+        gwBtn.textContent='✓ Added';gwBtn.disabled=false;
+        gwBtn.classList.add('done');
+        if(gwCard)gwCard.classList.add('t-gw-done');
+        renderGiftBag();
+        toast('🎁 Gift box added to cart!');
+      });
+    });
+  }
+
+  /* Prefetch gift product in background — only updates variant ID and drawer image */
+  window.addEventListener('load',function(){
+    setTimeout(function(){
+      if(giftBagHandle){
+        fetchProd(giftBagHandle,function(p){
+          if(p){
+            giftBagData=p;
+            giftBagVarId=p.variants[0].id;
+            /* Only update the widget image if Liquid rendered nothing (GIFT_IMG_URL empty) */
+            if(!GIFT_IMG_URL && p.images && p.images[0]){
+              var media=document.getElementById('t-gw-media');
+              if(media) media.innerHTML='<img src="'+p.images[0].src+'" alt="TipTop Gift Box" width="58" height="58" loading="eager">';
+            }
+          }
+        });
+      }
+      upsellHandles.forEach(function(h){if(h)fetchProd(h,function(){});});
+    },800);
+  });
+
+  /* ── ADD TO CART ── */
+  document.getElementById('t-atc-btn').addEventListener('click',function(){
+    var btn=this;
+    btn.classList.add('loading');
+    btn.querySelector('#t-atc-label').textContent='Adding…';
+    /* Build cart payload — multi-item if BMS tier > 1 with per-item selections */
+    var cartBody;
+    if(selectedQty>1&&bmsItems.length===selectedQty){
+      /* Merge identical variants into qty */
+      var merged={};
+      bmsItems.forEach(function(item){
+        var id=item.varId||selectedVarId;
+        merged[id]=(merged[id]||0)+1;
+      });
+      var itemsArr=Object.keys(merged).map(function(id){return{id:parseInt(id),quantity:merged[id]};});
+      cartBody=JSON.stringify({items:itemsArr});
+    }else{
+      cartBody=JSON.stringify({id:selectedVarId,quantity:selectedQty});
+    }
+    fetch('/cart/add.js',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Requested-With':'XMLHttpRequest'},
+      body:cartBody
+    })
+    .then(function(r){return r.json();})
+    .then(function(data){
+      btn.classList.remove('loading');
+      if(data.status){
+        btn.querySelector('#t-atc-label').textContent=data.description||'Error — please try again';
+        setTimeout(function(){updatePriceDisplay();},2000);
+        return;
+      }
+      btn.classList.add('done');
+      btn.querySelector('#t-atc-label').textContent='✓ Added!';
+      openDrawerWithItem();
+      setTimeout(function(){btn.classList.remove('done');updatePriceDisplay();},2500);
+    })
+    .catch(function(){
+      btn.classList.remove('loading');
+      btn.querySelector('#t-atc-label').textContent='Error — please try again';
+      setTimeout(function(){updatePriceDisplay();},2000);
+    });
+  });
+
+  /* ── FAQ ACCORDION (collapsed by default) ── */
+  document.querySelectorAll('.t-faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var item=q.closest('.t-faq-item');
+      var isOpen=item.classList.contains('open');
+      /* Close all */
+      document.querySelectorAll('.t-faq-item').forEach(function(i){
+        i.classList.remove('open');
+        i.querySelector('.t-faq-q').setAttribute('aria-expanded','false');
+      });
+      /* Toggle current */
+      if(!isOpen){
+        item.classList.add('open');
+        q.setAttribute('aria-expanded','true');
+      }
+    });
+    q.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();q.click();}});
+  });
+
+  /* ── LIGHTBOX ── */
+  var lbImages = [
+    {%- for img in product_images limit: 7 -%}
+    {src:'{{ img | image_url: width: 1600 }}',alt:'{{ img.alt | escape | default: product.title | escape }}'}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ];
+  var lbIdx = 0;
+  var lbEl  = document.getElementById('tt360-lb');
+  var lbImg = document.getElementById('tt360-lb-img');
+
+  function lbOpen(idx){
+    if(!lbImages.length||!lbEl) return;
+    lbIdx = ((idx%lbImages.length)+lbImages.length)%lbImages.length;
+    lbImg.src = lbImages[lbIdx].src;
+    lbImg.alt = lbImages[lbIdx].alt;
+    lbEl.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function lbClose(){
+    if(lbEl) lbEl.classList.remove('open');
+    document.body.style.overflow='';
+  }
+  function lbNav(dir){ lbOpen(lbIdx+dir); }
+
+  var mainImgEl=document.getElementById('t-main-img');
+  if(mainImgEl){
+    mainImgEl.addEventListener('click',function(){ lbOpen(lbIdx); });
+  }
+
+  document.querySelectorAll('.t-thumb:not(.t-vid-thumb)').forEach(function(th,i){
+    th.addEventListener('click',function(){ lbIdx=i; });
+  });
+
+  if(lbEl){
+    document.getElementById('tt360-lb-close').addEventListener('click',lbClose);
+    document.getElementById('tt360-lb-prev').addEventListener('click',function(e){e.stopPropagation();lbNav(-1);});
+    document.getElementById('tt360-lb-next').addEventListener('click',function(e){e.stopPropagation();lbNav(1);});
+    lbEl.addEventListener('click',function(e){if(e.target===lbEl)lbClose();});
+    var lbTx=0;
+    lbEl.addEventListener('touchstart',function(e){lbTx=e.touches[0].clientX;},{passive:true});
+    lbEl.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-lbTx;if(Math.abs(dx)>50)lbNav(dx<0?1:-1);});
+  }
+  document.addEventListener('keydown',function(e){
+    if(!lbEl||!lbEl.classList.contains('open')) return;
+    if(e.key==='Escape') lbClose();
+    else if(e.key==='ArrowLeft') lbNav(-1);
+    else if(e.key==='ArrowRight') lbNav(1);
+  });
+
+  /* ── STICKY BAR (show after hero scrolls out) ── */
+  var sticky=document.getElementById('tt360-sticky-pdp');
+  var hero=document.querySelector('#tt360-pdp .t-hero');
+  if(sticky && hero && window.innerWidth<=768){
+    var obs=new IntersectionObserver(function(entries){
+      sticky.style.display=entries[0].isIntersecting?'none':'block';
+    },{threshold:0.1});
+    obs.observe(hero);
+  }
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "TT360 Product Page",
+  "tag": "section",
+  "max_blocks": 50,
+  "settings": [
+    { "type": "header", "content": "SEO" },
+    { "type": "text", "id": "seo_title", "label": "SEO Title (overrides product title)" },
+    { "type": "textarea", "id": "seo_description", "label": "Meta Description" },
+    { "type": "text", "id": "collection_handle", "label": "Parent Collection Handle", "default": "kids-collection-uae" },
+    { "type": "text", "id": "collection_name", "label": "Parent Collection Name", "default": "Kids Collection" },
+    { "type": "header", "content": "Announcement Bar" },
+    { "type": "checkbox", "id": "ann_enable", "label": "Show Announcement Bar", "default": true },
+    { "type": "text", "id": "ann_text", "label": "Announcement Text", "default": "🚚 Free Next Day Delivery across UAE &nbsp;|&nbsp; 💵 Cash on Delivery &nbsp;|&nbsp; 🔄 14-Day Returns &nbsp;|&nbsp; Order before 8PM" },
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "hero_badge2", "label": "Hero Badge (top right)", "default": "🏆 #1 in UAE" },
+    { "type": "checkbox", "id": "show_sold_out", "label": "Show sold out variants", "default": false },
+    { "type": "header", "content": "Social Proof Strip" },
+    { "type": "text", "id": "rating_value", "label": "Rating Value", "default": "4.9" },
+    { "type": "text", "id": "proof_lbl_rating", "label": "Rating Label", "default": "Average rating" },
+    { "type": "text", "id": "review_count", "label": "Review Count", "default": "200" },
+    { "type": "text", "id": "review_label", "label": "Review Label", "default": "Verified UAE reviews" },
+    { "type": "text", "id": "proof_num_delivery", "label": "Delivery Stat", "default": "Next Day" },
+    { "type": "text", "id": "proof_lbl_shipping", "label": "Delivery Label", "default": "Delivery across UAE" },
+    { "type": "text", "id": "proof_lbl_free", "label": "Price label (no compare price)", "default": "Free next-day delivery" },
+    { "type": "header", "content": "Add to Cart" },
+    { "type": "text", "id": "atc_text", "label": "Add to Cart Button Text", "default": "Add to Cart" },
+    { "type": "text", "id": "sticky_text", "label": "Sticky Bar Button Text", "default": "Add to Cart" },
+    { "type": "header", "content": "Buy More & Save" },
+    { "type": "checkbox", "id": "bms_enable", "label": "Enable Buy More & Save", "default": true },
+    { "type": "checkbox", "id": "bms_stepper", "label": "Use quantity stepper (instead of 3-card grid)", "default": false },
+    { "type": "number", "id": "bms_qty2", "label": "Tier 2 Quantity", "default": 2 },
+    { "type": "number", "id": "bms_disc2", "label": "Tier 2 Discount %", "default": 5 },
+    { "type": "number", "id": "bms_qty3", "label": "Tier 3 Quantity", "default": 3 },
+    { "type": "number", "id": "bms_disc3", "label": "Tier 3 Discount %", "default": 0 },
+    { "type": "paragraph", "content": "Fixed AED prices (recommended — overrides % discounts above):" },
+    { "type": "number", "id": "bms_orig_price", "label": "Original price AED per unit (for savings calc)", "default": 0 },
+    { "type": "number", "id": "bms_price1", "label": "Tier 1 fixed price AED (buy 1)", "default": 0 },
+    { "type": "number", "id": "bms_price2", "label": "Tier 2 fixed total price AED", "default": 0 },
+    { "type": "number", "id": "bms_price3", "label": "Tier 3 fixed total price AED", "default": 0 },
+    { "type": "paragraph", "content": "⚠️ Set up matching Shopify automatic discounts in Admin → Discounts for the savings to apply at checkout." },
+    { "type": "header", "content": "Features Section" },
+    { "type": "text", "id": "feat_lbl", "label": "Label", "default": "Why UAE Families Love It" },
+    { "type": "text", "id": "feat_title", "label": "Heading", "default": "5 Reasons Every Parent Says Yes" },
+    { "type": "textarea", "id": "feat_sub", "label": "Subheading", "default": "Screen-free, teacher-approved, and kids actually want to use it every day." },
+    { "type": "header", "content": "How It Works Section" },
+    { "type": "text", "id": "steps_lbl", "label": "Label", "default": "Simple to Start" },
+    { "type": "text", "id": "steps_title", "label": "Heading", "default": "How It Works" },
+    { "type": "textarea", "id": "steps_sub", "label": "Subheading", "default": "Ready in under 2 minutes — no manual needed." },
+    { "type": "header", "content": "Video Section" },
+    { "type": "checkbox", "id": "video_enable", "label": "Show Video Section", "default": true },
+    { "type": "text", "id": "section_video", "label": "Video URL", "info": "Paste any YouTube link (including Shorts), Vimeo link, or youtu.be short link. Or upload a video to the product in Admin → Products → Media — it appears automatically." },
+    { "type": "text", "id": "video_lbl", "label": "Label", "default": "See It in Action" },
+    { "type": "text", "id": "video_title", "label": "Heading", "default": "Watch the Drawing Robot in Action" },
+    { "type": "textarea", "id": "video_sub", "label": "Subheading", "default": "100+ templates, step-by-step guidance, zero screen time." },
+    { "type": "text", "id": "video_placeholder", "label": "Placeholder Text (shown until video is uploaded)", "default": "Product video coming soon — check back shortly." },
+    { "type": "header", "content": "Reviews Section" },
+    { "type": "text", "id": "rev_lbl", "label": "Label", "default": "Real UAE Parents" },
+    { "type": "text", "id": "rev_title", "label": "Heading", "default": "What Parents Are Saying" },
+    { "type": "textarea", "id": "rev_sub", "label": "Subheading", "default": "200+ verified reviews from UAE families." },
+    { "type": "header", "content": "FAQ Section" },
+    { "type": "text", "id": "faq_lbl", "label": "Label", "default": "Got Questions?" },
+    { "type": "text", "id": "faq_title", "label": "Heading", "default": "Frequently Asked Questions" },
+    { "type": "header", "content": "Gift Box Widget" },
+    { "type": "text", "id": "gift_bag_handle", "label": "Gift Box Product Handle", "default": "gift-wrap-1", "info": "Exact product handle from Shopify Admin → Products" },
+    { "type": "text", "id": "gift_bag_title", "label": "Gift Box Title", "default": "🎁 Add Gift Box" },
+    { "type": "text", "id": "gift_bag_sub", "label": "Gift Box Subtitle", "default": "make it special" },
+    { "type": "text", "id": "gift_bag_btn", "label": "Gift Box Button Text", "default": "+ Add" },
+    { "type": "text", "id": "gift_bag_price", "label": "Gift Box Price (AED)", "default": "9" },
+    { "type": "text", "id": "upsell_1", "label": "Upsell Product Handle 1", "info": "e.g. kids-drawing-robot" },
+    { "type": "text", "id": "upsell_2", "label": "Upsell Product Handle 2" },
+    { "type": "text", "id": "upsell_3", "label": "Upsell Product Handle 3" },
+    { "type": "header", "content": "Final CTA" },
+    { "type": "text", "id": "cta_lbl", "label": "Label", "default": "Limited Time Offer" },
+    { "type": "text", "id": "cta_title", "label": "Heading", "default": "Give Your Child the Gift of Screen-Free Creativity" },
+    { "type": "textarea", "id": "cta_sub", "label": "Subheading", "default": "AED 299 — was AED 450. Free next-day delivery. Cash on delivery. 14-day returns." },
+    { "type": "text", "id": "cta_btn", "label": "Button Text", "default": "Add to Cart" },
+    { "type": "text", "id": "cta_trust_1", "label": "Trust Item 1", "default": "📦 Free Next Day Delivery" },
+    { "type": "text", "id": "cta_trust_2", "label": "Trust Item 2", "default": "💵 Cash on Delivery" },
+    { "type": "text", "id": "cta_trust_3", "label": "Trust Item 3", "default": "🔄 14-Day Returns" },
+    { "type": "text", "id": "cta_trust_4", "label": "Trust Item 4", "default": "🔒 Secure Checkout" }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge Chip",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Badge Text", "default": "✅ Certified Safe" },
+        { "type": "select", "id": "style", "label": "Style", "default": "green",
+          "options": [
+            { "value": "green", "label": "Green" },
+            { "value": "orange", "label": "Orange" },
+            { "value": "navy", "label": "Navy" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "highlight",
+      "name": "Product Highlight",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "🎨" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Key Feature" },
+        { "type": "textarea", "id": "desc", "label": "Description", "default": "Short benefit description here." }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "Trust Icon",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "📦" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Free Delivery" }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Feature Card",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "⭐" },
+        { "type": "text", "id": "title", "label": "Feature Title", "default": "Feature Name" },
+        { "type": "textarea", "id": "desc", "label": "Feature Description", "default": "Why this matters to the buyer." }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "How It Works Step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Step Title", "default": "Step Title" },
+        { "type": "textarea", "id": "desc", "label": "Step Description", "default": "What happens in this step." }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Customer Review",
+      "settings": [
+        { "type": "range", "id": "stars", "label": "Star Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Review Text", "default": "This product is amazing — my child loves it!" },
+        { "type": "text", "id": "name", "label": "Reviewer Name", "default": "Fatima A." },
+        { "type": "text", "id": "location", "label": "City · Product", "default": "Dubai · Drawing Robot" },
+        { "type": "color", "id": "avatar_color", "label": "Avatar Colour", "default": "#1A3557" },
+        { "type": "checkbox", "id": "verified", "label": "Show Verified Badge", "default": true }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Is this suitable for young children?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Yes, designed for ages 4 and up with full adult supervision for ages 3–4.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TT360 Product Page",
+      "blocks": [
+        { "type": "badge", "settings": { "text": "✅ UAE Safety Certified", "style": "green" } },
+        { "type": "badge", "settings": { "text": "🎨 100+ Templates", "style": "orange" } },
+        { "type": "badge", "settings": { "text": "📵 Screen-Free", "style": "navy" } },
+        { "type": "trust", "settings": { "icon": "📦", "label": "Free Next Day Delivery" } },
+        { "type": "trust", "settings": { "icon": "💵", "label": "Cash on Delivery" } },
+        { "type": "trust", "settings": { "icon": "🔄", "label": "14-Day Returns" } },
+        { "type": "trust", "settings": { "icon": "🔒", "label": "Secure Checkout" } },
+        { "type": "highlight", "settings": { "icon": "🗂️", "title": "100+ Drawing Templates", "desc": "Progressive difficulty — animals, objects, shapes & more. Never boring." } },
+        { "type": "highlight", "settings": { "icon": "📵", "title": "Zero Screen Time Required", "desc": "No Wi-Fi, no apps, no subscriptions — just hands-on creative play." } },
+        { "type": "highlight", "settings": { "icon": "🔋", "title": "6+ Hour Battery · USB Rechargeable", "desc": "Charge once, play all day — no AA batteries needed." } },
+        { "type": "highlight", "settings": { "icon": "🛡️", "title": "Non-Toxic · BPA-Free · Safety Certified", "desc": "UAE safety certified — non-toxic, BPA-free, safe for children from age 4." } },
+        { "type": "feature", "settings": { "icon": "🗂️", "title": "100+ Drawing Templates", "desc": "Progressive difficulty — never boring." } },
+        { "type": "feature", "settings": { "icon": "📵", "title": "Zero Screen Time", "desc": "No Wi-Fi, no apps, no subscriptions." } },
+        { "type": "feature", "settings": { "icon": "🎯", "title": "Builds Real Skills", "desc": "Fine motor, focus & artistic confidence." } },
+        { "type": "feature", "settings": { "icon": "🔋", "title": "6hr Rechargeable", "desc": "USB charge — no AA batteries needed." } },
+        { "type": "feature", "settings": { "icon": "🛡️", "title": "UAE Safety Certified", "desc": "Non-toxic, BPA-free, independently certified." } },
+        { "type": "step", "settings": { "title": "Choose a Template", "desc": "Insert paper and pick one of 100+ pre-loaded drawing cards." } },
+        { "type": "step", "settings": { "title": "Robot Guides the Way", "desc": "The robot draws step-by-step outlines for your child to follow." } },
+        { "type": "step", "settings": { "title": "Kids Trace & Colour", "desc": "They trace the outlines and finish with confidence." } },
+        { "type": "step", "settings": { "title": "Repeat & Level Up", "desc": "New designs every time — animals, objects, shapes & more." } },
+        { "type": "review", "settings": { "stars": 5, "text": "My 6-year-old uses it every afternoon — it replaced 2 hours of tablet time completely. She's getting so good at drawing.", "name": "Fatima A.", "location": "Dubai · Drawing Robot", "avatar_color": "#667eea", "verified": true } },
+        { "type": "review", "settings": { "stars": 5, "text": "As a homeschooling mom this has been a lifesaver. My son stays focused for 45 minutes without me asking. Delivery was next day!", "name": "Sara K.", "location": "Abu Dhabi · Drawing Robot", "avatar_color": "#f093fb", "verified": true } },
+        { "type": "review", "settings": { "stars": 5, "text": "Got it as an Eid gift for my nephew. He absolutely loves it. Very well made, feels premium and the COD option made it so easy.", "name": "Mohammad R.", "location": "Sharjah · Drawing Robot", "avatar_color": "#4facfe", "verified": true } },
+        { "type": "faq", "settings": { "question": "Is this drawing robot easy for young kids to use?", "answer": "<p>Yes, designed for ages 4+. Children simply insert a template and follow the guided lines — no reading required. Ages 3–4 can use it with adult supervision.</p>" } },
+        { "type": "faq", "settings": { "question": "Does it require Wi-Fi or apps?", "answer": "<p>No Wi-Fi, no apps, no subscriptions — ever. The rechargeable battery offers extended playtime and charges via the included USB cable.</p>" } },
+        { "type": "faq", "settings": { "question": "How long does the battery last?", "answer": "<p>Up to 4–5 hours of continuous use. It comes with a USB charging cable and recharges quickly, so creativity never has to pause!</p>" } },
+        { "type": "faq", "settings": { "question": "Can my child use regular pens or markers?", "answer": "<p>Yes — the included pen works best, but most standard markers or crayons are compatible. Our Drawing Markers are specifically designed to pair perfectly.</p>" } },
+        { "type": "faq", "settings": { "question": "Do you deliver to Abu Dhabi, Sharjah & other emirates?", "answer": "<p>Yes! TipTop360 delivers free to all UAE emirates — Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah & Umm Al Quwain. Cash on Delivery available everywhere.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

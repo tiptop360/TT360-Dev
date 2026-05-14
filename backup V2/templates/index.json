@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360-homepage-body": {
+      "type": "tt360-homepage-body",
+      "settings": {}
+    },
+    "faq_accordion_DTkWqD": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_qzMBzA": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "What is TipTop360?",
+            "faq_des": "<p><strong>TipTop360</strong> is an online store that curates smart, problem-solving products that make life easier. We search, test, and handpick only the most practical, valuable, and feel-good finds — so you don't have to.</p>"
+          }
+        },
+        "faq_ceReL3": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Why Shop With Us?",
+            "faq_des": "<p><strong>We do the digging so you don't have to.</strong> At TipTop360, we handpick useful, high-quality products that simplify everyday life. From kids' toys to smart home helpers — everything we carry is tested, trusted, and delivered fast.</p>"
+          }
+        },
+        "faq_QFWXXq": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Where do you ship?",
+            "faq_des": "<p>We currently ship within the UAE. Next day delivery on most orders.</p>"
+          }
+        },
+        "faq_DLGzUj": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "How long does shipping take?",
+            "faq_des": "<p>We aim for <strong>next day delivery</strong> across the UAE — 1-3 business days depending on your location.</p>"
+          }
+        },
+        "faq_fPDTKj": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "What if my item arrives damaged?",
+            "faq_des": "<p>Contact us within 3 days of delivery with photos. We'll replace or refund — no hassle.</p>"
+          }
+        },
+        "faq_mJUGk3": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Can I speak to someone?",
+            "faq_des": "<p>Email <a href=\"mailto:info@tiptop360.com\">info@tiptop360.com</a> or WhatsApp <a href=\"tel:971585156033\">+971 585 156 033</a> — we usually reply within 24 hours.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_qzMBzA",
+        "faq_ceReL3",
+        "faq_QFWXXq",
+        "faq_DLGzUj",
+        "faq_fPDTKj",
+        "faq_mJUGk3"
+      ],
+      "settings": {
+        "animation": "",
+        "setwidth": "container-fluid",
+        "bgsection": "#fff5e6",
+        "title": "Most Asked Questions",
+        "des": "",
+        "align-heading": "center",
+        "title_size": "h5",
+        "e_first_open": false,
+        "e_reverse": true,
+        "e_small": true,
+        "paddingsection": "36px 0px 36px 0px",
+        "paddingmobile": "24px 0px 80px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "1749888171f3efd426": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_bced3e8_xft9DB": {
+          "type": "ai_gen_block_bced3e8",
+          "settings": {
+            "enabled": true,
+            "show_status": false,
+            "preload_fonts": true,
+            "preload_hero_images": true,
+            "inline_critical_css": true,
+            "defer_javascript": true,
+            "lazy_load_images": true,
+            "cleanup_bloat": true
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_bced3e8_xft9DB"
+      ],
+      "name": "AI Performance Optimizer",
+      "settings": {}
+    },
+    "17719113617deb9878": {
+      "type": "_blocks",
+      "settings": {}
+    }
+  },
+  "order": [
+    "tt360-homepage-body",
+    "faq_accordion_DTkWqD",
+    "1749888171f3efd426",
+    "17719113617deb9878"
+  ]
+}

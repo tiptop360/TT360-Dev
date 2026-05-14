@@ -1,0 +1,18 @@
+{%- comment -%}
+  Reusable Lazy Loading Image Component
+  Usage: {% render 'lazy-image', image: product.featured_image, alt: product.title %}
+{%- endcomment -%}
+
+{%- if image != blank -%}
+  <img
+    src="{{ image | image_url }}"
+    alt="{{ alt | default: image.alt | escape }}"
+    loading="lazy"
+    decoding="async"
+    width="{{ image.width | default: 'auto' }}"
+    height="{{ image.height | default: 'auto' }}"
+    class="{{ class }}"
+  >
+{%- else -%}
+  <!-- Lazy Image Placeholder -->
+{%- endif -%}
