@@ -1,0 +1,39 @@
+{%- comment -%}
+  TipTop360 — Deferred Stylesheet Loader
+  Loads non-critical CSS after the page is interactive.
+  Render: {%- render 'tt360-deferred-styles' -%}  (just before </body>)
+
+  How it works:
+  1. Stylesheets listed below load with media="print" (browser fetches but doesn't apply)
+  2. Once loaded, media is swapped to "all" → styles apply without blocking render
+  3. <noscript> fallback ensures CSS still loads if JS is disabled
+{%- endcomment -%}
+
+{%- liquid
+  assign non_critical_sheets = ''
+  comment
+    Add any additional theme CSS files you want deferred here.
+    The main theme stylesheet is already handled via preload in theme.liquid.
+  endcomment
+-%}
+
+<script>
+(function(){
+  var sheets = [
+    {%- comment -%} Swiper / sliders {%- endcomment -%}
+    '{{ "swiper-bundle.min.css" | asset_url }}'
+  ];
+  sheets.forEach(function(href){
+    var link = document.createElement('link');
+    link.rel  = 'stylesheet';
+    link.media = 'print';
+    link.href  = href;
+    link.onload = function(){ this.media = 'all'; };
+    document.head.appendChild(link);
+  });
+})();
+</script>
+
+<noscript>
+  <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
+</noscript>

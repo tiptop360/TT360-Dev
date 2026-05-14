@@ -1,0 +1,79 @@
+{%- comment -%}
+  TipTop360 — Responsive Image Component
+  Usage: {% render 'tt360-responsive-image', image: product.featured_image, widths: '400,600,800,1200', sizes: '(max-width: 768px) 100vw, 50vw', class: 'product-img', alt: product.title, loading: 'lazy', priority: false %}
+
+  Parameters:
+    image    {Object}  Shopify image object (required)
+    widths   {String}  Comma-separated widths for srcset (default: '400,600,800,1200')
+    sizes    {String}  CSS sizes attribute (default: '100vw')
+    class    {String}  CSS class(es) to apply
+    alt      {String}  Alt text (default: image.alt)
+    loading  {String}  'lazy' or 'eager' (default: 'lazy')
+    priority {Boolean} true = preload + eager (for LCP images, default: false)
+    ratio    {String}  Aspect ratio 'w:h' e.g. '4:3' — set padding-top wrapper (optional)
+{%- endcomment -%}
+
+{%- liquid
+  assign widths_str = widths | default: '400,600,800,1200'
+  assign widths_arr = widths_str | split: ','
+  assign sizes_attr = sizes | default: '100vw'
+  assign img_alt    = alt | default: image.alt | default: ''
+  assign img_class  = class | default: ''
+  assign img_load   = loading | default: 'lazy'
+  if priority == true
+    assign img_load = 'eager'
+  endif
+
+  assign largest_width = widths_arr | last | plus: 0
+-%}
+
+{%- if image != blank -%}
+  {%- comment -%} Build srcset string {%- endcomment -%}
+  {%- capture srcset -%}
+    {%- for w in widths_arr -%}
+      {%- assign w_int = w | strip | plus: 0 -%}
+      {{ image | image_url: width: w_int }} {{ w_int }}w{%- unless forloop.last -%}, {%- endunless -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if ratio != blank -%}
+    {%- assign ratio_parts = ratio | split: ':' -%}
+    {%- assign ratio_w = ratio_parts[0] | plus: 0 -%}
+    {%- assign ratio_h = ratio_parts[1] | plus: 0 -%}
+    {%- assign ratio_pct = ratio_h | times: 100.0 | divided_by: ratio_w | round: 2 -%}
+    <div class="tt360-img-wrap" style="position:relative;padding-top:{{ ratio_pct }}%;overflow:hidden;">
+      <img
+        class="tt360-img {{ img_class }}"
+        src="{{ image | image_url: width: 800 }}"
+        srcset="{{ srcset }}"
+        sizes="{{ sizes_attr }}"
+        alt="{{ img_alt | escape }}"
+        width="{{ image.width }}"
+        height="{{ image.height }}"
+        loading="{{ img_load }}"
+        decoding="async"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"
+      >
+    </div>
+  {%- else -%}
+    <img
+      class="tt360-img {{ img_class }}"
+      src="{{ image | image_url: width: 800 }}"
+      srcset="{{ srcset }}"
+      sizes="{{ sizes_attr }}"
+      alt="{{ img_alt | escape }}"
+      width="{{ image.width }}"
+      height="{{ image.height }}"
+      loading="{{ img_load }}"
+      decoding="async"
+    >
+  {%- endif -%}
+
+  {%- if priority == true -%}
+    <link rel="preload" as="image"
+      href="{{ image | image_url: width: largest_width }}"
+      imagesrcset="{{ srcset }}"
+      imagesizes="{{ sizes_attr }}"
+    >
+  {%- endif -%}
+{%- endif -%}

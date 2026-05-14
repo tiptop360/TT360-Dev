@@ -1,0 +1,215 @@
+{% doc %}
+  @prompt
+    titele and paragraph both side 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-two-column-text-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-two-column-text__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ block.settings.column_gap }}px;
+    align-items: {{ block.settings.vertical_alignment }};
+  }
+
+  .ai-two-column-text__column-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.content_gap }}px;
+  }
+
+  .ai-two-column-text__title-{{ ai_gen_id }} {
+    margin: 0;
+    color: {{ block.settings.title_color }};
+    font-size: {{ block.settings.title_size }}px;
+    line-height: 1.3;
+  }
+
+  .ai-two-column-text__paragraph-{{ ai_gen_id }} {
+    margin: 0;
+    color: {{ block.settings.paragraph_color }};
+    font-size: {{ block.settings.paragraph_size }}px;
+    line-height: 1.6;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-two-column-text__container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: {{ block.settings.mobile_gap }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-two-column-text-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-two-column-text__container-{{ ai_gen_id }}">
+    <div class="ai-two-column-text__column-{{ ai_gen_id }}">
+      {% if block.settings.title_left != blank %}
+        <h2 class="ai-two-column-text__title-{{ ai_gen_id }}">{{ block.settings.title_left }}</h2>
+      {% endif %}
+      {% if block.settings.paragraph_left != blank %}
+        <div class="ai-two-column-text__paragraph-{{ ai_gen_id }}">{{ block.settings.paragraph_left }}</div>
+      {% endif %}
+    </div>
+
+    <div class="ai-two-column-text__column-{{ ai_gen_id }}">
+      {% if block.settings.title_right != blank %}
+        <h2 class="ai-two-column-text__title-{{ ai_gen_id }}">{{ block.settings.title_right }}</h2>
+      {% endif %}
+      {% if block.settings.paragraph_right != blank %}
+        <div class="ai-two-column-text__paragraph-{{ ai_gen_id }}">{{ block.settings.paragraph_right }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Title and paragraph",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left column"
+    },
+    {
+      "type": "text",
+      "id": "title_left",
+      "label": "Title",
+      "default": "Left title"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_left",
+      "label": "Paragraph",
+      "default": "<p>Add your content here. This is the left column paragraph text.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Right column"
+    },
+    {
+      "type": "text",
+      "id": "title_right",
+      "label": "Title",
+      "default": "Right title"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_right",
+      "label": "Paragraph",
+      "default": "<p>Add your content here. This is the right column paragraph text.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "Content gap",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Mobile gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#12395e"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "paragraph_color",
+      "label": "Paragraph color",
+      "default": "#202025"
+    },
+    {
+      "type": "range",
+      "id": "paragraph_size",
+      "label": "Paragraph size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Title and paragraph"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

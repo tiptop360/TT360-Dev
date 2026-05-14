@@ -1,0 +1,347 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "advanced_content_zQDAA8": {
+      "type": "advanced-content",
+      "blocks": {
+        "html_6A9nxf": {
+          "type": "html",
+          "settings": {
+            "code": "",
+            "width": "100%",
+            "align": "auto"
+          }
+        }
+      },
+      "block_order": [
+        "html_6A9nxf"
+      ],
+      "name": "Advanced Content",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "text_color": "rgba(0,0,0,0)",
+        "bgsection": "#ffffff",
+        "rangebg": 0,
+        "bgbefore": "rgba(0,0,0,0)",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_position": "center center",
+        "zindex": "",
+        "title_top": "",
+        "title": "",
+        "des": "",
+        "align-heading": "center",
+        "padding": true,
+        "gutter_padding": 30,
+        "col_center": false,
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "screenfree_banner_uae_2026_JF9Nmy": {
+      "type": "screenfree-banner-uae-2026",
+      "name": "Screen-Free Banner UAE",
+      "settings": {
+        "banner_image": "shopify://shop_images/Child_practicing_drawing_step_by_step.png",
+        "heading": "Kids Drawing Robot UAE – Smart Screen-Free Drawing Toy for Kids",
+        "heading_color": "#ffffff",
+        "overlay_opacity": 0.7
+      }
+    },
+    "blocks_8q7aBU": {
+      "type": "_blocks",
+      "name": "Image",
+      "settings": {}
+    },
+    "blocks_7qYfXp": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_15e7c06_LiqXDE": {
+          "type": "ai_gen_block_15e7c06",
+          "settings": {
+            "heading": " Help Your Child Improve Drawing Skills in a Fun Way",
+            "text": "<p>This <strong>kids drawing robot UAE</strong>t is an ideal way for kids to improve their drawing abilities while developing creativity through arts and crafts assistance from parents who wish to give their children a hands-on way to experience art through technology-less means. As more parents choose to put tech-print-less means for their kids, this product makes those opportunities available to them as well as offers kids an opportunity to engage in different mediums when learning how to make their artistic vision a reality!</p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "spacing": 15,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 32,
+            "text_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_15e7c06_LiqXDE"
+      ],
+      "name": "Title and text",
+      "settings": {}
+    },
+    "blocks_YigLp7": {
+      "type": "_blocks",
+      "name": "Image",
+      "settings": {}
+    },
+    "blocks_aMifd6": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3f16343_cCXHL7": {
+          "type": "ai_gen_block_3f16343",
+          "name": "Image",
+          "settings": {
+            "image": "shopify://shop_images/2606591Robot.webp",
+            "aspect_ratio": "auto",
+            "image_fit": "cover",
+            "border_radius": 0,
+            "desktop_width_percent": 50,
+            "enable_link": false,
+            "image_link": "",
+            "hover_opacity": 0.8
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_15e7c06_wVKkgg": {
+          "type": "ai_gen_block_15e7c06",
+          "settings": {
+            "heading": " Why Parents in UAE Love This Smart Drawing Robot",
+            "text": "<ul><li>Reduces tablet use</li><li>It helps kids be more creative and think of new ideas</li><li>Kids can get better at drawing</li><li>It makes kids focus and be patient</li><li>It gives kids time to play without screens</li></ul><p>This is not a toy. It's a great tool that helps kids  <strong>learning tool for kids</strong>.</p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "spacing": 15,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 32,
+            "text_size": 16
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_15e7c06_T7yYWa": {
+          "type": "ai_gen_block_15e7c06",
+          "settings": {
+            "heading": "How the Kids Drawing Robot Works",
+            "text": "<h5> Simple Step-by-Step Learning<strong> </strong>kids.</h5><p>Insert a drawing template</p><p>* Place paper under the robot.</p><p>* The robot draws outlines step by step.</p><p>* Kids. Complete the drawing, with the robot</p><p>* The robot helps kids learn drawing.</p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "spacing": 15,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 32,
+            "text_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3f16343_cCXHL7",
+        "ai_gen_block_15e7c06_wVKkgg",
+        "ai_gen_block_15e7c06_T7yYWa"
+      ],
+      "name": "Title and text",
+      "settings": {}
+    },
+    "screenfree_intro_uae_2026_fQt3iU": {
+      "type": "screenfree-intro-uae-2026",
+      "name": "Screen-Free Intro UAE",
+      "settings": {
+        "image": "shopify://shop_images/AF0EB08A-63BC-476F-AF89-066F8596D174.jpg",
+        "heading": " Key Features of This Drawing Robot for Kids",
+        "description": "<p><strong>Smart Drawing Robot with 100+ Templates</strong></p><p>This drawing robot for kids has a lot of things to draw. It has over 100 templates.</p><p>The drawing robot for kids has pictures of animals and shapes and things we see every day.</p><p><strong>100% Screen Free Toy</strong></p><p>You do not need a phone or computer to use the drawing robot for kids.</p><p>The drawing robot for kids is simple. Kids can just draw with the drawing robot for kids.</p><p><strong>Educational & Skill-Building Toy</strong></p><p>The drawing robot for kids helps <strong>improve drawing skills of kids</strong> get better at drawing with the drawing robot for kids.</p><p>It also helps kids think of ideas and be more creative with the drawing robot for kids.</p><p>The drawing robot for kids helps kids think clearly.</p><p><strong>Ideal for Early Learning</strong></p><p>The<strong> drawing robot for kids</strong> is a toy for kids who're 2 years old and older.</p><p>Grown-ups should be with kids when they play with the drawing robot for kids.</p><p><strong>Long Battery Life</strong></p><p>The battery in the drawing robot for kids lasts a time.</p><p>It lasts for 4 to 5 hours.</p><p>You can plug the drawing robot for kids into a computer to charge it.</p><p></p><p><strong>Safe for Kids<br/></strong></p><p>The drawing robot for kids is made from materials.</p><p>These materials are safe, for kids. Will not hurt them.<strong><br/><br/></strong></p>",
+        "image_position": "left"
+      }
+    },
+    "blocks_NCpqUB": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_15e7c06_BzPyGg": {
+          "type": "ai_gen_block_15e7c06",
+          "settings": {
+            "heading": "Perfect for Kids of All Skill Levels",
+            "text": "<p>It is a tool for kids who want to learn how to draw and for kids who already know how to draw and want to get even better at <strong>Kids Drawing Robot. UAE</strong> </p><p>The Kids Drawing Robot is a way for kids in the UAE to be creative and feel happy about what they can do.</p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "spacing": 15,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 32,
+            "text_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_15e7c06_BzPyGg"
+      ],
+      "name": "Title and text",
+      "settings": {}
+    },
+    "177579856961c2efef": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "kids_brushing_routine_ktNgVE": {
+      "type": "kids-brushing-routine",
+      "blocks": {
+        "toothbrush_cWNTRU": {
+          "type": "toothbrush",
+          "settings": {
+            "heading": "What’s Included",
+            "items": "One Kids Drawing Robot\n* Drawing templates and cards\n* A USB charging cable",
+            "button_text": "Kids  UAE",
+            "button_link": "shopify://products/kids-drawing-robot"
+          }
+        },
+        "checklist_iTn8yc": {
+          "type": "checklist",
+          "settings": {
+            "heading": " Real Benefits You’ll Notice",
+            "items": "Less screen time\nBetter focus and attention\nImproved drawing ability\nIncreased creativity"
+          }
+        }
+      },
+      "block_order": [
+        "toothbrush_cWNTRU",
+        "checklist_iTn8yc"
+      ],
+      "name": "Kids Brushing Routine",
+      "settings": {
+        "section_padding": "60px 20px"
+      }
+    },
+    "uae_screenfree_cta_2026_RXkWMg": {
+      "type": "uae-screenfree-cta-2026",
+      "name": "UAE Screen-Free CTA",
+      "settings": {
+        "heading": "Make fun screen free",
+        "button_text": "Shop Kids Drawing Robot in UAE",
+        "button_link": "https://tiptop360.com/collections/kids-collection-uae",
+        "bg_color": "#e9e9e9",
+        "button_bg": "#12395e",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "line_cN6GeE": {
+      "type": "line",
+      "name": "Divider",
+      "settings": {
+        "animation": "",
+        "paddingsection": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "bgsection": "#ffffff",
+        "setwidth": "container",
+        "bgborder": "#dddddd",
+        "wborder": "1px"
+      }
+    },
+    "faq_accordion_wPATVY": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_DNk8rY": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Can it really improve drawing skills?",
+            "faq_des": "<p>Yes this method really helps kids get better at drawing.It shows them steps to follow. That is helpful.</p>"
+          }
+        },
+        "faq_RGydNA": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Is the drawing toy suitable for toddlers?",
+            "faq_des": "<p>The drawing toy is really good for toddlers, 2 year olds, when they have someone to watch over them. This is because the drawing toy is simple to use and fun for 2 year olds. The drawing toy is a thing for toddlers.</p>"
+          }
+        },
+        "faq_wa3Kjh": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Is this something that needs an app to work?",
+            "faq_des": "<p>No the drawing toy does not need a screen all. The drawing toy works fine on its own. You do not need to use a computer or a phone with the drawing toy.</p>"
+          }
+        },
+        "faq_iHLNRF": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Can the drawing toy really help kids get better at drawing?",
+            "faq_des": "<p>Yes the drawing toy teaches kids to draw things one step at a time which really helps kids improve their drawing skills. The drawing toy is very good at showing kids how to draw. The drawing toy helps kids learn to draw.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_DNk8rY",
+        "faq_RGydNA",
+        "faq_wa3Kjh",
+        "faq_iHLNRF"
+      ],
+      "name": "Faqs Accordion",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "bgsection": "#ffffff",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_pos": "center center",
+        "title_top": "",
+        "title": "FAQ",
+        "des": "",
+        "align-heading": "center",
+        "title_size": "h4",
+        "e_first_open": false,
+        "e_reverse": true,
+        "e_small": true,
+        "left_html": "",
+        "e_right": false,
+        "paddingsection": "60px 0px 60px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "advanced_content_zQDAA8",
+    "screenfree_banner_uae_2026_JF9Nmy",
+    "blocks_8q7aBU",
+    "blocks_7qYfXp",
+    "blocks_YigLp7",
+    "blocks_aMifd6",
+    "screenfree_intro_uae_2026_fQt3iU",
+    "blocks_NCpqUB",
+    "177579856961c2efef",
+    "kids_brushing_routine_ktNgVE",
+    "uae_screenfree_cta_2026_RXkWMg",
+    "line_cN6GeE",
+    "faq_accordion_wPATVY"
+  ]
+}
