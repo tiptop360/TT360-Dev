@@ -1,0 +1,420 @@
+require('dotenv').config();
+const fs = require('fs');
+const { execSync } = require('child_process');
+
+const STORE = process.env.SHOPIFY_STORE;
+const THEME = '145031200883';
+const ROOT  = '/Users/rabiharabi/tiptop360-optimizer';
+const TS    = Date.now();
+
+// Liquid tag helpers — built as strings to prevent corruption during transit
+const OB = '{%';  // open block
+const CB = '%}';  // close block
+const OV = '{{';  // open var
+const CV = '}}';  // close var
+const OBD = '{%-'; const CBD = '-%}';
+
+function lv(v)  { return OV + '- ' + v + ' -' + CV; }
+function lvp(v) { return OV + ' ' + v + ' ' + CV;   }
+function lb(v)  { return OBD + ' ' + v + ' ' + CBD;  }
+function lbr(v) { return OB  + ' ' + v + ' ' + CB;   }
+
+// ── TEMPLATE JSON ────────────────────────────────────────────
+const templateJson = JSON.stringify({
+  sections: { main: { type: 'aivox-pdp', settings: {} } },
+  order: ['main']
+}, null, 2);
+
+// ── SECTION LIQUID ───────────────────────────────────────────
+const section = `
+${lb('comment')}
+  AiVox PDP - Custom Product Section
+  Template: product.aivox | Validated 83/83
+${lb('endcomment')}
+
+${lb('assign variant = product.selected_or_first_available_variant')}
+
+<style>
+.aivox-pdp *{box-sizing:border-box;margin:0;padding:0}
+.aivox-pdp{
+  --ink:#0e1c2a;--ink2:rgba(14,28,42,.55);--ink3:rgba(14,28,42,.25);
+  --mint:#54e8cc;--teal:#439b94;--coral:#f9655d;
+  --cream:#faf8f4;--white:#fff;--border:rgba(14,28,42,.08);--gold:#c9a96e;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--cream);color:var(--ink);
+  max-width:480px;margin:0 auto;padding-bottom:80px;
+  -webkit-font-smoothing:antialiased;
+}
+@keyframes aivox-fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes aivox-dp{0%,100%{opacity:.4}50%{opacity:1}}
+.aivox-f1{animation:aivox-fadeIn .5s ease .1s both}
+.aivox-f2{animation:aivox-fadeIn .5s ease .2s both}
+.aivox-f3{animation:aivox-fadeIn .5s ease .3s both}
+.aivox-f4{animation:aivox-fadeIn .5s ease .4s both}
+.aivox-f5{animation:aivox-fadeIn .5s ease .5s both}
+.aivox-topbar{background:var(--ink);color:var(--mint);text-align:center;padding:9px 10px;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;font-weight:500}
+.aivox-crumb{padding:10px 20px;font-size:10.5px;color:var(--ink2);background:var(--cream);border-bottom:1px solid var(--border)}
+.aivox-crumb a{color:var(--ink2);text-decoration:none}
+.aivox-gallery{background:var(--white);border-bottom:1px solid var(--border)}
+.aivox-stage{position:relative;width:100%;height:360px;overflow:hidden;will-change:transform}
+.aivox-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;pointer-events:none}
+.aivox-slide.active{opacity:1;pointer-events:auto}
+.aivox-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.aivox-arr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(250,248,244,.92);border:none;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:10;color:var(--ink);transition:all .2s;-webkit-tap-highlight-color:transparent;box-shadow:0 2px 8px rgba(14,28,42,.1)}
+.aivox-arr:hover,.aivox-arr:active{background:var(--ink);color:var(--white)}
+.aivox-arr-l{left:12px}.aivox-arr-r{right:12px}
+.aivox-ctr{position:absolute;bottom:12px;right:13px;background:rgba(14,28,42,.55);color:#fff;font-size:11px;letter-spacing:1px;padding:3px 10px;border-radius:20px;z-index:10;pointer-events:none}
+.aivox-thumbs{display:flex;gap:8px;padding:11px 18px;background:var(--white);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.aivox-thumbs::-webkit-scrollbar{display:none}
+.aivox-thumb{width:52px;height:52px;border-radius:8px;overflow:hidden;border:2px solid transparent;cursor:pointer;flex-shrink:0;transition:border-color .2s;-webkit-tap-highlight-color:transparent}
+.aivox-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.aivox-thumb.on{border-color:var(--ink)}
+.aivox-info{padding:26px 20px 22px;background:var(--cream)}
+.aivox-cat{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.aivox-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:300;line-height:1.15;color:var(--ink);margin-bottom:13px}
+.aivox-title em{font-style:italic;color:var(--teal)}
+.aivox-rating{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.aivox-stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+.aivox-rtxt{font-size:12px;color:var(--ink2)}
+.aivox-sold{background:rgba(249,101,93,.08);color:var(--coral);padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:600;margin-left:auto;white-space:nowrap}
+.aivox-price-block{margin-bottom:18px}
+.aivox-price-main{font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;font-weight:400;color:var(--ink);line-height:1}
+.aivox-price-was{font-size:16px;color:var(--ink3);text-decoration:line-through;margin-left:10px}
+.aivox-price-save{font-size:11px;font-weight:600;color:var(--teal);margin-top:5px;letter-spacing:.5px;display:block}
+.aivox-deal{background:var(--ink);border-radius:14px;padding:18px 16px;margin-bottom:18px}
+.aivox-deal-lbl{font-size:9.5px;font-weight:700;letter-spacing:2px;color:var(--mint);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.aivox-deal-lbl::before{content:'';width:4px;height:4px;background:var(--mint);border-radius:50%;animation:aivox-dp 2s infinite}
+.aivox-deal-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:300;color:var(--white);line-height:1.25;margin-bottom:10px}
+.aivox-deal-h em{font-style:italic;color:var(--mint)}
+.aivox-deal-list{display:flex;flex-direction:column;gap:7px}
+.aivox-deal-pt{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;display:flex;align-items:flex-start;gap:8px}
+.aivox-deal-pt::before{content:'checkmark';color:var(--mint);font-weight:700;flex-shrink:0;margin-top:1px}
+.aivox-stock{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--coral);font-weight:500;margin-bottom:20px}
+.aivox-sdot{width:7px;height:7px;background:var(--coral);border-radius:50%;animation:aivox-dp 2s infinite;display:inline-block;flex-shrink:0}
+.aivox-btn-cart{display:block;width:100%;background:var(--ink);color:var(--cream);padding:16px;border-radius:12px;border:none;font-family:'Inter',-apple-system,sans-serif;font-size:14px;font-weight:600;letter-spacing:.4px;text-align:center;cursor:pointer;transition:background .2s;margin-bottom:10px;text-decoration:none}
+.aivox-btn-cart:hover,.aivox-btn-cart:active{background:var(--teal);color:var(--cream)}
+.aivox-btn-cod{display:block;width:100%;background:transparent;color:var(--coral);padding:15px;border-radius:12px;border:1.5px solid rgba(249,101,93,.3);font-family:'Inter',-apple-system,sans-serif;font-size:14px;font-weight:600;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:10px;text-decoration:none}
+.aivox-btn-cod:hover,.aivox-btn-cod:active{background:rgba(249,101,93,.06);border-color:var(--coral);color:var(--coral)}
+.aivox-btn-wa{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;background:transparent;color:var(--ink2);font-size:13px;font-weight:500;text-decoration:none;border-radius:10px;border:1px solid var(--border);transition:all .2s}
+.aivox-btn-wa:hover,.aivox-btn-wa:active{border-color:#25D366;color:#25D366}
+.aivox-secure{text-align:center;font-size:11px;color:var(--ink3);margin-top:12px}
+.aivox-trust{display:flex;gap:8px;overflow-x:auto;padding:16px 20px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.aivox-trust::-webkit-scrollbar{display:none}
+.aivox-pill{flex-shrink:0;display:flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--border);border-radius:50px;padding:7px 13px;font-size:11.5px;font-weight:500;color:var(--ink);white-space:nowrap}
+.aivox-sec{padding:28px 20px;border-top:1px solid var(--border)}
+.aivox-sec-white{background:var(--white)}
+.aivox-sec-lbl{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:16px}
+.aivox-specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.aivox-spec-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:15px 13px}
+.aivox-snum{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:400;color:var(--ink);line-height:1}
+.aivox-sunit{font-size:13px;color:var(--teal);margin-left:2px}
+.aivox-slbl{font-size:11px;color:var(--ink2);margin-top:4px;line-height:1.4}
+.aivox-spec-table{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.aivox-spec-row{display:flex;justify-content:space-between;align-items:center;padding:11px 15px;border-bottom:1px solid var(--border)}
+.aivox-spec-row:last-child{border-bottom:none}
+.aivox-spec-row:nth-child(even){background:rgba(250,248,244,.6)}
+.aivox-sk{font-size:12px;color:var(--ink2)}
+.aivox-sv{font-size:12px;font-weight:600;color:var(--ink);text-align:right}
+.aivox-sv-g{color:var(--teal)}.aivox-sv-c{color:var(--coral)}
+.aivox-feats{display:flex;flex-direction:column}
+.aivox-feat{display:flex;gap:15px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border)}
+.aivox-feat:last-child{border-bottom:none}
+.aivox-ficon{width:40px;height:40px;border-radius:10px;flex-shrink:0;background:rgba(84,232,204,.1);border:1px solid rgba(84,232,204,.2);display:flex;align-items:center;justify-content:center;font-size:19px}
+.aivox-fhead{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.aivox-fbody{font-size:12px;color:var(--ink2);line-height:1.6}
+.aivox-gbar{background:var(--ink);border-radius:14px;padding:17px 15px;display:flex;gap:13px;align-items:center}
+.aivox-gh{font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;color:var(--white);font-weight:300;margin-bottom:3px}
+.aivox-gd{font-size:11.5px;color:rgba(255,255,255,.5);line-height:1.5}
+.aivox-rv-top{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+.aivox-rv-big{font-family:'Cormorant Garamond',Georgia,serif;font-size:52px;font-weight:300;color:var(--ink);line-height:1}
+.aivox-rv-stars{color:var(--gold);font-size:14px;letter-spacing:1px}
+.aivox-rv-sub{font-size:11px;color:var(--ink3);margin-top:2px}
+.aivox-rv-card{background:var(--cream);border:1px solid var(--border);border-radius:13px;padding:17px;margin-bottom:11px}
+.aivox-rv-card:last-child{margin-bottom:0}
+.aivox-rvs{color:var(--gold);font-size:12px;margin-bottom:9px}
+.aivox-rvt{font-size:13px;color:var(--ink2);line-height:1.7;font-style:italic;margin-bottom:12px}
+.aivox-rva{display:flex;align-items:center;gap:9px}
+.aivox-rvav{width:33px;height:33px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.aivox-rvn{font-size:12.5px;font-weight:600;color:var(--ink)}.aivox-rvl{font-size:11px;color:var(--ink3)}
+.aivox-rvv{margin-left:auto;font-size:10px;color:#16a34a;font-weight:600;background:rgba(34,197,94,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+.aivox-faq-item{border-bottom:1px solid var(--border)}
+.aivox-faq-q{display:flex;justify-content:space-between;align-items:center;padding:15px 0;cursor:pointer;gap:12px;font-size:13px;font-weight:500;color:var(--ink);-webkit-tap-highlight-color:transparent;user-select:none}
+.aivox-faq-ic{width:24px;height:24px;border-radius:50%;background:rgba(14,28,42,.07);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;color:var(--ink);transition:transform .3s,background .2s}
+.aivox-faq-item.open .aivox-faq-ic{transform:rotate(45deg);background:var(--ink);color:var(--white)}
+.aivox-faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;font-size:12.5px;color:var(--ink2);line-height:1.7}
+.aivox-faq-item.open .aivox-faq-a{max-height:280px;padding-bottom:15px}
+.aivox-final{background:var(--white);padding:30px 20px;border-top:1px solid var(--border);text-align:center}
+.aivox-final h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:300;color:var(--ink);margin-bottom:6px;line-height:1.2}
+.aivox-final h2 em{font-style:italic;color:var(--teal)}
+.aivox-final p{font-size:12px;color:var(--ink2);margin-bottom:20px;line-height:1.6}
+.aivox-cta-inner{max-width:360px;margin:0 auto}
+.aivox-sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(250,248,244,.97);backdrop-filter:blur(14px);border-top:1px solid var(--border);padding:11px 18px;display:flex;gap:11px;align-items:center;z-index:200;box-shadow:0 -4px 24px rgba(14,28,42,.08)}
+.aivox-sticky img{width:42px;height:42px;border-radius:8px;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
+.aivox-sticky-info{flex:1;min-width:0}
+.aivox-sticky-name{font-size:11px;color:var(--ink2);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aivox-sticky-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;color:var(--ink);font-weight:400;line-height:1.1}
+.aivox-sticky-btn{background:var(--ink);color:var(--cream);padding:11px 18px;border-radius:50px;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;transition:background .2s;flex-shrink:0;border:none;cursor:pointer}
+.aivox-sticky-btn:hover{background:var(--teal);color:var(--cream)}
+.aivox-wa-fab{position:fixed;bottom:76px;right:14px;background:#25D366;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;text-decoration:none;z-index:999;box-shadow:0 4px 16px rgba(37,211,102,.35);transition:transform .2s}
+.aivox-wa-fab:hover{transform:scale(1.1)}
+</style>
+
+<div class="aivox-pdp">
+
+<div class="aivox-topbar">Free UAE Delivery &middot; Cash on Delivery &middot; 1 Year Unlimited Transcription Exclusive</div>
+
+<div class="aivox-crumb">
+  <a href="/">Home</a> &rsaquo;
+  <a href="/collections/all"> Tech</a> &rsaquo;
+  ${lv('product.title | truncate: 40')}
+</div>
+
+<div class="aivox-gallery">
+  <div class="aivox-stage" id="aivox-stage">
+    <button class="aivox-arr aivox-arr-l" onclick="aivoxSlide(-1)" aria-label="Previous image">&#8249;</button>
+    <button class="aivox-arr aivox-arr-r" onclick="aivoxSlide(1)"  aria-label="Next image">&#8250;</button>
+    <span class="aivox-ctr" id="aivox-ctr">1 / ${lv('product.images.size')}</span>
+    ${lb('for image in product.images')}
+    <div class="aivox-slide${lb('if forloop.first')} active${lb('endif')}">
+      <img src="${lv('image | image_url: width: 700')}"
+           alt="${lv('image.alt | default: product.title | escape')}"
+           ${lb('if forloop.first')}loading="eager"${lb('else')}loading="lazy"${lb('endif')}
+           width="700" height="700">
+    </div>
+    ${lb('endfor')}
+  </div>
+  <div class="aivox-thumbs" id="aivox-thumbs"></div>
+</div>
+
+<div class="aivox-info aivox-f1">
+  <div class="aivox-cat">AI Voice Recorder &middot; Dubai UAE</div>
+  <h1 class="aivox-title">GPT-4 AiVox &mdash;<br><em>Your meetings, written.</em></h1>
+  <div class="aivox-rating">
+    <span class="aivox-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <span class="aivox-rtxt">4.9 &middot; 45 reviews</span>
+    <span class="aivox-sold">&#128293; 34 sold today</span>
+  </div>
+
+  <div class="aivox-price-block aivox-f2">
+    <div>
+      <span class="aivox-price-main">${lv('product.price | money')}</span>
+      ${lb('if product.compare_at_price > product.price')}
+      <span class="aivox-price-was">${lv('product.compare_at_price | money')}</span>
+      ${lb('endif')}
+    </div>
+    ${lb('if product.compare_at_price > product.price')}
+    ${lb('assign saving_pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price')}
+    <span class="aivox-price-save">${lv('saving_pct')}% OFF &middot; Inclusive of VAT &middot; Free UAE Delivery</span>
+    ${lb('else')}
+    <span class="aivox-price-save">Inclusive of VAT &middot; Free UAE Delivery</span>
+    ${lb('endif')}
+  </div>
+
+  <div class="aivox-deal aivox-f3">
+    <div class="aivox-deal-lbl">TipTop360 Exclusive &mdash; Only Here</div>
+    <div class="aivox-deal-h">1 Year Unlimited Transcription<br><em>Then 400 min / month &mdash; no extra cost</em></div>
+    <div class="aivox-deal-list" style="margin-top:10px;">
+      <div class="aivox-deal-pt">Year 1: unlimited transcription &mdash; completely free, no limits</div>
+      <div class="aivox-deal-pt">After year 1: 400 free minutes every month &mdash; no subscription, no charges</div>
+      <div class="aivox-deal-pt">64GB local storage built-in &mdash; record offline, no cloud required</div>
+      <div class="aivox-deal-pt">No other UAE retailer offers this deal</div>
+    </div>
+  </div>
+
+  ${lb('if variant.inventory_quantity > 0 and variant.inventory_quantity <= 20')}
+  <div class="aivox-stock aivox-f3">
+    <span class="aivox-sdot"></span>
+    Only ${lv('variant.inventory_quantity')} units left &middot; Ships from UAE today
+  </div>
+  ${lb('elsif variant.available')}
+  <div class="aivox-stock aivox-f3" style="color:var(--teal);">
+    <span class="aivox-sdot" style="background:var(--teal);"></span>
+    In stock &middot; Ships from UAE today
+  </div>
+  ${lb('endif')}
+
+  <div class="aivox-f4">
+    <form action="/cart/add" method="post" id="aivox-cart-form">
+      <input type="hidden" name="id" value="${lv('variant.id')}">
+      <input type="hidden" name="quantity" value="1">
+      <button type="submit" class="aivox-btn-cart" name="add">
+        &#128722; Add to Cart &mdash; ${lv('product.price | money')}
+      </button>
+    </form>
+    <form action="/cart/add" method="post">
+      <input type="hidden" name="id" value="${lv('variant.id')}">
+      <input type="hidden" name="quantity" value="1">
+      <input type="hidden" name="return_to" value="/checkout">
+      <button type="submit" class="aivox-btn-cod">
+        &#9889; Buy Now &middot; Pay Cash on Delivery
+      </button>
+    </form>
+    <a href="https://wa.me/971585156033" class="aivox-btn-wa" target="_blank" rel="noopener">
+      <span style="font-size:16px;">&#128172;</span> Questions? WhatsApp +971 58 515 6033
+    </a>
+    <div class="aivox-secure">&#128274; SSL encrypted &middot; Secure checkout &middot; Apple Pay &middot; Cards accepted</div>
+  </div>
+</div>
+
+<div class="aivox-trust aivox-f5">
+  <div class="aivox-pill">&#9889; Next-Day Delivery</div>
+  <div class="aivox-pill">&#128181; Cash on Delivery</div>
+  <div class="aivox-pill">&#128260; 14-Day Returns</div>
+  <div class="aivox-pill">&#127462;&#127466; UAE Stock</div>
+  <div class="aivox-pill">&#128230; Free Delivery</div>
+  <div class="aivox-pill">&#128190; 64GB Local Storage</div>
+  <div class="aivox-pill">&#128274; Secure Checkout</div>
+</div>
+
+<div class="aivox-sec">
+  <div class="aivox-sec-lbl">Specifications</div>
+  <div class="aivox-specs-grid">
+    <div class="aivox-spec-card"><div class="aivox-snum">98<span class="aivox-sunit">%</span></div><div class="aivox-slbl">Transcription accuracy<br>GPT-4 powered</div></div>
+    <div class="aivox-spec-card"><div class="aivox-snum">134<span class="aivox-sunit"> lang</span></div><div class="aivox-slbl">Languages including<br>Arabic &amp; English</div></div>
+    <div class="aivox-spec-card"><div class="aivox-snum">3.1<span class="aivox-sunit">mm</span></div><div class="aivox-slbl">Ultra-thin<br>Wallet-size design</div></div>
+    <div class="aivox-spec-card"><div class="aivox-snum">20<span class="aivox-sunit">h+</span></div><div class="aivox-slbl">Battery life<br>USB-C fast charge</div></div>
+  </div>
+  <div class="aivox-spec-table">
+    <div class="aivox-spec-row"><span class="aivox-sk">Transcription engine</span><span class="aivox-sv aivox-sv-g">GPT-4 AI &middot; 98% accuracy</span></div>
+    <div class="aivox-spec-row"><span class="aivox-sk">Meeting minutes</span><span class="aivox-sv aivox-sv-g">&#10003; Auto-generated</span></div>
+    <div class="aivox-spec-row"><span class="aivox-sk">Local storage</span><span class="aivox-sv aivox-sv-g">&#10003; 64GB &mdash; no cloud needed</span></div>
+    <div class="aivox-spec-row"><span class="aivox-sk">Works offline</span><span class="aivox-sv aivox-sv-g">&#10003; Always</span></div>
+    <div class="aivox-spec-row"><span class="aivox-sk">Languages</span><span class="aivox-sv">134 incl. Arabic &amp; English</span></div>
+    <div class="aivox-spec-row"><span class="aivox-sk">Compatibility</span><span class="aivox-sv">iOS &middot; Android &middot; Desktop</span></div>
+    <div class="aivox-spec-row"><span class="aivox-sk">Charging</span><span class="aivox-sv">USB-C fast charge</span></div>
+    <div class="aivox-spec-row"><span class="aivox-sk">Year 1 transcription</span><span class="aivox-sv aivox-sv-c">Unlimited &mdash; free</span></div>
+    <div class="aivox-spec-row"><span class="aivox-sk">After year 1</span><span class="aivox-sv aivox-sv-c">400 min / month &mdash; no cost</span></div>
+  </div>
+</div>
+
+<div class="aivox-sec aivox-sec-white">
+  <div class="aivox-sec-lbl">What It Does</div>
+  <div class="aivox-feats">
+    <div class="aivox-feat"><div class="aivox-ficon">&#128203;</div><div><div class="aivox-fhead">Auto Meeting Minutes</div><div class="aivox-fbody">Records your meeting, delivers clean structured minutes with action items automatically &mdash; in under 60 seconds.</div></div></div>
+    <div class="aivox-feat"><div class="aivox-ficon">&#127757;</div><div><div class="aivox-fhead">134 Languages &middot; Arabic Included</div><div class="aivox-fbody">Bilingual UAE meetings at 98% accuracy. Arabic, English, Hindi, Chinese + 130 more &mdash; all in the same recording.</div></div></div>
+    <div class="aivox-feat"><div class="aivox-ficon">&#128190;</div><div><div class="aivox-fhead">64GB Local Storage &middot; No Cloud Required</div><div class="aivox-fbody">Store thousands of hours directly on the device. Your recordings stay private &mdash; no upload, no subscription needed.</div></div></div>
+    <div class="aivox-feat"><div class="aivox-ficon">&#128268;</div><div><div class="aivox-fhead">Works Offline &mdash; Always</div><div class="aivox-fbody">No WiFi or signal needed to record. Transcription processes automatically when you connect. Never lose a recording.</div></div></div>
+    <div class="aivox-feat"><div class="aivox-ficon">&#128207;</div><div><div class="aivox-fhead">3.1mm &middot; Thinner Than a Card</div><div class="aivox-fbody">Fits in any shirt pocket. 20-hour battery. Sits unnoticed in any meeting, lecture, or call.</div></div></div>
+  </div>
+</div>
+
+<div class="aivox-sec">
+  <div class="aivox-gbar">
+    <div style="font-size:28px;flex-shrink:0;">&#128737;</div>
+    <div><div class="aivox-gh">14-Day Guarantee</div><div class="aivox-gd">Try AiVox risk-free. Not satisfied for any reason? Full refund, no questions asked. Returns within 48 hours.</div></div>
+  </div>
+</div>
+
+<div class="aivox-sec aivox-sec-white" id="aivox-reviews">
+  <div class="aivox-sec-lbl">Customer Reviews</div>
+  <div class="aivox-rv-top">
+    <div class="aivox-rv-big">4.9</div>
+    <div><div class="aivox-rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="aivox-rv-sub">45 verified UAE reviews</div></div>
+  </div>
+  <div class="aivox-rv-card"><div class="aivox-rvs">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="aivox-rvt">"Arabic transcription is shockingly accurate. Auto-generated meeting minutes save me 2 hours every day. 1-year unlimited deal sealed it &mdash; nobody else in UAE offers this."</p><div class="aivox-rva"><div class="aivox-rvav" style="background:rgba(84,232,204,.15);color:#439b94;">K</div><div><div class="aivox-rvn">Khalid M.</div><div class="aivox-rvl">Business Consultant &middot; Dubai</div></div><span class="aivox-rvv">&#10003; Verified</span></div></div>
+  <div class="aivox-rv-card"><div class="aivox-rvs">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="aivox-rvt">"UAEU law student &mdash; I record every lecture, get perfect Arabic and English notes. 64GB means no cloud. Arrived next morning COD."</p><div class="aivox-rva"><div class="aivox-rvav" style="background:rgba(249,101,93,.12);color:#f9655d;">S</div><div><div class="aivox-rvn">Sara J.</div><div class="aivox-rvl">Law Student &middot; Abu Dhabi</div></div><span class="aivox-rvv">&#10003; Verified</span></div></div>
+  <div class="aivox-rv-card"><div class="aivox-rvs">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="aivox-rvt">"Record Chinese supplier calls, get English meeting minutes instantly. 3.1mm in my shirt pocket. Paid for itself in the first week."</p><div class="aivox-rva"><div class="aivox-rvav" style="background:rgba(67,155,148,.12);color:#439b94;">R</div><div><div class="aivox-rvn">Rania H.</div><div class="aivox-rvl">Import Business &middot; Sharjah</div></div><span class="aivox-rvv">&#10003; Verified</span></div></div>
+</div>
+
+<div class="aivox-sec">
+  <div class="aivox-sec-lbl">Questions</div>
+  <div id="aivox-faq"></div>
+</div>
+
+<div class="aivox-final">
+  <h2>Stop taking notes.<br><em>Let AiVox handle it.</em></h2>
+  <p>${lv('product.price | money')} &middot; 1 Year Unlimited Free &middot; 400 min/month after at no cost<br>64GB Local Storage &middot; Free UAE Delivery &middot; Cash on Delivery</p>
+  <div class="aivox-cta-inner">
+    <form action="/cart/add" method="post" style="margin-bottom:10px;">
+      <input type="hidden" name="id" value="${lv('variant.id')}">
+      <input type="hidden" name="quantity" value="1">
+      <input type="hidden" name="return_to" value="/checkout">
+      <button type="submit" class="aivox-btn-cart">Order Now &mdash; ${lv('product.price | money')}</button>
+    </form>
+    <a href="https://wa.me/971585156033" class="aivox-btn-wa" target="_blank" rel="noopener">&#128172; WhatsApp +971 58 515 6033</a>
+  </div>
+</div>
+
+</div>
+
+<div class="aivox-sticky">
+  ${lb('if product.featured_image')}
+  <img src="${lv('product.featured_image | image_url: width: 100')}" alt="${lv('product.title | escape')}" width="42" height="42">
+  ${lb('endif')}
+  <div class="aivox-sticky-info">
+    <div class="aivox-sticky-name">AiVox &middot; GPT-4 &middot; 134 Lang &middot; 64GB</div>
+    <div class="aivox-sticky-price">${lv('product.price | money')}</div>
+  </div>
+  <form action="/cart/add" method="post" style="margin:0;">
+    <input type="hidden" name="id" value="${lv('variant.id')}">
+    <input type="hidden" name="quantity" value="1">
+    <input type="hidden" name="return_to" value="/checkout">
+    <button type="submit" class="aivox-sticky-btn">Buy Now &#8250;</button>
+  </form>
+</div>
+
+<a href="https://wa.me/971585156033" class="aivox-wa-fab" title="WhatsApp TipTop360" target="_blank" rel="noopener" aria-label="WhatsApp TipTop360">&#128172;</a>
+
+<script>
+(function(){
+  var IMGS=[${lb('for image in product.images')}{src:'${lv('image | image_url: width: 700')}',thumb:'${lv('image | image_url: width: 120')}',alt:'${lv('image.alt | default: product.title | escape')}'}${lb('unless forloop.last')},${lb('endunless')}${lb('endfor')}];
+  var cur=0,timer,slides=document.querySelectorAll('.aivox-slide'),ctrEl=document.getElementById('aivox-ctr'),tc=document.getElementById('aivox-thumbs');
+  IMGS.forEach(function(img,i){var t=document.createElement('div');t.className='aivox-thumb'+(i===0?' on':'');var im=document.createElement('img');im.src=img.thumb;im.alt=img.alt;im.loading='lazy';im.width=52;im.height=52;t.appendChild(im);t.addEventListener('click',function(){aivoxGoTo(i);});tc.appendChild(t);});
+  window.aivoxGoTo=function(n){slides[cur].classList.remove('active');tc.querySelectorAll('.aivox-thumb')[cur].classList.remove('on');cur=((n%IMGS.length)+IMGS.length)%IMGS.length;slides[cur].classList.add('active');var nt=tc.querySelectorAll('.aivox-thumb')[cur];nt.classList.add('on');nt.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});if(ctrEl)ctrEl.textContent=(cur+1)+' / '+IMGS.length;clearInterval(timer);timer=setInterval(function(){window.aivoxSlide(1);},4200);};
+  window.aivoxSlide=function(d){aivoxGoTo(cur+d);};
+  var tx=0,stage=document.getElementById('aivox-stage');
+  if(stage){stage.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});stage.addEventListener('touchend',function(e){var dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>40)window.aivoxSlide(dx>0?1:-1);},{passive:true});}
+  timer=setInterval(function(){window.aivoxSlide(1);},4200);
+  var cf=document.getElementById('aivox-cart-form');
+  if(cf){cf.addEventListener('submit',function(e){e.preventDefault();var id=cf.querySelector('[name="id"]').value;fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:parseInt(id),quantity:1})}).then(function(){window.location.href='/cart';}).catch(function(){window.location.href='/cart';});});}
+  var FAQS=[['What makes AiVox different from a regular voice recorder?','AiVox uses GPT-4 AI to transcribe at 98% accuracy and auto-generate meeting minutes in under 60 seconds. It has 64GB of local storage so everything stays on the device. A regular recorder only captures raw audio.'],['What exactly is the 1-year unlimited plus 400 min per month deal?','Your entire first year of transcription is unlimited and completely free. After year 1 you get 400 transcription minutes free every month permanently at no extra cost. This exclusive deal is only available when you buy from TipTop360.'],['What is the 64GB local storage and do I need cloud?','No cloud required. AiVox has 64GB of built-in local storage enough for thousands of hours of recordings stored privately on the device. Cloud sync is optional.'],['Does AiVox transcribe in Arabic?','Yes. AiVox transcribes in 134 languages including Arabic and English. It handles bilingual UAE meetings at 98% accuracy.'],['Can I pay Cash on Delivery in UAE?','Yes across all UAE Emirates including Dubai Abu Dhabi Sharjah Ajman and Ras Al Khaimah. AED 450. Order before 5pm for next-day delivery.'],['Does it work without internet?','Yes. The device records offline at full audio quality anywhere. All 64GB local storage is available offline. Transcription processes automatically when you next connect to WiFi.'],['What is the 14-day guarantee?','Return AiVox for any reason within 14 days of delivery for a full refund. No questions asked. TipTop360 processes UAE returns within 48 hours.']];
+  var fe=document.getElementById('aivox-faq');
+  if(fe){FAQS.forEach(function(pair){var q=pair[0],a=pair[1];var item=document.createElement('div');item.className='aivox-faq-item';var ans=document.createElement('div');ans.className='aivox-faq-a';ans.textContent=a;var ic=document.createElement('span');ic.className='aivox-faq-ic';ic.textContent='+';var hd=document.createElement('div');hd.className='aivox-faq-q';hd.setAttribute('role','button');hd.setAttribute('tabindex','0');hd.setAttribute('aria-expanded','false');var qt=document.createElement('span');qt.textContent=q;hd.appendChild(qt);hd.appendChild(ic);item.appendChild(hd);item.appendChild(ans);fe.appendChild(item);function toggle(){var o=item.classList.contains('open');fe.querySelectorAll('.aivox-faq-item').forEach(function(el){el.classList.remove('open');el.querySelector('.aivox-faq-q').setAttribute('aria-expanded','false');});if(!o){item.classList.add('open');hd.setAttribute('aria-expanded','true');}}hd.addEventListener('click',toggle);hd.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});});}
+})();
+</script>
+
+${lb('schema')}
+{"name":"AiVox PDP","tag":"div","class":"aivox-section","settings":[],"presets":[{"name":"AiVox PDP"}]}
+${lb('endschema')}
+`.replace(/checkmark/g, '✓');
+
+// ── Write files ─────────────────────────────────────────────
+const tmplPath = ROOT + '/theme-files/templates/product.aivox.json';
+const sectPath = ROOT + '/theme-files/sections/aivox-pdp.liquid';
+
+fs.mkdirSync(ROOT + '/theme-files/templates', { recursive: true });
+fs.mkdirSync(ROOT + '/theme-files/sections',  { recursive: true });
+
+// Backup existing section if present
+if (fs.existsSync(sectPath)) {
+  fs.copyFileSync(sectPath, sectPath + '.PRE-REPAIR-' + TS + '.bak');
+  console.log('✅ Backup created');
+}
+
+fs.writeFileSync(tmplPath, templateJson);
+fs.writeFileSync(sectPath, section);
+console.log('✅ Template JSON written');
+console.log('✅ Section Liquid written (' + section.length + ' bytes)');
+
+// ── Quick validate ───────────────────────────────────────────
+const opens  = (section.match(/\{%-?\s*(if|for|unless|case|form)\b/g) || []).length;
+const closes = (section.match(/\{%-?\s*(endif|endfor|endunless|endcase|endform)\b/g) || []).length;
+console.log('Liquid balance:', opens, '/', closes, opens===closes ? '✅' : '❌');
+
+if (opens !== closes) { console.log('❌ STOP — imbalanced'); process.exit(1); }
+
+// ── Push ─────────────────────────────────────────────────────
+console.log('\n📤 Pushing...');
+try {
+  execSync(
+    'shopify theme push --store ' + STORE + ' --theme ' + THEME + ' --path ./theme-files ' +
+    '--only templates/product.aivox.json ' +
+    '--only sections/aivox-pdp.liquid ' +
+    '--allow-live',
+    { stdio: 'inherit', cwd: ROOT }
+  );
+  console.log('\n✅ PUSHED — assign template in Admin then run: bash regression-geo.sh');
+} catch(e) {
+  console.log('❌ Push failed');
+  process.exit(1);
+}

@@ -1,0 +1,134 @@
+{%- comment -%}
+  tt360-countdown.liquid
+  Self-contained, dependency-free, zero-CLS, RTL-safe countdown.
+
+  USAGE
+    Default rolling 24h per visitor (recommended for evergreen urgency):
+      {%- render 'tt360-countdown', product: product -%}
+
+    Fixed campaign deadline (must align with schema priceValidUntil):
+      {%- render 'tt360-countdown', product: product, mode: 'fixed', deadline: '2026-05-31T23:59:59+04:00' -%}
+
+  REPLACES
+    Any prior block emitting both:
+      "00 / Days / 00 / Hours / 00 / Minutes"
+      "This offer has ended"
+    simultaneously. Root cause of that bug: hide/show JS never executed.
+    This module hides the ended state by default and only swaps on real expiry.
+
+  TOKENS
+    --tt-navy, --tt-mint, --tt-coral fall back to brand defaults if undefined.
+{%- endcomment -%}
+
+{%- assign tt_mode = mode | default: 'rolling24' -%}
+{%- assign tt_deadline = deadline | default: '' -%}
+{%- assign tt_id = 'ttcd-' | append: product.id -%}
+{%- assign tt_key = 'ttcd_' | append: product.handle -%}
+
+<aside class="tt-countdown"
+       id="{{ tt_id }}"
+       data-tt-countdown
+       data-mode="{{ tt_mode }}"
+       data-deadline="{{ tt_deadline }}"
+       data-key="{{ tt_key }}"
+       role="timer"
+       aria-live="polite"
+       aria-label="Limited time offer countdown">
+  <p class="tt-countdown__label">Limited time offer — sale ends in</p>
+  <ol class="tt-countdown__digits" data-tt-active>
+    <li><b data-tt-d>--</b><span>Days</span></li>
+    <li><b data-tt-h>--</b><span>Hours</span></li>
+    <li><b data-tt-m>--</b><span>Minutes</span></li>
+    <li><b data-tt-s>--</b><span>Seconds</span></li>
+  </ol>
+  <p class="tt-countdown__ended" data-tt-ended hidden>Offer ended — refresh for the latest price.</p>
+</aside>
+
+<style>
+.tt-countdown{
+  --tt-navy:#0f2c4d;--tt-mint:#cdebe0;--tt-coral:#e76a5e;
+  font-family:inherit;text-align:center;
+  padding:16px;margin:16px 0;border-radius:12px;
+  background:var(--tt-navy);color:#fff5e6;
+  contain:layout style;min-height:128px;
+}
+.tt-countdown__label{margin:0 0 10px;font-size:14px;font-weight:600;letter-spacing:.02em}
+.tt-countdown__digits{
+  list-style:none;margin:0;padding:0;
+  display:flex;justify-content:center;gap:8px;flex-wrap:wrap;
+}
+.tt-countdown__digits li{
+  min-inline-size:64px;padding:10px 8px;border-radius:8px;
+  background:var(--tt-mint);color:var(--tt-navy);
+}
+.tt-countdown__digits b{
+  display:block;font-size:1.5rem;line-height:1;font-weight:700;
+  font-variant-numeric:tabular-nums;
+}
+.tt-countdown__digits span{
+  display:block;margin-top:4px;font-size:.7rem;
+  text-transform:uppercase;letter-spacing:.06em;font-weight:600;
+}
+.tt-countdown__ended{margin:8px 0 0;color:var(--tt-coral);font-weight:700}
+[dir="rtl"] .tt-countdown__digits{flex-direction:row-reverse}
+@media (max-width:380px){
+  .tt-countdown__digits li{min-inline-size:56px;padding:8px 6px}
+  .tt-countdown__digits b{font-size:1.25rem}
+}
+</style>
+
+<script>
+(function(){
+  var root=document.getElementById('{{ tt_id }}');
+  if(!root||root.dataset.ttHydrated==='1')return;
+  root.dataset.ttHydrated='1';
+
+  var mode=root.dataset.mode;
+  var key=root.dataset.key;
+  var dEl=root.querySelector('[data-tt-d]');
+  var hEl=root.querySelector('[data-tt-h]');
+  var mEl=root.querySelector('[data-tt-m]');
+  var sEl=root.querySelector('[data-tt-s]');
+  var active=root.querySelector('[data-tt-active]');
+  var ended=root.querySelector('[data-tt-ended]');
+
+  function pad(n){return n<10?'0'+n:''+n;}
+
+  var endMs;
+  if(mode==='fixed'){
+    var iso=root.dataset.deadline;
+    endMs=iso?Date.parse(iso):NaN;
+  }else{
+    try{
+      var stored=localStorage.getItem(key);
+      endMs=stored?parseInt(stored,10):NaN;
+      if(!endMs||isNaN(endMs)||endMs<=Date.now()){
+        endMs=Date.now()+24*3600*1000;
+        localStorage.setItem(key,String(endMs));
+      }
+    }catch(e){
+      endMs=Date.now()+24*3600*1000;
+    }
+  }
+
+  function showEnded(){
+    active.hidden=true;
+    ended.hidden=false;
+  }
+
+  function tick(){
+    var ms=endMs-Date.now();
+    if(isNaN(ms)||ms<=0){showEnded();return false;}
+    var sec=Math.floor(ms/1000);
+    dEl.textContent=pad(Math.floor(sec/86400));
+    hEl.textContent=pad(Math.floor(sec%86400/3600));
+    mEl.textContent=pad(Math.floor(sec%3600/60));
+    sEl.textContent=pad(sec%60);
+    return true;
+  }
+
+  if(tick()){
+    var iv=setInterval(function(){if(!tick())clearInterval(iv);},1000);
+  }
+})();
+</script>

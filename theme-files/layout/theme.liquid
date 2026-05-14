@@ -94,6 +94,65 @@
               "query-input": "required name=search_term_string"
             }
           }
+          {%- if template.name == 'index' -%}
+          ,
+          {
+            "@type": "FAQPage",
+            "@id": "https://tiptop360.com/#homepage-faq",
+            "url": "https://tiptop360.com/",
+            "isPartOf": { "@id": "https://tiptop360.com/#website" },
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is TipTop360?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "TipTop360 is a UAE-based online store that curates useful kids products, smart gadgets, home helpers, and lifestyle essentials for everyday problems and gift ideas."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why Shop With Us?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We keep the range focused on practical products, clear UAE delivery information, Cash on Delivery where eligible, secure checkout, and support by email or WhatsApp."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where do you ship?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We deliver across the UAE, including Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Umm Al Quwain, and Fujairah."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long does shipping take?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Orders are typically delivered within 1-4 business days depending on the Emirate."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What if my item arrives damaged?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Contact our support team with your order number and photos. Returns and refunds for damaged or incorrect items follow the timeframe stated in our Refund Policy."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I speak to someone if I have a question?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Email us at info@tiptop360.com or call or WhatsApp +971 58 515 6033. Our team is available daily."
+                }
+              }
+            ]
+          }
+          {%- endif -%}
         ]
       }
     </script>
@@ -166,8 +225,17 @@
             chatBtn.style.display = mutation.target.classList.contains('active') ? 'none' : '';
           }
         }
+      });
+    });
 
-
-
- 
- 
+    const pageContainer = document.getElementById('page-container');
+    if (pageContainer) {
+      observer.observe(pageContainer, {
+        attributes: true,
+        attributeFilter: ['class'],
+        subtree: true
+      });
+    }
+  </script>
+</body>
+</html>

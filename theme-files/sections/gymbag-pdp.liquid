@@ -323,11 +323,11 @@ h2.gb-sec-lbl-light{display:block;font-family:Barlow Condensed,sans-serif;font-s
   {% endif %}
 
   <div class="gb-f4">
-    <button class="gb-btn-buy" onclick="gbAddToCart(false)">
-      Add to Cart &mdash; <span id="gb-btn-price">{{ product.price | money }}</span>
-    </button>
     <button class="gb-btn-cod" onclick="gbAddToCart(true)">
       Buy Now &middot; Cash on Delivery
+    </button>
+    <button class="gb-btn-buy" onclick="gbAddToCart(true)">
+      Add to Cart &mdash; <span id="gb-btn-price">{{ product.price | money }}</span>
     </button>
     <a href="https://wa.me/{{ section.settings.whatsapp }}" class="gb-btn-wa" target="_blank" rel="noopener">
       Questions? WhatsApp +{{ section.settings.whatsapp }}

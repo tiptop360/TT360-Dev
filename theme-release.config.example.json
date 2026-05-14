@@ -1,0 +1,10 @@
+{
+  "store": "your-store.myshopify.com",
+  "storeUrl": "https://your-store.com",
+  "liveThemeId": 0,
+  "stagingThemeId": 0,
+  "stagingThemeName": "TT360 Staging",
+  "sandboxThemeId": null,
+  "githubRepo": "owner/repo",
+  "releaseOperator": "Your Name"
+}
