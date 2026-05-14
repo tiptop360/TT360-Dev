@@ -57,27 +57,47 @@
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "Organization",
+            "@type": ["Organization", "OnlineStore"],
             "@id": "https://tiptop360.com/#organization",
             "name": "TipTop360",
+            "alternateName": "TipTop360 Online",
             "legalName": "Sylo Commerce FZ-LLC",
             "url": "https://tiptop360.com/",
+            "description": "TipTop360 is a UAE-based online store that curates useful kids products, smart gadgets, home helpers, and lifestyle essentials.",
             "logo": "https://tiptop360.com/cdn/shop/files/Logo.png?v=1760682550&width=200",
+            "image": "https://tiptop360.com/cdn/shop/files/Logo.png?v=1760682550&width=200",
+            "email": "info@tiptop360.com",
+            "telephone": "+971585156033",
             "sameAs": [
               "https://www.facebook.com/TipTop360-online-61574240081708/",
               "https://www.instagram.com/tiptop360_online/",
               "https://www.tiktok.com/@tiptop360_online"
             ],
+            "areaServed": {
+              "@type": "Country",
+              "name": "United Arab Emirates",
+              "identifier": "AE"
+            },
+            "knowsAbout": [
+              "kids products",
+              "smart gadgets",
+              "home helpers",
+              "lifestyle essentials",
+              "UAE online shopping"
+            ],
             "contactPoint": [{
               "@type": "ContactPoint",
               "telephone": "+971585156033",
+              "email": "info@tiptop360.com",
               "contactType": "customer service",
               "areaServed": "AE",
               "availableLanguage": ["English"]
             }],
             "address": {
               "@type": "PostalAddress",
-              "addressLocality": "RAK Free Zone",
+              "streetAddress": "RAK Free Zone",
+              "addressLocality": "Ras Al Khaimah",
+              "addressRegion": "RAK",
               "addressCountry": "AE"
             }
           },
@@ -85,22 +105,44 @@
             "@type": "WebSite",
             "@id": "https://tiptop360.com/#website",
             "url": "https://tiptop360.com/",
-            "name": "TipTop360 - Smart Lifestyle, Kids & Fitness Products in UAE",
-            "description": "TipTop360 offers curated lifestyle, fitness, and kids' products with fast UAE delivery.",
+            "name": "TipTop360",
+            "alternateName": "TipTop360 UAE",
+            "description": "TipTop360 curates useful kids products, smart gadgets, home helpers, and lifestyle essentials for shoppers across the UAE.",
+            "inLanguage": "en-AE",
+            "about": { "@id": "https://tiptop360.com/#organization" },
             "publisher": { "@id": "https://tiptop360.com/#organization" },
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://tiptop360.com/search?q={search_term_string}",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://tiptop360.com/search?q={search_term_string}"
+              },
               "query-input": "required name=search_term_string"
             }
           }
           {%- if template.name == 'index' -%}
           ,
           {
+            "@type": "WebPage",
+            "@id": "https://tiptop360.com/#webpage",
+            "url": "https://tiptop360.com/",
+            "name": "Smart Gadgets and Kids Products in UAE | TipTop360",
+            "description": "TipTop360 curates useful kids products, smart gadgets, home helpers, and lifestyle essentials for shoppers across the UAE.",
+            "isPartOf": { "@id": "https://tiptop360.com/#website" },
+            "about": { "@id": "https://tiptop360.com/#organization" },
+            "publisher": { "@id": "https://tiptop360.com/#organization" },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://tiptop360.com/cdn/shop/files/Logo.png?v=1760682550&width=200"
+            },
+            "inLanguage": "en-AE"
+          },
+          {
             "@type": "FAQPage",
             "@id": "https://tiptop360.com/#homepage-faq",
             "url": "https://tiptop360.com/",
-            "isPartOf": { "@id": "https://tiptop360.com/#website" },
+            "isPartOf": { "@id": "https://tiptop360.com/#webpage" },
+            "mainEntityOfPage": { "@id": "https://tiptop360.com/#webpage" },
             "mainEntity": [
               {
                 "@type": "Question",
