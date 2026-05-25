@@ -3,7 +3,19 @@
     "main": {
       "type": "aivox-pdp",
       "settings": {}
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "setwidth": "container"
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "recommendations"
+  ]
 }

@@ -375,7 +375,7 @@
         <span style="font-size:16px;">💬</span> Questions? WhatsApp +971 58 515 6033
       </a>
 
-      <div class="aivox-secure">🔒 SSL encrypted · Secure checkout · Apple Pay · Cards accepted</div>
+      <div class="aivox-secure">🔒 Secure SSL checkout · Cash on Delivery · Apple Pay and cards · VAT included, no hidden fees</div>
     </div>
   </div>
 
@@ -500,6 +500,28 @@
       </div>
     </div>
   </div>
+
+  {%- comment -%} CROSS-SELL — gift wrap add-on {%- endcomment -%}
+  {%- assign gw = all_products['gift-wrap-1'] -%}
+  {%- if gw != empty and gw.available -%}
+  <div class="aivox-sec aivox-sec-white">
+    <div class="aivox-sec-lbl">Add a Finishing Touch</div>
+    {%- assign gw_v = gw.selected_or_first_available_variant -%}
+    <div style="display:flex;gap:14px;align-items:center;border:1px solid var(--border);border-radius:12px;padding:14px;background:#fff;">
+      <img src="{{ gw.featured_image | image_url: width: 160 }}" alt="{{ gw.title | escape }}" loading="lazy" width="72" height="72" style="width:72px;height:72px;border-radius:8px;object-fit:cover;flex-shrink:0;border:1px solid var(--border);">
+      <div style="flex:1;min-width:0;">
+        <div style="font-weight:600;color:var(--ink);font-size:14px;line-height:1.3;">{{ gw.title }}</div>
+        <div style="font-size:12px;color:var(--ink2);margin-top:3px;line-height:1.45;">Buying AiVox as a gift? Add premium gift box wrapping &mdash; arrives ready to give.</div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:600;color:var(--ink);margin-top:4px;">{{ gw.price | money }}</div>
+      </div>
+      <form action="{{ routes.cart_add_url }}" method="post" style="flex-shrink:0;">
+        <input type="hidden" name="id" value="{{ gw_v.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit" style="background:var(--ink);color:var(--cream);border:none;border-radius:8px;padding:11px 18px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;min-height:44px;">Add +{{ gw.price | money }}</button>
+      </form>
+    </div>
+  </div>
+  {%- endif -%}
 
   {%- comment -%} FAQ {%- endcomment -%}
   <div class="aivox-sec">
@@ -653,7 +675,19 @@
     ['Does it work without internet?',
      'Yes. The device records offline at full audio quality anywhere — basements, remote areas, international travel. All 64GB local storage is available offline. Transcription processes automatically when you next connect to WiFi.'],
     ['What is the 14-day guarantee?',
-     'Return AiVox for any reason within 14 days of delivery for a full refund. No questions asked. TipTop360 processes UAE returns within 48 hours.']
+     'Return AiVox for any reason within 14 days of delivery for a full refund. No questions asked. TipTop360 processes UAE returns within 48 hours.'],
+    ['How long does the battery last and how do I charge it?',
+     'AiVox runs 20+ hours on a single charge and tops up over USB-C fast charging. A short charge gets you through a full day of meetings.'],
+    ['How small is the device — will it be obvious in a meeting?',
+     'It is just 3.1mm thin — slimmer than a credit card — and slips into any shirt pocket. It sits unnoticed in meetings, lectures and calls.'],
+    ['Where are my recordings stored and are they private?',
+     'Everything is stored on 64GB of built-in local storage — thousands of hours kept privately on the device. No cloud upload is required; syncing to the app is optional.'],
+    ['Which devices is AiVox compatible with?',
+     'AiVox works with iOS, Android and desktop. Your transcripts and meeting minutes are available in the companion app once you connect.'],
+    ['How fast is UAE delivery and can I pay Cash on Delivery?',
+     'Free next-day delivery across all UAE Emirates — Dubai, Abu Dhabi, Sharjah, Ajman and Ras Al Khaimah. Pay Cash on Delivery, or by card or Apple Pay at checkout. Order before 5pm for next-day delivery.'],
+    ['Can AiVox summarise long meetings automatically?',
+     'Yes. It auto-generates clean, structured meeting minutes with action items in under 60 seconds — so you leave the meeting with the summary already done.']
   ];
 
   var faqEl = document.getElementById('aivox-faq');
@@ -700,6 +734,24 @@
   }
 
 })();
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What makes AiVox different from a regular voice recorder?","acceptedAnswer":{"@type":"Answer","text":"AiVox uses GPT-4 AI to transcribe at 98% accuracy and auto-generate meeting minutes in under 60 seconds. It has 64GB of local storage so everything stays on the device. A regular recorder only captures raw audio - no transcription, no summaries, no AI."}},
+{"@type":"Question","name":"What exactly is the 1-year unlimited plus 400 min/month deal?","acceptedAnswer":{"@type":"Answer","text":"Your entire first year of transcription is unlimited and completely free - no limits, no charges. After year 1, you get 400 transcription minutes free every month, permanently, at no extra cost. This exclusive deal is only available when you buy from TipTop360."}},
+{"@type":"Question","name":"What is the 64GB local storage and do I need cloud?","acceptedAnswer":{"@type":"Answer","text":"No cloud required. AiVox has 64GB of built-in local storage - enough for thousands of hours of recordings stored privately on the device. You can also sync to the app if you want cloud access, but it is completely optional."}},
+{"@type":"Question","name":"Does AiVox transcribe in Arabic?","acceptedAnswer":{"@type":"Answer","text":"Yes. AiVox transcribes in 134 languages including Arabic and English. It handles bilingual UAE meetings - Arabic and English mixed in the same recording - at 98% accuracy."}},
+{"@type":"Question","name":"Can I pay Cash on Delivery in UAE?","acceptedAnswer":{"@type":"Answer","text":"Yes - across all UAE Emirates including Dubai, Abu Dhabi, Sharjah, Ajman, and Ras Al Khaimah. AED 450. Order before 5pm for next-day delivery."}},
+{"@type":"Question","name":"Does it work without internet?","acceptedAnswer":{"@type":"Answer","text":"Yes. The device records offline at full audio quality anywhere - basements, remote areas, international travel. All 64GB local storage is available offline. Transcription processes automatically when you next connect to WiFi."}},
+{"@type":"Question","name":"What is the 14-day guarantee?","acceptedAnswer":{"@type":"Answer","text":"Return AiVox for any reason within 14 days of delivery for a full refund. No questions asked. TipTop360 processes UAE returns within 48 hours."}},
+{"@type":"Question","name":"How long does the battery last and how do I charge it?","acceptedAnswer":{"@type":"Answer","text":"AiVox runs 20+ hours on a single charge and tops up over USB-C fast charging. A short charge gets you through a full day of meetings."}},
+{"@type":"Question","name":"How small is the device and will it be obvious in a meeting?","acceptedAnswer":{"@type":"Answer","text":"It is just 3.1mm thin - slimmer than a credit card - and slips into any shirt pocket. It sits unnoticed in meetings, lectures and calls."}},
+{"@type":"Question","name":"Where are my recordings stored and are they private?","acceptedAnswer":{"@type":"Answer","text":"Everything is stored on 64GB of built-in local storage - thousands of hours kept privately on the device. No cloud upload is required; syncing to the app is optional."}},
+{"@type":"Question","name":"Which devices is AiVox compatible with?","acceptedAnswer":{"@type":"Answer","text":"AiVox works with iOS, Android and desktop. Your transcripts and meeting minutes are available in the companion app once you connect."}},
+{"@type":"Question","name":"How fast is UAE delivery and can I pay Cash on Delivery?","acceptedAnswer":{"@type":"Answer","text":"Free next-day delivery across all UAE Emirates - Dubai, Abu Dhabi, Sharjah, Ajman and Ras Al Khaimah. Pay Cash on Delivery, or by card or Apple Pay at checkout. Order before 5pm for next-day delivery."}},
+{"@type":"Question","name":"Can AiVox summarise long meetings automatically?","acceptedAnswer":{"@type":"Answer","text":"Yes. It auto-generates clean, structured meeting minutes with action items in under 60 seconds - so you leave the meeting with the summary already done."}}
+]}
 </script>
 
 {% schema %}
