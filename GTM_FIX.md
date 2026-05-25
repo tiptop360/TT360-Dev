@@ -44,33 +44,80 @@ Shopify admin → **Settings → Customer events → Add custom pixel** → name
 "Google tag (GA4 + Ads)" → paste:
 
 ```js
-// Load the Google tag once
+// Google tag (GA4 + Google Ads) for Shopify Customer Events
+const GA_TAG = 'GT-NC6ZVVHK';
+const ADS_ID = 'AW-17211943737';
+// const ADS_PURCHASE_LABEL = 'AW-17211943737/xxxxxxxxxxxxxxxxx'; // Google Ads → conversion action
+
+// Load gtag.js once
 const s = document.createElement('script');
 s.async = true;
-s.src = 'https://www.googletagmanager.com/gtag/js?id=GT-NC6ZVVHK';
+s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TAG}`;
 document.head.appendChild(s);
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){ dataLayer.push(arguments); }
 gtag('js', new Date());
-gtag('config', 'GT-NC6ZVVHK');
-gtag('config', 'AW-17211943737');
+gtag('config', GA_TAG, { send_page_view: false }); // page_view sent per event below
+gtag('config', ADS_ID);                            // Google Ads remarketing tag
 
-// Optional: forward purchases as a Google Ads conversion
-analytics.subscribe('checkout_completed', (event) => {
-  const c = event.data.checkout;
-  gtag('event', 'conversion', {
-    send_to: 'AW-17211943737/REPLACE_WITH_CONVERSION_LABEL',
-    value: c.totalPrice && c.totalPrice.amount,
-    currency: c.currencyCode,
-    transaction_id: (c.order && c.order.id) || c.token
+analytics.subscribe('page_viewed', (event) => {
+  gtag('event', 'page_view', {
+    page_location: event.context.document.location.href,
+    page_title: event.context.document.title
   });
 });
+
+analytics.subscribe('product_viewed', (event) => {
+  const v = event.data.productVariant;
+  gtag('event', 'view_item', {
+    currency: v.price.currencyCode,
+    value: v.price.amount,
+    items: [{ item_id: v.sku || v.id, item_name: v.product.title, price: v.price.amount }]
+  });
+});
+
+analytics.subscribe('product_added_to_cart', (event) => {
+  const line = event.data.cartLine;
+  const v = line.merchandise;
+  gtag('event', 'add_to_cart', {
+    currency: line.cost.totalAmount.currencyCode,
+    value: line.cost.totalAmount.amount,
+    items: [{ item_id: v.sku || v.id, item_name: v.product.title, price: v.price.amount, quantity: line.quantity }]
+  });
+});
+
+analytics.subscribe('checkout_completed', (event) => {
+  const c = event.data.checkout;
+  const txn = (c.order && c.order.id) || c.token;
+  // GA4 purchase
+  gtag('event', 'purchase', {
+    transaction_id: txn,
+    value: c.totalPrice.amount,
+    currency: c.currencyCode,
+    tax: c.totalTax && c.totalTax.amount,
+    shipping: c.shippingLine && c.shippingLine.price.amount,
+    items: (c.lineItems || []).map(li => ({
+      item_id: (li.variant && li.variant.sku) || (li.variant && li.variant.id),
+      item_name: li.title,
+      quantity: li.quantity,
+      price: li.variant && li.variant.price && li.variant.price.amount
+    }))
+  });
+  // Google Ads conversion — uncomment + set ADS_PURCHASE_LABEL above
+  // gtag('event', 'conversion', {
+  //   send_to: ADS_PURCHASE_LABEL,
+  //   value: c.totalPrice.amount,
+  //   currency: c.currencyCode,
+  //   transaction_id: txn
+  // });
+});
 ```
-**Save**, then set the pixel to **Connected**. Only fill in
-`REPLACE_WITH_CONVERSION_LABEL` (from Google Ads → the specific conversion
-action) if you want Ads purchase conversions through this pixel rather than
-through the channel.
+**Save**, then set the pixel to **Connected**. To enable Ads *purchase*
+conversions through this pixel, copy the conversion label from Google Ads →
+your purchase conversion action into `ADS_PURCHASE_LABEL` and uncomment the
+`conversion` block (skip this if the Google & YouTube channel already records
+Ads conversions, to avoid double-counting).
 
 > Customer Events runs pixels in a sandboxed iframe; `gtag` still sends hits
 > correctly — this is Shopify's supported way to run GA/Ads. If you use
