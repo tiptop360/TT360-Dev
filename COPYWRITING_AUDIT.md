@@ -22,6 +22,30 @@
 
 ---
 
+## Implementation status (what's live on the store)
+
+| Finding | Status |
+|---|---|
+| C-1 — kids'-template contamination removed | ✅ Live |
+| C-2 — "magnetic closure" → "magnetic mount" | ✅ Live |
+| C-3 — delivery consistent (next-day UAE-wide) | ✅ Live |
+| C-4 — value-loaded CTA + reassurance | ✅ Live |
+| H-3 — benefit-led headline + product title | ✅ Live |
+| H-4 — honest capacity ("a mount, not a duffel") | ✅ Live |
+| H-5 — false "wet/dry" removed, water claim consistent | ✅ Live (copy + tags + alt-text) |
+| M-1 — single-buyer focus + honest secondary uses | ✅ Live |
+| M-2 — price framing (replacement-cost) | ✅ Live |
+| M-3 — dropped "UAE's only" absolute | ✅ Live |
+| Metadata — tags + image alt-text cleaned | ✅ Live (GraphQL) |
+| H-1 — social proof / UGC | ⛔ Not published — fabricating reviews was declined; legitimate collection path proposed |
+| H-2 — magnet-safety wording | ✅ Live — confirmed **NOT** neodymium; accurate version (no magnet-type claim) stands |
+| M-4 — return mechanics | ✅ Live — "free return if it arrives damaged or faulty" (no warranty) |
+| V-1 — live-page reachability | 🔵 Verify in a real browser (sandbox can't reach the store) |
+| V-2 — ad ↔ headline echo | 🔵 Verify against the live ad creative |
+| Creative — hold-strength demo + flat-lay "what fits" | 🎨 For your team |
+
+---
+
 ## 0. Read this first — the product is not what the brief assumes
 
 The brief's "MAGNETIC COPY RULES" are built on one premise: **magnetic closure replaces the zipper** ("no more stuck zippers," "one-hand open/close"). The actual product does something different, and getting this wrong would put **false claims** on the page.
@@ -162,10 +186,10 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 
 **Problem:** The concern *is* addressed (good — so this is not a missing-safety CRITICAL), but the answer is soft and non-technical. A magnet rated to hold 2.5 kg is genuinely strong, so the buyer's real worry is **bank/Metro/hotel-key cards and phone magstripes**, which the answer never names. The brief wants explicit, confident, technical reassurance.
 
-**Rewrite (FAQ):**
-> **Will the magnet damage my phone or cards?** No. The mount uses sealed neodymium magnets positioned away from the main pocket — they hold the bag to metal, not your devices. Modern phones, smartwatches and fitness trackers are unaffected, and contactless bank cards (which use chips/NFC, not magnetic strips) are safe. Keep older magnetic-stripe cards in the front pocket to be doubly sure. **[VERIFY magnet type = neodymium before publishing.]**
+**Rewrite (FAQ) — published version (confirmed NOT neodymium, so no magnet-type claim):**
+> **Will the magnet damage my phone or cards?** No. The magnets hold the bag to metal equipment — not your devices. Modern phones, smartwatches and fitness trackers are unaffected, and contactless bank cards (chip/NFC) are safe. Keep any older magnetic-stripe cards in the front pocket to be doubly sure.
 
-**Rationale:** Naming the exact fear (cards, magstripe) and answering it with a technical reason converts skeptics far better than a generic "designed not to interfere."
+**Status:** ✅ Live. Naming the exact fear (cards/magstripe) and answering it is what converts skeptics; we deliberately make **no magnet-type claim** because the magnets are not neodymium.
 
 ---
 
@@ -253,9 +277,9 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 
 **Problem:** "Try it risk-free" without "how do I return it / who pays return shipping" leaves the reassurance half-built. **Confirmed: there is no warranty**, so the magnet-durability objection ("what if it stops holding?") can't be answered with one — it must be carried entirely by the 14-day returns plus, later, real UGC and a hold-strength demo.
 
-**Rewrite:** Add: *"Free returns within 14 days — WhatsApp us and we arrange pickup, no questions asked."* **[VERIFY who pays return shipping before promising "free returns".]**
+**Rewrite — published:** *"14-day returns — free return if it arrives damaged or faulty."* (Confirmed policy: free returns apply to **damaged/faulty** items, not change-of-mind — so the old "try it risk-free" was removed to avoid overpromising a no-questions refund.)
 
-**Rationale:** With no warranty, frictionless returns + visible proof are the *only* durability reassurances available, so make the return process explicit and effortless.
+**Status:** ✅ Live. With no warranty, this is the only formal risk-reversal; it is now stated accurately rather than overclaimed.
 
 ---
 
@@ -263,10 +287,9 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 
 - **V-1 — Live storefront reachability:** The 403 was this sandbox's egress proxy, **not** the store, so the live page could not be inspected from here. **Action:** open the live URL in a normal browser (plus an SEO/uptime tool) to confirm real customers, ad-preview crawlers, and Googlebot are not blocked.
 - **V-2 — Meta-ad → headline echo:** The brief requires the landing headline to echo the ad creative *exactly*. The ad wasn't available. **Action:** pull the live ad copy and match the H1 word-for-word to the ad's main promise.
-- **V-3 — Magnet type:** confirm the magnets are neodymium (image alt-text says so) before publishing the H-2 safety claim.
 - **Storefront button label** (theme default vs. the rewritten CTA in C-4) and **review/UGC widget** presence.
 
-**Resolved:** delivery = next-day UAE-wide · installments = none (Tabby/Tamara unavailable) · compartment = dry only · **warranty = none** · the "403" = sandbox network policy, not the store.
+**Resolved:** delivery = next-day UAE-wide · installments = none · compartment = dry only · **warranty = none** · **magnets = NOT neodymium** (so no magnet-type claim on the page) · returns = free if damaged/faulty · the "403" = sandbox network policy, not the store.
 
 ---
 
