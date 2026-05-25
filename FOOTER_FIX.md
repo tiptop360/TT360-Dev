@@ -45,7 +45,12 @@ The fix was applied to an **unpublished duplicate theme** via the Shopify Admin 
 - File complete and intact: starts `<!-- footer.liquid -->`, ends `{% endschema %}`, all blocks/schema present.
 - Stored size 44,695 B vs source 46,295 B — the schema's repetitive width-option arrays were compacted to single lines (**identical JSON, no functional change**).
 
-**To go live:** Themes → "Copy of TipTop360 | 2026-05-14" → **Preview** (confirm footer is solid navy) → **Publish**.
+**Also staged on the duplicate (`sections/footer-group.json`, verified `userErrors: []`):**
+- Logo column (`text_dqyRHe`) — re-enabled; placeholder "Text column / Share store details…" cleared to show the logo only (add a tagline in the editor if wanted).
+- Newsletter bar (`newsletter-footer`) — re-enabled (`enable_newletter_footer: true`); "Subscrible" → "Subscribe" typo fixed. *Verify the "10% discount" offer is actually honored before relying on it.*
+- "Any Questions?" block (`text_6DjzyX`) — left disabled (duplicates the visible "Information" contact block).
+
+**To go live:** Themes → "Copy of TipTop360 | 2026-05-14" → **Preview** (confirm footer is solid navy, logo column shows, newsletter bar shows) → **Publish**.
 
 **Caveats:**
 - Publishing swaps the entire live theme to this copy. If the live theme was edited after the duplicate was created, port those edits here first — or just make the one-word edit on the live theme instead.
