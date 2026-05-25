@@ -18,7 +18,7 @@
 | Wet/dry compartment | ✅ Confirmed | **Dry compartment only** — no wet/dry. False claim removed from the lead (H-5). |
 | Live-page 403 | ✅ Diagnosed | Sandbox egress allowlist, **not** a store issue. Live store can't be tested from here — verify real-world bot/geo access from an external browser/tool (V-1). |
 | Magnet type (neodymium?) | ⚠️ Open | Product image alt-text says "neodymium," but no supplier spec confirmed. Treat as likely-neodymium; hard-confirm before publishing the safety claim (H-2 / V-3). |
-| Warranty term | ⚠️ Open | Not yet confirmed. Copy assumes **no stated warranty** until confirmed (M-4 / V-4). |
+| Warranty term | ✅ Confirmed | **No warranty.** Copy makes no warranty claim; durability reassurance rests on the 14-day returns + (later) UGC/hold-demo proof (M-4). |
 
 ---
 
@@ -70,7 +70,7 @@ The word is everywhere it needs to be, so this is **not** a mandate failure. But
 | M-1 | 🟡 MEDIUM | Primary use case diluted; UAE-specific gym pains (sweat/heat, locker, car) underused |
 | M-2 | 🟡 MEDIUM | No price framing — innovation-premium / replacement-cost angle missing (installments confirmed unavailable) |
 | M-3 | 🟡 MEDIUM | "UAE's only" superlative is an unverified absolute claim |
-| M-4 | 🟡 MEDIUM | Micro-copy thin — return mechanics and warranty term not specified |
+| M-4 | 🟡 MEDIUM | Micro-copy thin — return mechanics not specified (confirmed: no warranty exists) |
 | V-1 | 🔵 VERIFY | Live storefront reachability + ad-headline echo + magnet type + warranty (see VERIFY section) |
 
 ---
@@ -247,15 +247,15 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 
 **Rationale:** Keeps the distinctiveness without an unprovable absolute.
 
-## M-4 — Micro-copy thin on returns, warranty, per-emirate speed
+## M-4 — Micro-copy thin on return mechanics
 
-**Current copy:** *"14-day returns — try it risk-free,"* WhatsApp +971 58 515 6033, free delivery — but no return *mechanics*, no **warranty term**, and (post-fix) no per-emirate delivery speed.
+**Current copy:** *"14-day returns — try it risk-free,"* WhatsApp +971 58 515 6033 — but no return *mechanics* (how to start a return, who pays return shipping).
 
-**Problem:** "Try it risk-free" without "how do I return it / who pays return shipping" leaves the reassurance half-built. For a product whose whole pitch is magnet durability, the **absence of any warranty** is a notable gap.
+**Problem:** "Try it risk-free" without "how do I return it / who pays return shipping" leaves the reassurance half-built. **Confirmed: there is no warranty**, so the magnet-durability objection ("what if it stops holding?") can't be answered with one — it must be carried entirely by the 14-day returns plus, later, real UGC and a hold-strength demo.
 
-**Rewrite:** Add: *"Free returns within 14 days — WhatsApp us and we arrange pickup, no questions asked. Backed by a [X-month] magnet warranty."* Confirm and state per-emirate delivery times. **[VERIFY return-shipping policy and whether a warranty exists.]**
+**Rewrite:** Add: *"Free returns within 14 days — WhatsApp us and we arrange pickup, no questions asked."* **[VERIFY who pays return shipping before promising "free returns".]**
 
-**Rationale:** Concrete risk-reversal + a durability warranty directly answers the "what if the magnet fails?" objection that this product uniquely raises.
+**Rationale:** With no warranty, frictionless returns + visible proof are the *only* durability reassurances available, so make the return process explicit and effortless.
 
 ---
 
@@ -264,10 +264,9 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 - **V-1 — Live storefront reachability:** The 403 was this sandbox's egress proxy, **not** the store, so the live page could not be inspected from here. **Action:** open the live URL in a normal browser (plus an SEO/uptime tool) to confirm real customers, ad-preview crawlers, and Googlebot are not blocked.
 - **V-2 — Meta-ad → headline echo:** The brief requires the landing headline to echo the ad creative *exactly*. The ad wasn't available. **Action:** pull the live ad copy and match the H1 word-for-word to the ad's main promise.
 - **V-3 — Magnet type:** confirm the magnets are neodymium (image alt-text says so) before publishing the H-2 safety claim.
-- **V-4 — Warranty:** confirm whether a magnet/product warranty exists and its term (M-4).
 - **Storefront button label** (theme default vs. the rewritten CTA in C-4) and **review/UGC widget** presence.
 
-**Resolved in Phase 0:** delivery = next-day UAE-wide · installments = none (Tabby/Tamara unavailable) · compartment = dry only · the "403" = sandbox network policy, not the store.
+**Resolved:** delivery = next-day UAE-wide · installments = none (Tabby/Tamara unavailable) · compartment = dry only · **warranty = none** · the "403" = sandbox network policy, not the store.
 
 ---
 
@@ -297,4 +296,4 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 >
 > *Honest note:* works on standard ferromagnetic gym equipment; very light aluminium / non-ferrous machines won't hold it.
 
-*Remaining open items to confirm before publishing — **neodymium magnet type (V-3), warranty term (V-4), return-shipping mechanics, and live-page reachability (V-1)**. Phase 0 already locked delivery (next-day), installments (none), and compartment (dry only). Accuracy is the foundation every other persuasion technique sits on.*
+*Remaining open items to confirm — **neodymium magnet type (V-3), return-shipping mechanics, and live-page reachability (V-1)**. Phase 0 locked delivery (next-day), installments (none), compartment (dry only), and warranty (none). Accuracy is the foundation every other persuasion technique sits on.*

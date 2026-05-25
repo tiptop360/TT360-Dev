@@ -82,5 +82,5 @@ Magnetic Hands-Free Gym Bag — Sticks to Any Metal Rack
 ## Deliberately held for later phases (need open facts)
 - **UGC / reviews block (H-1)** — needs real customer reviews.
 - **Technical neodymium safety claim (H-2)** — current FAQ is truthful without naming the magnet type; strengthen once V-3 confirms neodymium.
-- **Warranty line (M-4)** — add once V-4 confirms whether a warranty exists.
+- **Warranty line (M-4)** — N/A: confirmed **no warranty**, so no warranty claim will be added; durability reassurance stays on the 14-day returns + proof.
 - **Magnet hold-strength demo image, flat-lay "what fits" image** — creative assets, not copy.
