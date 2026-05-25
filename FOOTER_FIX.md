@@ -35,7 +35,8 @@ Online Store → Themes → live theme → ⋯ → **Edit code** → `sections/f
 ## Staged via MCP — ready to publish (2026-05-25)
 The fix was applied to an **unpublished duplicate theme** via the Shopify Admin API (`themeFilesUpsert`), so it can go live with one Publish click — no hand-editing of code required.
 
-- **Duplicate theme (fix applied):** "Copy of TipTop360 | 2026-05-14" — `gid://shopify/OnlineStoreTheme/145722179699`, role UNPUBLISHED
+- **Prepared theme (fix applied):** "TipTop360 | 2026-05-25 (footer fixed)" — `gid://shopify/OnlineStoreTheme/145722179699`, role UNPUBLISHED (renamed from "Copy of TipTop360 | 2026-05-14")
+- **Publish status:** attempted via `themePublish` and **blocked by the Shopify-MCP safety layer** ("making a theme live must be done manually in Shopify admin"). No integration can publish — the Publish click is manual, by design.
 - **Live theme (untouched):** "TipTop360 | 2026-05-14" — `gid://shopify/OnlineStoreTheme/145467474035`
 
 **Validated before hand-off:**
@@ -50,7 +51,7 @@ The fix was applied to an **unpublished duplicate theme** via the Shopify Admin 
 - Newsletter bar (`newsletter-footer`) — re-enabled (`enable_newletter_footer: true`); "Subscrible" → "Subscribe" typo fixed. *Verify the "10% discount" offer is actually honored before relying on it.*
 - "Any Questions?" block (`text_6DjzyX`) — left disabled (duplicates the visible "Information" contact block).
 
-**To go live:** Themes → "Copy of TipTop360 | 2026-05-14" → **Preview** (confirm footer is solid navy, logo column shows, newsletter bar shows) → **Publish**.
+**To go live (manual, ~2 clicks):** Online Store → Themes → "TipTop360 | 2026-05-25 (footer fixed)" → **Preview** (confirm footer is solid navy, logo column shows, newsletter bar shows) → **Publish**. Then optionally delete the old "TipTop360 | 2026-05-14".
 
 **Caveats:**
 - Publishing swaps the entire live theme to this copy. If the live theme was edited after the duplicate was created, port those edits here first — or just make the one-word edit on the live theme instead.
