@@ -37,7 +37,8 @@
 | M-2 — price framing (replacement-cost) | ✅ Live |
 | M-3 — dropped "UAE's only" absolute | ✅ Live |
 | Metadata — tags + image alt-text cleaned | ✅ Live (GraphQL) |
-| H-1 — social proof / UGC | ⛔ Not published — fabricating reviews was declined; legitimate collection path proposed |
+| SEO meta description | ✅ Live (GraphQL) — removed false "wet/dry" / "weatherproof" / "UAE's only" / "shielded magnets"; rewritten accurate |
+| H-1 — social proof / UGC | ⛔ Not published — fabricating reviews declined; collection already runs in Klaviyo, real reviews to be added when available |
 | H-2 — magnet-safety wording | ✅ Live — confirmed **NOT** neodymium; accurate version (no magnet-type claim) stands |
 | M-4 — return mechanics | ✅ Live — "free return if it arrives damaged or faulty" (no warranty) |
 | V-1 — live-page reachability | 🔵 Verify in a real browser (sandbox can't reach the store) |
@@ -290,6 +291,8 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 - **Storefront button label** (theme default vs. the rewritten CTA in C-4) and **review/UGC widget** presence.
 
 **Resolved:** delivery = next-day UAE-wide · installments = none · compartment = dry only · **warranty = none** · **magnets = NOT neodymium** (so no magnet-type claim on the page) · returns = free if damaged/faulty · the "403" = sandbox network policy, not the store.
+
+**Phase 4 QA (2026-05-25):** live body proofread end-to-end — no residual template contamination, no claim/body mismatches, water claim consistent throughout. Title, handle, tags, image alt-text, and **SEO meta description** all checked and corrected. The SEO **title** ("Magnetic Gym Bag UAE | Hands-Free GymGear™ | TipTop360") was kept — keyword-strong and makes no false claims. Remaining items are **external-only** and need a real browser the sandbox can't reach: ad↔headline echo (V-2) and live-page reachability + mobile render (V-1).
 
 ---
 
