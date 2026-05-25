@@ -5,7 +5,20 @@
 - **Price:** AED 110 · Variants: Black, Gray · Status: Active
 - **Auditor role:** Direct-response copywriter, fitness accessories, UAE market (functional over aesthetic)
 - **Date:** 2026-05-25
-- **Source note:** The live URL returned **HTTP 403** to the fetch tool, so this audit was performed against the **Shopify Admin product record** (the source of truth that renders the page body). Storefront-only elements I could not see directly — the rendered Add-to-Cart button label, review widgets, badges, the theme's shipping/installment banners, and the meta-ad creative — are flagged as **[VERIFY]** rather than assumed.
+- **Source note:** This audit was performed against the **Shopify Admin product record** (the source of truth that renders the page body). The audit fetch tool's earlier "HTTP 403" was **not** the store — it was this sandbox's network egress proxy (`x-deny-reason: host_not_allowed`), which blocks every non-allowlisted host (example.com and cdn.shopify.com return the identical denial). The live storefront therefore can't be inspected or tested from this environment; storefront-only elements (rendered button label, review widgets, badges, theme banners, ad creative) remain **[VERIFY]**.
+
+---
+
+## Phase 0 verification log (updated 2026-05-25)
+
+| Item | Status | Resolution |
+|---|---|---|
+| Delivery SLA | ✅ Confirmed | **Next-day delivery, UAE-wide.** The lead is correct; the FAQ's "2–4 business days" is the error to fix (C-3). |
+| Tabby/Tamara installments | ✅ Confirmed | **Not available.** All installment copy removed from recommendations (C-4, M-2). |
+| Wet/dry compartment | ✅ Confirmed | **Dry compartment only** — no wet/dry. False claim removed from the lead (H-5). |
+| Live-page 403 | ✅ Diagnosed | Sandbox egress allowlist, **not** a store issue. Live store can't be tested from here — verify real-world bot/geo access from an external browser/tool (V-1). |
+| Magnet type (neodymium?) | ⚠️ Open | Product image alt-text says "neodymium," but no supplier spec confirmed. Treat as likely-neodymium; hard-confirm before publishing the safety claim (H-2 / V-3). |
+| Warranty term | ⚠️ Open | Not yet confirmed. Copy assumes **no stated warranty** until confirmed (M-4 / V-4). |
 
 ---
 
@@ -53,12 +66,12 @@ The word is everywhere it needs to be, so this is **not** a mandate failure. But
 | H-2 | 🟠 HIGH | Magnet safety answered, but vaguely — no neodymium spec, no card/phone-magstripe reassurance |
 | H-3 | 🟠 HIGH | Headline/H2 fail the 2-second "so what?" test and signal the wrong audience |
 | H-4 | 🟠 HIGH | Capacity is shown as raw cm only — no "what actually fits," and overclaim risk |
-| H-5 | 🟠 HIGH | Unsubstantiated claims: "wet/dry compartment" and "weatherproof" appear in the lead but vanish from the body |
+| H-5 | 🟠 HIGH | Lead claims a "wet/dry compartment" that doesn't exist (dry only) + "weatherproof" overclaim vs. body's "water-resistant" |
 | M-1 | 🟡 MEDIUM | Primary use case diluted; UAE-specific gym pains (sweat/heat, locker, car) underused |
-| M-2 | 🟡 MEDIUM | No price framing — innovation premium / replacement-cost / Tabby-Tamara installment missing |
+| M-2 | 🟡 MEDIUM | No price framing — innovation-premium / replacement-cost angle missing (installments confirmed unavailable) |
 | M-3 | 🟡 MEDIUM | "UAE's only" superlative is an unverified absolute claim |
-| M-4 | 🟡 MEDIUM | Micro-copy thin — return mechanics, warranty term, and per-emirate speed not specified |
-| V-1 | 🔵 VERIFY | Meta-ad → landing-page headline echo cannot be confirmed without the ad creative |
+| M-4 | 🟡 MEDIUM | Micro-copy thin — return mechanics and warranty term not specified |
+| V-1 | 🔵 VERIFY | Live storefront reachability + ad-headline echo + magnet type + warranty (see VERIFY section) |
 
 ---
 
@@ -102,10 +115,10 @@ The word is everywhere it needs to be, so this is **not** a mandate failure. But
 
 **Problem:** A flat contradiction on the same page — one of the highest-trust, highest-scrutiny facts a UAE shopper checks before COD checkout. Whichever is false, the buyer who notices stops trusting *every* claim on the page (including the safety claims). This is a conversion and a returns/complaints liability.
 
-**Rewrite:** Pick the truth and state it once, consistently, in both places. If next-day is real for Dubai only:
-> **Free delivery — next-day to Dubai, 2–3 days to other Emirates.** Cash on Delivery available.
+**Rewrite:** Confirmed fact — **next-day delivery, UAE-wide.** The lead is already correct; fix the FAQ to match. Replace the FAQ's *"Standard delivery takes 2-4 business days"* with:
+> **Free next-day delivery across the UAE.** Cash on Delivery available.
 
-**Rationale:** Specific, consistent delivery promises lift COD conversion in the UAE. Contradiction does the opposite. (Confirm the real SLA before publishing — see M-4.)
+**Rationale:** Specific, consistent delivery promises lift COD conversion in the UAE. A self-contradiction on the page's most-scrutinised fact does the opposite.
 
 ---
 
@@ -118,10 +131,9 @@ The word is everywhere it needs to be, so this is **not** a mandate failure. But
 
 **Rewrite (CTA zone):**
 - Button / lead CTA line: **"Get the Hands-Free Magnetic Bag — AED 110"**
-- Directly beneath: *"or 4 interest-free payments of **AED 27.50** with Tabby/Tamara"* **[VERIFY availability]**
-- Reassurance strip under button: *"✅ Free UAE delivery · ✅ Cash on Delivery · ✅ 14-day returns"*
+- Reassurance strip under button: *"✅ Free next-day UAE delivery · ✅ Cash on Delivery · ✅ 14-day returns"*
 
-**Rationale:** A value-loaded CTA + installment + risk-reversal stacked at the point of action is standard direct-response and especially effective in the UAE where Tabby/Tamara and COD are decisive. "Magnetic" stays in the CTA zone, satisfying the mandate.
+**Rationale:** A value-loaded CTA + risk-reversal stacked at the point of action is standard direct-response. With no installment option available, the decisive UAE levers are **COD + free next-day delivery + easy returns** — so lead with those. "Magnetic" stays in the CTA zone, satisfying the mandate.
 
 ---
 
@@ -187,17 +199,17 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 
 ---
 
-## H-5 — Lead claims features the body never substantiates
+## H-5 — Lead claims a feature that doesn't exist
 
 **Current copy:**
 > *(lead)* *"…**weatherproof**, with **wet/dry compartment**."*
 > Body bullets/specs mention only *"water-resistant fabric"* and *"dedicated pockets"* — **no wet/dry compartment, no weatherproofing detail**.
 
-**Problem:** Two meaningful claims are made once and then dropped. "Weatherproof" (in the lead) is a stronger claim than "water-resistant" (in the specs) — that's an inconsistency and likely an overclaim. A "wet/dry compartment" is a real gym selling point (sweaty clothes), but if it isn't shown or described in the body, the buyer assumes it doesn't exist — or worse, feels misled on arrival.
+**Problem:** **Confirmed in Phase 0: there is no wet/dry compartment — the bag has a dry compartment only.** So "wet/dry compartment" is a false claim and must be deleted. Separately, "weatherproof" (lead) is a stronger claim than "water-resistant" (specs) — an inconsistency and likely an overclaim.
 
-**Rewrite:** Make the lead and body agree on one accurate water claim ("water-resistant — wipes clean, shrugs off sweat and splashes"). If a wet/dry compartment genuinely exists, give it its own bullet + photo; if not, remove it from the lead.
+**Rewrite:** **Delete "wet/dry compartment" from the lead.** Make the lead and body agree on one accurate water claim: *"water-resistant — wipes clean, shrugs off sweat and splashes."*
 
-**Rationale:** Every claim in the lead must be paid off in the body. Unsupported claims read as either filler or bait.
+**Rationale:** A claimed compartment that doesn't exist is a returns-and-complaints liability and erodes trust in every other claim on the page. Every claim in the lead must be paid off in the body.
 
 ---
 
@@ -219,11 +231,11 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 
 **Current copy:** "AED 110," stated as a bare number.
 
-**Problem:** A novel mechanism at AED 110 needs context, or it's just a price to resist. There's no anchor, no replacement-cost logic, no installment.
+**Problem:** A novel mechanism at AED 110 needs context, or it's just a price to resist. There's no anchor and no replacement-cost logic. (Installments are confirmed **unavailable**, so that lever is off the table.)
 
-**Rewrite:** Near the price: *"AED 110 — or 4× AED 27.50 with Tabby/Tamara. One mount that keeps your gear off the floor for years, instead of replacing a worn-out floor bag every season."* **[VERIFY installment availability.]**
+**Rewrite:** Near the price: *"AED 110 — one mount that keeps your gear off the floor for years, instead of replacing a worn-out floor bag every season. Pay on delivery."*
 
-**Rationale:** Innovation-premium + replacement-cost framing + UAE-standard installments lowers the perceived cost at the decision point.
+**Rationale:** With no installment option, lean on innovation-premium + replacement-cost framing plus the COD reassurance UAE shoppers respond to, to lower perceived cost at the decision point.
 
 ## M-3 — "UAE's only" is an unverified absolute
 
@@ -247,13 +259,15 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 
 ---
 
-# 🔵 VERIFY (could not inspect from source data)
+# 🔵 VERIFY (still open after Phase 0)
 
-- **V-1 — Meta-ad → headline echo:** The brief requires the landing headline to echo the ad creative *exactly* (e.g. if the ad says "Never set your gear on the gym floor again," the H1 must repeat it). I could not see the ad. **Action:** pull the live ad copy and match the H1 word-for-word to the ad's main promise.
-- **Storefront button label** (theme default vs. the rewritten CTA in C-4).
-- **Review/UGC widget** presence on the rendered page (the product record carries none).
-- **Tabby/Tamara** availability and **theme installment/shipping banners**.
-- **Live page returned HTTP 403** to the audit fetch — worth checking whether the storefront is geo/bot-blocking, which would also block ad-traffic previews and some crawlers.
+- **V-1 — Live storefront reachability:** The 403 was this sandbox's egress proxy, **not** the store, so the live page could not be inspected from here. **Action:** open the live URL in a normal browser (plus an SEO/uptime tool) to confirm real customers, ad-preview crawlers, and Googlebot are not blocked.
+- **V-2 — Meta-ad → headline echo:** The brief requires the landing headline to echo the ad creative *exactly*. The ad wasn't available. **Action:** pull the live ad copy and match the H1 word-for-word to the ad's main promise.
+- **V-3 — Magnet type:** confirm the magnets are neodymium (image alt-text says so) before publishing the H-2 safety claim.
+- **V-4 — Warranty:** confirm whether a magnet/product warranty exists and its term (M-4).
+- **Storefront button label** (theme default vs. the rewritten CTA in C-4) and **review/UGC widget** presence.
+
+**Resolved in Phase 0:** delivery = next-day UAE-wide · installments = none (Tabby/Tamara unavailable) · compartment = dry only · the "403" = sandbox network policy, not the store.
 
 ---
 
@@ -262,7 +276,7 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 > **Magnetic Hands-Free Gym Bag — sticks to your rack, keeps your gear off the floor**
 >
 > **The Gym Bag That Sticks to Your Rack — Magnetic Mount, Hands-Free, Off the Dirty Floor**
-> *Snap it onto any metal machine and keep your phone, keys and bottle at arm's reach — never on a sweaty bench or the floor again. AED 110. Free delivery — next-day to Dubai, 2–3 days across the Emirates. Cash on Delivery available.*
+> *Snap it onto any metal machine and keep your phone, keys and bottle at arm's reach — never on a sweaty bench or the floor again. AED 110. Free next-day delivery across the UAE. Cash on Delivery available.*
 >
 > Mid-set, where does your phone go? On the floor. On a bench someone wants. In your pocket, digging in. The magnetic mount fixes that: the bag snaps onto any metal rack, machine or locker and holds 2.5 kg without slipping — so your essentials stay exactly where you can grab them, and off the dirty Dubai gym floor.
 >
@@ -279,9 +293,8 @@ Add a hold-strength demo image/GIF (bag loaded, stuck to a rack mid-air) as visu
 > **Safe for your phone and cards** — sealed neodymium magnets hold the bag to metal, not your devices; contactless cards are unaffected.
 >
 > **Get the Hands-Free Magnetic Bag — AED 110**
-> *or 4 interest-free payments of AED 27.50 with Tabby/Tamara*
-> ✅ Free UAE delivery · ✅ Cash on Delivery · ✅ 14-day free returns · ✅ WhatsApp +971 58 515 6033
+> ✅ Free next-day UAE delivery · ✅ Cash on Delivery · ✅ 14-day free returns · ✅ WhatsApp +971 58 515 6033
 >
 > *Honest note:* works on standard ferromagnetic gym equipment; very light aluminium / non-ferrous machines won't hold it.
 
-*All bracketed **[VERIFY]** items (next-day SLA, neodymium magnet type, Tabby/Tamara, warranty term, return-shipping mechanics) must be confirmed true before publishing — accuracy is the foundation every other persuasion technique sits on.*
+*Remaining open items to confirm before publishing — **neodymium magnet type (V-3), warranty term (V-4), return-shipping mechanics, and live-page reachability (V-1)**. Phase 0 already locked delivery (next-day), installments (none), and compartment (dry only). Accuracy is the foundation every other persuasion technique sits on.*
