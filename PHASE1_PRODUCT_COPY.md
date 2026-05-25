@@ -2,7 +2,12 @@
 
 This is the rewritten copy implementing the Phase 1 CRITICAL fixes (C-1, C-2, C-3, C-4, H-3) plus the confirmed Phase 0 facts (next-day delivery, no installments, dry-only, water-resistant). Phase 2/3 items are intentionally **not** here yet because they depend on still-open facts (real reviews for UGC, neodymium confirmation for the technical safety claim, warranty term).
 
-**Status:** awaiting approval to push to the live Shopify product (`gid://shopify/Product/8082816827507`). Nothing has been published to the live store yet.
+**Status:** ✅ PUBLISHED to the live Shopify product (`gid://shopify/Product/8082816827507`) on 2026-05-25 — both title and description are live.
+
+### Consistency leftovers found after publishing (copy is fixed, metadata is not)
+The body copy is clean, but two pieces of product **metadata** still carry the old/false claims and now contradict the live copy. Neither is editable via the update-product tool (no `tags` field; alt-text needs image re-add or a GraphQL media update), so they're logged as follow-ups:
+- **Tags** still include `Magnetic Closure` and `Waterproof Gym Bag` — contradict the "mount" relabel (C-2) and the "water-resistant" downgrade (H-5). Needs a GraphQL `productUpdate` on tags.
+- **Image alt-text** still contains the deleted false claim **"wet dry compartment"**, plus "neodymium closure" and "waterproof gym bag". These are SEO-indexed and read by screen readers, so the false "wet/dry" claim survives there. Needs alt-text edits (Shopify admin or `fileUpdate`/`productUpdateMedia`).
 
 ---
 
