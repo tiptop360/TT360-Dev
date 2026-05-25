@@ -134,7 +134,17 @@ run on checkout, so Ads *purchase* conversions won't fire from here. Stopgap onl
   (the leftover `dns-prefetch` line is already there).
 - Claude **cannot write to the live/MAIN theme via the Admin API** — that's
   blocked for safety. It *can* write the snippet into an **unpublished** theme
-  copy if you say which copy you publish from.
+  copy.
+
+**Applied (2026-05-25):** the snippet `snippets/google-tag.liquid` and the
+`{%- render 'google-tag' -%}` line (first element inside `<head>`) were written
+via the Admin API to the **unpublished** draft theme **"Copy of TipTop360 |
+2026-05-14"** (id `145722179699`). Verified byte-for-byte (theme.liquid md5
+`ac4d81a4…`, snippet md5 `4ed77c19…`). It is **not live yet** — preview at
+`/?preview_theme_id=145722179699`, then **Online Store → Themes → Publish**
+that theme to activate it. Remember: this publishes that draft's *entire*
+contents, and the head tag does not cover checkout conversions (use the Custom
+Pixel for those, and watch for double-counting with the Google & YouTube channel).
 
 ## Durable prevention
 Stop the tag living in `theme.liquid`. Pick one: **Custom Pixel** (above), let
