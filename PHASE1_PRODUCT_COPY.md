@@ -4,10 +4,12 @@ This is the rewritten copy implementing the Phase 1 CRITICAL fixes (C-1, C-2, C-
 
 **Status:** ✅ PUBLISHED to the live Shopify product (`gid://shopify/Product/8082816827507`) on 2026-05-25 — both title and description are live.
 
-### Consistency leftovers found after publishing (copy is fixed, metadata is not)
-The body copy is clean, but two pieces of product **metadata** still carry the old/false claims and now contradict the live copy. Neither is editable via the update-product tool (no `tags` field; alt-text needs image re-add or a GraphQL media update), so they're logged as follow-ups:
-- **Tags** still include `Magnetic Closure` and `Waterproof Gym Bag` — contradict the "mount" relabel (C-2) and the "water-resistant" downgrade (H-5). Needs a GraphQL `productUpdate` on tags.
-- **Image alt-text** still contains the deleted false claim **"wet dry compartment"**, plus "neodymium closure" and "waterproof gym bag". These are SEO-indexed and read by screen readers, so the false "wet/dry" claim survives there. Needs alt-text edits (Shopify admin or `fileUpdate`/`productUpdateMedia`).
+### Consistency leftovers — ✅ RESOLVED (2026-05-25, via GraphQL)
+Both metadata leftovers have been cleaned on the live product:
+- **Tags** (`productUpdate`): removed `Magnetic Closure` and `Waterproof Gym Bag`; added `Magnetic Mount`, `Water-Resistant Gym Bag`, `Hands-Free Gym Bag`. Final set keeps the SEO-relevant `Magnetic Gym Bag` / `Gym Bag Dubai` drivers.
+- **Image alt-text** (`fileUpdate`, 6 images): removed the false **"wet dry compartment"** claim and the "waterproof" / "neodymium closure" wording; reworded to "mounted" / "water-resistant". Two stray alts also tidied (leading-tab text and an empty alt).
+
+> Caveat: if any *automated (smart) collection* was keyed on the exact tags `Magnetic Closure` or `Waterproof Gym Bag`, the product would drop out of it. The main drivers (`Magnetic Gym Bag`, `Gym Bag Dubai`, product type) were preserved, so risk is low — worth a quick check in Shopify admin → Collections.
 
 ---
 
