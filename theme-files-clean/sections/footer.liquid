@@ -294,6 +294,26 @@
       padding: var(--footer-paddingtop-m) 0 var(--footer-paddingbottom-m) 0;
     }
   }
+  @media (max-width:767px){
+    .site-footer {
+      width: 100%;
+      overflow: hidden;
+    }
+    .site-footer .container,
+    .site-footer .container-fluid {
+      padding-left: 0;
+      padding-right: 0;
+      max-width: 100%;
+    }
+    .site-footer .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .site-footer .row > [class*="col-"] {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
 </style>
 {%- liquid
   assign bg_image = section.settings.image_bg
