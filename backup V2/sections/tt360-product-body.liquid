@@ -884,6 +884,42 @@
 </section>
 {% endif %}
 
+<!-- ═══ STEM SKILLS ═══ -->
+<section class="t-sec" aria-labelledby="t-skills-title">
+  <div class="t-wrap">
+    <div class="t-lbl t-ctr">{{ section.settings.skills_lbl | default: 'Real Learning' }}</div>
+    <h2 class="t-h2 t-ctr" id="t-skills-title">{{ section.settings.skills_title | default: '5 STEM Skills Your Child Develops' }}</h2>
+    <p class="t-sub t-ctr" style="margin-bottom:36px">{{ section.settings.skills_sub | default: 'Every drawing session builds real skills — not just screen time replacement.' }}</p>
+    <div class="t-feat-grid">
+      <div class="t-feat">
+        <div class="t-fi" aria-hidden="true">✋</div>
+        <div class="t-ft">Hand-Eye Coordination</div>
+        <div class="t-fd">Tracing guided lines builds precision control and spatial awareness.</div>
+      </div>
+      <div class="t-feat">
+        <div class="t-fi" aria-hidden="true">🔍</div>
+        <div class="t-ft">Pattern Recognition</div>
+        <div class="t-fd">Identifying and reproducing shapes, animals, and objects from templates.</div>
+      </div>
+      <div class="t-feat">
+        <div class="t-fi" aria-hidden="true">🧩</div>
+        <div class="t-ft">Sequential Thinking</div>
+        <div class="t-fd">Following step-by-step drawing instructions from start to finish.</div>
+      </div>
+      <div class="t-feat">
+        <div class="t-fi" aria-hidden="true">✏️</div>
+        <div class="t-ft">Fine Motor Control</div>
+        <div class="t-fd">Gripping markers, colouring within lines, building pencil readiness.</div>
+      </div>
+      <div class="t-feat">
+        <div class="t-fi" aria-hidden="true">🎨</div>
+        <div class="t-ft">Creative Expression</div>
+        <div class="t-fd">Personalising each drawing with their own colours and style.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ VIDEO ═══ -->
 {% if section.settings.video_enable %}
 <section class="t-vid-sec t-ctr" aria-labelledby="t-vid-title">
