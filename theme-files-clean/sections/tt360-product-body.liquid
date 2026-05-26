@@ -1528,9 +1528,9 @@
   function renderBmsItemPickers(qty){
     var container=document.getElementById('t-bms-items');
     if(!container)return;
-    var colors=getUniqueColors();
+    var colors=getUniqueColors().filter(function(c){return c&&c!=='Default Title';});
     var ages=getUniqueAges();
-    var hasColors=colors.length>=1; /* fix */
+    var hasColors=colors.length>0;
     var hasAges=ages.length>0;
     if(!hasColors&&!hasAges){container.style.display='none';return;}
     /* Initialise / resize bmsItems array */
