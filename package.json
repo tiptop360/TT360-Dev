@@ -13,7 +13,12 @@
     "dry-run": "node optimizer.js dry-run",
     "integrations": "node integrations/index.js",
     "webhook": "node integrations/index.js start-webhook",
-    "setup:klaviyo": "node integrations/index.js setup-klaviyo",
+    "setup:all": "node integrations/setup-all.js",
+    "setup:all:headless": "node integrations/setup-all.js --headless",
+    "setup:meta": "node integrations/meta/api-setup.js",
+    "setup:klaviyo": "node integrations/klaviyo/setup-flows.js",
+    "setup:klaviyo-browser": "node integrations/klaviyo/browser-setup.js",
+    "setup:klaviyo-browser:headless": "node integrations/klaviyo/browser-setup.js --headless",
     "theme:status": "node scripts/theme-release.mjs status",
     "theme:list": "node scripts/theme-release.mjs list",
     "theme:check": "node scripts/theme-release.mjs check",
@@ -27,7 +32,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "dotenv": "^16.6.1",
-    "express": "^4.21.0",
+    "express": "^4.22.2",
     "node-fetch": "^2.7.0",
     "playwright": "^1.60.0"
   }

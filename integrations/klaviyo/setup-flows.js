@@ -188,7 +188,7 @@ async function createOrderConfirmationFlow() {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-async function main() {
+export async function runKlaviyoSetup() {
   console.log('\n╔══════════════════════════════════════════════╗');
   console.log('║   TipTop360 — Klaviyo WhatsApp Setup         ║');
   console.log('╚══════════════════════════════════════════════╝');
@@ -217,7 +217,10 @@ async function main() {
   console.log('  5. Deploy the webhook server (integrations/whatsapp/server.js)\n');
 }
 
-main().catch(err => {
-  console.error('\n❌ Error:', err.message);
-  process.exit(1);
-});
+// Run directly
+if (process.argv[1].endsWith('setup-flows.js')) {
+  runKlaviyoSetup().catch(err => {
+    console.error('\n❌ Error:', err.message);
+    process.exit(1);
+  });
+}
