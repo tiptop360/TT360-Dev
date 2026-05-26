@@ -1,0 +1,678 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "177632189788922db7": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_efb7eef_V77Jw9": {
+          "type": "ai_gen_block_efb7eef",
+          "settings": {
+            "desktop_width_percent": 100,
+            "min_height": 600,
+            "background_color": "#eabb8d",
+            "copy_padding": 60,
+            "heading": "360° Clean in 60 Seconds,No Fuss, No Tears",
+            "heading_size": 44,
+            "heading_weight": "500",
+            "heading_color": "#15365a",
+            "heading_spacing": 20,
+            "subheading": "Clean teeth in just 60 seconds",
+            "subheading_size": 20,
+            "subheading_color": "#12395e",
+            "text": "<p>Experience 360° coverage with our innovative U-shaped toothbrush. Designed for efficiency and comfort, it cleans all surfaces simultaneously.<\/p>",
+            "text_size": 16,
+            "text_color": "#202025",
+            "text_spacing": 30,
+            "button_text": "Shop Now",
+            "button_link": "shopify:\/\/products\/kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift",
+            "button_text_size": 14,
+            "button_weight": "400",
+            "button_padding_v": 16,
+            "button_padding_h": 30,
+            "button_radius": 14,
+            "button_bg_color": "#f9655d",
+            "button_text_color": "#ffffff",
+            "button_hover_bg": "#12395e",
+            "button_hover_text": "#ffffff",
+            "button_spacing": 25,
+            "product_image": "shopify:\/\/shop_images\/Kids-toothbrush_kids-electric-toothbrush-u-shaped.webp",
+            "badge_1_enable": true,
+            "badge_1_text": "60 sec",
+            "badge_1_top": 20,
+            "badge_1_left": 15,
+            "badge_2_enable": true,
+            "badge_2_text": "360°",
+            "badge_2_top": 60,
+            "badge_2_left": 70,
+            "badge_text_size": 16,
+            "badge_weight": "600",
+            "badge_padding": 12,
+            "badge_radius": 20,
+            "badge_bg_color": "#ffffff",
+            "badge_text_color": "#12395e",
+            "mobile_copy_order": "1",
+            "mobile_image_order": "1",
+            "mobile_image_height": 250
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_57debae_qb3xed": {
+          "type": "ai_gen_block_57debae",
+          "settings": {
+            "title": "Best Kids Electric Toothbrush",
+            "text": "<p>Getting kids to brush properly is one of parenting's daily battles. This U-shaped kids' electric toothbrush changes that — wrapping around all teeth at once for a complete, hands-free clean in just 60 seconds. No fuss, no tears, no missed molars.Your child should have good oral health and no cavities; however, most children end up in a struggle trying to brush their teeth! A kids’ electric toothbrush has solved many of those difficulties. An electric toothbrush does everything right to make brushings more effective to help children brush their teeth easily! The U shaped electric toothbrush for kids has made it possible for children to practice good oral hygiene without the added work associated with conventional toothbrushes.<br\/><\/p>",
+            "text_alignment": "left",
+            "desktop_width_percent": 100,
+            "title_size": 36,
+            "title_weight": "700",
+            "title_color": "#15365a",
+            "title_spacing": 15,
+            "text_size": 16,
+            "text_color": "#333333",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_99de231_cEAfPE": {
+          "type": "ai_gen_block_99de231",
+          "settings": {
+            "box_1_title": "60s",
+            "box_1_text": "Full clean time",
+            "box_2_title": "360°",
+            "box_2_text": "Surface coverage",
+            "box_3_title": "2–12",
+            "box_3_text": "Years age range",
+            "box_4_title": "WATERPROOF",
+            "box_4_text": "Built to perform safely in wet conditions",
+            "desktop_width_percent": 100,
+            "gap": 20,
+            "padding": 15,
+            "text_alignment": "center",
+            "box_background": "#b1b1b1",
+            "border_color": "#e0e0e0",
+            "border_width": 1,
+            "border_radius": 8,
+            "title_color": "#0d3150",
+            "title_size": 18,
+            "title_weight": "600",
+            "title_spacing": 10,
+            "text_color": "#123a5e",
+            "text_size": 13
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_efb7eef_V77Jw9",
+        "ai_gen_block_57debae_qb3xed",
+        "ai_gen_block_99de231_cEAfPE"
+      ],
+      "settings": {}
+    },
+    "blocks_cdKNFG": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_15e7c06_YXzLaa": {
+          "type": "ai_gen_block_15e7c06",
+          "name": "Title and text",
+          "settings": {
+            "heading": "End the Brushing Battle",
+            "text": "<p>Is every morning a battle? Does your child disappear the moment they see a toothbrush? You are not alone — and this is exactly the problem the Kids U-Shaped Electric Toothbrush was designed to solve.<\/p><p>Unlike every standard toothbrush on the market, this U-shaped design wraps around all teeth at once, cleaning front, back, and biting surfaces simultaneously in a single 60-second automatic cycle. No scrubbing. No missed spots. No negotiating. Just place it in your child's mouth, press the button, and it does everything — leaving UAE parents with one less daily battle and their children with genuinely cleaner teeth.<\/p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "spacing": 15,
+            "padding_top": 20,
+            "padding_bottom": 20,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#0f6e56",
+            "text_color": "#202025",
+            "heading_size": 32,
+            "text_size": 16
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_15e7c06_Q3zCX6": {
+          "type": "ai_gen_block_15e7c06",
+          "name": "Title and text",
+          "settings": {
+            "heading": "Before & After — What Changes From Night One",
+            "text": "",
+            "desktop_width_percent": 100,
+            "text_alignment": "center",
+            "spacing": 15,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 24,
+            "text_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_15e7c06_YXzLaa",
+        "ai_gen_block_15e7c06_Q3zCX6"
+      ],
+      "name": "Title and text",
+      "settings": {}
+    },
+    "blocks_yPPdNQ": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_519f513_HmAjJ6": {
+          "type": "ai_gen_block_519f513",
+          "settings": {
+            "show_header": true,
+            "header_column_1": "Before",
+            "header_column_2": "After",
+            "header_bg_color": "#15365a",
+            "header_text_color": "#ffffff",
+            "header_font_size": 16,
+            "header_font_weight": "600",
+            "row_1_label": "Nightly brushing battle — running, hiding, crying",
+            "row_1_value": "Children ask to brush on their own",
+            "row_2_label": "15-second rushed brush, missing most teeth",
+            "row_2_value": "Full 60-second clean, every tooth, every time",
+            "row_3_label": "Sensitive gums irritated by hard bristles",
+            "row_3_value": "Soft silicone — zero discomfort, zero tears",
+            "row_4_label": "Parents scrubbing at awkward angles",
+            "row_4_value": "One button, hands-free, automatic",
+            "row_5_label": "Worrying about technique and missed spots",
+            "row_5_value": "Every surface cleaned simultaneously",
+            "row_6_label": "Morning routine running 10 minutes over",
+            "row_6_value": "Brushing done in 60 seconds flat",
+            "row_7_label": "",
+            "row_7_value": "",
+            "row_8_label": "",
+            "row_8_value": "",
+            "row_9_label": "",
+            "row_9_value": "",
+            "row_10_label": "",
+            "row_10_value": "",
+            "table_bg_color": "#e1f5ee",
+            "text_color": "#202025",
+            "text_font_size": 14,
+            "text_alignment": "center",
+            "cell_padding": 16,
+            "border_radius": 0,
+            "border_width": 1,
+            "border_color": "#e9e9e9",
+            "first_column_font_weight": "400",
+            "first_column_bg_enable": true,
+            "first_column_bg_color": "#fcebeb",
+            "enable_striped_rows": true,
+            "striped_row_color": "#e1f5ee",
+            "enable_hover": true,
+            "hover_color": "#f4f4f4",
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_519f513_HmAjJ6"
+      ],
+      "name": "Two column table",
+      "settings": {}
+    },
+    "blocks_XMUYq3": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_15e7c06_yK8iRa": {
+          "type": "ai_gen_block_15e7c06",
+          "settings": {
+            "heading": "Why Parents Choose It",
+            "text": "",
+            "desktop_width_percent": 100,
+            "text_alignment": "center",
+            "spacing": 15,
+            "padding_top": 20,
+            "padding_bottom": 20,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 26,
+            "text_size": 16
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_fa0ee33_mpV7QN": {
+          "type": "ai_gen_block_fa0ee33",
+          "name": "Text block",
+          "settings": {
+            "heading": "",
+            "text": "<p>This  Kids Electric Toothbrush has a U-shape. Unlike traditional toothbrushes, the U-shaped head covers every tooth simultaneously — top, bottom, and sides — with soft silicone bristles and gentle sonic vibrations. The result: a thorough clean in half the time, with zero brushing technique required from your child<br\/><\/p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "center",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "padding_top_mobile": 15,
+            "padding_bottom_mobile": 0,
+            "padding_horizontal_mobile": 15,
+            "heading_spacing": 20,
+            "paragraph_spacing": 15,
+            "heading_size": 30,
+            "heading_size_mobile": 24,
+            "text_size": 16,
+            "text_size_mobile": 14,
+            "line_height": 1.6,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_15e7c06_yK8iRa",
+        "ai_gen_block_fa0ee33_mpV7QN"
+      ],
+      "name": "Title and text",
+      "settings": {}
+    },
+    "1776331763b9153e7b": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "screenfree_intro_uae_2026_fQt3iU": {
+      "type": "screenfree-intro-uae-2026",
+      "name": "Screen-Free Intro UAE",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Kids-toothbrush_kids-electric-toothbrush-u-shaped.webp",
+        "heading": "",
+        "description": "<p><strong>Key Benefits:<\/strong><\/p><p># Cleans all teeth at once top, bottom, and sides<\/p><p># Full clean in just 60 seconds perfect for busy mornings<\/p><p># Ideal for kids who resist brushing no technique needed<\/p><p># Gentle enough for daily use, even with sensitive gums<br\/><br\/><strong>Advanced U-Shaped Technology<\/strong><\/p><p>The U-shaped mouthpiece is designed to fit naturally around your child's teeth, cleaning every surface in a single motion. Soft silicone bristles vibrate gently to dislodge plaque without any scrubbing pressure making it effective and comfortable at the same time. Parents across the UAE are adopting this design as it removes the guesswork from children's brushing routines entirely.<\/p>",
+        "image_position": "left"
+      }
+    },
+    "1776328532c1457e6b": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_fa0ee33_Fr6PGk": {
+          "type": "ai_gen_block_fa0ee33",
+          "name": "Text block",
+          "settings": {
+            "heading": "<strong>Perfect for Sensitive Teeth<\/strong>",
+            "text": "<p>   If your child experiences discomfort              with regular toothbrushes, this is the solution. The even distribution of gentle vibrations means no concentrated scrubbing pressure on sensitive gums or enamel.<\/p><ul><li>Gentle vibration mode no harsh bristle friction<\/li><li>Even pressure across all teeth simultaneously<\/li><li>Soft silicone kinder to gums than nylon bristles<br\/><\/li><\/ul><p><\/p>",
+            "desktop_width_percent": 75,
+            "text_alignment": "left",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "padding_top_mobile": 15,
+            "padding_bottom_mobile": 15,
+            "padding_horizontal_mobile": 40,
+            "heading_spacing": 20,
+            "paragraph_spacing": 20,
+            "heading_size": 22,
+            "heading_size_mobile": 22,
+            "text_size": 15,
+            "text_size_mobile": 14,
+            "line_height": 2,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_90f7e7f_CF98tX": {
+          "type": "ai_gen_block_90f7e7f",
+          "settings": {
+            "desktop_width_percent": 100,
+            "wrapper_padding": 40,
+            "wrapper_border_radius": 16,
+            "card_padding": 30,
+            "card_border_radius": 12,
+            "card_gap": 30,
+            "content_gap": 15,
+            "items_gap": 10,
+            "price_gap": 10,
+            "price_section_width": 180,
+            "wrapper_bg_color": "#12395e",
+            "card_bg_color": "#b8f4d4",
+            "badge_text": "BEST VALUE — 51% OFF",
+            "badge_bg_color": "#f9655d",
+            "badge_text_color": "#ffffff",
+            "badge_font_size": 12,
+            "badge_font_weight": "700",
+            "badge_padding_vertical": 6,
+            "badge_padding_horizontal": 15,
+            "badge_border_radius": 20,
+            "title": "Complete Kids Dental Care Bundle",
+            "title_color": "#12395e",
+            "title_font_size": 28,
+            "title_font_weight": "700",
+            "description": "Everything your child needs for healthy teeth and happy smiles — all in one bundle.",
+            "description_color": "#202025",
+            "description_font_size": 15,
+            "item_1": "U-Shaped Electric Toothbrush",
+            "item_2": "Strawberry Foam Toothpaste",
+            "item_3": "2 Extra Brush Heads",
+            "item_4": "Free UAE Delivery",
+            "bullet_icon": "✓",
+            "items_color": "#202025",
+            "items_font_size": 15,
+            "button_text": "Get the Bundle — AED 150",
+            "button_link": "shopify:\/\/products\/kids-dental-care-monthly-bundle-offer-51",
+            "button_bg_color": "#12395e",
+            "button_text_color": "#ffffff",
+            "button_hover_bg_color": "#0d2a47",
+            "button_hover_text_color": "#ffffff",
+            "button_font_size": 16,
+            "button_font_weight": "600",
+            "button_padding_vertical": 15,
+            "button_padding_horizontal": 30,
+            "button_border_radius": 8,
+            "original_price_text": "Value: AED 307",
+            "original_price_color": "#7e7e84",
+            "original_price_font_size": 14,
+            "sale_price_text": "AED 150",
+            "sale_price_color": "#12395e",
+            "sale_price_font_size": 42,
+            "sale_price_font_weight": "700",
+            "savings_text": "You save AED 157",
+            "savings_bg_color": "#f9655d",
+            "savings_text_color": "#ffffff",
+            "savings_font_size": 13,
+            "savings_font_weight": "600",
+            "savings_padding_vertical": 6,
+            "savings_padding_horizontal": 15,
+            "savings_border_radius": 20,
+            "delivery_text": "🚚 Next-day delivery across the UAE",
+            "delivery_color": "#202025",
+            "delivery_font_size": 13
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_fa0ee33_Fr6PGk",
+        "ai_gen_block_90f7e7f_CF98tX"
+      ],
+      "settings": {}
+    },
+    "blocks_4GG4RW": {
+      "type": "_blocks",
+      "name": "Title and text",
+      "settings": {}
+    },
+    "blocks_mYDRqm": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4580350_X3tj8z": {
+          "type": "ai_gen_block_4580350",
+          "settings": {
+            "box_1_title": "Extra Soft & Safe for Kids",
+            "box_1_text": "<p>Safety comes first. Every material in this toothbrush has been selected with children in mind.<\/p><ul><li>100% BPA-free silicone brush head<\/li><li>Child-safe design no sharp parts or hard edges<\/li><li>Soft enough for baby teeth and first molars<\/li><li>Easy to clean and replace<\/li><\/ul>",
+            "box_2_title": "Rechargeable & Long-Lasting",
+            "box_2_text": "<p>No more buying batteries. This toothbrush charges via USB, so you can power it up from any USB port, power bank, or wall adapter at home, in a hotel, or on a family trip.<\/p><ul><li>Waterproof Built to perform safely in wet conditions<\/li><li>Long battery life weeks between charges with daily use<\/li><li>Compact and travel friendly<\/li><\/ul>",
+            "desktop_width_percent": 100,
+            "section_padding": 20,
+            "gap_between_boxes": 30,
+            "gap_mobile": 15,
+            "box_padding": 30,
+            "border_radius": 8,
+            "border_width": 1,
+            "border_color": "#e0e0e0",
+            "box_background_color": "#ffffff",
+            "background_color": "#f5f5f5",
+            "text_alignment": "center",
+            "title_size": 24,
+            "title_weight": "600",
+            "title_margin_bottom": 15,
+            "title_color": "#12395e",
+            "text_size": 16,
+            "text_color": "#202025",
+            "list_style": "disc"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4580350_X3tj8z"
+      ],
+      "name": "Two box text section",
+      "settings": {}
+    },
+    "blocks_hrEhXe": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_fa0ee33_d4UGEw": {
+          "type": "ai_gen_block_fa0ee33",
+          "settings": {
+            "heading": "Makes Brushing Fun & Stress-Free",
+            "text": "<p>Kids resist brushing when it feels like a chore. The hands-free U-shaped design turns it into something effortless — your child simply bites down, presses the button, and the brush does the rest. It's quick, it's novel, and most kids actually enjoy it.<\/p><p># No technique to learn — just bite and press<\/p><p># Done in under 60 seconds — no more bedtime battles<\/p><p>#Builds a consistent brushing habit naturally<\/p>",
+            "desktop_width_percent": 95,
+            "text_alignment": "left",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "padding_top_mobile": 20,
+            "padding_bottom_mobile": 20,
+            "padding_horizontal_mobile": 40,
+            "heading_spacing": 20,
+            "paragraph_spacing": 15,
+            "heading_size": 30,
+            "heading_size_mobile": 24,
+            "text_size": 15,
+            "text_size_mobile": 14,
+            "line_height": 1.6,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_4580350_hm8Tqw": {
+          "type": "ai_gen_block_4580350",
+          "name": "Two box text section",
+          "settings": {
+            "box_1_title": "Why Parents Love It",
+            "box_1_text": "<p><\/p><ul><li>Children aged 2–12 (toddlers through pre-teens)<\/li><li>Kids with sensitive gums or dental anxiety<\/li><li>Parents looking for a faster, easier brushing solution<\/li><li>Families who travel frequently and need a convenient charger<\/li><\/ul>",
+            "box_2_title": "Who Is It For?",
+            "box_2_text": "<ul><li>Saves time and effort<\/li><li>Improves productivity<\/li><li>Long-lasting performance<\/li><li>Great value for money<\/li><\/ul>",
+            "desktop_width_percent": 100,
+            "section_padding": 40,
+            "gap_between_boxes": 30,
+            "gap_mobile": 20,
+            "box_padding": 30,
+            "border_radius": 8,
+            "border_width": 1,
+            "border_color": "#e0e0e0",
+            "box_background_color": "#ffffff",
+            "background_color": "#f5f5f5",
+            "text_alignment": "left",
+            "title_size": 24,
+            "title_weight": "600",
+            "title_margin_bottom": 15,
+            "title_color": "#12395e",
+            "text_size": 16,
+            "text_color": "#202025",
+            "list_style": "disc"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_fa0ee33_d4UGEw",
+        "ai_gen_block_4580350_hm8Tqw"
+      ],
+      "name": "Text block",
+      "settings": {}
+    },
+    "blocks_e9aMkM": {
+      "type": "_blocks",
+      "name": "Title and text",
+      "settings": {}
+    },
+    "blocks_ejtWJG": {
+      "type": "_blocks",
+      "name": "Title and text",
+      "settings": {}
+    },
+    "1776064870b1f29670": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "1776064944e86eef48": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_bb36567_LznKRY": {
+          "type": "ai_gen_block_bb36567",
+          "settings": {
+            "show_icon": true,
+            "title": "Upgrade your child's oral care today",
+            "text": "<p>If you're looking for thebest kids electric toothbrush in Dubai, This U shaped solutiondelivers everything comfort, speed, and clinically effective cleaning in one simple device.<br\/><br\/><\/p>",
+            "product": "kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift",
+            "button_text": "Shop Now",
+            "desktop_width_percent": 100,
+            "text_alignment": "center",
+            "content_max_width": 700,
+            "padding_vertical": 60,
+            "padding_horizontal": 30,
+            "border_radius": 16,
+            "icon_size": 60,
+            "icon_color": "#12395e",
+            "icon_spacing": 20,
+            "title_size": 36,
+            "title_weight": "600",
+            "title_color": "#12395e",
+            "title_spacing": 20,
+            "text_size": 16,
+            "text_color": "#202025",
+            "text_spacing": 30,
+            "button_text_size": 16,
+            "button_text_weight": "600",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 28,
+            "button_bg_color": "#f9655d",
+            "button_text_color": "#ffffff",
+            "button_bg_hover_color": "#12395e",
+            "button_text_hover_color": "#ffffff",
+            "background_color": "#f5f9fc"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_bb36567_LznKRY"
+      ],
+      "settings": {}
+    },
+    "line_cN6GeE": {
+      "type": "line",
+      "name": "Divider",
+      "settings": {
+        "animation": "",
+        "paddingsection": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "bgsection": "#ffffff",
+        "setwidth": "container",
+        "bgborder": "#dddddd",
+        "wborder": "1px"
+      }
+    },
+    "faq_accordion_wPATVY": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_e9GbV4": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "How long does my child need to brush?",
+            "faq_des": "<p>Just 30 to 60 seconds is all it takes. Because the U-shaped head cleans all teeth simultaneously, it achieves in one minute what a manual toothbrush takes two to three minutes to accomplish.<br\/><br\/><\/p>"
+          }
+        },
+        "faq_FBNJBG": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Is this toothbrush BPA-free?",
+            "faq_des": "<p>Yes. All materials — including the silicone brush head and handle — are 100% BPA-free and certified safe for children.<br\/><br\/><\/p>"
+          }
+        },
+        "faq_RGydNA": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "What age is this toothbrush suitable for?",
+            "faq_des": "<p>This toothbrush is designed for children aged 2 to 12. It's available in different size variants to fit toddler and older child mouth sizes comfortably.<br\/><br\/><\/p>"
+          }
+        },
+        "faq_wa3Kjh": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "Is it safe for kids with sensitive gums?",
+            "faq_des": "<p>Yes. The soft silicone bristles and gentle vibration mode are specifically designed to be kind to sensitive gums and young enamel. There's no hard scrubbing — just even, gentle vibration across all surfaces.<br\/><br\/><\/p>"
+          }
+        },
+        "faq_iHLNRF": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "How long does the battery last?",
+            "faq_des": "<p>The toothbrush is USB rechargeable and delivers weeks of use on a single charge with typical twice-daily brushing. No batteries required.<br\/><br\/><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_e9GbV4",
+        "faq_FBNJBG",
+        "faq_RGydNA",
+        "faq_wa3Kjh",
+        "faq_iHLNRF"
+      ],
+      "name": "Faqs Accordion",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "bgsection": "#ffffff",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_pos": "center center",
+        "title_top": "",
+        "title": "FAQ",
+        "des": "",
+        "align-heading": "center",
+        "title_size": "h4",
+        "e_first_open": false,
+        "e_reverse": true,
+        "e_small": true,
+        "left_html": "",
+        "e_right": false,
+        "paddingsection": "60px 0px 60px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "177632189788922db7",
+    "blocks_cdKNFG",
+    "blocks_yPPdNQ",
+    "blocks_XMUYq3",
+    "1776331763b9153e7b",
+    "screenfree_intro_uae_2026_fQt3iU",
+    "1776328532c1457e6b",
+    "blocks_4GG4RW",
+    "blocks_mYDRqm",
+    "blocks_hrEhXe",
+    "blocks_e9aMkM",
+    "blocks_ejtWJG",
+    "1776064870b1f29670",
+    "1776064944e86eef48",
+    "line_cN6GeE",
+    "faq_accordion_wPATVY"
+  ]
+}

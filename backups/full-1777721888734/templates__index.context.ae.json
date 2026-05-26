@@ -1,0 +1,15 @@
+{
+  "parent": "index.json",
+  "context": {
+    "market": "ae"
+  },
+  "sections": {
+    "product_list_swiper_dDU8F6": {
+      "settings": {
+        "animation": "",
+        "e_size": "contain"
+      },
+      "blocks": {}
+    }
+  }
+}

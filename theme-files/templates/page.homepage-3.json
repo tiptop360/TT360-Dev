@@ -1,0 +1,360 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "advanced_content_zQDAA8": {
+      "type": "advanced-content",
+      "blocks": {
+        "html_6A9nxf": {
+          "type": "html",
+          "settings": {
+            "code": "",
+            "width": "100%",
+            "align": "auto"
+          }
+        }
+      },
+      "block_order": [
+        "html_6A9nxf"
+      ],
+      "name": "Advanced Content",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "text_color": "rgba(0,0,0,0)",
+        "bgsection": "#ffffff",
+        "rangebg": 0,
+        "bgbefore": "rgba(0,0,0,0)",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_position": "center center",
+        "zindex": "",
+        "title_top": "",
+        "title": "",
+        "des": "",
+        "align-heading": "center",
+        "padding": true,
+        "gutter_padding": 30,
+        "col_center": false,
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "177365670444346f79": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "blocks_nz33HD": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_fb3bcfe_dFqPDG": {
+          "type": "ai_gen_block_fb3bcfe",
+          "settings": {
+            "slider_height": 500,
+            "slider_height_mobile": 250,
+            "desktop_width_percent": 100,
+            "autoplay": true,
+            "autoplay_speed": 5,
+            "image_1": "shopify://shop_images/WhatsApp_Image_2026-04-01_at_4.02.35_PM.jpg",
+            "url_1": "shopify://products/magnetic-gym-bag-uae-gymgear-tiptop360",
+            "image_2": "shopify://shop_images/Compact_magnetic_fitness_bag_with_bottle_holder.png",
+            "url_2": "shopify://products/magnetic-gym-bag-uae-gymgear-tiptop360",
+            "image_3": "shopify://shop_images/Magnetic_Gym-bag.webp",
+            "url_3": "shopify://products/magnetic-gym-bag-uae-gymgear-tiptop360",
+            "image_4": "shopify://shop_images/Gym-bag-magnetic-gym-bag-premium-gym-bag-gym-bag-dubai-compact-gym-bag.png",
+            "url_4": "shopify://products/magnetic-gym-bag-uae-gymgear-tiptop360",
+            "image_5": "shopify://shop_images/Magnetic_Gym_Bag_-_Hands-Free_Design.jpg",
+            "url_5": "shopify://products/magnetic-gym-bag-uae-gymgear-tiptop360",
+            "show_arrows": true,
+            "nav_size": 50,
+            "nav_offset": 20,
+            "nav_opacity": 0.8,
+            "nav_bg_color": "#ffffff",
+            "nav_hover_bg_color": "#f9655d",
+            "nav_icon_color": "#12395e",
+            "show_dots": true,
+            "dot_size": 12,
+            "dots_offset": 20,
+            "dot_color": "#ffffff",
+            "dot_active_color": "#f9655d"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_fb3bcfe_dFqPDG"
+      ],
+      "name": "Image slider",
+      "settings": {}
+    },
+    "screenfree_intro_uae_2026_Vq9qGD": {
+      "type": "screenfree-intro-uae-2026",
+      "name": "Screen-Free Intro UAE",
+      "settings": {
+        "image": "shopify://shop_images/32.png",
+        "heading": "Magnetic Gym Bag in UAE",
+        "description": "<p>This Magnetic Gym Bag is perfect for new fitness junkies. This sophisticated bag offers an easy way to hold your important things close to you at all times, by attaching to any metal workout apparatus in your gym, along with lockers or shelves. No longer will you have to drop all your stuff on the dirty ground or be digging through all your things searching for something while waiting for your turn.<br/><br/>This bag is extremely durable (constructed out of very durable material) and has enough interior space to store everything you are frequently using while working out including your phone, water bottle, keys, and other accessories. Gym-goers, athletes, and everyone who enjoys working out where hygienic and convenient products are available will love this bag.</p><h3></h3><h3>FEATURES</h3><ul><li>AI Voice Recording</li><li>Strong Magnetic Attachment</li><li>Hands-Free Gym Storage</li><li>Water Bottle Holder</li><li>Multi-Pocket Organization</li><li>Durable & Sweat-Resistant Material</li><li>Compact & Lightweight Design</li><li>Easy Access During Workouts</li></ul><p></p>",
+        "image_position": "left"
+      }
+    },
+    "rich_text_6yqtcD": {
+      "type": "rich-text",
+      "name": "Rich text",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "bgsection": "#ffffff",
+        "gradient_bg": "",
+        "title_color": "rgba(0,0,0,0)",
+        "title_top": "",
+        "title": "🛒 Brilliant Smart Gym Bag",
+        "text": "<p>Trusted by 50,000+ UAE Families</p><p></p><p>We search the world for innovative, problem-solving products that actually work.<br/>Curated. Tested. Trusted. Delivered fast to your door.</p>",
+        "align-heading": "center",
+        "align-content": "center",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "featured_blog_posts_EJEmTQ": {
+      "type": "featured-blog-posts",
+      "name": "Featured blog posts",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "height_adapt": "750",
+        "enable_btn_blog": true,
+        "enable_btn_line": false,
+        "enable_date": true,
+        "enable_tag": true,
+        "enable_comment": true,
+        "enable_author": true,
+        "enable_short": true,
+        "bgsection": "rgba(0,0,0,0)",
+        "clsection": "rgba(0,0,0,0)",
+        "arrows": true,
+        "dots": false,
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "blocks_JrVRRb": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4a30c28_9nK9nD": {
+          "type": "ai_gen_block_4a30c28",
+          "name": "Icon boxes",
+          "settings": {
+            "desktop_width_percent": 100,
+            "columns_desktop": "4",
+            "columns_mobile": "2",
+            "gap": 24,
+            "gap_mobile": 16,
+            "alignment": "center",
+            "padding_vertical": 40,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "box_padding": 24,
+            "box_background_color": "#f9f9f9",
+            "border_radius": 8,
+            "hover_lift": 4,
+            "icon_size": 60,
+            "icon_size_mobile": 50,
+            "icon_padding": 12,
+            "icon_spacing": 16,
+            "icon_color": "#12395e",
+            "icon_background_color": "#e9f4ff",
+            "icon_border_radius": 50,
+            "title_size": 18,
+            "title_size_mobile": 16,
+            "title_weight": "500",
+            "title_color": "#12395e",
+            "box_1_title": "✓ Free UAE Delivery on 100+ AED",
+            "box_1_icon": "truck",
+            "box_2_title": "✓ Secure Checkout (SSL)",
+            "box_2_icon": "check",
+            "box_3_title": "✓ 30-Day Money-Back Guarantee",
+            "box_3_icon": "clock",
+            "box_4_title": "✓ Cash on Delivery",
+            "box_4_icon": "tag"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_4a8a5f2_GxdPij": {
+          "type": "ai_gen_block_4a8a5f2",
+          "name": "Paragraph",
+          "settings": {
+            "paragraph_text": "<p>✓ Dubai Municipality & Health Department Approved<br/>✓ Next Day Delivery | ✓ 24/7 WhatsApp Support<br/><br/></p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "center",
+            "font_size": 16,
+            "font_size_mobile": 14,
+            "line_height": 1.6,
+            "text_color": "#202025",
+            "background_color": "",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_horizontal": 0,
+            "border_radius": 0
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_651033a_xG8Chc": {
+          "type": "ai_gen_block_651033a",
+          "name": "Icon boxes",
+          "settings": {
+            "box_1_title": "About Us",
+            "box_1_description": "Learn more about our story and mission",
+            "box_1_url": "shopify://pages/about-us-magnetic-gym-bag-smart-gym-storage-by-tiptop360",
+            "box_2_title": "Features",
+            "box_2_description": "Discover what makes us unique",
+            "box_2_url": "shopify://pages/seo-magnetic-gym-bag-smart-gym-storage-by-tiptop360",
+            "desktop_width_percent": 100,
+            "gap": 30,
+            "alignment": "center",
+            "padding": 30,
+            "border_radius": 8,
+            "border_width": 1,
+            "background_color": "#ffffff",
+            "border_color": "#e0e0e0",
+            "hover_lift": 5,
+            "hover_background_color": "#f9f9f9",
+            "hover_border_color": "#12395e",
+            "icon_size": 50,
+            "icon_spacing": 20,
+            "icon_color": "#12395e",
+            "hover_icon_color": "#f9655d",
+            "title_size": 20,
+            "title_weight": "600",
+            "title_spacing": 10,
+            "title_color": "#12395e",
+            "hover_title_color": "#12395e",
+            "description_size": 14,
+            "description_color": "#202025",
+            "hover_description_color": "#202025"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_9a643e9_K8wzMq": {
+          "type": "ai_gen_block_9a643e9",
+          "name": "Dual button links",
+          "settings": {
+            "button_1_text": "Learn More",
+            "button_1_link": "",
+            "button_1_bg_color": "#12395e",
+            "button_1_text_color": "#ffffff",
+            "button_1_hover_bg_color": "#f9655d",
+            "button_1_hover_text_color": "#ffffff",
+            "button_2_text": "Shop Now",
+            "button_2_link": "",
+            "button_2_bg_color": "#f9655d",
+            "button_2_text_color": "#ffffff",
+            "button_2_hover_bg_color": "#12395e",
+            "button_2_hover_text_color": "#ffffff",
+            "alignment": "center",
+            "button_gap": 15,
+            "stack_on_mobile": true,
+            "desktop_width_percent": 100,
+            "button_font_size": 14,
+            "button_font_weight": "500",
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 20,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 28
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4a30c28_9nK9nD",
+        "ai_gen_block_4a8a5f2_GxdPij",
+        "ai_gen_block_651033a_xG8Chc",
+        "ai_gen_block_9a643e9_K8wzMq"
+      ],
+      "name": "Magnetic gym bag",
+      "settings": {}
+    },
+    "kids_brushing_routine_ktNgVE": {
+      "type": "kids-brushing-routine",
+      "blocks": {
+        "routine_FDCikH": {
+          "type": "routine",
+          "settings": {
+            "heading": "Benefits for Gym Users A magnetic gym bag",
+            "items": "has multiple perkslike holding items above the floor. \nIt places gear within reach without needing to move around.\n This keeps the space tidy during sessions. \nIt shields phones and wallets from scratches.\n Doesn't a messy gym feel better with things neatly placed?"
+          }
+        },
+        "checklist_iTn8yc": {
+          "type": "checklist",
+          "settings": {
+            "heading": "Key Features of Magnetic Gym Bags",
+            "items": "agnetic gym bags offer many useful qualities for people who work out regularly. \nSticking to metal machines is simple thanks to powerful magnets."
+          }
+        }
+      },
+      "block_order": [
+        "routine_FDCikH",
+        "checklist_iTn8yc"
+      ],
+      "name": "Kids Brushing Routine",
+      "settings": {
+        "section_padding": "60px 20px"
+      }
+    },
+    "uae_screenfree_cta_2026_RXkWMg": {
+      "type": "uae-screenfree-cta-2026",
+      "name": "UAE Screen-Free CTA",
+      "settings": {
+        "heading": "Make Magnetic Gym Bag UAE",
+        "button_text": "Shop Magnetic Gym Bag UAE",
+        "button_link": "shopify://products/magnetic-gym-bag-uae-gymgear-tiptop360",
+        "bg_color": "#ffffff",
+        "button_bg": "#12395e",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "line_cN6GeE": {
+      "type": "line",
+      "name": "Divider",
+      "settings": {
+        "animation": "",
+        "paddingsection": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "bgsection": "#ffffff",
+        "setwidth": "container",
+        "bgborder": "#dddddd",
+        "wborder": "1px"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "advanced_content_zQDAA8",
+    "177365670444346f79",
+    "blocks_nz33HD",
+    "screenfree_intro_uae_2026_Vq9qGD",
+    "rich_text_6yqtcD",
+    "featured_blog_posts_EJEmTQ",
+    "blocks_JrVRRb",
+    "kids_brushing_routine_ktNgVE",
+    "uae_screenfree_cta_2026_RXkWMg",
+    "line_cN6GeE"
+  ]
+}

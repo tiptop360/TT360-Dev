@@ -1,0 +1,330 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360-product-body": {
+      "type": "tt360-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "text": "🧲 Hands-Free Magnetic",
+            "style": "green"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "text": "💧 Weatherproof",
+            "style": "orange"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "text": "🏋️ Gym to Street",
+            "style": "navy"
+          }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": {
+            "icon": "📦",
+            "label": "Free Next Day Delivery"
+          }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": {
+            "icon": "💵",
+            "label": "Cash on Delivery"
+          }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔄",
+            "label": "14-Day Returns"
+          }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔒",
+            "label": "Secure Checkout"
+          }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🧲",
+            "title": "Snaps to Any Metal Surface",
+            "desc": "Powerful magnets grip any gym rack, machine, or locker — your bag never touches the floor again."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "💧",
+            "title": "Weatherproof & Splash-Resistant",
+            "desc": "Built for UAE sweat, rain, and pool days — inside and outside the gym."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "👜",
+            "title": "Wet/Dry Compartment",
+            "desc": "Sweaty gear separated from your phone, keys, and essentials — always."
+          }
+        },
+        "hl_4": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🎽",
+            "title": "Unisex — Black & Gray",
+            "desc": "Sleek, compact design that looks great on every gym-goer. UAE's #1 gifting choice."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🧲",
+            "title": "Magnetic Attachment",
+            "desc": "Snaps to any metal rack, machine, or locker in one click."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "💧",
+            "title": "Weatherproof Build",
+            "desc": "Rain, sweat, pool — built for every UAE environment."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "👜",
+            "title": "Wet/Dry Separation",
+            "desc": "Clean gear stays clean, always — no cross-contamination."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎽",
+            "title": "Unisex Design",
+            "desc": "Black or Gray — looks sharp on everyone."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "📦",
+            "title": "Multi-Purpose",
+            "desc": "Gym, office, school run, day trips — one bag for all."
+          }
+        },
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Snap It On",
+            "desc": "The magnets click onto any metal gym rack, machine, or locker in one second."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Load Your Essentials",
+            "desc": "Phone, keys, towel, bottle, headphones — everything in reach at exactly the right height."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Train Hands-Free",
+            "desc": "Your bag stays put through every set. No straps. No floor contact. No germs."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "Detach & Go",
+            "desc": "One pull and you're out the door — cleaner, faster, smarter."
+          }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "I used to waste so much time looking for my bag between sets. This just clips on and stays. Every gym-goer in Dubai needs one.",
+            "name": "Nour A.",
+            "location": "Dubai · GymGear",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Got the gray one — quality is excellent and it holds more than you'd expect. Came next day with COD. Couldn't be easier.",
+            "name": "Omar H.",
+            "location": "Abu Dhabi · GymGear",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Finally a bag that doesn't touch the floor. The magnetic clip is super strong — I tried shaking it off the machine and it held perfectly.",
+            "name": "Layla M.",
+            "location": "Sharjah · GymGear",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "What is a magnetic gym bag and how does GymGear work?",
+            "answer": "<p>GymGear has powerful neodymium magnets built into the back panel that snap securely to any metal gym rack, machine, or locker. Your bag stays off dirty floors and at perfect grab height while you train — no hooks, no straps, no setup.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Is GymGear only for the gym, or can I use it outdoors?",
+            "answer": "<p>GymGear is built for multi-purpose use — gym, outdoor training, pool, office runs, school pickup. The weatherproof shell handles UAE rain, humidity, and sweat without a second thought.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How much can the GymGear Magnetic Bag hold?",
+            "answer": "<p>Despite its sleek profile, GymGear fits a standard water bottle, phone, keys, towel, earphones, and small accessories — everything you need for a full session without the bulk.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Is the GymGear Magnetic Bag unisex?",
+            "answer": "<p>Yes — GymGear comes in Black and Gray, designed to look great on everyone. It's our most popular gift choice across the UAE for gym-goers of all ages.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to Abu Dhabi, Sharjah & other emirates?",
+            "answer": "<p>Yes! TipTop360 delivers free to all UAE emirates — Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah & Umm Al Quwain. Cash on Delivery available everywhere.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "trust_1",
+        "trust_2",
+        "trust_3",
+        "trust_4",
+        "hl_1",
+        "hl_2",
+        "hl_3",
+        "hl_4",
+        "feat_1",
+        "feat_2",
+        "feat_3",
+        "feat_4",
+        "feat_5",
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ],
+      "settings": {
+        "seo_title": "Magnetic Gym Bag UAE | GymGear™ | TipTop360",
+        "seo_description": "UAE's only hands-free magnetic gym bag. Snaps to any metal gym equipment. Weatherproof. Wet/dry compartment. Free next-day delivery. Cash on delivery.",
+        "collection_handle": "new-arrivals-top-selling-products-in-uae",
+        "collection_name": "New Arrivals",
+        "ann_enable": true,
+        "ann_text": "🚚 Free Next Day Delivery across UAE  |  💵 Cash on Delivery  |  🔄 14-Day Returns  |  Order before 8 PM",
+        "hero_badge2": "🏆 #1 Gym Bag UAE",
+        "show_sold_out": false,
+        "rating_value": "4.8",
+        "proof_lbl_rating": "Average rating",
+        "review_count": "107",
+        "review_label": "verified UAE reviews",
+        "proof_num_delivery": "Next Day",
+        "proof_lbl_shipping": "Delivery across UAE",
+        "proof_lbl_free": "Free next-day delivery",
+        "atc_text": "Add to Cart — Pay on Delivery",
+        "sticky_text": "Add to Cart",
+        "bms_enable": true,
+        "bms_stepper": false,
+        "bms_qty2": 2,
+        "bms_disc2": 5,
+        "bms_qty3": 3,
+        "bms_disc3": 10,
+        "bms_orig_price": 0,
+        "bms_price1": 0,
+        "bms_price2": 210,
+        "bms_price3": 300,
+        "feat_lbl": "Why UAE Gym-Goers Love It",
+        "feat_title": "5 Reasons GymGear Replaces Your Old Bag",
+        "feat_sub": "Hands-free, weatherproof, and built for every gym in the UAE.",
+        "steps_lbl": "Simple to Use",
+        "steps_title": "How It Works",
+        "steps_sub": "Snap it on in seconds — no setup, no straps, no sweat.",
+        "video_enable": true,
+        "section_video": "https://youtube.com/shorts/Li6TxH66VoM",
+        "video_lbl": "See It in Action",
+        "video_title": "Watch GymGear Snap On & Stay Secure",
+        "video_sub": "One click. Magnetic grip locks on. Bag stays off the floor — through every single set.",
+        "video_placeholder": "🎬 Product demo coming soon. In the meantime — order today with free next-day delivery and Cash on Delivery.",
+        "rev_lbl": "UAE Gym-Goers Trust It",
+        "rev_title": "What Our Customers Say",
+        "rev_sub": "107 verified reviews from UAE gym members.",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "gift_bag_handle": "gift-wrap-1",
+        "gift_bag_title": "🎁 Add Gift Box",
+        "gift_bag_sub": "make it special",
+        "gift_bag_btn": "+ Add",
+        "gift_bag_price": "9",
+        "upsell_1": "",
+        "upsell_2": "",
+        "upsell_3": "",
+        "cta_lbl": "Limited Time Offer",
+        "cta_title": "Stop Putting Your Bag on the Floor",
+        "cta_sub": "GymGear Magnetic Gym Bag — AED 110. Free next-day delivery across UAE. Cash on delivery. 14-day returns.",
+        "cta_btn": "Add to Cart",
+        "cta_trust_1": "📦 Free Next Day Delivery",
+        "cta_trust_2": "💵 Cash on Delivery",
+        "cta_trust_3": "🔄 14-Day Returns",
+        "cta_trust_4": "🔒 Secure Checkout"
+      }
+    }
+  },
+  "order": [
+    "tt360-product-body"
+  ]
+}

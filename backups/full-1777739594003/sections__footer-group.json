@@ -1,0 +1,138 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "newsletter-footer": {
+      "type": "newsletter-footer",
+      "disabled": true,
+      "settings": {
+        "enable_newletter_footer": false,
+        "animation": "",
+        "setwidth": "container",
+        "bgsection": "#000000",
+        "newletter_color": "#ff6f2e",
+        "colorborder": "#e9e9e9",
+        "e_size": "cover",
+        "e_repeat": "no-repeat",
+        "title_top": "",
+        "title": "Subscrible & Get <span class=\"text-theme\">10% <\/span> Discount",
+        "des": "",
+        "html_left": false,
+        "html_left_block": "",
+        "paddingsection": "60px 0px 0px 0px",
+        "paddingmobile": "30px 0px 30px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "text_dqyRHe": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "logofooter": "shopify:\/\/shop_images\/Tiptop360_best_online_store_in_UAE.png",
+            "widthlogofooter": 130,
+            "title": "Text column",
+            "text": "<p>Share store details, promotions, or brand content with your customers<\/p>",
+            "width": "25%"
+          }
+        },
+        "social_9GRFaA": {
+          "type": "social",
+          "settings": {
+            "title": "",
+            "width": "25%"
+          }
+        },
+        "menu_gY3jk6": {
+          "type": "menu",
+          "settings": {
+            "link_list": "quick-links",
+            "width": "25%"
+          }
+        },
+        "text_6DjzyX": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "widthlogofooter": 120,
+            "title": "Any Questions?",
+            "text": "Reach out to our dedicated customer support team via the email\/number below:\n<br><br>\n📧 <a href=\"mailto:info@tiptop360.com\">info@tiptop360.com<\/a>\n<br>\n📲 <a href=\"tel:+971585156033\">+971 585156033<\/a>",
+            "width": "25%"
+          }
+        },
+        "1562342622030": {
+          "type": "menu",
+          "settings": {
+            "link_list": "policies",
+            "width": "25%"
+          }
+        },
+        "contact_W7rXbk": {
+          "type": "contact",
+          "settings": {
+            "title": "Information",
+            "contact_des": "Reach out to our dedicated customer support team via the email\/number below:",
+            "contact_addess": "",
+            "contact_phone": "+971 585156033",
+            "contact_mail": "info@tiptop360.com",
+            "contact_web": ""
+          }
+        },
+        "text_YPfB8n": {
+          "type": "text",
+          "settings": {
+            "widthlogofooter": 120,
+            "title": "",
+            "text": "<p style=\"font-size: 11px; color: #666;\">\nAll transactions are governed by UAE law. Licensed by RAK Free Zone under license no. 45009298.\n<\/p>",
+            "width": "66%"
+          }
+        }
+      },
+      "block_order": [
+        "text_dqyRHe",
+        "social_9GRFaA",
+        "menu_gY3jk6",
+        "text_6DjzyX",
+        "1562342622030",
+        "contact_W7rXbk",
+        "text_YPfB8n"
+      ],
+      "settings": {
+        "setwidth": "container",
+        "background": "#12395e",
+        "border_headfooter": "rgba(0,0,0,0)",
+        "border-copryright": "#ffffff",
+        "text": "#ffffff",
+        "text_hover": "#54e8cc",
+        "title": "#ffffff",
+        "footer_align_title": "left",
+        "enable_border": false,
+        "footer_font_family": "--g-font-1",
+        "footer_font_size_title": 16,
+        "footer_font_weight": "600",
+        "footer_spacing": 0,
+        "footer_typetext": "capitalize",
+        "acc_mobile": true,
+        "e_ft_currency": false,
+        "enable_image": false,
+        "enable_name": false,
+        "enable_language_selector": false,
+        "payment_info": "svg",
+        "link_list_bottom": "",
+        "copyright": true,
+        "customcopyright": "All rights reserved.",
+        "padding_top": 64,
+        "padding_bottom": 32,
+        "m_padding_top": 40,
+        "m_padding_bottom": 16
+      }
+    }
+  },
+  "order": [
+    "newsletter-footer",
+    "footer"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "aivox-pdp",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

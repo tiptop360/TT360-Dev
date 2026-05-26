@@ -1,0 +1,753 @@
+{% doc %}
+  @prompt
+    Create a critical CSS optimization solution that inlines essential above-the-fold styles and defers non-critical CSS loading. Include techniques to eliminate render-blocking resources by loading CSS asynchronously while maintaining visual stability and preventing layout shifts. Ensure the solution includes fallbacks to prevent website breakage.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-critical-css-optimizer-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding }}px;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-critical-css-content-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .ai-critical-css-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 16px 0;
+    font-weight: 600;
+  }
+
+  .ai-critical-css-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+  }
+
+  .ai-critical-css-controls-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .ai-critical-css-button-{{ ai_gen_id }} {
+    padding: 12px 24px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    border: 1px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .ai-critical-css-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    transform: translateY(-1px);
+  }
+
+  .ai-critical-css-button-{{ ai_gen_id }}:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .ai-critical-css-status-{{ ai_gen_id }} {
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    display: none;
+  }
+
+  .ai-critical-css-status-{{ ai_gen_id }}.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+  }
+
+  .ai-critical-css-status-{{ ai_gen_id }}.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+  }
+
+  .ai-critical-css-status-{{ ai_gen_id }}.loading {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+    display: block;
+  }
+
+  .ai-critical-css-metrics-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .ai-critical-css-metric-{{ ai_gen_id }} {
+    background-color: {{ block.settings.metric_bg_color }};
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid {{ block.settings.metric_border_color }};
+  }
+
+  .ai-critical-css-metric-label-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.metric_label_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .ai-critical-css-metric-value-{{ ai_gen_id }} {
+    font-size: 20px;
+    font-weight: 600;
+    color: {{ block.settings.metric_value_color }};
+  }
+
+  .ai-critical-css-code-block-{{ ai_gen_id }} {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 16px;
+    margin-top: 16px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 12px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+    display: none;
+  }
+
+  .ai-critical-css-code-block-{{ ai_gen_id }}.visible {
+    display: block;
+  }
+
+  .ai-critical-css-loading-spinner-{{ ai_gen_id }} {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid {{ block.settings.button_color }};
+    border-radius: 50%;
+    animation: ai-critical-css-spin-{{ ai_gen_id }} 1s linear infinite;
+    margin-right: 8px;
+  }
+
+  @keyframes ai-critical-css-spin-{{ ai_gen_id }} {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-critical-css-controls-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .ai-critical-css-button-{{ ai_gen_id }} {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+{% endstyle %}
+
+<critical-css-optimizer-{{ ai_gen_id }}
+  class="ai-critical-css-optimizer-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-critical-css-content-{{ ai_gen_id }}">
+    {% if block.settings.title != blank %}
+      <h2 class="ai-critical-css-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+    {% endif %}
+
+    {% if block.settings.description != blank %}
+      <div class="ai-critical-css-description-{{ ai_gen_id }}">{{ block.settings.description }}</div>
+    {% endif %}
+
+    <div class="ai-critical-css-status-{{ ai_gen_id }}" id="ai-critical-css-status-{{ ai_gen_id }}"></div>
+
+    <div class="ai-critical-css-controls-{{ ai_gen_id }}">
+      <button
+        class="ai-critical-css-button-{{ ai_gen_id }}"
+        id="ai-critical-css-analyze-{{ ai_gen_id }}"
+        data-action="analyze"
+      >
+        Analyze Critical CSS
+      </button>
+
+      <button
+        class="ai-critical-css-button-{{ ai_gen_id }}"
+        id="ai-critical-css-optimize-{{ ai_gen_id }}"
+        data-action="optimize"
+        disabled
+      >
+        Apply Optimization
+      </button>
+
+      <button
+        class="ai-critical-css-button-{{ ai_gen_id }}"
+        id="ai-critical-css-test-{{ ai_gen_id }}"
+        data-action="test"
+      >
+        Test Performance
+      </button>
+
+      <button
+        class="ai-critical-css-button-{{ ai_gen_id }}"
+        id="ai-critical-css-revert-{{ ai_gen_id }}"
+        data-action="revert"
+        disabled
+      >
+        Revert Changes
+      </button>
+    </div>
+
+    <div class="ai-critical-css-metrics-{{ ai_gen_id }}" id="ai-critical-css-metrics-{{ ai_gen_id }}">
+      <div class="ai-critical-css-metric-{{ ai_gen_id }}">
+        <div class="ai-critical-css-metric-label-{{ ai_gen_id }}">First Contentful Paint</div>
+        <div class="ai-critical-css-metric-value-{{ ai_gen_id }}" id="ai-critical-css-fcp-{{ ai_gen_id }}">--</div>
+      </div>
+      <div class="ai-critical-css-metric-{{ ai_gen_id }}">
+        <div class="ai-critical-css-metric-label-{{ ai_gen_id }}">Largest Contentful Paint</div>
+        <div class="ai-critical-css-metric-value-{{ ai_gen_id }}" id="ai-critical-css-lcp-{{ ai_gen_id }}">--</div>
+      </div>
+      <div class="ai-critical-css-metric-{{ ai_gen_id }}">
+        <div class="ai-critical-css-metric-label-{{ ai_gen_id }}">Cumulative Layout Shift</div>
+        <div class="ai-critical-css-metric-value-{{ ai_gen_id }}" id="ai-critical-css-cls-{{ ai_gen_id }}">--</div>
+      </div>
+      <div class="ai-critical-css-metric-{{ ai_gen_id }}">
+        <div class="ai-critical-css-metric-label-{{ ai_gen_id }}">CSS Size Reduction</div>
+        <div class="ai-critical-css-metric-value-{{ ai_gen_id }}" id="ai-critical-css-reduction-{{ ai_gen_id }}">--</div>
+      </div>
+    </div>
+
+    <div class="ai-critical-css-code-block-{{ ai_gen_id }}" id="ai-critical-css-code-{{ ai_gen_id }}"></div>
+  </div>
+</critical-css-optimizer-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CriticalCSSOptimizer{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.criticalCSS = '';
+        this.nonCriticalCSS = '';
+        this.originalStylesheets = [];
+        this.isOptimized = false;
+        this.performanceMetrics = {};
+      }
+
+      connectedCallback() {
+        this.setupEventListeners();
+        this.initializePerformanceObserver();
+      }
+
+      setupEventListeners() {
+        const analyzeBtn = this.querySelector('#ai-critical-css-analyze-{{ ai_gen_id }}');
+        const optimizeBtn = this.querySelector('#ai-critical-css-optimize-{{ ai_gen_id }}');
+        const testBtn = this.querySelector('#ai-critical-css-test-{{ ai_gen_id }}');
+        const revertBtn = this.querySelector('#ai-critical-css-revert-{{ ai_gen_id }}');
+
+        analyzeBtn.addEventListener('click', () => this.analyzeCriticalCSS());
+        optimizeBtn.addEventListener('click', () => this.applyOptimization());
+        testBtn.addEventListener('click', () => this.testPerformance());
+        revertBtn.addEventListener('click', () => this.revertChanges());
+      }
+
+      initializePerformanceObserver() {
+        if ('PerformanceObserver' in window) {
+          const observer = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+              if (entry.entryType === 'paint') {
+                this.performanceMetrics[entry.name] = entry.startTime;
+              } else if (entry.entryType === 'largest-contentful-paint') {
+                this.performanceMetrics.lcp = entry.startTime;
+              } else if (entry.entryType === 'layout-shift') {
+                if (!this.performanceMetrics.cls) this.performanceMetrics.cls = 0;
+                this.performanceMetrics.cls += entry.value;
+              }
+            }
+            this.updateMetricsDisplay();
+          });
+
+          observer.observe({ entryTypes: ['paint', 'largest-contentful-paint', 'layout-shift'] });
+        }
+      }
+
+      showStatus(message, type = 'loading') {
+        const statusEl = this.querySelector('#ai-critical-css-status-{{ ai_gen_id }}');
+        statusEl.textContent = message;
+        statusEl.className = `ai-critical-css-status-{{ ai_gen_id }} ${type}`;
+      }
+
+      hideStatus() {
+        const statusEl = this.querySelector('#ai-critical-css-status-{{ ai_gen_id }}');
+        statusEl.className = 'ai-critical-css-status-{{ ai_gen_id }}';
+      }
+
+      setButtonLoading(buttonId, loading = true) {
+        const button = this.querySelector(`#${buttonId}`);
+        if (loading) {
+          button.innerHTML = '<span class="ai-critical-css-loading-spinner-{{ ai_gen_id }}"></span>' + button.textContent;
+          button.disabled = true;
+        } else {
+          button.innerHTML = button.textContent.replace(/^\s*/, '');
+          button.disabled = false;
+        }
+      }
+
+      async analyzeCriticalCSS() {
+        this.setButtonLoading('ai-critical-css-analyze-{{ ai_gen_id }}');
+        this.showStatus('Analyzing critical CSS...', 'loading');
+
+        try {
+          const viewportHeight = window.innerHeight;
+          const criticalElements = this.getAboveFoldElements(viewportHeight);
+          
+          this.criticalCSS = await this.extractCriticalCSS(criticalElements);
+          this.nonCriticalCSS = await this.extractNonCriticalCSS();
+
+          const reduction = this.calculateSizeReduction();
+          
+          this.showStatus(`Analysis complete! Identified ${this.criticalCSS.length} bytes of critical CSS`, 'success');
+          this.querySelector('#ai-critical-css-optimize-{{ ai_gen_id }}').disabled = false;
+          
+          document.querySelector('#ai-critical-css-reduction-{{ ai_gen_id }}').textContent = `${reduction}%`;
+          
+          this.displayCriticalCSS();
+          
+        } catch (error) {
+          this.showStatus(`Analysis failed: ${error.message}`, 'error');
+        } finally {
+          this.setButtonLoading('ai-critical-css-analyze-{{ ai_gen_id }}', false);
+        }
+      }
+
+      getAboveFoldElements(viewportHeight) {
+        const elements = [];
+        const allElements = document.querySelectorAll('*');
+        
+        allElements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < viewportHeight && rect.bottom > 0) {
+            elements.push(el);
+          }
+        });
+        
+        return elements;
+      }
+
+      async extractCriticalCSS(elements) {
+        const criticalRules = new Set();
+        const stylesheets = Array.from(document.styleSheets);
+        
+        for (const stylesheet of stylesheets) {
+          try {
+            const rules = Array.from(stylesheet.cssRules || []);
+            
+            for (const rule of rules) {
+              if (rule.type === CSSRule.STYLE_RULE) {
+                const selector = rule.selectorText;
+                
+                if (this.selectorMatchesElements(selector, elements)) {
+                  criticalRules.add(rule.cssText);
+                }
+              }
+            }
+          } catch (e) {
+            console.warn('Cannot access stylesheet:', e);
+          }
+        }
+        
+        return Array.from(criticalRules).join('\n');
+      }
+
+      selectorMatchesElements(selector, elements) {
+        try {
+          return elements.some(el => el.matches && el.matches(selector));
+        } catch (e) {
+          return false;
+        }
+      }
+
+      async extractNonCriticalCSS() {
+        const allCSS = [];
+        const stylesheets = Array.from(document.styleSheets);
+        
+        for (const stylesheet of stylesheets) {
+          try {
+            const rules = Array.from(stylesheet.cssRules || []);
+            rules.forEach(rule => {
+              if (!this.criticalCSS.includes(rule.cssText)) {
+                allCSS.push(rule.cssText);
+              }
+            });
+          } catch (e) {
+            console.warn('Cannot access stylesheet:', e);
+          }
+        }
+        
+        return allCSS.join('\n');
+      }
+
+      calculateSizeReduction() {
+        const totalSize = this.criticalCSS.length + this.nonCriticalCSS.length;
+        if (totalSize === 0) return 0;
+        
+        return Math.round((this.nonCriticalCSS.length / totalSize) * 100);
+      }
+
+      displayCriticalCSS() {
+        const codeBlock = this.querySelector('#ai-critical-css-code-{{ ai_gen_id }}');
+        codeBlock.textContent = this.criticalCSS.substring(0, 1000) + (this.criticalCSS.length > 1000 ? '...' : '');
+        codeBlock.classList.add('visible');
+      }
+
+      async applyOptimization() {
+        this.setButtonLoading('ai-critical-css-optimize-{{ ai_gen_id }}');
+        this.showStatus('Applying CSS optimization...', 'loading');
+
+        try {
+          this.backupOriginalStylesheets();
+          
+          this.inlineCriticalCSS();
+          
+          await this.loadNonCriticalCSSAsync();
+          
+          this.isOptimized = true;
+          this.showStatus('Optimization applied successfully!', 'success');
+          this.querySelector('#ai-critical-css-revert-{{ ai_gen_id }}').disabled = false;
+          
+        } catch (error) {
+          this.showStatus(`Optimization failed: ${error.message}`, 'error');
+          this.revertChanges();
+        } finally {
+          this.setButtonLoading('ai-critical-css-optimize-{{ ai_gen_id }}', false);
+        }
+      }
+
+      backupOriginalStylesheets() {
+        this.originalStylesheets = Array.from(document.querySelectorAll('link[rel="stylesheet"]'))
+          .map(link => ({
+            href: link.href,
+            media: link.media,
+            element: link
+          }));
+      }
+
+      inlineCriticalCSS() {
+        const criticalStyle = document.createElement('style');
+        criticalStyle.id = 'ai-critical-css-inline-{{ ai_gen_id }}';
+        criticalStyle.textContent = this.criticalCSS;
+        document.head.insertBefore(criticalStyle, document.head.firstChild);
+      }
+
+      async loadNonCriticalCSSAsync() {
+        return new Promise((resolve) => {
+          const nonCriticalStyle = document.createElement('style');
+          nonCriticalStyle.id = 'ai-non-critical-css-{{ ai_gen_id }}';
+          nonCriticalStyle.textContent = this.nonCriticalCSS;
+          
+          const loadNonCritical = () => {
+            document.head.appendChild(nonCriticalStyle);
+            resolve();
+          };
+
+          if (document.readyState === 'complete') {
+            setTimeout(loadNonCritical, 100);
+          } else {
+            window.addEventListener('load', () => {
+              setTimeout(loadNonCritical, 100);
+            });
+          }
+        });
+      }
+
+      async testPerformance() {
+        this.setButtonLoading('ai-critical-css-test-{{ ai_gen_id }}');
+        this.showStatus('Testing performance...', 'loading');
+
+        try {
+          const testResults = await this.runPerformanceTest();
+          this.displayTestResults(testResults);
+          this.showStatus('Performance test completed!', 'success');
+        } catch (error) {
+          this.showStatus(`Performance test failed: ${error.message}`, 'error');
+        } finally {
+          this.setButtonLoading('ai-critical-css-test-{{ ai_gen_id }}', false);
+        }
+      }
+
+      async runPerformanceTest() {
+        return new Promise((resolve) => {
+          const startTime = performance.now();
+          
+          setTimeout(() => {
+            const endTime = performance.now();
+            const loadTime = endTime - startTime;
+            
+            resolve({
+              loadTime: loadTime,
+              fcp: this.performanceMetrics['first-contentful-paint'] || 0,
+              lcp: this.performanceMetrics.lcp || 0,
+              cls: this.performanceMetrics.cls || 0
+            });
+          }, 1000);
+        });
+      }
+
+      displayTestResults(results) {
+        document.querySelector('#ai-critical-css-fcp-{{ ai_gen_id }}').textContent = `${Math.round(results.fcp)}ms`;
+        document.querySelector('#ai-critical-css-lcp-{{ ai_gen_id }}').textContent = `${Math.round(results.lcp)}ms`;
+        document.querySelector('#ai-critical-css-cls-{{ ai_gen_id }}').textContent = results.cls.toFixed(3);
+      }
+
+      updateMetricsDisplay() {
+        if (this.performanceMetrics['first-contentful-paint']) {
+          document.querySelector('#ai-critical-css-fcp-{{ ai_gen_id }}').textContent = 
+            `${Math.round(this.performanceMetrics['first-contentful-paint'])}ms`;
+        }
+        
+        if (this.performanceMetrics.lcp) {
+          document.querySelector('#ai-critical-css-lcp-{{ ai_gen_id }}').textContent = 
+            `${Math.round(this.performanceMetrics.lcp)}ms`;
+        }
+        
+        if (this.performanceMetrics.cls !== undefined) {
+          document.querySelector('#ai-critical-css-cls-{{ ai_gen_id }}').textContent = 
+            this.performanceMetrics.cls.toFixed(3);
+        }
+      }
+
+      revertChanges() {
+        this.setButtonLoading('ai-critical-css-revert-{{ ai_gen_id }}');
+        this.showStatus('Reverting changes...', 'loading');
+
+        try {
+          const inlineStyle = document.querySelector('#ai-critical-css-inline-{{ ai_gen_id }}');
+          if (inlineStyle) inlineStyle.remove();
+
+          const nonCriticalStyle = document.querySelector('#ai-non-critical-css-{{ ai_gen_id }}');
+          if (nonCriticalStyle) nonCriticalStyle.remove();
+
+          this.originalStylesheets.forEach(stylesheet => {
+            if (!document.querySelector(`link[href="${stylesheet.href}"]`)) {
+              const link = document.createElement('link');
+              link.rel = 'stylesheet';
+              link.href = stylesheet.href;
+              link.media = stylesheet.media;
+              document.head.appendChild(link);
+            }
+          });
+
+          this.isOptimized = false;
+          this.showStatus('Changes reverted successfully!', 'success');
+          this.querySelector('#ai-critical-css-revert-{{ ai_gen_id }}').disabled = true;
+          this.querySelector('#ai-critical-css-optimize-{{ ai_gen_id }}').disabled = false;
+
+        } catch (error) {
+          this.showStatus(`Revert failed: ${error.message}`, 'error');
+        } finally {
+          this.setButtonLoading('ai-critical-css-revert-{{ ai_gen_id }}', false);
+        }
+      }
+    }
+
+    customElements.define('critical-css-optimizer-{{ ai_gen_id }}', CriticalCSSOptimizer{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Critical CSS Optimizer",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Critical CSS Optimizer"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Optimize your website's performance by inlining critical above-the-fold CSS and deferring non-critical styles. This tool analyzes your page, extracts essential CSS, and applies optimization techniques to improve loading speed."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#007bff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#0056b3"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border color",
+      "default": "#007bff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 18,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Button Style"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Metrics Display"
+    },
+    {
+      "type": "color",
+      "id": "metric_bg_color",
+      "label": "Metric background color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "metric_border_color",
+      "label": "Metric border color",
+      "default": "#e9ecef"
+    },
+    {
+      "type": "color",
+      "id": "metric_label_color",
+      "label": "Metric label color",
+      "default": "#6c757d"
+    },
+    {
+      "type": "color",
+      "id": "metric_value_color",
+      "label": "Metric value color",
+      "default": "#212529"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Critical CSS Optimizer"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,327 @@
+{% doc %}
+  @prompt
+    4  box title and text 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-four-boxes-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding }}px 0;
+  }
+
+  .ai-four-boxes__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.gap }}px;
+  }
+
+  .ai-four-boxes__box-{{ ai_gen_id }} {
+    background-color: {{ block.settings.box_background }};
+    padding: {{ block.settings.box_padding }}px;
+    border-radius: {{ block.settings.border_radius }}px;
+    text-align: {{ block.settings.text_alignment }};
+    transition: transform 0.3s ease;
+  }
+
+  {% if block.settings.enable_hover %}
+    .ai-four-boxes__box-{{ ai_gen_id }}:hover {
+      transform: translateY(-5px);
+    }
+  {% endif %}
+
+  .ai-four-boxes__title-{{ ai_gen_id }} {
+    color: {{ block.settings.title_color }};
+    font-size: {{ block.settings.title_size }}px;
+    margin: 0 0 {{ block.settings.title_spacing }}px 0;
+    font-weight: 500;
+  }
+
+  .ai-four-boxes__text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-four-boxes__container-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+    }
+
+    .ai-four-boxes__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.85 }}px;
+    }
+
+    .ai-four-boxes__text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-four-boxes-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-four-boxes__container-{{ ai_gen_id }}">
+    {% for i in (1..4) %}
+      {% liquid
+        assign title_key = 'box_' | append: i | append: '_title'
+        assign text_key = 'box_' | append: i | append: '_text'
+        assign box_title = block.settings[title_key]
+        assign box_text = block.settings[text_key]
+      %}
+      
+      <div class="ai-four-boxes__box-{{ ai_gen_id }}">
+        {% if box_title != blank %}
+          <h3 class="ai-four-boxes__title-{{ ai_gen_id }}">{{ box_title }}</h3>
+        {% endif %}
+        {% if box_text != blank %}
+          <div class="ai-four-boxes__text-{{ ai_gen_id }}">{{ box_text }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Four boxes",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between boxes",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Box style"
+    },
+    {
+      "type": "color",
+      "id": "box_background",
+      "label": "Background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "range",
+      "id": "box_padding",
+      "label": "Padding",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_hover",
+      "label": "Enable hover effect",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Title style"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color",
+      "default": "#12395e"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Size",
+      "min": 14,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "Spacing below",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Text style"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color",
+      "default": "#202025"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Box 1"
+    },
+    {
+      "type": "text",
+      "id": "box_1_title",
+      "label": "Title",
+      "default": "Feature One"
+    },
+    {
+      "type": "textarea",
+      "id": "box_1_text",
+      "label": "Text",
+      "default": "Describe your first feature here with engaging details."
+    },
+    {
+      "type": "header",
+      "content": "Box 2"
+    },
+    {
+      "type": "text",
+      "id": "box_2_title",
+      "label": "Title",
+      "default": "Feature Two"
+    },
+    {
+      "type": "textarea",
+      "id": "box_2_text",
+      "label": "Text",
+      "default": "Describe your second feature here with engaging details."
+    },
+    {
+      "type": "header",
+      "content": "Box 3"
+    },
+    {
+      "type": "text",
+      "id": "box_3_title",
+      "label": "Title",
+      "default": "Feature Three"
+    },
+    {
+      "type": "textarea",
+      "id": "box_3_text",
+      "label": "Text",
+      "default": "Describe your third feature here with engaging details."
+    },
+    {
+      "type": "header",
+      "content": "Box 4"
+    },
+    {
+      "type": "text",
+      "id": "box_4_title",
+      "label": "Title",
+      "default": "Feature Four"
+    },
+    {
+      "type": "textarea",
+      "id": "box_4_text",
+      "label": "Text",
+      "default": "Describe your fourth feature here with engaging details."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Four boxes"
+    }
+  ]
+}
+{% endschema %}

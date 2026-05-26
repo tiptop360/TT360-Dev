@@ -1,0 +1,12 @@
+{
+  "parent": "header-group.json",
+  "context": {
+    "market": "ae"
+  },
+  "sections": {
+    "announcement-bar-slide": {
+      "settings": {},
+      "blocks": {}
+    }
+  }
+}

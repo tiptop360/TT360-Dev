@@ -1,0 +1,2003 @@
+{
+  "timestamp": "2026-04-30T12:24:50.305Z",
+  "summary": {
+    "totalPages": 34,
+    "totalChecks": 612,
+    "failed": 100,
+    "warned": 0,
+    "passRate": "83.7%"
+  },
+  "failuresByCheck": {
+    "titleLength": [
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 68
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 62
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 85
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 67
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 66
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 67
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 65
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 68
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 68
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 67
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 68
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 62
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 78
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 72
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 74
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 61
+      },
+      {
+        "severity": "FAIL",
+        "check": "titleLength",
+        "value": 66
+      }
+    ],
+    "trackingTagDuplicates": [
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      },
+      {
+        "severity": "FAIL",
+        "check": "trackingTagDuplicates",
+        "value": 3
+      }
+    ],
+    "noindexMissing": [
+      {
+        "severity": "FAIL",
+        "check": "noindexMissing",
+        "value": false
+      }
+    ],
+    "hasH1": [
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasH1",
+        "value": 0
+      }
+    ],
+    "hasCanonical": [
+      {
+        "severity": "FAIL",
+        "check": "hasCanonical",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasCanonical",
+        "value": 0
+      }
+    ],
+    "hasMetaDesc": [
+      {
+        "severity": "FAIL",
+        "check": "hasMetaDesc",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasMetaDesc",
+        "value": 0
+      }
+    ],
+    "metaDescLength": [
+      {
+        "severity": "FAIL",
+        "check": "metaDescLength",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "metaDescLength",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "metaDescLength",
+        "value": 179
+      },
+      {
+        "severity": "FAIL",
+        "check": "metaDescLength",
+        "value": 170
+      },
+      {
+        "severity": "FAIL",
+        "check": "metaDescLength",
+        "value": 173
+      },
+      {
+        "severity": "FAIL",
+        "check": "metaDescLength",
+        "value": 178
+      },
+      {
+        "severity": "FAIL",
+        "check": "metaDescLength",
+        "value": 119
+      }
+    ],
+    "hasOpenGraph": [
+      {
+        "severity": "FAIL",
+        "check": "hasOpenGraph",
+        "value": 0
+      },
+      {
+        "severity": "FAIL",
+        "check": "hasOpenGraph",
+        "value": 0
+      }
+    ],
+    "duplicateSchema": [
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      },
+      {
+        "severity": "FAIL",
+        "check": "duplicateSchema",
+        "value": 1
+      }
+    ]
+  },
+  "fullResults": [
+    {
+      "url": "https://tiptop360.com/",
+      "type": "home",
+      "status": 200,
+      "ms": 577,
+      "checks": {
+        "status": 200,
+        "loadTime": 577,
+        "size": 601425,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 133,
+        "titleLength": 68,
+        "faqPageCount": 0,
+        "duplicateSchema": 0,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 68
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/cart",
+      "type": "system",
+      "status": 200,
+      "ms": 493,
+      "checks": {
+        "status": 200,
+        "loadTime": 493,
+        "size": 509729,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 159,
+        "titleLength": 38,
+        "faqPageCount": 0,
+        "duplicateSchema": 0,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": false,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        },
+        {
+          "severity": "FAIL",
+          "check": "noindexMissing",
+          "value": false
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/sitemap.xml",
+      "type": "system",
+      "status": 200,
+      "ms": 216,
+      "checks": {
+        "status": 200,
+        "loadTime": 216,
+        "size": 1427,
+        "hasH1": 0,
+        "hasCanonical": 0,
+        "hasMetaDesc": 0,
+        "metaDescLength": 0,
+        "titleLength": 0,
+        "faqPageCount": 0,
+        "duplicateSchema": 0,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 0,
+        "multipleCanonical": 0,
+        "noindexMissing": true,
+        "hasOpenGraph": 0
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "hasCanonical",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "hasMetaDesc",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "metaDescLength",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "hasOpenGraph",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/robots.txt",
+      "type": "system",
+      "status": 200,
+      "ms": 205,
+      "checks": {
+        "status": 200,
+        "loadTime": 205,
+        "size": 3371,
+        "hasH1": 0,
+        "hasCanonical": 0,
+        "hasMetaDesc": 0,
+        "metaDescLength": 0,
+        "titleLength": 0,
+        "faqPageCount": 0,
+        "duplicateSchema": 0,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 0,
+        "multipleCanonical": 0,
+        "noindexMissing": true,
+        "hasOpenGraph": 0
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "hasCanonical",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "hasMetaDesc",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "metaDescLength",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "hasOpenGraph",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/kids-water-colour-pens-uae",
+      "type": "product",
+      "status": 200,
+      "ms": 438,
+      "checks": {
+        "status": 200,
+        "loadTime": 438,
+        "size": 566375,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 179,
+        "titleLength": 50,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "metaDescLength",
+          "value": 179
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/tiptop360-gift-card-uae-feel-good-finds-delivered-fast",
+      "type": "product",
+      "status": 200,
+      "ms": 502,
+      "checks": {
+        "status": 200,
+        "loadTime": 502,
+        "size": 572377,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 121,
+        "titleLength": 62,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 62
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/ai-voice-recorder",
+      "type": "product",
+      "status": 200,
+      "ms": 354,
+      "checks": {
+        "status": 200,
+        "loadTime": 354,
+        "size": 632973,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 157,
+        "titleLength": 85,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 85
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift",
+      "type": "product",
+      "status": 200,
+      "ms": 280,
+      "checks": {
+        "status": 200,
+        "loadTime": 280,
+        "size": 1068888,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 138,
+        "titleLength": 44,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 6
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/dental-floss-for-kids",
+      "type": "product",
+      "status": 200,
+      "ms": 507,
+      "checks": {
+        "status": 200,
+        "loadTime": 507,
+        "size": 560267,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 149,
+        "titleLength": 39,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/kids-brushing-stickers-uae",
+      "type": "product",
+      "status": 200,
+      "ms": 466,
+      "checks": {
+        "status": 200,
+        "loadTime": 466,
+        "size": 569654,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 155,
+        "titleLength": 67,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 67
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/kids-dual-tip-markers-uae",
+      "type": "product",
+      "status": 200,
+      "ms": 520,
+      "checks": {
+        "status": 200,
+        "loadTime": 520,
+        "size": 574870,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 159,
+        "titleLength": 41,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/super-smooth-wax-crayons-12-vivid-colors",
+      "type": "product",
+      "status": 200,
+      "ms": 727,
+      "checks": {
+        "status": 200,
+        "loadTime": 727,
+        "size": 561481,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 143,
+        "titleLength": 66,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 66
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/kids-drawing-marker-set-perfect-match-for-any-drawing-robot",
+      "type": "product",
+      "status": 200,
+      "ms": 562,
+      "checks": {
+        "status": 200,
+        "loadTime": 562,
+        "size": 572554,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 170,
+        "titleLength": 67,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "metaDescLength",
+          "value": 170
+        },
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 67
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/my-chores-kids-responsibility-sliding-task-checklist-for-daily-routines-positive-habits",
+      "type": "product",
+      "status": 200,
+      "ms": 590,
+      "checks": {
+        "status": 200,
+        "loadTime": 590,
+        "size": 574060,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 173,
+        "titleLength": 65,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "metaDescLength",
+          "value": 173
+        },
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 65
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/kids-electric-u-shaped-toothbrush-replacement-heads",
+      "type": "product",
+      "status": 200,
+      "ms": 789,
+      "checks": {
+        "status": 200,
+        "loadTime": 789,
+        "size": 692846,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 158,
+        "titleLength": 68,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 68
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/kids-drawing-robot",
+      "type": "product",
+      "status": 200,
+      "ms": 612,
+      "checks": {
+        "status": 200,
+        "loadTime": 612,
+        "size": 864455,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 123,
+        "titleLength": 68,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 6
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 68
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/kids-strawberry-foam-toothpaste-uae-approved",
+      "type": "product",
+      "status": 200,
+      "ms": 454,
+      "checks": {
+        "status": 200,
+        "loadTime": 454,
+        "size": 647408,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 131,
+        "titleLength": 46,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 6
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/kids-dental-care-monthly-bundle-offer-51",
+      "type": "product",
+      "status": 200,
+      "ms": 867,
+      "checks": {
+        "status": 200,
+        "loadTime": 867,
+        "size": 575520,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 153,
+        "titleLength": 67,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 6
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 67
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/magnetic-gym-bag-uae-gymgear-tiptop360",
+      "type": "product",
+      "status": 200,
+      "ms": 410,
+      "checks": {
+        "status": 200,
+        "loadTime": 410,
+        "size": 757951,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 121,
+        "titleLength": 52,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 6
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/color-pencils",
+      "type": "product",
+      "status": 200,
+      "ms": 723,
+      "checks": {
+        "status": 200,
+        "loadTime": 723,
+        "size": 561648,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 132,
+        "titleLength": 68,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 68
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/gift-wrap-1",
+      "type": "product",
+      "status": 200,
+      "ms": 689,
+      "checks": {
+        "status": 200,
+        "loadTime": 689,
+        "size": 567381,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 178,
+        "titleLength": 62,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "metaDescLength",
+          "value": 178
+        },
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 62
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/smoke-bubble-machine",
+      "type": "product",
+      "status": 200,
+      "ms": 731,
+      "checks": {
+        "status": 200,
+        "loadTime": 731,
+        "size": 795121,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 136,
+        "titleLength": 40,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 6
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/products/kids-electric-toothbrush-traditional-replacement-heads",
+      "type": "product",
+      "status": 200,
+      "ms": 509,
+      "checks": {
+        "status": 200,
+        "loadTime": 509,
+        "size": 804629,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 141,
+        "titleLength": 50,
+        "faqPageCount": 1,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 3,
+        "productsHasSchema": 12
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/collections/ai-voice-recorder-smart-transcription-recorder-uae",
+      "type": "collection",
+      "status": 200,
+      "ms": 370,
+      "checks": {
+        "status": 200,
+        "loadTime": 370,
+        "size": 466452,
+        "hasH1": 0,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 156,
+        "titleLength": 41,
+        "faqPageCount": 0,
+        "duplicateSchema": 0,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/collections/kids-collection-uae",
+      "type": "collection",
+      "status": 200,
+      "ms": 537,
+      "checks": {
+        "status": 200,
+        "loadTime": 537,
+        "size": 543780,
+        "hasH1": 0,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 157,
+        "titleLength": 41,
+        "faqPageCount": 0,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/collections/magnetic-gym-bag-uae-hands-free-gym-gear",
+      "type": "collection",
+      "status": 200,
+      "ms": 514,
+      "checks": {
+        "status": 200,
+        "loadTime": 514,
+        "size": 465743,
+        "hasH1": 0,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 131,
+        "titleLength": 78,
+        "faqPageCount": 0,
+        "duplicateSchema": 0,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 78
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/collections/new-arrivals-top-selling-products-in-uae",
+      "type": "collection",
+      "status": 200,
+      "ms": 371,
+      "checks": {
+        "status": 200,
+        "loadTime": 371,
+        "size": 494396,
+        "hasH1": 0,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 148,
+        "titleLength": 72,
+        "faqPageCount": 0,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 72
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/collections/problem-solving-products-uae",
+      "type": "collection",
+      "status": 200,
+      "ms": 503,
+      "checks": {
+        "status": 200,
+        "loadTime": 503,
+        "size": 518184,
+        "hasH1": 0,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 125,
+        "titleLength": 74,
+        "faqPageCount": 0,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 74
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/collections/kids-toys-stem-learning-dental-care-shop-smart-play-uae-copy",
+      "type": "collection",
+      "status": 200,
+      "ms": 478,
+      "checks": {
+        "status": 200,
+        "loadTime": 478,
+        "size": 518321,
+        "hasH1": 0,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 157,
+        "titleLength": 41,
+        "faqPageCount": 0,
+        "duplicateSchema": 1,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "duplicateSchema",
+          "value": 1
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/pages/about-tiptop360",
+      "type": "page",
+      "status": 200,
+      "ms": 435,
+      "checks": {
+        "status": 200,
+        "loadTime": 435,
+        "size": 469278,
+        "hasH1": 1,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 159,
+        "titleLength": 35,
+        "faqPageCount": 0,
+        "duplicateSchema": 0,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/pages/contact-tiptop360",
+      "type": "page",
+      "status": 200,
+      "ms": 449,
+      "checks": {
+        "status": 200,
+        "loadTime": 449,
+        "size": 445658,
+        "hasH1": 0,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 147,
+        "titleLength": 61,
+        "faqPageCount": 0,
+        "duplicateSchema": 0,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 61
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/pages/refund-policy",
+      "type": "page",
+      "status": 200,
+      "ms": 366,
+      "checks": {
+        "status": 200,
+        "loadTime": 366,
+        "size": 456756,
+        "hasH1": 0,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 119,
+        "titleLength": 50,
+        "faqPageCount": 0,
+        "duplicateSchema": 0,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "metaDescLength",
+          "value": 119
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/pages/gdpr-privacy-policy",
+      "type": "page",
+      "status": 200,
+      "ms": 340,
+      "checks": {
+        "status": 200,
+        "loadTime": 340,
+        "size": 456888,
+        "hasH1": 0,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 158,
+        "titleLength": 43,
+        "faqPageCount": 0,
+        "duplicateSchema": 0,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "url": "https://tiptop360.com/pages/tiptop360-terms-of-service",
+      "type": "page",
+      "status": 200,
+      "ms": 331,
+      "checks": {
+        "status": 200,
+        "loadTime": 331,
+        "size": 457005,
+        "hasH1": 0,
+        "hasCanonical": 1,
+        "hasMetaDesc": 1,
+        "metaDescLength": 160,
+        "titleLength": 66,
+        "faqPageCount": 0,
+        "duplicateSchema": 0,
+        "noLiquidErrors": 0,
+        "noMalware": 0,
+        "brokenImages": 0,
+        "jsonLdValid": 0,
+        "trackingTagDuplicates": 3,
+        "multipleCanonical": 1,
+        "noindexMissing": true,
+        "hasOpenGraph": 1
+      },
+      "issues": [
+        {
+          "severity": "FAIL",
+          "check": "hasH1",
+          "value": 0
+        },
+        {
+          "severity": "FAIL",
+          "check": "titleLength",
+          "value": 66
+        },
+        {
+          "severity": "FAIL",
+          "check": "trackingTagDuplicates",
+          "value": 3
+        }
+      ]
+    }
+  ]
+}

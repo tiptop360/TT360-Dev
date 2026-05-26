@@ -1,0 +1,368 @@
+{% doc %}
+  @prompt
+    Create an "AI Optimizer" Shopify theme section that improves Largest Contentful Paint (LCP) performance while remaining completely invisible on the storefront. The section should include: preload tags for hero images and WOFF2 fonts with crossorigin, inline critical CSS for above-the-fold elements (header, hero, product title, images, body), JavaScript for lazy loading images, deferring non-critical stylesheets and scripts, all wrapped in a toggleable setting, completely hidden with CSS (display: none, visibility: hidden, pointer-events: none), and contained within a hidden div with ID "shopify-section-ai-optimizer". Must be Online Store 2.0 compatible and work on product pages and homepage without interfering with existing functionality.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-performance-optimizer-{{ ai_gen_id }} {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+  }
+{% endstyle %}
+
+{% if block.settings.enable_optimizer %}
+  <div 
+    id="shopify-block-ai-optimizer-{{ ai_gen_id }}" 
+    class="ai-performance-optimizer-{{ ai_gen_id }}"
+    {{ block.shopify_attributes }}
+  >
+    
+    {% if block.settings.enable_preloads %}
+      {% comment %} Preload hero images {% endcomment %}
+      {% if block.settings.hero_image_1 %}
+        <link rel="preload" as="image" href="{{ block.settings.hero_image_1 | image_url: width: 1920 }}" fetchpriority="high">
+      {% endif %}
+      {% if block.settings.hero_image_2 %}
+        <link rel="preload" as="image" href="{{ block.settings.hero_image_2 | image_url: width: 1920 }}" fetchpriority="high">
+      {% endif %}
+      {% if block.settings.hero_image_mobile %}
+        <link rel="preload" as="image" href="{{ block.settings.hero_image_mobile | image_url: width: 768 }}" media="(max-width: 768px)" fetchpriority="high">
+      {% endif %}
+
+      {% comment %} Preload WOFF2 fonts {% endcomment %}
+      {% if block.settings.font_url_1 != blank %}
+        <link rel="preload" as="font" type="font/woff2" href="{{ block.settings.font_url_1 }}" crossorigin>
+      {% endif %}
+      {% if block.settings.font_url_2 != blank %}
+        <link rel="preload" as="font" type="font/woff2" href="{{ block.settings.font_url_2 }}" crossorigin>
+      {% endif %}
+      {% if block.settings.font_url_3 != blank %}
+        <link rel="preload" as="font" type="font/woff2" href="{{ block.settings.font_url_3 }}" crossorigin>
+      {% endif %}
+    {% endif %}
+
+    {% if block.settings.enable_critical_css %}
+      {% comment %} Inline critical CSS {% endcomment %}
+      <style>
+        {{ block.settings.critical_css }}
+        
+        {% comment %} Default critical CSS for common elements {% endcomment %}
+        {% if block.settings.include_default_critical %}
+          header, .header, [data-section-type="header"] {
+            display: block;
+            position: relative;
+            z-index: 1000;
+          }
+          
+          .hero, .slideshow, [data-section-type="slideshow"] {
+            display: block;
+            position: relative;
+            min-height: 400px;
+          }
+          
+          .hero img, .slideshow img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+          }
+          
+          .product-title, .product__title, h1.product-title {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin: 0 0 1rem;
+          }
+          
+          .product-image, .product__media img {
+            width: 100%;
+            height: auto;
+            display: block;
+          }
+          
+          body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+          }
+          
+          * {
+            box-sizing: border-box;
+          }
+          
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+        {% endif %}
+      </style>
+    {% endif %}
+
+    {% if block.settings.enable_lazy_loading or block.settings.enable_defer_scripts %}
+      <script>
+        (function() {
+          'use strict';
+          
+          {% if block.settings.enable_lazy_loading %}
+            function initLazyLoading() {
+              if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                  entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                      const img = entry.target;
+                      if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                      }
+                      if (img.dataset.srcset) {
+                        img.srcset = img.dataset.srcset;
+                        img.removeAttribute('data-srcset');
+                      }
+                      img.classList.remove('lazy');
+                      observer.unobserve(img);
+                    }
+                  });
+                }, {
+                  rootMargin: '{{ block.settings.lazy_load_margin }}px'
+                });
+
+                document.querySelectorAll('img[data-src], img[data-srcset]').forEach(img => {
+                  imageObserver.observe(img);
+                });
+              }
+            }
+          {% endif %}
+
+          {% if block.settings.enable_defer_scripts %}
+            function deferNonCriticalResources() {
+              const nonCriticalCSS = document.querySelectorAll('link[rel="stylesheet"]:not([data-critical])');
+              nonCriticalCSS.forEach(link => {
+                if (!link.hasAttribute('data-deferred')) {
+                  link.setAttribute('data-deferred', 'true');
+                  const newLink = document.createElement('link');
+                  newLink.rel = 'stylesheet';
+                  newLink.href = link.href;
+                  newLink.media = 'print';
+                  newLink.onload = function() {
+                    this.media = 'all';
+                  };
+                  link.parentNode.insertBefore(newLink, link.nextSibling);
+                  link.remove();
+                }
+              });
+
+              const nonCriticalScripts = document.querySelectorAll('script:not([data-critical]):not([type="application/ld+json"])');
+              nonCriticalScripts.forEach(script => {
+                if (!script.hasAttribute('data-deferred') && !script.src.includes('shopify') && !script.innerHTML.includes('Shopify')) {
+                  script.setAttribute('data-deferred', 'true');
+                  if (script.src) {
+                    script.defer = true;
+                  }
+                }
+              });
+            }
+          {% endif %}
+
+          function initOptimizations() {
+            {% if block.settings.enable_lazy_loading %}
+              initLazyLoading();
+            {% endif %}
+            
+            {% if block.settings.enable_defer_scripts %}
+              deferNonCriticalResources();
+            {% endif %}
+          }
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initOptimizations);
+          } else {
+            initOptimizations();
+          }
+
+          window.addEventListener('load', function() {
+            {% if block.settings.enable_preconnect %}
+              const preconnectDomains = [
+                '{{ block.settings.preconnect_domain_1 }}',
+                '{{ block.settings.preconnect_domain_2 }}',
+                '{{ block.settings.preconnect_domain_3 }}'
+              ].filter(domain => domain.trim() !== '');
+
+              preconnectDomains.forEach(domain => {
+                const link = document.createElement('link');
+                link.rel = 'preconnect';
+                link.href = domain;
+                link.crossOrigin = 'anonymous';
+                document.head.appendChild(link);
+              });
+            {% endif %}
+          });
+        })();
+      </script>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "AI Performance Optimizer",
+  "tag": null,
+  "class": "ai-performance-optimizer-block",
+  "settings": [
+    {
+      "type": "header",
+      "content": "⚡ Performance Optimizer"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_optimizer",
+      "label": "Enable AI Performance Optimizer",
+      "default": true,
+      "info": "Toggle all performance optimizations on/off"
+    },
+    {
+      "type": "header",
+      "content": "🚀 Resource Preloading"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_preloads",
+      "label": "Enable resource preloading",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_1",
+      "label": "Hero image 1 (Desktop)",
+      "info": "Primary hero image to preload for faster LCP"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_2",
+      "label": "Hero image 2 (Desktop)",
+      "info": "Secondary hero image to preload"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_mobile",
+      "label": "Hero image (Mobile)",
+      "info": "Mobile hero image to preload"
+    },
+    {
+      "type": "text",
+      "id": "font_url_1",
+      "label": "WOFF2 Font URL 1",
+      "info": "Full URL to WOFF2 font file"
+    },
+    {
+      "type": "text",
+      "id": "font_url_2",
+      "label": "WOFF2 Font URL 2",
+      "info": "Full URL to WOFF2 font file"
+    },
+    {
+      "type": "text",
+      "id": "font_url_3",
+      "label": "WOFF2 Font URL 3",
+      "info": "Full URL to WOFF2 font file"
+    },
+    {
+      "type": "header",
+      "content": "🎨 Critical CSS"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_critical_css",
+      "label": "Enable critical CSS injection",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "include_default_critical",
+      "label": "Include default critical CSS",
+      "default": true,
+      "info": "Includes optimized CSS for header, hero, product elements"
+    },
+    {
+      "type": "textarea",
+      "id": "critical_css",
+      "label": "Custom critical CSS",
+      "info": "Add your own critical CSS for above-the-fold elements"
+    },
+    {
+      "type": "header",
+      "content": "🖼️ Lazy Loading"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lazy_loading",
+      "label": "Enable image lazy loading",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "lazy_load_margin",
+      "min": 0,
+      "max": 500,
+      "step": 50,
+      "unit": "px",
+      "label": "Lazy load trigger distance",
+      "default": 200,
+      "info": "Distance before element enters viewport to start loading"
+    },
+    {
+      "type": "header",
+      "content": "⚙️ Script Optimization"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_defer_scripts",
+      "label": "Enable script deferring",
+      "default": true,
+      "info": "Defer non-critical CSS and JavaScript"
+    },
+    {
+      "type": "header",
+      "content": "🌐 Preconnect Domains"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_preconnect",
+      "label": "Enable domain preconnect",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "preconnect_domain_1",
+      "label": "Preconnect domain 1",
+      "default": "https://fonts.googleapis.com",
+      "info": "Example: https://fonts.googleapis.com"
+    },
+    {
+      "type": "text",
+      "id": "preconnect_domain_2",
+      "label": "Preconnect domain 2",
+      "default": "https://fonts.gstatic.com",
+      "info": "Example: https://cdn.shopify.com"
+    },
+    {
+      "type": "text",
+      "id": "preconnect_domain_3",
+      "label": "Preconnect domain 3",
+      "info": "Additional domain to preconnect"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AI Performance Optimizer"
+    }
+  ]
+}
+{% endschema %}

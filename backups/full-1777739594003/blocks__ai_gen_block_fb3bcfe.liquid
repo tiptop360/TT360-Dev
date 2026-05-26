@@ -1,0 +1,647 @@
+{% doc %}
+  @prompt
+    image slider and in image url link opction will 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-image-slider-{{ ai_gen_id }} {
+    position: relative;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    overflow: hidden;
+    display: block;
+  }
+
+  .ai-image-slider__container-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.slider_height }}px;
+  }
+
+  .ai-image-slider__slides-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .ai-image-slider__slide-{{ ai_gen_id }} {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .ai-image-slider__slide-{{ ai_gen_id }} a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ai-image-slider__slide-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-image-slider__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-image-slider__placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  .ai-image-slider__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-image-slider__nav-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: {{ block.settings.nav_bg_color }};
+    color: {{ block.settings.nav_icon_color }};
+    border: none;
+    width: {{ block.settings.nav_size }}px;
+    height: {{ block.settings.nav_size }}px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+    opacity: {{ block.settings.nav_opacity }};
+  }
+
+  .ai-image-slider__nav-{{ ai_gen_id }}:hover {
+    opacity: 1;
+    background-color: {{ block.settings.nav_hover_bg_color }};
+  }
+
+  .ai-image-slider__nav--prev-{{ ai_gen_id }} {
+    left: {{ block.settings.nav_offset }}px;
+  }
+
+  .ai-image-slider__nav--next-{{ ai_gen_id }} {
+    right: {{ block.settings.nav_offset }}px;
+  }
+
+  .ai-image-slider__nav-{{ ai_gen_id }} svg {
+    width: calc({{ block.settings.nav_size }}px * 0.5);
+    height: calc({{ block.settings.nav_size }}px * 0.5);
+  }
+
+  .ai-image-slider__dots-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: {{ block.settings.dots_offset }}px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+  }
+
+  .ai-image-slider__dot-{{ ai_gen_id }} {
+    width: {{ block.settings.dot_size }}px;
+    height: {{ block.settings.dot_size }}px;
+    border-radius: 50%;
+    background-color: {{ block.settings.dot_color }};
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.5;
+  }
+
+  .ai-image-slider__dot-{{ ai_gen_id }}.active {
+    opacity: 1;
+    background-color: {{ block.settings.dot_active_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-image-slider__container-{{ ai_gen_id }} {
+      height: {{ block.settings.slider_height_mobile }}px;
+    }
+
+    .ai-image-slider__nav-{{ ai_gen_id }} {
+      width: calc({{ block.settings.nav_size }}px * 0.8);
+      height: calc({{ block.settings.nav_size }}px * 0.8);
+    }
+
+    .ai-image-slider__nav--prev-{{ ai_gen_id }} {
+      left: calc({{ block.settings.nav_offset }}px * 0.5);
+    }
+
+    .ai-image-slider__nav--next-{{ ai_gen_id }} {
+      right: calc({{ block.settings.nav_offset }}px * 0.5);
+    }
+  }
+{% endstyle %}
+
+<image-slider-{{ ai_gen_id }}
+  class="ai-image-slider-{{ ai_gen_id }}"
+  data-autoplay="{{ block.settings.autoplay }}"
+  data-autoplay-speed="{{ block.settings.autoplay_speed }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-image-slider__container-{{ ai_gen_id }}">
+    <div class="ai-image-slider__slides-{{ ai_gen_id }}">
+      {% for i in (1..5) %}
+        {% liquid
+          assign image_key = 'image_' | append: i
+          assign url_key = 'url_' | append: i
+          assign image = block.settings[image_key]
+          assign url = block.settings[url_key]
+        %}
+
+        {% if image != blank %}
+          <div class="ai-image-slider__slide-{{ ai_gen_id }}" data-slide="{{ i }}">
+            {% if url != blank %}
+              <a href="{{ url }}">
+                <img
+                  src="{{ image | image_url: width: 2000 }}"
+                  alt="{{ image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ image.width }}"
+                  height="{{ image.height }}"
+                >
+              </a>
+            {% else %}
+              <img
+                src="{{ image | image_url: width: 2000 }}"
+                alt="{{ image.alt | escape }}"
+                loading="lazy"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+              >
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {% assign has_images = false %}
+      {% for i in (1..5) %}
+        {% liquid
+          assign image_key = 'image_' | append: i
+          assign image = block.settings[image_key]
+        %}
+        {% if image != blank %}
+          {% assign has_images = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      {% unless has_images %}
+        <div class="ai-image-slider__slide-{{ ai_gen_id }}">
+          <div class="ai-image-slider__placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+            <div class="ai-image-slider__empty-state-{{ ai_gen_id }}">
+              Add images to create your slider
+            </div>
+          </div>
+        </div>
+      {% endunless %}
+    </div>
+
+    {% if block.settings.show_arrows and has_images %}
+      <button
+        class="ai-image-slider__nav-{{ ai_gen_id }} ai-image-slider__nav--prev-{{ ai_gen_id }}"
+        aria-label="Previous slide"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <button
+        class="ai-image-slider__nav-{{ ai_gen_id }} ai-image-slider__nav--next-{{ ai_gen_id }}"
+        aria-label="Next slide"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    {% endif %}
+
+    {% if block.settings.show_dots and has_images %}
+      <div class="ai-image-slider__dots-{{ ai_gen_id }}">
+        {% for i in (1..5) %}
+          {% liquid
+            assign image_key = 'image_' | append: i
+            assign image = block.settings[image_key]
+          %}
+          {% if image != blank %}
+            <button
+              class="ai-image-slider__dot-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}"
+              data-slide="{{ i }}"
+              aria-label="Go to slide {{ i }}"
+            ></button>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</image-slider-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ImageSlider{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentSlide = 0;
+        this.autoplayInterval = null;
+      }
+
+      connectedCallback() {
+        this.slidesContainer = this.querySelector('.ai-image-slider__slides-{{ ai_gen_id }}');
+        this.slides = this.querySelectorAll('.ai-image-slider__slide-{{ ai_gen_id }}');
+        this.prevButton = this.querySelector('.ai-image-slider__nav--prev-{{ ai_gen_id }}');
+        this.nextButton = this.querySelector('.ai-image-slider__nav--next-{{ ai_gen_id }}');
+        this.dots = this.querySelectorAll('.ai-image-slider__dot-{{ ai_gen_id }}');
+        this.autoplay = this.dataset.autoplay === 'true';
+        this.autoplaySpeed = parseInt(this.dataset.autoplaySpeed) * 1000;
+
+        if (this.slides.length === 0) return;
+
+        this.setupEventListeners();
+
+        if (this.autoplay && this.slides.length > 1) {
+          this.startAutoplay();
+        }
+      }
+
+      setupEventListeners() {
+        if (this.prevButton) {
+          this.prevButton.addEventListener('click', () => {
+            this.goToPrevSlide();
+            this.resetAutoplay();
+          });
+        }
+
+        if (this.nextButton) {
+          this.nextButton.addEventListener('click', () => {
+            this.goToNextSlide();
+            this.resetAutoplay();
+          });
+        }
+
+        this.dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            this.goToSlide(index);
+            this.resetAutoplay();
+          });
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        this.slidesContainer.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        });
+
+        this.slidesContainer.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          this.handleSwipe(touchStartX, touchEndX);
+        });
+      }
+
+      handleSwipe(startX, endX) {
+        const swipeThreshold = 50;
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+          if (diff > 0) {
+            this.goToNextSlide();
+          } else {
+            this.goToPrevSlide();
+          }
+          this.resetAutoplay();
+        }
+      }
+
+      goToSlide(index) {
+        this.currentSlide = index;
+        this.updateSlider();
+      }
+
+      goToNextSlide() {
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        this.updateSlider();
+      }
+
+      goToPrevSlide() {
+        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        this.updateSlider();
+      }
+
+      updateSlider() {
+        const offset = -this.currentSlide * 100;
+        this.slidesContainer.style.transform = `translateX(${offset}%)`;
+
+        this.dots.forEach((dot, index) => {
+          if (index === this.currentSlide) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+
+      startAutoplay() {
+        this.autoplayInterval = setInterval(() => {
+          this.goToNextSlide();
+        }, this.autoplaySpeed);
+      }
+
+      stopAutoplay() {
+        if (this.autoplayInterval) {
+          clearInterval(this.autoplayInterval);
+          this.autoplayInterval = null;
+        }
+      }
+
+      resetAutoplay() {
+        if (this.autoplay) {
+          this.stopAutoplay();
+          this.startAutoplay();
+        }
+      }
+
+      disconnectedCallback() {
+        this.stopAutoplay();
+      }
+    }
+
+    customElements.define('image-slider-{{ ai_gen_id }}', ImageSlider{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Image slider",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slider settings"
+    },
+    {
+      "type": "range",
+      "id": "slider_height",
+      "label": "Height on desktop",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "slider_height_mobile",
+      "label": "Height on mobile",
+      "min": 150,
+      "max": 600,
+      "step": 50,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Slide 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "url_1",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "url_2",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "url_3",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "url_4",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Slide 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "url_5",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Navigation arrows"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "nav_size",
+      "label": "Arrow size",
+      "min": 30,
+      "max": 70,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "nav_offset",
+      "label": "Arrow offset from edge",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "nav_opacity",
+      "label": "Arrow opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.8
+    },
+    {
+      "type": "color",
+      "id": "nav_bg_color",
+      "label": "Arrow background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_bg_color",
+      "label": "Arrow hover background",
+      "default": "#f9655d"
+    },
+    {
+      "type": "color",
+      "id": "nav_icon_color",
+      "label": "Arrow icon color",
+      "default": "#12395e"
+    },
+    {
+      "type": "header",
+      "content": "Navigation dots"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show dots",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "dot_size",
+      "label": "Dot size",
+      "min": 8,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "dots_offset",
+      "label": "Dots offset from bottom",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "dot_active_color",
+      "label": "Active dot color",
+      "default": "#f9655d"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image slider"
+    }
+  ]
+}
+{% endschema %}

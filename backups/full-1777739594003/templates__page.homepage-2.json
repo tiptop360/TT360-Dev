@@ -1,0 +1,345 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "advanced_content_zQDAA8": {
+      "type": "advanced-content",
+      "blocks": {
+        "html_6A9nxf": {
+          "type": "html",
+          "settings": {
+            "code": "",
+            "width": "100%",
+            "align": "auto"
+          }
+        }
+      },
+      "block_order": [
+        "html_6A9nxf"
+      ],
+      "name": "Advanced Content",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "text_color": "rgba(0,0,0,0)",
+        "bgsection": "#ffffff",
+        "rangebg": 0,
+        "bgbefore": "rgba(0,0,0,0)",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_position": "center center",
+        "zindex": "",
+        "title_top": "",
+        "title": "",
+        "des": "",
+        "align-heading": "center",
+        "padding": true,
+        "gutter_padding": 30,
+        "col_center": false,
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "177503930866e0fb63": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_fb3bcfe_FJVdkW": {
+          "type": "ai_gen_block_fb3bcfe",
+          "settings": {
+            "slider_height": 500,
+            "slider_height_mobile": 300,
+            "desktop_width_percent": 100,
+            "autoplay": true,
+            "autoplay_speed": 2,
+            "image_1": "shopify:\/\/shop_images\/Ai_voice_recorder_powered_by_ChatGPT_meeting_minutes_0a8d669f-f704-4836-861e-50cdcf20b025.webp",
+            "url_1": "shopify:\/\/products\/ai-voice-recorder",
+            "image_2": "shopify:\/\/shop_images\/WhatsApp_Image_2026-04-01_at_3.27.24_PM.jpg",
+            "url_2": "shopify:\/\/products\/ai-voice-recorder",
+            "image_3": "shopify:\/\/shop_images\/WhatsApp_Image_2026-04-01_at_3.48.16_PM.jpg",
+            "url_3": "shopify:\/\/products\/ai-voice-recorder",
+            "image_4": "shopify:\/\/shop_images\/Firefly_Gemini_Flash_2_1__converted.webp",
+            "url_4": "shopify:\/\/products\/ai-voice-recorder",
+            "image_5": "shopify:\/\/shop_images\/WhatsApp_Image_2026-04-01_at_3.33.51_PM.jpg",
+            "url_5": "shopify:\/\/products\/ai-voice-recorder",
+            "show_arrows": true,
+            "nav_size": 50,
+            "nav_offset": 20,
+            "nav_opacity": 0.8,
+            "nav_bg_color": "#ffffff",
+            "nav_hover_bg_color": "#f9655d",
+            "nav_icon_color": "#12395e",
+            "show_dots": true,
+            "dot_size": 12,
+            "dots_offset": 20,
+            "dot_color": "#ffffff",
+            "dot_active_color": "#f9655d"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_fb3bcfe_FJVdkW"
+      ],
+      "settings": {}
+    },
+    "screenfree_intro_uae_2026_nqFpPx": {
+      "type": "screenfree-intro-uae-2026",
+      "name": "Screen-Free Intro UAE",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/214D5E26-25D8-401B-8468-267FFA461B7A.png",
+        "heading": "AI Voice Recorder with Transcription UAE | GPT-4 Powered",
+        "description": "<p>The AI Voice Recorder is a clever productivity tool that can record your conversations and transform them into very precise texts right away. It does away with the traditional pen-and-pencil note-taking, so you can get a great deal of time with less effort. Thanks to the most recent artificial intelligence functionalities, it is also capable of producing brief content and pinpointing a user's main ideas, thus it is perfect for workers, learners, and authors. Besides this, the tiny form factor plus the excellent capacity for the battery make it a handy and dependable gadget for a person's daily activities.<\/p><h3><br\/>FEATURES<\/h3><ul><li>AI Voice Recording<\/li><li>Real-Time Transcription<\/li><li>100+ Language Support<\/li><li>Long Battery Life<\/li><li>64GB Storage<\/li><li>Auto Summary & Key Points<\/li><li>Smart Device Sync<\/li><\/ul>",
+        "image_position": "left"
+      }
+    },
+    "rich_text_46DqUV": {
+      "type": "rich-text",
+      "name": "Rich text",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "bgsection": "#ffffff",
+        "gradient_bg": "",
+        "title_color": "rgba(0,0,0,0)",
+        "title_top": "",
+        "title": "🛒 Brilliant Smart Gadgets & Kids Products",
+        "text": "<p>Trusted by 50,000+ UAE Families<\/p><p><\/p><p>We search the world for innovative, problem-solving products that actually work.<br\/>Curated. Tested. Trusted. Delivered fast to your door.<\/p>",
+        "align-heading": "center",
+        "align-content": "center",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "40px 0px 40px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "177503994452a3111f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4a30c28_8LTRDU": {
+          "type": "ai_gen_block_4a30c28",
+          "settings": {
+            "desktop_width_percent": 100,
+            "columns_desktop": "4",
+            "columns_mobile": "2",
+            "gap": 24,
+            "gap_mobile": 16,
+            "alignment": "center",
+            "padding_vertical": 40,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "box_padding": 24,
+            "box_background_color": "#f9f9f9",
+            "border_radius": 8,
+            "hover_lift": 4,
+            "icon_size": 60,
+            "icon_size_mobile": 50,
+            "icon_padding": 12,
+            "icon_spacing": 16,
+            "icon_color": "#12395e",
+            "icon_background_color": "#e9f4ff",
+            "icon_border_radius": 50,
+            "title_size": 18,
+            "title_size_mobile": 16,
+            "title_weight": "500",
+            "title_color": "#12395e",
+            "box_1_title": "✓ Free UAE Delivery on 100+ AED",
+            "box_1_icon": "truck",
+            "box_2_title": "✓ Secure Checkout (SSL)",
+            "box_2_icon": "check",
+            "box_3_title": "✓ Cash on Delivery",
+            "box_3_icon": "tag",
+            "box_4_title": "✓ 30-Day Money-Back Guarantee",
+            "box_4_icon": "clock"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_4a8a5f2_RBtQaE": {
+          "type": "ai_gen_block_4a8a5f2",
+          "name": "Paragraph",
+          "settings": {
+            "paragraph_text": "<p>✓ Dubai Municipality & Health Department Approved<br\/>✓ Next Day Delivery | ✓ 24\/7 WhatsApp Support<\/p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "center",
+            "font_size": 16,
+            "font_size_mobile": 14,
+            "line_height": 1.6,
+            "text_color": "#202025",
+            "background_color": "",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_horizontal": 0,
+            "border_radius": 0
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_9a643e9_9xbFgF": {
+          "type": "ai_gen_block_9a643e9",
+          "settings": {
+            "button_1_text": "Learn More",
+            "button_1_link": "",
+            "button_1_bg_color": "#12395e",
+            "button_1_text_color": "#ffffff",
+            "button_1_hover_bg_color": "#f9655d",
+            "button_1_hover_text_color": "#ffffff",
+            "button_2_text": "Shop Now",
+            "button_2_link": "",
+            "button_2_bg_color": "#f9655d",
+            "button_2_text_color": "#ffffff",
+            "button_2_hover_bg_color": "#12395e",
+            "button_2_hover_text_color": "#ffffff",
+            "alignment": "center",
+            "button_gap": 15,
+            "stack_on_mobile": true,
+            "desktop_width_percent": 100,
+            "button_font_size": 14,
+            "button_font_weight": "500",
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 20,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 28
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4a30c28_8LTRDU",
+        "ai_gen_block_4a8a5f2_RBtQaE",
+        "ai_gen_block_9a643e9_9xbFgF"
+      ],
+      "settings": {}
+    },
+    "17750404450b830417": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "177504058363d726c8": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "1775041199e4eb4f8c": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_651033a_QtUxrf": {
+          "type": "ai_gen_block_651033a",
+          "settings": {
+            "box_1_title": "About Us",
+            "box_1_description": "Learn more about our story and mission",
+            "box_1_url": "shopify:\/\/pages\/about-tiptop360-ai-voice-recorder-features-smart-clear-easy-recording",
+            "box_2_title": "Features",
+            "box_2_description": "Discover what makes us unique",
+            "box_2_url": "shopify:\/\/pages\/ai-voice-seo",
+            "desktop_width_percent": 100,
+            "gap": 30,
+            "alignment": "center",
+            "padding": 30,
+            "border_radius": 8,
+            "border_width": 1,
+            "background_color": "#ffffff",
+            "border_color": "#e0e0e0",
+            "hover_lift": 5,
+            "hover_background_color": "#f9f9f9",
+            "hover_border_color": "#12395e",
+            "icon_size": 50,
+            "icon_spacing": 20,
+            "icon_color": "#12395e",
+            "hover_icon_color": "#f9655d",
+            "title_size": 20,
+            "title_weight": "600",
+            "title_spacing": 10,
+            "title_color": "#12395e",
+            "hover_title_color": "#12395e",
+            "description_size": 14,
+            "description_color": "#202025",
+            "hover_description_color": "#202025"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_651033a_QtUxrf"
+      ],
+      "settings": {}
+    },
+    "kids_brushing_routine_ktNgVE": {
+      "type": "kids-brushing-routine",
+      "blocks": {
+        "routine_FDCikH": {
+          "type": "routine",
+          "settings": {
+            "heading": "Core Features",
+            "items": "High-quality voice recording\nAutomatic speech-to-text transcription\nMultilingual conversation support\nCloud-based storage\nAI-powered text editing and search"
+          }
+        },
+        "toothbrush_cWNTRU": {
+          "type": "toothbrush",
+          "settings": {
+            "heading": "Best For",
+            "items": "Business meetings\nInterviews and journalism\nOnline classes and lectures\nCustomer service call documentation\nLegal and corporate recordings",
+            "button_text": "BUY NOW",
+            "button_link": "shopify:\/\/products\/ai-voice-recorder"
+          }
+        },
+        "checklist_iTn8yc": {
+          "type": "checklist",
+          "settings": {
+            "heading": "Compatibility",
+            "items": "Web platforms\nMobile devices\nBusiness communication systems"
+          }
+        }
+      },
+      "block_order": [
+        "routine_FDCikH",
+        "toothbrush_cWNTRU",
+        "checklist_iTn8yc"
+      ],
+      "name": "Kids Brushing Routine",
+      "settings": {
+        "section_padding": "60px 20px"
+      }
+    },
+    "uae_screenfree_cta_2026_RXkWMg": {
+      "type": "uae-screenfree-cta-2026",
+      "name": "UAE Screen-Free CTA",
+      "settings": {
+        "heading": "Make recording simple and effortless.",
+        "button_text": "Shop Best Voice Recorder With Transcription in Dubai",
+        "button_link": "https:\/\/tiptop360.com\/products\/ai-voice-recorder",
+        "bg_color": "#ffffff",
+        "button_bg": "#12395e",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "line_cN6GeE": {
+      "type": "line",
+      "name": "Divider",
+      "settings": {
+        "animation": "",
+        "paddingsection": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "bgsection": "#ffffff",
+        "setwidth": "container",
+        "bgborder": "#dddddd",
+        "wborder": "1px"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "advanced_content_zQDAA8",
+    "177503930866e0fb63",
+    "screenfree_intro_uae_2026_nqFpPx",
+    "rich_text_46DqUV",
+    "177503994452a3111f",
+    "17750404450b830417",
+    "177504058363d726c8",
+    "1775041199e4eb4f8c",
+    "kids_brushing_routine_ktNgVE",
+    "uae_screenfree_cta_2026_RXkWMg",
+    "line_cN6GeE"
+  ]
+}

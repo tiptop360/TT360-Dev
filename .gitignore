@@ -1,0 +1,11 @@
+node_modules/
+.env
+audits/geo-logs/
+*.bak
+/tmp/
+.DS_Store
+.shopify/
+.theme-release.json
+.theme-release.lock.json
+.release-work/
+.indexnow-key

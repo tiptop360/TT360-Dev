@@ -1,0 +1,49 @@
+
+{% comment %} TipTop360 — Sticky ATC Bar (optimizer v1) {% endcomment %}
+{% if template == 'product' %}
+<div id="tt360-sticky-atc" class="tt360-sticky-atc" style="display:none">
+  <div class="tt360-sticky-inner">
+    <div class="tt360-sticky-product">
+      <img src="{{ product.featured_image | img_url: '80x80', crop: 'center' }}" alt="{{ product.title }}" width="40" height="40">
+      <span class="tt360-sticky-title">{{ product.title | truncatewords: 6 }}</span>
+    </div>
+    <div class="tt360-sticky-price">
+      <span class="tt360-price">{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span class="tt360-compare">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+    </div>
+    <button class="tt360-sticky-btn" type="button" onclick="document.querySelector('[name=add]')?.click() || document.querySelector('.product-form__submit')?.click()">Add to Cart</button>
+  </div>
+</div>
+<style>
+.tt360-sticky-atc{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#fff;border-top:2px solid #54e8cc;box-shadow:0 -4px 20px rgba(0,0,0,.12);padding:10px 16px;transform:translateY(100%);transition:transform .3s ease}
+.tt360-sticky-atc.visible{transform:translateY(0)}
+.tt360-sticky-inner{display:flex;align-items:center;gap:12px;max-width:1200px;margin:0 auto}
+.tt360-sticky-product{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.tt360-sticky-product img{border-radius:6px;object-fit:cover;flex-shrink:0}
+.tt360-sticky-title{font-size:13px;font-weight:600;color:#12395e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tt360-sticky-price{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0}
+.tt360-price{font-size:16px;font-weight:700;color:#12395e}
+.tt360-compare{font-size:11px;color:#999;text-decoration:line-through}
+.tt360-sticky-btn{background:#f9655d;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .2s}
+.tt360-sticky-btn:hover{background:#e04d45}
+@media(max-width:480px){.tt360-sticky-title{display:none}.tt360-sticky-btn{padding:10px 14px;font-size:13px}}
+</style>
+<script>
+(function(){
+  var bar=document.getElementById('tt360-sticky-atc');
+  if(!bar) return;
+  var mainBtn=document.querySelector('[name=add], .product-form__submit, .btn--add-to-cart');
+  if(!mainBtn) return;
+  var shown=false;
+  function check(){
+    var rect=mainBtn.getBoundingClientRect();
+    var below=rect.bottom<0;
+    if(below!==shown){shown=below;bar.style.display='block';setTimeout(function(){bar.classList.toggle('visible',shown)},10)}
+  }
+  window.addEventListener('scroll',check,{passive:true});
+  check();
+})();
+</script>
+{% endif %}

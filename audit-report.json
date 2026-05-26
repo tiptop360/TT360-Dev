@@ -1,0 +1,12 @@
+{
+  "broken": [],
+  "issues": {
+    "Missing description": 0,
+    "Description < 500 chars": 0,
+    "Missing alt text": 0,
+    "Title > 60 chars": 0,
+    "No images": 0
+  },
+  "totalUrls": 10,
+  "totalProducts": 19
+}

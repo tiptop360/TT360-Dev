@@ -1,0 +1,283 @@
+<!doctype html>
+<html class="no-js" lang="{{ shop.locale }}">
+<head>
+<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="{{ settings.color_header_bg }}">
+  <meta name="format-detection" content="telephone=no">
+
+  {%- comment -%} 1. SEO & ROBOTS: Fixed duplication and indexing logic {%- endcomment -%}
+  {%- liquid
+    assign should_noindex = false
+    if template.name contains 'search' or template.name contains 'cart' or template.name contains 'customers' or request.path contains '/account' or request.path contains '/orders'
+      assign should_noindex = true
+    elsif request.query_string contains 'sort_by=' or request.query_string contains 'filter.' or request.query_string contains 'variant='
+      assign should_noindex = true
+    endif
+  -%}
+  <meta name="robots" content="{% if should_noindex %}noindex, follow{% else %}index, follow{% endif %}">
+
+  <title>
+    {{ page_title }}{% if current_tags %} – {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} – {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} – {{ shop.name }}{% endunless %}
+  </title>
+
+  <meta name="description" content="{{ page_description | default: settings.meta_description | escape }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  
+  {%- comment -%} 2. PERFORMANCE: Corrected pre-connects and preloads {%- endcomment -%}
+  
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://static.klaviyo.com">
+  <link rel="preconnect" href="https://code.jquery.com">
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+  {%- if template.name == 'product' -%}
+    {%- assign hero = product.selected_or_first_available_variant.featured_image | default: product.featured_image -%}
+    {%- if hero -%}
+      <link rel="preload" as="image" href="{{ hero | image_url: width: 1200 }}" imagesrcset="{{ hero | image_url: width: 600 }} 600w, {{ hero | image_url: width: 900 }} 900w, {{ hero | image_url: width: 1200 }} 1200w" imagesizes="(max-width: 768px) 90vw, 600px">
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- render 'header-css' -%}
+  {{ content_for_header }}
+
+  {%- if settings.favicon != blank -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 32, height: 32 }}" type="image/png">
+  {%- endif -%}
+
+  {%- render 'social-meta-tags' -%}
+
+  {%- comment -%} 3. SCHEMA: Optimized @graph (No Duplicates, Valid 2026 Format) {%- endcomment -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": ["Organization", "OnlineStore"],
+            "@id": "https://tiptop360.com/#organization",
+            "name": "TipTop360",
+            "alternateName": "TipTop360 Online",
+            "legalName": "Sylo Commerce FZ-LLC",
+            "url": "https://tiptop360.com/",
+            "description": "TipTop360 is a UAE-based online store that curates useful kids products, smart gadgets, home helpers, and lifestyle essentials.",
+            "logo": "https://tiptop360.com/cdn/shop/files/Logo.png?v=1760682550&width=200",
+            "image": "https://tiptop360.com/cdn/shop/files/Logo.png?v=1760682550&width=200",
+            "email": "info@tiptop360.com",
+            "telephone": "+971585156033",
+            "sameAs": [
+              "https://www.facebook.com/TipTop360-online-61574240081708/",
+              "https://www.instagram.com/tiptop360_online/",
+              "https://www.tiktok.com/@tiptop360_online"
+            ],
+            "areaServed": {
+              "@type": "Country",
+              "name": "United Arab Emirates",
+              "identifier": "AE"
+            },
+            "knowsAbout": [
+              "kids products",
+              "smart gadgets",
+              "home helpers",
+              "lifestyle essentials",
+              "UAE online shopping"
+            ],
+            "contactPoint": [{
+              "@type": "ContactPoint",
+              "telephone": "+971585156033",
+              "email": "info@tiptop360.com",
+              "contactType": "customer service",
+              "areaServed": "AE",
+              "availableLanguage": ["English"]
+            }],
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "RAK Free Zone",
+              "addressLocality": "Ras Al Khaimah",
+              "addressRegion": "RAK",
+              "addressCountry": "AE"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://tiptop360.com/#website",
+            "url": "https://tiptop360.com/",
+            "name": "TipTop360",
+            "alternateName": "TipTop360 UAE",
+            "description": "TipTop360 curates useful kids products, smart gadgets, home helpers, and lifestyle essentials for shoppers across the UAE.",
+            "inLanguage": "en-AE",
+            "about": { "@id": "https://tiptop360.com/#organization" },
+            "publisher": { "@id": "https://tiptop360.com/#organization" },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://tiptop360.com/search?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          }
+          {%- if template.name == 'index' -%}
+          ,
+          {
+            "@type": "WebPage",
+            "@id": "https://tiptop360.com/#webpage",
+            "url": "https://tiptop360.com/",
+            "name": "Smart Gadgets and Kids Products in UAE | TipTop360",
+            "description": "TipTop360 curates useful kids products, smart gadgets, home helpers, and lifestyle essentials for shoppers across the UAE.",
+            "isPartOf": { "@id": "https://tiptop360.com/#website" },
+            "about": { "@id": "https://tiptop360.com/#organization" },
+            "publisher": { "@id": "https://tiptop360.com/#organization" },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://tiptop360.com/cdn/shop/files/Logo.png?v=1760682550&width=200"
+            },
+            "inLanguage": "en-AE"
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://tiptop360.com/#homepage-faq",
+            "url": "https://tiptop360.com/",
+            "isPartOf": { "@id": "https://tiptop360.com/#webpage" },
+            "mainEntityOfPage": { "@id": "https://tiptop360.com/#webpage" },
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is TipTop360?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "TipTop360 is a UAE-based online store that curates useful kids products, smart gadgets, home helpers, and lifestyle essentials for everyday problems and gift ideas."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why Shop With Us?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We keep the range focused on practical products, clear UAE delivery information, Cash on Delivery where eligible, secure checkout, and support by email or WhatsApp."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where do you ship?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We deliver across the UAE, including Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Umm Al Quwain, and Fujairah."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long does shipping take?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Orders are typically delivered within 1-4 business days depending on the Emirate."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What if my item arrives damaged?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Contact our support team with your order number and photos. Returns and refunds for damaged or incorrect items follow the timeframe stated in our Refund Policy."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I speak to someone if I have a question?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Email us at info@tiptop360.com or call or WhatsApp +971 58 515 6033. Our team is available daily."
+                }
+              }
+            ]
+          }
+          {%- endif -%}
+        ]
+      }
+    </script>
+
+  {%- comment -%} 4. TRACKING: Consolidated GTM and Clarity {%- endcomment -%}
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-NC6ZVVHK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GT-NC6ZVVHK');
+    gtag('config', 'AW-17211943737');
+  </script>
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+
+{%- render 'mobile-first-css' -%}
+{%- render 'blog-author-schema' -%}
+
+  {%- if template == 'index' -%}
+  {%- assign lcp_product = collections['new-arrivals-top-selling-products-in-uae'].products.first -%}
+  {%- if lcp_product and lcp_product.featured_image -%}
+  <link rel="preload" as="image"
+    href="{{ lcp_product.featured_image | image_url: width: 600 }}"
+    imagesrcset="{{ lcp_product.featured_image | image_url: width: 300 }} 300w, {{ lcp_product.featured_image | image_url: width: 600 }} 600w"
+    imagesizes="(max-width: 768px) 100vw, 600px">
+  {%- endif -%}
+  {%- endif -%}
+{%- render 'critical-css' -%}
+</head>
+
+<body class="template-{{ template.name | handle }}">
+  <div id="page-container">
+    {%- sections 'header-group' -%}
+
+    <main role="main" id="MainContent">
+      {%- if template.name == 'index' -%}
+        {%- section 'slideshow-3' -%}
+      {%- endif -%}
+      {{ content_for_layout }}
+    </main>
+
+    {%- sections 'footer-group' -%}
+    {%- liquid
+      section 'pnewsletter'
+      section 'product-suggest'
+      section 'cookie-policy'
+    -%}
+  </div>
+
+  {%- liquid
+    render 'back-to-top'
+    render 'menu-mobile'
+    render 'header-js'
+  -%}
+
+  {%- comment -%} 5. SCRIPTS: Optimized load order {%- endcomment -%}
+  <!-- jQuery removed: Shopify theme already loads jQuery via api.jquery -->
+  <script src="{{ 'lazysizes.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'vendor.s.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'global.s.min.js' | asset_url }}" defer></script>
+  
+  <script>
+    // Toggle chat button when mini-cart is open without using heavy intervals
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          const chatBtn = document.getElementById('carthike-chat-button-container');
+          if (chatBtn) {
+            chatBtn.style.display = mutation.target.classList.contains('active') ? 'none' : '';
+          }
+        }
+      });
+    });
+
+    const pageContainer = document.getElementById('page-container');
+    if (pageContainer) {
+      observer.observe(pageContainer, {
+        attributes: true,
+        attributeFilter: ['class'],
+        subtree: true
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+{% doc %}
+  @prompt
+    create table 2 side 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-two-column-table-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-two-column-table__wrapper-{{ ai_gen_id }} {
+    overflow-x: auto;
+  }
+
+  .ai-two-column-table__table-{{ ai_gen_id }} {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: {{ block.settings.table_bg_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-two-column-table__header-{{ ai_gen_id }} {
+    background-color: {{ block.settings.header_bg_color }};
+  }
+
+  .ai-two-column-table__header-cell-{{ ai_gen_id }} {
+    padding: {{ block.settings.cell_padding }}px;
+    text-align: {{ block.settings.text_alignment }};
+    color: {{ block.settings.header_text_color }};
+    font-weight: {{ block.settings.header_font_weight }};
+    font-size: {{ block.settings.header_font_size }}px;
+    border-bottom: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+  }
+
+  .ai-two-column-table__row-{{ ai_gen_id }} {
+    border-bottom: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+  }
+
+  .ai-two-column-table__row-{{ ai_gen_id }}:last-child {
+    border-bottom: none;
+  }
+
+  {% if block.settings.enable_striped_rows %}
+    .ai-two-column-table__row-{{ ai_gen_id }}:nth-child(even) {
+      background-color: {{ block.settings.striped_row_color }};
+    }
+  {% endif %}
+
+  {% if block.settings.enable_hover %}
+    .ai-two-column-table__row-{{ ai_gen_id }}:hover {
+      background-color: {{ block.settings.hover_color }};
+    }
+  {% endif %}
+
+  .ai-two-column-table__cell-{{ ai_gen_id }} {
+    padding: {{ block.settings.cell_padding }}px;
+    text-align: {{ block.settings.text_alignment }};
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_font_size }}px;
+  }
+
+  .ai-two-column-table__cell-{{ ai_gen_id }}:first-child {
+    font-weight: {{ block.settings.first_column_font_weight }};
+    {% if block.settings.first_column_bg_enable %}
+      background-color: {{ block.settings.first_column_bg_color }};
+    {% endif %}
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-two-column-table__header-cell-{{ ai_gen_id }},
+    .ai-two-column-table__cell-{{ ai_gen_id }} {
+      padding: {{ block.settings.cell_padding | times: 0.7 }}px;
+      font-size: {{ block.settings.text_font_size | times: 0.9 }}px;
+    }
+
+    .ai-two-column-table__header-cell-{{ ai_gen_id }} {
+      font-size: {{ block.settings.header_font_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<two-column-table-{{ ai_gen_id }}
+  class="ai-two-column-table-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-two-column-table__wrapper-{{ ai_gen_id }}">
+    <table class="ai-two-column-table__table-{{ ai_gen_id }}">
+      {% if block.settings.show_header %}
+        <thead class="ai-two-column-table__header-{{ ai_gen_id }}">
+          <tr>
+            <th class="ai-two-column-table__header-cell-{{ ai_gen_id }}">
+              {{ block.settings.header_column_1 }}
+            </th>
+            <th class="ai-two-column-table__header-cell-{{ ai_gen_id }}">
+              {{ block.settings.header_column_2 }}
+            </th>
+          </tr>
+        </thead>
+      {% endif %}
+      <tbody>
+        {% for i in (1..10) %}
+          {% liquid
+            assign row_label_key = 'row_' | append: i | append: '_label'
+            assign row_value_key = 'row_' | append: i | append: '_value'
+            assign row_label = block.settings[row_label_key]
+            assign row_value = block.settings[row_value_key]
+          %}
+          {% if row_label != blank or row_value != blank %}
+            <tr class="ai-two-column-table__row-{{ ai_gen_id }}">
+              <td class="ai-two-column-table__cell-{{ ai_gen_id }}">
+                {{ row_label }}
+              </td>
+              <td class="ai-two-column-table__cell-{{ ai_gen_id }}">
+                {{ row_value }}
+              </td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</two-column-table-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class TwoColumnTable{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('two-column-table-{{ ai_gen_id }}', TwoColumnTable{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Two column table",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Table header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Show header",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "header_column_1",
+      "label": "Column 1 header",
+      "default": "Feature"
+    },
+    {
+      "type": "text",
+      "id": "header_column_2",
+      "label": "Column 2 header",
+      "default": "Details"
+    },
+    {
+      "type": "color",
+      "id": "header_bg_color",
+      "label": "Background",
+      "default": "#12395e"
+    },
+    {
+      "type": "color",
+      "id": "header_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "header_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Table rows"
+    },
+    {
+      "type": "text",
+      "id": "row_1_label",
+      "label": "Row 1 - Column 1",
+      "default": "Material"
+    },
+    {
+      "type": "text",
+      "id": "row_1_value",
+      "label": "Row 1 - Column 2",
+      "default": "100% Cotton"
+    },
+    {
+      "type": "text",
+      "id": "row_2_label",
+      "label": "Row 2 - Column 1",
+      "default": "Size"
+    },
+    {
+      "type": "text",
+      "id": "row_2_value",
+      "label": "Row 2 - Column 2",
+      "default": "Medium"
+    },
+    {
+      "type": "text",
+      "id": "row_3_label",
+      "label": "Row 3 - Column 1",
+      "default": "Color"
+    },
+    {
+      "type": "text",
+      "id": "row_3_value",
+      "label": "Row 3 - Column 2",
+      "default": "Blue"
+    },
+    {
+      "type": "text",
+      "id": "row_4_label",
+      "label": "Row 4 - Column 1"
+    },
+    {
+      "type": "text",
+      "id": "row_4_value",
+      "label": "Row 4 - Column 2"
+    },
+    {
+      "type": "text",
+      "id": "row_5_label",
+      "label": "Row 5 - Column 1"
+    },
+    {
+      "type": "text",
+      "id": "row_5_value",
+      "label": "Row 5 - Column 2"
+    },
+    {
+      "type": "text",
+      "id": "row_6_label",
+      "label": "Row 6 - Column 1"
+    },
+    {
+      "type": "text",
+      "id": "row_6_value",
+      "label": "Row 6 - Column 2"
+    },
+    {
+      "type": "text",
+      "id": "row_7_label",
+      "label": "Row 7 - Column 1"
+    },
+    {
+      "type": "text",
+      "id": "row_7_value",
+      "label": "Row 7 - Column 2"
+    },
+    {
+      "type": "text",
+      "id": "row_8_label",
+      "label": "Row 8 - Column 1"
+    },
+    {
+      "type": "text",
+      "id": "row_8_value",
+      "label": "Row 8 - Column 2"
+    },
+    {
+      "type": "text",
+      "id": "row_9_label",
+      "label": "Row 9 - Column 1"
+    },
+    {
+      "type": "text",
+      "id": "row_9_value",
+      "label": "Row 9 - Column 2"
+    },
+    {
+      "type": "text",
+      "id": "row_10_label",
+      "label": "Row 10 - Column 1"
+    },
+    {
+      "type": "text",
+      "id": "row_10_value",
+      "label": "Row 10 - Column 2"
+    },
+    {
+      "type": "header",
+      "content": "Table style"
+    },
+    {
+      "type": "color",
+      "id": "table_bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#202025"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "cell_padding",
+      "label": "Cell padding",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#e9e9e9"
+    },
+    {
+      "type": "header",
+      "content": "First column style"
+    },
+    {
+      "type": "select",
+      "id": "first_column_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "checkbox",
+      "id": "first_column_bg_enable",
+      "label": "Enable background",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "first_column_bg_color",
+      "label": "Background",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "header",
+      "content": "Row effects"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_striped_rows",
+      "label": "Enable striped rows",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "striped_row_color",
+      "label": "Striped row color",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_hover",
+      "label": "Enable hover effect",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two column table"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

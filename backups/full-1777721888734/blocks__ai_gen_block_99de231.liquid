@@ -1,0 +1,332 @@
+{% doc %}
+  @prompt
+    4 box small box title and text 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-four-boxes-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-four-boxes__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: {{ block.settings.gap }}px;
+  }
+
+  .ai-four-boxes__box-{{ ai_gen_id }} {
+    background-color: {{ block.settings.box_background }};
+    border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: {{ block.settings.padding }}px;
+    text-align: {{ block.settings.text_alignment }};
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ai-four-boxes__box-{{ ai_gen_id }}:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-four-boxes__title-{{ ai_gen_id }} {
+    color: {{ block.settings.title_color }};
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: {{ block.settings.title_weight }};
+    margin: 0 0 {{ block.settings.title_spacing }}px 0;
+  }
+
+  .ai-four-boxes__text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-four-boxes__container-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-four-boxes__container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstyle %}
+
+<four-boxes-{{ ai_gen_id }} class="ai-four-boxes-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-four-boxes__container-{{ ai_gen_id }}">
+    {% for i in (1..4) %}
+      {% liquid
+        assign title_key = 'box_' | append: i | append: '_title'
+        assign text_key = 'box_' | append: i | append: '_text'
+        assign title = block.settings[title_key]
+        assign text = block.settings[text_key]
+      %}
+      <div class="ai-four-boxes__box-{{ ai_gen_id }}">
+        {% if title != blank %}
+          <h3 class="ai-four-boxes__title-{{ ai_gen_id }}">{{ title }}</h3>
+        {% endif %}
+        {% if text != blank %}
+          <p class="ai-four-boxes__text-{{ ai_gen_id }}">{{ text }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</four-boxes-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class FourBoxes{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+    }
+    customElements.define('four-boxes-{{ ai_gen_id }}', FourBoxes{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Four boxes",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Box 1"
+    },
+    {
+      "type": "text",
+      "id": "box_1_title",
+      "label": "Title",
+      "default": "Free Shipping"
+    },
+    {
+      "type": "textarea",
+      "id": "box_1_text",
+      "label": "Text",
+      "default": "On orders over AED 100"
+    },
+    {
+      "type": "header",
+      "content": "Box 2"
+    },
+    {
+      "type": "text",
+      "id": "box_2_title",
+      "label": "Title",
+      "default": "24/7 Support"
+    },
+    {
+      "type": "textarea",
+      "id": "box_2_text",
+      "label": "Text",
+      "default": "Contact us anytime"
+    },
+    {
+      "type": "header",
+      "content": "Box 3"
+    },
+    {
+      "type": "text",
+      "id": "box_3_title",
+      "label": "Title",
+      "default": "Easy Returns"
+    },
+    {
+      "type": "textarea",
+      "id": "box_3_text",
+      "label": "Text",
+      "default": "30-day return policy"
+    },
+    {
+      "type": "header",
+      "content": "Box 4"
+    },
+    {
+      "type": "text",
+      "id": "box_4_title",
+      "label": "Title",
+      "default": "Secure Payment"
+    },
+    {
+      "type": "textarea",
+      "id": "box_4_text",
+      "label": "Text",
+      "default": "100% secure checkout"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between boxes",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Box padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Box style"
+    },
+    {
+      "type": "color",
+      "id": "box_background",
+      "label": "Background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Title style"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color",
+      "default": "#12395e"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "Spacing below",
+      "min": 5,
+      "max": 25,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Text style"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color",
+      "default": "#202025"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Four boxes"
+    }
+  ]
+}
+{% endschema %}

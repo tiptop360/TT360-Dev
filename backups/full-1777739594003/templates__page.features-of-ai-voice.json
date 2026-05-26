@@ -1,0 +1,271 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "advanced_content_zQDAA8": {
+      "type": "advanced-content",
+      "blocks": {
+        "html_6A9nxf": {
+          "type": "html",
+          "settings": {
+            "code": "",
+            "width": "100%",
+            "align": "auto"
+          }
+        }
+      },
+      "block_order": [
+        "html_6A9nxf"
+      ],
+      "name": "Advanced Content",
+      "settings": {
+        "animation": "",
+        "setwidth": "container",
+        "text_color": "rgba(0,0,0,0)",
+        "bgsection": "#ffffff",
+        "rangebg": 0,
+        "bgbefore": "rgba(0,0,0,0)",
+        "e_size": "auto",
+        "e_repeat": "no-repeat",
+        "e_position": "center center",
+        "zindex": "",
+        "title_top": "",
+        "title": "",
+        "des": "",
+        "align-heading": "center",
+        "padding": true,
+        "gutter_padding": 30,
+        "col_center": false,
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
+    },
+    "17766689699a0e172d": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1fab6b7_mR3Lni": {
+          "type": "ai_gen_block_1fab6b7",
+          "settings": {
+            "headline": "The Smartest <em>AI Voice Recorder<\/em> in Dubai",
+            "value_proposition": "<p>Record meetings, lectures, and interviews — then let AiVox's AI instantly transcribe, summarise, and organise everything. No manual notes, ever again.<br\/><br\/><\/p>",
+            "show_rating": false,
+            "rating_text": "4.9\/5 from 12,847 reviews",
+            "cta_text": "Shop Now - Limited Stock",
+            "cta_link": "shopify:\/\/products\/ai-voice-recorder",
+            "desktop_width_percent": 100,
+            "content_max_width": 800,
+            "text_alignment": "left",
+            "padding_vertical": 60,
+            "padding_horizontal": 20,
+            "element_spacing": 20,
+            "background_color": "#78bfb3",
+            "headline_color": "#12395e",
+            "value_prop_color": "#202025",
+            "star_color": "#FFB800",
+            "rating_text_color": "#202025",
+            "button_bg_color": "#f9655d",
+            "button_text_color": "#ffffff",
+            "button_hover_bg_color": "#12395e",
+            "button_hover_text_color": "#ffffff",
+            "headline_size": 48,
+            "headline_weight": "700",
+            "value_prop_size": 18,
+            "star_size": 24,
+            "rating_text_size": 16,
+            "button_text_size": 16,
+            "button_text_weight": "600",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 28
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1fab6b7_mR3Lni"
+      ],
+      "settings": {}
+    },
+    "blocks_hxm44w": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_15e7c06_mGnrR8": {
+          "type": "ai_gen_block_15e7c06",
+          "settings": {
+            "heading": "",
+            "text": "<p>Dubai is quickly becoming a top business center with many business professionals engaging in meetings, conferences, lectures, and interviews on a daily basis. This is much of the reason that so many business professionals are using a voice recorder (with transcription) because, as you can imagine, while trying to write all of the details of what they hear during a conversation, it is hard to keep track of what is being said to them at that moment; therefore, many business professionals are looking for the Best Voice Recorders With Transcription to help with this challenge..<br\/><br\/>A modern-day voice recorder with transcription capability will record the audio portion of a conversation and transcribe it into text using advanced artificial intelligence technology. While this is happening, the user will be able to concentrate on the conversation while the voice recorder captures everything they say and transcribe it into printed format for review later on.<\/p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "spacing": 15,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 32,
+            "text_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_15e7c06_mGnrR8"
+      ],
+      "name": "Title and text",
+      "settings": {}
+    },
+    "177502810293966512": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "screenfree_intro_uae_2026_fQt3iU": {
+      "type": "screenfree-intro-uae-2026",
+      "name": "Screen-Free Intro UAE",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/AiVox-voice-recorder-Tiptop360-call-recorder-note-taker-transcription-meeting-notes-mindmap-meeting-minutes-meeting-recorder-business-tool.png",
+        "heading": "IntroWhy Choose a Voice Recorder With Transcription",
+        "description": "<p>Traditional voice recorders capture only sound. When users want to review captured information, they must play back the entire recording in order to find specific information through searching or other means, and then make handwritten notes of the relevant portions of the recording. Voice recorders with transcription capabilities eliminate the need for this manual process. By using the best voice recorder that has transcription capabilities, users have the ability to instantly convert voice sounds into written text and quickly locate specific information combined with audio recording.<\/p><h3>Key benefits<\/h3><ul><li>Automatic speech-to-text transcription<\/li><li>AI-generated summaries of conversations<\/li><li>Speaker identification in group discussions<\/li><li>Searchable transcripts for easy reference<\/li><li>Organized notes and key highlights<\/li><\/ul><p><\/p>",
+        "image_position": "right"
+      }
+    },
+    "17750343565d1a036c": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_fa0ee33_9tXmHc": {
+          "type": "ai_gen_block_fa0ee33",
+          "settings": {
+            "heading": "Features of the Best AI Voice Recorder",
+            "text": "<p>The decision-making process for which Best  AI voice recorder is optimal comes down to the following main criteria: transcription accuracy, sound quality, battery life, multilingual capacity, smart recording technology providing meeting summaries, the ability to securely store recordings, portability and ease of using a recorder to make recording meetings, interviews and presentations simple and convenient.<\/p><h4>High Quality Voice Recording<\/h4><p>To allow for accurate transcription of conversations, a good voice recorder must record high-quality voice recorder no matter where it is being used. The type of environment that the recording takes place should not affect the clarity of the recording. In contrast to traditional voice recorders, new digital voice recorders with high-definition microphones have been designed to give you clear voice recordings at large collective discussions with multiple speakers.<\/p><h4>AI Speech-to-Text Transcription<\/h4><p>The main characteristic of top-notch voice recorders is the provision of an automatic means of converting spoken words into written text. Next-generation artificial intelligence systems will have the ability to both recognize various languages and identify specific speakers, especially useful in Dubai's international business setting, where multilingual speakers interact with each other on a regular basis.<\/p><h4>Dual Recording Modes<\/h4><p>With many modern electronics supporting different ways to record, a voice recorder with transcription can have various options for recording modes (such as dual mode), as well as real-time and high-quality speech-to-text conversion, reducing noise, and allowing for many recording formats. In addition, some of these devices feature cloud storage, voice activation, and time stamped notes along with easy sharing of files and long battery time. Many have the capability of recording in multiple languages.<\/p><ul><li>In-person recording<\/li><li>Phone call recording<\/li><li>Portable and Compact Design<\/li><\/ul><p>The best voice recorder with Transcription recorders that work for business or personal uses tend to be designed so that they are light weight and compact; thus, it makes sense that most of today's AI recorders are slim and very light. The portability of the recorder makes each of these new recorders ideal for businesspeople who are out all day attending meetings.<\/p><p><\/p><p><br\/><\/p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "padding_top_mobile": 30,
+            "padding_bottom_mobile": 30,
+            "padding_horizontal_mobile": 15,
+            "heading_spacing": 20,
+            "paragraph_spacing": 15,
+            "heading_size": 30,
+            "heading_size_mobile": 24,
+            "text_size": 14,
+            "text_size_mobile": 14,
+            "line_height": 1.6,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_3f16343_t6ViJ4": {
+          "type": "ai_gen_block_3f16343",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Ai_voice_recorder_powered_by_ChatGPT_meeting_minutes_0a8d669f-f704-4836-861e-50cdcf20b025.webp",
+            "aspect_ratio": "auto",
+            "image_fit": "cover",
+            "border_radius": 0,
+            "desktop_width_percent": 100,
+            "enable_link": false,
+            "image_link": "shopify:\/\/products\/ai-voice-recorder",
+            "hover_opacity": 0.8
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_15e7c06_RinXqf": {
+          "type": "ai_gen_block_15e7c06",
+          "name": "Title and text",
+          "settings": {
+            "heading": "Choosing the Best Voice Recorder With Transcription",
+            "text": "<p>You must consider many things when choosing the best voice recorder with transcription function in Dubai.<br\/>The main factors are:<\/p><ul><li> Audio Recording Quality<\/li><li>Transcription Accuracy<\/li><li>Battery Life and Storage Capacity<\/li><li> AI Summary Feature(s)<\/li><li> Languages Supported<\/li><li> Compatibility with Mobile Applications<\/li><\/ul><p>A Voice Recorder should be a combination of quality hardware and quality AI Software able to provide the user with dependable and accurate results.<\/p>",
+            "desktop_width_percent": 100,
+            "text_alignment": "left",
+            "spacing": 15,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20,
+            "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "heading_size": 32,
+            "text_size": 16
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_68fd466_6rHKpE": {
+          "type": "ai_gen_block_68fd466",
+          "settings": {
+            "title": "Benefit From the Best Voice Recorder With Transcription in Dubai",
+            "description": "<p>best voice recorder with high quality are valuable to professionals and students in Dubai who are trying to record meetings, lectures, interviews, etc., to then convert them to text. High-quality AI voice recorders often come with features that will increase the user's productivity, such as providing noise cancellation, supporting multiple languages, and providing cloud storage, ensuring that all important information is captured after being recorded. <\/p>",
+            "text_alignment": "center",
+            "title_size": 36,
+            "description_size": 14,
+            "header_spacing": 40,
+            "box_1_title": "Business Professionals",
+            "box_1_text": "",
+            "box_2_title": "Students",
+            "box_2_text": "",
+            "box_3_title": "Journalists",
+            "box_3_text": "",
+            "box_4_title": "Researchers",
+            "box_4_text": "",
+            "columns_desktop": 4,
+            "columns_mobile": "1",
+            "box_spacing": 30,
+            "section_padding": 50,
+            "desktop_width_percent": 100,
+            "box_text_alignment": "center",
+            "box_title_size": 20,
+            "box_text_size": 14,
+            "box_padding": 30,
+            "box_border_radius": 8,
+            "box_border_width": 1,
+            "background_color": "#ffffff",
+            "title_color": "#12395e",
+            "description_color": "#202025",
+            "box_background": "#f9f9f9",
+            "box_border_color": "#e0e0e0",
+            "box_title_color": "#12395e",
+            "box_text_color": "#202025"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_fa0ee33_9tXmHc",
+        "ai_gen_block_3f16343_t6ViJ4",
+        "ai_gen_block_15e7c06_RinXqf",
+        "ai_gen_block_68fd466_6rHKpE"
+      ],
+      "settings": {}
+    },
+    "line_cN6GeE": {
+      "type": "line",
+      "name": "Divider",
+      "settings": {
+        "animation": "",
+        "paddingsection": "0px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "bgsection": "#ffffff",
+        "setwidth": "container",
+        "bgborder": "#dddddd",
+        "wborder": "1px"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "advanced_content_zQDAA8",
+    "17766689699a0e172d",
+    "blocks_hxm44w",
+    "177502810293966512",
+    "screenfree_intro_uae_2026_fQt3iU",
+    "17750343565d1a036c",
+    "line_cN6GeE"
+  ]
+}
