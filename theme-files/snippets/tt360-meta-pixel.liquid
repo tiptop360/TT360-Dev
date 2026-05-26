@@ -1,0 +1,78 @@
+{% comment %} TipTop360 — Meta Pixel (optimizer v1) {% endcomment %}
+{% comment %} Pixel ID stored in shop metafield tt360.meta_pixel_id {% endcomment %}
+
+{%- assign pixel_id = shop.metafields.tt360.meta_pixel_id | default: '' -%}
+{%- if pixel_id != '' -%}
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','{{ pixel_id }}');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id={{ pixel_id }}&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+
+{% comment %} Standard e-commerce events {% endcomment %}
+<script>
+(function(){
+  {% if template.name == 'product' %}
+  fbq('track','ViewContent',{
+    content_ids:  ['{{ product.id }}'],
+    content_name: {{ product.title | json }},
+    content_type: 'product',
+    value:        {{ product.price | divided_by: 100.0 }},
+    currency:     '{{ cart.currency.iso_code }}'
+  });
+  {% endif %}
+
+  {% if template.name == 'search' %}
+  fbq('track','Search',{search_string:{{ search.terms | json }}});
+  {% endif %}
+
+  {% if template.name == 'cart' %}
+  fbq('track','InitiateCheckout',{
+    value:     {{ cart.total_price | divided_by: 100.0 }},
+    currency:  '{{ cart.currency.iso_code }}',
+    num_items: {{ cart.item_count }}
+  });
+  {% endif %}
+
+  {% if template.name == 'customers/order' %}
+  fbq('track','Purchase',{
+    value:        {{ order.total_price | divided_by: 100.0 }},
+    currency:     '{{ order.currency }}',
+    content_type: 'product',
+    content_ids:  [{% for item in order.line_items %}'{{ item.product_id }}'{% unless forloop.last %},{% endunless %}{% endfor %}],
+    num_items:    {{ order.item_count }}
+  });
+  {% endif %}
+
+  // AddToCart — detected via cart polling
+  (function(){
+    var prevCount = {{ cart.item_count }};
+    setInterval(function(){
+      fetch('/cart.js').then(function(r){return r.json();}).then(function(c){
+        if(c.item_count > prevCount && c.items.length){
+          var item = c.items[0];
+          fbq('track','AddToCart',{
+            content_ids:  [item.product_id.toString()],
+            content_name: item.title,
+            content_type: 'product',
+            value:        (item.price/100).toFixed(2),
+            currency:     c.currency
+          });
+        }
+        prevCount = c.item_count;
+      }).catch(function(){});
+    }, 3000);
+  })();
+})();
+</script>
+
+{%- endif -%}

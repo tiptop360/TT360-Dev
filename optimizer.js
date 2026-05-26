@@ -1728,6 +1728,102 @@ async function revertAll() {
   log('\n  ✅ All changes reverted. Your theme is restored.', 'success');
 }
 
+// ────────────────────────────────────────
+// FIX 11 — Meta Pixel
+// ────────────────────────────────────────
+async function applyMetaPixel(dryRun = false) {
+  log('\n📊 Fix 11 — Meta Pixel', 'bold');
+  if (dryRun) {
+    log('  [DRY RUN] Would inject Meta Pixel snippet into layout/theme.liquid', 'dim'); return;
+  }
+
+  if (!await confirm('Inject Meta Pixel into theme? Edits layout/theme.liquid.')) {
+    log('  Skipped.', 'dim'); return;
+  }
+
+  const metaPixelId = process.env.META_PIXEL_ID || '';
+  if (!metaPixelId) {
+    log('  ⚠️  META_PIXEL_ID not set in .env — snippet will be injected but inactive until you set the metafield', 'warn');
+  }
+
+  const theme      = await getActiveTheme();
+  const snippetKey = 'snippets/tt360-meta-pixel.liquid';
+  const layoutKey  = 'layout/theme.liquid';
+
+  const snippetContent = readFileSync(join(__dirname, 'theme-files/snippets/tt360-meta-pixel.liquid'), 'utf8');
+  await createAsset(theme.id, snippetKey, snippetContent);
+  log('  📄 Created snippet: snippets/tt360-meta-pixel.liquid', 'success');
+
+  await backupAsset(theme.id, layoutKey, 'fix-11-meta-pixel');
+  const asset = await getAsset(theme.id, layoutKey);
+  let content = asset.value;
+
+  if (content.includes("render 'tt360-meta-pixel'")) {
+    log('  ✅ Already included — skipping', 'success'); return;
+  }
+
+  // Inject in <head> before </head>
+  content = content.replace('</head>', `  {%- render 'tt360-meta-pixel' -%}\n</head>`);
+  await updateAsset(theme.id, layoutKey, content);
+
+  // Set Meta Pixel ID as shop metafield if provided
+  if (metaPixelId) {
+    await shopifySafe('POST', '/metafields.json', {
+      metafield: { namespace: 'tt360', key: 'meta_pixel_id', value: metaPixelId, type: 'single_line_text_field' },
+    });
+    log(`  ✅ Meta Pixel ID ${metaPixelId} saved to shop metafield`, 'success');
+  }
+
+  logChange('fix-11-meta-pixel', { fix: 'Meta Pixel', files: [snippetKey, layoutKey], themeId: theme.id });
+  log('  ✅ Meta Pixel live on all pages', 'success');
+
+  if (!metaPixelId) {
+    log('\n  👉 To activate: set META_PIXEL_ID=your_pixel_id in .env and re-run this fix', 'info');
+  }
+}
+
+// ────────────────────────────────────────
+// FIX 12 — WhatsApp Opt-in Popup (Klaviyo)
+// ────────────────────────────────────────
+async function applyWhatsAppOptIn(dryRun = false) {
+  log('\n💬 Fix 12 — WhatsApp Opt-in Popup (Klaviyo)', 'bold');
+  if (dryRun) {
+    log('  [DRY RUN] Would add WhatsApp opt-in popup to all pages', 'dim'); return;
+  }
+
+  if (!await confirm('Add WhatsApp opt-in popup? Edits layout/theme.liquid.')) {
+    log('  Skipped.', 'dim'); return;
+  }
+
+  const theme      = await getActiveTheme();
+  const snippetKey = 'snippets/tt360-whatsapp-optin.liquid';
+  const layoutKey  = 'layout/theme.liquid';
+
+  const snippetContent = readFileSync(join(__dirname, 'theme-files/snippets/tt360-whatsapp-optin.liquid'), 'utf8');
+  await createAsset(theme.id, snippetKey, snippetContent);
+  log('  📄 Created snippet: snippets/tt360-whatsapp-optin.liquid', 'success');
+
+  await backupAsset(theme.id, layoutKey, 'fix-12-whatsapp-optin');
+  const asset = await getAsset(theme.id, layoutKey);
+  let content = asset.value;
+
+  if (content.includes("render 'tt360-whatsapp-optin'")) {
+    log('  ✅ Already included — skipping', 'success'); return;
+  }
+
+  content = content.replace('</body>', `  {% render 'tt360-whatsapp-optin' %}\n</body>`);
+  await updateAsset(theme.id, layoutKey, content);
+  logChange('fix-12-whatsapp-optin', { fix: 'WhatsApp Opt-in Popup', files: [snippetKey, layoutKey], themeId: theme.id });
+  log('  ✅ WhatsApp opt-in popup live on all pages', 'success');
+
+  if (!process.env.KLAVIYO_PUBLIC_API_KEY) {
+    log('\n  👉 To enable Klaviyo sync: add KLAVIYO_PUBLIC_API_KEY to .env and include the Klaviyo snippet in your theme', 'info');
+  }
+  if (!process.env.WEBHOOK_BASE_URL) {
+    log('  👉 To enable server-side opt-in sync: set WEBHOOK_BASE_URL in .env (your deployed webhook URL)', 'info');
+  }
+}
+
 // ─────────────────────────────────────────
 // AUDIT (read-only)
 // ─────────────────────────────────────────
@@ -1820,6 +1916,8 @@ async function dryRunAll() {
   await applyMetaDescriptions(true);
   await applyCartUpsell(true);
   await applyVariantTooltips(true);
+  await applyMetaPixel(true);
+  await applyWhatsAppOptIn(true);
   hr();
   log('\n✅ Dry run complete. Run "node optimizer.js menu" to apply fixes.\n', 'success');
 }
@@ -1850,6 +1948,9 @@ async function menu() {
     { key: 'G', label: 'Fix 05 — Add trust badge bar (BPA-free, COD, Dubai, etc.)' },
     { key: 'H', label: 'Fix 09 — Cart cross-sell + free shipping progress bar' },
     { key: 'I', label: 'Fix 10 — Age group variant tooltips' },
+    { key: '─', label: '── Integrations ──' },
+    { key: 'J', label: 'Fix 11 — Meta Pixel (Facebook/Instagram tracking)' },
+    { key: 'W', label: 'Fix 12 — WhatsApp opt-in popup (Klaviyo sync)' },
     { key: '─', label: '── Apply All ──' },
     { key: 'ALL', label: 'Apply ALL fixes automatically (recommended)' },
     { key: '─', label: '── Control ──' },
@@ -1882,6 +1983,8 @@ async function menu() {
     case 'G': await applyTrustBadges(); break;
     case 'H': await applyCartUpsell(); break;
     case 'I': await applyVariantTooltips(); break;
+    case 'J': await applyMetaPixel(); break;
+    case 'W': await applyWhatsAppOptIn(); break;
     case 'S': showStatus(); break;
     case 'R': {
       const id = await ask('Enter fix ID to revert (see status)');
@@ -1901,6 +2004,8 @@ async function menu() {
       await applyMetaDescriptions();
       await applyCartUpsell();
       await applyVariantTooltips();
+      await applyMetaPixel();
+      await applyWhatsAppOptIn();
       log('\n\n✅ All fixes applied!', 'success');
       showStatus();
       break;
@@ -1943,6 +2048,8 @@ const cmd = args[0]?.toLowerCase() || 'menu';
           'meta': applyMetaDescriptions, 'cart': applyCartUpsell,
           'variants': applyVariantTooltips,
           'descriptions': applyDescriptions,
+          'meta-pixel': applyMetaPixel,
+          'whatsapp-optin': applyWhatsAppOptIn,
         };
         const fn = map[args[1]];
         if (fn) await fn();

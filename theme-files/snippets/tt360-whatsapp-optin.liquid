@@ -1,0 +1,150 @@
+{% comment %} TipTop360 — WhatsApp Opt-in Popup (Klaviyo integration) {% endcomment %}
+{% comment %} Shows after 45s or on exit-intent. Syncs opt-in to Klaviyo. {% endcomment %}
+
+<div id="tt360-wa-optin" class="tt360-wa-optin" aria-hidden="true" aria-modal="true" role="dialog">
+  <div class="tt360-wa-optin__inner">
+    <button class="tt360-wa-optin__close" id="tt360-wa-close" aria-label="Close">&#x2715;</button>
+
+    <div class="tt360-wa-optin__icon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="44" height="44">
+        <path fill="#25D366" d="M24 4C12.95 4 4 12.95 4 24c0 3.6.96 7.06 2.8 10.1L4 44l10.25-2.7C17.2 43.1 20.55 44 24 44c11.05 0 20-8.95 20-20S35.05 4 24 4z"/>
+        <path fill="#fff" d="M33.16 28.42c-.4-.2-2.37-1.17-2.74-1.3-.36-.14-.63-.2-.89.2-.27.4-1.03 1.3-1.26 1.57-.23.27-.46.3-.86.1-.4-.2-1.68-.62-3.2-1.98-1.18-1.06-1.98-2.37-2.21-2.77-.23-.4-.02-.62.17-.82.18-.18.4-.46.6-.7.2-.23.27-.4.4-.66.14-.27.07-.5-.03-.7-.1-.2-.9-2.17-1.23-2.97-.32-.78-.65-.67-.89-.68H19.6c-.27 0-.7.1-1.06.5-.37.4-1.4 1.37-1.4 3.34 0 1.97 1.43 3.87 1.63 4.14.2.27 2.8 4.27 6.78 5.99.95.41 1.69.65 2.27.83.95.3 1.82.26 2.5.16.76-.11 2.37-.97 2.7-1.9.34-.94.34-1.74.24-1.9-.1-.18-.36-.27-.76-.47z"/>
+      </svg>
+    </div>
+
+    <p class="tt360-wa-optin__badge">Exclusive WhatsApp Deals</p>
+    <h3 class="tt360-wa-optin__title">Get 10% off your next order!</h3>
+    <p class="tt360-wa-optin__subtitle">Subscribe for order updates, flash sales &amp; exclusive offers — directly on WhatsApp.</p>
+
+    <form id="tt360-wa-form" novalidate>
+      <div class="tt360-wa-optin__row">
+        <select name="cc" class="tt360-wa-optin__cc" aria-label="Country code">
+          <option value="971">🇦🇪 +971</option>
+          <option value="966">🇸🇦 +966</option>
+          <option value="965">🇰🇼 +965</option>
+          <option value="974">🇶🇦 +974</option>
+          <option value="973">🇧🇭 +973</option>
+          <option value="968">🇴🇲 +968</option>
+          <option value="44">🇬🇧 +44</option>
+          <option value="1">🇺🇸 +1</option>
+          <option value="91">🇮🇳 +91</option>
+          <option value="20">🇪🇬 +20</option>
+        </select>
+        <input type="tel" name="phone" placeholder="5X XXX XXXX"
+               class="tt360-wa-optin__phone" required
+               pattern="[0-9]{7,15}" inputmode="numeric" autocomplete="tel">
+      </div>
+      <button type="submit" class="tt360-wa-optin__btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 2.12.56 4.1 1.55 5.82L0 24l6.35-1.66A11.95 11.95 0 0012 24c6.63 0 12-5.37 12-12S18.63 0 12 0zm5.89 16.52c-.25.7-1.47 1.37-2.02 1.46-.52.08-1.16.12-1.87-.12-.43-.14-.99-.33-1.7-.65-3.01-1.3-4.97-4.37-5.12-4.57-.15-.2-1.22-1.62-1.22-3.1 0-1.47.77-2.2 1.05-2.5.27-.3.6-.37.8-.37.2 0 .4.01.57.01.18 0 .43-.07.67.5.25.59.86 2.1.93 2.25.07.16.12.34.02.55-.1.2-.15.33-.3.5-.15.18-.31.4-.45.54-.15.15-.3.3-.13.6.18.3.78 1.29 1.68 2.09 1.15 1.03 2.12 1.35 2.42 1.5.3.14.47.12.65-.07.18-.18.76-.88.96-1.18.2-.3.4-.25.67-.15.27.1 1.72.81 2.02.96.3.15.5.22.57.34.07.13.07.73-.18 1.43z"/></svg>
+        Subscribe on WhatsApp
+      </button>
+    </form>
+
+    <div id="tt360-wa-success" class="tt360-wa-optin__success" hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#25D366" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4.5-4.5 1.41-1.41L10 13.67l7.09-7.09 1.41 1.41L10 16.5z"/></svg>
+      <p>You're subscribed! Check WhatsApp for your welcome message &amp; discount code. 🎉</p>
+    </div>
+
+    <p class="tt360-wa-optin__legal">
+      By subscribing, you agree to receive WhatsApp messages from TipTop360.
+      <a href="/policies/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>.
+      Opt out anytime by replying STOP.
+    </p>
+  </div>
+</div>
+
+<style>
+.tt360-wa-optin{display:none;position:fixed;inset:0;z-index:10000;align-items:flex-end;justify-content:center;padding:0 12px 12px;background:rgba(0,0,0,.35)}
+.tt360-wa-optin.is-open{display:flex}
+.tt360-wa-optin__inner{background:#fff;border-radius:20px;padding:28px 22px 20px;max-width:440px;width:100%;position:relative;box-shadow:0 8px 48px rgba(0,0,0,.18)}
+.tt360-wa-optin__close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;line-height:1;color:#aaa;cursor:pointer;padding:4px}
+.tt360-wa-optin__close:hover{color:#333}
+.tt360-wa-optin__icon{text-align:center;margin-bottom:10px}
+.tt360-wa-optin__badge{text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#25D366;background:#e8fdef;border-radius:20px;display:inline-block;padding:3px 12px;margin:0 auto 6px;width:auto;left:50%;position:relative;transform:translateX(-50%)}
+.tt360-wa-optin__title{font-size:20px;font-weight:800;text-align:center;margin:0 0 6px;color:#111}
+.tt360-wa-optin__subtitle{font-size:14px;text-align:center;color:#666;margin:0 0 18px;line-height:1.45}
+.tt360-wa-optin__row{display:flex;gap:8px;margin-bottom:10px}
+.tt360-wa-optin__cc{border:2px solid #e4e4e4;border-radius:10px;padding:11px 8px;font-size:14px;background:#fafafa;min-width:115px;cursor:pointer;outline:none;transition:border-color .2s}
+.tt360-wa-optin__cc:focus{border-color:#25D366}
+.tt360-wa-optin__phone{flex:1;border:2px solid #e4e4e4;border-radius:10px;padding:11px 14px;font-size:16px;outline:none;transition:border-color .2s;min-width:0}
+.tt360-wa-optin__phone:focus{border-color:#25D366}
+.tt360-wa-optin__btn{width:100%;background:#25D366;color:#fff;border:none;border-radius:12px;padding:14px 16px;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s}
+.tt360-wa-optin__btn:hover{background:#1ebe5d}
+.tt360-wa-optin__success{text-align:center;padding:12px 0;color:#1a7a3d;display:flex;flex-direction:column;align-items:center;gap:6px}
+.tt360-wa-optin__success p{font-size:15px;font-weight:600;margin:0}
+.tt360-wa-optin__legal{font-size:11px;color:#bbb;text-align:center;margin:14px 0 0;line-height:1.5}
+.tt360-wa-optin__legal a{color:#bbb;text-decoration:underline}
+@media(max-width:400px){.tt360-wa-optin__inner{padding:22px 16px 16px}.tt360-wa-optin__title{font-size:17px}}
+</style>
+
+<script>
+(function(){
+  var DISMISSED_KEY = 'tt360_wa_dismissed';
+  var SUBSCRIBED_KEY = 'tt360_wa_subscribed';
+  var DELAY_MS = 45000;
+  var box = document.getElementById('tt360-wa-optin');
+  var form = document.getElementById('tt360-wa-form');
+  var successEl = document.getElementById('tt360-wa-success');
+
+  if (!box) return;
+  if (localStorage.getItem(SUBSCRIBED_KEY)) return;
+  var lastDismissed = parseInt(localStorage.getItem(DISMISSED_KEY) || '0', 10);
+  if (Date.now() - lastDismissed < 7 * 24 * 3600 * 1000) return;
+
+  var opened = false;
+  function open() {
+    if (opened) return;
+    opened = true;
+    box.classList.add('is-open');
+    box.setAttribute('aria-hidden', 'false');
+  }
+
+  function close() {
+    box.classList.remove('is-open');
+    box.setAttribute('aria-hidden', 'true');
+    localStorage.setItem(DISMISSED_KEY, Date.now().toString());
+  }
+
+  var t = setTimeout(open, DELAY_MS);
+
+  document.addEventListener('mouseleave', function(e) {
+    if (e.clientY < 5) open();
+  }, { once: true });
+
+  document.getElementById('tt360-wa-close').addEventListener('click', function() {
+    clearTimeout(t);
+    close();
+  });
+
+  box.addEventListener('click', function(e) {
+    if (e.target === box) { clearTimeout(t); close(); }
+  });
+
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var cc = form.querySelector('[name="cc"]').value;
+    var phone = form.querySelector('[name="phone"]').value.replace(/\D/g,'');
+    var full = '+' + cc + phone;
+
+    // Sync to Klaviyo via identify
+    var klaviyoProfile = { '$phone_number': full, WhatsApp_Opted_In: true, WhatsApp_Number: full, WhatsApp_Source: 'popup' };
+    if (window._learnq) window._learnq.push(['identify', klaviyoProfile]);
+    if (window.klaviyo) window.klaviyo.push(['identify', klaviyoProfile]);
+
+    // Also POST to our webhook (if configured via metafield)
+    {% assign webhook_url = shop.metafields.tt360.webhook_base_url | default: '' %}
+    {% if webhook_url != '' %}
+    fetch('{{ webhook_url }}/optin/whatsapp', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: full, source: 'popup' })
+    }).catch(function(){});
+    {% endif %}
+
+    localStorage.setItem(SUBSCRIBED_KEY, '1');
+    form.hidden = true;
+    successEl.hidden = false;
+    setTimeout(close, 3500);
+  });
+})();
+</script>
