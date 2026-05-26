@@ -194,6 +194,104 @@
             "verified": true
           }
         },
+        "usecase_1": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🎂",
+            "title": "Birthday Parties",
+            "desc": "Glowing smoke bubbles steal the show — one press fills any venue in Dubai, Abu Dhabi, or Sharjah."
+          }
+        },
+        "usecase_2": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🌳",
+            "title": "Park & Outdoor| Indoor Play",
+            "desc": "No setup, no mess. Perfect for Al Barsha Park, Safa Park, or any UAE outdoor spot."
+          }
+        },
+        "usecase_3": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🍖",
+            "title": "Family BBQs & Gatherings",
+            "desc": "Kids stay entertained while adults relax. Works beautifully on warm UAE rooftop evenings."
+          }
+        },
+        "usecase_4": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🎁",
+            "title": "Eid & Birthday Gifts",
+            "desc": "Wow-factor unboxing at AED 110. Free next-day delivery, Cash on Delivery across all 7 emirates."
+          }
+        },
+        "content_1": {
+          "type": "content_section",
+          "settings": {
+            "label": "About This Product",
+            "heading": "UAE's Favourite Smoke Bubble Machine for Kids",
+            "subheading": "",
+            "body": "<p>The Smoke Bubble Machine for Kids produces <strong>glowing, smoke-filled bubbles every minute</strong> using completely safe water-based vapor. No soap. No sticky residue. No cleanup — just screen-free magic that kids aged 3 and up go wild for.</p><p>Unlike regular bubble wands, this machine fills each bubble with <strong>shimmering RGB LED-lit mist</strong> that floats, glows, and pops into a tiny cloud. One-button operation means even toddlers figure it out instantly — press once to start, press again to stop.</p><p><strong>Built for UAE families.</strong> Whether you are hosting a birthday party in Dubai Marina, an Eid gathering in Abu Dhabi, or a Friday afternoon at Sharjah's Al Majaz Waterfront — this bubble machine turns any space into an instant wonderland. It thrives in warm outdoor conditions and works indoors with zero mess.</p><p>The <strong>8-hour USB rechargeable battery</strong> means no mid-party shutdowns and no disposable batteries. One charge covers an entire party, a full weekend of play, or weeks of daily 30-minute sessions.</p><p><strong>Safe</strong> BPA-free ABS plastic, smooth rounded edges, non-toxic water vapor — no chemicals needed for the smoke effect. Available in Pink and Blue with identical performance.</p><p>TipTop360 delivers <strong>free next day across all 7 UAE emirates</strong> — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available. 14-day hassle-free returns.</p>",
+            "alt_bg": true
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Material",
+            "spec_value": "BPA-Free ABS Plastic"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Recommended Age",
+            "spec_value": "3+ Years"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Battery Life",
+            "spec_value": "8 Hours USB Rechargeable"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Bubble Output",
+            "spec_value": "500+ Bubbles per Minute"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Vapor Type",
+            "spec_value": "Safe Water-Based Mist"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Kids Collection UAE",
+            "url": "/collections/kids-collection-uae"
+          }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": {
+            "label": "STEM Drawing Robot",
+            "url": "/products/kids-drawing-robot"
+          }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Kids Chore Chart",
+            "url": "/products/kids-chore-chart-uae"
+          }
+        },
         "faq_1": {
           "type": "faq",
           "settings": {
@@ -254,6 +352,19 @@
         "rev_1",
         "rev_2",
         "rev_3",
+        "usecase_1",
+        "usecase_2",
+        "usecase_3",
+        "usecase_4",
+        "content_1",
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "ilink_1",
+        "ilink_2",
+        "ilink_3",
         "faq_1",
         "faq_2",
         "faq_3",
@@ -262,9 +373,37 @@
       ],
       "settings": {
         "seo_title": "Smoke Bubble Machine UAE | Glowing Vapor Bubbles for Kids | TipTop360",
+        "seo_h1": "Smoke Bubble Machine for Kids — Magical Outdoor Fun in the UAE",
+        "hero_alt": "Smoke bubble machine creating magical bubbles for kids outdoor play in UAE — TipTop360",
         "seo_description": "UAE's favourite smoke bubble machine. Safe water vapor, Safe for kids, RGB LED glow, 8hr battery. Pink & Blue. Ages 3+. Free next-day delivery. Cash on delivery.",
         "collection_handle": "kids-collection-uae",
         "collection_name": "Kids Collection",
+        "scarcity_text": "67 sold today in Dubai — Limited stock",
+        "per_use_text": "",
+        "enhanced_trust_1": "",
+        "enhanced_trust_2": "",
+        "enhanced_trust_3": "",
+        "bulk_cta_text": "",
+        "bulk_cta_url": "",
+        "bulk_cta_link_text": "Contact us",
+        "compare_lbl": "See How It Stacks Up",
+        "compare_title": "How It Compares",
+        "compare_sub": "Better value. Faster delivery.",
+        "compare_col1": "",
+        "compare_col2": "Competitor A",
+        "compare_col3": "Competitor B",
+        "compare_cta": "",
+        "usecase_lbl": "Perfect For Every Occasion",
+        "usecase_title": "When Kids Love It Most",
+        "usecase_sub": "From birthday parties to park days — glowing smoke bubbles make any moment magical.",
+        "upsell_grid_title": "Complete the Set",
+        "upsell_grid_sub": "",
+        "upsell_grid_cta": "",
+        "upsell_grid_cta_url": "",
+        "howto_schema_enable": true,
+        "howto_name": "How to Use the Smoke Bubble Machine",
+        "howto_desc": "Fill with water, press one button, and watch glowing smoke-filled bubbles fill the room. Safe water vapor, RGB LED lights, 8-hour rechargeable battery.",
+        "howto_time": "PT1M",
         "ann_enable": true,
         "ann_text": "🚚 Free Next Day Delivery across UAE  |  💵 Cash on Delivery  |  🔄 14-Day Returns  |  Order before 8 PM",
         "hero_badge2": "🏆 UAE's #1 Party Bubble Toy",
@@ -288,34 +427,37 @@
         "bms_price1": 110,
         "bms_price2": 210,
         "bms_price3": 300,
+        "bms_qty4": 0,
+        "bms_price4": 0,
         "feat_lbl": "Why UAE Parents Choose It",
         "feat_title": "5 Reasons It's UAE's Favourite Party Toy",
-        "feat_sub": "Safe water vapor. 500+ bubbles a minute. 8-hour battery. No mess. Kids go absolutely wild for it.",
+        "feat_sub": "Safe water vapor. 8-hour battery. No mess. Kids go absolutely wild for it.",
         "steps_lbl": "Ready in Seconds",
         "steps_title": "How to Use Your Smoke Bubble Machine",
         "steps_sub": "Fill with water. Press one button. Watch glowing smoke bubbles fill the room. That's it.",
         "video_enable": true,
-        "section_video": "",
+        "section_video": "https://youtube.com/shorts/DFK7xq6N9RQ",
         "video_lbl": "See It in Action",
         "video_title": "Watch the Smoke Bubble Magic Unfold",
-        "video_sub": "500+ glowing, smoke-filled bubbles every minute. RGB lights. One button. Pure kids' joy.",
+        "video_sub": "Glowing, safe, smoke-filled bubbles every minute. RGB lights. One button. Pure kids' joy.",
         "video_placeholder": "🎬 Product video coming soon. Order today with free next-day delivery and Cash on Delivery.",
         "rev_lbl": "UAE Parents Love It",
         "rev_title": "What Parents Are Saying",
         "rev_sub": "248+ verified reviews. UAE's #1 bubble party toy — and growing fast.",
         "faq_lbl": "Got Questions?",
         "faq_title": "Frequently Asked Questions",
+        "ilinks_title": "Explore More at TipTop360",
         "gift_bag_handle": "gift-wrap-1",
         "gift_bag_title": "🎁 Add Gift Box",
         "gift_bag_sub": "make it a magical gift",
         "gift_bag_btn": "+ Add",
         "gift_bag_price": "9",
-        "upsell_1": "",
-        "upsell_2": "",
-        "upsell_3": "",
+        "upsell_1": "kids-drawing-robot",
+        "upsell_2": "kids-chore-chart-uae",
+        "upsell_3": "gift-wrap-1",
         "cta_lbl": "Limited Time Offer",
         "cta_title": "Give Your Child Bubbles They'll Never Forget",
-        "cta_sub": "Smoke Bubble Machine — AED 110 each, or buy 2 for AED 205 / buy 3 for AED 300. Free next-day delivery. Cash on delivery.",
+        "cta_sub": "Smoke Bubble Machine — AED 110 each, or buy 2 for AED 210 / buy 3 for AED 300. Free next-day delivery. Cash on delivery.",
         "cta_btn": "Add to Cart",
         "cta_trust_1": "📦 Free Next Day Delivery",
         "cta_trust_2": "💵 Cash on Delivery",
@@ -328,3 +470,4 @@
     "tt360-product-body"
   ]
 }
+

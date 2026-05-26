@@ -15,21 +15,21 @@
         "badge_1": {
           "type": "badge",
           "settings": {
-            "text": "✅ Dentist Approved",
+            "text": "✅ Food-Grade Silicone",
             "style": "green"
           }
         },
         "badge_2": {
           "type": "badge",
           "settings": {
-            "text": "⚡ Sonic Vibrations",
+            "text": "🦷 360° U-Shaped Clean",
             "style": "orange"
           }
         },
         "badge_3": {
           "type": "badge",
           "settings": {
-            "text": "🦷 Cleans All Surfaces",
+            "text": "💧 IPX7 Waterproof",
             "style": "navy"
           }
         },
@@ -61,112 +61,153 @@
             "label": "Secure Checkout"
           }
         },
+        "content_1": {
+          "type": "content_section",
+          "settings": {
+            "label": "About This Product",
+            "heading": "Why UAE Parents Choose the U-Shaped Toothbrush",
+            "subheading": "Designed for little mouths, loved by busy families",
+            "body": "<p>The Kids U-Shaped Electric Toothbrush revolutionises oral care for children aged 2 to 12 across the UAE. Its innovative 360-degree silicone head wraps around every tooth simultaneously, delivering a thorough clean in just 60 seconds — turning brushing from a daily struggle into a moment kids look forward to.</p><p>Food-grade silicone bristles are softer than traditional nylon, protecting developing gums while removing plaque effectively. The IPX7 waterproof rating means worry-free use in the bath or shower, and the rechargeable battery lasts up to 60 days on a single charge — ideal for travel between Dubai, Abu Dhabi, and beyond.</p><p>Parents in the UAE trust this toothbrush because it works with how kids actually brush, not against it. The ergonomic handle fits small hands, the gentle vibration frequency is calibrated for children, and the one-button operation means even toddlers can start learning independence. Pair it with our Strawberry Foam Toothpaste for a complete oral care routine delivered free across the Emirates with Cash on Delivery available.</p>",
+            "alt_bg": false
+          }
+        },
+        "content_2": {
+          "type": "content_section",
+          "settings": {
+            "label": "",
+            "heading": "Food-Grade Silicone — Safe for Kids",
+            "subheading": "",
+            "body": "<p>Every bristle on the U-shaped head is made from FDA-approved food-grade silicone — the same material used in baby bottle teats and pacifiers. It is completely BPA-free and non-toxic, giving parents total peace of mind. The soft silicone flexes to follow the natural curve of each tooth, making brushing comfortable even for toddlers with sensitive gums.</p><p>The brush handle is ergonomically sized for small hands, and the one-button operation means kids as young as two can start building independent brushing habits. A built-in 60-second auto-timer ensures the right brushing duration every single time.</p>",
+            "alt_bg": false
+          }
+        },
+        "content_3": {
+          "type": "content_section",
+          "settings": {
+            "label": "",
+            "heading": "Complete Kids Dental Care Set",
+            "subheading": "",
+            "body": "<p>Pair the U-shaped toothbrush with our <strong>Kids Strawberry Foam Toothpaste</strong> for the ultimate brushing experience — the foam fills every gap in the U-shape for maximum coverage. Need replacement heads? Our <strong>Kids Silicone U Brush Heads</strong> snap on in seconds, and dentists recommend changing them every three months. Save even more with the <strong>Kids Dental Care Bundle</strong> that includes everything your child needs for a complete oral care routine.</p>",
+            "alt_bg": false
+          }
+        },
+        "content_4": {
+          "type": "content_section",
+          "settings": {
+            "label": "",
+            "heading": "Free Next-Day Delivery Across the UAE",
+            "subheading": "",
+            "body": "<p>Order your kids U-shaped electric toothbrush before 8 PM and receive <strong>free next-day delivery</strong> anywhere in the UAE — Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah, and Umm Al Quwain. Cash on delivery is available on every order. Not happy? Return it within 14 days for a full refund.</p>",
+            "alt_bg": false
+          }
+        },
         "hl_1": {
           "type": "highlight",
           "settings": {
             "icon": "🦷",
-            "title": "Cleans All Surfaces in 60 Seconds",
-            "desc": "The U-shape wraps around every tooth — top, front, and back — simultaneously. No missed spots, no brushing battles."
+            "title": "360° U-Shaped Design",
+            "desc": "Cleans all teeth at once — front, back, and chewing surfaces in 60 seconds flat. No missed spots."
           }
         },
         "hl_2": {
           "type": "highlight",
           "settings": {
-            "icon": "⚡",
-            "title": "Gentle Sonic Vibrations",
-            "desc": "Safe micro-vibrations loosen plaque without hurting sensitive baby teeth or gums — dentist-approved for ages 2–12."
+            "icon": "🧪",
+            "title": "Food-Grade Silicone Bristles",
+            "desc": "FDA-approved, BPA-free, non-toxic — the same soft silicone used in baby products. Gentle on young gums."
           }
         },
         "hl_3": {
           "type": "highlight",
           "settings": {
             "icon": "🎵",
-            "title": "Built-in 60sec Timer",
-            "desc": "Automatically stops at exactly 60 seconds — the time the U-brush needs to clean all teeth. No arguments, no cheating, every session."
+            "title": "Fun for Kids",
+            "desc": "Kids love the U-shape — turns brushing from a daily battle into a quick routine they actually enjoy."
           }
         },
         "hl_4": {
           "type": "highlight",
           "settings": {
-            "icon": "🍓",
-            "title": "Kids Actually ASK to Brush",
-            "desc": "Soft silicone, fun colors, and zero effort — the U-brush makes brushing the highlight of their bedtime routine."
+            "icon": "🔋",
+            "title": "60-Day Rechargeable Battery",
+            "desc": "One USB charge lasts a full month. No disposable batteries needed — ever."
+          }
+        },
+        "hl_5": {
+          "type": "highlight",
+          "settings": {
+            "icon": "💧",
+            "title": "IPX7 Waterproof",
+            "desc": "Fully waterproof — safe for bath time, easy to rinse, survives drops into the sink."
           }
         },
         "feat_1": {
           "type": "feature",
           "settings": {
             "icon": "🦷",
-            "title": "U-Shaped Silicone Head",
-            "desc": "Cleans 3 surfaces at once — no rotating or angling required."
+            "title": "360° U-Shaped Head",
+            "desc": "Cleans all teeth simultaneously — no rotating or angling required."
           }
         },
         "feat_2": {
           "type": "feature",
           "settings": {
-            "icon": "⚡",
-            "title": "Sonic Vibration Motor",
-            "desc": "Gentle but powerful — removes 10× more plaque than manual brushing."
+            "icon": "🧪",
+            "title": "Food-Grade Silicone",
+            "desc": "BPA-free, non-toxic, FDA-approved — gentle on developing gums."
           }
         },
         "feat_3": {
           "type": "feature",
           "settings": {
-            "icon": "🎵",
-            "title": "Auto 60sec Timer",
-            "desc": "Stops at exactly 60 seconds — the right time for a full U-brush clean."
+            "icon": "⏱️",
+            "title": "60-Second Auto-Timer",
+            "desc": "Stops at exactly 60 seconds — optimal time for a full U-brush clean."
           }
         },
         "feat_4": {
           "type": "feature",
           "settings": {
             "icon": "🔋",
-            "title": "Rechargeable Battery",
-            "desc": "One USB charge lasts weeks — no AA batteries, ever."
+            "title": "60-Day Battery Life",
+            "desc": "USB rechargeable — no disposable batteries, ever."
           }
         },
         "feat_5": {
           "type": "feature",
           "settings": {
             "icon": "🛡️",
-            "title": "BPA-Free Silicone",
-            "desc": "Non-toxic, food-grade, certified safe for children from age 2."
+            "title": "Safety Certified",
+            "desc": "Non-toxic, BPA-free, independently certified safe for children ages 2-12."
           }
         },
         "step_1": {
           "type": "step",
           "settings": {
-            "title": "Choose Color & Age",
-            "desc": "Pick the right size for your child — 2–6 yrs for baby teeth, 7–12 yrs for growing smiles."
+            "title": "Apply Kids Foam Toothpaste",
+            "desc": "A pea-sized amount of kids toothpaste on the U-shaped head. Our Strawberry Foam Toothpaste pairs perfectly."
           }
         },
         "step_2": {
           "type": "step",
           "settings": {
-            "title": "Apply Toothpaste",
-            "desc": "A pea-sized amount of kids toothpaste (our Strawberry Foam Toothpaste works perfectly with the U-brush)."
+            "title": "Bite Down and Power On",
+            "desc": "The U-shape wraps around all teeth simultaneously. Press the button — the 60-second auto-timer handles the rest."
           }
         },
         "step_3": {
           "type": "step",
           "settings": {
-            "title": "Place & Bite Gently",
-            "desc": "The U-shape wraps around all teeth simultaneously. No scrubbing — just hold in place."
-          }
-        },
-        "step_4": {
-          "type": "step",
-          "settings": {
-            "title": "Press Start & Done in 60s",
-            "desc": "Sonic vibrations do all the work. The timer stops automatically — perfect clean, every time."
+            "title": "Rinse and Smile!",
+            "desc": "Timer stops automatically. Rinse the brush under water (IPX7 waterproof). All teeth clean in 60 seconds."
           }
         },
         "rev_1": {
           "type": "review",
           "settings": {
             "stars": 5,
-            "text": "My 4-year-old cries when it's time to STOP brushing. Zero battles since the day this arrived. Best parenting purchase I've made.",
-            "name": "Mariam A.",
+            "text": "My son actually enjoys brushing now. The U-shape makes it so easy and fast. Delivered next day to Dubai!",
+            "name": "Fatima A.",
             "location": "Dubai · U-Shaped Toothbrush",
             "avatar_color": "#667eea",
             "verified": true
@@ -176,7 +217,7 @@
           "type": "review",
           "settings": {
             "stars": 5,
-            "text": "Her dentist noticed a huge improvement at the last checkup. The 2-minute timer is genius — no more '2 more seconds!' arguments at bedtime.",
+            "text": "Her dentist noticed a huge improvement at the last checkup. The 60-second timer is genius — no more brushing battles at bedtime.",
             "name": "Dr. Sarah H.",
             "location": "Abu Dhabi · U-Shaped Toothbrush",
             "avatar_color": "#f093fb",
@@ -187,7 +228,7 @@
           "type": "review",
           "settings": {
             "stars": 5,
-            "text": "Got the pink one for my daughter and blue for my son. Both obsessed with brushing now. COD made it so easy to order — came next day!",
+            "text": "Got the pink one for my daughter and blue for my son. Both obsessed with brushing now. COD made it so easy to order — came next day to Sharjah!",
             "name": "Khalid M.",
             "location": "Sharjah · U-Shaped Toothbrush",
             "avatar_color": "#4facfe",
@@ -198,35 +239,247 @@
           "type": "faq",
           "settings": {
             "question": "What age is the U-shaped toothbrush suitable for?",
-            "answer": "<p>We offer two sizes: <strong>Ages 2–6</strong> for baby teeth and toddlers, and <strong>Ages 7–12</strong> for growing permanent teeth. Select the right age group when ordering — each size is sized precisely for that age range's mouth.</p>"
+            "answer": "<p>The TipTop360 U-shaped electric toothbrush is designed for children ages 2 to 12 years old. The soft food-grade silicone bristles are gentle on young gums while providing effective 360-degree cleaning.</p>"
           }
         },
         "faq_2": {
           "type": "faq",
           "settings": {
-            "question": "How does the U-shaped design clean better than a regular brush?",
-            "answer": "<p>A traditional brush cleans one surface at a time and depends on the child using correct technique. The U-shape simultaneously covers the top, front, and back of all teeth in one pass. Combined with sonic vibrations, it removes up to 10× more plaque — with zero effort from the child.</p>"
+            "question": "Is the U-shaped toothbrush safe for kids?",
+            "answer": "<p>Yes, our U-shaped toothbrush uses FDA-approved food-grade silicone bristles that are BPA-free, non-toxic, and gentle on children's sensitive gums and teeth. The materials are independently certified safe for children.</p>"
           }
         },
         "faq_3": {
           "type": "faq",
           "settings": {
-            "question": "Is it safe for baby teeth and sensitive gums?",
-            "answer": "<p>Yes — made from food-grade, BPA-free silicone with gentle micro-vibrations specifically calibrated for children's soft gums and enamel. The 2–6 age variant is extra-soft. It's independently safety-certified and dentist-recommended.</p>"
+            "question": "Do you offer replacement brush heads?",
+            "answer": "<p>Yes, we sell Kids Silicone U Brush Heads separately so you can replace them every 3 months as recommended by dentists. Bundle and save with our Kids Dental Care Bundle.</p>"
           }
         },
         "faq_4": {
           "type": "faq",
           "settings": {
-            "question": "How long does the battery last?",
-            "answer": "<p>One USB charge lasts 3–4 weeks with daily 2-minute sessions. No AA batteries — just plug in the included USB cable when needed. The LED indicator shows when charging is required.</p>"
+            "question": "How fast is delivery in the UAE?",
+            "answer": "<p>We offer free next-day delivery across Dubai, Abu Dhabi, Sharjah, and all UAE emirates. Cash on delivery is available for your convenience.</p>"
           }
         },
         "faq_5": {
           "type": "faq",
           "settings": {
-            "question": "Do you deliver to Abu Dhabi, Sharjah & other emirates?",
-            "answer": "<p>Yes! TipTop360 delivers free to all UAE emirates — Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah & Umm Al Quwain. Cash on Delivery available everywhere. Order before 8PM for next-day delivery.</p>"
+            "question": "Can I return the toothbrush if my child doesn't like it?",
+            "answer": "<p>Absolutely. We offer a 14-day hassle-free return policy. Return it for a full refund — IMPORTANT - it <strong>shouldn't be used</strong>! and in original package, as this is a hygiene product</p>"
+          }
+        },
+        "usecase_1": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🌅",
+            "title": "Morning Routine",
+            "desc": "Start the day with a 60-second brush that kids actually enjoy. The U-shaped design cleans all teeth simultaneously — no missed spots, no battles."
+          }
+        },
+        "usecase_2": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🎒",
+            "title": "After School",
+            "desc": "Quick post-snack brushing session before homework. The gentle vibrations make it fun for kids who resist traditional brushing."
+          }
+        },
+        "usecase_3": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🌙",
+            "title": "Bedtime Brushing",
+            "desc": "End the day with thorough 360° cleaning. The soft food-grade silicone bristles are gentle on developing gums and sensitive teeth."
+          }
+        },
+        "usecase_4": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🎁",
+            "title": "Gift for Parents",
+            "desc": "The most-wished kids dental care item in the UAE. Perfect baby shower, birthday, or Eid gift that parents genuinely appreciate."
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Material",
+            "spec_value": "Food-Grade Silicone (BPA-Free)"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Age Range",
+            "spec_value": "2-12 Years"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Battery Life",
+            "spec_value": "60 Days (Rechargeable)"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Waterproof Rating",
+            "spec_value": "IPX7"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Cleaning Time",
+            "spec_value": "60 Seconds per Session"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Kids Dental Care Collection",
+            "url": "shopify://products/kids-u-shaped-brush-bundle"
+          }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Strawberry Foam Toothpaste",
+            "url": "shopify://products/kids-foam-toothpaste-uae"
+          }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Replacement Brush Heads",
+            "url": "shopify://products/kids-u-brush-heads-uae"
+          }
+        },
+        "obj_1": {
+          "type": "objection",
+          "settings": {
+            "icon": "🧒",
+            "question": "Will my child actually use it?",
+            "answer": "Fun animal design turns brushing into playtime — kids choose to brush on their own"
+          }
+        },
+        "obj_2": {
+          "type": "objection",
+          "settings": {
+            "icon": "🛡️",
+            "question": "Is it safe for my kid's mouth?",
+            "answer": "FDA-approved food-grade silicone — same material as baby bottle teats. BPA-free, non-toxic"
+          }
+        },
+        "obj_3": {
+          "type": "objection",
+          "settings": {
+            "icon": "🦷",
+            "question": "Does it actually clean properly?",
+            "answer": "360° bristles clean front, back, and chewing surfaces simultaneously — no missed spots"
+          }
+        },
+        "obj_4": {
+          "type": "objection",
+          "settings": {
+            "icon": "💰",
+            "question": "Worth it vs cheap brushes?",
+            "answer": "Rechargeable battery lasts 60 days. Replace only the brush head (AED 15) — saves money long-term"
+          }
+        },
+        "obj_5": {
+          "type": "objection",
+          "settings": {
+            "icon": "💪",
+            "question": "How long does it last?",
+            "answer": "Premium silicone won't fray or break. IPX7 waterproof — survives bath time, drops, and daily use"
+          }
+        },
+        "cmp_1": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Cleaning Time",
+            "us": "60 seconds — all teeth at once",
+            "comp_a": "2-3 minutes manual brushing",
+            "comp_b": "2 minutes (standard head)",
+            "win": true,
+            "comp_a_bad": false,
+            "comp_b_bad": false
+          }
+        },
+        "cmp_2": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "360° Coverage",
+            "us": "✓ All surfaces simultaneously",
+            "comp_a": "✗ One surface at a time",
+            "comp_b": "✗ One surface at a time",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": true
+          }
+        },
+        "cmp_3": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Kid Compliance",
+            "us": "✓ Fun design — kids want to brush",
+            "comp_a": "✗ Boring — daily battles",
+            "comp_b": "△ Somewhat engaging",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": false
+          }
+        },
+        "cmp_4": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Bristle Material",
+            "us": "✓ Food-grade silicone (BPA-free)",
+            "comp_a": "Nylon bristles",
+            "comp_b": "Nylon bristles",
+            "win": true,
+            "comp_a_bad": false,
+            "comp_b_bad": false
+          }
+        },
+        "cmp_5": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Waterproof",
+            "us": "✓ IPX7 — bath & shower safe",
+            "comp_a": "✗ Not waterproof",
+            "comp_b": "△ Splash-resistant only",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": false
+          }
+        },
+        "cmp_6": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Battery Life",
+            "us": "✓ 60 days rechargeable",
+            "comp_a": "✗ No battery (manual)",
+            "comp_b": "30 days",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": false
+          }
+        },
+        "cmp_7": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "UAE Delivery",
+            "us": "✓ Free next-day + COD",
+            "comp_a": "✗ Supermarket trip required",
+            "comp_b": "3-7 days shipping",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": false
           }
         }
       },
@@ -238,10 +491,15 @@
         "trust_2",
         "trust_3",
         "trust_4",
+        "content_1",
+        "content_2",
+        "content_3",
+        "content_4",
         "hl_1",
         "hl_2",
         "hl_3",
         "hl_4",
+        "hl_5",
         "feat_1",
         "feat_2",
         "feat_3",
@@ -250,7 +508,6 @@
         "step_1",
         "step_2",
         "step_3",
-        "step_4",
         "rev_1",
         "rev_2",
         "rev_3",
@@ -258,68 +515,145 @@
         "faq_2",
         "faq_3",
         "faq_4",
-        "faq_5"
+        "faq_5",
+        "usecase_1",
+        "usecase_2",
+        "usecase_3",
+        "usecase_4",
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "ilink_1",
+        "ilink_2",
+        "ilink_3",
+        "obj_1",
+        "obj_2",
+        "obj_3",
+        "obj_4",
+        "obj_5",
+        "cmp_1",
+        "cmp_2",
+        "cmp_3",
+        "cmp_4",
+        "cmp_5",
+        "cmp_6",
+        "cmp_7"
       ],
       "settings": {
-        "seo_title": "U-Shaped Kids Electric Toothbrush UAE | Sonic, BPA-Free | TipTop360",
-        "seo_description": "UAE's #1 kids U-shaped electric toothbrush. Dentist-approved, sonic vibrations, 2-min timer, BPA-free silicone. Ages 2–12. Free next-day delivery. Cash on delivery.",
+        "seo_title": "Kids U-Shaped Electric Toothbrush UAE | 360° Cleaning — TipTop360",
+        "seo_h1": "Kids U-Shaped Toothbrush UAE — 60-Second Brushing Kids Love",
+        "hero_alt": "Kids U-shaped electric toothbrush with 360-degree silicone bristles for ages 2-12 in the UAE — TipTop360",
+        "seo_description": "Shop the kids U-shaped electric toothbrush in the UAE. 360° food-grade silicone cleaning, fun design, and parent-approved. Free next-day delivery Dubai & Abu Dhabi. Cash on delivery.",
         "collection_handle": "kids-collection-uae",
         "collection_name": "Kids Collection",
+        "scarcity_text": "124 sold this week — Restocking soon",
+        "per_use_text": "",
+        "enhanced_trust_1": "",
+        "enhanced_trust_2": "",
+        "enhanced_trust_3": "",
+        "ben_icon_1": "🚚",
+        "ben_txt_1": "Free Ship",
+        "ben_icon_2": "💵",
+        "ben_txt_2": "COD",
+        "ben_icon_3": "🔄",
+        "ben_txt_3": "Returns",
+        "ben_icon_4": "🔒",
+        "ben_txt_4": "Secure",
+        "ben_icon_5": "",
+        "ben_txt_5": "",
+        "bundle_handle": "",
+        "bundle_title": "🎁 Complete Your Setup",
+        "bundle_sub": "",
+        "bundle_btn": "See Bundle",
+        "bulk_cta_text": "",
+        "bulk_cta_url": "",
+        "bulk_cta_link_text": "Contact us",
+        "objection_lbl": "Parents Ask, We Answer",
+        "objection_title": "Every Parent Asks — Here Are the Answers",
+        "objection_sub": "We've heard these questions from thousands of UAE parents. Here's what they discovered.",
+        "compare_lbl": "See How It Stacks Up",
+        "compare_title": "How It Compares",
+        "compare_sub": "Better value. Faster delivery.",
+        "compare_col1": "",
+        "compare_col2": "Regular Toothbrush",
+        "compare_col3": "Amazon Generic U-Brush",
+        "compare_cta": "Get the Brush UAE Parents Trust →",
+        "usecase_lbl": "Perfect For",
+        "usecase_title": "When Kids Love Brushing",
+        "usecase_sub": "Parents across the UAE trust this toothbrush for fuss-free oral care",
+        "upsell_grid_title": "Complete the Set",
+        "upsell_grid_sub": "",
+        "upsell_grid_cta": "",
+        "upsell_grid_cta_url": "",
+        "howto_schema_enable": true,
+        "howto_name": "How to Use the Kids U-Shaped Electric Toothbrush",
+        "howto_desc": "Simple 3-step brushing routine for toddlers and kids aged 2-12.",
+        "howto_time": "PT2M",
+        "audience_min_age": "",
+        "audience_max_age": "",
         "ann_enable": true,
         "ann_text": "🚚 Free Next Day Delivery across UAE  |  💵 Cash on Delivery  |  🔄 14-Day Returns  |  Order before 8 PM",
-        "hero_badge2": "🏆 UAE's #1 Kids Toothbrush",
+        "hero_badge2": "🏆 #1 Kids Toothbrush UAE",
         "show_sold_out": false,
-        "rating_value": "4.9",
+        "rating_value": "4.8",
         "proof_lbl_rating": "Average rating",
-        "review_count": "312",
-        "review_label": "UAE parent reviews",
+        "review_count": "47",
+        "review_label": "Verified UAE parent reviews",
         "proof_num_delivery": "Next Day",
         "proof_lbl_shipping": "Delivery across UAE",
         "proof_lbl_free": "Free next-day delivery",
-        "atc_text": "Add to Cart — Pay on Delivery",
+        "guarantee_text": "14-Day Happy Parent Guarantee — love it or full refund, no questions asked",
+        "hesitator_text": "Still deciding? See what 47 UAE parents say →",
+        "atc_text": "Add to Cart — Free Next-Day Delivery",
         "sticky_text": "Add to Cart",
         "bms_enable": true,
+        "bms_stepper": false,
         "bms_qty2": 2,
         "bms_disc2": 0,
         "bms_qty3": 3,
         "bms_disc3": 0,
-        "bms_orig_price": 200,
+        "bms_orig_price": 199,
         "bms_price1": 129,
         "bms_price2": 220,
         "bms_price3": 310,
+        "bms_qty4": 0,
+        "bms_price4": 0,
         "feat_lbl": "Why UAE Parents Choose It",
-        "feat_title": "5 Reasons It Beats Every Other Toothbrush",
-        "feat_sub": "Dentist-approved, kids beg to use it, works in 60 seconds — UAE's top-selling kids toothbrush.",
-        "steps_lbl": "Brushing Made Easy",
-        "steps_title": "How to Use Your U-Brush",
-        "steps_sub": "60 seconds. All teeth. Zero battles. Every single morning and night.",
+        "feat_title": "Why UAE Parents Love the U-Shaped Design",
+        "feat_sub": "360° food-grade silicone cleaning, 60-second auto-timer, IPX7 waterproof — the kids electric toothbrush UAE families trust.",
+        "steps_lbl": "Simple to Start",
+        "steps_title": "How It Works — 3 Easy Steps",
+        "steps_sub": "Ready in under a minute — no manual needed. Kids can do it themselves.",
         "video_enable": true,
-        "section_video": "",
+        "section_video": "https://youtube.com/shorts/U9tXEXKjtMc",
         "video_lbl": "See It in Action",
-        "video_title": "Watch Kids Go From Brushing Haters to Brushing Fans",
-        "video_sub": "60 seconds. U-shape covers every tooth. Sonic vibrations do all the work — kids love it.",
-        "video_placeholder": "🎬 Product demo coming soon. In the meantime — order today with free next-day delivery and Cash on Delivery.",
-        "rev_lbl": "UAE Parents Love It",
+        "video_title": "Watch the U-Shaped Toothbrush in Action",
+        "video_sub": "60 seconds. All teeth. Zero effort. See why UAE parents love it.",
+        "video_placeholder": "Product demo coming soon — order today with free next-day delivery and Cash on Delivery.",
+        "rev_lbl": "Real UAE Parents",
         "rev_title": "What Parents Are Saying",
-        "rev_sub": "312+ verified reviews. UAE's #1 kids toothbrush — and growing fast.",
+        "rev_sub": "4.8/5 from 47 verified UAE parent reviews.",
         "faq_lbl": "Got Questions?",
         "faq_title": "Frequently Asked Questions",
+        "ilinks_title": "Shop More at TipTop360",
         "gift_bag_handle": "gift-wrap-1",
         "gift_bag_title": "🎁 Add Gift Box",
-        "gift_bag_sub": "make it a special gift",
+        "gift_bag_sub": "make it special",
         "gift_bag_btn": "+ Add",
         "gift_bag_price": "9",
-        "upsell_1": "",
-        "upsell_2": "",
-        "upsell_3": "",
+        "upsell_1": "kids-silicone-u-brush-heads",
+        "upsell_2": "kids-strawberry-foam-toothpaste",
+        "upsell_3": "kids-dental-care-bundle",
         "cta_lbl": "Limited Time Offer",
-        "cta_title": "Give Your Child a Smile They're Proud Of",
-        "cta_sub": "U-Shaped Electric Toothbrush — AED 129 (was AED 199). Free next-day delivery across UAE. Cash on delivery. 14-day returns.",
-        "cta_btn": "Add to Cart",
+        "cta_title": "Give Your Child the Gift of Effortless Brushing",
+        "cta_sub": "Kids U-Shaped Electric Toothbrush — free next-day delivery across UAE. Cash on delivery. 14-day returns.",
+        "cta_btn": "Add to Cart — Free Delivery",
         "cta_trust_1": "📦 Free Next Day Delivery",
         "cta_trust_2": "💵 Cash on Delivery",
         "cta_trust_3": "🔄 14-Day Returns",
-        "cta_trust_4": "🔒 Secure Checkout"
+        "cta_trust_4": "🛡️ Safe for Kids"
       }
     }
   },
@@ -327,3 +661,4 @@
     "tt360-product-body"
   ]
 }
+
