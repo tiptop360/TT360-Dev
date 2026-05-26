@@ -452,6 +452,22 @@
       ],
       "settings": {}
     },
+    "inline_atc_dental_bundle": {
+      "type": "inline-product-atc",
+      "settings": {
+        "product_handle": "kids-dental-care-monthly-bundle-offer-51",
+        "heading": "",
+        "heading_size": 16,
+        "heading_color": "#202025",
+        "btn_label": "Get the Bundle",
+        "btn_soldout_label": "Sold Out",
+        "btn_bg_color": "#12395e",
+        "btn_text_color": "#ffffff",
+        "btn_radius": 8,
+        "bg_color": "#eef3f8",
+        "padding_vertical": 24
+      }
+    },
     "blocks_4GG4RW": {
       "type": "_blocks",
       "name": "Title and text",
@@ -715,6 +731,7 @@
     "1776331763b9153e7b",
     "screenfree_intro_uae_2026_fQt3iU",
     "1776328532c1457e6b",
+    "inline_atc_dental_bundle",
     "blocks_4GG4RW",
     "blocks_mYDRqm",
     "blocks_hrEhXe",

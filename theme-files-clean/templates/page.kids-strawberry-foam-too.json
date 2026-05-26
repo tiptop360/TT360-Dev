@@ -131,6 +131,22 @@
       ],
       "settings": {}
     },
+    "inline_atc_foam_toothpaste": {
+      "type": "inline-product-atc",
+      "settings": {
+        "product_handle": "kids-strawberry-foam-toothpaste-uae-approved",
+        "heading": "",
+        "heading_size": 16,
+        "heading_color": "#8b3a4a",
+        "btn_label": "Add to Cart",
+        "btn_soldout_label": "Sold Out",
+        "btn_bg_color": "#d63447",
+        "btn_text_color": "#ffffff",
+        "btn_radius": 8,
+        "bg_color": "#fff5f7",
+        "padding_vertical": 24
+      }
+    },
     "blocks_fbDDYx": {
       "type": "_blocks",
       "name": "Icon boxes",
@@ -569,6 +585,7 @@
     "main",
     "advanced_content_zQDAA8",
     "1776336812a029321a",
+    "inline_atc_foam_toothpaste",
     "blocks_fbDDYx",
     "blocks_rczGEk",
     "blocks_aVDkLh",
