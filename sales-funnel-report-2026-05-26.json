@@ -1,0 +1,223 @@
+{
+  "generatedAt": "2026-05-26T00:00:00.000Z",
+  "store": "zrhgzw-xt.myshopify.com",
+  "domain": "tiptop360.com",
+  "currency": "AED",
+  "dataSource": "Shopify + Klaviyo MCP (live pull)",
+  "stages": {
+    "pageHealth": [
+      { "label": "Homepage",           "url": "https://tiptop360.com/",            "status": "ok", "httpStatus": 200, "issues": [] },
+      { "label": "Collection: Kids",   "url": "https://tiptop360.com/collections/kids", "status": "ok", "httpStatus": 200, "issues": [] },
+      { "label": "PDP: Toothbrush",    "url": "https://tiptop360.com/products/kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift", "status": "ok", "httpStatus": 200, "issues": [] },
+      { "label": "PDP: Gym Bag",       "url": "https://tiptop360.com/products/magnetic-hands-free-gym-bag", "status": "ok", "httpStatus": 200, "issues": [] },
+      { "label": "PDP: Drawing Robot", "url": "https://tiptop360.com/products/kids-stem-drawing-robot", "status": "ok", "httpStatus": 200, "issues": [] },
+      { "label": "Cart",               "url": "https://tiptop360.com/cart", "status": "ok", "httpStatus": 200, "issues": [] },
+      { "label": "Sitemap",            "url": "https://tiptop360.com/sitemap.xml", "status": "ok", "httpStatus": 200, "issues": [] },
+      { "label": "Robots.txt",         "url": "https://tiptop360.com/robots.txt", "status": "ok", "httpStatus": 200, "issues": [] }
+    ],
+    "conversionFunnel": {
+      "windowDays": 30,
+      "totalSessions": 29937,
+      "totalCart": 126,
+      "totalCheckout": 46,
+      "totalCompleted": 23,
+      "zeroDays": 15,
+      "days": 31,
+      "atcRate": 0.00421,
+      "checkoutRate": 0.365,
+      "completionRate": 0.500,
+      "overallCVR": 0.000769,
+      "deviceSplit": {
+        "mobile": 26586,
+        "desktop": 3175,
+        "tablet": 153,
+        "other": 24
+      },
+      "trafficSources_30d": {
+        "social": { "orders": 14, "revenue": 2832 },
+        "direct": { "orders": 7, "revenue": 887 },
+        "search": { "orders": 2, "revenue": 239 }
+      },
+      "benchmarks": {
+        "addToCartRate":    { "actual": "0.42%", "target": "3.0%", "status": "CRITICAL" },
+        "checkoutRate":     { "actual": "36.5%", "target": "50%",  "status": "WARNING" },
+        "completionRate":   { "actual": "50.0%", "target": "60%",  "status": "WARNING" },
+        "overallCVR":       { "actual": "0.077%","target": "1.0%", "status": "CRITICAL" }
+      },
+      "deadZone": {
+        "detected": true,
+        "period": "2026-05-05 to 2026-05-19",
+        "zeroDaysInWindow": 15,
+        "note": "15 consecutive days with 0 completed checkouts despite ~10k+ sessions. Investigate: ad campaign pause, checkout error, product page regression."
+      }
+    },
+    "productPerformance": [
+      { "title": "Kids 60s U-Shaped Toothbrush",                          "grossSales": 28428.72, "netSales": 20471.78, "orders": 148, "revenueShare": "34.6%" },
+      { "title": "Kids STEM Drawing Robot",                               "grossSales": 21827,    "netSales": 19476,    "orders": 61,  "revenueShare": "26.6%" },
+      { "title": "Smoke Bubble Machine Kids",                             "grossSales": 15257,    "netSales": 12905,    "orders": 98,  "revenueShare": "18.6%" },
+      { "title": "Magnetic Hands-Free Gym Bag — Sticks to Any Metal Rack","grossSales": 12236,    "netSales": 5612,     "orders": 54,  "revenueShare": "14.9%" },
+      { "title": "GPT-4 AI Voice Notes Recorder",                        "grossSales": 2349,     "netSales": 1800,     "orders": 5,   "revenueShare": "2.9%"  },
+      { "title": "Kids Routine Chore Chart",                              "grossSales": 990,      "netSales": 55,       "orders": 14,  "revenueShare": "1.2%"  },
+      { "title": "Kids Strawberry Foam Toothpaste",                       "grossSales": 434.48,   "netSales": 275.32,   "orders": 12,  "revenueShare": "0.5%"  },
+      { "title": "Kids Brushing Reward Chart",                            "grossSales": 239.29,   "netSales": 132.86,   "orders": 7,   "revenueShare": "0.3%"  },
+      { "title": "Kids Silicone U Brush Heads",                           "grossSales": 210,      "netSales": 173.50,   "orders": 8,   "revenueShare": "0.3%"  },
+      { "title": "Kids Dual-Tip Washable Markers",                        "grossSales": 180,      "netSales": 60,       "orders": 9,   "revenueShare": "0.2%"  }
+    ],
+    "productNotes": {
+      "heroDependency": "Top 2 products = 61% of all revenue. PDP quality on Toothbrush + Drawing Robot is mission-critical.",
+      "gymBagDiscount": "Gym Bag has large gross/net gap (12,236 vs 5,612) — investigate discount erosion or high return rate.",
+      "tailProducts": "Chore Chart, Toothpaste, Reward Chart: <15 orders each. Bundle or de-prioritise ad spend."
+    },
+    "rfm": {
+      "scoringMethod": "1-5 per axis (R=recency, F=frequency, M=monetary). Score = R×100 + F×10 + M.",
+      "rScaleAED": "5=≤30d, 4=31-60d, 3=61-90d, 2=91-180d, 1=>180d",
+      "fScale": "5=10+, 4=5-9, 3=3-4, 2=2, 1=1",
+      "mScaleAED": "5=≥1000, 4=500-999, 3=250-499, 2=100-249, 1=<100",
+      "totalCustomersWithOrders": 358,
+      "repeatCustomers": 16,
+      "repeatPurchaseRate": "4.5%",
+      "avgLTV_AED": 229,
+      "avgRecencyDays": 87,
+      "avgOrdersPerCustomer": 1.05,
+      "segments": {
+        "Champion":            1,
+        "Loyal":               3,
+        "Potential Loyalist":  5,
+        "New Customer":        7,
+        "Needs Attention":    280,
+        "At Risk":             4,
+        "Can't Lose":          2,
+        "Hibernating":        56
+      },
+      "segmentNotes": {
+        "Champion": "Fatima Mohamed (12 orders, AED 1,366) — flagship customer",
+        "Loyal": "Tanja M (7 orders, AED 1,415), Mira youness (4 orders, AED 838), Diana Bou Diab (5 orders, AED 540)",
+        "NeedsAttention": "280 one-time buyers who haven't reordered — primary Klaviyo target list",
+        "Hibernating": "56 customers last ordered >180d ago — winback or sunset"
+      },
+      "top10": [
+        { "rank": 1, "name": "Fatima Mohamed",       "orders": 12, "totalSpent": 1366.00, "segment": "Champion",           "rfmScore": 555 },
+        { "rank": 2, "name": "Tanja M",              "orders": 7,  "totalSpent": 1415.20, "segment": "Loyal",              "rfmScore": 145 },
+        { "rank": 3, "name": "Mira youness",         "orders": 4,  "totalSpent": 838.00,  "segment": "Loyal",              "rfmScore": 134 },
+        { "rank": 4, "name": "Diana Bou Diab",       "orders": 5,  "totalSpent": 540.00,  "segment": "Loyal",              "rfmScore": 144 },
+        { "rank": 5, "name": "Soha El Andary",       "orders": 3,  "totalSpent": 347.00,  "segment": "Potential Loyalist", "rfmScore": 133 },
+        { "rank": 6, "name": "Garima Singh",         "orders": 2,  "totalSpent": 519.00,  "segment": "Potential Loyalist", "rfmScore": 124 },
+        { "rank": 7, "name": "Mubarak Almazrouei",  "orders": 2,  "totalSpent": 409.00,  "segment": "Potential Loyalist", "rfmScore": 123 },
+        { "rank": 8, "name": "Ali Tahlak",           "orders": 2,  "totalSpent": 469.00,  "segment": "Potential Loyalist", "rfmScore": 123 },
+        { "rank": 9, "name": "Amna Alyammahi",       "orders": 2,  "totalSpent": 314.00,  "segment": "Potential Loyalist", "rfmScore": 123 },
+        { "rank": 10,"name": "Aishah Alsuwaidi",     "orders": 2,  "totalSpent": 329.00,  "segment": "Potential Loyalist", "rfmScore": 122 }
+      ],
+      "atRiskForWinback": [
+        { "name": "RIMAL engineering Ghassan", "totalSpent": 424.00, "orders": 2, "lastOrderDaysAgo": 187 },
+        { "name": "Md Mashoud Ahmed",          "totalSpent": 0,      "orders": 2, "lastOrderDaysAgo": 265 }
+      ]
+    },
+    "klaviyo": {
+      "dataSource": "Live MCP pull 2026-05-26",
+      "liveFlows": 10,
+      "draftFlows": 3,
+      "flows": [
+        { "name": "Email Welcome - TT360",                   "status": "live",  "trigger": "Added to List",  "funnelStage": "top" },
+        { "name": "Abandoned Checkout - TT360",              "status": "live",  "trigger": "Metric",         "funnelStage": "bottom" },
+        { "name": "Abandoned Cart - TT360",                  "status": "live",  "trigger": "Metric",         "funnelStage": "bottom" },
+        { "name": "Browse Abandonment | TT360",              "status": "live",  "trigger": "Metric",         "funnelStage": "mid" },
+        { "name": "Abandoned Site | TT360",                  "status": "live",  "trigger": "Metric",         "funnelStage": "mid" },
+        { "name": "Customer Thank You | TT360",              "status": "live",  "trigger": "Metric",         "funnelStage": "post-purchase" },
+        { "name": "Customer Winback | TT360",                "status": "live",  "trigger": "Metric",         "funnelStage": "retention" },
+        { "name": "Back in Stock Alert | TT360",             "status": "live",  "trigger": "Metric",         "funnelStage": "mid" },
+        { "name": "Repeat Purchase Reminder | TT360",        "status": "live",  "trigger": "Metric",         "funnelStage": "retention" },
+        { "name": "Sunset / Re-engagement | TT360",          "status": "live",  "trigger": "Added to List",  "funnelStage": "retention" },
+        { "name": "Essential Flow Recommendation_ (×3)",     "status": "draft", "trigger": "Unconfigured",   "funnelStage": "n/a", "note": "Safe to delete — no trigger configured" }
+      ],
+      "sentCampaigns": [
+        { "name": "Eid Mubarak 2026 — 10% Off + Free Next-Day Delivery", "sentAt": "2026-05-25T07:00:00Z" },
+        { "name": "Summer Essentials for Kids",                           "sentAt": "2026-05-20T12:00:00Z" },
+        { "name": "All Customer not used 10% on first Order",            "sentAt": "2025-12-19T10:58:10Z" },
+        { "name": "Product announcement Kid bundle",                      "sentAt": "2025-12-27T12:40:00Z" }
+      ],
+      "draftCampaigns": [
+        { "name": "Back to School — 15% Off Bundles",       "subject": "Back to school checklist: everything for healthy smiles" },
+        { "name": "Why UAE Families Trust TipTop360",        "subject": "Why 500+ UAE families choose TipTop360" },
+        { "name": "Summer Oral Care Tips for Kids",          "subject": "3 summer tips every UAE parent needs to know" },
+        { "name": "Campaign #4 – VIP Flash Sale: 20% Off",  "subject": "VIP only: 20% off everything this weekend" },
+        { "name": "Campaign #3 – New Arrivals: Just Landed","subject": "Just landed: new products your kids will love" }
+      ],
+      "gapAnalysis": {
+        "postPurchaseReviewAsk": "MISSING — no automated review request flow. Biggest lever for social proof.",
+        "smsFlows": "NONE — UAE WhatsApp/SMS channel not configured in Klaviyo."
+      }
+    }
+  },
+  "priorityActions": [
+    {
+      "priority": "P0",
+      "category": "Conversion",
+      "action": "CVR is 0.077% vs 1% benchmark (13× gap). Immediate diagnosis: run Shopify checkout error report for May 5–19 dead zone, confirm sticky-ATC is live on all PDPs.",
+      "effort": "1h",
+      "impact": "High"
+    },
+    {
+      "priority": "P0",
+      "category": "Conversion",
+      "action": "15 of last 30 days had ZERO completed checkouts despite 10k+ sessions. Confirm whether this maps to a campaign pause or a technical checkout regression.",
+      "effort": "2h",
+      "impact": "High"
+    },
+    {
+      "priority": "P1",
+      "category": "Conversion",
+      "action": "Add-to-cart rate 0.42% vs 3% target. Run optimizer.js apply sticky-atc --execute if not already live. Check mobile PDP scroll-to-ATC CTA visibility.",
+      "effort": "30m",
+      "impact": "High"
+    },
+    {
+      "priority": "P1",
+      "category": "Email",
+      "action": "Schedule 5 draft Klaviyo campaigns: Back to School (SCHOOL15), Social Proof, Summer Oral Care, VIP Flash (20% off), New Arrivals — stagger 2 per week.",
+      "effort": "1h",
+      "impact": "Medium"
+    },
+    {
+      "priority": "P1",
+      "category": "Retention",
+      "action": "Activate Klaviyo post-purchase review-ask flow (5–7 days post delivery). Only 4.5% repeat rate — reviews + retention email will move both metrics.",
+      "effort": "2h",
+      "impact": "Medium"
+    },
+    {
+      "priority": "P1",
+      "category": "RFM",
+      "action": "Target 280 'Needs Attention' single-buyers with Repeat Purchase Reminder flow. Segment by product purchased → personalised cross-sell (e.g. toothbrush buyer → brush heads + toothpaste).",
+      "effort": "2h",
+      "impact": "Medium"
+    },
+    {
+      "priority": "P2",
+      "category": "RFM",
+      "action": "Enrol 1 Champion + 3 Loyal customers in VIP Flash Sale (20% off campaign, draft ready). Protect these relationships with exclusive access.",
+      "effort": "30m",
+      "impact": "Low"
+    },
+    {
+      "priority": "P2",
+      "category": "RFM",
+      "action": "Send Sunset/Re-engagement to 56 hibernating customers (>180d). If no open after 2 emails, suppress from list to protect Klaviyo deliverability.",
+      "effort": "30m",
+      "impact": "Low"
+    },
+    {
+      "priority": "P2",
+      "category": "Product",
+      "action": "Gym Bag net margin is 54% below gross (AED 5,612 vs 12,236). Audit discount codes applied + COD refusal rate on this SKU.",
+      "effort": "1h",
+      "impact": "Medium"
+    },
+    {
+      "priority": "P2",
+      "category": "Klaviyo",
+      "action": "Delete 3 unconfigured 'Essential Flow Recommendation_' draft flows — noise in flow dashboard.",
+      "effort": "5m",
+      "impact": "Low"
+    }
+  ]
+}
