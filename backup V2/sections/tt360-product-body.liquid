@@ -231,7 +231,7 @@
 #tt360-pdp .t-swatches{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
 #tt360-pdp .t-swatch{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
 #tt360-pdp .t-swatch-dot{width:34px;height:34px;border-radius:50%;transition:transform .15s;position:relative}
-#tt360-pdp .t-swatch-dot.active{transform:scale(1.12)}
+#tt360-pdp .t-swatch-dot.active{transform:scale(1.1);box-shadow:0 0 10px 3px var(--sw, var(--orange)), 0 0 3px 1px var(--sw, var(--orange))}
 #tt360-pdp .t-swatch-dot .inn{width:100%;height:100%;border-radius:50%;border:2px solid rgba(0,0,0,.1)}
 #tt360-pdp .t-swatch-name{font-size:11px;color:var(--muted);font-weight:500}
 #tt360-pdp .t-swatch.active .t-swatch-name{color:var(--navy);font-weight:700}
@@ -691,9 +691,11 @@
               {%- assign shown_colors = shown_colors | append: vcolor_key | append: '|' -%}
               <div class="t-swatch {% if current_variant.options[0] == vcolor %}active{% endif %}"
                    role="listitem" data-color="{{ vcolor | escape }}" tabindex="0" aria-label="{{ vcolor }}">
-                <div class="t-swatch-dot {% if current_variant.options[0] == vcolor %}active{% endif %}">
-                  {%- assign vc = vcolor | downcase -%}
-                  <div class="inn" style="{%- case vc -%}{%- when 'blue' -%}background:#4A90D9{%- when 'pink' -%}background:#E8719A{%- when 'orange' -%}background:#F97316{%- when 'green' -%}background:#34D399{%- when 'red' -%}background:#EF4444{%- when 'yellow' -%}background:#FBBF24{%- when 'purple' -%}background:#8B5CF6{%- when 'black' -%}background:#1E293B{%- when 'white' -%}background:#F8FAFC;border:1px solid #CBD5E1{%- else -%}background:#94A3B8{%- endcase -%}"></div>
+                {%- assign vc = vcolor | downcase -%}
+                {%- assign swhex = '#94A3B8' -%}
+                {%- case vc -%}{%- when 'blue' -%}{%- assign swhex = '#4A90D9' -%}{%- when 'pink' -%}{%- assign swhex = '#E8719A' -%}{%- when 'orange' -%}{%- assign swhex = '#F97316' -%}{%- when 'green' -%}{%- assign swhex = '#34D399' -%}{%- when 'red' -%}{%- assign swhex = '#EF4444' -%}{%- when 'yellow' -%}{%- assign swhex = '#FBBF24' -%}{%- when 'purple' -%}{%- assign swhex = '#8B5CF6' -%}{%- when 'black' -%}{%- assign swhex = '#1E293B' -%}{%- when 'white' -%}{%- assign swhex = '#F8FAFC' -%}{%- endcase -%}
+                <div class="t-swatch-dot {% if current_variant.options[0] == vcolor %}active{% endif %}" style="--sw:{{ swhex }}">
+                  <div class="inn" style="background:{{ swhex }}{% if vc == 'white' %};border:1px solid #CBD5E1{% endif %}"></div>
                 </div>
                 <span class="t-swatch-name">{{ vcolor }}</span>
               </div>
@@ -1239,6 +1241,14 @@
         var total=fixedTotal>0?fixedTotal:Math.round(basePrice*(1-disc/100))*qty;
         var priceEl=card.querySelector('.t-bms-price');
         if(priceEl)priceEl.textContent=money(total)+' total';
+        /* Show real AED saving instead of a static "Save 0%" */
+        var discEl=card.querySelector('.t-bms-disc');
+        if(discEl&&qty>1){
+          var saved=origUnit*qty-total;
+          if(saved>0){discEl.textContent='Save '+money(saved);discEl.style.color='var(--green)';}
+          else if(disc>0){discEl.textContent='Save '+disc+'%';discEl.style.color='var(--green)';}
+          else{discEl.textContent='';}
+        }
       });
       var heroPrice=price1>0?price1:Math.round(basePrice*(1-selectedDisc/100));
       if(pEl)pEl.textContent=money(heroPrice);
@@ -1275,10 +1285,14 @@
       return acc;
     },[]);
   }
-  function colorDotStyle(color){
+  function colorHex(color){
     var c=color.toLowerCase().replace(/\s+/g,'');
     var map={blue:'#4A90D9',pink:'#E8719A',orange:'#F97316',green:'#34D399',red:'#EF4444',yellow:'#FBBF24',purple:'#8B5CF6',black:'#1E293B',white:'#F8FAFC'};
-    return 'background:'+(map[c]||'#94A3B8')+(c==='white'?';border:1px solid #CBD5E1':'');
+    return map[c]||'#94A3B8';
+  }
+  function colorDotStyle(color){
+    var c=color.toLowerCase().replace(/\s+/g,'');
+    return 'background:'+colorHex(color)+(c==='white'?';border:1px solid #CBD5E1':'');
   }
 
   function renderBmsItemPickers(qty){
@@ -1301,7 +1315,7 @@
         colors.forEach(function(c){
           var active=(bmsItems[i].color===c);
           html+='<div class="t-swatch'+(active?' active':'')+'" data-color="'+c+'" data-item="'+i+'">';
-          html+='<div class="t-swatch-dot'+(active?' active':'')+'"><div class="inn" style="'+colorDotStyle(c)+'"></div></div>';
+          html+='<div class="t-swatch-dot'+(active?' active':'')+'" style="--sw:'+colorHex(c)+'"><div class="inn" style="'+colorDotStyle(c)+'"></div></div>';
           html+='<span class="t-swatch-name">'+c+'</span>';
           html+='</div>';
         });
