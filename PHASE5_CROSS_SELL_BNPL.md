@@ -25,6 +25,13 @@ Approach: **curated pick + auto carousel** (these two products have no natural a
 - **Gym bag:** added 6 new accurate Q&As (weight limit, phone/card safety, what fits, water-resistance, attaching/positioning, non-magnetic surfaces) → **12 questions**. Fixed two pre-existing bugs that blocked a clean expansion: the FAQ was **duplicated** with **two competing accordion scripts** (double-bound click handlers cancelled each other → accordion would not open) — consolidated to one set + one script; and the **FAQPage JSON-LD was invalid** (raw `<div>` HTML inside `mainEntity`) — rewritten as valid `Question`/`Answer` objects.
 - **AiVox:** added 6 new accurate Q&As (battery/charging, size, storage/privacy, compatibility, delivery+payment, auto-summaries) → **13 questions**. Added a **FAQPage JSON-LD** (none existed before — resolves the "FAQPage schema not found" warning in `SESSION_CONTEXT.md`).
 
+## Consistency pass (copy reconciled with confirmed facts)
+
+Both PDPs were reconciled with the confirmed Phase 1/2 facts:
+
+- **"Weatherproof" → "water-resistant"** on the gym bag everywhere it appeared (visible review + outdoor FAQ, Product + FAQPage JSON-LD, and the dormant `{% schema %}` block defaults). Confirmed fact (H-5): the bag is water-resistant, dry-only — not weatherproof/waterproof.
+- **Returns wording corrected** from "for any reason / no questions asked / risk-free" to the confirmed policy (M-4): *free return only if the item arrives damaged or faulty, with return shipping covered* — on the gym bag (FAQ + JSON-LD + guarantee setting) **and** on AiVox (guarantee bar + FAQ + JSON-LD + a review-quote phrase), since a single store has one returns policy. If AiVox actually offers different (e.g. change-of-mind) returns, flag it and that wording can be restored.
+
 ## Validation
 
 Source-level validation (the project's e2e GEO validators target the live site and need credentials, so they can't validate an un-deployed branch): JSON templates parse + recommendations wired; Liquid `if`/`for`/`comment`/`schema` tags balanced in both sections; both FAQPage JSON-LD blocks parse as valid JSON (gym bag 12, AiVox 13 questions) with no raw HTML; gym bag has exactly one accordion script; no Tabby/Tamara/installment string introduced anywhere.
