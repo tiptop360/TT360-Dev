@@ -1,0 +1,530 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360-product-body": {
+      "type": "tt360-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "text": "🦷 Toothbrush + Paste + Heads",
+            "style": "orange"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "text": "✅ Food-Grade Silicone",
+            "style": "green"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "text": "💰 Save 51% vs Buying Separately",
+            "style": "navy"
+          }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": {
+            "icon": "📦",
+            "label": "Free Next Day Delivery"
+          }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": {
+            "icon": "💵",
+            "label": "Cash on Delivery"
+          }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔄",
+            "label": "14-Day Returns"
+          }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔒",
+            "label": "Secure Checkout"
+          }
+        },
+        "content_1": {
+          "type": "content_section",
+          "settings": {
+            "label": "About This Bundle",
+            "heading": "Why UAE Parents Choose the Kids Dental Care Bundle",
+            "subheading": "Everything your child needs for a complete oral care routine — in one box",
+            "body": "<p>The Kids U-Shaped Brush Bundle brings together the three products UAE parents buy most into a single, money-saving set: the U-shaped electric toothbrush, strawberry foam toothpaste, and a pack of replacement silicone brush heads. At AED 150 you save over 51% compared to buying each item separately — and it all arrives with free next-day delivery anywhere in the Emirates.</p><p>The 360-degree U-shaped toothbrush cleans every tooth simultaneously in 60 seconds. The strawberry foam toothpaste fills every gap in the silicone head for maximum coverage — kids love the taste. And the spare brush heads mean you are set for months of healthy brushing without reordering. Choose from three colours (Orange, Pink, Blue) and two age groups (2-6, 7-12) so the fit is perfect for your child.</p><p>Parents across Dubai, Abu Dhabi, Sharjah and the rest of the UAE trust this bundle because it turns brushing from a daily battle into a routine kids look forward to. Cash on Delivery available on every order.</p>",
+            "alt_bg": false
+          }
+        },
+        "content_2": {
+          "type": "content_section",
+          "settings": {
+            "label": "",
+            "heading": "What Is Inside the Bundle",
+            "subheading": "",
+            "body": "<p><strong>1. Kids U-Shaped Electric Toothbrush</strong> — 360-degree food-grade silicone head wraps around all teeth at once. IPX7 waterproof, USB rechargeable, 30-day battery life. One-button operation even toddlers can manage.</p><p><strong>2. Kids Strawberry Foam Toothpaste</strong> — Natural strawberry flavour kids actually enjoy. Fluoride-free formula safe if swallowed. The foam expands to fill every groove in the U-shaped head for thorough cleaning.</p><p><strong>3. Replacement Silicone Brush Heads</strong> — Dentists recommend replacing brush heads every 3 months. This pack keeps your child brushing with fresh, hygienic heads for the months ahead. Snap-on design — no tools needed.</p>",
+            "alt_bg": false
+          }
+        },
+        "content_3": {
+          "type": "content_section",
+          "settings": {
+            "label": "",
+            "heading": "Better Value Than Buying Separately",
+            "subheading": "",
+            "body": "<p>Purchased individually the toothbrush, toothpaste and replacement heads cost over AED 309. The bundle price of AED 150 saves you more than half — plus you get free next-day delivery across the UAE. It is the smartest way to start or refresh your child's dental care routine. Looking to add an extra brush for a sibling? Increase the quantity above and save even more.</p>",
+            "alt_bg": false
+          }
+        },
+        "content_4": {
+          "type": "content_section",
+          "settings": {
+            "label": "",
+            "heading": "Free Next-Day Delivery Across the UAE",
+            "subheading": "",
+            "body": "<p>Order the Kids Dental Care Bundle before 8 PM and receive <strong>free next-day delivery</strong> anywhere in the UAE — Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah, and Umm Al Quwain. Cash on Delivery available on every order. Not satisfied? Return within 14 days for a full refund.</p>",
+            "alt_bg": false
+          }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "💰",
+            "title": "Save 51% vs Separately",
+            "desc": "Toothbrush + paste + heads in one bundle at AED 150 — over half off the individual price of AED 309."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🦷",
+            "title": "360° U-Shaped Clean",
+            "desc": "Cleans all teeth simultaneously — front, back, and chewing surfaces in 60 seconds flat."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🍓",
+            "title": "Kids Love the Taste",
+            "desc": "Strawberry foam toothpaste makes brushing fun. Fluoride-free and safe if accidentally swallowed."
+          }
+        },
+        "hl_4": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🔋",
+            "title": "30-Day Rechargeable Battery",
+            "desc": "One USB charge lasts a full month. No disposable batteries — perfect for travel across the Emirates."
+          }
+        },
+        "hl_5": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🧪",
+            "title": "Food-Grade Silicone",
+            "desc": "BPA-free, non-toxic, FDA-approved bristles — the same soft silicone used in baby products."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🦷",
+            "title": "360° U-Shaped Head",
+            "desc": "Cleans all teeth simultaneously — no rotating or angling required."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🍓",
+            "title": "Strawberry Foam Toothpaste",
+            "desc": "Natural flavour kids love. Foams into every groove of the U-shaped head."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🔄",
+            "title": "Spare Brush Heads Included",
+            "desc": "Months of fresh, hygienic brushing without reordering. Snap-on replacement."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "💧",
+            "title": "IPX7 Waterproof",
+            "desc": "Fully waterproof — safe for bath time, easy to rinse, survives drops."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Safety Certified",
+            "desc": "Non-toxic, BPA-free, food-grade materials. Safe for children ages 2-12."
+          }
+        },
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Unbox the Bundle",
+            "desc": "Open the box to find the U-shaped electric toothbrush, strawberry foam toothpaste, and replacement brush heads — everything you need."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Apply Foam Toothpaste to the U-Shape",
+            "desc": "Squeeze a pea-sized amount of strawberry foam onto the U-shaped head. The foam expands to fill every groove."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Bite Down, Power On, and Smile",
+            "desc": "Your child bites the U-shape and presses one button. 60 seconds later — all teeth are clean. Rinse and done."
+          }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "The bundle saved us so much compared to buying each piece. My daughter loves the strawberry paste and actually asks to brush now. Next-day delivery to Dubai was a bonus!",
+            "name": "Noura K.",
+            "location": "Dubai · Brush Bundle",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Got one bundle for each of my two boys. The spare heads are a lifesaver — we always forget to reorder. COD made ordering easy from Sharjah.",
+            "name": "Ahmed R.",
+            "location": "Sharjah · Brush Bundle",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Best dental care investment for my kids. The toothbrush cleans so much better than a regular one, and having the paste and spare heads included means we are sorted for months.",
+            "name": "Layla M.",
+            "location": "Abu Dhabi · Brush Bundle",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "What is included in the Kids U-Shaped Brush Bundle?",
+            "answer": "<p>The bundle includes three items: a <strong>Kids U-Shaped Electric Toothbrush</strong>, a tube of <strong>Kids Strawberry Foam Toothpaste</strong>, and a pack of <strong>Replacement Silicone Brush Heads</strong>. Everything your child needs for a complete oral care routine.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "What ages is this bundle suitable for?",
+            "answer": "<p>The bundle is available in two age variants: <strong>2-6 years</strong> and <strong>7-12 years</strong>. Each variant uses a brush head size calibrated for that age group's mouth. Choose the correct age during checkout.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How much do I save with the bundle?",
+            "answer": "<p>You save over <strong>51%</strong> compared to buying each item separately. The individual items total AED 309 — the bundle is just AED 150 with free next-day delivery included.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Is the toothpaste safe if my child swallows some?",
+            "answer": "<p>Yes. The strawberry foam toothpaste is <strong>fluoride-free</strong> and formulated to be safe if accidentally swallowed — ideal for young children who are still learning to spit.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "How often should I replace the brush heads?",
+            "answer": "<p>Dentists recommend replacing brush heads every <strong>3 months</strong>. The bundle includes spare heads so you are covered. When you need more, our replacement heads are available separately with free delivery.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver across all UAE emirates?",
+            "answer": "<p>Yes — we offer <strong>free next-day delivery</strong> to Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah, and Umm Al Quwain. Order before 8 PM. Cash on Delivery available.</p>"
+          }
+        },
+        "usecase_1": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🎒",
+            "title": "First Dental Care Kit",
+            "desc": "Starting your child on their own oral care routine? The bundle has everything in one box — no guessing which products to buy."
+          }
+        },
+        "usecase_2": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🎁",
+            "title": "Birthday or Eid Gift",
+            "desc": "A practical, thoughtful gift parents genuinely appreciate. Add our gift box option for a polished presentation."
+          }
+        },
+        "usecase_3": {
+          "type": "usecase",
+          "settings": {
+            "icon": "✈️",
+            "title": "Travel-Ready Kit",
+            "desc": "Compact bundle fits in a carry-on. The 30-day rechargeable battery means no charger needed for short trips across the Emirates."
+          }
+        },
+        "usecase_4": {
+          "type": "usecase",
+          "settings": {
+            "icon": "👶",
+            "title": "Sibling Sets",
+            "desc": "Pick different colours for each child. Orange, Pink, or Blue — every sibling gets their own. Increase quantity above for extra bundles."
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Bundle Contents",
+            "spec_value": "Toothbrush + Foam Paste + Brush Heads"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Age Options",
+            "spec_value": "2-6 Years / 7-12 Years"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Colour Options",
+            "spec_value": "Orange / Pink / Blue"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Bristle Material",
+            "spec_value": "Food-Grade Silicone (BPA-Free)"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Battery Life",
+            "spec_value": "30 Days (USB Rechargeable)"
+          }
+        },
+        "spec_6": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Waterproof Rating",
+            "spec_value": "IPX7"
+          }
+        },
+        "spec_7": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Toothpaste Type",
+            "spec_value": "Strawberry Foam — Fluoride-Free"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Kids U-Shaped Electric Toothbrush",
+            "url": "shopify://products/kids-u-shaped-toothbrush-uae"
+          }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Kids Strawberry Foam Toothpaste",
+            "url": "shopify://products/kids-foam-toothpaste-uae"
+          }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Replacement Silicone Brush Heads",
+            "url": "shopify://products/kids-u-brush-heads-uae"
+          }
+        },
+        "ilink_4": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Kids Collection",
+            "url": "shopify://collections/kids-collection-uae"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "trust_1",
+        "trust_2",
+        "trust_3",
+        "trust_4",
+        "content_1",
+        "content_2",
+        "content_3",
+        "content_4",
+        "hl_1",
+        "hl_2",
+        "hl_3",
+        "hl_4",
+        "hl_5",
+        "feat_1",
+        "feat_2",
+        "feat_3",
+        "feat_4",
+        "feat_5",
+        "step_1",
+        "step_2",
+        "step_3",
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "usecase_1",
+        "usecase_2",
+        "usecase_3",
+        "usecase_4",
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "spec_6",
+        "spec_7",
+        "ilink_1",
+        "ilink_2",
+        "ilink_3",
+        "ilink_4"
+      ],
+      "settings": {
+        "seo_title": "Kids Dental Care Bundle UAE | Toothbrush + Paste + Heads — TipTop360",
+        "seo_h1": "Kids U-Shaped Brush Bundle — Complete Dental Care Kit",
+        "hero_alt": "Kids dental care bundle with U-shaped electric toothbrush, strawberry foam toothpaste, and replacement brush heads for ages 2-12 in the UAE — TipTop360",
+        "seo_description": "Save 51% on the kids dental care bundle in the UAE. U-shaped electric toothbrush, strawberry foam toothpaste, and replacement heads — AED 150. Free next-day delivery Dubai & all UAE. Cash on delivery.",
+        "collection_handle": "kids-collection-uae",
+        "collection_name": "Kids Collection",
+        "scarcity_text": "200+ sold this month — Restocking soon",
+        "per_use_text": "",
+        "enhanced_trust_1": "",
+        "enhanced_trust_2": "",
+        "enhanced_trust_3": "",
+        "bulk_cta_text": "",
+        "bulk_cta_url": "",
+        "bulk_cta_link_text": "Contact us",
+        "compare_lbl": "",
+        "compare_title": "",
+        "compare_sub": "",
+        "compare_col1": "",
+        "compare_col2": "",
+        "compare_col3": "",
+        "compare_cta": "",
+        "usecase_lbl": "Perfect For",
+        "usecase_title": "When Families Choose the Bundle",
+        "usecase_sub": "The most popular way to start your child's dental care routine in the UAE",
+        "upsell_grid_title": "Complete the Set",
+        "upsell_grid_sub": "",
+        "upsell_grid_cta": "",
+        "upsell_grid_cta_url": "",
+        "howto_schema_enable": true,
+        "howto_name": "How to Use the Kids Dental Care Bundle",
+        "howto_desc": "Simple 3-step guide to setting up your child's complete oral care routine with the U-shaped brush bundle.",
+        "howto_time": "PT3M",
+        "ann_enable": true,
+        "ann_text": "🚚 Free Next Day Delivery across UAE  |  💵 Cash on Delivery  |  🔄 14-Day Returns  |  Order before 8 PM",
+        "hero_badge2": "💰 Save 51%",
+        "show_sold_out": false,
+        "rating_value": "4.9",
+        "proof_lbl_rating": "Average rating",
+        "review_count": "200+",
+        "review_label": "Verified UAE reviews",
+        "proof_num_delivery": "Next Day",
+        "proof_lbl_shipping": "Delivery across UAE",
+        "proof_lbl_free": "Free next-day delivery",
+        "atc_text": "Add to Cart — Pay on Delivery",
+        "sticky_text": "Add to Cart",
+        "bms_enable": true,
+        "feat_lbl": "Why UAE Parents Choose It",
+        "feat_title": "Everything Your Child Needs — One Bundle",
+        "feat_sub": "U-shaped toothbrush, strawberry foam toothpaste, and spare brush heads at 51% off. Free next-day delivery across the UAE.",
+        "steps_lbl": "Simple to Start",
+        "steps_title": "How It Works — 3 Easy Steps",
+        "steps_sub": "Unbox, apply, brush — your child is set for months of healthy oral care.",
+        "video_enable": false,
+        "section_video": "",
+        "video_lbl": "",
+        "video_title": "",
+        "video_sub": "",
+        "video_placeholder": "",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "rev_sub": "4.9/5 from 200+ verified UAE reviews.",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "ilinks_title": "Shop More at TipTop360",
+        "gift_bag_handle": "gift-wrap-1",
+        "gift_bag_title": "🎁 Add Gift Box",
+        "gift_bag_sub": "make it a special gift",
+        "gift_bag_btn": "+ Add",
+        "gift_bag_price": "9",
+        "upsell_1": "kids-dental-floss-uae",
+        "upsell_2": "kids-brushing-stickers-uae",
+        "upsell_3": "kids-chore-chart",
+        "cta_lbl": "Limited Time Offer",
+        "cta_title": "Give Your Child the Complete Dental Care Kit",
+        "cta_sub": "AED 150 — was AED 309. Free next-day delivery. Cash on delivery. 14-day returns.",
+        "cta_btn": "Add to Cart — Free Delivery",
+        "cta_trust_1": "📦 Free Next Day Delivery",
+        "cta_trust_2": "💵 Cash on Delivery",
+        "cta_trust_3": "🔄 14-Day Returns",
+        "cta_trust_4": "🔒 Secure Checkout",
+        "bms_stepper": false,
+        "bms_qty2": 2,
+        "bms_qty3": 3
+      }
+    }
+  },
+  "order": [
+    "tt360-product-body"
+  ]
+}

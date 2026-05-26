@@ -1,0 +1,811 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360-product-body": {
+      "type": "tt360-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "text": "🎙️ 98% GPT-4 Accuracy",
+            "style": "green"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "text": "🌍 134 Languages",
+            "style": "orange"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "text": "🔋 20+ Hour Battery",
+            "style": "navy"
+          }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": {
+            "icon": "📦",
+            "label": "Free Next Day Delivery"
+          }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": {
+            "icon": "💵",
+            "label": "Cash on Delivery"
+          }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔄",
+            "label": "14-Day Returns"
+          }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔒",
+            "label": "Secure Checkout"
+          }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🎙️",
+            "title": "98% GPT-4 Transcription Accuracy",
+            "desc": "Professional-grade transcription that works even in noisy meeting rooms and on calls."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🌍",
+            "title": "Transcribes in 134 Languages",
+            "desc": "Arabic, English, Hindi & 131 more — auto-detected, no setup needed."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🔋",
+            "title": "20+ Hour Battery Life",
+            "desc": "Dependable all day, all week on a single charge — never miss a moment."
+          }
+        },
+        "hl_4": {
+          "type": "highlight",
+          "settings": {
+            "icon": "📲",
+            "title": "Instant AI Summaries",
+            "desc": "Key points, action items, and highlights extracted automatically — no manual review."
+          }
+        },
+        "hl_5": {
+          "type": "highlight",
+          "settings": {
+            "icon": "♾️",
+            "title": "1 Year Unlimited Transcription — Free",
+            "desc": "Every TipTop360 customer gets 12 months of unlimited transcription. After that, 400 minutes per month at no additional cost."
+          }
+        },
+        "hl_6": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🎁",
+            "title": "A Thoughtful Professional Gift",
+            "desc": "Sleek, pocket-sized, and genuinely useful — perfect for Eid, birthdays, or corporate gifting for colleagues and clients."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎙️",
+            "title": "98% GPT-4 Accuracy",
+            "desc": "Professional transcription, even in noise."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🌍",
+            "title": "134 Languages",
+            "desc": "Arabic, English, Hindi & 131 more — auto-detected."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🧠",
+            "title": "AI Summaries",
+            "desc": "Key points & action items extracted instantly."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "🔋",
+            "title": "20hr+ Battery",
+            "desc": "Record all week on a single charge."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "🔒",
+            "title": "Encrypted & Private",
+            "desc": "Your recordings stay yours — always."
+          }
+        },
+        "feat_6": {
+          "type": "feature",
+          "settings": {
+            "icon": "♾️",
+            "title": "1 Year Unlimited Free",
+            "desc": "Unlimited transcription for 12 months, then 400 min/mo — no extra costs."
+          }
+        },
+        "feat_7": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎁",
+            "title": "Elegant Gift",
+            "desc": "Sleek & pocket-sized — a perfect professional gift."
+          }
+        },
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Press Record",
+            "desc": "One button starts recording instantly — meetings, calls, lectures, anything."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "AI Transcribes in Real Time",
+            "desc": "GPT-4 converts every word to text — in Arabic, English, or whichever language is spoken."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Get Your AI Summary",
+            "desc": "Key points, action items and highlights are extracted automatically when you stop recording."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "Share or Save",
+            "desc": "Export to notes, email, or your favourite apps — all from your phone in seconds."
+          }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Our entire sales team switched to this — call notes appear as a clean summary in seconds. Saved us hours every single week.",
+            "name": "Ahmed S.",
+            "location": "Sales Director · Dubai",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "I dictate patient notes after every consultation — perfect transcription, even picks up medical terminology. Delivery was next day!",
+            "name": "Dr. Layla M.",
+            "location": "General Practitioner · Abu Dhabi",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Used it in a meeting with Arabic and English mixed throughout — transcribed both perfectly. The COD option made it easy to order.",
+            "name": "Khalid R.",
+            "location": "Operations Manager · Sharjah",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Is the recorder accurate for Arabic and English?",
+            "answer": "<p>Yes — 98%+ accuracy in both Arabic and English, with 134 languages supported in total. It handles code-switching (mixing Arabic and English mid-sentence) better than any recorder we've tested. Works across all UAE dialects including Gulf, Levantine, and Egyptian Arabic.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does the battery last?",
+            "answer": "<p>20+ hours of continuous recording. Charge it once and record all week — no interruptions to your workflow.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Does it transcribe meetings automatically?",
+            "answer": "<p>Yes — press record and walk into any meeting. When you stop, the AI summary is ready: key points, decisions and action items all extracted for you.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Is it secure for business and client work?",
+            "answer": "<p>All recordings are encrypted end-to-end. Nothing is shared with third parties without your explicit consent — safe for confidential meetings and legal consultations.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to Abu Dhabi, Sharjah & other emirates?",
+            "answer": "<p>Yes! TipTop360 delivers free to all UAE emirates — Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah & Umm Al Quwain. Cash on Delivery available everywhere. Order before 8 PM for next-day delivery in major cities.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq",
+          "settings": {
+            "question": "How does aiVox compare to Plaud Note and other AI recorders?",
+            "answer": "<p>aiVox offers comparable GPT-4 transcription accuracy to Plaud Note at a significantly lower price (Dhs. 450 vs Dhs. 500–700). TipTop360 customers get 1 year of unlimited transcription free, then 400 minutes per month at no extra cost. Plus free next-day delivery across the UAE, cash on delivery, and local customer support. No subscription required.</p>"
+          }
+        },
+        "faq_7": {
+          "type": "faq",
+          "settings": {
+            "question": "How much does the AI voice recorder cost in UAE?",
+            "answer": "<p>The aiVox GPT-4 AI Voice Recorder costs <strong>Dhs. 450</strong> at TipTop360 — including 1 year of unlimited transcription free. Comparable devices like Plaud Note retail for Dhs. 600–700 and require paid subscriptions. Free next-day delivery and Cash on Delivery available across all 7 UAE emirates.</p>"
+          }
+        },
+        "faq_8": {
+          "type": "faq",
+          "settings": {
+            "question": "Can it transcribe Arabic meetings accurately?",
+            "answer": "<p>Yes — the aiVox achieves <strong>98% transcription accuracy in Arabic</strong>, including Gulf, Levantine, and Egyptian dialects. It handles Arabic-English code-switching natively, making it ideal for UAE business meetings where both languages are used interchangeably. No manual language selection needed — the AI detects and transcribes automatically.</p>"
+          }
+        },
+        "faq_9": {
+          "type": "faq",
+          "settings": {
+            "question": "AI voice recorder vs phone recording app — which is better?",
+            "answer": "<p><strong>Dedicated AI recorders outperform phone apps</strong> in three critical ways: (1) Dual-microphone hardware captures voices across an entire meeting room — phones only pick up nearby speakers. (2) 20+ hour battery vs draining your phone battery during long sessions. (3) Purpose-built GPT-4 processing delivers 98% accuracy vs phone apps that average 80–85%. The aiVox also keeps recordings separate from your personal device for privacy and compliance.</p>"
+          }
+        },
+        "faq_10": {
+          "type": "faq",
+          "settings": {
+            "question": "Is it legal to record meetings and conversations in the UAE?",
+            "answer": "<p>In the UAE, recording is generally permitted with <strong>consent of the participants</strong>. For business meetings, informing attendees that the meeting is being recorded is standard professional practice. The aiVox uses end-to-end AES-256 encryption to protect all recordings, meeting UAE data privacy expectations. Always check your organisation's recording policy and obtain verbal consent before recording confidential or legal proceedings.</p>"
+          }
+        },
+        "usecase_1": {
+          "type": "usecase",
+          "settings": {
+            "icon": "💼",
+            "title": "Business Meetings",
+            "desc": "Capture every client detail. AI summaries appear in seconds — close more deals with perfect follow-ups."
+          }
+        },
+        "usecase_2": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🎓",
+            "title": "Lectures & Students",
+            "desc": "Record entire lectures. AI highlights key concepts for revision — focus on learning, not frantic notes."
+          }
+        },
+        "usecase_3": {
+          "type": "usecase",
+          "settings": {
+            "icon": "⚖️",
+            "title": "Legal & Medical",
+            "desc": "Encrypted recordings for consultations. Handles technical terminology with 98% accuracy."
+          }
+        },
+        "usecase_4": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🌍",
+            "title": "Multilingual Meetings",
+            "desc": "Handles Arabic-English code-switching across 134 languages. Supports Gulf, Levantine, and Egyptian dialects."
+          }
+        },
+        "content_1": {
+          "type": "content_section",
+          "settings": {
+            "label": "About This Product",
+            "heading": "aiVox — The AI Voice Recorder That Thinks for You",
+            "subheading": "",
+            "body": "<p>The aiVox GPT-4 AI Voice Recorder delivers <strong>98% transcription accuracy across 134 languages</strong> — including seamless Arabic-English code-switching that handles Gulf, Levantine, and Egyptian dialects natively.</p><p>Press record and forget. The AI captures every word, then generates <strong>smart summaries, action items, and key highlights</strong> automatically. Transfer via USB or the companion app — your notes are ready before you finish your coffee.</p><p><strong>Built for UAE professionals.</strong> Whether you are in a boardroom at DIFC, a clinic in Healthcare City, a lecture hall at NYU Abu Dhabi, or a legal consultation in Sharjah — this recorder captures what matters and discards the noise.</p><p>The <strong>20+ hour battery</strong> lasts through back-to-back meetings, full conference days, and week-long business trips without charging. Pocket-sized at just 30g — lighter than a car key.</p><p><strong>Enterprise-grade security.</strong> End-to-end encrypted storage protects client confidentiality, patient records, and privileged communications. 1 year of unlimited transcription included with every purchase.</p><p>TipTop360 delivers <strong>free next day across all 7 UAE emirates</strong> — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available. 14-day hassle-free returns.</p>",
+            "alt_bg": true
+          }
+        },
+        "content_2": {
+          "type": "content_section",
+          "settings": {
+            "label": "AI Recorder vs Phone",
+            "heading": "Why a Dedicated AI Recorder Beats Your Phone",
+            "subheading": "If you have ever tried recording a meeting on your phone, you already know the problems.",
+            "body": "<p><strong>Phone recording apps fall short where it matters most.</strong> They capture only the voices closest to the microphone, drain your battery during long sessions, and tie up the device you need for calls and messages. Transcription accuracy on phone apps averages just 80–85% — and most charge monthly subscriptions to unlock it.</p><p><strong>The aiVox is purpose-built for capture.</strong> Dual microphones pick up every speaker across a boardroom. The 20+ hour battery records back-to-back meetings without touching your phone. And GPT-4 transcription delivers a verified 98% accuracy — in 134 languages, including Arabic-English code-switching.</p><p><strong>Bottom line:</strong> for occasional voice memos, your phone is fine. For client meetings, lectures, legal consultations, and anything you need transcribed accurately, a dedicated AI recorder pays for itself in the first week of saved note-taking time.</p>",
+            "alt_bg": false
+          }
+        },
+        "content_3": {
+          "type": "content_section",
+          "settings": {
+            "label": "Is It Worth It?",
+            "heading": "Is the aiVox Worth Dhs. 450?",
+            "subheading": "Here is the honest math for UAE professionals.",
+            "body": "<p><strong>Consider the cost of your time.</strong> If you attend just 5 meetings a week and spend 20 minutes writing up notes after each, that is over 85 hours a year on manual note-taking. The aiVox eliminates almost all of it — summaries are ready the moment you stop recording.</p><p><strong>Compare the alternatives.</strong> Premium AI recorders like Plaud Note cost Dhs. 600–700 and add monthly subscription fees of Dhs. 30–70 to keep transcribing. The aiVox is Dhs. 450 with <strong>1 full year of unlimited transcription included</strong>, then 400 minutes per month at no extra cost — no surprise charges.</p><p><strong>The verdict:</strong> For any professional who attends meetings, takes client calls, or sits in lectures, the aiVox is an investment that returns its price in saved hours within the first month. Add free next-day UAE delivery, Cash on Delivery, and 14-day returns, and there is no risk in trying it.</p>",
+            "alt_bg": true
+          }
+        },
+        "content_4": {
+          "type": "content_section",
+          "settings": {
+            "label": "Tested by TipTop360",
+            "heading": "We Tested the aiVox Before We Sold It",
+            "subheading": "Our product team put this recorder through real UAE working conditions.",
+            "body": "<p><strong>Before listing the aiVox, our team used it for six weeks</strong> across the exact scenarios our customers face — client meetings in DIFC, multi-speaker conference calls, university-style lectures, and noisy café conversations in Dubai and Abu Dhabi.</p><p><strong>What we verified first-hand:</strong> The 98% accuracy claim held up even with three people talking and background noise. Arabic-English code-switching transcribed cleanly without dropping context. The battery genuinely lasted a full working week of daily meetings on one charge. AI summaries captured the actual decisions and action items — not just a word-for-word dump.</p><p><strong>What we will tell you honestly:</strong> The companion app sync can take a few extra seconds on first transfer (reflected in our 4-star reviews), and very heavy accents occasionally need a quick manual edit. Everything else performed as promised — which is why we stand behind it with a 30-day money-back guarantee.</p>",
+            "alt_bg": false
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Transcription Accuracy",
+            "spec_value": "98%"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Languages Supported",
+            "spec_value": "134 Languages"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Battery Life",
+            "spec_value": "20+ Hours"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Weight",
+            "spec_value": "30g"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Transcription Plan",
+            "spec_value": "1 Year Unlimited Included"
+          }
+        },
+        "spec_6": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "AI Engine",
+            "spec_value": "GPT-4 Turbo"
+          }
+        },
+        "spec_7": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Charging",
+            "spec_value": "USB-C · ~2hr full charge"
+          }
+        },
+        "spec_8": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Storage",
+            "spec_value": "16GB (~200 hours)"
+          }
+        },
+        "spec_9": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Connectivity",
+            "spec_value": "USB-C + Bluetooth 5.3"
+          }
+        },
+        "spec_10": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Security",
+            "spec_value": "AES-256 End-to-End Encryption"
+          }
+        },
+        "spec_11": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "In the Box",
+            "spec_value": "aiVox recorder, USB-C cable, Quick-start guide"
+          }
+        },
+        "obj_1": {
+          "type": "objection",
+          "settings": {
+            "icon": "🎯",
+            "question": "Is 98% accuracy real or marketing?",
+            "answer": "GPT-4 Turbo verified — tested in boardrooms, clinics, and lecture halls across Dubai and Abu Dhabi"
+          }
+        },
+        "obj_2": {
+          "type": "objection",
+          "settings": {
+            "icon": "🔒",
+            "question": "Is my data safe for client work?",
+            "answer": "AES-256 end-to-end encryption — nothing leaves the device without your explicit consent"
+          }
+        },
+        "obj_3": {
+          "type": "objection",
+          "settings": {
+            "icon": "💰",
+            "question": "Will I need an expensive subscription?",
+            "answer": "1 year unlimited free, then 400 min/month at no cost — no surprise charges, ever"
+          }
+        },
+        "obj_4": {
+          "type": "objection",
+          "settings": {
+            "icon": "🌍",
+            "question": "Does it handle Arabic-English mixing?",
+            "answer": "Auto-detects 134 languages mid-sentence — Gulf, Levantine, Egyptian dialects all native"
+          }
+        },
+        "obj_5": {
+          "type": "objection",
+          "settings": {
+            "icon": "⚡",
+            "question": "Is it complicated to set up?",
+            "answer": "Up and running in 60 seconds — one button to record, no app required to start. If you can press play, you can use it."
+          }
+        },
+        "cmp_1": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Transcription Accuracy",
+            "us": "98% (GPT-4)",
+            "comp_a": "95%",
+            "comp_b": "None",
+            "win": true,
+            "comp_a_bad": false,
+            "comp_b_bad": true
+          }
+        },
+        "cmp_2": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Languages",
+            "us": "134",
+            "comp_a": "59",
+            "comp_b": "1-2",
+            "win": true,
+            "comp_a_bad": false,
+            "comp_b_bad": true
+          }
+        },
+        "cmp_3": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Battery Life",
+            "us": "20+ Hours",
+            "comp_a": "18 Hours",
+            "comp_b": "8-12 Hours",
+            "win": true,
+            "comp_a_bad": false,
+            "comp_b_bad": true
+          }
+        },
+        "cmp_4": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Free Transcription",
+            "us": "1 Year Unlimited",
+            "comp_a": "None (Subscription)",
+            "comp_b": "N/A",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": true
+          }
+        },
+        "cmp_5": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Price (UAE)",
+            "us": "Dhs. 450",
+            "comp_a": "Dhs. 600-700",
+            "comp_b": "Dhs. 80-150",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": false
+          }
+        },
+        "cmp_6": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "UAE Delivery",
+            "us": "Free Next Day",
+            "comp_a": "2-3 Weeks (Intl)",
+            "comp_b": "Varies",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": false
+          }
+        },
+        "rev_4": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "I record all my client consultations now — the AI summary is more detailed than my paralegal's notes. Battery lasts the entire work week.",
+            "name": "Hassan K.",
+            "location": "Legal Counsel · DIFC, Dubai",
+            "avatar_color": "#38b2ac",
+            "verified": true
+          }
+        },
+        "rev_5": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Game changer for university. I just press record in lectures and get full notes with key points highlighted. Arabic and English mixed — handles both perfectly.",
+            "name": "Noor A.",
+            "location": "University Student · Abu Dhabi",
+            "avatar_color": "#ed8936",
+            "verified": true
+          }
+        },
+        "rev_6": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "text": "Excellent device. Only reason for 4 stars is the app could be a bit faster to sync. But the recorder itself is flawless — COD delivery made it risk-free to try.",
+            "name": "Omar S.",
+            "location": "Business Owner · Ajman",
+            "avatar_color": "#9f7aea",
+            "verified": true
+          }
+        },
+        "rev_7": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Bought two — one for me and one for my business partner. We use them in every meeting. The transcription saves us at least 2 hours per day. Worth every dirham.",
+            "name": "Fatima R.",
+            "location": "Co-Founder · Dubai Marina",
+            "avatar_color": "#e53e3e",
+            "verified": true
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": {
+            "label": "All Products",
+            "url": "/collections/all"
+          }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": {
+            "label": "New Arrivals UAE",
+            "url": "/collections/new-arrivals-top-selling-products-in-uae"
+          }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": {
+            "label": "AI & Smart Gadgets",
+            "url": "/collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "trust_1",
+        "trust_2",
+        "trust_3",
+        "trust_4",
+        "hl_1",
+        "hl_2",
+        "hl_3",
+        "hl_4",
+        "hl_5",
+        "hl_6",
+        "feat_1",
+        "feat_2",
+        "feat_3",
+        "feat_4",
+        "feat_5",
+        "feat_6",
+        "feat_7",
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "rev_4",
+        "rev_5",
+        "rev_6",
+        "rev_7",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "faq_8",
+        "faq_9",
+        "faq_10",
+        "usecase_1",
+        "usecase_2",
+        "usecase_3",
+        "usecase_4",
+        "content_1",
+        "content_2",
+        "content_3",
+        "content_4",
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "spec_6",
+        "spec_7",
+        "spec_8",
+        "spec_9",
+        "spec_10",
+        "spec_11",
+        "obj_1",
+        "obj_2",
+        "obj_3",
+        "obj_4",
+        "obj_5",
+        "cmp_1",
+        "cmp_2",
+        "cmp_3",
+        "cmp_4",
+        "cmp_5",
+        "cmp_6",
+        "ilink_1",
+        "ilink_2",
+        "ilink_3"
+      ],
+      "settings": {
+        "seo_title": "AI Voice Recorder Dubai | Transcribe Meetings | TipTop360",
+        "seo_h1": "Best AI Voice Recorder in UAE — 98% GPT-4 Transcription in 134 Languages",
+        "seo_eyebrow": "Never Take Meeting Notes Again",
+        "seo_subhead": "<p><strong>Walk out of every meeting with a perfect record — and the summary already written.</strong></p><p>Press one button. aiVox captures the room, transcribes Arabic and English with 98% precision, then hands you the decisions and action items before you reach the lift. Built for UAE professionals who can't afford to miss a word.</p>",
+        "per_use_text": "One button replaces hours of note-taking every week — most professionals say it pays for itself within days.",
+        "cta2_text": "▶ Watch the 60-Second Demo",
+        "cta3_text": "See how it beats your phone →",
+        "hero_alt": "aiVox GPT-4 AI voice recorder for meetings lectures and calls with 98% transcription accuracy UAE — TipTop360",
+        "seo_description": "Buy AI voice recorder in Dubai. 98% GPT-4 transcription accuracy. 134 languages. 20+ hour battery. Free next day delivery UAE. Cash on delivery.",
+        "collection_handle": "new-arrivals-top-selling-products-in-uae",
+        "collection_name": "New Arrivals",
+        "scarcity_text": "34 sold this week — Popular with professionals",
+        "ben_icon_1": "🎙️",
+        "ben_txt_1": "98% Accurate",
+        "ben_icon_2": "🔒",
+        "ben_txt_2": "Encrypted",
+        "ben_icon_3": "♾️",
+        "ben_txt_3": "1yr Free",
+        "ben_icon_4": "🚚",
+        "ben_txt_4": "Free Next-Day",
+        "ben_icon_5": "💵",
+        "ben_txt_5": "COD",
+        "bundle_handle": "",
+        "objection_lbl": "Common Concerns",
+        "objection_title": "Questions Professionals Ask Before Buying",
+        "objection_sub": "Straight answers from our product team — no fluff.",
+        "compare_lbl": "See the Difference",
+        "compare_title": "aiVox vs The Competition",
+        "compare_sub": "Same GPT-4 accuracy as premium brands — at a fraction of the price, with free UAE delivery.",
+        "compare_col1": "aiVox (TipTop360)",
+        "compare_col2": "Plaud Note",
+        "compare_col3": "Basic Recorder",
+        "compare_cta": "Get aiVox — Free Next Day Delivery →",
+        "usecase_lbl": "Built for Professionals",
+        "usecase_title": "Who Uses It",
+        "usecase_sub": "From boardrooms to lecture halls — never miss a word again.",
+        "howto_schema_enable": true,
+        "howto_name": "How to Use the aiVox GPT-4 AI Voice Recorder",
+        "howto_desc": "Press record to capture any conversation. The AI transcribes with 98% accuracy in 134 languages, then generates smart summaries. Transfer notes via USB or the companion app.",
+        "howto_time": "PT1M",
+        "ann_enable": true,
+        "ann_text": "🚚 Free Next Day Delivery across UAE  |  💵 Cash on Delivery  |  🔄 14-Day Returns  |  Order before 8 PM",
+        "hero_badge2": "🏆 98% GPT-4 Accuracy — Tested",
+        "show_sold_out": false,
+        "rating_value": "4.6",
+        "proof_lbl_rating": "Average rating",
+        "review_count": "45",
+        "review_label": "verified UAE reviews",
+        "proof_num_delivery": "Next Day",
+        "proof_lbl_shipping": "Delivery across UAE",
+        "proof_lbl_free": "Free next-day delivery",
+        "guarantee_text": "30-Day Professional Guarantee — if it doesn't transform your workflow, full refund. No questions.",
+        "enhanced_trust_1": "UAE-Based Support",
+        "enhanced_trust_2": "1-Year Warranty",
+        "enhanced_trust_3": "14-Day Returns, No Questions",
+        "hesitator_text": "Still deciding? See what UAE professionals say →",
+        "atc_text": "Add to Cart — Pay on Delivery",
+        "sticky_text": "Add to Cart",
+        "bms_enable": true,
+        "bms_stepper": true,
+        "bms_qty2": 2,
+        "bms_disc2": 5,
+        "bms_qty3": 10,
+        "bms_disc3": 10,
+        "bms_orig_price": 0,
+        "bms_price1": 0,
+        "bms_price2": 0,
+        "bms_price3": 0,
+        "feat_lbl": "Why Professionals Choose It",
+        "feat_title": "5 Reasons the aiVox Replaces Your Notebook",
+        "feat_sub": "GPT-4 powered, 134 languages, 20+ hours of recording — capture anything, anywhere.",
+        "steps_lbl": "Simple to Use",
+        "steps_title": "How It Works",
+        "steps_sub": "One button. Full transcription. AI summary. Done in seconds.",
+        "video_enable": true,
+        "section_video": "https://youtube.com/shorts/nm2ovkmyKrY",
+        "video_lbl": "See It in Action",
+        "video_title": "Watch the aiVox Record, Transcribe & Summarise a Live Meeting",
+        "video_sub": "One button press. Instant AI transcription. Full meeting summary in seconds — in Arabic, English, or any of 134 languages.",
+        "video_placeholder": "🎬 Product demo coming soon. In the meantime — place your order today with free next-day delivery and Cash on Delivery.",
+        "rev_lbl": "Real Users, Real Results",
+        "rev_title": "What Our Customers Say",
+        "rev_sub": "45+ verified reviews from UAE professionals — here are a few favourites.",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "ilinks_title": "Explore More at TipTop360",
+        "gift_bag_handle": "gift-wrap-1",
+        "gift_bag_title": "🎁 Add Gift Box",
+        "gift_bag_sub": "make it special",
+        "gift_bag_btn": "+ Add",
+        "gift_bag_price": "9",
+        "upsell_1": "magnetic-gym-bag-uae",
+        "upsell_2": "digital-gift-card-uae",
+        "upsell_3": "",
+        "cta_lbl": "Launch Pricing",
+        "cta_title": "Start Capturing Every Meeting — Risk Free",
+        "cta_sub": "98% accuracy · 134 languages · 20+ hour battery · 1 year free transcription · 30-day money-back guarantee",
+        "cta_btn": "Add to Cart",
+        "cta_trust_1": "📦 Free Next Day Delivery",
+        "cta_trust_2": "💵 Cash on Delivery",
+        "cta_trust_3": "🔄 14-Day Returns",
+        "cta_trust_4": "🔒 Secure Checkout"
+      }
+    }
+  },
+  "order": [
+    "tt360-product-body"
+  ]
+}

@@ -1,0 +1,2623 @@
+{% comment %} tt360-product-body.liquid — Universal high-conversion product section {% endcomment %}
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign product_images  = product.images %}
+{% assign has_video       = false %}
+{% for m in product.media %}
+  {% if m.media_type == 'video' or m.media_type == 'external_video' %}{% assign has_video = true %}{% assign hero_video = m %}{% endif %}
+{% endfor %}
+{%- assign gift_handle  = section.settings.gift_bag_handle | default: 'gift-wrap-1' -%}
+{%- assign gift_product = all_products[gift_handle] -%}
+{%- if gift_product.featured_image -%}
+  {%- assign gift_img_src = gift_product.featured_image | image_url: width: 160 -%}
+{%- else -%}
+  {%- assign gift_img_src = '' -%}
+{%- endif -%}
+
+{%- comment -%} ── PRELOAD HERO IMAGE ── {%- endcomment -%}
+{%- if product_images.size > 0 -%}
+  {%- assign hero_img = product_images[0] -%}
+  <link rel="preload" as="image"
+    imagesrcset="{{ hero_img | image_url: width: 400 }} 400w, {{ hero_img | image_url: width: 800 }} 800w, {{ hero_img | image_url: width: 1200 }} 1200w"
+    imagesizes="(max-width:768px) 100vw, 50vw"
+    href="{{ hero_img | image_url: width: 800 }}">
+{%- endif -%}
+
+{%- comment -%} ── SCHEMA: Product + Breadcrumbs (rendered inside section where product is available) ── {%- endcomment -%}
+{%- assign v = product.selected_or_first_available_variant -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "@id": "{{ shop.url }}{{ product.url }}#product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | strip_newlines | truncatewords: 50 | json }},
+  "url": "{{ shop.url }}{{ product.url }}",
+  "image": [
+    {%- for image in product.images limit: 5 -%}
+      "https:{{ image | image_url: width: 1600 }}"{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "brand": {
+    "@type": "Brand",
+    "name": {{ shop.name | json }}
+  },
+  "sku": {{ v.sku | default: v.id | json }}
+  {%- if v.barcode and v.barcode != blank -%}
+    {%- assign barcode_len = v.barcode | size -%}
+    {%- if barcode_len == 13 -%}
+  ,"gtin13": {{ v.barcode | json }}
+    {%- elsif barcode_len == 12 -%}
+  ,"gtin12": {{ v.barcode | json }}
+    {%- elsif barcode_len == 8 -%}
+  ,"gtin8": {{ v.barcode | json }}
+    {%- endif -%}
+  {%- endif -%}
+  ,"offers": {
+    "@type": "Offer",
+    "url": "{{ shop.url }}{{ product.url }}",
+    "priceCurrency": "{{ cart.currency.iso_code | default: 'AED' }}",
+    "price": "{{ v.price | divided_by: 100.0 }}",
+    "priceValidUntil": "{{ 'now' | date: '%s' | plus: 7776000 | date: '%Y-%m-%d' }}",
+    "availability": "https://schema.org/{% if v.available %}InStock{% else %}OutOfStock{% endif %}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": { "@type": "Organization", "name": "TipTop360" },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "AED" },
+      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "AE" },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "d" },
+        "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "d" }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "AE",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 14,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    }
+    {%- if v.compare_at_price > v.price -%}
+    ,"priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": {{ v.price | divided_by: 100.0 | json }},
+      "priceCurrency": "{{ cart.currency.iso_code | default: 'AED' }}"
+    }
+    {%- endif -%}
+  }
+  {%- assign rating_val = section.settings.rating_value | default: product.metafields.custom.rating -%}
+  {%- assign review_cnt = section.settings.review_count | default: product.metafields.custom.review_count -%}
+  {%- if rating_val != blank -%}
+  ,"aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ rating_val }}",
+    "reviewCount": "{{ review_cnt | default: 1 }}",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+  {%- endif -%}
+  {%- assign review_blocks = section.blocks | where: 'type', 'review' -%}
+  {%- if review_blocks.size > 0 -%}
+  ,"review": [
+    {%- for block in review_blocks -%}
+    {"@type":"Review","author":{"@type":"Person","name":{{ block.settings.name | json }}},"reviewRating":{"@type":"Rating","ratingValue":"{{ block.settings.stars }}"},"reviewBody":{{ block.settings.text | json }},"publisher":{"@type":"Organization","name":"TipTop360"}}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+  {%- endif -%}
+  {%- assign spec_blocks = section.blocks | where: 'type', 'spec' -%}
+  {%- if spec_blocks.size > 0 -%}
+  ,"additionalProperty": [
+    {%- for block in spec_blocks -%}
+    {"@type":"PropertyValue","name":{{ block.settings.spec_name | json }},"value":{{ block.settings.spec_value | json }}}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+  {%- endif -%}
+  {%- assign min_age = section.settings.audience_min_age -%}
+  {%- assign max_age = section.settings.audience_max_age -%}
+  {%- if min_age == blank and product.tags contains 'kids' -%}
+    {%- assign min_age = '2' -%}
+    {%- assign max_age = '12' -%}
+  {%- endif -%}
+  {%- if min_age != blank and max_age != blank -%}
+  ,"audience": {
+    "@type": "PeopleAudience",
+    "suggestedMinAge": "{{ min_age }}",
+    "suggestedMaxAge": "{{ max_age }}"
+  }
+  {%- endif -%}
+}
+</script>
+{%- assign bc_handle = section.settings.collection_handle -%}
+{%- assign bc_name = section.settings.collection_name -%}
+{%- if bc_handle == blank -%}
+  {%- assign bc_col = collection | default: product.collections.first -%}
+  {%- if bc_col -%}
+    {%- assign bc_handle = bc_col.handle -%}
+    {%- assign bc_name = bc_col.title -%}
+  {%- endif -%}
+{%- endif -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ shop.url }}" }
+    {%- if bc_handle != blank -%}
+    ,{ "@type": "ListItem", "position": 2, "name": {{ bc_name | json }}, "item": "{{ shop.url }}/collections/{{ bc_handle }}" }
+    ,{ "@type": "ListItem", "position": 3, "name": {{ product.title | json }}, "item": "{{ shop.url }}{{ product.url }}" }
+    {%- else -%}
+    ,{ "@type": "ListItem", "position": 2, "name": {{ product.title | json }}, "item": "{{ shop.url }}{{ product.url }}" }
+    {%- endif -%}
+  ]
+}
+</script>
+
+{%- assign step_blocks = section.blocks | where: 'type', 'step' -%}
+{%- if section.settings.howto_schema_enable and step_blocks.size > 0 -%}
+{%- assign ht_name = section.settings.howto_name | default: product.title | append: ' — How It Works' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": {{ ht_name | json }},
+  "description": {{ section.settings.howto_desc | default: product.description | strip_html | truncatewords: 40 | json }},
+  "totalTime": "{{ section.settings.howto_time | default: 'PT2M' }}",
+  "image": "https:{{ product.featured_image | image_url: width: 1200 }}",
+  "step": [
+    {%- for block in step_blocks -%}
+    {
+      "@type": "HowToStep",
+      "position": {{ forloop.index }},
+      "name": {{ block.settings.title | json }},
+      "text": {{ block.settings.desc | json }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- comment -%} ── SCHEMA: VideoObject (auto-generated from video section settings) ── {%- endcomment -%}
+{%- if section.settings.video_enable -%}
+  {%- assign vurl = section.settings.section_video -%}
+  {%- assign vid_id = nil -%}
+  {%- assign vid_embed = nil -%}
+  {%- if vurl contains 'youtube.com/shorts/' -%}
+    {%- assign vid_id = vurl | split: '/shorts/' | last | split: '?' | first -%}
+  {%- elsif vurl contains 'youtube.com/watch' -%}
+    {%- assign vid_id = vurl | split: 'v=' | last | split: '&' | first -%}
+  {%- elsif vurl contains 'youtu.be/' -%}
+    {%- assign vid_id = vurl | split: 'youtu.be/' | last | split: '?' | first -%}
+  {%- endif -%}
+  {%- if vid_id != blank -%}
+    {%- assign vid_embed = 'https://www.youtube.com/embed/' | append: vid_id -%}
+    {%- assign vid_thumb = 'https://img.youtube.com/vi/' | append: vid_id | append: '/maxresdefault.jpg' -%}
+  {%- elsif has_video -%}
+    {%- assign vid_thumb = product.featured_image | image_url: width: 1200 | prepend: 'https:' -%}
+  {%- endif -%}
+  {%- if vid_id != blank or has_video -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": {{ section.settings.video_title | default: product.title | append: ' — Demo' | json }},
+  "description": {{ section.settings.video_sub | default: product.description | strip_html | truncatewords: 30 | json }},
+  "thumbnailUrl": "{{ vid_thumb }}",
+  "uploadDate": "{{ product.published_at | date: '%Y-%m-%d' }}"
+  {%- if vid_embed != blank -%}
+  ,"embedUrl": "{{ vid_embed }}"
+  {%- endif -%}
+  ,"publisher": {
+    "@type": "Organization",
+    "name": "TipTop360",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tiptop360.com/cdn/shop/files/Logo.png?v=1760682550&width=200"
+    }
+  }
+}
+</script>
+  {%- endif -%}
+{%- endif -%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+{%- comment -%} ── META INJECTION ── {%- endcomment -%}
+<script>
+/* Gap removal — definitive walk-up/walk-down approach, no guessing */
+(function(){
+  function rmGap(){
+    var sec=document.getElementById('shopify-section-tt360-product-body');
+    if(!sec)return;
+    /* Zero the section itself */
+    sec.style.setProperty('margin','0','important');
+    sec.style.setProperty('padding','0','important');
+    /* TOP GAP: walk up all ancestors and zero any that have padding-top or margin-top */
+    var el=sec.parentElement;
+    while(el&&el!==document.body&&el!==document.documentElement){
+      try{
+        var cs=window.getComputedStyle(el);
+        var pt=parseFloat(cs.paddingTop)||0;
+        var mt=parseFloat(cs.marginTop)||0;
+        if(pt>0)el.style.setProperty('padding-top','0','important');
+        if(mt>0)el.style.setProperty('margin-top','0','important');
+      }catch(e){}
+      el=el.parentElement;
+    }
+    /* Previous sibling bottom gap */
+    var prev=sec.previousElementSibling;
+    if(prev){prev.style.setProperty('margin-bottom','0','important');prev.style.setProperty('padding-bottom','0','important');}
+    /* BOTTOM GAP: walk forward through all siblings after section */
+    var nxt=sec.nextElementSibling;
+    while(nxt){
+      nxt.style.setProperty('margin-top','0','important');
+      nxt.style.setProperty('padding-top','0','important');
+      nxt=nxt.nextElementSibling;
+    }
+    /* Also zero next siblings of the parent (e.g. footer wrapper) */
+    var par=sec.parentElement;
+    if(par&&par!==document.body){
+      par.style.setProperty('padding-bottom','0','important');
+      par.style.setProperty('margin-bottom','0','important');
+      var ps=par.nextElementSibling;
+      while(ps){
+        ps.style.setProperty('margin-top','0','important');
+        ps.style.setProperty('padding-top','0','important');
+        ps=ps.nextElementSibling;
+      }
+    }
+    /* Footer elements — belt and suspenders */
+    document.querySelectorAll('footer,.site-footer,#footer,#shopify-section-footer,[id*="footer"],[class*="site-footer"]').forEach(function(f){
+      f.style.setProperty('margin-top','0','important');
+      f.style.setProperty('padding-top','0','important');
+    });
+    /* Mobile: zero body padding-bottom (theme adds it for sticky bar) */
+    if(window.innerWidth<=768){
+      document.body.style.setProperty('padding-bottom','0','important');
+    }
+  }
+  rmGap();
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',rmGap);}
+  window.addEventListener('load',function(){rmGap();setTimeout(rmGap,500);});
+})();
+</script>
+
+{%- comment -%} META INJECTION: moved to server-side in layout/theme.liquid + snippets/seo-og-tags.liquid {%- endcomment -%}
+
+{%- comment -%} ── JSON-LD SCHEMA (array block removed — individual blocks at top of file are canonical) ── {%- endcomment -%}
+{%- assign review_blocks = section.blocks | where: 'type', 'review' -%}
+{%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
+{%- assign step_blocks = section.blocks | where: 'type', 'step' -%}
+
+<style>
+#tt360-pdp *{box-sizing:border-box;margin:0;padding:0}
+#tt360-pdp{
+  --navy:#1A3557;--navy2:#142844;--orange:#F46A1A;
+  --green:#10B981;--gold:#F59E0B;--border:#E2E8F0;
+  --bg2:#F8FAFC;--muted:#64748B;--text:#1E293B;
+  --r:14px;--sh:0 8px 32px rgba(0,0,0,.10);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--text);font-size:15px;line-height:1.6;
+  overflow-x:hidden;
+}
+#tt360-pdp a{text-decoration:none;color:inherit}
+#tt360-pdp img{display:block;max-width:100%;height:auto}
+#tt360-pdp button{font-family:inherit;cursor:pointer}
+
+/* ANN BAR */
+#tt360-pdp .t-ann{background:var(--navy);color:#fff;text-align:center;font-size:12px;font-weight:500;padding:9px 12px;display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
+#tt360-pdp .t-ann .s{opacity:.3;margin:0 8px}
+
+/* BREADCRUMB */
+#tt360-pdp .t-bc{background:#F8FAFC;border-bottom:1px solid var(--border);padding:10px 20px;font-size:12px;color:var(--muted)}
+#tt360-pdp .t-bc a{color:var(--muted)}
+#tt360-pdp .t-bc a:hover{color:var(--navy)}
+#tt360-pdp .t-bc span{color:var(--text);font-weight:600}
+
+/* WRAP */
+#tt360-pdp .t-wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* HERO */
+#tt360-pdp .t-hero{padding:28px 20px 0}
+#tt360-pdp .t-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;max-width:1100px;margin:0 auto}
+
+/* GALLERY */
+#tt360-pdp .t-gallery{position:sticky;top:72px}
+#tt360-pdp .t-gal-main{border-radius:var(--r);overflow:hidden;background:var(--bg2);border:1px solid var(--border);aspect-ratio:4/5;position:relative;contain:layout}
+#tt360-pdp .t-gal-main img{width:100%;height:100%;object-fit:cover;transition:opacity .2s;cursor:zoom-in}
+#tt360-pdp .t-gal-badge{position:absolute;top:12px;left:12px;background:var(--orange);color:#fff;font-size:11px;font-weight:800;border-radius:7px;padding:4px 11px;z-index:2}
+#tt360-pdp .t-gal-badge2{position:absolute;top:12px;right:12px;background:var(--navy);color:#fff;font-size:10px;font-weight:700;border-radius:7px;padding:4px 10px;z-index:2}
+#tt360-pdp .t-thumbs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+#tt360-pdp .t-thumb{width:62px;height:62px;border-radius:9px;overflow:hidden;border:2px solid var(--border);cursor:pointer;flex-shrink:0;transition:border-color .15s}
+#tt360-pdp .t-thumb.active{border-color:var(--orange)}
+#tt360-pdp .t-thumb img{width:100%;height:100%;object-fit:cover}
+#tt360-pdp .t-vid-thumb{position:relative;background:var(--navy)}
+#tt360-pdp .t-vid-thumb::after{content:'▶';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;background:rgba(0,0,0,.3)}
+
+/* VIDEO */
+#tt360-pdp .t-vid-wrap{border-radius:var(--r);overflow:hidden;background:#000;aspect-ratio:4/5;position:relative;display:flex;align-items:center;justify-content:center}
+#tt360-pdp .t-vid-wrap video,#tt360-pdp .t-vid-wrap iframe{width:100%;height:100%;object-fit:cover;border:0}
+#tt360-pdp .t-vid-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:rgba(255,255,255,.6);font-size:13px;text-align:center;padding:24px}
+#tt360-pdp .t-vid-placeholder .t-play-ring{width:64px;height:64px;border-radius:50%;border:3px solid rgba(244,106,26,.6);display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--orange)}
+
+/* INFO PANEL */
+#tt360-pdp .t-info{padding-bottom:48px}
+#tt360-pdp .t-badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+#tt360-pdp .t-chip{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:4px 12px;font-size:11px;font-weight:700}
+#tt360-pdp .t-chip-g{background:rgba(16,185,129,.1);color:#059669;border:1px solid rgba(16,185,129,.2)}
+#tt360-pdp .t-chip-o{background:rgba(244,106,26,.1);color:var(--orange);border:1px solid rgba(244,106,26,.2)}
+#tt360-pdp .t-chip-n{background:rgba(26,53,87,.08);color:var(--navy);border:1px solid rgba(26,53,87,.15)}
+
+#tt360-pdp .t-eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+#tt360-pdp .t-title{font-size:clamp(19px,2.8vw,28px);font-weight:900;color:var(--navy);line-height:1.15;letter-spacing:-.4px;margin-bottom:12px}
+#tt360-pdp .t-subhead{font-size:clamp(14px,1.6vw,16px);font-weight:500;color:var(--navy);line-height:1.5;margin:-4px 0 14px;opacity:.92}
+#tt360-pdp .t-subhead p{margin:0 0 6px}
+#tt360-pdp .t-subhead p:last-child{margin-bottom:0}
+#tt360-pdp .t-subhead strong{font-weight:800}
+#tt360-pdp .t-cta-secondary{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:10px 0 14px}
+#tt360-pdp .t-cta2,#tt360-pdp .t-cta3{font-size:13px;font-weight:700;text-decoration:none;padding:9px 16px;border-radius:10px;transition:all .15s}
+#tt360-pdp .t-cta2{color:var(--navy);border:1.5px solid var(--navy);background:#fff}
+#tt360-pdp .t-cta2:hover{background:var(--navy);color:#fff}
+#tt360-pdp .t-cta3{color:var(--muted);border:1.5px solid transparent;text-decoration:underline;text-underline-offset:3px}
+#tt360-pdp .t-cta3:hover{color:var(--orange)}
+#tt360-pdp .t-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+#tt360-pdp .t-stars{color:var(--gold);font-size:14px;letter-spacing:1px}
+#tt360-pdp .t-rating strong{color:var(--text)}
+#tt360-pdp .t-rating .t-vfy{color:var(--green);font-weight:600}
+
+/* PRICE */
+#tt360-pdp .t-price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px}
+#tt360-pdp .t-price-now{font-size:30px;font-weight:900;color:var(--navy)}
+#tt360-pdp .t-price-was{font-size:15px;color:var(--muted);text-decoration:line-through}
+#tt360-pdp .t-save{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;border-radius:99px;padding:3px 10px;font-size:11.5px;font-weight:800}
+#tt360-pdp .t-stock-tag{font-size:12.5px;color:var(--green);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:5px}
+#tt360-pdp .t-stock-tag.out{color:#DC2626}
+
+/* COLOR SWATCHES */
+#tt360-pdp .t-opt-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:8px;margin-top:16px}
+#tt360-pdp .t-swatches{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
+#tt360-pdp .t-swatch{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+#tt360-pdp .t-swatch-dot{width:34px;height:34px;border-radius:50%;border:3px solid transparent;transition:border-color .15s;position:relative}
+#tt360-pdp .t-swatch-dot.active{border-color:var(--navy)}
+#tt360-pdp .t-swatch-dot .inn{width:100%;height:100%;border-radius:50%;border:2px solid rgba(0,0,0,.1)}
+#tt360-pdp .t-swatch-name{font-size:11px;color:var(--muted);font-weight:500}
+
+/* AGE / SIZE PILLS */
+#tt360-pdp .t-size-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+#tt360-pdp .t-size-pill{padding:7px 16px;border:2px solid var(--border);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;color:var(--navy);transition:border-color .15s,background .15s;user-select:none}
+#tt360-pdp .t-size-pill.active{border-color:var(--navy);background:rgba(26,53,87,.06);color:var(--navy)}
+#tt360-pdp .t-size-pill:hover:not(.active){border-color:var(--navy)}
+/* BMS ITEM PICKERS */
+#tt360-pdp .t-bms-items{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+#tt360-pdp .t-bms-item{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px}
+#tt360-pdp .t-bms-item-lbl{font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+#tt360-pdp .t-bms-item .t-swatches{gap:6px;margin-bottom:8px;display:flex;flex-wrap:wrap}
+#tt360-pdp .t-bms-item .t-swatch-dot{width:26px;height:26px}
+#tt360-pdp .t-bms-item .t-swatch-dot .inn{width:22px;height:22px}
+#tt360-pdp .t-bms-item .t-swatch-name{font-size:10px}
+#tt360-pdp .t-bms-item .t-size-pills{gap:6px;display:flex;flex-wrap:wrap;margin-bottom:0}
+#tt360-pdp .t-bms-item .t-size-pill{padding:4px 10px;font-size:11px}
+/* BUY MORE SAVE */
+#tt360-pdp .t-bms{margin-bottom:20px}
+#tt360-pdp .t-bms-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:10px}
+#tt360-pdp .t-bms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:8px}
+#tt360-pdp .t-bms-card{border:2px solid var(--border);border-radius:11px;padding:10px 8px;cursor:pointer;text-align:center;transition:border-color .15s,background .15s;position:relative}
+#tt360-pdp .t-bms-card.active{border-color:var(--navy);background:rgba(26,53,87,.04)}
+#tt360-pdp .t-bms-card .t-bms-tag{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:9px;font-weight:800;border-radius:99px;padding:2px 8px;white-space:nowrap}
+#tt360-pdp .t-bms-qty{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:2px}
+#tt360-pdp .t-bms-disc{font-size:11px;color:var(--green);font-weight:700}
+#tt360-pdp .t-bms-price{font-size:12px;color:var(--muted)}
+/* BMS qty-stepper mode */
+#tt360-pdp .t-qty-row{display:flex;align-items:center;gap:14px;padding:4px 0 12px;flex-wrap:wrap}
+#tt360-pdp .t-qty-lbl{font-size:13px;font-weight:700;color:var(--navy)}
+#tt360-pdp .t-qty-ctrl{display:flex;align-items:center;border:2px solid var(--border);border-radius:9px;overflow:hidden}
+#tt360-pdp .t-qty-btn{width:38px;height:38px;border:none;background:#f8fafc;color:var(--navy);font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:background .15s;font-family:inherit}
+#tt360-pdp .t-qty-btn:hover{background:#e2e8f0}
+#tt360-pdp .t-qty-btn:disabled{opacity:.35;cursor:not-allowed}
+#tt360-pdp .t-qty-val{min-width:40px;height:38px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:var(--navy);border-left:1.5px solid var(--border);border-right:1.5px solid var(--border)}
+#tt360-pdp .t-qty-save{font-size:12px;color:var(--green);font-weight:700}
+
+/* ATC */
+#tt360-pdp .t-atc-row{display:flex;gap:10px;margin-bottom:16px}
+#tt360-pdp .t-atc{flex:1;background:var(--orange);color:#fff;border:none;border-radius:12px;padding:15px 20px;font-size:15px;font-weight:800;transition:background .2s;box-shadow:0 4px 18px rgba(244,106,26,.35);display:flex;align-items:center;justify-content:center;gap:8px}
+#tt360-pdp .t-atc:hover{background:#d45a12}
+#tt360-pdp .t-atc.loading{opacity:.7;pointer-events:none}
+#tt360-pdp .t-atc.done{background:var(--green)!important}
+#tt360-dynamic-checkout-form{margin:-8px 0 12px}
+#tt360-dynamic-checkout-form .shopify-payment-button{margin:0}
+#tt360-dynamic-checkout-form .shopify-payment-button__button--unbranded{border-radius:12px;padding:14px 20px;font-size:14px;font-weight:700}
+#tt360-dynamic-checkout-form .shopify-payment-button__button--branded{border-radius:12px;min-height:50px}
+
+/* Below-fold styles loaded externally via tt360-pdp-below.css */
+</style>
+<link rel="stylesheet" href="{{ 'tt360-pdp-below.css' | asset_url }}">
+
+<div id="tt360-pdp">
+<div id="tt360-toast-pdp" role="status" aria-live="polite"></div>
+
+{% if section.settings.ann_enable %}
+<div class="t-ann">
+  {{ section.settings.ann_text }}
+</div>
+{% endif %}
+
+<!-- BREADCRUMB -->
+<nav class="t-bc" aria-label="Breadcrumb">
+  <a href="/">Home</a> ›
+  <a href="/collections/{{ section.settings.collection_handle | default: 'kids-collection-uae' }}">{{ section.settings.collection_name | default: 'Kids Collection' }}</a> ›
+  <span>{{ product.title }}</span>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="t-hero">
+  <div class="t-hero-grid">
+
+    <!-- GALLERY -->
+    <div class="t-gallery" role="region" aria-label="Product images">
+      <div class="t-gal-main" id="t-main-media">
+        {% if current_variant.compare_at_price > current_variant.price %}
+          {%- assign save_pct = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round -%}
+          <div class="t-gal-badge">SAVE {{ save_pct }}%</div>
+        {% endif %}
+        {% if section.settings.hero_badge2 != blank %}
+          <div class="t-gal-badge2">{{ section.settings.hero_badge2 }}</div>
+        {% endif %}
+        {%- if product_images.size > 0 -%}
+          {%- if section.settings.hero_alt != blank -%}
+            {%- assign alt_fallback = section.settings.hero_alt -%}
+          {%- else -%}
+            {%- assign alt_fallback = product.title | append: ' — TipTop360 UAE' | escape -%}
+          {%- endif -%}
+          <img id="t-main-img"
+               src="{{ product_images[0] | image_url: width: 800 }}"
+               srcset="{{ product_images[0] | image_url: width: 400 }} 400w, {{ product_images[0] | image_url: width: 800 }} 800w, {{ product_images[0] | image_url: width: 1200 }} 1200w"
+               sizes="(max-width:768px) 100vw, 50vw"
+               alt="{{ product_images[0].alt | escape | default: alt_fallback }}"
+               width="{{ product_images[0].width }}" height="{{ product_images[0].height }}"
+               fetchpriority="high" loading="eager" decoding="sync">
+        {%- endif -%}
+      </div>
+      <!-- THUMBNAILS -->
+      <div class="t-thumbs" role="list">
+        {%- for img in product_images limit: 7 -%}
+        <div class="t-thumb {% if forloop.first %}active{% endif %}"
+             role="listitem"
+             data-src="{{ img | image_url: width: 800 }}"
+             data-srcset="{{ img | image_url: width: 400 }} 400w, {{ img | image_url: width: 800 }} 800w, {{ img | image_url: width: 1200 }} 1200w"
+             data-alt="{{ img.alt | escape | default: alt_fallback }}"
+             tabindex="0" aria-label="View image {{ forloop.index }}">
+          <img src="{{ img | image_url: width: 120 }}"
+               alt="{{ img.alt | escape | default: alt_fallback }}"
+               width="62" height="62" loading="lazy" decoding="async">
+        </div>
+        {%- endfor -%}
+        {%- if has_video -%}
+        <div class="t-thumb t-vid-thumb"
+             data-media="video" tabindex="0" aria-label="Play product video">
+          <img src="{{ product_images[0] | image_url: width: 120 }}"
+               alt="Product video" width="62" height="62" loading="lazy" decoding="async">
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div class="t-info">
+
+      <!-- BADGES -->
+      {% assign badge_blocks = section.blocks | where: 'type', 'badge' %}
+      {% if badge_blocks.size > 0 %}
+      <div class="t-badges">
+        {% for block in badge_blocks %}
+          {%- assign chip_class = 't-chip-n' -%}
+          {%- if block.settings.style == 'green' -%}{%- assign chip_class = 't-chip-g' -%}{%- endif -%}
+          {%- if block.settings.style == 'orange' -%}{%- assign chip_class = 't-chip-o' -%}{%- endif -%}
+          <span class="t-chip {{ chip_class }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {%- if section.settings.seo_eyebrow != blank -%}
+        <div class="t-eyebrow">{{ section.settings.seo_eyebrow }}</div>
+      {%- endif -%}
+      {%- if section.settings.seo_h1 != blank -%}
+        <h1 class="t-title">{{ section.settings.seo_h1 }}</h1>
+      {%- else -%}
+        <h1 class="t-title">{{ product.title }}</h1>
+      {%- endif -%}
+      {%- if section.settings.seo_subhead != blank -%}
+        <div class="t-subhead">{{ section.settings.seo_subhead }}</div>
+      {%- endif -%}
+      {%- if section.settings.hero_subtext != blank -%}
+        <p style="font-size:14px;color:#64748B;line-height:1.6;margin:0 0 14px;max-width:460px">{{ section.settings.hero_subtext }}</p>
+      {%- endif -%}
+      {%- if section.settings.video_enable and section.settings.hero_video_cta != blank -%}
+        <a href="#t-vid-title" class="t-hero-vid-link" aria-label="Jump to product video">
+          <span class="t-hero-vid-play">▶</span> {{ section.settings.hero_video_cta }}
+        </a>
+      {%- endif -%}
+
+      <!-- RATING -->
+      <div class="t-rating">
+        <span class="t-stars" aria-label="{{ section.settings.rating_value | default: '4.9' }} out of 5 stars">
+          {%- assign rv = section.settings.rating_value | default: 4.9 | times: 1 -%}
+          {%- assign full = rv | floor -%}
+          {%- for i in (1..5) -%}{%- if i <= full -%}★{%- else -%}☆{%- endif -%}{%- endfor -%}
+        </span>
+        <strong>{{ section.settings.rating_value | default: '4.9' }}</strong>
+        <span>· {{ section.settings.review_count | default: '200' }}+ {{ section.settings.review_label | default: 'Verified UAE reviews' }}</span>
+        <span class="t-vfy">✓ Verified</span>
+      </div>
+
+      <!-- PRICE -->
+      <div class="t-price-row" id="t-price-row">
+        <span class="t-price-now" id="t-price-now">{{ current_variant.price | money_without_trailing_zeros }}</span>
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <span class="t-price-was" id="t-price-was">{{ current_variant.compare_at_price | money_without_trailing_zeros }}</span>
+          <span class="t-save" id="t-save">SAVE {{ save_pct }}%</span>
+        {% endif %}
+      </div>
+      {%- if section.settings.per_use_text != blank and current_variant.available -%}
+      <div class="t-per-use">{{ section.settings.per_use_text }}</div>
+      {%- endif -%}
+      <div class="t-stock-tag {% unless current_variant.available %}out{% endunless %}" id="t-stock-tag">
+        {% if current_variant.available %}
+          ✅ In stock
+          {%- if section.settings.scarcity_text != blank -%}
+            <span class="t-scarcity">· {{ section.settings.scarcity_text }}</span>
+          {%- endif -%}
+        {% else %}
+          ❌ Out of stock
+        {% endif %}
+      </div>
+
+      {%- if current_variant.available -%}
+        {%- render 'tt360-delivery-estimate' -%}
+      {%- endif -%}
+
+      <!-- CRO: BENEFIT ICON STRIP -->
+      {%- assign bi1 = section.settings.ben_icon_1 | default: '🚚' -%}
+      {%- assign bt1 = section.settings.ben_txt_1 | default: 'Free Ship' -%}
+      {%- assign bi2 = section.settings.ben_icon_2 | default: '💵' -%}
+      {%- assign bt2 = section.settings.ben_txt_2 | default: 'COD' -%}
+      {%- assign bi3 = section.settings.ben_icon_3 | default: '🔄' -%}
+      {%- assign bt3 = section.settings.ben_txt_3 | default: 'Returns' -%}
+      {%- assign bi4 = section.settings.ben_icon_4 | default: '🔒' -%}
+      {%- assign bt4 = section.settings.ben_txt_4 | default: 'Secure' -%}
+      {%- assign bi5 = section.settings.ben_icon_5 -%}
+      {%- assign bt5 = section.settings.ben_txt_5 -%}
+      <div class="cro-benefits" role="list" aria-label="Product benefits">
+        <div class="cro-ben" role="listitem"><span class="cro-ben-icon">{{ bi1 }}</span><span class="cro-ben-txt">{{ bt1 }}</span></div>
+        <div class="cro-ben" role="listitem"><span class="cro-ben-icon">{{ bi2 }}</span><span class="cro-ben-txt">{{ bt2 }}</span></div>
+        <div class="cro-ben" role="listitem"><span class="cro-ben-icon">{{ bi3 }}</span><span class="cro-ben-txt">{{ bt3 }}</span></div>
+        <div class="cro-ben" role="listitem"><span class="cro-ben-icon">{{ bi4 }}</span><span class="cro-ben-txt">{{ bt4 }}</span></div>
+        {%- if bt5 != blank -%}
+        <div class="cro-ben" role="listitem"><span class="cro-ben-icon">{{ bi5 }}</span><span class="cro-ben-txt">{{ bt5 }}</span></div>
+        {%- endif -%}
+      </div>
+
+      <!-- COLOUR PICKER (deduplicated — one swatch per unique colour) -->
+      {% assign color_option = product.options_with_values | where: 'name', 'Color' | first %}
+      {% unless color_option == nil %}
+      <div class="t-opt-lbl">Choose colour — <span id="t-chosen-color">{{ current_variant.options[0] }}</span></div>
+      <div class="t-swatches" role="list">
+        {%- assign shown_colors = '' -%}
+        {% for variant in product.variants %}
+          {%- assign vcolor = variant.options[0] -%}
+          {%- assign vcolor_key = vcolor | downcase | replace: ' ', '' -%}
+          {% if variant.available or section.settings.show_sold_out %}
+            {% unless shown_colors contains vcolor_key %}
+              {%- assign shown_colors = shown_colors | append: vcolor_key | append: '|' -%}
+              <div class="t-swatch {% if current_variant.options[0] == vcolor %}active{% endif %}"
+                   role="listitem" data-color="{{ vcolor | escape }}" tabindex="0" aria-label="{{ vcolor }}">
+                <div class="t-swatch-dot {% if current_variant.options[0] == vcolor %}active{% endif %}">
+                  {%- assign vc = vcolor | downcase -%}
+                  <div class="inn" style="{%- case vc -%}{%- when 'blue' -%}background:#4A90D9{%- when 'pink' -%}background:#E8719A{%- when 'orange' -%}background:#F97316{%- when 'green' -%}background:#34D399{%- when 'red' -%}background:#EF4444{%- when 'yellow' -%}background:#FBBF24{%- when 'purple' -%}background:#8B5CF6{%- when 'black' -%}background:#1E293B{%- when 'white' -%}background:#F8FAFC;border:1px solid #CBD5E1{%- else -%}background:#94A3B8{%- endcase -%}"></div>
+                </div>
+                <span class="t-swatch-name">{{ vcolor }}</span>
+              </div>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endunless %}
+
+      <!-- AGE GROUP / SIZE PICKER -->
+      {%- assign age_opt = nil -%}
+      {%- for opt in product.options_with_values -%}
+        {%- assign oname = opt.name | downcase -%}
+        {%- if oname == 'age group' or oname == 'age' or oname == 'size' -%}
+          {%- assign age_opt = opt -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {% unless age_opt == nil %}
+      <div class="t-opt-lbl" style="margin-top:14px">Choose age — <span id="t-chosen-age">{{ current_variant.options[1] | default: '' }}</span></div>
+      <div class="t-size-pills" id="t-size-pills" role="list">
+        {% for val in age_opt.values %}
+          <div class="t-size-pill {% if current_variant.options[1] == val %}active{% endif %}"
+               role="listitem" data-age="{{ val | escape }}" tabindex="0" aria-label="{{ val }}">{{ val }}</div>
+        {% endfor %}
+      </div>
+      {% endunless %}
+
+      <!-- BUY MORE & SAVE -->
+      {% if section.settings.bms_enable %}{% if section.settings.bms_stepper or product.has_only_default_variant == false %}
+      {%- assign bms_max_qty = section.settings.bms_qty3 | default: 3 -%}
+      {%- if section.settings.bms_qty4 > 0 and section.settings.bms_price4 > 0 -%}{%- assign bms_max_qty = section.settings.bms_qty4 -%}{%- endif -%}
+      <div class="t-bms" data-max="{{ bms_max_qty }}">
+        {% if section.settings.bms_stepper %}
+        <!-- QTY STEPPER MODE -->
+        <div class="t-qty-row">
+          <span class="t-qty-lbl">Quantity</span>
+          <div class="t-qty-ctrl">
+            <button class="t-qty-btn" id="t-qty-minus" aria-label="Decrease quantity" disabled>−</button>
+            <span class="t-qty-val" id="t-qty-val">1</span>
+            <button class="t-qty-btn" id="t-qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <span class="t-qty-save" id="t-qty-save"></span>
+        </div>
+        {% else %}
+        <!-- BMS CARD MODE -->
+        <div class="t-bms-lbl">💰 Buy More & Save
+          {%- if color_option or age_opt -%}<span id="t-bms-selection" style="font-weight:400;text-transform:none;letter-spacing:0;color:#64748B;margin-left:6px;font-size:11px">({{ current_variant.options[0] }}{% if product.options.size > 1 %} · {{ current_variant.options[1] }}{% endif %})</span>{%- endif -%}
+        </div>
+        <div class="t-bms-grid">
+          <div class="t-bms-card active" data-qty="1" data-disc="0"
+               data-total="{{ section.settings.bms_price1 | default: 0 | times: 100 | round }}"
+               data-orig="{{ section.settings.bms_orig_price | default: 0 | times: 100 | round }}"
+               tabindex="0" role="button" aria-pressed="true">
+            <div class="t-bms-qty">1×</div>
+            <div class="t-bms-disc" id="t-bms-d1"></div>
+            <div class="t-bms-price" id="t-bms-p1"></div>
+          </div>
+          <div class="t-bms-card" data-qty="{{ section.settings.bms_qty2 | default: 2 }}" data-disc="{{ section.settings.bms_disc2 | default: 0 }}"
+               data-total="{{ section.settings.bms_price2 | default: 0 | times: 100 | round }}"
+               data-orig="{{ section.settings.bms_orig_price | default: 0 | times: 100 | round }}"
+               tabindex="0" role="button" aria-pressed="false">
+            <div class="t-bms-tag">{{ section.settings.bms_tag2 | default: 'POPULAR' }}</div>
+            <div class="t-bms-qty">{{ section.settings.bms_qty2 | default: 2 }}×</div>
+            <div class="t-bms-disc" id="t-bms-d2"></div>
+            <div class="t-bms-price" id="t-bms-p2"></div>
+          </div>
+          <div class="t-bms-card" data-qty="{{ section.settings.bms_qty3 | default: 3 }}" data-disc="{{ section.settings.bms_disc3 | default: 0 }}"
+               data-total="{{ section.settings.bms_price3 | default: 0 | times: 100 | round }}"
+               data-orig="{{ section.settings.bms_orig_price | default: 0 | times: 100 | round }}"
+               tabindex="0" role="button" aria-pressed="false">
+            <div class="t-bms-tag">{{ section.settings.bms_tag3 | default: 'SAVE MORE' }}</div>
+            <div class="t-bms-qty">{{ section.settings.bms_qty3 | default: 3 }}×</div>
+            <div class="t-bms-disc" id="t-bms-d3"></div>
+            <div class="t-bms-price" id="t-bms-p3"></div>
+          </div>
+          {% if section.settings.bms_qty4 > 0 and section.settings.bms_price4 > 0 %}
+          <div class="t-bms-card" data-qty="{{ section.settings.bms_qty4 }}" data-disc="0"
+               data-total="{{ section.settings.bms_price4 | times: 100 | round }}"
+               data-orig="{{ section.settings.bms_orig_price | default: 0 | times: 100 | round }}"
+               tabindex="0" role="button" aria-pressed="false">
+            <div class="t-bms-tag">{{ section.settings.bms_tag4 | default: 'BEST VALUE' }}</div>
+            <div class="t-bms-qty">{{ section.settings.bms_qty4 }}×</div>
+            <div class="t-bms-disc" id="t-bms-d4"></div>
+            <div class="t-bms-price" id="t-bms-p4"></div>
+          </div>
+          {% endif %}
+        </div><!-- /t-bms-grid -->
+        {% endif %}
+        <!-- Per-item colour + age pickers for multi-buy (populated by JS) -->
+        <div id="t-bms-items" class="t-bms-items" style="display:none"></div>
+      </div><!-- /t-bms -->
+      {% endif %}{% endif %}
+
+      <!-- CRO: URGENCY BAR -->
+      <div class="cro-urgency" id="cro-urgency">
+        <div class="cro-urg-card cro-urg-stock" id="cro-urg-stock" style="display:none">
+          🔥 Only <strong id="cro-stock-count">0</strong> <span class="cro-urg-vname">left in <span id="cro-stock-variant">this variant</span></span> — order now to secure yours.
+        </div>
+        <div class="cro-urg-card cro-urg-delivery">
+          🚚 Order before <strong>8:00 PM today</strong> for next-day UAE delivery
+        </div>
+      </div>
+
+      <!-- CRO: BUNDLE CROSS-SELL -->
+      {%- assign bh = section.settings.bundle_handle -%}
+      {%- if bh != blank -%}
+        {%- assign bundle = all_products[bh] -%}
+        {%- if bundle != nil and bundle != empty and bundle.available -%}
+        <div class="cro-bundle">
+          <div class="cro-bundle-body">
+            <div class="cro-bundle-text">
+              <div class="cro-bundle-title">{{ section.settings.bundle_title | default: '🎁 Complete Your Setup' }}</div>
+              <div class="cro-bundle-sub">{{ section.settings.bundle_sub | default: bundle.description | strip_html | truncate: 80 }}</div>
+            </div>
+            <a href="{{ bundle.url }}" class="cro-bundle-btn">
+              {{ section.settings.bundle_btn | default: 'See Bundle' }} · {{ bundle.price | money_without_trailing_zeros }} →
+            </a>
+          </div>
+        </div>
+        {%- endif -%}
+      {%- endif -%}
+
+      <!-- CRO: GUARANTEE / RISK REVERSAL -->
+      {%- if section.settings.guarantee_text != blank -%}
+      <div class="cro-guarantee">
+        <span class="cro-guarantee-icon">🛡️</span>
+        <span>{{ section.settings.guarantee_text }}</span>
+      </div>
+      {%- endif -%}
+
+      <!-- ADD TO CART -->
+      <div class="t-atc-row">
+        <button class="t-atc" id="t-atc-btn" aria-label="Add to cart">
+          🛒 <span id="t-atc-label">{{ section.settings.atc_text | default: 'Add to Cart' }}</span>
+        </button>
+      </div>
+
+      <!-- DYNAMIC CHECKOUT (Apple Pay / Google Pay / Shop Pay) -->
+      {%- form 'product', product, id: 'tt360-dynamic-checkout-form' -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}" id="tt360-dyn-variant">
+        <input type="hidden" name="quantity" value="1">
+        {{ form | payment_button }}
+      {%- endform -%}
+
+      {%- if section.settings.cta2_text != blank or section.settings.cta3_text != blank -%}
+      <div class="t-cta-secondary">
+        {%- if section.settings.cta2_text != blank -%}
+          <a class="t-cta2" href="#t-vid-title">{{ section.settings.cta2_text }}</a>
+        {%- endif -%}
+        {%- if section.settings.cta3_text != blank -%}
+          <a class="t-cta3" href="#t-content-2">{{ section.settings.cta3_text }}</a>
+        {%- endif -%}
+      </div>
+      {%- endif -%}
+
+      {% comment %} Trust Icons grid removed — redundant with urgency bar, pay badges, and proof strip {% endcomment %}
+
+      <!-- CRO: PAYMENT METHOD BADGES -->
+      <div class="cro-pay-badges" aria-label="Accepted payment methods">
+        <span class="cro-pay-lbl">We accept</span>
+        <span class="pay-icon" aria-label="Visa"><svg viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="20" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-style="italic" font-family="Arial,Helvetica,sans-serif">VISA</text></svg></span>
+        <span class="pay-icon" aria-label="Mastercard"><svg viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="32" rx="4" fill="#1a1a2e"/><circle cx="18.5" cy="16" r="9" fill="#EB001B"/><circle cx="29.5" cy="16" r="9" fill="#F79E1B"/><path d="M24 9a9 9 0 000 14 9 9 0 000-14z" fill="#FF5F00"/></svg></span>
+        <span class="pay-icon" aria-label="Apple Pay"><svg viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="32" rx="4" fill="#000"/><text x="24" y="20.5" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="-apple-system,SF Pro,Helvetica,sans-serif" letter-spacing="-.3">Pay</text></svg></span>
+        <span class="pay-icon" aria-label="Google Pay"><svg viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="32" rx="4" fill="#fff"/><text x="24" y="20.5" text-anchor="middle" fill="#3C4043" font-size="10" font-weight="600" font-family="Arial,Helvetica,sans-serif" letter-spacing="-.2">GPay</text></svg></span>
+      </div>
+
+      <!-- CRO: HESITATOR SECONDARY CTA -->
+      {%- if section.settings.hesitator_text != blank -%}
+      <div class="cro-hesitator">
+        <a href="#t-rev-title">{{ section.settings.hesitator_text }}</a>
+      </div>
+      {%- endif -%}
+
+      {%- if section.settings.enhanced_trust_1 != blank -%}
+      <div class="t-trust-enhanced">
+        <span class="t-te-badge">✓ {{ section.settings.enhanced_trust_1 }}</span>
+        {%- if section.settings.enhanced_trust_2 != blank -%}<span class="t-te-badge">✓ {{ section.settings.enhanced_trust_2 }}</span>{%- endif -%}
+        {%- if section.settings.enhanced_trust_3 != blank -%}<span class="t-te-badge">✓ {{ section.settings.enhanced_trust_3 }}</span>{%- endif -%}
+      </div>
+      {%- endif -%}
+      {%- if section.settings.bulk_cta_text != blank -%}
+      <div class="t-bulk-cta">
+        <span>{{ section.settings.bulk_cta_text }}</span>
+        {%- if section.settings.bulk_cta_url != blank -%}
+        <a href="{{ section.settings.bulk_cta_url }}" target="_blank" rel="noopener">{{ section.settings.bulk_cta_link_text | default: 'Contact us' }}</a>
+        {%- endif -%}
+      </div>
+      {%- endif -%}
+
+      <!-- GIFT BOX UPSELL -->
+      {% if section.settings.gift_bag_handle != blank %}
+      <div class="t-gw" id="t-gw">
+        <div class="t-gw-media" id="t-gw-media">
+          {%- if gift_img_src != '' -%}
+            <img src="{{ gift_img_src }}" alt="TipTop Gift Box" width="58" height="58" loading="eager">
+          {%- else -%}
+            <span style="font-size:26px">🎁</span>
+          {%- endif -%}
+        </div>
+        <div class="t-gw-text">
+          <div class="t-gw-name">{{ section.settings.gift_bag_title | default: '🎁 Add Gift Box' }}</div>
+          <div class="t-gw-sub">AED {{ section.settings.gift_bag_price | default: '9' }} — {{ section.settings.gift_bag_sub | default: 'make it special' }}</div>
+        </div>
+        <button class="t-gw-btn" id="t-gw-btn">{{ section.settings.gift_bag_btn | default: '+ Add' }}</button>
+      </div>
+      {% endif %}
+
+      <!-- SHARE BUTTONS -->
+      <div class="t-share" id="t-share">
+        <a href="#" class="t-share-btn t-share-wa" id="t-share-wa" aria-label="Share on WhatsApp" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Share
+        </a>
+        <button class="t-share-btn t-share-copy" id="t-share-copy" aria-label="Copy link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy Link
+        </button>
+        <button class="t-share-btn t-share-native" id="t-share-native" aria-label="Share" style="display:none">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share
+        </button>
+      </div>
+
+
+    </div><!-- /info -->
+  </div><!-- /hero-grid -->
+</section>
+
+<!-- ═══ SOCIAL PROOF STRIP ═══ -->
+<div class="t-proof">
+  <div class="t-proof-inner">
+    <div class="t-ps">
+      <div class="t-ps-num">{{ section.settings.rating_value | default: '4.9' }}★</div>
+      <div class="t-ps-lbl">{{ section.settings.proof_lbl_rating | default: 'Average rating' }}</div>
+    </div>
+    <div class="t-ps-div"></div>
+    <div class="t-ps">
+      <div class="t-ps-num">{{ section.settings.review_count | default: '200' }}+</div>
+      <div class="t-ps-lbl">{{ section.settings.review_label | default: 'Verified UAE reviews' }}</div>
+    </div>
+    <div class="t-ps-div"></div>
+    <div class="t-ps">
+      <div class="t-ps-num">{{ current_variant.price | money_without_trailing_zeros }}</div>
+      <div class="t-ps-lbl">
+        {% if current_variant.compare_at_price > current_variant.price %}
+          Was {{ current_variant.compare_at_price | money_without_trailing_zeros }} · Save {{ save_pct }}%
+        {% else %}
+          {{ section.settings.proof_lbl_free | default: 'Free next-day delivery' }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 5 REASONS (highlights as full-width card grid) ═══ -->
+{% assign highlight_blocks = section.blocks | where: 'type', 'highlight' %}
+{% if highlight_blocks.size > 0 %}
+<section class="t-sec t-sec-alt" aria-labelledby="t-feat-title">
+  <div class="t-wrap">
+    {% if section.settings.feat_lbl != blank %}<div class="t-lbl t-ctr">{{ section.settings.feat_lbl }}</div>{% endif %}
+    <h2 class="t-h2 t-ctr" id="t-feat-title">{{ section.settings.feat_title | default: '5 Reasons Every Parent Says Yes' }}</h2>
+    <p class="t-sub t-ctr" style="margin-bottom:36px">{{ section.settings.feat_sub | default: 'Screen-free, teacher-approved, and kids actually want to use it every day.' }}</p>
+    <div class="t-hl-grid">
+      {% for block in highlight_blocks %}
+      <div class="t-hl-card" {{ block.shopify_attributes }}>
+        <div class="t-hl-card-icon">{{ block.settings.icon }}</div>
+        <div class="t-hl-card-title">{{ block.settings.title }}</div>
+        <div class="t-hl-card-desc">{{ block.settings.desc }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ STEM SKILLS ═══ -->
+{%- assign skill_blocks = section.blocks | where: 'type', 'skill' -%}
+{%- if skill_blocks.size > 0 -%}
+<section class="t-sec" aria-labelledby="t-skills-title">
+  <div class="t-wrap">
+    {%- if section.settings.skills_lbl != blank -%}<div class="t-lbl t-ctr">{{ section.settings.skills_lbl }}</div>{%- endif -%}
+    <h2 class="t-h2 t-ctr" id="t-skills-title">{{ section.settings.skills_title | default: 'What Your Child Will Learn' }}</h2>
+    {%- if section.settings.skills_sub != blank -%}<p class="t-sub t-ctr" style="margin-bottom:36px">{{ section.settings.skills_sub }}</p>{%- endif -%}
+    <div class="t-skills-grid">
+      {%- for block in skill_blocks -%}
+      <div class="t-skill-card" {{ block.shopify_attributes }}>
+        <div class="t-skill-icon">{{ block.settings.icon }}</div>
+        <div class="t-skill-title">{{ block.settings.title }}</div>
+        <div class="t-skill-desc">{{ block.settings.desc }}</div>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{%- assign objection_blocks = section.blocks | where: 'type', 'objection' -%}
+{%- if objection_blocks.size > 0 -%}
+<!-- ═══ OBJECTION CRUSHERS ═══ -->
+<section class="t-sec" aria-labelledby="t-obj-title">
+  <div class="t-wrap">
+    {%- if section.settings.objection_lbl != blank -%}<div class="t-lbl t-ctr">{{ section.settings.objection_lbl }}</div>{%- endif -%}
+    <h2 class="t-h2 t-ctr" id="t-obj-title">{{ section.settings.objection_title | default: 'Every Parent Asks' }}</h2>
+    {%- if section.settings.objection_sub != blank -%}<p class="t-sub t-ctr" style="margin-bottom:36px">{{ section.settings.objection_sub }}</p>{%- endif -%}
+    <div class="cro-objections">
+      {%- for block in objection_blocks -%}
+      <div class="cro-obj-card" {{ block.shopify_attributes }}>
+        <div class="cro-obj-icon">{{ block.settings.icon }}</div>
+        <div class="cro-obj-q">"{{ block.settings.question }}"</div>
+        <div class="cro-obj-a">{{ block.settings.answer }}</div>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{%- assign compare_blocks = section.blocks | where: 'type', 'compare_row' -%}
+{%- if compare_blocks.size > 0 -%}
+<!-- ═══ COMPARISON TABLE ═══ -->
+<section class="t-sec" aria-labelledby="t-compare-title">
+  <div class="t-wrap">
+    <div class="t-lbl t-ctr">{{ section.settings.compare_lbl | default: 'See How It Stacks Up' }}</div>
+    <h2 class="t-h2 t-ctr" id="t-compare-title">{{ section.settings.compare_title | default: 'How It Compares' }}</h2>
+    <p class="t-sub t-ctr" style="margin-bottom:36px">{{ section.settings.compare_sub | default: 'Better value. Faster delivery.' }}</p>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <table class="t-compare-tbl">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="t-compare-hl">{{ section.settings.compare_col1 | default: product.title }}</th>
+            <th>{{ section.settings.compare_col2 | default: 'Competitor A' }}</th>
+            <th>{{ section.settings.compare_col3 | default: 'Competitor B' }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for block in compare_blocks -%}
+          <tr {{ block.shopify_attributes }}>
+            <td>{{ block.settings.feature }}</td>
+            <td class="t-compare-hl{% if block.settings.win %} t-compare-win{% endif %}">{% if block.settings.win %}<strong>{{ block.settings.us }}</strong>{% else %}{{ block.settings.us }}{% endif %}</td>
+            <td{% if block.settings.comp_a_bad %} class="t-compare-no"{% endif %}>{{ block.settings.comp_a }}</td>
+            <td{% if block.settings.comp_b_bad %} class="t-compare-no"{% endif %}>{{ block.settings.comp_b }}</td>
+          </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+    {%- if section.settings.compare_cta != blank -%}
+    <div style="text-align:center;margin-top:28px">
+      <a href="#t-atc-wrap" class="t-cta-compare">{{ section.settings.compare_cta }}</a>
+    </div>
+    {%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+
+{%- assign usecase_blocks = section.blocks | where: 'type', 'usecase' -%}
+{%- if usecase_blocks.size > 0 -%}
+<!-- ═══ USE CASES ═══ -->
+<section class="t-sec" aria-labelledby="t-usecase-title">
+  <div class="t-wrap">
+    <div class="t-lbl t-ctr">{{ section.settings.usecase_lbl | default: 'Who It Is For' }}</div>
+    <h2 class="t-h2 t-ctr" id="t-usecase-title">{{ section.settings.usecase_title | default: 'Perfect For' }}</h2>
+    <p class="t-sub t-ctr" style="margin-bottom:36px">{{ section.settings.usecase_sub }}</p>
+    <div class="t-usecase-grid">
+      {%- for block in usecase_blocks -%}
+      <div class="t-usecase-card" {{ block.shopify_attributes }}>
+        <div class="t-usecase-icon">{{ block.settings.icon }}</div>
+        <h3 class="t-usecase-t">{{ block.settings.title }}</h3>
+        <p class="t-usecase-d">{{ block.settings.desc }}</p>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{%- assign age_blocks = section.blocks | where: 'type', 'age_card' -%}
+{%- if age_blocks.size > 0 -%}
+<!-- ═══ AGE GUIDE ═══ -->
+<section class="t-sec" aria-labelledby="t-age-title">
+  <div class="t-wrap">
+    {%- if section.settings.age_lbl != blank -%}<div class="t-lbl t-ctr">{{ section.settings.age_lbl }}</div>{%- endif -%}
+    <h2 class="t-h2 t-ctr" id="t-age-title">{{ section.settings.age_title | default: 'Right for Your Child' }}</h2>
+    {%- if section.settings.age_sub != blank -%}<p class="t-sub t-ctr" style="margin-bottom:36px">{{ section.settings.age_sub }}</p>{%- endif -%}
+    <div class="t-age-grid">
+      {%- for block in age_blocks -%}
+      <div class="t-age-card" {{ block.shopify_attributes }}>
+        <span class="t-age-badge" style="background:{{ block.settings.color | default: '#F46A1A' }}">{{ block.settings.badge }}</span>
+        <div class="t-age-title">{{ block.settings.title }}</div>
+        <div class="t-age-sub">{{ block.settings.subtitle }}</div>
+        <ul class="t-age-list">
+          {%- assign items = block.settings.benefits | split: '|' -%}
+          {%- for item in items -%}
+          <li>{{ item | strip }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{%- assign content_blocks = section.blocks | where: 'type', 'content_section' -%}
+{%- if section.settings.content_sections_enable -%}
+{%- for block in content_blocks -%}
+<!-- ═══ CONTENT SECTION ═══ -->
+<section class="t-sec{% if block.settings.alt_bg %} t-sec-alt{% endif %}" aria-labelledby="t-content-{{ forloop.index }}" {{ block.shopify_attributes }}>
+  <div class="t-wrap">
+    {%- if block.settings.label != blank -%}<div class="t-lbl t-ctr">{{ block.settings.label }}</div>{%- endif -%}
+    <h2 class="t-h2 t-ctr" id="t-content-{{ forloop.index }}">{{ block.settings.heading }}</h2>
+    {%- if block.settings.subheading != blank -%}<p class="t-sub t-ctr" style="margin-bottom:24px">{{ block.settings.subheading }}</p>{%- endif -%}
+    <div style="max-width:720px;margin:0 auto;font-size:15px;line-height:1.8;color:var(--text)">{{ block.settings.body }}</div>
+  </div>
+</section>
+{%- endfor -%}
+{%- endif -%}
+
+{%- assign upsell_blocks = section.blocks | where: 'type', 'upsell_card' -%}
+{%- if upsell_blocks.size > 0 -%}
+<!-- ═══ UPSELL GRID ═══ -->
+<section class="t-sec t-sec-alt" aria-labelledby="t-upsell-grid-title">
+  <div class="t-wrap">
+    <h2 class="t-h2 t-ctr" id="t-upsell-grid-title">{{ section.settings.upsell_grid_title | default: 'Complete the Set' }}</h2>
+    {%- if section.settings.upsell_grid_sub != blank -%}<p class="t-sub t-ctr" style="margin-bottom:36px">{{ section.settings.upsell_grid_sub }}</p>{%- endif -%}
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:720px;margin:0 auto">
+      {%- for block in upsell_blocks -%}
+      <a href="{{ block.settings.url }}" class="t-upsell-card" style="text-align:center;padding:20px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);text-decoration:none;color:var(--text)" {{ block.shopify_attributes }}>
+        <div style="font-size:28px;margin-bottom:8px">{{ block.settings.icon }}</div>
+        <strong style="display:block;margin-bottom:4px">{{ block.settings.title }}</strong>
+        <span style="font-size:14px;color:{% if block.settings.highlight %}var(--green){% else %}var(--muted){% endif %}">{{ block.settings.price_text }}</span>
+      </a>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.upsell_grid_cta != blank and section.settings.upsell_grid_cta_url != blank -%}
+    <div style="text-align:center;margin-top:24px">
+      <a href="{{ section.settings.upsell_grid_cta_url }}" class="t-cta-compare" style="background:var(--green)">{{ section.settings.upsell_grid_cta }}</a>
+    </div>
+    {%- endif -%}
+  </div>
+</section>
+{%- endif -%}
+
+{%- comment -%} ═══ INTERNAL LINKS / SHOP MORE ═══ {%- endcomment -%}
+{%- assign ilink_blocks = section.blocks | where: 'type', 'internal_link' -%}
+{%- if ilink_blocks.size > 0 -%}
+<section class="t-sec t-ilinks" aria-labelledby="t-ilinks-title">
+  <div class="t-wrap">
+    <h2 class="t-h2 t-ctr" id="t-ilinks-title">{{ section.settings.ilinks_title | default: 'Shop More at TipTop360' }}</h2>
+    <nav class="t-ilinks-nav" aria-label="Related categories">
+      {%- for block in ilink_blocks -%}
+        {%- if block.settings.url != blank and block.settings.label != blank -%}
+        <a href="{{ block.settings.url }}" class="t-ilink-pill" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+  </div>
+</section>
+{%- endif -%}
+
+{%- if false -%}
+{%- comment -%} Legacy aiVox use-cases kept for reference — now use 'usecase' blocks above {%- endcomment -%}
+<section class="t-sec" aria-labelledby="t-usecase-title">
+  <div class="t-wrap">
+    <div class="t-lbl t-ctr">Built for Every Professional</div>
+    <h2 class="t-h2 t-ctr" id="t-usecase-title">Perfect for Meetings, Lectures, Calls & Consultations</h2>
+    <p class="t-sub t-ctr" style="margin-bottom:36px">One device. Every industry. Trusted by UAE professionals across Dubai, Abu Dhabi and beyond.</p>
+    <div class="t-usecase-grid">
+      <div class="t-usecase-card">
+        <div class="t-usecase-icon">💼</div>
+        <h3 class="t-usecase-t">For Sales Teams</h3>
+        <p class="t-usecase-d">Never miss a client detail. Call notes appear as clean summaries in seconds — close more deals with perfect follow-ups.</p>
+      </div>
+      <div class="t-usecase-card">
+        <div class="t-usecase-icon">🩺</div>
+        <h3 class="t-usecase-t">For Doctors & Consultants</h3>
+        <p class="t-usecase-d">Dictate patient notes after every consultation. Picks up medical terminology perfectly — encrypted for confidentiality.</p>
+      </div>
+      <div class="t-usecase-card">
+        <div class="t-usecase-icon">⚖️</div>
+        <h3 class="t-usecase-t">For Lawyers</h3>
+        <p class="t-usecase-d">Record consultations securely. End-to-end encrypted storage protects client confidentiality and privileged communications.</p>
+      </div>
+      <div class="t-usecase-card">
+        <div class="t-usecase-icon">🎓</div>
+        <h3 class="t-usecase-t">For Lectures & Students</h3>
+        <p class="t-usecase-d">Capture entire lectures. AI summary highlights key concepts for revision — focus on learning, not frantic note-taking.</p>
+      </div>
+      <div class="t-usecase-card">
+        <div class="t-usecase-icon">🌍</div>
+        <h3 class="t-usecase-t">For Multilingual Meetings</h3>
+        <p class="t-usecase-d">Handles Arabic-English code-switching seamlessly across 134 languages. Supports all UAE dialects including Gulf, Levantine, and Egyptian Arabic.</p>
+      </div>
+      <div class="t-usecase-card">
+        <div class="t-usecase-icon">🎁</div>
+        <h3 class="t-usecase-t">An Elegant Professional Gift</h3>
+        <p class="t-usecase-d">Sleek, pocket-sized, and genuinely useful — the perfect Eid, birthday, or corporate gift for colleagues, clients, and professionals who value their time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<!-- ═══ HOW IT WORKS ═══ -->
+{% assign step_blocks = section.blocks | where: 'type', 'step' %}
+{% if step_blocks.size > 0 %}
+<section class="t-sec" aria-labelledby="t-steps-title">
+  <div class="t-wrap">
+    {% if section.settings.steps_lbl != blank %}<div class="t-lbl t-ctr">{{ section.settings.steps_lbl }}</div>{% endif %}
+    <h2 class="t-h2 t-ctr" id="t-steps-title">{{ section.settings.steps_title | default: 'How It Works' }}</h2>
+    <p class="t-sub t-ctr" style="margin-bottom:36px">{{ section.settings.steps_sub }}</p>
+    <div class="t-steps">
+      {% for block in step_blocks %}
+      <div class="t-step" {{ block.shopify_attributes }}>
+        <div class="t-step-n" aria-hidden="true">{{ forloop.index }}</div>
+        <div class="t-step-t">{{ block.settings.title }}</div>
+        <div class="t-step-d">{{ block.settings.desc }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ VIDEO ═══ -->
+{% if section.settings.video_enable %}
+<section class="t-vid-sec t-ctr" aria-labelledby="t-vid-title">
+  <div class="t-wrap">
+    {% if section.settings.video_lbl != blank %}<div class="t-lbl">{{ section.settings.video_lbl }}</div>{% endif %}
+    <h2 class="t-h2" id="t-vid-title">{{ section.settings.video_title | default: 'See It in Action' }}</h2>
+    <p class="t-sub" style="margin-bottom:28px;color:rgba(255,255,255,.65)">{{ section.settings.video_sub }}</p>
+    <div class="t-vid-box">
+      {%- if section.settings.section_video != blank -%}
+        {%- assign vurl = section.settings.section_video -%}
+        {%- assign vid_id = '' -%}
+        {%- assign vid_provider = '' -%}
+        {%- if vurl contains 'youtube.com/shorts/' -%}
+          {%- assign vid_id = vurl | split: '/shorts/' | last | split: '?' | first -%}
+          {%- assign vid_provider = 'youtube' -%}
+        {%- elsif vurl contains 'youtube.com/watch' -%}
+          {%- assign vid_id = vurl | split: 'v=' | last | split: '&' | first -%}
+          {%- assign vid_provider = 'youtube' -%}
+        {%- elsif vurl contains 'youtu.be/' -%}
+          {%- assign vid_id = vurl | split: 'youtu.be/' | last | split: '?' | first -%}
+          {%- assign vid_provider = 'youtube' -%}
+        {%- elsif vurl contains 'vimeo.com/' -%}
+          {%- assign vid_id = vurl | split: 'vimeo.com/' | last | split: '?' | first -%}
+          {%- assign vid_provider = 'vimeo' -%}
+        {%- endif -%}
+        {%- if vid_provider == 'youtube' and vid_id != blank -%}
+          <div class="tt360-yt-lite" data-vid="{{ vid_id }}" tabindex="0" role="button" aria-label="Play {{ product.title | escape }} video"
+            style="background:url(https://i.ytimg.com/vi/{{ vid_id }}/hqdefault.jpg) center/cover no-repeat;cursor:pointer;position:relative;width:100%;height:100%">
+            <svg class="tt360-yt-play" viewBox="0 0 68 48" width="68" height="48" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+          </div>
+          <script>
+          (function(){var c=document.querySelector('.tt360-yt-lite[data-vid="{{ vid_id }}"]');if(!c)return;function go(){var f=document.createElement('iframe');f.src='https://www.youtube.com/embed/{{ vid_id }}?rel=0&playsinline=1&autoplay=1';f.allow='autoplay;encrypted-media';f.allowFullscreen=true;f.style.cssText='width:100%;height:100%;border:0';c.innerHTML='';c.appendChild(f)}c.addEventListener('click',go,{once:true});c.addEventListener('keydown',function(e){if(e.key==='Enter')go()},{once:true})})();
+          </script>
+        {%- elsif vid_provider == 'vimeo' and vid_id != blank -%}
+          <iframe src="https://player.vimeo.com/video/{{ vid_id }}?dnt=1"
+            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"
+            title="{{ product.title | escape }} video" style="width:100%;height:100%;border:0"></iframe>
+        {%- endif -%}
+      {%- elsif has_video -%}
+        {%- if hero_video.media_type == 'video' -%}
+          <video controls preload="metadata" playsinline
+            poster="{{ product_images[0] | image_url: width: 800 }}"
+            style="width:100%;height:100%;object-fit:cover">
+            {%- for src in hero_video.sources -%}
+            <source src="{{ src.url }}" type="{{ src.mime_type }}">
+            {%- endfor -%}
+          </video>
+        {%- elsif hero_video.media_type == 'external_video' -%}
+          {%- assign ext_vid_id = hero_video.external_id -%}
+          <div class="tt360-yt-lite" data-vid="{{ ext_vid_id }}" tabindex="0" role="button" aria-label="Play {{ product.title | escape }} video"
+            style="background:url(https://i.ytimg.com/vi/{{ ext_vid_id }}/hqdefault.jpg) center/cover no-repeat;cursor:pointer;position:relative;width:100%;height:100%">
+            <svg class="tt360-yt-play" viewBox="0 0 68 48" width="68" height="48" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+          </div>
+          <script>
+          (function(){var c=document.querySelector('.tt360-yt-lite[data-vid="{{ ext_vid_id }}"]');if(!c)return;function go(){var f=document.createElement('iframe');f.src='https://www.youtube.com/embed/{{ ext_vid_id }}?rel=0&playsinline=1&autoplay=1';f.allow='autoplay;encrypted-media';f.allowFullscreen=true;f.style.cssText='width:100%;height:100%;border:0';c.innerHTML='';c.appendChild(f)}c.addEventListener('click',go,{once:true});c.addEventListener('keydown',function(e){if(e.key==='Enter')go()},{once:true})})();
+          </script>
+        {%- endif -%}
+      {%- else -%}
+        <div class="t-vid-ph">
+          <div class="ring">▶</div>
+          <p>{{ section.settings.video_placeholder | default: 'Product video coming soon — check back shortly.' }}</p>
+          <p style="font-size:11px;opacity:.5">Add via Theme Editor → Video Section → paste YouTube/Vimeo URL, or upload video to the product in Admin → Products → Media</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ REVIEWS ═══ -->
+{% assign review_blocks = section.blocks | where: 'type', 'review' %}
+{% if review_blocks.size > 0 %}
+<section class="t-sec" aria-labelledby="t-rev-title">
+  <div class="t-wrap">
+    {% if section.settings.rev_lbl != blank %}<div class="t-lbl t-ctr">{{ section.settings.rev_lbl }}</div>{% endif %}
+    <h2 class="t-h2 t-ctr" id="t-rev-title">{{ section.settings.rev_title | default: 'What Parents Are Saying' }}</h2>
+    <p class="t-sub t-ctr" style="margin-bottom:24px">{{ section.settings.rev_sub }}</p>
+    <div class="t-rev-grid">
+      {% for block in review_blocks %}
+      {%- assign stars = block.settings.stars | default: 5 -%}
+      <div class="t-rc" {{ block.shopify_attributes }}>
+        <div class="t-rstars" aria-label="{{ stars }} stars">
+          {%- for i in (1..5) -%}{%- if i <= stars -%}★{%- else -%}☆{%- endif -%}{%- endfor -%}
+        </div>
+        <p class="t-rtext">"{{ block.settings.text }}"</p>
+        <div class="t-rauth">
+          <div class="t-rav" style="background:{{ block.settings.avatar_color | default: '#1A3557' }}">{{ block.settings.name | slice: 0 }}</div>
+          <div>
+            <div class="t-rname">{{ block.settings.name }}</div>
+            <div class="t-rloc">{{ block.settings.location }}</div>
+          </div>
+          {% if block.settings.verified %}<div class="t-rvfy">✓ Verified</div>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ FAQ ═══ -->
+{% assign faq_blocks = section.blocks | where: 'type', 'faq' %}
+{% if faq_blocks.size > 0 %}
+<section class="t-sec t-sec-alt" aria-labelledby="t-faq-title">
+  <div class="t-wrap">
+    {% if section.settings.faq_lbl != blank %}<div class="t-lbl t-ctr">{{ section.settings.faq_lbl }}</div>{% endif %}
+    <h2 class="t-h2 t-ctr" id="t-faq-title">{{ section.settings.faq_title | default: 'Frequently Asked Questions' }}</h2>
+    <div class="t-faq-list" style="margin-top:24px">
+      {% for block in faq_blocks %}
+      <div class="t-faq-item" {{ block.shopify_attributes }}>
+        <div class="t-faq-q" role="button" tabindex="0" aria-expanded="false">
+          {{ block.settings.question }}
+          <span class="t-faq-icon" aria-hidden="true">+</span>
+        </div>
+        <div class="t-faq-a">{{ block.settings.answer }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{%- comment -%} Dynamic FAQPage schema from FAQ blocks {%- endcomment -%}
+{%- assign faq_schema_blocks = section.blocks | where: 'type', 'faq' -%}
+{%- if faq_schema_blocks.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for block in faq_schema_blocks -%}
+    {
+      "@type": "Question",
+      "name": {{ block.settings.question | json }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ block.settings.answer | strip_html | json }}
+      }
+    }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="t-fcta" aria-labelledby="t-cta-title">
+  <div class="t-wrap">
+    {% if section.settings.cta_lbl != blank %}<div class="t-lbl">{{ section.settings.cta_lbl }}</div>{% endif %}
+    <h2 class="t-h2" id="t-cta-title">{{ section.settings.cta_title | default: 'Order Now — Free Next Day Delivery' }}</h2>
+    <p class="t-sub">{{ section.settings.cta_sub }}</p>
+    <button class="t-btn-final" onclick="document.getElementById('t-atc-btn').click()">
+      🛒 {{ section.settings.cta_btn | default: 'Add to Cart' }} — {{ current_variant.price | money_without_trailing_zeros }}
+    </button>
+    {% comment %} Final CTA trust items removed — redundant with urgency bar and proof strip {% endcomment %}
+  </div>
+</section>
+
+</div><!-- /#tt360-pdp -->
+
+<!-- LIGHTBOX -->
+<div id="tt360-lb" role="dialog" aria-modal="true" aria-label="Full-screen image viewer">
+  <button id="tt360-lb-close" aria-label="Close image viewer">&times;</button>
+  <button id="tt360-lb-prev" aria-label="Previous image">&#8249;</button>
+  <img id="tt360-lb-img" src="" alt="">
+  <button id="tt360-lb-next" aria-label="Next image">&#8250;</button>
+</div>
+
+<!-- CART DRAWER -->
+<div id="tt360-overlay"></div>
+<div id="tt360-drawer" role="dialog" aria-modal="true" aria-label="Your cart">
+  <div class="t-dr-handle"><div class="t-dr-handle-bar"></div></div>
+  <div class="t-dr-head">
+    <div class="t-dr-head-left">
+      🛒 Your Cart
+      <span class="t-dr-head-count" id="t-dr-count">0</span>
+    </div>
+    <button class="t-dr-close" onclick="window.tt360DrawerClose()" aria-label="Close cart">✕</button>
+  </div>
+  <div class="t-dr-ship" id="t-dr-ship">
+    <div class="t-dr-ship-txt" id="t-dr-ship-txt">Loading…</div>
+    <div class="t-dr-ship-bar"><div class="t-dr-ship-fill" id="t-dr-ship-fill" style="width:0%"></div></div>
+  </div>
+  <div class="t-dr-body">
+    <div id="t-dr-added"></div>
+    <div id="t-dr-gift"></div>
+    <div id="t-dr-upsell"></div>
+  </div>
+  <div class="t-dr-foot">
+    <div class="t-dr-total">
+      <span class="t-dr-total-lbl">Order total</span>
+      <span class="t-dr-total-val" id="t-dr-total-val">—</span>
+    </div>
+    <a href="/checkout" class="t-dr-checkout">🔒 Secure Checkout — Free Delivery</a>
+    <div class="t-dr-links">
+      <a href="/cart" class="t-dr-view">View full cart</a>
+      <span class="t-dr-sep"></span>
+      <button class="t-dr-cont" onclick="window.tt360DrawerClose()">Continue shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY MOBILE BAR -->
+<div id="tt360-sticky-pdp" aria-label="Add to cart">
+  <button onclick="document.getElementById('t-atc-btn').click()">
+    🛒 {{ section.settings.sticky_text | default: 'Add to Cart' }} — {{ current_variant.price | money_without_trailing_zeros }}
+  </button>
+</div>
+
+<script>
+(function(){
+  'use strict'; /* TT360-ITEM-PICKERS */
+
+  /* ── VARIANT DATA ── */
+  var variants = {{ product.variants | json }};
+  var selectedVarId  = {{ current_variant.id }};
+  var selectedQty    = 1;
+  var selectedDisc   = 0;
+  var basePrice      = {{ current_variant.price }};
+  var comparePrice   = {{ current_variant.compare_at_price | default: 0 }};
+  var bmsOrigPrice   = {{ section.settings.bms_orig_price | default: 0 | times: 100 | round }};
+  var selectedColor  = '{{ current_variant.options[0] | default: "" | escape }}';
+  var selectedAge    = '{{ current_variant.options[1] | default: "" | escape }}';
+  var inventoryMap   = { {%- for v in product.variants -%}{{ v.id }}:{{ v.inventory_quantity | default: 0 }}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%} };
+
+  /* ── HELPERS ── */
+  function money(cents){ return 'AED ' + (cents/100).toFixed(0); }
+  function toast(msg){
+    var t=document.getElementById('tt360-toast-pdp');
+    if(!t)return;
+    t.textContent=msg;t.classList.add('show');
+    setTimeout(function(){t.classList.remove('show');},2800);
+  }
+
+  /* ── GALLERY THUMBNAILS ── */
+  document.querySelectorAll('.t-thumb').forEach(function(thumb){
+    thumb.addEventListener('click', function(){
+      document.querySelectorAll('.t-thumb').forEach(function(t){t.classList.remove('active');});
+      thumb.classList.add('active');
+      if(thumb.dataset.media==='video'){
+        var box=document.getElementById('t-main-media');
+        /* Video thumb — swap to video view if available */
+        return;
+      }
+      var img=document.getElementById('t-main-img');
+      if(img && thumb.dataset.src){
+        img.src=thumb.dataset.src;
+        if(thumb.dataset.srcset) img.srcset=thumb.dataset.srcset;
+        if(thumb.dataset.alt) img.alt=thumb.dataset.alt;
+      }
+    });
+    thumb.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){thumb.click();}});
+  });
+
+  /* ── VARIANT HELPERS ── */
+  function findVariant(color,age){
+    return variants.find(function(v){
+      if(age) return v.option1===color&&v.option2===age;
+      return v.option1===color;
+    })||null;
+  }
+  function updateStockUrgency(varId){
+    var el=document.getElementById('cro-urg-stock');
+    if(!el)return;
+    var qty=inventoryMap[varId];
+    if(typeof qty==='number'&&qty<=100&&qty>0){
+      document.getElementById('cro-stock-count').textContent=qty;
+      var label=selectedColor;if(selectedAge)label+=' ('+selectedAge+')';
+      var vnameEl=document.querySelector('.cro-urg-vname');
+      if(label&&label!=='Default Title'){if(vnameEl)vnameEl.style.display='';document.getElementById('cro-stock-variant').textContent=label;}else{if(vnameEl)vnameEl.style.display='none';}
+      el.style.display='';
+    }else{
+      el.style.display='none';
+    }
+  }
+
+  function applyVariant(v){
+    if(!v) return;
+    selectedVarId=v.id; basePrice=v.price; comparePrice=v.compare_at_price||0;
+    updatePriceDisplay();
+    if(v.featured_image&&v.featured_image.src){var img=document.getElementById('t-main-img');if(img){img.src=v.featured_image.src;img.srcset='';}}
+    var st=document.getElementById('t-stock-tag');
+    if(st){st.className='t-stock-tag'+(v.available?'':' out');st.innerHTML=v.available?'✅ In stock':'❌ Out of stock';}
+    var sel=document.getElementById('t-bms-selection');
+    if(sel){var lbl=selectedColor;if(selectedAge)lbl+=' · '+selectedAge;sel.textContent='('+lbl+')';}
+    updateStockUrgency(v.id);
+    var dynInput=document.getElementById('tt360-dyn-variant');if(dynInput)dynInput.value=v.id;
+    try{var url=new URL(window.location.href);url.searchParams.set('variant',v.id);window.history.replaceState({},'',url.toString());}catch(e){}
+  }
+
+  /* ── COLOUR SWATCHES ── */
+  document.querySelectorAll('.t-swatch').forEach(function(sw){
+    sw.addEventListener('click',function(){
+      selectedColor=sw.dataset.color;
+      document.querySelectorAll('.t-swatch .t-swatch-dot').forEach(function(d){d.classList.remove('active');});
+      sw.querySelector('.t-swatch-dot').classList.add('active');
+      document.querySelectorAll('.t-swatch').forEach(function(s){s.classList.remove('active');});
+      sw.classList.add('active');
+      var cc=document.getElementById('t-chosen-color');if(cc)cc.textContent=selectedColor;
+      document.querySelectorAll('.t-size-pill').forEach(function(pill){
+        var v=findVariant(selectedColor,pill.dataset.age);
+        pill.style.opacity=(v&&v.available)?'1':'0.45';
+      });
+      applyVariant(findVariant(selectedColor,selectedAge));
+    });
+    sw.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')sw.click();});
+  });
+
+  /* ── AGE / SIZE PILLS ── */
+  document.querySelectorAll('.t-size-pill').forEach(function(pill){
+    pill.addEventListener('click',function(){
+      selectedAge=pill.dataset.age;
+      document.querySelectorAll('.t-size-pill').forEach(function(p){p.classList.remove('active');});
+      pill.classList.add('active');
+      var ca=document.getElementById('t-chosen-age');if(ca)ca.textContent=selectedAge;
+      applyVariant(findVariant(selectedColor,selectedAge));
+    });
+    pill.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')pill.click();});
+  });
+
+  /* ── BUY MORE & SAVE ── */
+  function updatePriceDisplay(){
+    var origUnit=bmsOrigPrice>0?bmsOrigPrice:(comparePrice>0?comparePrice:basePrice);
+    document.querySelectorAll('.t-bms-card').forEach(function(card){
+      var qty=parseInt(card.dataset.qty)||1;
+      var fixedTotal=parseInt(card.dataset.total)||0;
+      var disc=parseInt(card.dataset.disc)||0;
+      var total=fixedTotal>0?fixedTotal:Math.round(basePrice*(1-disc/100))*qty;
+      var origTotal=origUnit*qty;
+      var savePct=origTotal>0?Math.round((origTotal-total)/origTotal*100):0;
+      var priceEl=card.querySelector('.t-bms-price');
+      var discEl=card.querySelector('.t-bms-disc');
+      if(priceEl)priceEl.textContent=money(total)+' total';
+      if(discEl){if(savePct>0){discEl.textContent='Save '+savePct+'%';discEl.style.color='';}else{discEl.textContent='Regular price';discEl.style.color='var(--muted)';}}
+    });
+    var t1=document.querySelector('.t-bms-card[data-qty="1"]');
+    var t1fixed=t1?parseInt(t1.dataset.total)||0:0;
+    var heroPrice=t1fixed>0?t1fixed:Math.round(basePrice*(1-(t1?parseInt(t1.dataset.disc)||0:0)/100));
+    var pEl=document.getElementById('t-price-now');if(pEl)pEl.textContent=money(heroPrice);
+    var saveBadge=document.getElementById('t-save');
+    var priceWas=document.getElementById('t-price-was');
+    if(origUnit>heroPrice&&origUnit>0){
+      var sp=Math.round((origUnit-heroPrice)/origUnit*100);
+      if(saveBadge){saveBadge.textContent='SAVE '+sp+'%';saveBadge.style.display='';}
+      if(priceWas){priceWas.textContent=money(origUnit);priceWas.style.display='';}
+    }else{if(saveBadge)saveBadge.style.display='none';if(priceWas)priceWas.style.display='none';}
+    var activeCard=document.querySelector('.t-bms-card.active');
+    var atcQty=activeCard?parseInt(activeCard.dataset.qty)||1:selectedQty;
+    var atcFixed=activeCard?parseInt(activeCard.dataset.total)||0:0;
+    var atcTotal=atcFixed>0?atcFixed:Math.round(basePrice*(1-selectedDisc/100))*atcQty;
+    var atcOrigTotal=origUnit*atcQty;
+    var atcSave=atcOrigTotal>0?Math.round((atcOrigTotal-atcTotal)/atcOrigTotal*100):0;
+    var label=document.getElementById('t-atc-label');
+    if(label){
+      var atcTxt=atcQty>1?('Add '+atcQty+(atcSave>0?' — Save '+atcSave+'%':'')):('{{ section.settings.atc_text | default: "Add to Cart" }}');
+      label.textContent=atcTxt+' — '+money(atcTotal);
+    }
+    var qtySaveEl=document.getElementById('t-qty-save');
+    if(qtySaveEl){
+      if(atcQty>1&&atcSave>0){qtySaveEl.textContent='Save '+money(atcOrigTotal-atcTotal)+' total';}
+      else{qtySaveEl.textContent='';}
+    }
+    var qtyValEl=document.getElementById('t-qty-val');
+    if(qtyValEl)qtyValEl.textContent=atcQty;
+  }
+
+  /* ── BMS PER-ITEM VARIANT PICKERS ── */
+  var bmsItems=[]; /* [{varId,color,age}, ...] one slot per item in multi-buy */
+
+  function getUniqueColors(){
+    var seen={};
+    return variants.reduce(function(acc,v){if(v.option1&&!seen[v.option1]){seen[v.option1]=1;acc.push(v.option1);}return acc;},[]);
+  }
+  function getUniqueAges(){
+    var seen={};
+    return variants.reduce(function(acc,v){if(v.option2&&!seen[v.option2]){seen[v.option2]=1;acc.push(v.option2);}return acc;},[]);
+  }
+  function colorDotStyle(color){
+    var c=color.toLowerCase().replace(/\s+/g,'');
+    var map={blue:'#4A90D9',pink:'#E8719A',orange:'#F97316',green:'#34D399',red:'#EF4444',yellow:'#FBBF24',purple:'#8B5CF6',black:'#1E293B',white:'#F8FAFC'};
+    return 'background:'+(map[c]||'#94A3B8')+(c==='white'?';border:1px solid #CBD5E1':'');
+  }
+
+  function renderBmsItemPickers(qty){
+    var container=document.getElementById('t-bms-items');
+    if(!container)return;
+    var colors=getUniqueColors();
+    var ages=getUniqueAges();
+    var hasColors=colors.length>=1; /* fix */
+    var hasAges=ages.length>0;
+    if(!hasColors&&!hasAges){container.style.display='none';return;}
+    /* Initialise / resize bmsItems array */
+    while(bmsItems.length<qty)bmsItems.push({varId:selectedVarId,color:selectedColor,age:selectedAge});
+    bmsItems=bmsItems.slice(0,qty);
+    var html='';
+    for(var i=0;i<qty;i++){
+      html+='<div class="t-bms-item" data-item="'+i+'">';
+      if(qty>1)html+='<div class="t-bms-item-lbl">🛒 Item '+(i+1)+'</div>';
+      if(hasColors){
+        html+='<div class="t-swatches">';
+        colors.forEach(function(c){
+          var active=(bmsItems[i].color===c);
+          html+='<div class="t-swatch'+(active?' active':'')+'" data-color="'+c+'" data-item="'+i+'">';
+          html+='<div class="t-swatch-dot'+(active?' active':'')+'"><div class="inn" style="'+colorDotStyle(c)+'"></div></div>';
+          html+='<span class="t-swatch-name">'+c+'</span>';
+          html+='</div>';
+        });
+        html+='</div>';
+      }
+      if(hasAges){
+        html+='<div class="t-size-pills">';
+        ages.forEach(function(a){
+          var active=(bmsItems[i].age===a);
+          html+='<div class="t-size-pill'+(active?' active':'')+'" data-age="'+a+'" data-item="'+i+'">'+a+'</div>';
+        });
+        html+='</div>';
+      }
+      html+='</div>';
+    }
+    container.innerHTML=html;
+    container.style.display='';
+    bindBmsItemPickers();
+  }
+
+  function bindBmsItemPickers(){
+    var container=document.getElementById('t-bms-items');
+    if(!container)return;
+    container.querySelectorAll('.t-swatch[data-item]').forEach(function(sw){
+      sw.addEventListener('click',function(){
+        var idx=parseInt(sw.dataset.item);
+        bmsItems[idx].color=sw.dataset.color;
+        var v=findVariant(bmsItems[idx].color,bmsItems[idx].age);
+        if(v)bmsItems[idx].varId=v.id;
+        var itemEl=container.querySelector('.t-bms-item[data-item="'+idx+'"]');
+        if(itemEl){
+          itemEl.querySelectorAll('.t-swatch').forEach(function(s){s.classList.remove('active');s.querySelector('.t-swatch-dot').classList.remove('active');});
+          sw.classList.add('active');sw.querySelector('.t-swatch-dot').classList.add('active');
+        }
+      });
+    });
+    container.querySelectorAll('.t-size-pill[data-item]').forEach(function(pill){
+      pill.addEventListener('click',function(){
+        var idx=parseInt(pill.dataset.item);
+        bmsItems[idx].age=pill.dataset.age;
+        var v=findVariant(bmsItems[idx].color,bmsItems[idx].age);
+        if(v)bmsItems[idx].varId=v.id;
+        var itemEl=container.querySelector('.t-bms-item[data-item="'+idx+'"]');
+        if(itemEl){
+          itemEl.querySelectorAll('.t-size-pill').forEach(function(p){p.classList.remove('active');});
+          pill.classList.add('active');
+        }
+      });
+    });
+  }
+
+  {% if section.settings.bms_stepper %}
+  (function(){
+    var bmsMax=parseInt((document.querySelector('.t-bms')||{}).dataset&&document.querySelector('.t-bms').dataset.max)||{{ bms_max_qty | default: 4 }};
+    var minusBtn=document.getElementById('t-qty-minus');
+    var plusBtn=document.getElementById('t-qty-plus');
+    /* hide Liquid-rendered swatches — using per-item pickers for all qtys */
+    var infoEl=document.querySelector('#tt360-pdp .t-info');
+    if(infoEl){
+      [infoEl.querySelector('.t-swatches'),infoEl.querySelector('#t-size-pills')].forEach(function(el){
+        if(!el)return;
+        el.style.display='none';
+        var prev=el.previousElementSibling;
+        if(prev&&prev.classList.contains('t-opt-lbl'))prev.style.display='none';
+      });
+    }
+    function setQty(q){
+      q=Math.max(1,Math.min(bmsMax,q));
+      selectedQty=q;
+      if(minusBtn)minusBtn.disabled=q<=1;
+      if(plusBtn)plusBtn.disabled=q>=bmsMax;
+      bmsItems=[];
+      renderBmsItemPickers(q);
+      updatePriceDisplay();
+    }
+    if(minusBtn)minusBtn.addEventListener('click',function(){setQty(selectedQty-1);});
+    if(plusBtn)plusBtn.addEventListener('click',function(){setQty(selectedQty+1);});
+    setQty(1);
+  })();
+  {% else %}
+  document.querySelectorAll('.t-bms-card').forEach(function(card){
+    card.addEventListener('click',function(){
+      document.querySelectorAll('.t-bms-card').forEach(function(c){
+        c.classList.remove('active');
+        c.setAttribute('aria-pressed','false');
+      });
+      card.classList.add('active');
+      card.setAttribute('aria-pressed','true');
+      selectedQty=parseInt(card.dataset.qty)||1;
+      selectedDisc=parseInt(card.dataset.disc)||0;
+      if(selectedQty>1){
+        bmsItems=[];
+        renderBmsItemPickers(selectedQty);
+      }else{
+        var bmsItemsEl=document.getElementById('t-bms-items');
+        if(bmsItemsEl)bmsItemsEl.style.display='none';
+      }
+      updatePriceDisplay();
+    });
+    card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){card.click();}});
+  });
+  {% endif %}
+
+  /* Init BMS prices + stock urgency */
+  updatePriceDisplay();
+  updateStockUrgency(selectedVarId);
+
+  /* ── CART DRAWER ── */
+  var giftBagHandle='{{ section.settings.gift_bag_handle | default: "gift-wrap-1" }}';
+  var giftBagPriceLbl='{{ section.settings.gift_bag_price | default: "9" }}';
+  var upsellHandles=['{{ section.settings.upsell_1 }}','{{ section.settings.upsell_2 }}','{{ section.settings.upsell_3 }}'].filter(Boolean);
+  var productCache={};
+  var giftBagData=null;
+  var giftBagVarId=44168885174387; /* gift-wrap-1 default — overwritten after fetch */
+  var giftBagAdded=false;
+  var giftQty=0;
+
+  window.tt360DrawerClose=function(){
+    document.getElementById('tt360-drawer').classList.remove('open');
+    document.getElementById('tt360-overlay').classList.remove('open');
+    document.body.style.overflow='';
+  };
+  function drawerOpen(){
+    document.getElementById('tt360-drawer').classList.add('open');
+    document.getElementById('tt360-overlay').classList.add('open');
+    document.body.style.overflow='hidden';
+    renderAllCartItems();
+    renderGiftBag();
+    renderUpsells();
+  }
+  window.tt360DrawerOpen=drawerOpen;
+  document.getElementById('tt360-overlay').addEventListener('click',window.tt360DrawerClose);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')window.tt360DrawerClose();});
+
+  /* Swipe down to close (mobile bottom sheet) */
+  (function(){
+    var dr=document.getElementById('tt360-drawer');
+    var startY=0,startT=0,isDragging=false;
+    dr.addEventListener('touchstart',function(e){
+      if(e.touches.length!==1)return;
+      startY=e.touches[0].clientY;startT=Date.now();isDragging=true;
+    },{passive:true});
+    dr.addEventListener('touchmove',function(e){
+      if(!isDragging)return;
+      var dy=e.touches[0].clientY-startY;
+      if(dy>0){dr.style.transform='translateY('+dy+'px)';dr.style.transition='none';}
+    },{passive:true});
+    dr.addEventListener('touchend',function(e){
+      if(!isDragging)return;isDragging=false;
+      var dy=e.changedTouches[0].clientY-startY;
+      var dt=Date.now()-startT;
+      dr.style.transform='';dr.style.transition='';
+      if(dy>80||(dy>40&&dt<250)){window.tt360DrawerClose();}
+    },{passive:true});
+  })();
+
+  function fetchProd(handle,cb){
+    if(!handle){cb(null);return;}
+    if(productCache[handle]){cb(productCache[handle]);return;}
+    fetch('/products/'+handle+'.js').then(function(r){return r.json();}).then(function(p){productCache[handle]=p;cb(p);}).catch(function(){cb(null);});
+  }
+  function fmtMoney(cents){return 'AED '+(cents/100).toFixed(0);}
+
+  function updateCartIcon(count){
+    var selectors='.cart-count,.cart__count,.cart-count-bubble,.header__cart-count,[data-cart-count],[id*="cart-count"],[class*="cart-count"]';
+    document.querySelectorAll(selectors).forEach(function(el){
+      if(el.tagName!=='A'&&el.tagName!=='BUTTON'&&el.tagName!=='SVG'){el.textContent=count;el.setAttribute('aria-label',count+' items');}
+    });
+    /* Try section render for header */
+    fetch('/?sections=header').then(function(r){return r.json();}).then(function(d){
+      if(!d||!d.header)return;
+      var t=document.createElement('div');t.innerHTML=d.header;
+      var nw=t.querySelector('.cart-count,.cart-count-bubble,[data-cart-count]');
+      var cr=document.querySelector('.cart-count,.cart-count-bubble,[data-cart-count]');
+      if(nw&&cr)cr.outerHTML=nw.outerHTML;
+    }).catch(function(){});
+    document.dispatchEvent(new CustomEvent('cart:updated',{detail:{count:count}}));
+    document.dispatchEvent(new CustomEvent('theme:cart:update',{detail:{}}));
+  }
+
+  function renderGiftBag(){
+    var el=document.getElementById('t-dr-gift');
+    if(!el)return;
+    var img=giftBagData&&giftBagData.images&&giftBagData.images[0]?
+      giftBagData.images[0].src:GIFT_IMG_URL;
+    var ctrlHtml=giftQty>0?
+      '<div class="t-dr-qty" id="t-drg-stepper">'+
+        '<button class="t-dr-q-btn'+(giftQty===1?' danger':'')+'" data-action="dec">'+(giftQty===1?'🗑':'−')+'</button>'+
+        '<span class="t-dr-q-num">'+giftQty+'</span>'+
+        '<button class="t-dr-q-btn" data-action="inc">+</button>'+
+      '</div>':
+      '<button class="t-dr-gift-btn" id="t-drg-btn">+ Add</button>';
+    el.innerHTML='<div class="t-dr-gift-card'+(giftQty>0?' added':'')+'" id="t-drg-card">'+
+      (img?'<img class="t-dr-gift-img" src="'+img+'" alt="TipTop Gift Bag">':'<span style="font-size:32px;flex-shrink:0">🎁</span>')+
+      '<div class="t-dr-gift-info"><div class="t-dr-gift-title">🎁 TipTop Gift Box</div>'+
+      '<div class="t-dr-gift-sub">AED '+giftBagPriceLbl+' — Make it a special gift!</div></div>'+
+      ctrlHtml+'</div>';
+    if(giftQty>0){
+      var stepper=document.getElementById('t-drg-stepper');
+      if(stepper){
+        stepper.querySelectorAll('button').forEach(function(btn){
+          btn.addEventListener('click',function(){
+            var next=btn.dataset.action==='inc'?giftQty+1:giftQty-1;
+            changeGiftQty(next);
+          });
+        });
+      }
+    }else{
+      var addBtn=document.getElementById('t-drg-btn');
+      if(addBtn){
+        addBtn.addEventListener('click',function(){
+          addBtn.textContent='…';addBtn.disabled=true;
+          fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:giftBagVarId,quantity:1})})
+            .then(function(){giftQty=1;giftBagAdded=true;renderGiftBag();renderAllCartItems();})
+            .catch(function(){addBtn.textContent='+ Add';addBtn.disabled=false;});
+        });
+      }
+    }
+  }
+
+  function changeGiftQty(newQty){
+    var vid=giftBagVarId||GIFT_VAR_ID;
+    fetch('/cart/change.js',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:vid,quantity:Math.max(0,newQty)})
+    }).then(function(r){return r.json();})
+    .then(function(){
+      giftQty=Math.max(0,newQty);
+      giftBagAdded=giftQty>0;
+      renderGiftBag();
+      renderAllCartItems();
+    })
+    .catch(function(){toast('Could not update gift box');});
+  }
+
+  /* ── DRAWER STATE ── */
+  var drawerQty=selectedQty;
+  var upsellQtyMap={}; /* varId → qty in cart */
+  var FREE_SHIP_THRESHOLD=10000; /* AED 100 in cents */
+
+  /* ── SHIPPING BAR ── */
+  function updateShippingBar(cartTotal){
+    var bar=document.getElementById('t-dr-ship');
+    var txt=document.getElementById('t-dr-ship-txt');
+    var fill=document.getElementById('t-dr-ship-fill');
+    if(!bar||!txt||!fill)return;
+    if(cartTotal>=FREE_SHIP_THRESHOLD){
+      bar.classList.add('done');
+      txt.innerHTML='🎉 <strong>Free delivery unlocked!</strong>';
+      fill.style.width='100%';
+    }else{
+      var remaining=fmtMoney(FREE_SHIP_THRESHOLD-cartTotal);
+      bar.classList.remove('done');
+      txt.innerHTML='Add <strong>'+remaining+'</strong> more for free delivery';
+      fill.style.width=Math.min(Math.round(cartTotal/FREE_SHIP_THRESHOLD*100),99)+'%';
+    }
+  }
+
+  /* ── ITEM COUNT IN HEADER ── */
+  function updateItemCount(n){
+    var el=document.getElementById('t-dr-count');
+    if(el)el.textContent=n;
+  }
+
+  /* ── REFRESH TOTAL + SHIPPING BAR + COUNT ── */
+  function refreshDrawerTotal(){
+    return fetch('/cart.js').then(function(r){return r.json();}).then(function(cart){
+      var tv=document.getElementById('t-dr-total-val');
+      if(tv)tv.textContent=fmtMoney(cart.total_price);
+      var co=document.querySelector('.t-dr-checkout');
+      if(co)co.innerHTML='🔒 Secure Checkout — '+fmtMoney(cart.total_price);
+      updateCartIcon(cart.item_count);
+      updateItemCount(cart.item_count);
+      updateShippingBar(cart.total_price);
+      return cart;
+    });
+  }
+
+  /* ── ADDED ITEM (main product) ── */
+  function renderAddedItem(){
+    var added=document.getElementById('t-dr-added');
+    if(!added)return;
+    var mainImg=document.getElementById('t-main-img');
+    var imgSrc=mainImg?mainImg.src:'';
+    var unitPrice=Math.round(basePrice*(1-selectedDisc/100));
+    var lineTotal=fmtMoney(unitPrice*drawerQty);
+    added.innerHTML='<div class="t-dr-added-item">'+
+      (imgSrc?'<img class="t-dr-added-img" src="'+imgSrc+'" alt="{{ product.title | escape }}" loading="eager">':'')+
+      '<div class="t-dr-added-info">'+
+        '<div class="t-dr-added-name">{{ product.title | escape }}</div>'+
+        '<div class="t-dr-added-meta">'+fmtMoney(unitPrice)+' each</div>'+
+        '<div class="t-dr-added-row">'+
+          '<div class="t-dr-qty">'+
+            '<button class="t-dr-q-btn'+(drawerQty===1?' danger':'')+'" id="t-dr-q-dec">'+(drawerQty===1?'🗑':'−')+'</button>'+
+            '<span class="t-dr-q-num">'+drawerQty+'</span>'+
+            '<button class="t-dr-q-btn" id="t-dr-q-inc">+</button>'+
+          '</div>'+
+          '<span class="t-dr-line-total">'+lineTotal+'</span>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+    document.getElementById('t-dr-q-dec').addEventListener('click',function(){changeDrawerQty(drawerQty-1);});
+    document.getElementById('t-dr-q-inc').addEventListener('click',function(){changeDrawerQty(drawerQty+1);});
+  }
+
+  /* ── FULL CART RENDER ── */
+  function renderAllCartItems(){
+    var added=document.getElementById('t-dr-added');
+    if(!added)return;
+    fetch('/cart.js').then(function(r){return r.json();}).then(function(cart){
+      /* Sync gift qty from real cart state */
+      var gvid=giftBagVarId||GIFT_VAR_ID;
+      var giftItem=cart.items&&cart.items.find(function(i){return i.variant_id===gvid;});
+      var realGiftQty=giftItem?giftItem.quantity:0;
+      if(realGiftQty!==giftQty){giftQty=realGiftQty;giftBagAdded=realGiftQty>0;renderGiftBag();}
+      /* Filter gift item from main cart display */
+      var displayItems=(cart.items||[]).filter(function(i){return i.variant_id!==gvid;});
+      if(!displayItems.length){
+        added.innerHTML='<p style="color:#94A3B8;font-size:13px;text-align:center;padding:16px 0">Nothing here yet — your perfect pick is one click away.</p>';
+        refreshDrawerTotal();return;
+      }
+      var html='';
+      displayItems.forEach(function(item){
+        /* Use real cart line number (1-based index in full cart.items array) */
+        var line=cart.items.indexOf(item)+1;
+        html+='<div class="t-dr-added-item" data-line="'+line+'" data-vid="'+item.variant_id+'">'+
+          (item.image?'<img class="t-dr-added-img" src="'+item.image+'" alt="'+item.title+'" loading="eager">':'')+
+          '<div class="t-dr-added-info">'+
+            '<div class="t-dr-added-name">'+item.product_title+(item.variant_title&&item.variant_title!=='Default Title'?' — '+item.variant_title:'')+'</div>'+
+            '<div class="t-dr-added-meta">'+fmtMoney(item.price)+' each</div>'+
+            '<div class="t-dr-added-row">'+
+              '<div class="t-dr-qty t-dr-qty-line" data-line="'+line+'">'+
+                '<button class="t-dr-q-btn'+(item.quantity===1?' danger':'')+'" data-action="dec">'+(item.quantity===1?'🗑':'−')+'</button>'+
+                '<span class="t-dr-q-num">'+item.quantity+'</span>'+
+                '<button class="t-dr-q-btn" data-action="inc">+</button>'+
+              '</div>'+
+              '<span class="t-dr-line-total">'+fmtMoney(item.line_price)+'</span>'+
+            '</div>'+
+          '</div>'+
+        '</div>';
+      });
+      added.innerHTML=html;
+      added.querySelectorAll('.t-dr-qty-line').forEach(function(ctrl){
+        var line=parseInt(ctrl.dataset.line);
+        ctrl.querySelectorAll('button').forEach(function(btn){
+          btn.addEventListener('click',function(){
+            var qEl=ctrl.querySelector('.t-dr-q-num');
+            var cur=parseInt(qEl?qEl.textContent:1)||1;
+            var next=btn.dataset.action==='inc'?cur+1:cur-1;
+            changeCartItemByLine(line,Math.max(0,next));
+          });
+        });
+      });
+      refreshDrawerTotal();
+    }).catch(function(){});
+  }
+
+  function changeCartItemByLine(line,newQty){
+    fetch('/cart/change.js',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({line:line,quantity:Math.max(0,newQty)})
+    }).then(function(r){return r.json();})
+    .then(function(){renderAllCartItems();})
+    .catch(function(){toast('Could not update quantity');});
+  }
+
+  function changeDrawerQty(newQty){
+    fetch('/cart/change.js',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:selectedVarId,quantity:Math.max(0,newQty)})
+    }).then(function(r){return r.json();})
+    .then(function(){
+      drawerQty=Math.max(0,newQty);
+      renderAllCartItems();
+      refreshDrawerTotal();
+    })
+    .catch(function(){toast('Could not update quantity');});
+  }
+
+  /* ── UPSELL QTY STEPPER ── */
+  function makeQtyStepper(vid,qty){
+    return '<div class="t-dr-qty" data-vid="'+vid+'">'+
+      '<button class="t-dr-q-btn'+(qty===1?' danger':'')+'" data-action="dec">'+(qty===1?'🗑':'−')+'</button>'+
+      '<span class="t-dr-q-num">'+qty+'</span>'+
+      '<button class="t-dr-q-btn" data-action="inc">+</button>'+
+    '</div>';
+  }
+
+  function bindStepperInEl(el,vid){
+    el.querySelectorAll('.t-dr-qty[data-vid="'+vid+'"] button').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var action=this.dataset.action;
+        var current=upsellQtyMap[vid]||0;
+        var next=action==='inc'?current+1:current-1;
+        changeUpsellQty(vid,next,el);
+      });
+    });
+  }
+
+  function changeUpsellQty(vid,newQty,itemEl){
+    fetch('/cart/change.js',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:vid,quantity:Math.max(0,newQty)})
+    }).then(function(r){return r.json();})
+    .then(function(){
+      upsellQtyMap[vid]=Math.max(0,newQty);
+      var ctrl=itemEl.querySelector('.t-dr-up-ctrl');
+      if(!ctrl)return;
+      if(upsellQtyMap[vid]===0){
+        delete upsellQtyMap[vid];
+        ctrl.innerHTML='<button class="t-dr-up-add" style="min-width:60px">Add</button>';
+        ctrl.querySelector('.t-dr-up-add').addEventListener('click',function(){
+          addUpsellItem(vid,ctrl,itemEl);
+        });
+      }else{
+        ctrl.innerHTML=makeQtyStepper(vid,upsellQtyMap[vid]);
+        bindStepperInEl(itemEl,vid);
+      }
+      renderAllCartItems();
+    })
+    .catch(function(){toast('Could not update quantity');});
+  }
+
+  function addUpsellItem(vid,ctrl,itemEl){
+    ctrl.innerHTML='<button class="t-dr-up-add" disabled style="min-width:60px">…</button>';
+    fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:vid,quantity:1})
+    }).then(function(){
+      upsellQtyMap[vid]=1;
+      ctrl.innerHTML=makeQtyStepper(vid,1);
+      bindStepperInEl(itemEl,vid);
+      renderAllCartItems();
+    })
+    .catch(function(){
+      ctrl.innerHTML='<button class="t-dr-up-add" style="min-width:60px">Add</button>';
+      ctrl.querySelector('.t-dr-up-add').addEventListener('click',function(){
+        addUpsellItem(vid,ctrl,itemEl);
+      });
+    });
+  }
+
+  /* ── RENDER UPSELL PRODUCTS ── */
+  function renderUpsellProducts(products){
+    var el=document.getElementById('t-dr-upsell');
+    if(!el)return;
+    var grid=document.getElementById('t-up-grid');
+    if(!grid)return;
+    var html='';
+    products.slice(0,3).forEach(function(p){
+      var v=p.variants[0];
+      /* Use CDN-sized image for speed */
+      var rawSrc=p.images&&p.images[0]?p.images[0].src:'';
+      var imgSrc=rawSrc?rawSrc.replace(/(\.(jpg|jpeg|png|webp|gif))(\?|$)/i,'_120x120$1$3'):'';
+      var imgHtml=imgSrc
+        ?'<img class="t-dr-up-img" src="'+imgSrc+'" alt="'+p.title.replace(/"/g,'&quot;')+'" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling&&(this.nextElementSibling.style.display=\'block\')">'
+        :'';
+      var skeletonHtml='<div class="t-dr-skel"'+(imgSrc?' style="display:none"':'')+' aria-hidden="true"></div>';
+      var priceHtml=fmtMoney(v.price);
+      var wasHtml=v.compare_at_price&&v.compare_at_price>v.price?
+        '<span class="t-dr-up-was">'+fmtMoney(v.compare_at_price)+'</span>'+
+        '<span class="t-dr-up-save">-'+Math.round((v.compare_at_price-v.price)/v.compare_at_price*100)+'%</span>':'';
+      html+='<div class="t-dr-up-item" data-vid="'+v.id+'">'+
+        imgHtml+skeletonHtml+
+        '<div class="t-dr-up-info">'+
+          '<div class="t-dr-up-name">'+p.title+'</div>'+
+          '<div class="t-dr-up-prices"><span class="t-dr-up-price">'+priceHtml+'</span>'+wasHtml+'</div>'+
+        '</div>'+
+        '<div class="t-dr-up-ctrl"><button class="t-dr-up-add" style="min-width:60px">Add</button></div>'+
+      '</div>';
+    });
+    if(!html){el.innerHTML='';return;}
+    grid.innerHTML=html;
+    grid.querySelectorAll('.t-dr-up-item').forEach(function(item){
+      var vid=parseInt(item.dataset.vid);
+      var ctrl=item.querySelector('.t-dr-up-ctrl');
+      var addBtn=ctrl.querySelector('.t-dr-up-add');
+      addBtn.addEventListener('click',function(){addUpsellItem(vid,ctrl,item);});
+    });
+  }
+
+  function fetchAndRenderHandles(){
+    if(!upsellHandles.length)return;
+    var results=[];var loaded=0;
+    upsellHandles.forEach(function(h,i){
+      fetchProd(h,function(p){
+        loaded++;if(p)results.push({p:p,i:i});
+        if(loaded===upsellHandles.length){
+          results.sort(function(a,b){return a.i-b.i;});
+          renderUpsellProducts(results.map(function(r){return r.p;}));
+        }
+      });
+    });
+  }
+
+  function renderUpsells(){
+    var el=document.getElementById('t-dr-upsell');
+    if(!el)return;
+    upsellQtyMap={};
+    el.innerHTML='<div class="t-dr-up-lbl" style="margin-bottom:8px">You might also like</div>'+
+      '<div id="t-up-grid" style="display:flex;flex-direction:column;gap:10px">'+
+      '<div style="color:#94A3B8;font-size:12px;padding:4px 0">Loading…</div></div>';
+    fetch('/recommendations/products.json?product_id={{ product.id }}&limit=5&intent=related')
+      .then(function(r){return r.json();})
+      .then(function(data){
+        var prods=(data.products||[]).filter(function(p){
+          return p.id!={{ product.id }}&&p.handle!==giftBagHandle&&p.variants[0].available;
+        });
+        if(prods.length>0){renderUpsellProducts(prods);}
+        else{fetchAndRenderHandles();}
+      })
+      .catch(function(){fetchAndRenderHandles();});
+  }
+
+  function openDrawerWithItem(){
+    drawerQty=selectedQty;
+    renderAllCartItems();
+    renderGiftBag();
+    renderUpsells();
+    refreshDrawerTotal();
+    drawerOpen();
+  }
+
+  /* ── GIFT WRAP WIDGET ── */
+  /* Known product data — fetched on load, used for instant add */
+  var GIFT_IMG_URL='{{ gift_img_src }}';
+  var GIFT_VAR_ID=44168885174387;
+
+  function renderGiftWidgetImage(){
+    var media=document.getElementById('t-gw-media');
+    if(!media)return;
+    var src=giftBagData&&giftBagData.images&&giftBagData.images[0]?
+      giftBagData.images[0].src:GIFT_IMG_URL;
+    media.innerHTML='<img src="'+src+'" alt="TipTop Gift Wrap" width="58" height="58" loading="lazy">';
+  }
+
+  function addGiftToCart(onSuccess){
+    var vid=giftBagVarId||GIFT_VAR_ID;
+    fetch('/cart/add.js',{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id:vid,quantity:1})
+    }).then(function(){giftQty=1;giftBagAdded=true;onSuccess();refreshDrawerTotal();})
+      .catch(function(){toast('Could not add gift wrap — please try again');});
+  }
+
+  /* Inline widget button */
+  var gwBtn=document.getElementById('t-gw-btn');
+  var gwCard=document.getElementById('t-gw');
+  if(gwBtn){
+    gwBtn.addEventListener('click',function(e){
+      e.stopPropagation();
+      if(giftBagAdded)return;
+      gwBtn.textContent='…';gwBtn.disabled=true;
+      addGiftToCart(function(){
+        gwBtn.textContent='✓ Added';gwBtn.disabled=false;
+        gwBtn.classList.add('done');
+        if(gwCard)gwCard.classList.add('t-gw-done');
+        renderGiftBag();
+        toast('🎁 Gift box added to cart!');
+      });
+    });
+  }
+
+  /* Prefetch gift product in background — only updates variant ID and drawer image */
+  window.addEventListener('load',function(){
+    setTimeout(function(){
+      if(giftBagHandle){
+        fetchProd(giftBagHandle,function(p){
+          if(p){
+            giftBagData=p;
+            giftBagVarId=p.variants[0].id;
+            /* Only update the widget image if Liquid rendered nothing (GIFT_IMG_URL empty) */
+            if(!GIFT_IMG_URL && p.images && p.images[0]){
+              var media=document.getElementById('t-gw-media');
+              if(media) media.innerHTML='<img src="'+p.images[0].src+'" alt="TipTop Gift Box" width="58" height="58" loading="eager">';
+            }
+          }
+        });
+      }
+      upsellHandles.forEach(function(h){if(h)fetchProd(h,function(){});});
+    },800);
+  });
+
+  /* ── ADD TO CART ── */
+  document.getElementById('t-atc-btn').addEventListener('click',function(){
+    var btn=this;
+    btn.classList.add('loading');
+    btn.querySelector('#t-atc-label').textContent='Adding…';
+    /* Build cart payload — multi-item if BMS tier > 1 with per-item selections */
+    var cartBody;
+    if(selectedQty>1&&bmsItems.length===selectedQty){
+      /* Merge identical variants into qty */
+      var merged={};
+      bmsItems.forEach(function(item){
+        var id=item.varId||selectedVarId;
+        merged[id]=(merged[id]||0)+1;
+      });
+      var itemsArr=Object.keys(merged).map(function(id){return{id:parseInt(id),quantity:merged[id]};});
+      cartBody=JSON.stringify({items:itemsArr});
+    }else{
+      cartBody=JSON.stringify({id:selectedVarId,quantity:selectedQty});
+    }
+    fetch('/cart/add.js',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Requested-With':'XMLHttpRequest'},
+      body:cartBody
+    })
+    .then(function(r){return r.json();})
+    .then(function(data){
+      btn.classList.remove('loading');
+      if(data.status){
+        btn.querySelector('#t-atc-label').textContent=data.description||'Error — please try again';
+        setTimeout(function(){updatePriceDisplay();},2000);
+        return;
+      }
+      btn.classList.add('done');
+      btn.querySelector('#t-atc-label').textContent='✓ Added!';
+      openDrawerWithItem();
+      setTimeout(function(){btn.classList.remove('done');updatePriceDisplay();},2500);
+    })
+    .catch(function(){
+      btn.classList.remove('loading');
+      btn.querySelector('#t-atc-label').textContent='Error — please try again';
+      setTimeout(function(){updatePriceDisplay();},2000);
+    });
+  });
+
+  /* ── FAQ ACCORDION (collapsed by default) ── */
+  document.querySelectorAll('.t-faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var item=q.closest('.t-faq-item');
+      var isOpen=item.classList.contains('open');
+      /* Close all */
+      document.querySelectorAll('.t-faq-item').forEach(function(i){
+        i.classList.remove('open');
+        i.querySelector('.t-faq-q').setAttribute('aria-expanded','false');
+      });
+      /* Toggle current */
+      if(!isOpen){
+        item.classList.add('open');
+        q.setAttribute('aria-expanded','true');
+      }
+    });
+    q.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();q.click();}});
+  });
+
+  /* ── LIGHTBOX ── */
+  var lbImages = [
+    {%- for img in product_images limit: 7 -%}
+    {src:'{{ img | image_url: width: 1600 }}',alt:'{{ img.alt | escape | default: product.title | escape }}'}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ];
+  var lbIdx = 0;
+  var lbEl  = document.getElementById('tt360-lb');
+  var lbImg = document.getElementById('tt360-lb-img');
+
+  function lbOpen(idx){
+    if(!lbImages.length||!lbEl) return;
+    lbIdx = ((idx%lbImages.length)+lbImages.length)%lbImages.length;
+    lbImg.src = lbImages[lbIdx].src;
+    lbImg.alt = lbImages[lbIdx].alt;
+    lbEl.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function lbClose(){
+    if(lbEl) lbEl.classList.remove('open');
+    document.body.style.overflow='';
+  }
+  function lbNav(dir){ lbOpen(lbIdx+dir); }
+
+  var mainImgEl=document.getElementById('t-main-img');
+  if(mainImgEl){
+    mainImgEl.addEventListener('click',function(){ lbOpen(lbIdx); });
+  }
+
+  document.querySelectorAll('.t-thumb:not(.t-vid-thumb)').forEach(function(th,i){
+    th.addEventListener('click',function(){ lbIdx=i; });
+  });
+
+  if(lbEl){
+    document.getElementById('tt360-lb-close').addEventListener('click',lbClose);
+    document.getElementById('tt360-lb-prev').addEventListener('click',function(e){e.stopPropagation();lbNav(-1);});
+    document.getElementById('tt360-lb-next').addEventListener('click',function(e){e.stopPropagation();lbNav(1);});
+    lbEl.addEventListener('click',function(e){if(e.target===lbEl)lbClose();});
+    var lbTx=0;
+    lbEl.addEventListener('touchstart',function(e){lbTx=e.touches[0].clientX;},{passive:true});
+    lbEl.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-lbTx;if(Math.abs(dx)>50)lbNav(dx<0?1:-1);});
+  }
+  document.addEventListener('keydown',function(e){
+    if(!lbEl||!lbEl.classList.contains('open')) return;
+    if(e.key==='Escape') lbClose();
+    else if(e.key==='ArrowLeft') lbNav(-1);
+    else if(e.key==='ArrowRight') lbNav(1);
+  });
+
+  /* ── STICKY BAR (show after hero scrolls out) ── */
+  var sticky=document.getElementById('tt360-sticky-pdp');
+  var hero=document.querySelector('#tt360-pdp .t-hero');
+  if(sticky && hero && window.innerWidth<=768){
+    var obs=new IntersectionObserver(function(entries){
+      sticky.style.display=entries[0].isIntersecting?'none':'block';
+    },{threshold:0.1});
+    obs.observe(hero);
+  }
+
+  /* ── SHARE BUTTONS ── */
+  var shareUrl=window.location.href;
+  var shareTitle=document.title;
+  var waBtn=document.getElementById('t-share-wa');
+  if(waBtn){waBtn.href='https://wa.me/?text='+encodeURIComponent(shareTitle+' '+shareUrl);waBtn.target='_blank';}
+  var copyBtn=document.getElementById('t-share-copy');
+  if(copyBtn){copyBtn.addEventListener('click',function(){navigator.clipboard.writeText(shareUrl).then(function(){copyBtn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!';copyBtn.classList.add('done');setTimeout(function(){copyBtn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Link';copyBtn.classList.remove('done');},2000);});});}
+  var nativeBtn=document.getElementById('t-share-native');
+  if(nativeBtn && navigator.share){nativeBtn.style.display='inline-flex';nativeBtn.addEventListener('click',function(){navigator.share({title:shareTitle,url:shareUrl}).catch(function(){});});}
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "TT360 Product Page",
+  "tag": "section",
+  "max_blocks": 80,
+  "settings": [
+    { "type": "header", "content": "SEO" },
+    { "type": "text", "id": "seo_title", "label": "SEO Title (overrides product title)" },
+    { "type": "text", "id": "seo_h1", "label": "Custom H1 (overrides product title)", "info": "Leave blank to use product title" },
+    { "type": "text", "id": "seo_eyebrow", "label": "Hero Eyebrow (above H1)", "info": "Short outcome hook, e.g. Never Take Meeting Notes Again." },
+    { "type": "richtext", "id": "seo_subhead", "label": "Hero Subheadline (below H1)", "info": "Transformation promise — who it's for, what it replaces, what it enables." },
+    { "type": "text", "id": "cta2_text", "label": "Secondary CTA (Watch Demo)", "info": "Scrolls to video. Leave blank to hide." },
+    { "type": "text", "id": "cta3_text", "label": "Tertiary CTA (vs Phone)", "info": "Scrolls to 2nd content section. Leave blank to hide." },
+    { "type": "text", "id": "hero_alt", "label": "Hero Image Alt Text", "info": "SEO alt text for all product images. Leave blank for auto-generated." },
+    { "type": "textarea", "id": "seo_description", "label": "Meta Description" },
+    { "type": "text", "id": "collection_handle", "label": "Parent Collection Handle", "default": "kids-collection-uae" },
+    { "type": "text", "id": "collection_name", "label": "Parent Collection Name", "default": "Kids Collection" },
+    { "type": "header", "content": "CRO — Scarcity & Value" },
+    { "type": "text", "id": "scarcity_text", "label": "Scarcity Text", "info": "e.g. Only 23 left in Dubai warehouse — 8 people viewing now" },
+    { "type": "text", "id": "per_use_text", "label": "Value-Per-Use Text", "info": "e.g. Less than Dhs. 5 per month" },
+    { "type": "header", "content": "Enhanced Trust Badges" },
+    { "type": "text", "id": "enhanced_trust_1", "label": "Trust Badge 1", "info": "e.g. Dubai Authority Approved" },
+    { "type": "text", "id": "enhanced_trust_2", "label": "Trust Badge 2" },
+    { "type": "text", "id": "enhanced_trust_3", "label": "Trust Badge 3" },
+    { "type": "header", "content": "Benefit Strip Icons" },
+    { "type": "text", "id": "ben_icon_1", "label": "Icon 1", "default": "🚚" },
+    { "type": "text", "id": "ben_txt_1", "label": "Text 1", "default": "Free Ship" },
+    { "type": "text", "id": "ben_icon_2", "label": "Icon 2", "default": "💵" },
+    { "type": "text", "id": "ben_txt_2", "label": "Text 2", "default": "COD" },
+    { "type": "text", "id": "ben_icon_3", "label": "Icon 3", "default": "🔄" },
+    { "type": "text", "id": "ben_txt_3", "label": "Text 3", "default": "Returns" },
+    { "type": "text", "id": "ben_icon_4", "label": "Icon 4", "default": "🔒" },
+    { "type": "text", "id": "ben_txt_4", "label": "Text 4", "default": "Secure" },
+    { "type": "text", "id": "ben_icon_5", "label": "Icon 5", "info": "Leave blank to show 4 icons" },
+    { "type": "text", "id": "ben_txt_5", "label": "Text 5" },
+    { "type": "header", "content": "Bundle Cross-Sell" },
+    { "type": "text", "id": "bundle_handle", "label": "Bundle Product Handle", "info": "Leave blank to hide" },
+    { "type": "text", "id": "bundle_title", "label": "Bundle Title", "default": "🎁 Complete Your Setup" },
+    { "type": "textarea", "id": "bundle_sub", "label": "Bundle Subtitle" },
+    { "type": "text", "id": "bundle_btn", "label": "Button Text", "default": "See Bundle" },
+    { "type": "header", "content": "Bulk Order CTA" },
+    { "type": "text", "id": "bulk_cta_text", "label": "Bulk CTA Label", "info": "e.g. 📦 Ordering for your team?" },
+    { "type": "text", "id": "bulk_cta_url", "label": "Bulk CTA Link URL" },
+    { "type": "text", "id": "bulk_cta_link_text", "label": "Bulk CTA Link Text", "default": "Contact us" },
+    { "type": "header", "content": "Objection Crushers Section" },
+    { "type": "text", "id": "objection_lbl", "label": "Label", "default": "Common Questions" },
+    { "type": "text", "id": "objection_title", "label": "Heading", "default": "Every Parent Asks — Here Are the Answers" },
+    { "type": "textarea", "id": "objection_sub", "label": "Subheading", "default": "We've heard these questions from thousands of UAE parents. Here's what they discovered." },
+    { "type": "header", "content": "Comparison Table" },
+    { "type": "text", "id": "compare_lbl", "label": "Label", "default": "See How It Stacks Up" },
+    { "type": "text", "id": "compare_title", "label": "Heading", "default": "How It Compares" },
+    { "type": "textarea", "id": "compare_sub", "label": "Subheading", "default": "Better value. Faster delivery." },
+    { "type": "text", "id": "compare_col1", "label": "Our Column Name", "info": "Leave blank to use product title" },
+    { "type": "text", "id": "compare_col2", "label": "Competitor A Name", "default": "Competitor A" },
+    { "type": "text", "id": "compare_col3", "label": "Competitor B Name", "default": "Competitor B" },
+    { "type": "text", "id": "compare_cta", "label": "Comparison CTA Button Text", "info": "Leave blank to hide" },
+    { "type": "header", "content": "Use Cases Section" },
+    { "type": "text", "id": "usecase_lbl", "label": "Label", "default": "Who It Is For" },
+    { "type": "text", "id": "usecase_title", "label": "Heading", "default": "Perfect For" },
+    { "type": "textarea", "id": "usecase_sub", "label": "Subheading" },
+    { "type": "header", "content": "Age Guide Section" },
+    { "type": "text", "id": "age_lbl", "label": "Label", "default": "Age Guide" },
+    { "type": "text", "id": "age_title", "label": "Heading", "default": "Right for Your Child" },
+    { "type": "textarea", "id": "age_sub", "label": "Subheading" },
+    { "type": "header", "content": "Upsell Grid Section" },
+    { "type": "text", "id": "upsell_grid_title", "label": "Heading", "default": "Complete the Set" },
+    { "type": "textarea", "id": "upsell_grid_sub", "label": "Subheading" },
+    { "type": "text", "id": "upsell_grid_cta", "label": "Bundle CTA Text", "info": "e.g. Get the Complete Bundle — Save Dhs. 35" },
+    { "type": "text", "id": "upsell_grid_cta_url", "label": "Bundle CTA URL" },
+    { "type": "header", "content": "HowTo Schema" },
+    { "type": "checkbox", "id": "howto_schema_enable", "label": "Enable HowTo Schema", "default": false },
+    { "type": "text", "id": "howto_name", "label": "HowTo Name", "info": "Leave blank for auto" },
+    { "type": "textarea", "id": "howto_desc", "label": "HowTo Description" },
+    { "type": "text", "id": "howto_time", "label": "Total Time (ISO 8601)", "default": "PT2M" },
+    { "type": "header", "content": "Audience (Schema)" },
+    { "type": "text", "id": "audience_min_age", "label": "Min Age", "default": "2", "info": "Leave blank to omit audience schema" },
+    { "type": "text", "id": "audience_max_age", "label": "Max Age", "default": "12" },
+    { "type": "header", "content": "Announcement Bar" },
+    { "type": "checkbox", "id": "ann_enable", "label": "Show Announcement Bar", "default": true },
+    { "type": "text", "id": "ann_text", "label": "Announcement Text", "default": "🚚 Free Next Day Delivery across UAE &nbsp;|&nbsp; 💵 Cash on Delivery &nbsp;|&nbsp; 🔄 14-Day Returns &nbsp;|&nbsp; Order before 8:00 PM" },
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "hero_badge2", "label": "Hero Badge (top right)", "default": "🏆 Rated 4.8/5 by UAE Parents" },
+    { "type": "textarea", "id": "hero_subtext", "label": "Hero Subtext (problem-agitation below badge)", "info": "Pain-point hook for cold traffic. Shown below H1 on mobile, near badge on desktop. Leave blank to hide." },
+    { "type": "checkbox", "id": "show_sold_out", "label": "Show sold out variants", "default": false },
+    { "type": "header", "content": "Social Proof Strip" },
+    { "type": "text", "id": "rating_value", "label": "Rating Value", "default": "4.9" },
+    { "type": "text", "id": "proof_lbl_rating", "label": "Rating Label", "default": "Average rating" },
+    { "type": "text", "id": "review_count", "label": "Review Count", "default": "200" },
+    { "type": "text", "id": "review_label", "label": "Review Label", "default": "Verified UAE reviews" },
+    { "type": "text", "id": "proof_num_delivery", "label": "Delivery Stat", "default": "Next Day" },
+    { "type": "text", "id": "proof_lbl_shipping", "label": "Delivery Label", "default": "Delivery across UAE" },
+    { "type": "text", "id": "proof_lbl_free", "label": "Price label (no compare price)", "default": "Free next-day delivery" },
+    { "type": "header", "content": "Add to Cart" },
+    { "type": "text", "id": "guarantee_text", "label": "Guarantee Line (above ATC)", "default": "14-Day Satisfaction Guarantee — love it or full refund, no questions asked", "info": "Risk reversal copy shown directly above the Add to Cart button. Leave blank to hide." },
+    { "type": "text", "id": "hesitator_text", "label": "Hesitator CTA (below trust badges)", "default": "Still deciding? See what UAE customers say →", "info": "Secondary CTA link for hesitators — scrolls to reviews. Leave blank to hide." },
+    { "type": "text", "id": "atc_text", "label": "Add to Cart Button Text", "default": "Add to Cart" },
+    { "type": "text", "id": "sticky_text", "label": "Sticky Bar Button Text", "default": "Add to Cart" },
+    { "type": "header", "content": "Content Sections" },
+    { "type": "checkbox", "id": "content_sections_enable", "label": "Show rich content sections below product", "default": false },
+    { "type": "header", "content": "Buy More & Save" },
+    { "type": "checkbox", "id": "bms_enable", "label": "Enable Buy More & Save", "default": true },
+    { "type": "checkbox", "id": "bms_stepper", "label": "Use qty stepper instead of tier cards", "default": false },
+    { "type": "number", "id": "bms_qty2", "label": "Tier 2 Quantity", "default": 2 },
+    { "type": "number", "id": "bms_disc2", "label": "Tier 2 Discount %", "default": 5 },
+    { "type": "number", "id": "bms_qty3", "label": "Tier 3 Quantity", "default": 3 },
+    { "type": "number", "id": "bms_disc3", "label": "Tier 3 Discount %", "default": 0 },
+    { "type": "paragraph", "content": "Fixed AED prices (recommended — overrides % discounts above):" },
+    { "type": "number", "id": "bms_orig_price", "label": "Original price AED per unit (for savings calc)", "default": 0 },
+    { "type": "number", "id": "bms_price1", "label": "Tier 1 fixed price AED (buy 1)", "default": 0 },
+    { "type": "number", "id": "bms_price2", "label": "Tier 2 fixed total price AED", "default": 0 },
+    { "type": "number", "id": "bms_price3", "label": "Tier 3 fixed total price AED", "default": 0 },
+    { "type": "number", "id": "bms_qty4", "label": "Tier 4 Quantity (0 = hidden)", "default": 0 },
+    { "type": "number", "id": "bms_price4", "label": "Tier 4 fixed total price AED (0 = hidden)", "default": 0 },
+    { "type": "text", "id": "bms_tag2", "label": "Tier 2 Tag Label", "default": "POPULAR", "info": "e.g. Save AED 20" },
+    { "type": "text", "id": "bms_tag3", "label": "Tier 3 Tag Label", "default": "SAVE MORE", "info": "e.g. Best Value — Save AED 50" },
+    { "type": "text", "id": "bms_tag4", "label": "Tier 4 Tag Label", "default": "BEST VALUE" },
+    { "type": "paragraph", "content": "⚠️ Set up matching Shopify automatic discounts in Admin → Discounts for the savings to apply at checkout." },
+    { "type": "header", "content": "Features Section" },
+    { "type": "text", "id": "feat_lbl", "label": "Label", "default": "Why UAE Families Love It" },
+    { "type": "text", "id": "feat_title", "label": "Heading", "default": "5 Reasons Every Parent Says Yes" },
+    { "type": "textarea", "id": "feat_sub", "label": "Subheading", "default": "Screen-free, teacher-approved, and kids actually want to use it every day." },
+    { "type": "header", "content": "STEM Skills Section" },
+    { "type": "text", "id": "skills_lbl", "label": "Label", "default": "Real Learning" },
+    { "type": "text", "id": "skills_title", "label": "Heading", "default": "What Your Child Will Learn" },
+    { "type": "textarea", "id": "skills_sub", "label": "Subheading" },
+    { "type": "header", "content": "How It Works Section" },
+    { "type": "text", "id": "steps_lbl", "label": "Label", "default": "Simple to Start" },
+    { "type": "text", "id": "steps_title", "label": "Heading", "default": "How It Works" },
+    { "type": "textarea", "id": "steps_sub", "label": "Subheading", "default": "Ready in under 2 minutes — no manual needed." },
+    { "type": "header", "content": "Video Section" },
+    { "type": "checkbox", "id": "video_enable", "label": "Show Video Section", "default": true },
+    { "type": "text", "id": "hero_video_cta", "label": "Hero Video Link Text", "info": "Shows a 'Watch It Draw' link near the H1 that scrolls to the video. Leave blank to hide." },
+    { "type": "text", "id": "section_video", "label": "Video URL", "info": "Paste any YouTube link (including Shorts), Vimeo link, or youtu.be short link. Or upload a video to the product in Admin → Products → Media — it appears automatically." },
+    { "type": "text", "id": "video_lbl", "label": "Label", "default": "See It in Action" },
+    { "type": "text", "id": "video_title", "label": "Heading", "default": "Watch the Drawing Robot in Action" },
+    { "type": "textarea", "id": "video_sub", "label": "Subheading", "default": "100+ templates, step-by-step guidance, zero screen time." },
+    { "type": "text", "id": "video_placeholder", "label": "Placeholder Text (shown until video is uploaded)", "default": "Product video coming soon — check back shortly." },
+    { "type": "header", "content": "Reviews Section" },
+    { "type": "text", "id": "rev_lbl", "label": "Label", "default": "Real UAE Parents" },
+    { "type": "text", "id": "rev_title", "label": "Heading", "default": "What Parents Are Saying" },
+    { "type": "textarea", "id": "rev_sub", "label": "Subheading", "default": "200+ verified reviews from UAE families." },
+    { "type": "header", "content": "FAQ Section" },
+    { "type": "text", "id": "faq_lbl", "label": "Label", "default": "Got Questions?" },
+    { "type": "text", "id": "faq_title", "label": "Heading", "default": "Frequently Asked Questions" },
+    { "type": "header", "content": "Internal Links Section" },
+    { "type": "text", "id": "ilinks_title", "label": "Heading", "default": "Shop More at TipTop360" },
+    { "type": "header", "content": "Gift Box Widget" },
+    { "type": "text", "id": "gift_bag_handle", "label": "Gift Box Product Handle", "default": "gift-wrap-1", "info": "Exact product handle from Shopify Admin → Products" },
+    { "type": "text", "id": "gift_bag_title", "label": "Gift Box Title", "default": "🎁 Add Gift Box" },
+    { "type": "text", "id": "gift_bag_sub", "label": "Gift Box Subtitle", "default": "make it special" },
+    { "type": "text", "id": "gift_bag_btn", "label": "Gift Box Button Text", "default": "+ Add" },
+    { "type": "text", "id": "gift_bag_price", "label": "Gift Box Price (AED)", "default": "9" },
+    { "type": "text", "id": "upsell_1", "label": "Upsell Product Handle 1", "info": "e.g. kids-drawing-robot" },
+    { "type": "text", "id": "upsell_2", "label": "Upsell Product Handle 2" },
+    { "type": "text", "id": "upsell_3", "label": "Upsell Product Handle 3" },
+    { "type": "header", "content": "Final CTA" },
+    { "type": "text", "id": "cta_lbl", "label": "Label", "default": "Limited Time Offer" },
+    { "type": "text", "id": "cta_title", "label": "Heading", "default": "Give Your Child the Gift of Screen-Free Creativity" },
+    { "type": "textarea", "id": "cta_sub", "label": "Subheading", "default": "AED 299 — was AED 450. Free next-day delivery. Cash on delivery. 14-day returns." },
+    { "type": "text", "id": "cta_btn", "label": "Button Text", "default": "Add to Cart" },
+    { "type": "text", "id": "cta_trust_1", "label": "Trust Item 1", "default": "📦 Free Next Day Delivery" },
+    { "type": "text", "id": "cta_trust_2", "label": "Trust Item 2", "default": "💵 Cash on Delivery" },
+    { "type": "text", "id": "cta_trust_3", "label": "Trust Item 3", "default": "🔄 14-Day Returns" },
+    { "type": "text", "id": "cta_trust_4", "label": "Trust Item 4", "default": "🔒 Secure Checkout" }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge Chip",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Badge Text", "default": "✅ Certified Safe" },
+        { "type": "select", "id": "style", "label": "Style", "default": "green",
+          "options": [
+            { "value": "green", "label": "Green" },
+            { "value": "orange", "label": "Orange" },
+            { "value": "navy", "label": "Navy" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "highlight",
+      "name": "Product Highlight",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "🎨" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Key Feature" },
+        { "type": "textarea", "id": "desc", "label": "Description", "default": "Short benefit description here." }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "Trust Icon",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "📦" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Free Delivery" }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Feature Card",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "⭐" },
+        { "type": "text", "id": "title", "label": "Feature Title", "default": "Feature Name" },
+        { "type": "textarea", "id": "desc", "label": "Feature Description", "default": "Why this matters to the buyer." }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "How It Works Step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Step Title", "default": "Step Title" },
+        { "type": "textarea", "id": "desc", "label": "Step Description", "default": "What happens in this step." }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Customer Review",
+      "settings": [
+        { "type": "range", "id": "stars", "label": "Star Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Review Text", "default": "This product is amazing — my child loves it!" },
+        { "type": "text", "id": "name", "label": "Reviewer Name", "default": "Fatima A." },
+        { "type": "text", "id": "location", "label": "City · Product", "default": "Dubai · Drawing Robot" },
+        { "type": "color", "id": "avatar_color", "label": "Avatar Colour", "default": "#1A3557" },
+        { "type": "checkbox", "id": "verified", "label": "Show Verified Badge", "default": true }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Is this suitable for young children?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Yes, designed for ages 4 and up with full adult supervision for ages 3–4.</p>" }
+      ]
+    },
+    {
+      "type": "spec",
+      "name": "Product Spec (Schema)",
+      "settings": [
+        { "type": "text", "id": "spec_name", "label": "Spec Name", "default": "Material" },
+        { "type": "text", "id": "spec_value", "label": "Spec Value", "default": "Food-Grade Silicone" }
+      ]
+    },
+    {
+      "type": "compare_row",
+      "name": "Comparison Row",
+      "settings": [
+        { "type": "text", "id": "feature", "label": "Feature Name", "default": "Feature" },
+        { "type": "text", "id": "us", "label": "Our Value", "default": "✓ Yes" },
+        { "type": "text", "id": "comp_a", "label": "Competitor A Value", "default": "✗ No" },
+        { "type": "text", "id": "comp_b", "label": "Competitor B Value", "default": "✗ No" },
+        { "type": "checkbox", "id": "win", "label": "Highlight as winning", "default": true },
+        { "type": "checkbox", "id": "comp_a_bad", "label": "Competitor A negative style", "default": false },
+        { "type": "checkbox", "id": "comp_b_bad", "label": "Competitor B negative style", "default": false }
+      ]
+    },
+    {
+      "type": "usecase",
+      "name": "Use Case Card",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "🎯" },
+        { "type": "text", "id": "title", "label": "Title", "default": "For Parents" },
+        { "type": "textarea", "id": "desc", "label": "Description", "default": "Description of the use case." }
+      ]
+    },
+    {
+      "type": "content_section",
+      "name": "Rich Content Section",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label (small text above heading)" },
+        { "type": "text", "id": "heading", "label": "Section Heading" },
+        { "type": "textarea", "id": "subheading", "label": "Subheading" },
+        { "type": "richtext", "id": "body", "label": "Body Content (HTML)" },
+        { "type": "checkbox", "id": "alt_bg", "label": "Alternate background", "default": false }
+      ]
+    },
+    {
+      "type": "upsell_card",
+      "name": "Upsell Product Card",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "📦" },
+        { "type": "text", "id": "title", "label": "Product Name", "default": "Product Name" },
+        { "type": "text", "id": "price_text", "label": "Price / CTA Text", "default": "Dhs. 25" },
+        { "type": "text", "id": "url", "label": "Product URL", "info": "e.g. /products/product-handle" },
+        { "type": "checkbox", "id": "highlight", "label": "Green highlight text", "default": false }
+      ]
+    },
+    {
+      "type": "objection",
+      "name": "Objection Crusher",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "🛡️" },
+        { "type": "text", "id": "question", "label": "Parent Objection", "default": "Is it safe for my child?", "info": "The doubt in the parent's mind" },
+        { "type": "text", "id": "answer", "label": "Crusher Answer", "default": "FDA-approved food-grade silicone — same material as baby bottle teats", "info": "Short, confident answer that eliminates the doubt" }
+      ]
+    },
+    {
+      "type": "internal_link",
+      "name": "Internal Link Pill",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Link Label", "default": "Kids Art Supplies UAE" },
+        { "type": "url", "id": "url", "label": "Link URL" }
+      ]
+    },
+    {
+      "type": "skill",
+      "name": "STEM Skill",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "🎯" },
+        { "type": "text", "id": "title", "label": "Skill Name" },
+        { "type": "textarea", "id": "desc", "label": "Skill Description" }
+      ]
+    },
+    {
+      "type": "age_card",
+      "name": "Age Guide Card",
+      "settings": [
+        { "type": "text", "id": "badge", "label": "Age Badge", "default": "Ages 4–6" },
+        { "type": "color", "id": "color", "label": "Badge Colour", "default": "#F46A1A" },
+        { "type": "text", "id": "title", "label": "Card Title", "default": "Little Learners" },
+        { "type": "textarea", "id": "subtitle", "label": "Card Subtitle" },
+        { "type": "textarea", "id": "benefits", "label": "Benefits (pipe-separated)", "info": "Separate items with | e.g. Benefit one|Benefit two|Benefit three" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TT360 Product Page",
+      "blocks": [
+        { "type": "badge", "settings": { "text": "✅ UAE Safety Certified", "style": "green" } },
+        { "type": "badge", "settings": { "text": "🎨 100+ Templates", "style": "orange" } },
+        { "type": "badge", "settings": { "text": "📵 Screen-Free", "style": "navy" } },
+        { "type": "trust", "settings": { "icon": "📦", "label": "Free Next Day Delivery" } },
+        { "type": "trust", "settings": { "icon": "💵", "label": "Cash on Delivery" } },
+        { "type": "trust", "settings": { "icon": "🔄", "label": "14-Day Returns" } },
+        { "type": "trust", "settings": { "icon": "🔒", "label": "Secure Checkout" } },
+        { "type": "highlight", "settings": { "icon": "🗂️", "title": "100+ Drawing Templates", "desc": "Progressive difficulty — animals, objects, shapes & more. Never boring." } },
+        { "type": "highlight", "settings": { "icon": "📵", "title": "Zero Screen Time Required", "desc": "No Wi-Fi, no apps, no subscriptions — just hands-on creative play." } },
+        { "type": "highlight", "settings": { "icon": "🔋", "title": "4–5 Hour Battery · USB Rechargeable", "desc": "Charge once, play all day — no AA batteries needed." } },
+        { "type": "highlight", "settings": { "icon": "🛡️", "title": "Non-Toxic · BPA-Free · Safety Certified", "desc": "UAE safety certified — non-toxic, BPA-free, safe for children from age 4." } },
+        { "type": "feature", "settings": { "icon": "🗂️", "title": "100+ Drawing Templates", "desc": "Progressive difficulty — never boring." } },
+        { "type": "feature", "settings": { "icon": "📵", "title": "Zero Screen Time", "desc": "No Wi-Fi, no apps, no subscriptions." } },
+        { "type": "feature", "settings": { "icon": "🎯", "title": "Builds Real Skills", "desc": "Fine motor, focus & artistic confidence." } },
+        { "type": "feature", "settings": { "icon": "🔋", "title": "4–5hr Rechargeable", "desc": "USB charge — no AA batteries needed." } },
+        { "type": "feature", "settings": { "icon": "🛡️", "title": "UAE Safety Certified", "desc": "Non-toxic, BPA-free, independently certified." } },
+        { "type": "step", "settings": { "title": "Choose a Template", "desc": "Insert paper and pick one of 100+ pre-loaded drawing cards." } },
+        { "type": "step", "settings": { "title": "Robot Guides the Way", "desc": "The robot draws step-by-step outlines for your child to follow." } },
+        { "type": "step", "settings": { "title": "Kids Trace & Colour", "desc": "They trace the outlines and finish with confidence." } },
+        { "type": "step", "settings": { "title": "Repeat & Level Up", "desc": "New designs every time — animals, objects, shapes & more." } },
+        { "type": "review", "settings": { "stars": 5, "text": "My 6-year-old uses it every afternoon — it replaced 2 hours of tablet time completely. She's getting so good at drawing.", "name": "Fatima A.", "location": "Dubai · Drawing Robot", "avatar_color": "#667eea", "verified": true } },
+        { "type": "review", "settings": { "stars": 5, "text": "As a homeschooling mom this has been a lifesaver. My son stays focused for 45 minutes without me asking. Delivery was next day!", "name": "Sara K.", "location": "Abu Dhabi · Drawing Robot", "avatar_color": "#f093fb", "verified": true } },
+        { "type": "review", "settings": { "stars": 5, "text": "Got it as an Eid gift for my nephew. He absolutely loves it. Very well made, feels premium and the COD option made it so easy.", "name": "Mohammad R.", "location": "Sharjah · Drawing Robot", "avatar_color": "#4facfe", "verified": true } },
+        { "type": "faq", "settings": { "question": "Is this drawing robot easy for young kids to use?", "answer": "<p>Yes, designed for ages 4+. Children simply insert a template and follow the guided lines — no reading required. Ages 3–4 can use it with adult supervision.</p>" } },
+        { "type": "faq", "settings": { "question": "Does it require Wi-Fi or apps?", "answer": "<p>No Wi-Fi, no apps, no subscriptions — ever. The rechargeable battery offers extended playtime and charges via the included USB cable.</p>" } },
+        { "type": "faq", "settings": { "question": "How long does the battery last?", "answer": "<p>Up to 4–5 hours of continuous use. It comes with a USB charging cable and recharges quickly, so creativity never has to pause!</p>" } },
+        { "type": "faq", "settings": { "question": "Can my child use regular pens or markers?", "answer": "<p>Yes — the included pen works best, but most standard markers or crayons are compatible. Our Drawing Markers are specifically designed to pair perfectly.</p>" } },
+        { "type": "faq", "settings": { "question": "Do you deliver to Abu Dhabi, Sharjah & other emirates?", "answer": "<p>Yes! TipTop360 delivers free to all UAE emirates — Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah & Umm Al Quwain. Cash on Delivery available everywhere.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
