@@ -1,0 +1,635 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360-product-body": {
+      "type": "tt360-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "text": "✅ UAE Safety Certified",
+            "style": "green"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "text": "🎨 100+ Templates",
+            "style": "orange"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "text": "📵 Screen-Free",
+            "style": "navy"
+          }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": {
+            "icon": "📦",
+            "label": "Free Next Day Delivery"
+          }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": {
+            "icon": "💵",
+            "label": "Cash on Delivery"
+          }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔄",
+            "label": "14-Day Returns"
+          }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔒",
+            "label": "Secure Checkout"
+          }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🗂️",
+            "title": "100+ Drawing Templates",
+            "desc": "Progressive difficulty — animals, objects, shapes & more. Never boring."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "📵",
+            "title": "Zero Screen Time Required",
+            "desc": "No Wi-Fi, no apps, no subscriptions — just hands-on creative play."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🔋",
+            "title": "4–5 Hour Battery · USB Rechargeable",
+            "desc": "Charge once, play all day — no AA batteries needed."
+          }
+        },
+        "hl_4": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🧠",
+            "title": "Why You’ll Love It",
+            "desc": "Creative Confidence Builder, Skill-Building That Feels Like Play, Screen-Free, Stress-Free Fun"
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🗂️",
+            "title": "100+ Drawing Templates",
+            "desc": "Progressive difficulty — never boring."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "📵",
+            "title": "Zero Screen Time",
+            "desc": "No Wi-Fi, no apps, no subscriptions."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎯",
+            "title": "Builds Real Skills",
+            "desc": "Fine motor, focus & artistic confidence."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "🔋",
+            "title": "4–5hr Rechargeable",
+            "desc": "USB charge — no AA batteries needed."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "🛡️",
+            "title": "UAE Safety Certified",
+            "desc": "Non-toxic, BPA-free, independently certified."
+          }
+        },
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Choose a Template",
+            "desc": "Insert paper and pick one of 100+ pre-loaded drawing cards."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Robot Guides the Way",
+            "desc": "The robot draws step-by-step outlines for your child to follow."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Kids Trace & Colour",
+            "desc": "They trace the outlines and finish with confidence."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "Repeat & Level Up",
+            "desc": "New designs every time — animals, objects, shapes & more."
+          }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "My 6-year-old uses it every afternoon — it replaced 2 hours of tablet time completely. She's getting so good at drawing.",
+            "name": "Fatima A.",
+            "location": "Dubai · Drawing Robot",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "As a homeschooling mom this has been a lifesaver. My son stays focused for 45 minutes without me asking. Delivery was next day!",
+            "name": "Sara K.",
+            "location": "Abu Dhabi · Drawing Robot",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Got it as an Eid gift for my nephew. He absolutely loves it. Very well made, feels premium and the COD option made it so easy.",
+            "name": "Mohammad R.",
+            "location": "Sharjah · Drawing Robot",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Is this drawing robot easy for young kids to use?",
+            "answer": "<p>Yes, designed for ages 4+. Children simply insert a template and follow the guided lines — no reading required. Ages 3–4 can use it with adult supervision.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Does it require Wi-Fi or apps?",
+            "answer": "<p>No Wi-Fi, no apps, no subscriptions — ever. The rechargeable battery charges via the included USB cable.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does the battery last?",
+            "answer": "<p>Up to 4–5 hours of continuous use. Recharges quickly so creativity never has to pause!</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Can my child use regular pens or markers?",
+            "answer": "<p>Yes — the included pen works best, but most standard markers or crayons are compatible.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to Abu Dhabi, Sharjah & other emirates?",
+            "answer": "<p>Yes! Free delivery to all UAE emirates. Cash on Delivery available everywhere.</p>"
+          }
+        },
+        "usecase_1": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🎨",
+            "title": "After-School Creative Time",
+            "desc": "Replaces 2 hours of tablet time with hands-on drawing practice — kids beg to use it daily."
+          }
+        },
+        "usecase_2": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🎁",
+            "title": "Eid & Birthday Gifts",
+            "desc": "The wow-factor STEM gift every UAE parent is looking for. Premium box, screen-free, ages 4-10."
+          }
+        },
+        "usecase_3": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🏫",
+            "title": "Homeschool & Classroom",
+            "desc": "Teachers and homeschool parents use it for fine motor skill development and creative confidence."
+          }
+        },
+        "usecase_4": {
+          "type": "usecase",
+          "settings": {
+            "icon": "✈️",
+            "title": "Travel & Quiet Play",
+            "desc": "Compact, silent, battery-powered. Perfect for restaurants, flights, and waiting rooms across the UAE."
+          }
+        },
+        "content_1": {
+          "type": "content_section",
+          "settings": {
+            "label": "About This Product",
+            "heading": "UAE's Favourite STEM Drawing Robot for Kids",
+            "subheading": "",
+            "body": "<p>The Kids STEM Drawing Robot is a <strong>screen-free creative toy</strong> that teaches children to draw step by step — automatically. Insert one of <strong>100+ template cards</strong>, press the button, and watch the robot draw outlines for your child to trace and colour.</p><p>No Wi-Fi. No apps. No subscriptions. Just hands-on creative play that builds <strong>fine motor skills, focus, and artistic confidence</strong> in children aged 4 to 10.</p><p><strong>Designed for UAE families.</strong> Whether your child is drawing animals after school in Dubai, practising shapes at home in Abu Dhabi, or staying entertained at a family gathering in Sharjah — this robot turns any moment into creative time. Compact enough for travel and silent enough for restaurants.</p><p>The <strong>4–5 hour USB rechargeable battery</strong> means no disposable batteries and no mid-session shutdowns. One charge covers a full week of daily 30-minute drawing sessions.</p><p><strong>Safe and certified.</strong> Non-toxic, BPA-free materials with smooth rounded edges. Includes washable markers that come off skin, clothes, and most surfaces easily.</p><p>TipTop360 delivers <strong>free next day across all 7 UAE emirates</strong> — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available. 14-day hassle-free returns.</p>",
+            "alt_bg": true
+          }
+        },
+        "content_2": {
+          "type": "content_section",
+          "settings": {
+            "label": "Everything Included",
+            "heading": "What's in the Box",
+            "subheading": "",
+            "body": "<ul><li><strong>1x STEM Drawing Robot</strong> (Blue or Pink)</li><li><strong>100+ Drawing Template Cards</strong> — animals, shapes, objects, progressive difficulty</li><li><strong>12x Washable Colour Markers</strong> — non-toxic, washes off skin and clothes</li><li><strong>1x USB Charging Cable</strong></li><li><strong>1x Quick Start Guide</strong></li></ul><p><em>Works with standard A4 paper (not included). No batteries required — USB rechargeable.</em></p>",
+            "alt_bg": false
+          }
+        },
+        "skill_1": {
+          "type": "skill",
+          "settings": {
+            "icon": "✋",
+            "title": "Hand-Eye Coordination",
+            "desc": "Tracing guided lines builds precision control and spatial awareness."
+          }
+        },
+        "skill_2": {
+          "type": "skill",
+          "settings": {
+            "icon": "🔍",
+            "title": "Pattern Recognition",
+            "desc": "Identifying and reproducing shapes, animals, and objects from templates."
+          }
+        },
+        "skill_3": {
+          "type": "skill",
+          "settings": {
+            "icon": "🧩",
+            "title": "Sequential Thinking",
+            "desc": "Following step-by-step drawing instructions from start to finish."
+          }
+        },
+        "skill_4": {
+          "type": "skill",
+          "settings": {
+            "icon": "✏️",
+            "title": "Fine Motor Control",
+            "desc": "Gripping markers, colouring within lines, building pencil readiness."
+          }
+        },
+        "skill_5": {
+          "type": "skill",
+          "settings": {
+            "icon": "🎨",
+            "title": "Creative Expression",
+            "desc": "Personalizing each drawing with their own colours and style."
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Templates Included",
+            "spec_value": "100+ Drawing Cards"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Recommended Age",
+            "spec_value": "4-10 Years"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Battery Life",
+            "spec_value": "4–5 Hours USB Rechargeable"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Material",
+            "spec_value": "BPA-Free ABS Plastic"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Markers",
+            "spec_value": "Non-Toxic Washable Ink"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Kids Collection UAE",
+            "url": "/collections/kids-collection-uae"
+          }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Smoke Bubble Machine",
+            "url": "/products/smoke-bubble-machine"
+          }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Kids Chore Chart",
+            "url": "/products/kids-chore-chart-uae"
+          }
+        },
+        "age_1": {
+          "type": "age_card",
+          "settings": {
+            "badge": "Ages 4–6",
+            "color": "#F46A1A",
+            "title": "Little Learners",
+            "subtitle": "Simple shapes and guided tracing build early confidence and pencil-grip strength.",
+            "benefits": "Simple animal & shape templates|Builds pencil grip and hand strength|Step-by-step robot guidance — no reading needed|Parent-child bonding activity|Builds focus for 20–30 min sessions"
+          }
+        },
+        "age_2": {
+          "type": "age_card",
+          "settings": {
+            "badge": "Ages 7–10",
+            "color": "#12395E",
+            "title": "Creative Builders",
+            "subtitle": "Complex designs and independent play develop artistic skills and self-directed learning.",
+            "benefits": "Advanced multi-step drawings|Independent play — no supervision needed|Develops spatial awareness and proportion|Builds creative confidence for school art|45+ minute focused drawing sessions"
+          }
+        },
+        "cmp_1": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Screen Time",
+            "us": "Zero",
+            "comp_a": "2–4 hrs/day",
+            "comp_b": "None",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": false
+          }
+        },
+        "cmp_2": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Skill Building",
+            "us": "Motor skills, focus, creativity",
+            "comp_a": "Passive consumption",
+            "comp_b": "Limited to colouring",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": false
+          }
+        },
+        "cmp_3": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Guided Learning",
+            "us": "Robot draws step-by-step",
+            "comp_a": "App-dependent",
+            "comp_b": "No guidance",
+            "win": true,
+            "comp_a_bad": false,
+            "comp_b_bad": true
+          }
+        },
+        "cmp_4": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Independent Play",
+            "us": "45+ min without help",
+            "comp_a": "Needs monitoring",
+            "comp_b": "10–15 min max",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": true
+          }
+        },
+        "cmp_5": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Portability",
+            "us": "Compact, silent, no Wi-Fi",
+            "comp_a": "Needs Wi-Fi + charging",
+            "comp_b": "Paper mess",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": true
+          }
+        },
+        "cmp_6": {
+          "type": "compare_row",
+          "settings": {
+            "feature": "Total Cost",
+            "us": "AED 299 one-time",
+            "comp_a": "AED 1,500+ plus apps",
+            "comp_b": "Ongoing supply costs",
+            "win": true,
+            "comp_a_bad": true,
+            "comp_b_bad": true
+          }
+        },
+        "content_3": {
+          "type": "content_section",
+          "settings": {
+            "label": "Built to Last",
+            "heading": "Durability Kids Can't Break",
+            "subheading": "",
+            "body": "<p><strong>Premium ABS plastic</strong> with smooth rounded edges — designed to survive daily use by energetic children. No sharp corners, no small parts, no pinch points.</p><p>The <strong>USB rechargeable battery</strong> eliminates the cost and waste of disposable batteries. One charge delivers 4–5 hours of drawing time — enough for a full week of daily 30-minute sessions.</p><p><strong>Washable markers included</strong> — the 12 non-toxic colour markers wipe clean from skin, clothes, tables, and most surfaces. No permanent stains, no stress for parents.</p><p>The drawing mechanism is <strong>precision-engineered</strong> for smooth, consistent lines every time. Template cards are laminated for repeated use — they don't bend, tear, or wear out with regular handling.</p>",
+            "alt_bg": true
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "trust_1",
+        "trust_2",
+        "trust_3",
+        "trust_4",
+        "hl_1",
+        "hl_2",
+        "hl_3",
+        "hl_4",
+        "skill_1",
+        "skill_2",
+        "skill_3",
+        "skill_4",
+        "skill_5",
+        "feat_1",
+        "feat_2",
+        "feat_3",
+        "feat_4",
+        "feat_5",
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "cmp_1",
+        "cmp_2",
+        "cmp_3",
+        "cmp_4",
+        "cmp_5",
+        "cmp_6",
+        "usecase_1",
+        "usecase_2",
+        "usecase_3",
+        "usecase_4",
+        "age_1",
+        "age_2",
+        "content_1",
+        "content_2",
+        "content_3",
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "ilink_1",
+        "ilink_2",
+        "ilink_3"
+      ],
+      "settings": {
+        "seo_title": "",
+        "seo_description": "",
+        "collection_handle": "kids-collection-uae",
+        "collection_name": "Kids Collection",
+        "ann_enable": true,
+        "ann_text": "🚚 Free Next Day Delivery across UAE  |  💵 Cash on Delivery  |  🔄 14-Day Returns  |  Order before 8 PM",
+        "hero_badge2": "🏆 #1 in UAE",
+        "show_sold_out": false,
+        "rating_value": "4.9",
+        "proof_lbl_rating": "Average rating",
+        "review_count": "200",
+        "review_label": "UAE parent reviews",
+        "proof_num_delivery": "Next Day",
+        "proof_lbl_shipping": "Delivery across UAE",
+        "proof_lbl_free": "Free next-day delivery",
+        "atc_text": "Add to Cart",
+        "sticky_text": "Add to Cart",
+        "bms_enable": true,
+        "bms_qty2": 2,
+        "bms_qty3": 3,
+        "bms_orig_price": 450,
+        "bms_price1": 299,
+        "bms_price2": 540,
+        "bms_price3": 750,
+        "bms_disc2": 0,
+        "bms_disc3": 0,
+        "feat_lbl": "Why UAE Families Love It",
+        "feat_title": "5 Reasons Every Parent Says Yes",
+        "feat_sub": "Screen-free, teacher-approved, and kids actually want to use it every day.",
+        "skills_lbl": "Real Learning",
+        "skills_title": "5 STEM Skills Your Child Develops",
+        "skills_sub": "Every drawing session builds real skills — not just screen time replacement.",
+        "steps_lbl": "Simple to Start",
+        "steps_title": "How It Works",
+        "steps_sub": "Ready in under 2 minutes — no manual needed.",
+        "video_enable": true,
+        "hero_video_cta": "Watch It Draw",
+        "section_video": "https://youtube.com/shorts/PVQNo9B75P4?feature=share",
+        "video_lbl": "See It in Action",
+        "video_title": "Watch the Drawing Robot in Action",
+        "video_sub": "100+ templates, step-by-step guidance, zero screen time.",
+        "video_placeholder": "Product video coming soon — upload via Shopify Admin → Products → Media.",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "rev_sub": "200+ verified reviews from UAE families.",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "gift_bag_handle": "gift-wrap-1",
+        "gift_bag_title": "🎁 Add Gift Box",
+        "gift_bag_sub": "make it special",
+        "gift_bag_btn": "+ Add",
+        "gift_bag_price": "9",
+        "upsell_1": "smoke-bubble-machine",
+        "upsell_2": "kids-chore-chart-uae",
+        "upsell_3": "gift-wrap-1",
+        "cta_lbl": "Limited Time Offer",
+        "cta_title": "Give Your Child the Gift of Screen-Free Creativity",
+        "cta_sub": "AED 299 — was AED 450. Free next-day delivery. Cash on delivery. 14-day returns.",
+        "cta_btn": "Add to Cart",
+        "cta_trust_1": "📦 Free Next Day Delivery",
+        "cta_trust_2": "💵 Cash on Delivery",
+        "cta_trust_3": "🔄 14-Day Returns",
+        "cta_trust_4": "🔒 Secure Checkout",
+        "seo_h1": "Kids STEM Drawing Robot — Screen-Free Creative Toy in the UAE",
+        "seo_subhead": "<p>Builds fine motor skills, focus & creative confidence — ages 4 to 10</p>",
+        "hero_alt": "Kids STEM drawing robot teaching children to draw step by step — screen-free creative toy UAE — TipTop360",
+        "per_use_text": "Less than AED 1/day for a full year of creative play",
+        "scarcity_text": "89 sold this week in Dubai — Low stock",
+        "howto_schema_enable": true,
+        "howto_name": "How to Use the Kids STEM Drawing Robot",
+        "howto_desc": "Insert a template card, press start, and watch the robot draw step-by-step outlines for your child to trace and colour. Screen-free creative play for ages 4 and up.",
+        "howto_time": "PT2M",
+        "usecase_lbl": "Perfect For Every Child",
+        "usecase_title": "When Kids Love It Most",
+        "usecase_sub": "Screen-free creativity that keeps kids engaged for hours — no Wi-Fi, no apps, no mess.",
+        "ilinks_title": "Explore More at TipTop360",
+        "age_lbl": "Age Guide",
+        "age_title": "Right for Every Age",
+        "age_sub": "Designed to grow with your child — different benefits at every stage.",
+        "compare_lbl": "Screen Time vs Creative Time",
+        "compare_title": "How It Compares",
+        "compare_sub": "See why UAE parents choose the Drawing Robot over screens and colouring books.",
+        "compare_col1": "Drawing Robot",
+        "compare_col2": "Tablets & Phones",
+        "compare_col3": "Colouring Books",
+        "compare_cta": "Choose Screen-Free Creativity — AED 299"
+      }
+    }
+  },
+  "order": [
+    "tt360-product-body"
+  ]
+}
+

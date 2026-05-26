@@ -1,0 +1,118 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360-product-body": {
+      "type": "tt360-product-body",
+      "blocks": {
+        "badge_1": { "type": "badge", "settings": { "text": "✅ UAE Safety Certified", "style": "green" } },
+        "badge_2": { "type": "badge", "settings": { "text": "🦷 Complete Dental Bundle", "style": "orange" } },
+        "badge_3": { "type": "badge", "settings": { "text": "📵 Screen-Free Routine", "style": "navy" } },
+        "trust_1": { "type": "trust", "settings": { "icon": "📦", "label": "Free Next Day Delivery" } },
+        "trust_2": { "type": "trust", "settings": { "icon": "💵", "label": "Cash on Delivery" } },
+        "trust_3": { "type": "trust", "settings": { "icon": "🔄", "label": "14-Day Returns" } },
+        "trust_4": { "type": "trust", "settings": { "icon": "🔒", "label": "Secure Checkout" } },
+        "hl_1": { "type": "highlight", "settings": { "icon": "🦷", "title": "Complete Brushing Bundle", "desc": "U-shaped toothbrush + toothpaste + stickers — everything for a full dental routine in one box." } },
+        "hl_2": { "type": "highlight", "settings": { "icon": "📵", "title": "Zero Screen Time Required", "desc": "Builds healthy habits without screens — kids brush, rinse, and smile on their own." } },
+        "hl_3": { "type": "highlight", "settings": { "icon": "🎨", "title": "3 Colours · 2 Age Groups", "desc": "Choose Orange, Pink or Blue — sized right for ages 2–6 and 7–12." } },
+        "hl_4": { "type": "highlight", "settings": { "icon": "🛡️", "title": "Non-Toxic · Dubai Municipality Approved", "desc": "BPA-free, non-toxic — independently certified safe for kids." } },
+        "feat_1": { "type": "feature", "settings": { "icon": "🦷", "title": "Full Dental Bundle", "desc": "Brush + paste + stickers in one box." } },
+        "feat_2": { "type": "feature", "settings": { "icon": "🎯", "title": "Builds Real Habits", "desc": "Kids actually look forward to brushing." } },
+        "feat_3": { "type": "feature", "settings": { "icon": "🎨", "title": "3 Colours Available", "desc": "Orange, Pink, Blue — kids choose their favourite." } },
+        "feat_4": { "type": "feature", "settings": { "icon": "👶", "title": "2 Age Groups", "desc": "Sized for 2–6 and 7–12 year olds." } },
+        "feat_5": { "type": "feature", "settings": { "icon": "🛡️", "title": "UAE Safety Certified", "desc": "Non-toxic, BPA-free, Dubai Municipality approved." } },
+        "step_1": { "type": "step", "settings": { "title": "Choose Your Colour & Age", "desc": "Pick from Orange, Pink or Blue and select the right size for your child's age group." } },
+        "step_2": { "type": "step", "settings": { "title": "Brush for 2 Minutes", "desc": "The U-shaped design covers all teeth at once — front, back, and sides simultaneously." } },
+        "step_3": { "type": "step", "settings": { "title": "Apply the Toothpaste", "desc": "Use the included strawberry foam toothpaste — kids love the taste and ask to brush again." } },
+        "step_4": { "type": "step", "settings": { "title": "Reward with a Sticker", "desc": "Pop a brushing sticker on the chart — builds the habit with positive reinforcement." } },
+        "rev_1": { "type": "review", "settings": { "stars": 5, "text": "My daughter refused to brush until we got this bundle. Now she brushes twice a day without me asking. The pink colour was her pick — she loves it.", "name": "Noor A.", "location": "Dubai · Dental Bundle", "avatar_color": "#f093fb", "verified": true } },
+        "rev_2": { "type": "review", "settings": { "stars": 5, "text": "Bought two — one for each of my boys. The bundle has everything you need. Delivery was next morning. Absolutely recommend.", "name": "Khalid M.", "location": "Abu Dhabi · Dental Bundle", "avatar_color": "#4facfe", "verified": true } },
+        "rev_3": { "type": "review", "settings": { "stars": 5, "text": "The stickers and toothpaste make brushing fun. My 4-year-old thinks it's a game now. Best AED 150 I've spent.", "name": "Sara H.", "location": "Sharjah · Dental Bundle", "avatar_color": "#667eea", "verified": true } },
+        "faq_1": { "type": "faq", "settings": { "question": "What's included in the bundle?", "answer": "<p>The bundle includes: 1× U-shaped kids electric toothbrush, 1× strawberry foam toothpaste (50ml), and a brushing reward sticker chart — everything needed to start a daily dental routine.</p>" } },
+        "faq_2": { "type": "faq", "settings": { "question": "Which age group should I choose?", "answer": "<p><strong>2–6 years:</strong> Smaller head, softer bristles, gentler vibration. <strong>7–12 years:</strong> Slightly larger head sized for growing teeth, firmer bristles.</p>" } },
+        "faq_3": { "type": "faq", "settings": { "question": "Is the toothpaste safe to swallow?", "answer": "<p>Yes — the strawberry foam toothpaste is non-toxic and safe for children. It is fluoride-free and designed for kids who haven't yet mastered spitting.</p>" } },
+        "faq_4": { "type": "faq", "settings": { "question": "Is the toothbrush battery-powered?", "answer": "<p>Yes — it runs on a standard AA battery (included). The gentle vibration helps clean all surfaces of the teeth in just 2 minutes.</p>" } },
+        "faq_5": { "type": "faq", "settings": { "question": "Do you deliver to all UAE emirates?", "answer": "<p>Yes! Free next-day delivery across all UAE emirates including Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain. Cash on Delivery available everywhere.</p>" } }
+      },
+      "block_order": [
+        "badge_1", "badge_2", "badge_3",
+        "trust_1", "trust_2", "trust_3", "trust_4",
+        "hl_1", "hl_2", "hl_3", "hl_4",
+        "feat_1", "feat_2", "feat_3", "feat_4", "feat_5",
+        "step_1", "step_2", "step_3", "step_4",
+        "rev_1", "rev_2", "rev_3",
+        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5"
+      ],
+      "settings": {
+        "seo_title": "Kids Dental Bundle UAE — U-Shaped Brush + Toothpaste + Stickers | TipTop360",
+        "seo_description": "Complete kids dental bundle: U-shaped electric toothbrush, strawberry foam toothpaste & reward sticker chart. 3 colours, 2 age groups. Free next-day UAE delivery.",
+        "collection_handle": "kids-collection-uae",
+        "collection_name": "Kids Collection",
+        "ann_enable": true,
+        "ann_text": "🚚 Free Next Day Delivery across UAE  |  💵 Cash on Delivery  |  🔄 14-Day Returns  |  Order before 8 PM",
+        "hero_badge2": "🏆 #1 Bundle in UAE",
+        "show_sold_out": false,
+        "rating_value": "4.9",
+        "proof_lbl_rating": "Average rating",
+        "review_count": "150",
+        "review_label": "UAE parent reviews",
+        "proof_num_delivery": "Next Day",
+        "proof_lbl_shipping": "Delivery across UAE",
+        "proof_lbl_free": "Free next-day delivery",
+        "atc_text": "Add to Cart",
+        "sticky_text": "Add to Cart",
+        "bms_enable": true,
+        "bms_stepper": true,
+        "bms_qty2": 2,
+        "bms_qty3": 3,
+        "bms_orig_price": 307,
+        "bms_price1": 150,
+        "bms_price2": 280,
+        "bms_price3": 399,
+        "bms_disc2": 0,
+        "bms_disc3": 0,
+        "feat_lbl": "Why UAE Families Love It",
+        "feat_title": "5 Reasons Every Parent Says Yes",
+        "feat_sub": "One bundle. One routine. Kids who actually want to brush.",
+        "steps_lbl": "Simple to Start",
+        "steps_title": "How It Works",
+        "steps_sub": "A full dental routine in 4 easy steps — ready in minutes.",
+        "video_enable": false,
+        "video_lbl": "See It in Action",
+        "video_title": "Watch the Dental Bundle in Action",
+        "video_sub": "Full routine, real kids, real results.",
+        "video_placeholder": "Product video coming soon — upload via Shopify Admin → Products → Media.",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "rev_sub": "150+ verified reviews from UAE families.",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "gift_bag_handle": "gift-wrap-1",
+        "gift_bag_title": "🎁 Add Gift Box",
+        "gift_bag_sub": "make it special",
+        "gift_bag_btn": "+ Add",
+        "gift_bag_price": "9",
+        "upsell_1": "",
+        "upsell_2": "",
+        "upsell_3": "",
+        "cta_lbl": "Limited Time Offer",
+        "cta_title": "Give Your Child the Complete Dental Routine",
+        "cta_sub": "AED 150 — was AED 307. Brush + toothpaste + stickers. Free next-day delivery. Cash on delivery.",
+        "cta_btn": "Add to Cart",
+        "cta_trust_1": "📦 Free Next Day Delivery",
+        "cta_trust_2": "💵 Cash on Delivery",
+        "cta_trust_3": "🔄 14-Day Returns",
+        "cta_trust_4": "🔒 Secure Checkout"
+      }
+    }
+  },
+  "order": ["tt360-product-body"]
+}
+

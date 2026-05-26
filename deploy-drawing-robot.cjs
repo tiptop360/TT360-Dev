@@ -5,13 +5,15 @@
  */
 require('dotenv').config();
 const fs   = require('fs');
+const path = require('path');
 const fetch = (...args) => import('node-fetch').then(({ default: f }) => f(...args));
 const { fetchServerTemplate, mergeTemplate, uploadFile } = require('./deploy-utils.cjs');
 
 const STORE        = process.env.SHOPIFY_STORE;
 const THEME_ID     = 'gid://shopify/OnlineStoreTheme/145270210675';
 const THEME_ID_NUM = '145270210675';
-const SECTION_SRC  = '/Users/rabiharabi/tt360-landing/shopify/sections/tt360-product-body.liquid';
+// Canonical, version-controlled source inside this repo (was an external project path).
+const SECTION_SRC  = path.join(__dirname, 'theme-files/sections/tt360-product-body.liquid');
 
 async function getToken() {
   const r = await fetch(`https://${STORE}/admin/oauth/access_token`, {
