@@ -87,7 +87,7 @@
     display: flex;
     align-items: center;
   }
-  .site-footer__section-title {
+  .site-footer .site-footer__section-title {
     color: var(--footer-title);
   }
   .site-footer__list {
@@ -297,7 +297,6 @@
   @media (max-width:767px){
     .site-footer {
       width: 100%;
-      overflow: hidden;
     }
     .site-footer .container,
     .site-footer .container-fluid {
@@ -320,13 +319,107 @@
   assign footer_align_title = section.settings.footer_align_title
   assign acc_mobile = section.settings.acc_mobile
 -%}
-<footer class="site-footer lazyload footer-{{ section.id }} {% if acc_mobile %} footer-acc-mobile{% endif %}" 
- data-bgset="{% render 'bgset', image: bg_image %}"
- data-sizes="auto"
+<footer class="site-footer {% if bg_image != blank %}lazyload{% endif %} footer-{{ section.id }} {% if acc_mobile %} footer-acc-mobile{% endif %}"
+ {% if bg_image != blank %}data-bgset="{% render 'bgset', image: bg_image %}"
+ data-sizes="auto"{% endif %}
  data-parent-fit="cover" 
  data-section-type="footer" 
  data-section-id="{{ section.id }}" 
   data-acc="{{ acc_mobile }}" >
+  <!-- ═══ SOCIAL BAR — always visible, top of footer ═══ -->
+  <div class="t360-social-bar">
+    <div class="{{ section.settings.setwidth }}">
+      <p class="t360-social-bar__label">Follow Us</p>
+      <div class="t360-social-bar__icons">
+        {%- if settings.social_instagram_link != blank -%}
+        <a href="{{ settings.social_instagram_link }}" class="t360-sico t360-sico--ig" aria-label="Instagram" rel="noopener" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.08 4.08 0 011.47.958c.458.458.78.918.957 1.47.164.46.35 1.26.404 2.43.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.404 2.43a4.08 4.08 0 01-.957 1.47 4.08 4.08 0 01-1.47.957c-.46.164-1.26.35-2.43.404-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.404a4.08 4.08 0 01-1.47-.957 4.08 4.08 0 01-.958-1.47c-.163-.46-.35-1.26-.403-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.08 4.08 0 01.958-1.47 4.08 4.08 0 011.47-.958c.46-.163 1.26-.35 2.43-.403C8.416 2.175 8.796 2.163 12 2.163zM12 0C8.741 0 8.333.014 7.053.072 5.775.131 4.902.333 4.14.63a5.88 5.88 0 00-2.126 1.384A5.88 5.88 0 00.63 4.14C.333 4.902.131 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.059 1.278.261 2.15.558 2.913a5.88 5.88 0 001.384 2.126 5.88 5.88 0 002.126 1.384c.763.297 1.635.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.278-.059 2.15-.261 2.913-.558a5.88 5.88 0 002.126-1.384 5.88 5.88 0 001.384-2.126c.297-.763.499-1.635.558-2.913C23.986 15.667 24 15.259 24 12s-.014-3.667-.072-4.947c-.059-1.278-.261-2.15-.558-2.913a5.88 5.88 0 00-1.384-2.126A5.88 5.88 0 0019.86.63C19.097.333 18.225.131 16.947.072 15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>
+        </a>
+        {%- endif -%}
+        {%- if settings.social_tiktok_link != blank -%}
+        <a href="{{ settings.social_tiktok_link }}" class="t360-sico t360-sico--tk" aria-label="TikTok" rel="noopener" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.4a8.16 8.16 0 004.77 1.52V7.49a4.85 4.85 0 01-1-.8z"/></svg>
+        </a>
+        {%- endif -%}
+        {%- if settings.social_facebook_link != blank -%}
+        <a href="{{ settings.social_facebook_link }}" class="t360-sico t360-sico--fb" aria-label="Facebook" rel="noopener" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.971H15.83c-1.491 0-1.956.93-1.956 1.886v2.264h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        </a>
+        {%- endif -%}
+        {%- if settings.social_youtube_link != blank -%}
+        <a href="{{ settings.social_youtube_link }}" class="t360-sico t360-sico--yt" aria-label="YouTube" rel="noopener" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.016 3.016 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        {%- endif -%}
+        {%- if settings.social_twitter_link != blank -%}
+        <a href="{{ settings.social_twitter_link }}" class="t360-sico t360-sico--tw" aria-label="X / Twitter" rel="noopener" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        {%- endif -%}
+        {%- if settings.social_snapchat_link != blank -%}
+        <a href="{{ settings.social_snapchat_link }}" class="t360-sico t360-sico--sc" aria-label="Snapchat" rel="noopener" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12.93-.26.1-.047.2-.08.3-.08a.84.84 0 01.51.18c.21.16.3.346.3.51 0 .39-.33.76-1.15.96a3.37 3.37 0 01-.45.12 1.56 1.56 0 00-.6.21c-.12.105-.18.24-.18.375 0 .06.015.12.03.18.24.63.72 1.26 1.38 1.83.36.3.75.54 1.14.72.48.21.93.36 1.32.42.6.07.78.27.78.48 0 .36-.48.72-1.35.96-.09.03-.18.045-.27.06l-.27.06c-.33.06-.69.18-.93.42-.27.255-.33.585-.36.81 0 .03-.015.06-.015.09 0 .21.075.42.255.585.36.33.81.495 1.29.585.03.015.06.015.09.03.3.075.51.18.51.39 0 .27-.39.54-1.14.69-.75.15-1.41.21-1.8.24l-.12.015c-.15.015-.27.03-.375.075-.105.03-.195.12-.27.225-.15.195-.33.45-.57.69-.48.48-1.05.72-1.68.72-.18 0-.36-.015-.54-.06a3.3 3.3 0 00-.72-.075c-.39 0-.78.06-1.14.21-.48.195-.87.495-1.32.855-.465.375-.975.63-1.56.63-.03 0-.06 0-.105-.015h-.045c-.585 0-1.095-.255-1.56-.63-.45-.36-.84-.66-1.32-.855a3.27 3.27 0 00-1.14-.21c-.24 0-.48.015-.72.075a2.94 2.94 0 01-.54.06c-.63 0-1.2-.24-1.68-.72-.24-.24-.42-.495-.57-.69-.075-.105-.165-.195-.27-.225a2.37 2.37 0 00-.375-.075l-.12-.015c-.39-.03-1.05-.09-1.8-.24C.39 19.32 0 19.05 0 18.78c0-.21.21-.315.51-.39l.09-.03c.48-.09.93-.255 1.29-.585.18-.165.255-.375.255-.585 0-.03-.015-.06-.015-.09-.03-.225-.09-.555-.36-.81-.24-.24-.6-.36-.93-.42l-.27-.06c-.09-.015-.18-.03-.27-.06C-.57 16.5-1.05 16.14-1.05 15.78c0-.21.18-.42.78-.48.39-.06.84-.21 1.32-.42.39-.18.78-.42 1.14-.72.66-.57 1.14-1.2 1.38-1.83.015-.06.03-.12.03-.18 0-.135-.06-.27-.18-.375a1.56 1.56 0 00-.6-.21 3.37 3.37 0 01-.45-.12c-.81-.2-1.15-.57-1.15-.96 0-.165.09-.345.3-.51a.84.84 0 01.51-.18c.1 0 .2.03.3.08.27.14.63.246.93.26.198 0 .326-.045.401-.09-.008-.165-.018-.33-.03-.51l-.003-.06c-.104-1.628-.23-3.654.3-4.847C5.853 1.07 9.21.793 10.2.793h.003z"/></svg>
+        </a>
+        {%- endif -%}
+        {%- if settings.social_pinterest_link != blank -%}
+        <a href="{{ settings.social_pinterest_link }}" class="t360-sico t360-sico--pin" aria-label="Pinterest" rel="noopener" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641 0 12.017 0z"/></svg>
+        </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+  <style>
+    .t360-social-bar{
+      background:var(--footer-bg);
+      padding:28px 0 20px;
+      text-align:center;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .t360-social-bar__label{
+      color:var(--footer-title);
+      font-size:13px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      margin:0 0 16px;
+    }
+    .t360-social-bar__icons{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+    .t360-sico{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      color:#fff;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .t360-sico:hover{
+      transform:scale(1.15);
+      color:#fff;
+    }
+    .t360-sico--ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+    .t360-sico--tk{background:#010101}
+    .t360-sico--fb{background:#1877f2}
+    .t360-sico--yt{background:#ff0000}
+    .t360-sico--tw{background:#000}
+    .t360-sico--sc{background:#fffc00;color:#000}
+    .t360-sico--sc:hover{color:#000}
+    .t360-sico--pin{background:#e60023}
+    .t360-sico:hover{box-shadow:0 4px 16px rgba(0,0,0,.35)}
+    @media(max-width:749px){
+      .t360-social-bar{padding:24px 16px 16px}
+      .t360-sico{width:44px;height:44px}
+      .t360-social-bar__icons{gap:12px}
+    }
+  </style>
+
   <div class="site-footer--head">
   <div class="{{ section.settings.setwidth }}">
     <div class="row">
@@ -564,7 +657,7 @@
               <img class="lazyload" src="{{ section.settings.imgpayment | image_url: width: 1, height: 1 }}" data-src="{{ section.settings.imgpayment | image_url: width: 400 }}" 
                 loading="lazy"
                 width="{{ section.settings.imgpayment.width }}"
-                height="{{ section.settings.imgpayment.height }}"/>
+                height="{{ section.settings.imgpayment.height }}"/ decoding="async">
             {%- endif -%}
           {%- endif -%}
           <div class="pt-3">
