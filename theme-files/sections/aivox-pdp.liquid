@@ -276,10 +276,12 @@
       {%- for image in product.images -%}
         <div class="aivox-slide{% if forloop.first %} active{% endif %}">
           <img
-            src="{{ image | image_url: width: 700 }}"
+            src="{{ image | image_url: width: 800 }}"
+            srcset="{{ image | image_url: width: 375 }} 375w, {{ image | image_url: width: 600 }} 600w, {{ image | image_url: width: 800 }} 800w, {{ image | image_url: width: 1200 }} 1200w"
+            sizes="(max-width: 767px) 100vw, 50vw"
             alt="{{ image.alt | default: product.title | escape }}"
-            {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}
-            width="700" height="700"
+            {% if forloop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy" decoding="async"{% endif %}
+            width="800" height="800"
           >
         </div>
       {%- endfor -%}
@@ -362,12 +364,16 @@
         </button>
       </form>
 
-      {%- comment -%} Add to Cart → also goes to checkout {%- endcomment -%}
+      {%- comment -%} A/B Test 1 — CTA copy (cta_v1) {%- endcomment -%}
+      {%- render 'ab-test', test_name: 'cta_v1' -%}
       <form action="{{ routes.cart_add_url }}" method="post" id="aivox-cart-form">
         <input type="hidden" name="id" value="{{ variant.id }}">
         <input type="hidden" name="quantity" value="1">
-        <button type="submit" class="aivox-btn-cart" name="add">
+        <button type="submit" class="aivox-btn-cart ab-a-cta_v1" name="add">
           🛒 Add to Cart — {{ product.price | money }}
+        </button>
+        <button type="submit" class="aivox-btn-cart ab-b-cta_v1" name="add">
+          🚚 Order Now — Free UAE Delivery · {{ product.price | money }}
         </button>
       </form>
 

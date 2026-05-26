@@ -1,0 +1,22 @@
+{%- comment -%}
+  TipTop360 A/B Test Handler
+  Usage: {%- render 'ab-test', test_name: 'cta_v1' -%}
+  Then use CSS classes: .ab-a (control) and .ab-b (variant) on elements.
+  The script sets data-ab="A" or data-ab="B" on <html> immediately,
+  and hides the losing variant before first paint.
+{%- endcomment -%}
+{%- assign _test = test_name | default: 'cta_v1' -%}
+<script data-ab-init="{{ _test }}">
+  (function(t){
+    var k='tt360_ab_'+t, gc=function(n){var v=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return v?v[2]:null;};
+    var v=gc(k);
+    if(!v){v=Math.random()<0.5?'A':'B';document.cookie=k+'='+v+';max-age='+(30*24*3600)+';path=/;SameSite=Lax';}
+    document.documentElement.setAttribute('data-ab-'+t,v);
+    try{(window.dataLayer=window.dataLayer||[]).push({event:'ab_assignment',test_name:t,variant:v});}catch(e){}
+  })('{{ _test }}');
+</script>
+<style>
+  /* Hide losing variant before paint — prevents flash of wrong content */
+  html[data-ab-{{ _test }}="A"] .ab-b-{{ _test }},
+  html[data-ab-{{ _test }}="B"] .ab-a-{{ _test }} { display: none !important; }
+</style>
