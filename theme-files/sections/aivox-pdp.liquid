@@ -114,6 +114,21 @@
 .aivox-sdot{width:7px;height:7px;background:var(--coral);border-radius:50%;
   animation:aivox-dp 2s infinite;display:inline-block;flex-shrink:0}
 
+/* QUANTITY PICKER */
+.aivox-qty-wrap{display:flex;align-items:center;justify-content:space-between;
+  background:var(--white);border:1px solid var(--border);border-radius:12px;
+  padding:12px 15px;margin-bottom:14px}
+.aivox-qty-lbl{font-size:12px;font-weight:600;color:var(--ink)}
+.aivox-qty-ctrl{display:flex;align-items:center;gap:14px}
+.aivox-qty-btn{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);
+  background:var(--cream);color:var(--ink);font-size:20px;line-height:1;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:all .2s;-webkit-tap-highlight-color:transparent;font-weight:300;
+  flex-shrink:0}
+.aivox-qty-btn:hover,.aivox-qty-btn:active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.aivox-qty-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;
+  font-weight:400;color:var(--ink);min-width:28px;text-align:center;line-height:1}
+
 /* BUTTONS */
 .aivox-btn-cart{
   display:block;width:100%;background:var(--ink);color:var(--cream);
@@ -352,6 +367,16 @@
     {%- comment -%} CTAs {%- endcomment -%}
     <div class="aivox-f4">
 
+      {%- comment -%} QUANTITY PICKER {%- endcomment -%}
+      <div class="aivox-qty-wrap">
+        <span class="aivox-qty-lbl">Quantity</span>
+        <div class="aivox-qty-ctrl">
+          <button type="button" class="aivox-qty-btn" id="aivox-qty-minus" aria-label="Decrease quantity">−</button>
+          <span class="aivox-qty-num" id="aivox-qty-num">1</span>
+          <button type="button" class="aivox-qty-btn" id="aivox-qty-plus" aria-label="Increase quantity">+</button>
+        </div>
+      </div>
+
       {%- comment -%} Buy Now COD → primary button, goes directly to checkout {%- endcomment -%}
       <form action="{{ routes.cart_add_url }}" method="post" id="aivox-buynow-form">
         <input type="hidden" name="id" value="{{ variant.id }}">
@@ -512,7 +537,7 @@
     <h2>Stop taking notes.<br><em>Let AiVox handle it.</em></h2>
     <p>{{ product.price | money }} · 1 Year Unlimited Free · 400 min/month after at no cost<br>64GB Local Storage · Free UAE Delivery · Cash on Delivery</p>
     <div class="aivox-cta-inner">
-      <form action="{{ routes.cart_add_url }}" method="post" style="margin-bottom:10px;">
+      <form action="{{ routes.cart_add_url }}" method="post" id="aivox-final-form" style="margin-bottom:10px;">
         <input type="hidden" name="id" value="{{ variant.id }}">
         <input type="hidden" name="quantity" value="1">
         <input type="hidden" name="return_to" value="/checkout">
@@ -539,7 +564,7 @@
     <div class="aivox-sticky-name">AiVox · GPT-4 · 134 Lang · 64GB</div>
     <div class="aivox-sticky-price">{{ product.price | money }}</div>
   </div>
-  <form action="{{ routes.cart_add_url }}" method="post" style="margin:0;">
+  <form action="{{ routes.cart_add_url }}" method="post" id="aivox-sticky-form" style="margin:0;">
     <input type="hidden" name="id" value="{{ variant.id }}">
     <input type="hidden" name="quantity" value="1">
     <input type="hidden" name="return_to" value="/checkout">
@@ -618,6 +643,25 @@
   }
 
   autoTimer = setInterval(function() { window.aivoxSlide(1); }, 4200);
+
+  // ── QUANTITY PICKER ─────────────────────────────────────
+  var aivoxQty = 1;
+  var qtyNumEl  = document.getElementById('aivox-qty-num');
+  var qtyMinus  = document.getElementById('aivox-qty-minus');
+  var qtyPlus   = document.getElementById('aivox-qty-plus');
+  var qtyFormIds = ['aivox-buynow-form','aivox-cart-form','aivox-final-form','aivox-sticky-form'];
+
+  function aivoxSetQty(n) {
+    aivoxQty = Math.max(1, n);
+    if (qtyNumEl) qtyNumEl.textContent = aivoxQty;
+    qtyFormIds.forEach(function(id) {
+      var f = document.getElementById(id);
+      if (f) { var inp = f.querySelector('[name="quantity"]'); if (inp) inp.value = aivoxQty; }
+    });
+  }
+
+  if (qtyMinus) qtyMinus.addEventListener('click', function() { aivoxSetQty(aivoxQty - 1); });
+  if (qtyPlus)  qtyPlus.addEventListener('click',  function() { aivoxSetQty(aivoxQty + 1); });
 
   // ── ADD TO CART → REDIRECT TO CHECKOUT ─────────────────
   var cartForm = document.getElementById('aivox-cart-form');
