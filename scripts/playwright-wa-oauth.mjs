@@ -85,16 +85,19 @@ async function waitForSelector(page, selector, timeout = 20000) {
     args: [
       '--no-first-run',
       '--no-default-browser-check',
-      '--disable-extensions-except',
     ],
   });
 
-  const page = await context.newPage();
+  // Use the first existing page if Chrome opens one, otherwise create new
+  await sleep(2000);
+  const pages = context.pages();
+  const page = pages.length > 0 ? pages[0] : await context.newPage();
 
   // ── Step 1: Open Klaviyo WhatsApp Settings ──────────────────────────────
   console.log('\n📍  Step 1 — Opening Klaviyo WhatsApp channel settings…');
-  await page.goto(KLAVIYO_WA_URL, { waitUntil: 'domcontentloaded', timeout: 30000 });
-  await sleep(2000);
+  await sleep(1000);
+  await page.goto(KLAVIYO_WA_URL, { waitUntil: 'domcontentloaded', timeout: 45000 });
+  await sleep(3000);
 
   // Check if already logged in
   const needsLogin = await page.$('input[type="email"]');
