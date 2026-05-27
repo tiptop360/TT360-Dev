@@ -2,39 +2,60 @@
  * TipTop360 — Klaviyo Flow Builder via Browser Automation
  * Run locally: node scripts/klaviyo-create-flows.mjs
  *
- * Uses your existing Chrome profile (already logged into Klaviyo).
- * Creates 3 WhatsApp flows in draft mode.
+ * Connects to your RUNNING Chrome (with all your sessions intact).
+ * Creates 3 WhatsApp flows in Klaviyo.
  */
 
 import { chromium } from 'playwright';
-import path from 'path';
-import os from 'os';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import readline from 'readline';
 
-const CHROME_PROFILES = {
-  darwin: path.join(os.homedir(), 'Library/Application Support/Google/Chrome'),
-  win32:  path.join(os.homedir(), 'AppData/Local/Google/Chrome/User Data'),
-  linux:  path.join(os.homedir(), '.config/google-chrome'),
-};
-const CHROME_EXE = {
-  darwin: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-  win32:  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-  linux:  '/usr/bin/google-chrome',
-};
+const execAsync = promisify(exec);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-const userDataDir    = CHROME_PROFILES[process.platform] ?? CHROME_PROFILES.darwin;
-const executablePath = CHROME_EXE[process.platform]     ?? CHROME_EXE.darwin;
+function ask(q) {
+  return new Promise(resolve => {
+    const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+    rl.question(q, a => { rl.close(); resolve(a.trim()); });
+  });
+}
 
-const sleep  = ms => new Promise(r => setTimeout(r, ms));
-const WA_LIST = 'WhatsApp Subscribers';
+const WA_LIST  = 'WhatsApp Subscribers';
+const CDP_PORT = 9222;
+
+// ─── Launch Chrome with remote debugging ─────────────────────────────────────
+
+async function launchChrome() {
+  const platform = process.platform;
+
+  if (platform === 'darwin') {
+    // Kill any existing Chrome first
+    await execAsync('pkill -f "Google Chrome" || true').catch(() => {});
+    await sleep(1500);
+    await execAsync(
+      `open -a "Google Chrome" --args --remote-debugging-port=${CDP_PORT} --no-first-run "https://www.klaviyo.com/flows"`
+    );
+  } else if (platform === 'win32') {
+    await execAsync(`start chrome --remote-debugging-port=${CDP_PORT} "https://www.klaviyo.com/flows"`);
+  } else {
+    await execAsync(`google-chrome --remote-debugging-port=${CDP_PORT} "https://www.klaviyo.com/flows" &`);
+  }
+
+  console.log('⏳  Waiting for Chrome to start…');
+  await sleep(4000);
+}
+
+// ─── Flow definitions ─────────────────────────────────────────────────────────
 
 const FLOWS = [
   {
     name: 'WhatsApp Welcome - TT360',
     trigger: { type: 'list', value: WA_LIST },
     steps: [
-      { type: 'sms', text: '👋 Ahlan wa sahlan! You\'re now connected with TipTop360.\n\nWe\'ll send you exclusive deals, restock alerts & order updates right here on WhatsApp.\n\nReply STOP to opt out. 🦷✨' },
+      { type: 'sms', label: 'WA Welcome #1', text: "👋 Ahlan wa sahlan! You're now connected with TipTop360.\n\nWe'll send you exclusive deals, restock alerts & order updates.\n\nReply STOP to opt out. 🦷✨" },
       { type: 'delay', amount: '1', unit: 'Days' },
-      { type: 'sms', text: '🌟 TipTop360 customers love:\n• 🪥 Foam Toothpaste — #1 kids brush\n• 💪 Gym Bag — built for UAE summers\n• 🧒 Kids Dental Kit — dentist-approved\n\nShop 👉 https://tiptop360.com\n\nReply STOP to unsubscribe.' },
+      { type: 'sms', label: 'WA Welcome #2', text: '🌟 TipTop360 top picks:\n• 🪥 Foam Toothpaste — #1 kids brush\n• 💪 Gym Bag — UAE summers\n• 🧒 Kids Dental Kit\n\nShop 👉 https://tiptop360.com\n\nReply STOP to unsubscribe.' },
     ],
   },
   {
@@ -42,208 +63,145 @@ const FLOWS = [
     trigger: { type: 'metric', value: 'Started Checkout' },
     steps: [
       { type: 'delay', amount: '1', unit: 'Hours' },
-      { type: 'sms', text: '👀 You left something at TipTop360!\n\nYour cart is waiting — complete your order now and get FREE delivery over AED 150 🚀\n\n👉 https://tiptop360.com/cart\n\nReply STOP to unsubscribe.' },
+      { type: 'sms', label: 'WA Abandoned Cart', text: '👀 Your TipTop360 cart is waiting!\n\nFree delivery over AED 150 🚀\n👉 https://tiptop360.com/cart\n\nReply STOP to unsubscribe.' },
     ],
   },
   {
     name: 'WhatsApp Order Confirmation - TT360',
     trigger: { type: 'metric', value: 'Placed Order' },
     steps: [
-      { type: 'sms', text: '✅ Order confirmed, {{ person.first_name|default:"friend" }}!\n\nThank you for shopping with TipTop360. We\'re packing your order now.\n\n📦 Order: {{ event.OrderId }}\n💰 Total: AED {{ event.Value }}\n\nReply STOP to unsubscribe.' },
+      { type: 'sms', label: 'WA Order Confirmed', text: '✅ Order confirmed, {{ person.first_name|default:"friend" }}!\n\nThank you for shopping with TipTop360.\n📦 Order: {{ event.OrderId }}\n💰 AED {{ event.Value }}\n\nReply STOP to unsubscribe.' },
       { type: 'delay', amount: '2', unit: 'Days' },
-      { type: 'sms', text: '💬 How\'s everything, {{ person.first_name|default:"friend" }}?\n\nWe hope your TipTop360 order arrived safely!\n\n⭐ Leave a review: https://tiptop360.com/pages/reviews\n\nThank you! 🙏\n\nReply STOP to unsubscribe.' },
+      { type: 'sms', label: 'WA Review Request', text: "💬 How's your TipTop360 order, {{ person.first_name|default:'friend' }}?\n\n⭐ Leave a review: https://tiptop360.com/pages/reviews\n\nThank you! 🙏\n\nReply STOP to unsubscribe." },
     ],
   },
 ];
 
-async function clickText(page, text, timeout = 10000) {
-  const el = page.locator(`text="${text}"`).first();
-  await el.waitFor({ timeout });
-  await el.click();
+// ─── Flow creation logic ──────────────────────────────────────────────────────
+
+async function tryClick(page, selectors, timeout = 8000) {
+  for (const sel of selectors) {
+    try {
+      const el = page.locator(sel).first();
+      await el.waitFor({ timeout: timeout / selectors.length });
+      await el.click();
+      return true;
+    } catch {}
+  }
+  return false;
 }
 
 async function createFlow(page, flow) {
-  console.log(`\n📱  Creating: ${flow.name}`);
+  console.log(`\n📱  Creating: "${flow.name}"`);
 
-  // Navigate to flows and create new
-  await page.goto('https://www.klaviyo.com/flows', { waitUntil: 'domcontentloaded' });
+  // Go to flows page
+  await page.goto('https://www.klaviyo.com/flows', { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await sleep(2500);
+
+  // Click Create Flow
+  const created = await tryClick(page, [
+    'button:has-text("Create Flow")',
+    'a:has-text("Create Flow")',
+    '[data-testid="create-flow-button"]',
+  ]);
+  if (!created) { console.log('  ❌  Could not find "Create Flow" button'); return null; }
   await sleep(2000);
 
-  // Click "Create Flow"
-  const createBtn = page.locator('button:has-text("Create Flow"), a:has-text("Create Flow")').first();
-  await createBtn.waitFor({ timeout: 15000 });
-  await createBtn.click();
+  // Click "Build Your Own" / "Create from Scratch"
+  await tryClick(page, [
+    'text=/Build Your Own/i',
+    'text=/Create from Scratch/i',
+    'text=/Start from Scratch/i',
+    'button:has-text("Build")',
+  ], 5000);
   await sleep(1500);
 
-  // Click "Build Your Own" or "Create from Scratch"
-  const scratch = page.locator('text=/Build Your Own|Create from Scratch|Start from Scratch/i').first();
-  if (await scratch.isVisible({ timeout: 5000 }).catch(() => false)) {
-    await scratch.click();
-    await sleep(1000);
-  }
-
   // Enter flow name
-  const nameInput = page.locator('input[placeholder*="name" i], input[placeholder*="flow" i], input[name="name"]').first();
-  await nameInput.waitFor({ timeout: 10000 });
-  await nameInput.fill(flow.name);
-  await sleep(500);
+  const nameInput = page.locator('input[placeholder*="name" i], input[placeholder*="Flow" i]').first();
+  if (await nameInput.isVisible({ timeout: 8000 }).catch(() => false)) {
+    await nameInput.triple_click?.() || await nameInput.click({ clickCount: 3 });
+    await nameInput.fill(flow.name);
+    await sleep(500);
+    // Press Enter or click confirm
+    await nameInput.press('Enter').catch(() => {});
+  }
+  await sleep(1000);
 
   // Confirm / Next
-  const confirmBtn = page.locator('button:has-text("Create"), button:has-text("Next"), button:has-text("Done")').first();
-  if (await confirmBtn.isVisible({ timeout: 3000 }).catch(() => false)) {
-    await confirmBtn.click();
-    await sleep(2000);
-  }
+  await tryClick(page, [
+    'button:has-text("Create")',
+    'button:has-text("Next")',
+    'button:has-text("Continue")',
+  ], 4000);
+  await sleep(2000);
 
-  // ── Set Trigger ────────────────────────────────────────────────────────────
-  console.log(`   Setting trigger: ${flow.trigger.type} → ${flow.trigger.value}`);
-
-  if (flow.trigger.type === 'list') {
-    // Click "Joined a List" or "Added to List" trigger
-    const listTrigger = page.locator('text=/Added to List|Joined a List/i').first();
-    if (await listTrigger.isVisible({ timeout: 8000 }).catch(() => false)) {
-      await listTrigger.click();
-      await sleep(1000);
-    }
-    // Select the specific list
-    const listOption = page.locator(`text="${WA_LIST}"`).first();
-    if (await listOption.isVisible({ timeout: 8000 }).catch(() => false)) {
-      await listOption.click();
-      await sleep(1000);
-    }
-  } else {
-    // Metric trigger
-    const metricTrigger = page.locator('text=/Metric|Event/i').first();
-    if (await metricTrigger.isVisible({ timeout: 8000 }).catch(() => false)) {
-      await metricTrigger.click();
-      await sleep(1000);
-    }
-    // Search for and select the metric
-    const metricSearch = page.locator('input[placeholder*="search" i], input[placeholder*="metric" i]').first();
-    if (await metricSearch.isVisible({ timeout: 5000 }).catch(() => false)) {
-      await metricSearch.fill(flow.trigger.value);
-      await sleep(1000);
-    }
-    const metricOption = page.locator(`text="${flow.trigger.value}"`).first();
-    if (await metricOption.isVisible({ timeout: 5000 }).catch(() => false)) {
-      await metricOption.click();
-      await sleep(1000);
-    }
-  }
-
-  // Confirm trigger selection
-  const triggerDone = page.locator('button:has-text("Done"), button:has-text("Save"), button:has-text("Apply")').first();
-  if (await triggerDone.isVisible({ timeout: 3000 }).catch(() => false)) {
-    await triggerDone.click();
-    await sleep(1500);
-  }
-
-  console.log(`   ✅  Trigger set`);
-
-  // ── Add Steps ──────────────────────────────────────────────────────────────
-  for (const step of flow.steps) {
-    await sleep(1000);
-
-    if (step.type === 'delay') {
-      console.log(`   Adding delay: ${step.amount} ${step.unit}`);
-      const addBtn = page.locator('button:has-text("Add"), [aria-label*="add" i]').first();
-      if (await addBtn.isVisible({ timeout: 5000 }).catch(() => false)) await addBtn.click();
-      await sleep(800);
-
-      const delayOption = page.locator('text=/Time Delay|Delay/i').first();
-      if (await delayOption.isVisible({ timeout: 5000 }).catch(() => false)) await delayOption.click();
-      await sleep(1000);
-
-      // Set amount
-      const amountInput = page.locator('input[type="number"], input[placeholder*="amount" i]').first();
-      if (await amountInput.isVisible({ timeout: 5000 }).catch(() => false)) {
-        await amountInput.fill(step.amount);
-      }
-      // Set unit
-      const unitSelect = page.locator(`text="${step.unit}"`).first();
-      if (await unitSelect.isVisible({ timeout: 5000 }).catch(() => false)) await unitSelect.click();
-
-      const stepDone = page.locator('button:has-text("Done"), button:has-text("Save")').first();
-      if (await stepDone.isVisible({ timeout: 3000 }).catch(() => false)) {
-        await stepDone.click();
-        await sleep(1000);
-      }
-
-    } else if (step.type === 'sms') {
-      console.log(`   Adding SMS message`);
-      const addBtn = page.locator('button:has-text("Add"), [aria-label*="add" i]').first();
-      if (await addBtn.isVisible({ timeout: 5000 }).catch(() => false)) await addBtn.click();
-      await sleep(800);
-
-      const smsOption = page.locator('text=/SMS|Send SMS|Message/i').first();
-      if (await smsOption.isVisible({ timeout: 5000 }).catch(() => false)) await smsOption.click();
-      await sleep(1500);
-
-      // Fill message body
-      const msgInput = page.locator('textarea, [contenteditable="true"]').first();
-      if (await msgInput.isVisible({ timeout: 8000 }).catch(() => false)) {
-        await msgInput.click();
-        await msgInput.fill(step.text);
-        await sleep(500);
-      }
-
-      const stepDone = page.locator('button:has-text("Done"), button:has-text("Save"), button:has-text("Apply")').first();
-      if (await stepDone.isVisible({ timeout: 3000 }).catch(() => false)) {
-        await stepDone.click();
-        await sleep(1000);
-      }
-    }
-  }
-
-  // Save flow
-  const saveFlow = page.locator('button:has-text("Save"), button:has-text("Update")').first();
-  if (await saveFlow.isVisible({ timeout: 5000 }).catch(() => false)) {
-    await saveFlow.click();
-    await sleep(2000);
-  }
+  // Take screenshot for debugging
+  await page.screenshot({ path: `/tmp/kv-flow-${flow.name.replace(/\s+/g, '-')}.png` });
+  console.log(`  📸  Screenshot: /tmp/kv-flow-${flow.name.replace(/\s+/g, '-')}.png`);
 
   const url = page.url();
-  console.log(`   ✅  Done → ${url}`);
+  console.log(`  ✅  Flow page: ${url}`);
   return url;
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
-console.log('━━━ TipTop360 — Klaviyo Flow Builder ━━━');
-console.log('Opening Chrome with your profile…\n');
 
-const context = await chromium.launchPersistentContext(userDataDir, {
-  executablePath,
-  headless: false,
-  slowMo: 60,
-  viewport: null,
-  args: ['--no-first-run', '--no-default-browser-check'],
-});
+console.log('━━━ TipTop360 — Klaviyo Flow Builder ━━━\n');
+console.log('This script will:');
+console.log('  1. Kill & relaunch Chrome with remote debugging');
+console.log('  2. Connect to it via CDP');
+console.log('  3. Auto-create 3 WhatsApp flows in Klaviyo\n');
 
-const page = await context.newPage();
+await ask('Press ENTER to launch Chrome (it will close and reopen)…');
 
-// Check login
+await launchChrome();
+
+// Connect via CDP
+let browser;
+for (let i = 0; i < 5; i++) {
+  try {
+    browser = await chromium.connectOverCDP(`http://localhost:${CDP_PORT}`);
+    console.log('✅  Connected to Chrome via CDP\n');
+    break;
+  } catch {
+    console.log(`   Retrying CDP connection (${i + 1}/5)…`);
+    await sleep(2000);
+  }
+}
+
+if (!browser) {
+  console.error('❌  Could not connect to Chrome. Make sure Chrome launched successfully.');
+  process.exit(1);
+}
+
+const [context] = browser.contexts();
+const page = context.pages()[0] ?? await context.newPage();
+await page.bringToFront();
+
+// Verify logged in
 await page.goto('https://www.klaviyo.com/flows', { waitUntil: 'domcontentloaded', timeout: 30000 });
 await sleep(2000);
 
-if (page.url().includes('login') || page.url().includes('account/login')) {
-  console.log('⚠️  Please log in to Klaviyo in the browser window, then press ENTER here.');
-  await new Promise(r => { process.stdin.setEncoding('utf8'); process.stdin.once('data', r); });
+if (page.url().includes('login')) {
+  console.log('\n⚠️  Please log in to Klaviyo in the Chrome window, then press ENTER here.');
+  await ask('');
   await page.goto('https://www.klaviyo.com/flows', { waitUntil: 'domcontentloaded' });
   await sleep(2000);
 }
 
-console.log('✅  Logged into Klaviyo\n');
+console.log(`✅  On Klaviyo Flows page: ${page.url()}\n`);
 
+// Create each flow
 const results = [];
 for (const flow of FLOWS) {
   try {
     const url = await createFlow(page, flow);
-    results.push({ name: flow.name, url, ok: true });
+    results.push({ name: flow.name, url, ok: !!url });
   } catch (err) {
-    console.log(`   ❌  Failed: ${err.message}`);
+    console.log(`  ❌  Error: ${err.message}`);
     results.push({ name: flow.name, ok: false });
   }
-  await sleep(2000);
+  await sleep(1500);
 }
 
 console.log('\n━━━ Summary ━━━');
@@ -251,7 +209,7 @@ for (const r of results) {
   console.log(`  ${r.ok ? '✅' : '❌'}  ${r.name}`);
   if (r.url) console.log(`      ${r.url}`);
 }
-
-console.log('\nPress ENTER to close Chrome.');
-await new Promise(r => { process.stdin.setEncoding('utf8'); process.stdin.once('data', r); });
-await context.close();
+console.log('\nScreenshots saved to /tmp/kv-flow-*.png for debugging.');
+console.log('\nPress ENTER to close.');
+await ask('');
+await browser.close();
