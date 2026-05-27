@@ -567,16 +567,15 @@ async function main() {
   const existing = loadEnv();
   const collected = {};
 
+  // Use installed Chrome so saved passwords / sessions work
   const browser = await chromium.launch({
+    channel: 'chrome',
     headless: false,
-    slowMo: 200,
+    slowMo: 150,
     args: ['--start-maximized'],
   });
 
-  const context = await browser.newContext({
-    viewport: null,
-    userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-  });
+  const context = await browser.newContext({ viewport: null });
   const page = await context.newPage();
 
   try {
