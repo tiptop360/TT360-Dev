@@ -23,7 +23,7 @@
     "wa:oauth": "node scripts/playwright-wa-oauth.mjs",
     "wa:flows": "node scripts/klaviyo-wa-setup.mjs",
     "wa:deploy": "node scripts/deploy-wa-optin.mjs",
-    "wa:setup": "npm run wa:flows && npm run wa:deploy"
+    "wa:setup": "node scripts/setup-whatsapp-klaviyo.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
