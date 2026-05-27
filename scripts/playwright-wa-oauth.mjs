@@ -9,7 +9,7 @@ import readline from 'readline';
 
 const execAsync = promisify(exec);
 
-const KLAVIYO_WA_URL = 'https://www.klaviyo.com/settings/channels/whatsapp';
+const KLAVIYO_WA_URL = 'https://www.klaviyo.com/settings';
 
 function ask(question) {
   return new Promise(resolve => {
@@ -34,9 +34,13 @@ console.log(`Opening Chrome at:\n  ${KLAVIYO_WA_URL}\n`);
 
 await openUrl(KLAVIYO_WA_URL);
 
-console.log('Chrome should now be open at the Klaviyo WhatsApp settings page.\n');
-console.log('In the browser, complete these steps:');
-console.log('  1. Click  "Connect with Meta"');
+console.log('Chrome is now open at Klaviyo Settings.\n');
+console.log('Navigate to the WhatsApp channel:');
+console.log('  Option A: Left sidebar → Channels → WhatsApp');
+console.log('  Option B: Left sidebar → Messaging → WhatsApp');
+console.log('  Option C: Search "WhatsApp" in the settings search bar\n');
+console.log('Then complete these steps:');
+console.log('  1. Click "Connect with Meta" / "Connect WhatsApp"');
 console.log('  2. Log in to Facebook/Meta if prompted');
 console.log('  3. Select your WhatsApp Business Account');
 console.log('  4. Select phone number +971585156033');
