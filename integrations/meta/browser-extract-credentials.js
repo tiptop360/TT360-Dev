@@ -12,6 +12,7 @@
  */
 
 import { chromium } from 'playwright';
+import os from 'os';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -562,20 +563,36 @@ async function main() {
   log('    • Klaviyo API Keys', 'dim');
   log('\n  All values will be saved automatically to your .env file.\n', 'dim');
 
-  await pause('Press ENTER to open the browser and start');
+  // Detect Chrome profile path by OS
+  function getChromeProfilePath() {
+    const home = os.homedir();
+    const platform = process.platform;
+    if (platform === 'darwin') return `${home}/Library/Application Support/Google/Chrome`;
+    if (platform === 'win32') return `${process.env.LOCALAPPDATA}\\Google\\Chrome\\User Data`;
+    return `${home}/.config/google-chrome`;
+  }
+
+  log('\n  ⚠️  IMPORTANT: Please QUIT Chrome completely before pressing ENTER', 'warn');
+  log('     (Cmd+Q on Mac, not just close the window)', 'dim');
+  log('     Chrome will reopen automatically with all your logins intact.\n', 'dim');
+  await pause('Press ENTER once Chrome is fully closed');
 
   const existing = loadEnv();
   const collected = {};
 
-  // Use installed Chrome so saved passwords / sessions work
-  const browser = await chromium.launch({
+  const profilePath = getChromeProfilePath();
+  log(`\n  📂 Using Chrome profile: ${profilePath}`, 'dim');
+
+  // Launch Chrome with the user's real profile — all sessions/cookies preserved
+  const context = await chromium.launchPersistentContext(profilePath, {
     channel: 'chrome',
     headless: false,
     slowMo: 150,
     args: ['--start-maximized'],
+    ignoreDefaultArgs: ['--enable-automation'],
   });
 
-  const context = await browser.newContext({ viewport: null });
+  const browser = { close: () => context.close() };
   const page = await context.newPage();
 
   try {
