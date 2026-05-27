@@ -26,7 +26,12 @@ Disallow: /cdn/wpm/*.js
 
 # -------------------------------
 # 2) LOW-VALUE / DUPLICATE URLS
-# (Block tracking + preview URLs. Do NOT block ?page= or ?variant=)
+# (Block tracking + preview URLs only.)
+# Do NOT block ?page=, ?variant=, ?sort_by= or ?filter.* here: those are
+# handled by <meta robots="noindex,follow"> + Shopify's auto-canonical in
+# theme.liquid. Blocking them in robots.txt would stop Googlebot from
+# crawling the page, so it could never SEE the noindex — the classic cause
+# of "Indexed, though blocked by robots.txt" in Search Console.
 # -------------------------------
 Disallow: /*?*utm_*
 Disallow: /*&utm_*
@@ -38,8 +43,6 @@ Disallow: /*?*oseid=*
 Disallow: /*?*ls=*
 Disallow: /*preview_theme_id=*
 Disallow: /*preview_script_id=*
-Disallow: /*?*sort_by=*
-Disallow: /*?*filter=*
 
 # -------------------------------
 # 3) PAGES NOT WORTH INDEXING
@@ -123,29 +126,28 @@ Crawl-delay: 1
 
 
 # =====================================
-# AI / LLM CRAWLERS — EXPLICITLY ALLOWED
-# (Redundant vs User-agent:* but kept for clarity)
+# AI / LLM CRAWLERS — EXPLICITLY ALLOWED FOR CONTENT
+# Declaring a named user-agent makes that bot IGNORE the "User-agent: *"
+# group entirely, so the private-path protections must be repeated here —
+# otherwise these crawlers would be free to hit /checkout, /cart, /admin,
+# /orders, /account. Listing the agents together shares one rule block.
 # =====================================
 User-agent: GPTBot
-Allow: /
-Crawl-delay: 1
-
 User-agent: ChatGPT-User
-Allow: /
-
-User-agent: OpenAI
-Allow: /
-
+User-agent: OAI-SearchBot
+User-agent: ClaudeBot
 User-agent: Claude-Web
-Allow: /
-Crawl-delay: 1
-
 User-agent: anthropic-ai
-Allow: /
-
 User-agent: PerplexityBot
-Allow: /
-Crawl-delay: 2
-
 User-agent: Google-Extended
 Allow: /
+Disallow: /admin
+Disallow: /checkout
+Disallow: /checkout/
+Disallow: /checkouts
+Disallow: /checkouts/
+Disallow: /cart
+Disallow: /carts
+Disallow: /orders
+Disallow: /account
+Disallow: /sf_private_access_tokens
