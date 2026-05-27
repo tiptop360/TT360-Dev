@@ -95,8 +95,10 @@ const PAGES = [
 ];
 
 // ── Shop policies (footer-linked /policies/*) ───────────────────
+// PRIVACY uses an inline-styled body so it renders even if the Settings → Policies
+// editor strips <style> blocks (it usually does). The other three keep the <style> design.
 const SHOP_POLICIES = [
-  { type: 'PRIVACY_POLICY', body: () => read('privacy-policy.html') },
+  { type: 'PRIVACY_POLICY', body: () => read('shop-privacy-policy-inline.html') },
   { type: 'REFUND_POLICY', body: () => read('refund-policy.html') },
   { type: 'SHIPPING_POLICY', body: () => read('shipping-policy.html') },
   { type: 'TERMS_OF_SERVICE', body: () => read('terms-of-service.html') },
