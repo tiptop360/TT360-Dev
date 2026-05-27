@@ -10,6 +10,7 @@ import { chromium } from 'playwright';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import readline from 'readline';
+import os from 'os';
 
 const execAsync = promisify(exec);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -27,23 +28,30 @@ const CDP_PORT = 9222;
 // ─── Launch Chrome with remote debugging ─────────────────────────────────────
 
 async function launchChrome() {
-  const platform = process.platform;
+  // Kill existing Chrome
+  await execAsync('pkill -f "Google Chrome" || true').catch(() => {});
+  await sleep(2000);
 
-  if (platform === 'darwin') {
-    // Kill any existing Chrome first
-    await execAsync('pkill -f "Google Chrome" || true').catch(() => {});
-    await sleep(1500);
-    await execAsync(
-      `open -a "Google Chrome" --args --remote-debugging-port=${CDP_PORT} --no-first-run "https://www.klaviyo.com/flows"`
-    );
-  } else if (platform === 'win32') {
-    await execAsync(`start chrome --remote-debugging-port=${CDP_PORT} "https://www.klaviyo.com/flows"`);
-  } else {
-    await execAsync(`google-chrome --remote-debugging-port=${CDP_PORT} "https://www.klaviyo.com/flows" &`);
-  }
+  const chromeBin = process.platform === 'win32'
+    ? '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"'
+    : '"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"';
 
-  console.log('⏳  Waiting for Chrome to start…');
-  await sleep(4000);
+  const userDataDir = process.platform === 'darwin'
+    ? `${os.homedir()}/Library/Application Support/Google/Chrome`
+    : process.platform === 'win32'
+      ? `${os.homedir()}\\AppData\\Local\\Google\\Chrome\\User Data`
+      : `${os.homedir()}/.config/google-chrome`;
+
+  const cmd = `${chromeBin} \
+    --remote-debugging-port=${CDP_PORT} \
+    --user-data-dir="${userDataDir}" \
+    --no-first-run \
+    --no-default-browser-check \
+    "https://www.klaviyo.com/flows" &`;
+
+  console.log('⏳  Launching Chrome with remote debugging…');
+  exec(cmd); // fire and forget
+  await sleep(5000);
 }
 
 // ─── Flow definitions ─────────────────────────────────────────────────────────
@@ -158,14 +166,14 @@ await launchChrome();
 
 // Connect via CDP
 let browser;
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 8; i++) {
   try {
     browser = await chromium.connectOverCDP(`http://localhost:${CDP_PORT}`);
     console.log('✅  Connected to Chrome via CDP\n');
     break;
   } catch {
-    console.log(`   Retrying CDP connection (${i + 1}/5)…`);
-    await sleep(2000);
+    console.log(`   Retrying CDP connection (${i + 1}/8)…`);
+    await sleep(3000);
   }
 }
 
