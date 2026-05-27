@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, Field, field_validator, model_validator, ValidationError
 
 REQUIRED_ENTITIES = ["TipTop360","UAE","Dubai","free delivery","tiptop360.com"]
-REQUIRED_HANDLES  = ["kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift","ai-voice-recorder"]
+REQUIRED_HANDLES  = ["kids-u-shaped-toothbrush-uae","ai-voice-recorder"]
 GEO_SIGNALS       = ["UAE","Dubai","Abu Dhabi","Sharjah","Ajman","Emirates"]
 
 class LlmsTxtDocument(BaseModel):

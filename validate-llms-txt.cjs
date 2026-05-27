@@ -47,7 +47,7 @@ const REQUIRED_STRINGS = [
   'TipTop360',
   'UAE',
   'tiptop360.com',
-  'kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift',
+  'kids-u-shaped-toothbrush-uae',
   'ai-voice-recorder',
   'free',        // free delivery signal
   'delivery',
