@@ -23,7 +23,7 @@ const headers = {
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 async function kv(method, path, body) {
-  await sleep(600); // stay under rate limit
+  await sleep(1200); // stay well under rate limit
   const res = await fetch(`https://a.klaviyo.com/api/${path}`, {
     method,
     headers,
@@ -31,16 +31,33 @@ async function kv(method, path, body) {
   });
   const text = await res.text();
   if (!res.ok) {
-    console.error(`  ❌  ${method} ${path} → ${res.status}`, JSON.parse(text)?.errors?.[0]?.detail ?? text);
+    const parsed = JSON.parse(text);
+    console.error(`  ❌  ${method} ${path} → ${res.status}`);
+    (parsed.errors ?? []).forEach(e => console.error(`     ${e.code}: ${e.detail}`));
     return null;
   }
   return JSON.parse(text);
 }
 
-// Create a flow (no trigger set — Klaviyo API doesn't accept relationships at creation)
-async function createFlow(name) {
+// Create a flow with minimal definition
+async function createFlow(name, triggerType = 'list', triggerId = null) {
+  // Build trigger block based on type
+  const trigger = triggerType === 'list'
+    ? { type: 'Added to List', list: { id: triggerId } }
+    : { type: 'Metric', metric: { id: triggerId } };
+
   const res = await kv('POST', 'flows/', {
-    data: { type: 'flow', attributes: { name, status: 'draft' } },
+    data: {
+      type: 'flow',
+      attributes: {
+        name,
+        status: 'draft',
+        definition: {
+          trigger,
+          actions: [],
+        },
+      },
+    },
   });
   return res?.data?.id ?? null;
 }
@@ -48,10 +65,9 @@ async function createFlow(name) {
 // ─── 1. WhatsApp Welcome Flow ────────────────────────────────────────────────
 async function createWelcomeFlow() {
   console.log('\n📱  Creating WhatsApp Welcome Flow…');
-  const fid = await createFlow('WhatsApp Welcome - TT360');
+  const fid = await createFlow('WhatsApp Welcome - TT360', 'list', WA_LIST_ID);
   if (!fid) return null;
   console.log(`  ✅  Flow created: ${fid}`);
-  console.log(`      Trigger manually: Added to List → "WhatsApp Subscribers"`);
 
   await kv('POST', 'flow-actions/', { data: {
     type: 'flow-action',
@@ -95,10 +111,9 @@ async function createWelcomeFlow() {
 // ─── 2. WhatsApp Abandoned Cart Flow ─────────────────────────────────────────
 async function createAbandonedCartFlow() {
   console.log('\n🛒  Creating WhatsApp Abandoned Cart Flow…');
-  const fid = await createFlow('WhatsApp Abandoned Cart - TT360');
+  const fid = await createFlow('WhatsApp Abandoned Cart - TT360', 'metric', 'Skqx6a');
   if (!fid) return null;
   console.log(`  ✅  Flow created: ${fid}`);
-  console.log(`      Trigger manually: Metric → "Started Checkout"`);
 
   await kv('POST', 'flow-actions/', { data: {
     type: 'flow-action',
@@ -129,10 +144,9 @@ async function createAbandonedCartFlow() {
 // ─── 3. WhatsApp Order Confirmation Flow ─────────────────────────────────────
 async function createOrderConfirmationFlow() {
   console.log('\n📦  Creating WhatsApp Order Confirmation Flow…');
-  const fid = await createFlow('WhatsApp Order Confirmation - TT360');
+  const fid = await createFlow('WhatsApp Order Confirmation - TT360', 'metric', 'V5vcSP');
   if (!fid) return null;
   console.log(`  ✅  Flow created: ${fid}`);
-  console.log(`      Trigger manually: Metric → "Placed Order"`);
 
   await kv('POST', 'flow-actions/', { data: {
     type: 'flow-action',
