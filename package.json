@@ -20,7 +20,7 @@
     "theme:preview": "node scripts/theme-release.mjs preview",
     "theme:release-note": "node scripts/theme-release.mjs release-note",
     "gitflow:init": "bash scripts/init-git-flow.sh",
-    "wa:oauth": "node scripts/playwright-wa-oauth.mjs",
+    "wa:flows:browser": "node scripts/klaviyo-create-flows.mjs",
     "wa:flows": "node scripts/klaviyo-wa-setup.mjs",
     "wa:deploy": "node scripts/deploy-wa-optin.mjs",
     "wa:setup": "node scripts/setup-whatsapp-klaviyo.mjs"
