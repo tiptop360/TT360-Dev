@@ -27,7 +27,7 @@ const headers = {
   'accept': 'application/json',
   'content-type': 'application/json',
   'Authorization': `Klaviyo-API-Key ${KEY}`,
-  'revision': '2024-10-15',
+  'revision': '2025-01-15',
 };
 
 async function kv(method, path, body) {
