@@ -15,6 +15,7 @@
     "webhook": "node integrations/index.js start-webhook",
     "setup:all": "node integrations/setup-all.js",
     "setup:all:headless": "node integrations/setup-all.js --headless",
+    "setup:credentials": "node integrations/meta/browser-extract-credentials.js",
     "setup:meta": "node integrations/meta/api-setup.js",
     "setup:klaviyo": "node integrations/klaviyo/setup-flows.js",
     "setup:klaviyo-browser": "node integrations/klaviyo/browser-setup.js",
