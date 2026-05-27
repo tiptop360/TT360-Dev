@@ -19,7 +19,11 @@
     "theme:publish:staging": "node scripts/theme-release.mjs publish-staging",
     "theme:preview": "node scripts/theme-release.mjs preview",
     "theme:release-note": "node scripts/theme-release.mjs release-note",
-    "gitflow:init": "bash scripts/init-git-flow.sh"
+    "gitflow:init": "bash scripts/init-git-flow.sh",
+    "wa:oauth": "node scripts/playwright-wa-oauth.mjs",
+    "wa:flows": "node scripts/klaviyo-wa-setup.mjs",
+    "wa:deploy": "node scripts/deploy-wa-optin.mjs",
+    "wa:setup": "npm run wa:flows && npm run wa:deploy"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
