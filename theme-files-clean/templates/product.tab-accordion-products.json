@@ -105,9 +105,18 @@
             "icon_text_4": ""
           }
         },
-        "c_edd_estimated_delivery_date_delivery_coder_theme_CDCN7Y": {
-          "type": "shopify://apps/c-edd-estimated-delivery-date/blocks/delivery_coder_theme/4a0685bc-c234-45b2-8382-5ad6a8e3e3fd",
-          "settings": {}
+        "delivery_estimate_dynamic": {
+          "type": "delivery_estimate",
+          "settings": {
+            "label": "ESTIMATED DELIVERY",
+            "cutoff_hour": 16,
+            "sub_text": "Order before",
+            "cutoff_label": "for fast UAE delivery",
+            "deliver_sunday": false,
+            "holidays": "",
+            "bg_color": "#eaf7ee",
+            "accent_color": "#1f8a3a"
+          }
         },
         "icon_with_text_4eThPk": {
           "type": "icon_with_text",
@@ -222,7 +231,7 @@
         "ff32ea77-bcea-43d3-8e38-55894c9d938a",
         "11f6643a-6bb6-4db9-a512-9c0eefc8c3b8",
         "73a647c7-afc5-4d87-aaea-1438dd5ecb92",
-        "c_edd_estimated_delivery_date_delivery_coder_theme_CDCN7Y",
+        "delivery_estimate_dynamic",
         "icon_with_text_4eThPk",
         "8288910a-1ad6-47df-b127-118bc1d2ce24",
         "wrapin_gift_wrap_options_app_block_NnMhfh",
