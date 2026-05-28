@@ -130,7 +130,7 @@
         "enable_name": false,
         "enable_language_selector": false,
         "payment_info": "svg",
-        "link_list_bottom": "",
+        "link_list_bottom": "footer",
         "copyright": true,
         "customcopyright": "All rights reserved.",
         "padding_top": 64,
