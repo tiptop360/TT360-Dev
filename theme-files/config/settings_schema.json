@@ -2461,8 +2461,7 @@
         "type": "textarea",
         "id": "tt360_delivery_holidays",
         "label": "Holiday dates (no delivery)",
-        "info": "Comma- or newline-separated, format YYYY-MM-DD. Example: 2026-12-02, 2026-12-03",
-        "default": ""
+        "info": "Comma- or newline-separated, format YYYY-MM-DD. Example: 2026-12-02, 2026-12-03"
       }
     ]
   }
