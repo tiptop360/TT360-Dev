@@ -617,9 +617,13 @@
               </div>
             {%- when 'shippingtime' -%}
                 <div class="product-block product-shippingtime">
-                  {% render 'shipping-time', 
+                  {% render 'shipping-time',
                     shipping_button : block.settings.shipping_button,
                     page_shipping: block.settings.page_shipping %}
+                </div>
+            {%- when 'delivery_estimate' -%}
+                <div class="product-block product-delivery-estimate" {{ block.shopify_attributes }}>
+                  {% render 'dynamic-delivery-estimate', block: block %}
                 </div>
             {%- when 'countdown' -%}
               <div class="product-block">
@@ -1516,6 +1520,68 @@ if (typeof PhotoSwipe !== 'undefined' && typeof PhotoSwipeUI_Default !== 'undefi
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "delivery_estimate",
+      "name": "Delivery Estimate (Dynamic)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Shows next-day delivery date in Asia/Dubai timezone. Skips Sunday and any configured holidays."
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "ESTIMATED DELIVERY"
+        },
+        {
+          "type": "range",
+          "id": "cutoff_hour",
+          "label": "Order cutoff hour (24h, Dubai time)",
+          "min": 0,
+          "max": 23,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "text",
+          "id": "sub_text",
+          "label": "Cutoff prefix text",
+          "default": "Order before"
+        },
+        {
+          "type": "text",
+          "id": "cutoff_label",
+          "label": "Cutoff suffix text",
+          "default": "for fast UAE delivery"
+        },
+        {
+          "type": "checkbox",
+          "id": "deliver_sunday",
+          "label": "Deliver on Sundays",
+          "default": false
+        },
+        {
+          "type": "textarea",
+          "id": "holidays",
+          "label": "Holidays (no delivery)",
+          "info": "Comma or newline separated dates in YYYY-MM-DD format. Example: 2026-12-02, 2026-12-03"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background color",
+          "default": "#eaf7ee"
+        },
+        {
+          "type": "color",
+          "id": "accent_color",
+          "label": "Accent color",
+          "default": "#1f8a3a"
         }
       ]
     },
