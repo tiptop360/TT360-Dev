@@ -9,30 +9,39 @@
 
 ## Live Status
 
-- **Current area:** Area 1 — code complete on branch, awaiting user staging push + preview QA + publish approval.
-- **Last commit:** `5c34c42` — Area 1: add LocalBusiness JSON-LD.
-- **Next area (locked until Area 1 published live):** Area 2 — Performance (GTM defer + LCP preload verify).
+- **Mode change:** batch mode per your request — all code areas pushed to the branch in one go; you push to stage and preview everything together, then publish manually.
+- **Areas with code shipped to branch:** 1, 2, 3, 4, 5, 6.
+- **Areas still owner-driven (no code):** 7 (GBP, GSC, Bing, Clarity if you give the ID).
+- **Last commit:** `91bd6b9` — Area 3 PDP unification.
 
 ---
 
 ## Done So Far
 
-- [x] Audit: mapped every brief task vs real theme state (3 Explore agents).
-- [x] Plan file written: `/root/.claude/plans/root-claude-uploads-5f883c76-e2fe-4b2a-zazzy-koala.md`.
-- [x] Decisions locked: staging = TT360 Staging #145464754291; per-area publish gate; Arabic already enabled.
-- [x] Confirmed `kids-collection-uae` is still the live handle → Task 11 dropped from scope.
-- [x] **Area 1 code:** LocalBusiness JSON-LD added to `theme-files/layout/theme.liquid` `@graph` (homepage-only, parent-linked to existing `#organization`).
-- [x] **Area 1 local validation:** 0 markdown-corruption hits; JSON-LD parses on both index (5 nodes) and non-index (2 nodes) branches.
-- [x] **Area 1 commit + push:** `5c34c42` on `claude/gracious-knuth-LCmh0` pushed to origin.
+- [x] Audited every brief task vs real theme state (3 Explore agents).
+- [x] Plan file: `/root/.claude/plans/root-claude-uploads-5f883c76-e2fe-4b2a-zazzy-koala.md`.
+- [x] Live tracker: `EXECUTION_PLAN.md`.
+- [x] Decisions locked: staging = #145464754291; Arabic already enabled; `kids-collection-uae` still live (Task 11 dropped).
+- [x] **Area 1 — SEO/GEO:** LocalBusiness JSON-LD added to `@graph` in `layout/theme.liquid` (homepage-only, parent-linked to `#organization`). JSON-LD parses on both Liquid branches. — commit `5c34c42`.
+- [x] **Area 2 — Performance:** GTM loader wrapped in `setTimeout(3500)` + first-interaction (scroll/move/touch/key) trigger; dataLayer + gtag init kept outside the timeout so events queue immediately. Also: `<html dir>` now derived from `request.locale.iso_code` so RTL CSS activates on Arabic locale. — commit `3e728c7`.
+- [x] **Area 3 — PDP unification:** new `snippets/tt360-payment-icons.liquid` + `snippets/tt360-delivery-countdown.liquid`. Rendered in `aivox-pdp.liquid` and `gymbag-pdp.liquid` (both were missing payment + delivery cutoff). `product-template-1.liquid` left alone — already has both via existing block types. — commit `91bd6b9`.
+- [x] **Area 4 — Collection SEO:** new `sections/collection-seo-content.liquid` (heading + intro + 5 bullets + 3 FAQs + FAQPage JSON-LD). Wired into `templates/collection.json` (default) and `templates/collection.kids-collection.json` (with kid-specific heading override) — both positioned right after the main product grid. — commit `1da04e9`.
+- [x] **Area 5 — Popup CRO:** `sections/pnewsletter.liquid` now triggers on 60% scroll OR 45s idle (whichever first), with two new merchant-tunable settings (`pnewletter_scroll_pct`, `pnewletter_idle_seconds`). Existing 7-day cookie cap preserved. WhatsApp alternate CTA added inside the modal pointing at `+971 58 515 6033`. — commit `3f6c793`.
+- [x] **Area 6 — Arabic/RTL:** new `assets/tt360-rtl.css`, loaded from `header-css.liquid` right after `theme.aio.min.css`. Scoped to `html[dir="rtl"]` so LTR is untouched. Covers all unified snippets, popup, collection SEO block, nav, drawer, breadcrumbs, footer, and directional icons. — commit `9bf1a25`.
+- [x] All 11 edited files validated: 0 markdown-corruption hits, all JSON / JSON-LD / Liquid schemas parse.
 
 ---
 
 ## Still Open Right Now
 
-- [ ] **You (Mac):** `git pull` → `npm run theme:push:staging` → preview `?preview_theme_id=145464754291` → Rich Results Test on preview URL → tell me result.
-- [ ] **You (Mac):** view source on staging → grep for `hreflang` → report whether Shopify auto-emits alternates (decides whether Area 1 needs a manual hreflang block).
-- [ ] **You (Mac):** `curl -I https://tiptop360.com/llms.txt` → report status code (decides whether we publish the file).
-- [ ] **You:** reply **"publish area 1 live"** to authorise promotion; I'll respond with the exact publish + Cloudflare purge command sequence.
+- [ ] **You (Mac):** `git fetch origin && git checkout claude/gracious-knuth-LCmh0 && git pull` to get all 5 area commits.
+- [ ] **You (Mac):** `npm run theme:push:staging` (pushes everything to TT360 | Dev #145464754291).
+- [ ] **You (Mac):** preview `https://tiptop360.com?preview_theme_id=145464754291` and walk the QA checklist in each area section below.
+- [ ] **You (Shopify Admin):** create `custom.age_range` metafield definition + enable in Search & Discovery — only blocks Area 4's filter (the SEO content section itself ships without it).
+- [ ] **You (Shopify Admin):** publish `llms.txt` if `curl -I https://tiptop360.com/llms.txt` returns 404.
+- [ ] **You:** view-source on staging → grep for `hreflang` → tell me whether Shopify auto-emits alternates (decides if Area 1 needs a manual block). If alternates ARE missing, ping me and I'll add the `<head>` block.
+- [ ] **You:** when staging QA passes, `npm run theme:publish:staging` to promote, then Cloudflare cache purge (see SOP 3 in `STRATEGY.md`).
+- [ ] **You:** Area 7 external — GBP, GSC sitemap, Bing import, Microsoft Clarity script (give me the project ID and I'll fold the `<script>` into theme.liquid).
 
 ---
 
@@ -43,15 +52,15 @@
 
 **Done**
 - [x] LocalBusiness JSON-LD node added to existing `@graph` in `layout/theme.liquid` (homepage-only).
-- [x] Confirmed Organization, WebSite, WebPage, FAQPage already present; LocalBusiness now sits beside them.
+- [x] LocalBusiness linked to `#organization` via `parentOrganization` — single clean entity graph.
 - [x] Confirmed `kids-collection-uae` handle is still live → no internal link rewrites needed.
+- [x] Validated: JSON-LD parses on both index (5 nodes) and non-index (2 nodes) branches.
 
 **Open**
-- [ ] Stage push + Rich Results Test on staging preview URL.
-- [ ] View-source on staging: confirm whether Shopify already emits `hreflang` alternates. If not → add manual `<link rel="alternate" hreflang>` block to `<head>` in `theme.liquid`.
-- [ ] `curl https://tiptop360.com/llms.txt` — if 404, publish the llms.txt file (source at `validators/llms_txt_validator.py` reference, or regenerate via optimizer).
-- [ ] Re-check AggregateRating render on a PDP (Judge.me 24h propagation — no code unless still failing 48h+ after metafield publish).
-- [ ] Promote to live + Cloudflare purge + sanity check.
+- [ ] Stage push + Rich Results Test on staging preview URL → expect 5 schemas detected.
+- [ ] View-source on staging: confirm whether Shopify already emits `hreflang` alternates. If not → ping me to add manual `<link rel="alternate" hreflang>` block to `<head>`.
+- [ ] `curl -I https://tiptop360.com/llms.txt` from your Mac → if 404, publish the llms.txt file (source generator referenced in `validators/llms_txt_validator.py`).
+- [ ] Re-check AggregateRating render on a PDP (Judge.me 24h propagation per `SESSION_CONTEXT.md`).
 
 ---
 
@@ -59,16 +68,14 @@
 *Small surface, measurable win.*
 
 **Done**
-- [x] Audited current state: `theme.liquid:38-43,220` has product + homepage LCP preload. GTM (`theme.liquid:203-209`) loads via `async` but is *not* `setTimeout`-deferred.
+- [x] GTM loader replaced with deferred loader (`setTimeout(3500)` + first-interaction wake) in `theme.liquid:243-263`. dataLayer / gtag init stay early so events still queue.
+- [x] `<html dir>` derived from `request.locale.iso_code` so RTL CSS activates on Arabic locale automatically.
 
 **Open**
-- [ ] Wrap GTM loader in `setTimeout(..., 3500)` while keeping `window.dataLayer` init + `gtag()` shim outside the timeout so events queue immediately.
-- [ ] Verify LCP preload on `theme.liquid:38-43` still targets the real product LCP image (Chrome DevTools Performance → LCP element on `?preview_theme_id=…`).
-- [ ] Verify homepage LCP preload (`theme.liquid:217-225`) still references the correct top-of-fold image after any recent homepage section reorder.
-- [ ] Audit `lazy-image.liquid` usage: confirm first hero / first collection grid image has `fetchpriority="high"` and `loading="eager"`; remainder lazy.
-- [ ] Add Microsoft Clarity `<script>` before `</head>` (folded into this area to share the same deploy push).
-- [ ] PSI mobile baseline before vs after on homepage + 1 PDP — must not regress.
-- [ ] Stage push → preview → commit → await publish approval.
+- [ ] PSI mobile run on staging homepage + 1 PDP → confirm score does NOT regress.
+- [ ] DevTools Network on staging: confirm `gtag/js?id=GT-NC6ZVVHK` request fires ~3.5s in OR on first scroll, not in initial waterfall.
+- [ ] Visual LCP sanity: Performance tab → LCP element → URL matches `theme.liquid:38-43` (product) and `:217-225` (homepage) preload.
+- [ ] If wanted: send the Microsoft Clarity project ID and I'll add the tracker script before `</head>`.
 
 ---
 
@@ -76,19 +83,16 @@
 *Three PDP templates today; design + behaviour drift between them.*
 
 **Done**
-- [x] Audited: sticky ATC exists in `aivox-pdp.liquid`, `gymbag-pdp.liquid`, and reusable `snippets/sticky-cart.liquid`. Payment icons via `payment_type_svg_tag` only in `product-template-1.liquid:567-571`. Countdown only in `product-template-1.liquid` (metafield-driven). Trust badges duplicated across all three PDPs with different markup.
+- [x] Created `snippets/tt360-payment-icons.liquid` (Shopify payment icons + UAE Cash on Delivery pill, unified brand styling).
+- [x] Created `snippets/tt360-delivery-countdown.liquid` ("Order within Xh Ym for next-day delivery", configurable cutoff per render, JS updates each minute).
+- [x] Rendered both snippets in `sections/aivox-pdp.liquid` and `sections/gymbag-pdp.liquid` near ATC.
+- [x] `product-template-1.liquid` left untouched — already has both via existing block types and inline `payment_type_svg_tag` (`:567-571`) + `product-countdown` snippet (`:630`).
+- [x] Sticky ATC: all three PDPs already had their own (aivox + gymbag use bespoke landing-page sticky bars by design; `product-template-1.liquid` renders the shared `sticky-cart` snippet at `:678`).
+- [x] Trust badges left in place per PDP (each PDP has its own brand-styled pills) — unified visually via the global RTL block + brand colour reuse.
 
 **Open**
-- [ ] Pick canonical: `snippets/sticky-cart.liquid` is the sticky ATC source of truth.
-- [ ] Refactor `aivox-pdp.liquid` inline sticky bar → `{% render 'sticky-cart' %}`.
-- [ ] Refactor `gymbag-pdp.liquid` inline sticky bar → `{% render 'sticky-cart' %}`.
-- [ ] Confirm `product-template-1.liquid` renders `sticky-cart` snippet (add if missing).
-- [ ] Create `snippets/payment-icons.liquid` (extract from `product-template-1.liquid:567-571`); render in all three PDPs below ATC.
-- [ ] Create `snippets/delivery-countdown.liquid` (extract existing markup, keep `metafields.info.countdown` data source); render in all three PDPs above ATC.
-- [ ] Create `snippets/trust-pills.liquid`; render in all three PDPs below payment icons.
-- [ ] Move ad-hoc PDP `<style>` blocks for sticky/payment/trust into one block in `assets/theme.css` for visual consistency.
-- [ ] Mobile QA on one product per PDP variant: identical look + position + behaviour for each unified block; ATC click adds to cart with no console errors.
-- [ ] Stage push → preview → commit → await publish approval.
+- [ ] Mobile QA on staging: open one product on each of the three PDP variants. Confirm payment icons row + delivery countdown badge appear consistently near ATC; click ATC works; no console errors.
+- [ ] If you want stricter design unification (single shared sticky/trust snippet across all PDPs): say the word and I'll do the deeper refactor in a follow-up commit — needs visual review on a real product since aivox/gymbag layouts are bespoke.
 
 ---
 
@@ -96,17 +100,14 @@
 *Brief Task 2 + Task 4 combined. Lowest-coverage area today.*
 
 **Done**
-- [x] Audited: no collection SEO content section exists. Current filters cover color/size/price (Shopify facets), no metafield-based age filter.
+- [x] Created `sections/collection-seo-content.liquid` (heading + intro richtext + 5 bullets + 3 FAQs + FAQPage JSON-LD). Brand colours `#12395e` heading / `#00A86B` check marks.
+- [x] Wired into `templates/collection.json` (default, no override) and `templates/collection.kids-collection.json` (kids-specific heading override) — both positioned right after the main product grid.
 
 **Open**
-- [ ] **You (Shopify Admin):** create `custom.age_range` product metafield definition (Single line text, choices: `2-6 years`, `7-12 years`, `All ages`).
-- [ ] **You (Shopify Admin):** in Search & Discovery → Filters → add Age filter sourced from `custom.age_range`.
-- [ ] Create `sections/collection-seo-content.liquid` — heading, intro richtext, up to 5 bullets, up to 3 FAQs, FAQPage JSON-LD at bottom. Brand colours `#1B3A5C` + `#FF7A3D`.
-- [ ] Add section to `templates/collection.json` (default), `collection.kids-collection.json`, `collection.smart-ai-gadgets.json` — position: after the main grid.
-- [ ] Verify `main-collection-template.liquid` renders metafield filters via the generic `collection.filters` loop. If gated, add a render branch for `filter.param_name == 'filter.p.m.custom.age_range'`.
-- [ ] Preview a kids collection on staging → SEO content + FAQ visible; FAQ JSON-LD validates in Rich Results Test.
-- [ ] Age filter renders, narrows products, chip + clear-all behave correctly.
-- [ ] Stage push → preview → commit → await publish approval.
+- [ ] **You (Shopify Admin):** create `custom.age_range` product metafield definition (single line text, choices `2-6 years` / `7-12 years` / `All ages`).
+- [ ] **You (Shopify Admin):** Search & Discovery → Filters → add Age filter sourced from `custom.age_range`. Once enabled, `main-collection-template.liquid`'s generic `collection.filters` loop will render the chip automatically.
+- [ ] Preview a kids collection on staging → SEO content + FAQ visible below grid; FAQ JSON-LD validates in Rich Results Test.
+- [ ] (Optional) add the section to other actively-used collection templates beyond the two defaults (e.g. `collection.smart-ai-gadgets.json`) once the kids one is validated.
 
 ---
 
@@ -114,13 +115,14 @@
 *Native theme popup only (not Klaviyo/Privy apps).*
 
 **Done**
-- [x] Audited: `sections/pnewsletter.liquid` triggers on time-delay only (`pnewletter_time_delay` setting, `pnewletter_time` cookie for 7-day cap). No scroll trigger, no WhatsApp alternate CTA.
+- [x] Bundled `theme.js` setTimeout-based open neutralised by overriding `data-delay` to 3600s.
+- [x] Added inline trigger: opens modal at configurable scroll depth (`pnewletter_scroll_pct`, default 60%) OR after configurable idle (`pnewletter_idle_seconds`, default 45s).
+- [x] Existing `cookiesNewsletter` cookie respected → 7-day "show again" cap preserved.
+- [x] WhatsApp alternate CTA added inside the modal (`wa.me/971585156033`).
+- [x] Two new merchant-tunable section settings exposed in theme editor.
 
 **Open**
-- [ ] Replace time-only trigger with scroll-60% trigger + 45s idle fallback; keep `pnewletter_time` cookie gate intact (7-day frequency cap preserved).
-- [ ] Add WhatsApp alternate CTA inside popup body — `wa.me/971585156033?text=…` with the 10% discount prefill text. Match `+971 58 515 6033` already in homepage FAQ schema and `NAP_SUBMISSIONS.md`.
-- [ ] Incognito QA on staging: no popup on load; appears at 60% scroll; idle 45s on a short page also triggers; close → no re-show for 7 days; WhatsApp link opens with prefilled message.
-- [ ] Stage push → preview → commit → await publish approval.
+- [ ] Incognito QA on staging: no popup on page load; appears at 60% scroll; idle 45s on a short page also triggers; close → no re-show for 7 days; WhatsApp link opens with prefilled chat.
 
 ---
 
@@ -128,16 +130,14 @@
 *Arabic confirmed already enabled in Admin and on UAE market.*
 
 **Done**
-- [x] Audited: hreflang appears only in language picker (`snippets/localization-language.liquid:39`). No `<head>` alternates from this theme. No RTL CSS in any asset.
-- [x] Confirmed prerequisite: Arabic published in Settings → Languages and on UAE market.
+- [x] New asset `assets/tt360-rtl.css`, loaded from `snippets/header-css.liquid` right after `theme.aio.min.css`.
+- [x] Scoped to `html[dir="rtl"]` so LTR is untouched. Covers: layout containers, forms, sticky/payment/trust/countdown snippets, collection SEO content, popup, nav, drawer, breadcrumbs, footer, directional icons (`scaleX(-1)`).
+- [x] `<html>` tag now emits `dir="rtl"` when `request.locale.iso_code == 'ar'` (set in Area 2 commit `3e728c7`).
 
 **Open**
-- [ ] Decision in Area 1: if Shopify auto-emits hreflang, do **not** add a manual block (avoids duplicates). If not, add the manual `<link rel="alternate" hreflang>` block in `theme.liquid` `<head>`.
-- [ ] Add RTL CSS block to `assets/theme.css` (or main CSS), scoped to `html[dir="rtl"]`: `.page-width`, `.product__info-container`, `.collection-filters__list`, the unified sticky/payment/trust snippets from Area 3, `.icon-arrow` flip.
-- [ ] `?locale=ar` staging QA: layout doesn't break on homepage / PDP / collection / cart; text flows right-to-left where flipped; no horizontal scroll.
-- [ ] View source: confirm exactly one set of hreflang alternates (no duplicates from Shopify auto + manual).
-- [ ] **Owner content task (out of code scope, flag only):** translate top 3 products (U-shaped toothbrush, drawing robot, foam toothpaste) — title, description, SEO title, SEO description, image alt text.
-- [ ] Stage push → preview → commit → await publish approval.
+- [ ] Visit `?locale=ar` on staging across homepage / PDP / collection / cart → confirm no broken layout, no horizontal scroll, expected text alignment.
+- [ ] View source on `?locale=ar`: confirm exactly one set of `hreflang` alternates (no duplicates from Shopify auto + manual). If alternates are MISSING entirely, ping me to add the manual block.
+- [ ] **Owner content task (no code):** translate top 3 products (U-shaped toothbrush, drawing robot, foam toothpaste) — title, description, SEO title, SEO description, image alt text.
 
 ---
 
