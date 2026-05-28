@@ -52,11 +52,9 @@
       padding-bottom: 1.5rem;
     }
 </style>
-  <section class="customstyle{{ section.id }}  lazyload " 
-  data-aos="{{ section.settings.animation }}"  
-  data-bgset="{% render 'bgset', image: section.settings.image_bg %}"
-  data-sizes="auto"
-  data-parent-fit="cover" 
+  <section class="customstyle{{ section.id }}{% if section.settings.image_bg %} lazyload{% endif %}"
+  data-aos="{{ section.settings.animation }}"
+  {% if section.settings.image_bg %}data-bgset="{% render 'bgset', image: section.settings.image_bg %}" data-sizes="auto" data-parent-fit="cover"{% endif %}
   >
   {%- render 'style-section' -%}
     <div class="{{ section.settings.setwidth }}">

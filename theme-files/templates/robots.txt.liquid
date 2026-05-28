@@ -17,6 +17,8 @@ Disallow: /carts
 Disallow: /orders
 Disallow: /account
 Disallow: /apps
+Disallow: /discount/
+Disallow: /gift_cards/
 
 # Shopify / security endpoints (safe to block)
 Disallow: /a/downloads/-/*
@@ -48,20 +50,8 @@ Disallow: /search
 Disallow: /recommendations
 Disallow: /recommendations/products
 
-# -------------------------------
-# 4) TRUST PAGES (IMPORTANT FOR AI)
-# -------------------------------
-Allow: /policies
-Allow: */policies/
-
-# -------------------------------
-# 5) IMPORTANT MACHINE-READABLE FILES
-# -------------------------------
-Allow: /sitemap.xml
-Allow: /robots.txt
-Allow: /llms.txt
-
-Sitemap: https://tiptop360.com/sitemap.xml
+# (No Allow: overrides needed — /policies/, /sitemap.xml, /llms.txt, /agents.md
+#  are not blocked above and are open to all crawlers by default.)
 
 
 # =====================================
@@ -84,6 +74,18 @@ Disallow: /sf_private_access_tokens
 # BLOCK KNOWN AGGRESSIVE SCRAPERS
 # =====================================
 User-agent: Nutch
+Disallow: /
+
+User-agent: SemrushBot
+Crawl-delay: 10
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
+
+User-agent: DotBot
 Disallow: /
 
 
@@ -117,35 +119,166 @@ Disallow: /sf_private_access_tokens
 
 User-agent: MJ12bot
 Crawl-delay: 10
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
 
 User-agent: Pinterest
 Crawl-delay: 1
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
 
 
 # =====================================
 # AI / LLM CRAWLERS — EXPLICITLY ALLOWED
-# (Redundant vs User-agent:* but kept for clarity)
+# Each section repeats core disallows — AI bots only inherit rules from their
+# own block, NOT from User-agent: *, so critical paths must be re-stated here.
 # =====================================
 User-agent: GPTBot
 Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
 Crawl-delay: 1
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
 
-User-agent: OpenAI
+User-agent: OAI-SearchBot
 Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
+Crawl-delay: 1
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
 Crawl-delay: 1
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
 Crawl-delay: 2
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
+
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+
+User-agent: meta-externalagent
+Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
+Crawl-delay: 1
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Diffbot
+Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
+Crawl-delay: 5
+
+User-agent: AI2Bot
+Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
+Crawl-delay: 5
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
+Crawl-delay: 2
+
+User-agent: YouBot
+Allow: /
+Disallow: /checkout
+Disallow: /checkouts
+Disallow: /cart
+Disallow: /admin
+Disallow: /orders
+Disallow: /*?*utm_*
+Crawl-delay: 1
+
+
+# =====================================
+# SITEMAP (non-group record — must be outside all User-agent blocks)
+# =====================================
+Sitemap: https://tiptop360.com/sitemap.xml
