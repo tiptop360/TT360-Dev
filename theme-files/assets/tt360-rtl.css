@@ -1,0 +1,96 @@
+/* TipTop360 — RTL support (Arabic). Scoped to html[dir="rtl"] so LTR is unaffected. */
+
+html[dir="rtl"] body { direction: rtl; text-align: right; }
+
+html[dir="rtl"] .page-width,
+html[dir="rtl"] .container,
+html[dir="rtl"] .product__info-container,
+html[dir="rtl"] .product-single__meta,
+html[dir="rtl"] .grid__item {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Forms / inputs / labels */
+html[dir="rtl"] input,
+html[dir="rtl"] select,
+html[dir="rtl"] textarea,
+html[dir="rtl"] label,
+html[dir="rtl"] .form-group label { text-align: right; }
+
+/* Lists / bullets — keep marker on the right */
+html[dir="rtl"] ul,
+html[dir="rtl"] ol { padding-right: 1.25em; padding-left: 0; }
+
+/* Buttons row / inline groups */
+html[dir="rtl"] .btn + .btn { margin-right: 8px; margin-left: 0; }
+
+/* Sticky cart / sticky ATC (covers existing snippet markup + the unified PDP blocks added in Area 3) */
+html[dir="rtl"] .sticky-cart,
+html[dir="rtl"] .sticky-atc-bar,
+html[dir="rtl"] .sticky-cart__inner,
+html[dir="rtl"] .sticky-atc-bar__inner { direction: rtl; }
+html[dir="rtl"] .sticky-cart__info,
+html[dir="rtl"] .sticky-atc-bar__info { text-align: right; }
+
+/* Payment icons row */
+html[dir="rtl"] .product-payment-icons__row,
+html[dir="rtl"] .payment-icons { direction: rtl; }
+html[dir="rtl"] .product-payment-icons__text { margin-right: 4px; margin-left: 0; }
+
+/* Trust pills row */
+html[dir="rtl"] .trust-pills { direction: rtl; }
+
+/* Delivery countdown */
+html[dir="rtl"] .delivery-countdown { direction: rtl; }
+html[dir="rtl"] .delivery-countdown__icon { margin-left: 8px; margin-right: 0; }
+
+/* Collection filters row */
+html[dir="rtl"] .collection-filters,
+html[dir="rtl"] .collection-filters__list,
+html[dir="rtl"] .collection-filters__dropdown { direction: rtl; }
+html[dir="rtl"] .collection-filters__dropdown { right: 0; left: auto; }
+html[dir="rtl"] .collection-filters__active-tag a { margin-right: 6px; margin-left: 0; }
+
+/* Collection SEO content block (Area 4) */
+html[dir="rtl"] .collection-seo,
+html[dir="rtl"] .collection-seo__bullets { text-align: right; }
+html[dir="rtl"] .collection-seo__bullets li { padding-right: 28px; padding-left: 0; }
+html[dir="rtl"] .collection-seo__bullets li::before { right: 0; left: auto; }
+
+/* Newsletter popup */
+html[dir="rtl"] .popup-newsletter--title,
+html[dir="rtl"] .popup-newsletter--description,
+html[dir="rtl"] .tt360-pnew-whatsapp { text-align: right; }
+html[dir="rtl"] .tt360-pnew-whatsapp { text-align: center; }
+html[dir="rtl"] .close-newsletter { right: auto; left: 12px; }
+
+/* Cart drawer / drawer toggles */
+html[dir="rtl"] .drawer { right: auto; left: 0; }
+html[dir="rtl"] .drawer--right { right: auto; left: 0; transform: translateX(-100%); }
+html[dir="rtl"] .drawer--right.is-open { transform: translateX(0); }
+
+/* Icons with directional meaning — flip horizontally */
+html[dir="rtl"] .icon-arrow,
+html[dir="rtl"] .icon-arrow-right,
+html[dir="rtl"] .icon-arrow-left,
+html[dir="rtl"] .icon-chevron-right,
+html[dir="rtl"] .icon-chevron-left,
+html[dir="rtl"] .swiper-button-next svg,
+html[dir="rtl"] .swiper-button-prev svg,
+html[dir="rtl"] .slick-arrow svg { transform: scaleX(-1); }
+
+/* Navigation menu */
+html[dir="rtl"] .site-nav__link,
+html[dir="rtl"] .site-nav__dropdown { text-align: right; }
+html[dir="rtl"] .site-nav__dropdown { right: 0; left: auto; }
+
+/* Breadcrumbs */
+html[dir="rtl"] .breadcrumb,
+html[dir="rtl"] .breadcrumb-item { direction: rtl; }
+html[dir="rtl"] .breadcrumb-item + .breadcrumb-item { padding-right: 8px; padding-left: 0; }
+html[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before { padding-left: 8px; padding-right: 0; }
+
+/* Footer */
+html[dir="rtl"] .site-footer,
+html[dir="rtl"] .site-footer__item { text-align: right; }

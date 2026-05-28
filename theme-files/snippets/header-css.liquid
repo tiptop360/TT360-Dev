@@ -304,6 +304,7 @@ article,aside,figcaption,figure,footer,header,hgroup,main,nav,section{display:bl
   <link rel="stylesheet" href="{{ 'component-predictive-search.aio.min.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 {{ 'theme.aio.min.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'tt360-rtl.css' | asset_url | stylesheet_tag }}
 <style>
 
   .spinner-grow, .spinner-border{
