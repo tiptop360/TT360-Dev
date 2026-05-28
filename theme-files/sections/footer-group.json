@@ -75,7 +75,7 @@
         "1562342622030": {
           "type": "menu",
           "settings": {
-            "link_list": "policies",
+            "link_list": "footer",
             "width": "25%"
           }
         },
