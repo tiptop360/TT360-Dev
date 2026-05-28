@@ -74,6 +74,9 @@
     }
     .site-footer-block {
       display: block !important;
+      max-height: none !important;
+      overflow: visible !important;
+      transition: none !important;
     }
     .site-footer .site-footer__section-title{
       pointer-events:none;
@@ -185,9 +188,16 @@
     .site-footer.footer-acc-mobile .site-footer__section{
       padding-bottom: 24px;
     }
-    .site-footer.footer-acc-mobile .site-footer-block {
-    display: none;
-   }
+    /* Only collapse blocks that have a title trigger — leaves untitled blocks (e.g. social) always visible */
+    .site-footer.footer-acc-mobile .site-footer__section-title ~ .site-footer-block {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .site-footer.footer-acc-mobile .site-footer__section-title.active ~ .site-footer-block {
+      max-height: 600px;
+      overflow: visible;
+    }
    .footer-email .btn-theme::before{
     display: none;
    }
@@ -300,12 +310,10 @@
   assign footer_align_title = section.settings.footer_align_title
   assign acc_mobile = section.settings.acc_mobile
 -%}
-<footer class="site-footer lazyload footer-{{ section.id }} {% if acc_mobile %} footer-acc-mobile{% endif %}" 
- data-bgset="{% render 'bgset', image: bg_image %}"
- data-sizes="auto"
- data-parent-fit="cover" 
- data-section-type="footer" 
- data-section-id="{{ section.id }}" 
+<footer class="site-footer footer-{{ section.id }} {% if acc_mobile %} footer-acc-mobile{% endif %}{% if bg_image %} lazyload{% endif %}"
+ {% if bg_image %}data-bgset="{% render 'bgset', image: bg_image %}" data-sizes="auto" data-parent-fit="cover"{% endif %}
+ data-section-type="footer"
+ data-section-id="{{ section.id }}"
   data-acc="{{ acc_mobile }}" >
   <div class="site-footer--head">
   <div class="{{ section.settings.setwidth }}">
