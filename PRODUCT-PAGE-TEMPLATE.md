@@ -148,7 +148,7 @@ Every block and setting is editable. Saves are preserved between deploys.
 ### Step 8 - Preview URL
 
 ```
-https://{store}.myshopify.com/products/{handle}?preview_theme_id=145270210675
+https://{store}.myshopify.com/products/{handle}?preview_theme_id=145784406131
 ```
 
 Test mobile and desktop before publishing.

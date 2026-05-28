@@ -2,7 +2,8 @@
 
 **Project:** tiptop360.com Shopify optimization
 **Store:** zrhgzw-xt.myshopify.com
-**Live theme:** TipTop360 | NEW Cloud optimized — #145031200883
+**Live theme:** TT360 | live — #145753800819
+**Staging theme:** TT360 | Dev — #145784406131
 **Owner:** Rabih Arabi
 **Stack:** Shopify + OAuth Custom App + Node.js Optimizer + Anthropic Claude API + Pydantic AI + Cloudflare CDN
 
@@ -18,8 +19,9 @@ ROLE: You are an elite Shopify SEO/CRO/GEO/Performance engineer working on tipto
 PROJECT FACTS (always assume true unless told otherwise):
 - Domain: tiptop360.com (Cloudflare-fronted)
 - Shopify store: zrhgzw-xt.myshopify.com
-- Live theme: #145031200883 ("TipTop360 | NEW Cloud optimized")
-- Backup theme: #143636463731 ("TipTop360 | Live") — unpublished
+- Live theme: #145753800819 ("TT360 | live") — MAIN
+- Staging theme: #145784406131 ("TT360 | Dev") — push here first, validate, then promote to live
+- Backup theme: #143636463731 ("TipTop360 | Live") — legacy unpublished rollback target
 - Project dir: /Users/rabiharabi/tiptop360-optimizer/
 - Node project (ES module — uses `"type":"module"` in package.json, so any inline scripts run as .cjs)
 - 19 products, all with: SEO titles, meta descriptions, FAQ metafields, alt text 100% covered
@@ -41,7 +43,7 @@ TOOL CONSTRAINTS:
 - VS Code CLI not installed (no `code` command). Use sed for surgical edits.
 - node-fetch v2 used (CommonJS-compatible) — import via `const fetch = (...args) => import('node-fetch').then(({default:f}) => f(...args));`
 - Anthropic SDK installed: `@anthropic-ai/sdk`
-- Shopify CLI installed: `shopify theme push --store zrhgzw-xt.myshopify.com --theme 145031200883 --path ./theme-files --only <files> --allow-live`
+- Shopify CLI installed: `shopify theme push --store zrhgzw-xt.myshopify.com --theme 145784406131 --path ./theme-files --only <files>` (staging — TT360 | Dev). For live `--theme 145753800819 --allow-live` (TT360 | live).
 
 STANDARD VALIDATION SEQUENCE (run after every push):
 1. `grep -c '\](http' <touched files>` — must be 0 (no markdown corruption)
@@ -90,7 +92,7 @@ OUTPUT FORMAT:
 ```bash
 cd /Users/rabiharabi/tiptop360-optimizer
 node optimizer.js audit
-shopify theme pull --store zrhgzw-xt.myshopify.com --theme 143636463731 --path ./theme-files-clean-$(date +%Y%m%d)
+shopify theme pull --store zrhgzw-xt.myshopify.com --theme 145784406131 --path ./theme-files-clean-$(date +%Y%m%d)
 node -v && shopify version
 cat .env | grep -c "ANTHROPIC_API_KEY"  # must be 1
 ```
@@ -290,12 +292,15 @@ node -e "const fs=require('fs'); const c=fs.readFileSync('theme-files/<path>','u
 # 3. Verify no markdown corruption
 grep -c '\](http' theme-files/<path>  # must be 0
 
-# 4. Push to live theme
-shopify theme push --store zrhgzw-xt.myshopify.com --theme 145031200883 --path ./theme-files --only <path> --allow-live
+# 4a. Push to staging first (TT360 | Dev — no --allow-live needed)
+shopify theme push --store zrhgzw-xt.myshopify.com --theme 145784406131 --path ./theme-files --only <path>
+
+# 4b. Once staging QA passes, promote to live (TT360 | live)
+shopify theme push --store zrhgzw-xt.myshopify.com --theme 145753800819 --path ./theme-files --only <path> --allow-live
 
 # 5. Verify pushed file matches local
 mkdir -p /tmp/v
-shopify theme pull --store zrhgzw-xt.myshopify.com --theme 145031200883 --only <path> --path /tmp/v
+shopify theme pull --store zrhgzw-xt.myshopify.com --theme 145753800819 --only <path> --path /tmp/v
 diff theme-files/<path> /tmp/v/<path>
 
 # 6. Purge Cloudflare
@@ -463,7 +468,7 @@ echo "✅ All regression tests passed"
 
 ```bash
 cp -r ./theme-files-clean-YYYYMMDD/* ./theme-files/
-shopify theme push --store zrhgzw-xt.myshopify.com --theme 145031200883 --path ./theme-files --allow-live
+shopify theme push --store zrhgzw-xt.myshopify.com --theme 145753800819 --path ./theme-files --allow-live
 ```
 
 ## Scenario B — Bad AI-generated content
@@ -476,7 +481,7 @@ node optimizer.js revert-titles --to=changes.json
 
 ## Scenario C — Site down (nuclear)
 
-Shopify Admin → Themes → "TipTop360 | Live" #143636463731 → Actions → **Publish**.
+Shopify Admin → Themes → "TipTop360 | Live" #143636463731 (legacy backup) → Actions → **Publish**. If unavailable, fall back to most recent known-good staging snapshot from "TT360 | Dev" #145784406131.
 
 ## Scenario D — Malware re-detected
 
@@ -585,7 +590,7 @@ Address remaining LCP killers (post-malware):
 | `keywords.js` | 19 product keyword mappings |
 | `shopify.app.toml` | Custom app config (6 scopes) |
 | `.env` | SHOPIFY_STORE, CLIENT_ID, CLIENT_SECRET, ANTHROPIC_API_KEY, CF_TOKEN, CF_ZONE |
-| `theme-files/` | Live theme source (synced with #145031200883) |
+| `theme-files/` | Theme source (synced with TT360 | Dev #145784406131 staging, promoted to TT360 | live #145753800819) |
 | `theme-files-clean-YYYYMMDD/` | Date-stamped clean backups |
 | `local-backups/` | Per-fix change logs |
 | `validators/pydantic_validator.py` | All AI output validation |

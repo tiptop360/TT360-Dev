@@ -1,8 +1,8 @@
 # TipTop360 — Execution Plan (Live Tracker)
 
 **Branch:** `claude/gracious-knuth-LCmh0`
-**Staging theme:** TT360 | Dev — `#145464754291`
-**Live theme:** `#145270210675`
+**Staging theme:** TT360 | Dev — `#145784406131`
+**Live theme:** TT360 | live — `#145753800819`
 **Gate:** Per-area pause for explicit "publish live" approval before promotion.
 
 ---
@@ -21,7 +21,7 @@
 - [x] Audited every brief task vs real theme state (3 Explore agents).
 - [x] Plan file: `/root/.claude/plans/root-claude-uploads-5f883c76-e2fe-4b2a-zazzy-koala.md`.
 - [x] Live tracker: `EXECUTION_PLAN.md`.
-- [x] Decisions locked: staging = #145464754291; Arabic already enabled; `kids-collection-uae` still live (Task 11 dropped).
+- [x] Decisions locked: staging = #145784406131; Arabic already enabled; `kids-collection-uae` still live (Task 11 dropped).
 - [x] **Area 1 — SEO/GEO:** LocalBusiness JSON-LD added to `@graph` in `layout/theme.liquid` (homepage-only, parent-linked to `#organization`). JSON-LD parses on both Liquid branches. — commit `5c34c42`.
 - [x] **Area 2 — Performance:** GTM loader wrapped in `setTimeout(3500)` + first-interaction (scroll/move/touch/key) trigger; dataLayer + gtag init kept outside the timeout so events queue immediately. Also: `<html dir>` now derived from `request.locale.iso_code` so RTL CSS activates on Arabic locale. — commit `3e728c7`.
 - [x] **Area 3 — PDP unification:** new `snippets/tt360-payment-icons.liquid` + `snippets/tt360-delivery-countdown.liquid`. Rendered in `aivox-pdp.liquid` and `gymbag-pdp.liquid` (both were missing payment + delivery cutoff). `product-template-1.liquid` left alone — already has both via existing block types. — commit `91bd6b9`.
@@ -36,8 +36,8 @@
 ## Still Open Right Now
 
 - [ ] **You (Mac):** `git fetch origin && git checkout claude/gracious-knuth-LCmh0 && git pull` to get all 5 area commits.
-- [ ] **You (Mac):** `npm run theme:push:staging` (pushes everything to TT360 | Dev #145464754291).
-- [ ] **You (Mac):** preview `https://tiptop360.com?preview_theme_id=145464754291` and walk the QA checklist in each area section below.
+- [ ] **You (Mac):** `npm run theme:push:staging` (pushes everything to TT360 | Dev #145784406131).
+- [ ] **You (Mac):** preview `https://tiptop360.com?preview_theme_id=145784406131` and walk the QA checklist in each area section below.
 - [ ] **You (Shopify Admin):** create `custom.age_range` metafield definition + enable in Search & Discovery — only blocks Area 4's filter (the SEO content section itself ships without it).
 - [ ] **You (Shopify Admin):** publish `llms.txt` if `curl -I https://tiptop360.com/llms.txt` returns 404.
 - [ ] **You:** view-source on staging → grep for `hreflang` → tell me whether Shopify auto-emits alternates (decides if Area 1 needs a manual block). If alternates ARE missing, ping me and I'll add the `<head>` block.
@@ -172,11 +172,11 @@
 # 1. Get the latest code I pushed
 git fetch origin && git checkout claude/gracious-knuth-LCmh0 && git pull
 
-# 2. Push to staging (TT360 | Dev #145464754291)
+# 2. Push to staging (TT360 | Dev #145784406131)
 npm run theme:push:staging
 
 # 3. Preview
-#    https://tiptop360.com?preview_theme_id=145464754291
+#    https://tiptop360.com?preview_theme_id=145784406131
 
 # 4. Per-area QA (per the "Open" checklist for that area)
 
