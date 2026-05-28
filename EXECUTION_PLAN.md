@@ -48,8 +48,9 @@
 - [ ] **You (Mac):** `git fetch origin && git checkout claude/hopeful-brown-6oflm && git pull` to get all 6 area commits.
 - [ ] **You (Mac):** `npm run theme:push:staging` (pushes everything to TT360 | Dev #145784406131).
 - [ ] **You (Mac):** preview `https://tiptop360.com?preview_theme_id=145784406131` and walk the QA checklist in each area section below.
-- [ ] **You (Shopify Admin):** create `custom.age_range` metafield definition + enable in Search & Discovery — only blocks Area 4's filter (the SEO content section itself ships without it).
-- [ ] **You (Shopify Admin):** publish `llms.txt` if `curl -I https://tiptop360.com/llms.txt` returns 404.
+- [x] ~~Shopify Admin: create `custom.age_range` metafield definition~~ — **done 2026-05-28 via Shopify Admin API** (`gid://shopify/MetafieldDefinition/183661658227`). Pinned at position 11, type `single_line_text_field`, validations `choices=["2-6 years","7-12 years","All ages"]`, smartCollectionCondition + adminFilterable enabled. **Storefront access defaulted to NONE** (the app's scope blocked setting `PUBLIC_READ` at creation time). Search & Discovery filtering works without storefront access; if you ALSO want to read the value in Liquid for on-PDP display, upgrade in Settings → Custom data → Products → Age Range → Storefronts → Read.
+- [x] ~~Shopify Admin: publish `llms.txt` if `curl -I https://tiptop360.com/llms.txt` returns 404~~ — **already live** (verified 2026-05-28). Shopify page `gid://shopify/Page/122160054387` (handle `llms-txt`, last updated 2026-05-27) holds the full content; URL redirect `gid://shopify/UrlRedirect/435000737907` maps `/llms.txt → /pages/llms-txt`. The page falls back to default `templates/page.liquid` (no `page.text.liquid` exists in either theme) so it renders with theme chrome around the `<pre>` body — fine for AI crawlers. Optional optimization: create a `templates/page.llms-txt.liquid` with `{% layout none %}{{ page.content }}` and switch the page's `templateSuffix` from `text` to `llms-txt` to strip the chrome — but not blocking.
+- [ ] **You (Shopify Admin):** enable Search & Discovery → Filters → Age (sources from `custom.age_range`). Once enabled, `main-collection-template.liquid`'s `collection.filters` loop renders the chip automatically.
 - [ ] **You:** view-source on staging → grep for `hreflang` → tell me whether Shopify auto-emits alternates (decides if Area 1 needs a manual block). If alternates ARE missing, ping me and I'll add the `<head>` block.
 - [ ] **You:** when staging QA passes, `npm run theme:publish:staging` to promote, then Cloudflare cache purge (see SOP 3 in `STRATEGY.md`).
 - [ ] **You:** Area 7 external — GBP, GSC sitemap, Bing import, Microsoft Clarity script (give me the project ID and I'll fold the `<script>` into theme.liquid).
@@ -70,7 +71,7 @@
 **Open**
 - [ ] Stage push + Rich Results Test on staging preview URL → expect 5 schemas detected.
 - [ ] View-source on staging: confirm whether Shopify already emits `hreflang` alternates. If not → ping me to add manual `<link rel="alternate" hreflang>` block to `<head>`.
-- [ ] `curl -I https://tiptop360.com/llms.txt` from your Mac → if 404, publish the llms.txt file (source generator referenced in `validators/llms_txt_validator.py`).
+- [x] ~~`curl -I https://tiptop360.com/llms.txt` → publish if 404~~ — already live as a Shopify page + URL redirect (verified via Admin API 2026-05-28, see top-level "Still Open" note).
 - [ ] Re-check AggregateRating render on a PDP (Judge.me 24h propagation per `SESSION_CONTEXT.md`).
 
 ---
@@ -115,8 +116,10 @@
 - [x] Wired into `templates/collection.json` (default, no override) and `templates/collection.kids-collection.json` (kids-specific heading override) — both positioned right after the main product grid.
 
 **Open**
-- [ ] **You (Shopify Admin):** create `custom.age_range` product metafield definition (single line text, choices `2-6 years` / `7-12 years` / `All ages`).
+- [x] ~~Create `custom.age_range` product metafield definition~~ — **done 2026-05-28 via Admin API** (definition id `gid://shopify/MetafieldDefinition/183661658227`, choices `2-6 years / 7-12 years / All ages`, adminFilterable + smartCollectionCondition both enabled, pinned).
 - [ ] **You (Shopify Admin):** Search & Discovery → Filters → add Age filter sourced from `custom.age_range`. Once enabled, `main-collection-template.liquid`'s generic `collection.filters` loop will render the chip automatically.
+- [ ] **You (Shopify Admin, optional):** upgrade storefront access on `custom.age_range` to `Read` (Settings → Custom data → Products → Age Range → Storefronts) if you want to render the value in PDP Liquid. Filter functionality already works without this.
+- [ ] **You (Shopify Admin):** assign an age range to each kids product (Products → product → Metafields → Age Range → pick one of the 3 choices).
 - [ ] Preview a kids collection on staging → SEO content + FAQ visible below grid; FAQ JSON-LD validates in Rich Results Test.
 - [ ] (Optional) add the section to other actively-used collection templates beyond the two defaults (e.g. `collection.smart-ai-gadgets.json`) once the kids one is validated.
 
