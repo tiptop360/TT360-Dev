@@ -1,0 +1,82 @@
+{%- comment -%}
+  TT360 Estimated Delivery widget.
+  Computes the next eligible delivery date entirely in the browser so the
+  message is always accurate to "now" regardless of CDN cache.
+
+  Rules (locked with merchant 2026-05-28):
+    - Delivery days: Mon-Sat (Sunday = no delivery)
+    - Same-day cutoff: 20:00 UAE
+    - Before cutoff on a delivery day  -> next delivery day
+    - After cutoff on a delivery day   -> skip an extra calendar day, then next delivery day
+    - Non-delivery day today           -> next delivery day (cutoff ignored)
+
+  Override per render:
+    {% render 'tt360-estimated-delivery', cutoff_hour: 18, label: 'Delivered by' %}
+{%- endcomment -%}
+
+{%- assign tt360_cutoff = cutoff_hour | default: 20 -%}
+{%- assign tt360_label = label | default: 'Get it by' -%}
+
+<div class="tt360-eta"
+     data-cutoff="{{ tt360_cutoff }}"
+     data-delivery-days="1,2,3,4,5,6"
+     data-label="{{ tt360_label | escape }}"
+     role="status" aria-live="polite">
+  <span class="tt360-eta__icon" aria-hidden="true">&#128666;</span>
+  <span class="tt360-eta__copy">
+    <span class="tt360-eta__label">{{ tt360_label }}</span>
+    <strong class="tt360-eta__date">&hellip;</strong>
+    <span class="tt360-eta__note"></span>
+  </span>
+</div>
+<style>
+  .tt360-eta{
+    display:flex;align-items:center;gap:10px;
+    background:#E8F5E9;border:1px solid #C8E6C9;border-radius:8px;
+    padding:10px 14px;margin:8px 0 12px;
+    font-size:13px;color:#1B5E20;line-height:1.4;
+  }
+  .tt360-eta__icon{font-size:18px;line-height:1;}
+  .tt360-eta__copy{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 6px;}
+  .tt360-eta__label{color:#2E7D32;}
+  .tt360-eta__date{color:#1B5E20;font-weight:700;}
+  .tt360-eta__note{color:#2E7D32;opacity:.85;font-size:12px;}
+</style>
+<script>
+(function(){
+  var nodes = document.querySelectorAll('.tt360-eta');
+  var el = nodes[nodes.length - 1];
+  if(!el) return;
+
+  var cutoffHour = parseInt(el.getAttribute('data-cutoff') || '20', 10);
+  var deliveryDays = (el.getAttribute('data-delivery-days') || '1,2,3,4,5,6')
+    .split(',').map(function(s){ return parseInt(s, 10); });
+
+  var dateEl = el.querySelector('.tt360-eta__date');
+  var noteEl = el.querySelector('.tt360-eta__note');
+
+  function compute(){
+    var now = new Date();
+    var todayIsDelivery = deliveryDays.indexOf(now.getDay()) !== -1;
+    var advance = (todayIsDelivery && now.getHours() >= cutoffHour) ? 2 : 1;
+    var d = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    d.setDate(d.getDate() + advance);
+    while (deliveryDays.indexOf(d.getDay()) === -1) {
+      d.setDate(d.getDate() + 1);
+    }
+    var weekday = d.toLocaleDateString(undefined, { weekday: 'long' });
+    var monthDay = d.toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
+    var msPerDay = 86400000;
+    var nowMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var diff = Math.round((d - nowMid) / msPerDay);
+    var note = '';
+    if (diff === 1) note = '(tomorrow)';
+    else if (diff === 2) note = '(in 2 days)';
+    dateEl.textContent = weekday + ', ' + monthDay;
+    noteEl.textContent = note;
+  }
+  compute();
+  // Re-compute at the cutoff minute and at midnight so a long-open PDP stays accurate
+  setInterval(compute, 60000);
+})();
+</script>

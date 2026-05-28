@@ -323,7 +323,8 @@ h2.gb-sec-lbl-light{display:block;font-family:Barlow Condensed,sans-serif;font-s
   {% endif %}
 
   <div class="gb-f4">
-    {%- comment -%} TT360 unified delivery cutoff countdown {%- endcomment -%}
+    {%- comment -%} TT360 unified delivery widgets: smart ETA + cutoff countdown {%- endcomment -%}
+    {% render 'tt360-estimated-delivery' %}
     {% render 'tt360-delivery-countdown' %}
 
     <button class="gb-btn-cod" onclick="gbAddToCart(true)">
