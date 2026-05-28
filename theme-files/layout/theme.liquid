@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="{{ shop.locale }}">
+<html class="no-js" lang="{{ request.locale.iso_code | default: shop.locale }}" dir="{% if request.locale.iso_code == 'ar' %}rtl{% else %}ltr{% endif %}">
 <head>
 <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -240,14 +240,27 @@
       }
     </script>
 
-  {%- comment -%} 4. TRACKING: Consolidated GTM and Clarity {%- endcomment -%}
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-NC6ZVVHK"></script>
+  {%- comment -%} 4. TRACKING: Consolidated GTM and Clarity (deferred loader, queued events) {%- endcomment -%}
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'GT-NC6ZVVHK');
     gtag('config', 'AW-17211943737');
+    (function(){
+      var loaded=false;
+      function loadGtag(){
+        if(loaded) return; loaded=true;
+        var s=document.createElement('script');
+        s.async=true;
+        s.src='https://www.googletagmanager.com/gtag/js?id=GT-NC6ZVVHK';
+        document.head.appendChild(s);
+      }
+      setTimeout(loadGtag, 3500);
+      ['scroll','mousemove','touchstart','keydown'].forEach(function(e){
+        window.addEventListener(e, loadGtag, {once:true, passive:true});
+      });
+    })();
   </script>
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
