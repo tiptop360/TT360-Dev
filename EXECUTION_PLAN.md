@@ -1,6 +1,6 @@
 # TipTop360 — Execution Plan (Live Tracker)
 
-**Branch:** `claude/gracious-knuth-LCmh0`
+**Branch:** `claude/hopeful-brown-6oflm`
 **Staging theme:** TT360 | Dev — `#145784406131`
 **Live theme:** TT360 | live — `#145753800819`
 **Gate:** Per-area pause for explicit "publish live" approval before promotion.
@@ -13,6 +13,16 @@
 - **Areas with code shipped to branch:** 1, 2, 3, 4, 5, 6.
 - **Areas still owner-driven (no code):** 7 (GBP, GSC, Bing, Clarity if you give the ID).
 - **Last commit:** `141702a` — Area 3: smart Estimated Delivery widget added.
+- **Validation run 2026-05-28:** all 6 areas re-verified on branch `claude/hopeful-brown-6oflm`:
+  - 0 markdown-corruption hits across the 11 touched files (the 3 hits in `product-template-1.liquid` are pre-existing Shopify help-text URLs inside section schema `info` fields, untouched by this work).
+  - All section JSON schemas parse (`collection-seo-content`, `pnewsletter`, `aivox-pdp`, `gymbag-pdp`).
+  - `templates/collection.json` and `templates/collection.kids-collection.json` parse and both reference `collection-seo-content` in their `order` array, positioned after `product-grid`.
+  - `layout/theme.liquid` LocalBusiness JSON-LD parses; `parentOrganization` correctly links to `#organization`.
+  - GTM defer wired: `setTimeout(loadGtag, 3500)` at line 259; `dataLayer` + `gtag('config', ...)` queued early at lines 245-248.
+  - `<html>` tag derives `dir` from `request.locale.iso_code` (rtl when `'ar'`, else ltr).
+  - All 3 PDP variants render the 3 unified snippets: `tt360-payment-icons`, `tt360-delivery-countdown`, `tt360-estimated-delivery`.
+  - `tt360-rtl.css` loaded from `snippets/header-css.liquid` after main CSS.
+  - No malware patterns (`fv-loading-icon`, `component-3.0`, `githubfix`) anywhere in `theme-files/`.
 
 ---
 
@@ -35,7 +45,7 @@
 
 ## Still Open Right Now
 
-- [ ] **You (Mac):** `git fetch origin && git checkout claude/gracious-knuth-LCmh0 && git pull` to get all 5 area commits.
+- [ ] **You (Mac):** `git fetch origin && git checkout claude/hopeful-brown-6oflm && git pull` to get all 6 area commits.
 - [ ] **You (Mac):** `npm run theme:push:staging` (pushes everything to TT360 | Dev #145784406131).
 - [ ] **You (Mac):** preview `https://tiptop360.com?preview_theme_id=145784406131` and walk the QA checklist in each area section below.
 - [ ] **You (Shopify Admin):** create `custom.age_range` metafield definition + enable in Search & Discovery — only blocks Area 4's filter (the SEO content section itself ships without it).
@@ -170,7 +180,7 @@
 
 ```bash
 # 1. Get the latest code I pushed
-git fetch origin && git checkout claude/gracious-knuth-LCmh0 && git pull
+git fetch origin && git checkout claude/hopeful-brown-6oflm && git pull
 
 # 2. Push to staging (TT360 | Dev #145784406131)
 npm run theme:push:staging
