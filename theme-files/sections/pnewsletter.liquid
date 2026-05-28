@@ -18,7 +18,9 @@
   data-section-id="{{ section.id }}" 
   data-section-type="popupnewletter">
 
-  <div class="modal fade" id="jsPopupNewsletter{{ section.id }}" role="dialog" aria-hidden="true" data-delay="{{ section.settings.pnewletter_time_delay }}">
+  {%- comment -%} TT360 CRO: bundled theme.js trigger uses data-delay seconds via setTimeout on window load.
+       We push that to a large fallback (3600s) and drive the real open from scroll/idle below. {%- endcomment -%}
+  <div class="modal fade" id="jsPopupNewsletter{{ section.id }}" role="dialog" aria-hidden="true" data-delay="3600">
     <div class="modal-dialog modal-dialog--newsletter modal-dialog-centered" role="document">
       <div class="modal-content modal-content--newsletter">
         <div class="modal-header p-0">
@@ -38,10 +40,52 @@
             render 'pnew-1' , pnewletter_title: pnewletter_title, pnewletter_description: pnewletter_description, pnew_size_heading: pnew_size_heading, button: button , pnewletter_description_sub: pnewletter_description_sub, subtitle: subtitle
           endcase 
         -%}
+        <div class="tt360-pnew-whatsapp" style="margin:14px 0 4px;text-align:center;">
+          <a href="https://wa.me/971585156033?text={{ 'Hi%20TipTop360%2C%20I%27d%20like%20the%20discount' }}"
+             rel="noopener" target="_blank"
+             style="color:#00A86B;font-size:13px;text-decoration:underline;display:inline-flex;align-items:center;gap:6px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Get discount via WhatsApp instead
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+(function(){
+  var modalId = 'jsPopupNewsletter{{ section.id }}';
+  var scrollPct = {{ section.settings.pnewletter_scroll_pct | default: 60 }};
+  var idleMs = {{ section.settings.pnewletter_idle_seconds | default: 45 | times: 1000 }};
+  var opened = false;
+  function readCookie(name){
+    var m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return m ? m.pop() : '';
+  }
+  function open(){
+    if (opened) return;
+    if (readCookie('cookiesNewsletter') === 'disabled') return;
+    var $m = window.jQuery && window.jQuery('#' + modalId);
+    if (!$m || !$m.length || typeof $m.modal !== 'function') return;
+    opened = true;
+    $m.modal('show');
+  }
+  function onScroll(){
+    var h = document.documentElement;
+    var max = (h.scrollHeight - h.clientHeight) || 1;
+    if (((window.scrollY || h.scrollTop) / max) * 100 >= scrollPct) open();
+  }
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){
+      window.addEventListener('scroll', onScroll, {passive:true});
+      setTimeout(open, idleMs);
+    });
+  } else {
+    window.addEventListener('scroll', onScroll, {passive:true});
+    setTimeout(open, idleMs);
+  }
+})();
+</script>
 {%- endif -%}
   {%- style -%}
   .modal-content--newsletter{
@@ -193,6 +237,28 @@
       "unit": "min",
       "label": "Cookie times to show popup again",
       "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pnewletter_scroll_pct",
+      "min": 20,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Open after this scroll depth",
+      "default": 60,
+      "info": "Triggers the popup once the visitor scrolls this far down the page."
+    },
+    {
+      "type": "range",
+      "id": "pnewletter_idle_seconds",
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "unit": "s",
+      "label": "Or open after this idle time (fallback)",
+      "default": 45,
+      "info": "Triggers the popup after this many seconds even if the visitor never scrolls. The 'Delayed popups' setting above is now only a hard fallback."
     },
     {
       "type": "header",
