@@ -362,6 +362,9 @@
         </button>
       </form>
 
+      {%- comment -%} TT360 unified delivery cutoff countdown {%- endcomment -%}
+      {% render 'tt360-delivery-countdown' %}
+
       {%- comment -%} Add to Cart → also goes to checkout {%- endcomment -%}
       <form action="{{ routes.cart_add_url }}" method="post" id="aivox-cart-form">
         <input type="hidden" name="id" value="{{ variant.id }}">
@@ -374,6 +377,9 @@
       <a href="https://wa.me/971585156033" class="aivox-btn-wa" target="_blank" rel="noopener">
         <span style="font-size:16px;">💬</span> Questions? WhatsApp +971 58 515 6033
       </a>
+
+      {%- comment -%} TT360 unified payment icons block {%- endcomment -%}
+      {% render 'tt360-payment-icons' %}
 
       <div class="aivox-secure">🔒 SSL encrypted · Secure checkout · Apple Pay · Cards accepted</div>
     </div>

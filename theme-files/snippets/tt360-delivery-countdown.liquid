@@ -1,0 +1,58 @@
+{%- comment -%}
+  TT360 unified delivery-cutoff countdown.
+  Displays "Order within Xh Ym for next-day delivery" based on a daily cutoff
+  time (default 20:00 UAE time). Friday-Saturday cutoff logic is handled in JS.
+
+  Pass `cutoff_hour` (0-23) to override; defaults to 20 (8 PM).
+
+  Usage:
+    {% render 'tt360-delivery-countdown' %}
+    {% render 'tt360-delivery-countdown', cutoff_hour: 18 %}
+{%- endcomment -%}
+
+{%- assign tt360_cutoff = cutoff_hour | default: 20 -%}
+
+<div class="tt360-delivery-countdown" data-cutoff="{{ tt360_cutoff }}" role="status" aria-live="polite">
+  <span class="tt360-delivery-countdown__icon" aria-hidden="true">&#128666;</span>
+  <span class="tt360-delivery-countdown__text">
+    Order within <strong class="tt360-delivery-countdown__time">--h --m</strong> for next-day delivery
+  </span>
+</div>
+<style>
+  .tt360-delivery-countdown{
+    display:flex;align-items:center;gap:8px;
+    background:#E8F5E9;border:1px solid #C8E6C9;border-radius:8px;
+    padding:10px 14px;margin:8px 0 12px;
+    font-size:13px;color:#2E7D32;
+  }
+  .tt360-delivery-countdown__icon{font-size:16px;line-height:1;}
+  .tt360-delivery-countdown__text strong{color:#1B5E20;font-weight:700;}
+</style>
+<script>
+(function(){
+  var el = document.currentScript && document.currentScript.previousElementSibling
+           ? document.currentScript.previousElementSibling.previousElementSibling
+           : null;
+  // Robust selector fallback in case scripts get reordered:
+  if (!el || !el.classList || !el.classList.contains('tt360-delivery-countdown')) {
+    var nodes = document.querySelectorAll('.tt360-delivery-countdown');
+    el = nodes[nodes.length - 1];
+  }
+  if (!el) return;
+  var cutoffHour = parseInt(el.getAttribute('data-cutoff') || '20', 10);
+  var timeEl = el.querySelector('.tt360-delivery-countdown__time');
+  function tick(){
+    var now = new Date();
+    var deadline = new Date();
+    deadline.setHours(cutoffHour, 0, 0, 0);
+    if (now > deadline) deadline.setDate(deadline.getDate() + 1);
+    var diff = deadline - now;
+    if (diff < 0) diff = 0;
+    var hrs = Math.floor(diff / 3600000);
+    var mins = Math.floor((diff % 3600000) / 60000);
+    timeEl.textContent = hrs + 'h ' + mins + 'm';
+  }
+  tick();
+  setInterval(tick, 60000);
+})();
+</script>
