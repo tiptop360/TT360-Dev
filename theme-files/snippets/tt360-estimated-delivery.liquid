@@ -12,14 +12,20 @@
 
   Override per render:
     {% render 'tt360-estimated-delivery', cutoff_hour: 18, label: 'Delivered by' %}
+
+  Holidays (no-delivery days) can be configured globally via the theme
+  setting `tt360_delivery_holidays` (comma- or newline-separated YYYY-MM-DD)
+  or per-render with the `holidays` argument.
 {%- endcomment -%}
 
 {%- assign tt360_cutoff = cutoff_hour | default: 20 -%}
 {%- assign tt360_label = label | default: 'Get it by' -%}
+{%- assign tt360_holidays = holidays | default: settings.tt360_delivery_holidays | default: '' -%}
 
 <div class="tt360-eta"
      data-cutoff="{{ tt360_cutoff }}"
      data-delivery-days="1,2,3,4,5,6"
+     data-holidays="{{ tt360_holidays | escape }}"
      data-label="{{ tt360_label | escape }}"
      role="status" aria-live="polite">
   <span class="tt360-eta__icon" aria-hidden="true">&#128666;</span>
@@ -51,18 +57,33 @@
   var cutoffHour = parseInt(el.getAttribute('data-cutoff') || '20', 10);
   var deliveryDays = (el.getAttribute('data-delivery-days') || '1,2,3,4,5,6')
     .split(',').map(function(s){ return parseInt(s, 10); });
+  var holidays = (el.getAttribute('data-holidays') || '')
+    .split(/[,\s]+/).filter(Boolean);
 
   var dateEl = el.querySelector('.tt360-eta__date');
   var noteEl = el.querySelector('.tt360-eta__note');
 
+  function ymd(d){
+    var m = String(d.getMonth()+1).padStart(2,'0');
+    var da = String(d.getDate()).padStart(2,'0');
+    return d.getFullYear()+'-'+m+'-'+da;
+  }
+  function isClosed(d){
+    if (deliveryDays.indexOf(d.getDay()) === -1) return true;
+    if (holidays.indexOf(ymd(d)) !== -1) return true;
+    return false;
+  }
+
   function compute(){
     var now = new Date();
-    var todayIsDelivery = deliveryDays.indexOf(now.getDay()) !== -1;
-    var advance = (todayIsDelivery && now.getHours() >= cutoffHour) ? 2 : 1;
+    var todayClosed = isClosed(now);
+    var advance = (!todayClosed && now.getHours() >= cutoffHour) ? 2 : 1;
     var d = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     d.setDate(d.getDate() + advance);
-    while (deliveryDays.indexOf(d.getDay()) === -1) {
+    var safety = 0;
+    while (isClosed(d) && safety < 21) {
       d.setDate(d.getDate() + 1);
+      safety++;
     }
     var weekday = d.toLocaleDateString(undefined, { weekday: 'long' });
     var monthDay = d.toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
