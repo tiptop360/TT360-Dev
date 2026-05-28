@@ -1,0 +1,195 @@
+{% comment %}
+  Collection SEO Content Block — TT360
+  Adds intro text + bullets + FAQ + FAQPage JSON-LD below the product grid.
+  Edit content per collection via section settings in the theme editor.
+  Brand colours match the rest of the theme: #12395e (heading), #54e8cc (accent), #FF7A3D (cta).
+{% endcomment %}
+
+{%- if collection.handle == section.settings.target_collection or section.settings.target_collection == blank -%}
+
+<style>
+  .collection-seo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  .collection-seo__heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #12395e;
+    margin: 0 0 16px;
+  }
+  .collection-seo__intro {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+    margin: 0 0 24px;
+  }
+  .collection-seo__intro strong { color: #12395e; }
+  .collection-seo__bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+  }
+  .collection-seo__bullets li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #444;
+  }
+  .collection-seo__bullets li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    color: #00A86B;
+    font-weight: 700;
+  }
+  .collection-seo__faq {
+    margin-top: 32px;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 24px;
+  }
+  .collection-seo__faq-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #12395e;
+    margin: 0 0 16px;
+  }
+  .collection-seo__faq-item { margin-bottom: 16px; }
+  .collection-seo__faq-q {
+    font-size: 15px;
+    font-weight: 600;
+    color: #12395e;
+    margin: 0 0 6px;
+  }
+  .collection-seo__faq-a {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+  }
+  @media screen and (min-width: 768px) {
+    .collection-seo { padding: 60px 40px; }
+    .collection-seo__heading { font-size: 26px; }
+  }
+</style>
+
+<div class="collection-seo">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="collection-seo__heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  {%- if section.settings.intro_text != blank -%}
+    <div class="collection-seo__intro">{{ section.settings.intro_text }}</div>
+  {%- endif -%}
+
+  {%- assign has_any_bullet = false -%}
+  {%- for i in (1..5) -%}
+    {%- assign bullet_key = 'bullet_' | append: i -%}
+    {%- if section.settings[bullet_key] != blank -%}{%- assign has_any_bullet = true -%}{%- endif -%}
+  {%- endfor -%}
+
+  {%- if has_any_bullet -%}
+    <ul class="collection-seo__bullets">
+      {%- for i in (1..5) -%}
+        {%- assign bullet_key = 'bullet_' | append: i -%}
+        {%- assign bullet_text = section.settings[bullet_key] -%}
+        {%- if bullet_text != blank -%}
+          <li>{{ bullet_text }}</li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+
+  {%- if section.settings.faq_q1 != blank -%}
+    <div class="collection-seo__faq">
+      <h3 class="collection-seo__faq-title">Frequently Asked Questions</h3>
+      {%- for i in (1..3) -%}
+        {%- assign q_key = 'faq_q' | append: i -%}
+        {%- assign a_key = 'faq_a' | append: i -%}
+        {%- assign q_text = section.settings[q_key] -%}
+        {%- assign a_text = section.settings[a_key] -%}
+        {%- if q_text != blank -%}
+          <div class="collection-seo__faq-item">
+            <p class="collection-seo__faq-q">{{ q_text }}</p>
+            <p class="collection-seo__faq-a">{{ a_text }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{%- if section.settings.faq_q1 != blank -%}
+  {%- assign faq_items = '' -%}
+  {%- for i in (1..3) -%}
+    {%- assign q_key = 'faq_q' | append: i -%}
+    {%- assign a_key = 'faq_a' | append: i -%}
+    {%- assign q_text = section.settings[q_key] -%}
+    {%- assign a_text = section.settings[a_key] -%}
+    {%- if q_text != blank -%}
+      {%- capture item -%}
+        {"@type":"Question","name":{{ q_text | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a_text | json }}}}
+      {%- endcapture -%}
+      {%- if faq_items == '' -%}
+        {%- assign faq_items = item -%}
+      {%- else -%}
+        {%- assign faq_items = faq_items | append: ',' | append: item -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if faq_items != '' -%}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","@id":"{{ shop.url }}{{ collection.url }}#faq","mainEntity":[{{ faq_items }}]}
+</script>
+  {%- endif -%}
+{%- endif -%}
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Collection SEO Content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "target_collection",
+      "label": "Target Collection Handle",
+      "info": "Leave blank to show on all collections; or enter a handle like 'kids-collection-uae' to scope to one."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Why UAE Parents Trust TipTop360"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Introduction Paragraph",
+      "default": "<p>Every product in this <strong>TipTop360</strong> collection is curated for UAE families. From smart oral care to educational gadgets, we focus on items that genuinely make parenting easier across Dubai, Abu Dhabi, Sharjah and the rest of the Emirates.</p>"
+    },
+    { "type": "header", "content": "Bullet Points" },
+    { "type": "text", "id": "bullet_1", "label": "Bullet 1", "default": "Free next-day delivery across all 7 Emirates" },
+    { "type": "text", "id": "bullet_2", "label": "Bullet 2", "default": "Cash on Delivery available on every order" },
+    { "type": "text", "id": "bullet_3", "label": "Bullet 3", "default": "Easy 7-day returns, no questions asked" },
+    { "type": "text", "id": "bullet_4", "label": "Bullet 4", "default": "Secure checkout: Visa, Mastercard, Apple Pay, Google Pay" },
+    { "type": "text", "id": "bullet_5", "label": "Bullet 5", "default": "UAE-based customer support by email and WhatsApp" },
+    { "type": "header", "content": "FAQs (Generates FAQ rich-snippet schema)" },
+    { "type": "text", "id": "faq_q1", "label": "FAQ Question 1", "default": "Do you deliver across the UAE?" },
+    { "type": "textarea", "id": "faq_a1", "label": "FAQ Answer 1", "default": "Yes. We deliver to Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, and Umm Al Quwain. Most orders arrive within 1-4 business days." },
+    { "type": "text", "id": "faq_q2", "label": "FAQ Question 2", "default": "Can I pay cash on delivery?" },
+    { "type": "textarea", "id": "faq_a2", "label": "FAQ Answer 2", "default": "Yes. Cash on Delivery is available on every order with no extra fee. We also accept Visa, Mastercard, Apple Pay and Google Pay at secure checkout." },
+    { "type": "text", "id": "faq_q3", "label": "FAQ Question 3", "default": "What if my item arrives damaged?" },
+    { "type": "textarea", "id": "faq_a3", "label": "FAQ Answer 3", "default": "Contact us with your order number and a photo of the item within 7 days and we will arrange a replacement or refund per our Refund Policy." }
+  ],
+  "presets": [
+    {
+      "name": "Collection SEO Content",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

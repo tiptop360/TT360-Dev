@@ -363,6 +363,12 @@
         "padding_bottom": 32
       }
     },
+    "collection-seo-content": {
+      "type": "collection-seo-content",
+      "settings": {
+        "heading": "Why UAE Parents Trust Our Kids Collection"
+      }
+    },
     "product_list_R7qfcc": {
       "type": "product-list",
       "disabled": true,
@@ -546,6 +552,7 @@
     "collection-banner",
     "rich_text_MDqGRT",
     "product-grid",
+    "collection-seo-content",
     "product_list_R7qfcc",
     "newsletter_wLqr96",
     "apps_GqTaj6",

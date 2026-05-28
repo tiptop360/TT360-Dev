@@ -173,6 +173,10 @@
         "padding_bottom": 0
       }
     },
+    "collection-seo-content": {
+      "type": "collection-seo-content",
+      "settings": {}
+    },
     "newsletter_RWpWnm": {
       "type": "newsletter",
       "name": "Newsletter",
@@ -218,6 +222,7 @@
     "rich_text_QWy67W",
     "17654448977f8b4a77",
     "product-grid",
+    "collection-seo-content",
     "newsletter_RWpWnm",
     "apps_JKEqyM"
   ]
