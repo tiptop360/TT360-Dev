@@ -77,8 +77,9 @@ function git(args, options = {}) {
 }
 
 function shopify(args, config) {
-  requireConfig(config, ['store', 'token']);
-  return execFileSync('shopify', [...args, '--store', config.store, '--password', config.token], {
+  requireConfig(config, ['store']);
+  const tokenArgs = config.token ? ['--password', config.token] : [];
+  return execFileSync('shopify', [...args, '--store', config.store, ...tokenArgs], {
     cwd: ROOT,
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
@@ -241,7 +242,6 @@ function pushStaging(config, args) {
     '--path',
     './theme-files',
     '--nodelete',
-    '--strict',
     ...onlyFlags,
   ], config);
   console.log(output);
@@ -255,8 +255,6 @@ function publishStaging(config) {
     'publish',
     '--theme',
     String(config.stagingThemeId),
-    '--path',
-    './theme-files',
     '--force',
   ], config);
   console.log(output);
