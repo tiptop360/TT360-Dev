@@ -1198,6 +1198,9 @@
     padding:15px 12px 15px 0;
     cursor: pointer;
     touch-action: manipulation;
+    background: none;
+    border: none;
+    color: inherit;
   }
   .toggle-menu-mobile .modal__toggle-search-mobile svg{ 
     width: 24px;
@@ -1256,6 +1259,7 @@
   .cardraw .mini-cart-content{
     opacity: 1;
     visibility: visible;
+    pointer-events: none;
     border-radius: 0px;
     position: fixed;
     top: 0;
@@ -1266,6 +1270,7 @@
   }
   .cardraw.active .mini-cart-content{
     transform:translateX(0);
+    pointer-events: auto;
   }
   .cardraw .overlaycart{
     position: fixed;
