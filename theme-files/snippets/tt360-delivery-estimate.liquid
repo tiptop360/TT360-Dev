@@ -1,0 +1,67 @@
+{%- comment -%}
+  TipTop360 — Estimated Delivery Date (client-side, accurate)
+
+  Rules (locked with merchant 2026-05-28):
+    - Delivery days: Mon–Sat (Sunday = closed, no delivery)
+    - Cutoff: 20:00 Asia/Dubai
+    - Before cutoff on a delivery day  -> next delivery day
+    - After cutoff on a delivery day   -> skip one extra day, then next delivery day
+    - Sunday today                     -> Monday
+
+  Math runs in the browser in Asia/Dubai time so the message stays accurate
+  even when the page is served from CDN cache. DOM root and CSS classes
+  preserved from the previous version so existing styling still applies.
+{%- endcomment -%}
+
+<div class="tt360-edd" role="status" aria-live="polite">
+  <div class="tt360-edd-icon" aria-hidden="true">🚚</div>
+  <div class="tt360-edd-info">
+    <span class="tt360-edd-label">Estimated Delivery</span>
+    <strong class="tt360-edd-date">…</strong>
+    <span class="tt360-edd-note">Free next-day UAE delivery</span>
+  </div>
+</div>
+
+<style>
+.tt360-edd{display:flex;align-items:center;gap:12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px 16px;margin:12px 0}
+.tt360-edd-icon{font-size:24px;line-height:1;flex-shrink:0}
+.tt360-edd-label{display:block;font-size:12px;color:#64748b;font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+.tt360-edd-date{display:block;font-size:15px;color:#166534;font-weight:700;margin:2px 0}
+.tt360-edd-note{display:block;font-size:12px;color:#475569}
+</style>
+
+<script>
+(function(){
+  var nodes = document.querySelectorAll('.tt360-edd');
+  var el = nodes[nodes.length - 1];
+  if (!el || el.dataset.bound === '1') return;
+  el.dataset.bound = '1';
+  var dateEl = el.querySelector('.tt360-edd-date');
+  if (!dateEl) return;
+
+  // JS getDay(): Sun=0, Mon=1 … Sat=6
+  var DELIVERY_DAYS = [1,2,3,4,5,6];   // Sunday off
+  var CUTOFF_HOUR = 20;                // 20:00 Asia/Dubai
+
+  function nowInDubai(){
+    // Format "now" against Asia/Dubai, then re-parse so getDay/getHours
+    // reflect Dubai wall-clock regardless of the visitor's timezone.
+    var s = new Date().toLocaleString('en-US', { timeZone: 'Asia/Dubai' });
+    return new Date(s);
+  }
+  function isDelivery(d){ return DELIVERY_DAYS.indexOf(d.getDay()) !== -1; }
+
+  function compute(){
+    var now = nowInDubai();
+    var advance = (isDelivery(now) && now.getHours() >= CUTOFF_HOUR) ? 2 : 1;
+    var d = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    d.setDate(d.getDate() + advance);
+    while (!isDelivery(d)) d.setDate(d.getDate() + 1);
+    dateEl.textContent = d.toLocaleDateString(undefined, {
+      weekday: 'long', month: 'long', day: 'numeric'
+    });
+  }
+  compute();
+  setInterval(compute, 60000);
+})();
+</script>
