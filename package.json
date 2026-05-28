@@ -19,7 +19,10 @@
     "theme:publish:staging": "node scripts/theme-release.mjs publish-staging",
     "theme:preview": "node scripts/theme-release.mjs preview",
     "theme:release-note": "node scripts/theme-release.mjs release-note",
-    "gitflow:init": "bash scripts/init-git-flow.sh"
+    "gitflow:init": "bash scripts/init-git-flow.sh",
+    "purge": "node scripts/purge-cf.mjs",
+    "purge:about": "node scripts/purge-cf.mjs /pages/about-us",
+    "purge:all": "node scripts/purge-cf.mjs --all"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
