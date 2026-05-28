@@ -307,13 +307,15 @@
   assign footer_align_title = section.settings.footer_align_title
   assign acc_mobile = section.settings.acc_mobile
 -%}
-<footer class="site-footer lazyload footer-{{ section.id }} {% if acc_mobile %} footer-acc-mobile{% endif %}" 
+<footer class="site-footer {% if bg_image != blank %}lazyload{% else %}lazyloaded{% endif %} footer-{{ section.id }} {% if acc_mobile %} footer-acc-mobile{% endif %}"
+ {% if bg_image != blank %}
  data-bgset="{% render 'bgset', image: bg_image %}"
  data-sizes="auto"
- data-parent-fit="cover" 
- data-section-type="footer" 
- data-section-id="{{ section.id }}" 
-  data-acc="{{ acc_mobile }}" >
+ data-parent-fit="cover"
+ {% endif %}
+ data-section-type="footer"
+ data-section-id="{{ section.id }}"
+ data-acc="{{ acc_mobile }}" >
   <div class="site-footer--head">
   <div class="{{ section.settings.setwidth }}">
     <div class="row">
