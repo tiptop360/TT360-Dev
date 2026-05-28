@@ -12,7 +12,7 @@
 - **Mode change:** batch mode per your request — all code areas pushed to the branch in one go; you push to stage and preview everything together, then publish manually.
 - **Areas with code shipped to branch:** 1, 2, 3, 4, 5, 6.
 - **Areas still owner-driven (no code):** 7 (GBP, GSC, Bing, Clarity if you give the ID).
-- **Last commit:** `91bd6b9` — Area 3 PDP unification.
+- **Last commit:** `141702a` — Area 3: smart Estimated Delivery widget added.
 
 ---
 
@@ -25,6 +25,7 @@
 - [x] **Area 1 — SEO/GEO:** LocalBusiness JSON-LD added to `@graph` in `layout/theme.liquid` (homepage-only, parent-linked to `#organization`). JSON-LD parses on both Liquid branches. — commit `5c34c42`.
 - [x] **Area 2 — Performance:** GTM loader wrapped in `setTimeout(3500)` + first-interaction (scroll/move/touch/key) trigger; dataLayer + gtag init kept outside the timeout so events queue immediately. Also: `<html dir>` now derived from `request.locale.iso_code` so RTL CSS activates on Arabic locale. — commit `3e728c7`.
 - [x] **Area 3 — PDP unification:** new `snippets/tt360-payment-icons.liquid` + `snippets/tt360-delivery-countdown.liquid`. Rendered in `aivox-pdp.liquid` and `gymbag-pdp.liquid` (both were missing payment + delivery cutoff). `product-template-1.liquid` left alone — already has both via existing block types. — commit `91bd6b9`.
+- [x] **Area 3 (follow-up) — Smart Estimated Delivery widget:** new `snippets/tt360-estimated-delivery.liquid`. Replaces the app-injected "Estimated Delivery: range" line with a JS-computed single date. Rules: Mon-Sat delivery (no Sunday), 20:00 cutoff. Rendered on all 3 PDPs above their cutoff countdown. Verified across the full week. — commit `141702a`. **Merchant follow-up:** disable the existing Estimated Delivery app after QA so there is only one widget.
 - [x] **Area 4 — Collection SEO:** new `sections/collection-seo-content.liquid` (heading + intro + 5 bullets + 3 FAQs + FAQPage JSON-LD). Wired into `templates/collection.json` (default) and `templates/collection.kids-collection.json` (with kid-specific heading override) — both positioned right after the main product grid. — commit `1da04e9`.
 - [x] **Area 5 — Popup CRO:** `sections/pnewsletter.liquid` now triggers on 60% scroll OR 45s idle (whichever first), with two new merchant-tunable settings (`pnewletter_scroll_pct`, `pnewletter_idle_seconds`). Existing 7-day cookie cap preserved. WhatsApp alternate CTA added inside the modal pointing at `+971 58 515 6033`. — commit `3f6c793`.
 - [x] **Area 6 — Arabic/RTL:** new `assets/tt360-rtl.css`, loaded from `header-css.liquid` right after `theme.aio.min.css`. Scoped to `html[dir="rtl"]` so LTR is untouched. Covers all unified snippets, popup, collection SEO block, nav, drawer, breadcrumbs, footer, and directional icons. — commit `9bf1a25`.
