@@ -169,7 +169,15 @@
     .site-footer .site-footer__section-title{
       position: relative;
     }
-    .site-footer.footer-acc-mobile .site-footer__section-title:before{
+    /* Chevron + cursor only appear once JS has wired up the accordion
+       (the .footer-acc-js guard). Without JS the footer is never collapsed,
+       so we must not imply the titles are tappable. */
+    .site-footer.footer-acc-mobile.footer-acc-js .site-footer__section-title{
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .site-footer.footer-acc-mobile.footer-acc-js .site-footer__section-title:before{
       content: "\e93d";
         font-family: icomoon !important;
         font-size: 12px;
@@ -179,7 +187,7 @@
         transform: translateY(-50%);
         width: 12px;
     }
-    .site-footer.footer-acc-mobile .site-footer__section-title.active:before{
+    .site-footer.footer-acc-mobile.footer-acc-js .site-footer__section-title.active:before{
       content: "\e92d";
     }
     .site-footer__section{
@@ -188,13 +196,17 @@
     .site-footer.footer-acc-mobile .site-footer__section{
       padding-bottom: 24px;
     }
-    /* Only collapse blocks that have a title trigger — leaves untitled blocks (e.g. social) always visible */
-    .site-footer.footer-acc-mobile .site-footer__section-title ~ .site-footer-block {
+    /* Only collapse blocks that have a title trigger — leaves untitled blocks (e.g. social) always visible.
+       Gated behind .footer-acc-js so collapsing only happens once the accordion
+       script has run. If that script fails to load/execute (e.g. a JS error
+       elsewhere on the page), the footer stays fully expanded and readable
+       instead of being permanently trapped closed. */
+    .site-footer.footer-acc-mobile.footer-acc-js .site-footer__section-title ~ .site-footer-block {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.35s ease;
     }
-    .site-footer.footer-acc-mobile .site-footer__section-title.active ~ .site-footer-block {
+    .site-footer.footer-acc-mobile.footer-acc-js .site-footer__section-title.active ~ .site-footer-block {
       max-height: 600px;
       overflow: visible;
     }
@@ -312,7 +324,6 @@
 -%}
 <footer class="site-footer footer-{{ section.id }} {% if acc_mobile %} footer-acc-mobile{% endif %}{% if bg_image %} lazyload{% endif %}"
  {% if bg_image %}data-bgset="{% render 'bgset', image: bg_image %}" data-sizes="auto" data-parent-fit="cover"{% endif %}
- data-section-type="footer"
  data-section-id="{{ section.id }}"
   data-acc="{{ acc_mobile }}" >
   <div class="site-footer--head">
@@ -568,6 +579,75 @@
     </div>
   </div>
 </footer>
+{%- comment -%}
+  Footer mobile accordion — self-contained & resilient.
+
+  This deliberately does NOT rely on the shared theme.js / theme.s.min.js
+  bundle (theme.FooterSection). That handler lived in the global bundle, so
+  any unrelated JS error earlier in the bundle aborted it before the footer
+  initialised — leaving the menus collapsed (max-height:0) and untappable.
+  That was the recurring "footer accordion not working" bug.
+
+  Keeping the logic here, in the version-controlled section file, means:
+    • it can't be taken down by failures in unrelated bundle code;
+    • the .footer-acc-js guard ensures the footer is only ever collapsed
+      once this script has actually run, so a JS failure degrades to a
+      fully-open, readable footer rather than hidden content;
+    • it re-runs whenever the section re-renders (incl. the theme editor).
+{%- endcomment -%}
+<script>
+(function () {
+  var sectionId = {{ section.id | json }};
+  var footer = document.querySelector('.footer-' + sectionId) ||
+               document.querySelector('[data-section-id="' + sectionId + '"]');
+  if (!footer) return;
+
+  // Guard against double-initialisation (e.g. theme-editor re-renders).
+  if (footer.getAttribute('data-acc-bound') === '1') return;
+  footer.setAttribute('data-acc-bound', '1');
+
+  // data-acc renders the string "true"/"false"; compare explicitly
+  // (Boolean("false") would be truthy).
+  if (footer.getAttribute('data-acc') !== 'true') return;
+
+  var MOBILE_MAX = 749; // must match the CSS breakpoint above
+  var titles = footer.querySelectorAll('.site-footer__section-title');
+  if (!titles.length) return;
+
+  // Signal to CSS that the accordion is live; only now do panels collapse.
+  footer.classList.add('footer-acc-js');
+
+  for (var i = 0; i < titles.length; i++) {
+    titles[i].setAttribute('role', 'button');
+    titles[i].setAttribute('tabindex', '0');
+    titles[i].setAttribute('aria-expanded', 'false');
+  }
+
+  function toggle(title) {
+    if (window.innerWidth > MOBILE_MAX) return; // desktop: always expanded
+    var isOpen = title.classList.toggle('active');
+    title.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+
+  // Event delegation keeps it working even if blocks are re-rendered.
+  footer.addEventListener('click', function (e) {
+    var title = e.target.closest && e.target.closest('.site-footer__section-title');
+    if (title && footer.contains(title)) {
+      e.preventDefault();
+      toggle(title);
+    }
+  });
+
+  footer.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    var title = e.target.closest && e.target.closest('.site-footer__section-title');
+    if (title && footer.contains(title)) {
+      e.preventDefault();
+      toggle(title);
+    }
+  });
+})();
+</script>
 {% javascript %}
   class LocalizationForm extends HTMLElement {
     constructor() {

@@ -106,3 +106,43 @@
 <script src="{{ 'nouislider.min.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'facets.s.min.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
+<script>
+  /* TT360 footer mobile accordion - resilient hotfix.
+     Lives in this site-wide script tag (NOT a section-level liquid javascript
+     block) so an unrelated section JS error cannot stop the footer from working.
+     Runs on window.load and clones each title to strip any earlier click handler
+     (old jQuery / section-bundle handler) so we never double-toggle. */
+  (function () {
+    function bind(el) {
+      function toggle(e) {
+        if (window.innerWidth >= 750) return;
+        if (e) e.preventDefault();
+        var open = el.classList.toggle('active');
+        el.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      el.addEventListener('click', toggle);
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') toggle(e);
+      });
+    }
+    function init() {
+      var footers = document.querySelectorAll('.site-footer.footer-acc-mobile');
+      for (var f = 0; f < footers.length; f++) {
+        var footer = footers[f];
+        if (footer.getAttribute('data-tt-acc') === '1') continue;
+        footer.setAttribute('data-tt-acc', '1');
+        var titles = footer.querySelectorAll('.site-footer__section-title');
+        for (var i = 0; i < titles.length; i++) {
+          var t = titles[i];
+          var fresh = t.cloneNode(true);
+          if (t.parentNode) t.parentNode.replaceChild(fresh, t);
+          fresh.setAttribute('role', 'button');
+          fresh.setAttribute('tabindex', '0');
+          fresh.setAttribute('aria-expanded', 'false');
+          bind(fresh);
+        }
+      }
+    }
+    if (window.addEventListener) window.addEventListener('load', init);
+  })();
+</script>
