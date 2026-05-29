@@ -7,74 +7,7 @@
 
 {%- if collection.handle == section.settings.target_collection or section.settings.target_collection == blank -%}
 
-<style>
-  .collection-seo {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-  }
-  .collection-seo__heading {
-    font-size: 22px;
-    font-weight: 700;
-    color: #12395e;
-    margin: 0 0 16px;
-  }
-  .collection-seo__intro {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #444;
-    margin: 0 0 24px;
-  }
-  .collection-seo__intro strong { color: #12395e; }
-  .collection-seo__bullets {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 24px;
-  }
-  .collection-seo__bullets li {
-    position: relative;
-    padding-left: 28px;
-    margin-bottom: 10px;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #444;
-  }
-  .collection-seo__bullets li::before {
-    content: "\2713";
-    position: absolute;
-    left: 0;
-    color: #00A86B;
-    font-weight: 700;
-  }
-  .collection-seo__faq {
-    margin-top: 32px;
-    border-top: 1px solid #e5e5e5;
-    padding-top: 24px;
-  }
-  .collection-seo__faq-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #12395e;
-    margin: 0 0 16px;
-  }
-  .collection-seo__faq-item { margin-bottom: 16px; }
-  .collection-seo__faq-q {
-    font-size: 15px;
-    font-weight: 600;
-    color: #12395e;
-    margin: 0 0 6px;
-  }
-  .collection-seo__faq-a {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #555;
-    margin: 0;
-  }
-  @media screen and (min-width: 768px) {
-    .collection-seo { padding: 60px 40px; }
-    .collection-seo__heading { font-size: 26px; }
-  }
-</style>
+{{ 'section-collection-seo-content.css' | asset_url | stylesheet_tag }}
 
 <div class="collection-seo">
   {%- if section.settings.heading != blank -%}

@@ -1,0 +1,237 @@
+/* ── RESET & VARIABLES ───────────────────────────────── */
+.aivox-pdp *{box-sizing:border-box;margin:0;padding:0}
+.aivox-pdp{
+  --ink:#0e1c2a;--ink2:rgba(14,28,42,.55);--ink3:rgba(14,28,42,.25);
+  --mint:#54e8cc;--teal:#439b94;--coral:#f9655d;
+  --cream:#faf8f4;--white:#fff;--border:rgba(14,28,42,.08);--gold:#c9a96e;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--cream);color:var(--ink);
+  max-width:480px;margin:0 auto;
+  padding-bottom:80px;
+  -webkit-font-smoothing:antialiased;
+}
+@keyframes aivox-fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes aivox-dp{0%,100%{opacity:.4}50%{opacity:1}}
+.aivox-f1{animation:aivox-fadeIn .5s ease .1s both}
+.aivox-f2{animation:aivox-fadeIn .5s ease .2s both}
+.aivox-f3{animation:aivox-fadeIn .5s ease .3s both}
+.aivox-f4{animation:aivox-fadeIn .5s ease .4s both}
+.aivox-f5{animation:aivox-fadeIn .5s ease .5s both}
+
+/* TOP BAR */
+.aivox-topbar{background:var(--ink);color:var(--mint);text-align:center;
+  padding:9px 10px;font-size:10px;letter-spacing:1.8px;text-transform:uppercase;font-weight:500}
+
+/* BREADCRUMB */
+.aivox-crumb{padding:10px 20px;font-size:10.5px;color:var(--ink2);
+  background:var(--cream);border-bottom:1px solid var(--border)}
+.aivox-crumb a{color:var(--ink2);text-decoration:none}
+
+/* GALLERY */
+.aivox-gallery{background:var(--white);border-bottom:1px solid var(--border)}
+.aivox-stage{position:relative;width:100%;height:360px;overflow:hidden;will-change:transform}
+.aivox-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;pointer-events:none}
+.aivox-slide.active{opacity:1;pointer-events:auto}
+.aivox-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.aivox-arr{position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(250,248,244,.92);border:1px solid var(--border);
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:18px;z-index:10;color:var(--ink);
+  transition:all .2s;-webkit-tap-highlight-color:transparent;
+  box-shadow:0 2px 8px rgba(14,28,42,.1);border:none}
+.aivox-arr:hover,.aivox-arr:active{background:var(--ink);color:var(--white)}
+.aivox-arr-l{left:12px}.aivox-arr-r{right:12px}
+.aivox-ctr{position:absolute;bottom:12px;right:13px;
+  background:rgba(14,28,42,.55);color:#fff;
+  font-size:11px;letter-spacing:1px;padding:3px 10px;border-radius:20px;
+  z-index:10;pointer-events:none}
+.aivox-thumbs{display:flex;gap:8px;padding:11px 18px;background:var(--white);
+  border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;
+  -webkit-overflow-scrolling:touch}
+.aivox-thumbs::-webkit-scrollbar{display:none}
+.aivox-thumb{width:52px;height:52px;border-radius:8px;overflow:hidden;
+  border:2px solid transparent;cursor:pointer;flex-shrink:0;
+  transition:border-color .2s;-webkit-tap-highlight-color:transparent}
+.aivox-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.aivox-thumb.on{border-color:var(--ink)}
+
+/* PRODUCT INFO */
+.aivox-info{padding:26px 20px 22px;background:var(--cream)}
+.aivox-cat{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:10px}
+.aivox-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:300;
+  line-height:1.15;color:var(--ink);margin-bottom:13px}
+.aivox-title em{font-style:italic;color:var(--teal)}
+.aivox-rating{display:flex;align-items:center;gap:10px;margin-bottom:18px;
+  padding-bottom:18px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.aivox-stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+.aivox-rtxt{font-size:12px;color:var(--ink2)}
+.aivox-sold{background:rgba(249,101,93,.08);color:var(--coral);
+  padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:600;
+  margin-left:auto;white-space:nowrap}
+
+/* PRICE */
+.aivox-price-block{margin-bottom:18px}
+.aivox-price-main{font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;
+  font-weight:400;color:var(--ink);line-height:1}
+.aivox-price-was{font-size:16px;color:var(--ink3);text-decoration:line-through;margin-left:10px}
+.aivox-price-save{font-size:11px;font-weight:600;color:var(--teal);
+  margin-top:5px;letter-spacing:.5px;display:block}
+
+/* EXCLUSIVE DEAL */
+.aivox-deal{background:var(--ink);border-radius:14px;padding:18px 16px;margin-bottom:18px}
+.aivox-deal-lbl{font-size:9.5px;font-weight:700;letter-spacing:2px;color:var(--mint);
+  text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.aivox-deal-lbl::before{content:'';width:4px;height:4px;background:var(--mint);
+  border-radius:50%;animation:aivox-dp 2s infinite}
+.aivox-deal-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:300;
+  color:var(--white);line-height:1.25;margin-bottom:10px}
+.aivox-deal-h em{font-style:italic;color:var(--mint)}
+.aivox-deal-list{display:flex;flex-direction:column;gap:7px}
+.aivox-deal-pt{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;
+  display:flex;align-items:flex-start;gap:8px}
+.aivox-deal-pt::before{content:'✓';color:var(--mint);font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* STOCK */
+.aivox-stock{display:flex;align-items:center;gap:7px;font-size:12px;
+  color:var(--coral);font-weight:500;margin-bottom:20px}
+.aivox-sdot{width:7px;height:7px;background:var(--coral);border-radius:50%;
+  animation:aivox-dp 2s infinite;display:inline-block;flex-shrink:0}
+
+/* BUTTONS */
+.aivox-btn-cart{
+  display:block;width:100%;background:var(--ink);color:var(--cream);
+  padding:16px;border-radius:12px;border:none;
+  font-family:'Inter',-apple-system,sans-serif;font-size:14px;font-weight:600;
+  letter-spacing:.4px;text-align:center;cursor:pointer;transition:background .2s;
+  margin-bottom:10px;text-decoration:none;
+}
+.aivox-btn-cart:hover,.aivox-btn-cart:active{background:var(--teal);color:var(--cream)}
+.aivox-btn-cod{
+  display:block;width:100%;background:transparent;color:var(--coral);
+  padding:15px;border-radius:12px;border:1.5px solid rgba(249,101,93,.3);
+  font-family:'Inter',-apple-system,sans-serif;font-size:14px;font-weight:600;
+  text-align:center;cursor:pointer;transition:all .2s;margin-bottom:10px;
+  text-decoration:none;
+}
+.aivox-btn-cod:hover,.aivox-btn-cod:active{background:rgba(249,101,93,.06);border-color:var(--coral);color:var(--coral)}
+.aivox-btn-wa{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:13px;background:transparent;color:var(--ink2);
+  font-size:13px;font-weight:500;text-decoration:none;border-radius:10px;
+  border:1px solid var(--border);transition:all .2s;
+}
+.aivox-btn-wa:hover,.aivox-btn-wa:active{border-color:#25D366;color:#25D366}
+.aivox-secure{text-align:center;font-size:11px;color:var(--ink3);margin-top:12px}
+
+/* TRUST PILLS */
+.aivox-trust{display:flex;gap:8px;overflow-x:auto;padding:16px 20px 4px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.aivox-trust::-webkit-scrollbar{display:none}
+.aivox-pill{flex-shrink:0;display:flex;align-items:center;gap:6px;
+  background:var(--white);border:1px solid var(--border);border-radius:50px;
+  padding:7px 13px;font-size:11.5px;font-weight:500;color:var(--ink);white-space:nowrap}
+
+/* SECTIONS */
+.aivox-sec{padding:28px 20px;border-top:1px solid var(--border)}
+.aivox-sec-white{background:var(--white)}
+.aivox-sec-lbl{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:16px}
+.aivox-specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.aivox-spec-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:15px 13px}
+.aivox-snum{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;
+  font-weight:400;color:var(--ink);line-height:1}
+.aivox-sunit{font-size:13px;color:var(--teal);margin-left:2px}
+.aivox-slbl{font-size:11px;color:var(--ink2);margin-top:4px;line-height:1.4}
+.aivox-spec-table{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.aivox-spec-row{display:flex;justify-content:space-between;align-items:center;
+  padding:11px 15px;border-bottom:1px solid var(--border)}
+.aivox-spec-row:last-child{border-bottom:none}
+.aivox-spec-row:nth-child(even){background:rgba(250,248,244,.6)}
+.aivox-sk{font-size:12px;color:var(--ink2)}
+.aivox-sv{font-size:12px;font-weight:600;color:var(--ink);text-align:right}
+.aivox-sv-g{color:var(--teal)}.aivox-sv-c{color:var(--coral)}
+
+/* FEATURES */
+.aivox-feats{display:flex;flex-direction:column}
+.aivox-feat{display:flex;gap:15px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border)}
+.aivox-feat:last-child{border-bottom:none}
+.aivox-ficon{width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  background:rgba(84,232,204,.1);border:1px solid rgba(84,232,204,.2);
+  display:flex;align-items:center;justify-content:center;font-size:19px}
+.aivox-fhead{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.aivox-fbody{font-size:12px;color:var(--ink2);line-height:1.6}
+
+/* GUARANTEE */
+.aivox-gbar{background:var(--ink);border-radius:14px;padding:17px 15px;
+  display:flex;gap:13px;align-items:center}
+.aivox-gh{font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;
+  color:var(--white);font-weight:300;margin-bottom:3px}
+.aivox-gd{font-size:11.5px;color:rgba(255,255,255,.5);line-height:1.5}
+
+/* REVIEWS */
+.aivox-rv-top{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+.aivox-rv-big{font-family:'Cormorant Garamond',Georgia,serif;font-size:52px;
+  font-weight:300;color:var(--ink);line-height:1}
+.aivox-rv-stars{color:var(--gold);font-size:14px;letter-spacing:1px}
+.aivox-rv-sub{font-size:11px;color:var(--ink3);margin-top:2px}
+.aivox-rv-card{background:var(--cream);border:1px solid var(--border);border-radius:13px;
+  padding:17px;margin-bottom:11px}
+.aivox-rv-card:last-child{margin-bottom:0}
+.aivox-rvs{color:var(--gold);font-size:12px;margin-bottom:9px}
+.aivox-rvt{font-size:13px;color:var(--ink2);line-height:1.7;font-style:italic;margin-bottom:12px}
+.aivox-rva{display:flex;align-items:center;gap:9px}
+.aivox-rvav{width:33px;height:33px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:13px;font-weight:600}
+.aivox-rvn{font-size:12.5px;font-weight:600;color:var(--ink)}
+.aivox-rvl{font-size:11px;color:var(--ink3)}
+.aivox-rvv{margin-left:auto;font-size:10px;color:#16a34a;font-weight:600;
+  background:rgba(34,197,94,.08);padding:2px 8px;border-radius:10px;white-space:nowrap}
+
+/* FAQ */
+.aivox-faq-item{border-bottom:1px solid var(--border)}
+.aivox-faq-q{display:flex;justify-content:space-between;align-items:center;
+  padding:15px 0;cursor:pointer;gap:12px;font-size:13px;font-weight:500;color:var(--ink);
+  -webkit-tap-highlight-color:transparent;user-select:none}
+.aivox-faq-ic{width:24px;height:24px;border-radius:50%;
+  background:rgba(14,28,42,.07);display:flex;align-items:center;
+  justify-content:center;font-size:15px;flex-shrink:0;color:var(--ink);
+  transition:transform .3s,background .2s}
+.aivox-faq-item.open .aivox-faq-ic{transform:rotate(45deg);background:var(--ink);color:var(--white)}
+.aivox-faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;
+  font-size:12.5px;color:var(--ink2);line-height:1.7}
+.aivox-faq-item.open .aivox-faq-a{max-height:280px;padding-bottom:15px}
+
+/* FINAL CTA */
+.aivox-final{background:var(--white);padding:30px 20px;border-top:1px solid var(--border);text-align:center}
+.aivox-final h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;
+  font-weight:300;color:var(--ink);margin-bottom:6px;line-height:1.2}
+.aivox-final h2 em{font-style:italic;color:var(--teal)}
+.aivox-final p{font-size:12px;color:var(--ink2);margin-bottom:20px;line-height:1.6}
+.aivox-cta-inner{max-width:360px;margin:0 auto}
+
+/* STICKY ATC */
+.aivox-sticky{position:fixed;bottom:0;left:0;right:0;
+  background:rgba(250,248,244,.97);backdrop-filter:blur(14px);
+  border-top:1px solid var(--border);padding:11px 18px;
+  display:flex;gap:11px;align-items:center;z-index:200;
+  box-shadow:0 -4px 24px rgba(14,28,42,.08)}
+.aivox-sticky img{width:42px;height:42px;border-radius:8px;object-fit:cover;
+  border:1px solid var(--border);flex-shrink:0}
+.aivox-sticky-info{flex:1;min-width:0}
+.aivox-sticky-name{font-size:11px;color:var(--ink2);font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aivox-sticky-price{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;
+  color:var(--ink);font-weight:400;line-height:1.1}
+.aivox-sticky-btn{background:var(--ink);color:var(--cream);padding:11px 18px;
+  border-radius:50px;font-size:13px;font-weight:600;text-decoration:none;
+  white-space:nowrap;transition:background .2s;flex-shrink:0;border:none;cursor:pointer}
+.aivox-sticky-btn:hover,.aivox-sticky-btn:active{background:var(--teal);color:var(--cream)}
+
+/* WA FAB */
+.aivox-wa-fab{position:fixed;bottom:76px;right:14px;background:#25D366;
+  width:48px;height:48px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:22px;text-decoration:none;z-index:999;
+  box-shadow:0 4px 16px rgba(37,211,102,.35);transition:transform .2s}
+.aivox-wa-fab:hover{transform:scale(1.1)}
