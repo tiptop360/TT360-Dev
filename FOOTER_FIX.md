@@ -1,3 +1,69 @@
+# Footer fixes — index
+
+1. [Footer mobile accordion "not working"](#footer-mobile-accordion-not-working--root-cause--permanent-fix) (recurring) — fixed 2026-05-29
+2. [Footer "grayed out" / grey wash](#footer-grayed-out--root-cause--fix) (recurring) — fixed earlier
+
+---
+
+# Footer mobile accordion "not working" — root cause & permanent fix
+
+## Symptom
+On mobile, tapping a footer column heading (e.g. "Information", a menu title)
+does nothing — the section never expands, so the links underneath are
+invisible and unreachable. Recurring: it "works for a while then breaks again."
+
+## Root cause
+The accordion was **100% JavaScript-dependent with content collapsed by
+default**, and the JS lived in the shared bundle:
+
+- `acc_mobile` defaults to **`true`**, so on mobile the footer always gets the
+  `.footer-acc-mobile` class. The CSS then collapsed every titled block to
+  `max-height:0` **by default** — content is hidden until JS adds `.active`.
+- The only thing that added `.active` was `theme.FooterSection`, living inside
+  the global, minified **`theme.s.min.js`** bundle. Because that bundle is one
+  file, **any unrelated JS error earlier in it** (the recent commit log is full
+  of them — "mobile icons crash", "null reference crash", "semicolon typo")
+  aborts execution *before* the footer ever initialises. Result: blocks stay
+  collapsed and untappable → "accordion not working." Fix one mobile crash, it
+  works again; introduce another, it breaks again. Hence the recurrence.
+- Bonus bug: the enable check was `Boolean($container.attr('data-acc'))`.
+  `data-acc` is the string `"true"`/`"false"`, and `Boolean("false") === true`,
+  so the flag was meaningless.
+
+## Fix (in `sections/footer.liquid` — the version-controlled source of truth)
+Made the accordion **self-contained and fail-safe**:
+
+1. **Decoupled from the shared bundle.** Removed `data-section-type="footer"`
+   from the `<footer>` tag so the fragile `theme.FooterSection` no longer runs,
+   and added a small **self-contained `<script>`** inside the section itself.
+   An error in unrelated bundle code can no longer take the footer down, and
+   the logic re-runs on every section render (incl. the theme editor).
+2. **Graceful degradation via a `.footer-acc-js` guard class.** The collapse
+   CSS (and the chevron / pointer cursor) now requires
+   `.footer-acc-mobile.footer-acc-js`. The script adds `.footer-acc-js` only
+   *after* it has successfully wired up the handlers. So if the script never
+   runs, **nothing collapses** — the footer renders fully open and readable
+   instead of trapping the menus closed. The failure mode is now "no
+   animation," never "hidden content."
+3. **Correct enable check + a11y.** `getAttribute('data-acc') === 'true'`,
+   plus `role="button"`, `tabindex`, `aria-expanded`, and Enter/Space support.
+
+## Prevention — do NOT undo these
+- **Keep the accordion JS inside `sections/footer.liquid`.** Do not "tidy" it
+  back into `theme.js` / `theme.s.min.js` — that shared-bundle coupling is the
+  exact thing that caused the recurring breakage.
+- **Keep the `.footer-acc-js` guard on the collapse CSS.** Never let
+  `.footer-acc-mobile` collapse content on its own; content must only be
+  hideable once JS is confirmed running.
+- **Do not re-add `data-section-type="footer"`** unless you also delete the
+  inline script (two handlers both calling `toggleClass('active')` cancel each
+  other out → accordion appears dead again).
+- If the live theme regenerates `footer.liquid` (theme/app update), re-apply
+  these three points or re-paste this file. `theme-files/` is what
+  `scripts/theme-release.mjs` pushes (`shopify theme push --path ./theme-files`).
+
+---
+
 # Footer "grayed out" — root cause & fix
 
 ## Symptom
