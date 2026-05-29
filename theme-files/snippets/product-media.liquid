@@ -159,9 +159,33 @@
                     {% if lazy == true %} loading="lazy" {% endif %} 
                     data-phototview="{{ image | image_url: width: 600 }}"> {% endcomment %}
                      {% comment %} <img itemprop="thumbnail" class="lazyload scale-in {% unless image == featured_image %} lazypreload {% endunless %}" {% endcomment %}
+                   {%- if forloop.first -%}
+                   {%- comment -%} LCP image: load eagerly with a real responsive src/srcset, no JS lazyload {%- endcomment -%}
                    <img
                         itemprop="thumbnail"
-                        class="lazyload scale-in {% unless forloop.first %}lazypreload{% endunless %}"
+                        class="scale-in"
+                        src="{{ media.preview_image | image_url: width: 1100 }}"
+                        srcset="
+                          {%- if media.preview_image.width >= 550 -%}{{ media.preview_image | image_url: width: 550 }} 550w,{%- endif -%}
+                          {%- if media.preview_image.width >= 1100 -%}{{ media.preview_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                          {%- if media.preview_image.width >= 1445 -%}{{ media.preview_image | image_url: width: 1445 }} 1445w,{%- endif -%}
+                          {%- if media.preview_image.width >= 1680 -%}{{ media.preview_image | image_url: width: 1680 }} 1680w,{%- endif -%}
+                          {%- if media.preview_image.width >= 2048 -%}{{ media.preview_image | image_url: width: 2048 }} 2048w,{%- endif -%}
+                          {{ media.preview_image | image_url }} {{ media.preview_image.width }}w"
+                        sizes="(min-width: 750px) 60vw, 100vw"
+                        alt="{{ media.alt | escape }}"
+                        width="1100"
+                        height="{{ 1100 | divided_by: media.preview_image.aspect_ratio | ceil }}"
+                        data-media-id="{{ media.id }}"
+                        data-aspectratio="{{ media.preview_image.aspect_ratio }}"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                    >
+                   {%- else -%}
+                   <img
+                        itemprop="thumbnail"
+                        class="lazyload scale-in lazypreload"
                         src="{{ media.preview_image | image_url: width: 10 }}"
                         data-src="{{ media.preview_image | image_url: width: 1100 }}"
                         data-srcset="
@@ -177,14 +201,10 @@
                         height="{{ 1100 | divided_by: media.preview_image.aspect_ratio | ceil }}"
                         data-media-id="{{ media.id }}"
                         data-aspectratio="{{ media.preview_image.aspect_ratio }}"
-                        {% if forloop.first %}
-                          loading="eager"
-                          fetchpriority="high"
-                        {% else %}
-                          loading="lazy"
-                          fetchpriority="auto"
-                        {% endif %}
+                        loading="lazy"
+                        fetchpriority="auto"
                     >
+                   {%- endif -%}
               </a>
             </figure>
         {% when 'video' %}

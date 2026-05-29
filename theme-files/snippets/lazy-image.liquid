@@ -1,18 +1,34 @@
 {%- comment -%}
-  Reusable Lazy Loading Image Component
-  Usage: {% render 'lazy-image', image: product.featured_image, alt: product.title %}
+  Reusable responsive image component (Online Store 2.0, Web-Vitals friendly).
+
+  Below-the-fold (default — native lazy loading):
+    {% render 'lazy-image', image: product.featured_image, alt: product.title %}
+
+  Above-the-fold / LCP element (eager + high priority):
+    {% render 'lazy-image', image: img, alt: img.alt, eager: true, sizes: '(min-width: 750px) 60vw, 100vw' %}
+
+  Parameters:
+    image  (required) Shopify image / media.preview_image object
+    alt    (optional) overrides image.alt
+    class  (optional) extra CSS classes
+    sizes  (optional) sizes attribute (default '100vw')
+    widths (optional) comma-separated srcset widths (sensible default below)
+    eager  (optional) true => loading="eager" + fetchpriority="high"; otherwise lazy
+
+  Uses Shopify's native image_tag filter, which auto-generates srcset,
+  width and height (preventing CLS). Serves responsive sizes instead of
+  the full-resolution original.
 {%- endcomment -%}
 
 {%- if image != blank -%}
-  <img
-    src="{{ image | image_url }}"
-    alt="{{ alt | default: image.alt | escape }}"
-    loading="lazy"
-    decoding="async"
-    width="{{ image.width | default: 'auto' }}"
-    height="{{ image.height | default: 'auto' }}"
-    class="{{ class }}"
-  >
+  {%- assign img_widths = widths | default: '320, 480, 640, 768, 1024, 1280, 1536, 2048' -%}
+  {%- assign img_sizes = sizes | default: '100vw' -%}
+  {%- assign alt_text = alt | default: image.alt -%}
+  {%- if eager -%}
+    {{ image | image_tag: loading: 'eager', fetchpriority: 'high', decoding: 'async', sizes: img_sizes, widths: img_widths, alt: alt_text, class: class }}
+  {%- else -%}
+    {{ image | image_tag: loading: 'lazy', decoding: 'async', sizes: img_sizes, widths: img_widths, alt: alt_text, class: class }}
+  {%- endif -%}
 {%- else -%}
-  <!-- Lazy Image Placeholder -->
+  {%- comment -%} no image supplied {%- endcomment -%}
 {%- endif -%}
