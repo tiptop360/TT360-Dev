@@ -10,3 +10,4 @@ audits/geo-logs/
 .release-work/
 .indexnow-key
 theme-live/
+process_page.py
