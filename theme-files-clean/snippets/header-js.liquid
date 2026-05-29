@@ -88,15 +88,38 @@
   };
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.jQuery && !jQuery.fn.prepareTransition) {
+      jQuery.fn.prepareTransition = function() {
+        return this.each(function() {
+          var $el = jQuery(this);
+          $el.one('TransitionEnd webkitTransitionEnd transitionend oTransitionEnd', function() {
+            $el.removeClass('is-transitioning');
+          });
+          var maxDuration = 0;
+          jQuery.each(
+            ['transition-duration', '-moz-transition-duration', '-webkit-transition-duration', '-o-transition-duration'],
+            function(idx, prop) { maxDuration = parseFloat($el.css(prop)) || maxDuration; }
+          );
+          if (maxDuration > 0) {
+            $el.addClass('is-transitioning');
+            $el[0].offsetWidth;
+          }
+        });
+      };
+    }
+  });
+</script>
 <script src="{{ 'lazysizes.min.js' | asset_url }}" async="async"></script>
 {%- if template.directory == 'customers' -%}
 <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
 {%- endif -%}
+<script src="{{ 'api.jquery.js' | shopify_asset_url }}" defer="defer"></script>
 <script src="{{ 'vendor.s.min.js' | asset_url }}" defer="defer"></script>
 {% if settings.shipping_calculator and template != 'password' %}
 <script src="{{ 'shipping_rate.s.min.js' | asset_url }}" defer="defer"></script>
 {% endif %}
-<script src="{{ 'api.jquery.js' | shopify_asset_url }}" defer="defer"></script>
 <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'theme.s.min.js' | asset_url }}" defer="defer"></script>
 {%- if settings.predictive_search_enabled -%}

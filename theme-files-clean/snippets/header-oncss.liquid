@@ -41,6 +41,7 @@
     position: relative;
     {%- endif -%}
     z-index: 999;
+    -webkit-tap-highlight-color: transparent;
   }
   .site-header {
     background-color: var(--header-background);
@@ -372,7 +373,7 @@
     left: 0;
     right: 0;
     background: var(--color-content);
-    z-index: 11;
+    z-index: 10000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1202,6 +1203,7 @@
     padding:15px 12px 15px 0;
     cursor: pointer;
     touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     background: none;
     border: none;
     color: inherit;
@@ -1213,9 +1215,15 @@
   }
   
   
+  .toggle-menu-mobile .js-drawer-open-left {
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
   .js-toggle-cart {
     cursor: pointer;
     touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
   .js-cart-total {
     font-weight: 600;
