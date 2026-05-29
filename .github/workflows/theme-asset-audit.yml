@@ -1,0 +1,29 @@
+name: Theme asset audit
+
+# Guardrail against the dead/backup-asset rot this repo accumulated.
+# Hard-fails if any backup/duplicate-pattern asset filename reappears; reports
+# unreferenced css/js assets for review.
+
+on:
+  push:
+    paths:
+      - 'theme-files/**'
+      - 'validators/theme-asset-audit.mjs'
+  pull_request:
+    paths:
+      - 'theme-files/**'
+      - 'validators/theme-asset-audit.mjs'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # Non-strict: fails only on backup-pattern files (the regression we prevent).
+      # Switch to `--strict` once the 41 known-dead assets are removed to also gate
+      # on any newly-unreferenced asset.
+      - run: node validators/theme-asset-audit.mjs
