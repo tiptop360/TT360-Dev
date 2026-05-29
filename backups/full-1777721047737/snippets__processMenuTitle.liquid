@@ -1,1 +1,0 @@
-{%- if itemName contains '[' and itemName contains ']' -%}{{ itemName | escape | split: '[' | first }}{%- else -%}{{itemName | escape}}{%- endif -%}
