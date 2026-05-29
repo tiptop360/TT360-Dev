@@ -775,7 +775,8 @@
         </button>
       </div>
 
-      {%- comment -%} TT360 unified delivery widgets: cutoff countdown {%- endcomment -%}
+      {%- comment -%} TT360 unified delivery widgets: smart ETA + cutoff countdown {%- endcomment -%}
+      {% render 'tt360-estimated-delivery' %}
       {% render 'tt360-delivery-countdown' %}
 
       <!-- TRUST ICONS -->
