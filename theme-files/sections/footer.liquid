@@ -569,6 +569,20 @@
   </div>
 </footer>
 {% javascript %}
+  // DOMContentLoaded fires after defer scripts, so this runs after theme.s.min.js
+  // We remove any jQuery accordion handler first to prevent double-toggle, then set our own
+  document.addEventListener('DOMContentLoaded', function() {
+    var footer = document.querySelector('.site-footer.footer-acc-mobile');
+    if (!footer) return;
+    if (window.jQuery) jQuery('.site-footer__section-title').off('click');
+    footer.querySelectorAll('.site-footer__section-title').forEach(function(title) {
+      title.addEventListener('click', function() {
+        if (window.innerWidth >= 750) return;
+        this.classList.toggle('active');
+      });
+    });
+  });
+
   class LocalizationForm extends HTMLElement {
     constructor() {
       super();

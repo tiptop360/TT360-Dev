@@ -1,0 +1,244 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360_upsell_body": {
+      "type": "tt360-upsell-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": { "text": "✅ Non-Toxic & Washable", "style": "green" }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": { "text": "💰 AED 10 Best Value", "style": "orange" }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": { "icon": "📦", "label": "Free Next Day" }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": { "icon": "💵", "label": "Cash on Delivery" }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": { "icon": "🔄", "label": "14-Day Returns" }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": { "icon": "🔒", "label": "Secure Checkout" }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "💧",
+            "title": "Water-Based & Washable",
+            "desc": "Ink washes off skin and clothes with water. No stain stress for parents — pure creative freedom for kids."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🎨",
+            "title": "Watercolour Effects",
+            "desc": "Blend with a wet brush for real watercolour techniques. Kids learn painting fundamentals with simple pens."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "💰",
+            "title": "AED 10 — Lowest Add-On",
+            "desc": "12 colours at the store's most affordable price point. Perfect for adding to any order."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🌈",
+            "title": "12 Vibrant Colours",
+            "desc": "Full colour range from primary to pastels — covers every creative project."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "✏️",
+            "title": "Lightweight Barrels",
+            "desc": "Slim, lightweight design prevents hand fatigue during long drawing sessions."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Non-Toxic Formula",
+            "desc": "Safe for children ages 3+. Certified non-toxic ink throughout the entire colour range."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "🖌️",
+            "title": "Wet Brush Blending",
+            "desc": "Apply colour, then blend with a damp brush for genuine watercolour effects on paper."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "📚",
+            "title": "School & Art Class Ready",
+            "desc": "Meets school supply requirements. Great for art class, homework, and creative projects."
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": { "spec_name": "Colours", "spec_value": "12 Watercolour Shades" }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": { "spec_name": "Ink Type", "spec_value": "Water-Based, Washable" }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": { "spec_name": "Safety", "spec_value": "Non-Toxic Certified" }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": { "spec_name": "Recommended Age", "spec_value": "3+ Years" }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": { "spec_name": "Technique", "spec_value": "Draw + Wet Brush Blend" }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Amazing value for AED 10. The watercolour effect when you blend with a wet brush is genuinely impressive. My daughter's art teacher recommended these for class.",
+            "name": "Nadia O.",
+            "location": "Dubai · Watercolour Pens",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "We bought the full art set — markers, pencils, crayons, and these watercolour pens. These are my 7-year-old's favourite because she can create painting effects without a paint set.",
+            "name": "Hala B.",
+            "location": "Sharjah · Watercolour Pens",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "text": "Good quality pens. Colours are vivid and they really do wash off clothes. The wet-brush technique adds a creative dimension my kids enjoy. Fast delivery.",
+            "name": "Saeed A.",
+            "location": "Abu Dhabi · Watercolour Pens",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Do these really wash off clothes?",
+            "answer": "<p>Yes. The water-based ink washes out of most fabrics in a standard wash cycle. For best results, rinse the stain under cold water before washing. They also wipe off skin easily with just water.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the watercolour effect work?",
+            "answer": "<p>Draw or colour normally with the pens, then brush over the marks with a clean wet brush. The water-based ink blends and spreads like traditional watercolour paint, creating soft gradients and washes.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "What age are these suitable for?",
+            "answer": "<p>Recommended for ages 3 and above. Younger children enjoy the pens for simple colouring, while older children can explore the wet-brush blending technique for more advanced art.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How do these differ from the dual-tip markers?",
+            "answer": "<p>The watercolour pens produce a thinner, more delicate line and can be blended with water for painting effects. The dual-tip markers are bolder and better for detailed drawing and broad colouring. Many parents buy both for variety.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to all UAE emirates?",
+            "answer": "<p>Free next-day delivery to all 7 emirates — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available everywhere.</p>"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": { "label": "Kids Collection UAE", "url": "/collections/kids-collection-uae" }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": { "label": "STEM Drawing Robot", "url": "/products/kids-drawing-robot" }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": { "label": "Wax Crayons", "url": "/products/kids-wax-crayons-uae" }
+        }
+      },
+      "block_order": [
+        "badge_1", "badge_2",
+        "trust_1", "trust_2", "trust_3", "trust_4",
+        "hl_1", "hl_2", "hl_3",
+        "feat_1", "feat_2", "feat_3", "feat_4", "feat_5",
+        "spec_1", "spec_2", "spec_3", "spec_4", "spec_5",
+        "rev_1", "rev_2", "rev_3",
+        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5",
+        "ilink_1", "ilink_2", "ilink_3"
+      ],
+      "settings": {
+        "seo_h1": "12-Colour Kids Watercolour Pens — Washable Art Pens Ages 3+",
+        "hero_alt": "12-colour kids watercolour pens washable water-based art pens for creative play ages 3+ UAE — TipTop360",
+        "collection_handle": "problem-solving-products-uae",
+        "collection_name": "Problem Solving Products",
+        "hero_product": "kids-drawing-robot",
+        "hero_link_label": "Goes Great With",
+        "hero_link_sub": "See the STEM Drawing Robot →",
+        "rating_value": "4.6",
+        "review_count": "20",
+        "atc_text": "Add to Cart",
+        "hl_lbl": "Art Meets Watercolour",
+        "hl_title": "3 Reasons Kids Love These Pens",
+        "hl_sub": "Washable, blendable, and the most affordable art add-on in the store.",
+        "feat_lbl": "Creative Versatility",
+        "feat_title": "Pen Features",
+        "feat_sub": "Draw, colour, and paint — all with one set of water-based pens.",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "cta_title": "Add Watercolour Pens to Your Order",
+        "cta_sub": "AED 10 — free next-day delivery. Cash on delivery. 14-day returns.",
+        "specs_title": "Product Specifications",
+        "related_title": "More Art Supplies",
+        "ilinks_title": "Explore More at TipTop360"
+      }
+    }
+  },
+  "order": ["tt360_upsell_body"]
+}

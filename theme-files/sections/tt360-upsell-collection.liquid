@@ -1,0 +1,491 @@
+{% comment %}
+  TipTop360 — Problem-Solving Products Collection
+  SEO/GEO + CRO + internal linkage to hero products
+{% endcomment %}
+
+{%- assign current_sort = collection.sort_by | default: collection.default_sort_by -%}
+{%- assign base_url     = collection.url -%}
+
+{%- assign toothbrush = all_products['kids-u-shaped-toothbrush-uae'] -%}
+{%- assign robot       = all_products['kids-drawing-robot'] -%}
+{%- assign bubble      = all_products['smoke-bubble-machine'] -%}
+{%- assign toothpaste  = all_products['kids-foam-toothpaste-uae'] -%}
+
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script>
+(function(){
+  var T='Problem Solving Products for Kids in UAE | TipTop360';
+  var D='Shop problem-solving products for kids in the UAE: chore charts, dental care kits, STEM drawing tools & washable art supplies. Free next-day delivery across UAE. From AED 10.';
+  document.title=T;
+  var m=document.querySelector('meta[name="description"]');
+  if(m){m.setAttribute('content',D);}else{var n=document.createElement('meta');n.name='description';n.content=D;document.head.appendChild(n);}
+})();
+</script>
+
+<style>
+#t3u{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:#0F172A;background:#fff;-webkit-font-smoothing:antialiased}
+#t3u *{box-sizing:border-box}
+#t3u{--nv:#1A3557;--or:#F46A1A;--or2:#d45a12;--gr:#10B981;--mu:#64748B;--bg:#F8FAFC;--b2:#F0F7FF;--bd:#E2E8F0;--r:14px;--sh:0 4px 20px rgba(26,53,87,.08);--shh:0 8px 32px rgba(26,53,87,.14)}
+
+/* BREADCRUMB */
+#t3u-bc{max-width:1200px;margin:0 auto;padding:14px 24px 0;font-size:12px;color:var(--mu);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+#t3u-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+#t3u-bc a:hover{color:var(--nv)}
+
+/* HEADER */
+#t3u-hd{max-width:1200px;margin:0 auto;padding:22px 24px 0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+#t3u-hd-l{flex:1;min-width:180px}
+.t3u-lbl{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--or);margin-bottom:6px}
+#t3u-h1{font-size:clamp(22px,3vw,34px);font-weight:900;color:var(--nv);letter-spacing:-.8px;line-height:1.15;margin:0 0 6px}
+#t3u-sub{font-size:14px;color:var(--mu);line-height:1.6;margin:0 0 6px}
+#t3u-cnt{font-size:12px;color:var(--mu);font-weight:500;margin:0}
+#t3u-sort{display:flex;align-items:center;gap:8px;flex-shrink:0}
+#t3u-sort label{font-size:12.5px;font-weight:600;color:var(--mu);white-space:nowrap}
+#t3u-sort-sel{border:1.5px solid var(--bd);border-radius:9px;padding:9px 34px 9px 14px;font-size:13px;font-weight:600;color:var(--nv);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A3557' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;cursor:pointer;font-family:inherit;outline:none;transition:border-color .2s;appearance:none;-webkit-appearance:none}
+#t3u-sort-sel:focus{border-color:var(--or)}
+
+/* TRUST STRIP */
+#t3u-strip{display:flex;align-items:center;justify-content:center;background:var(--nv);margin-top:22px;flex-wrap:wrap}
+.t3u-ti{display:flex;align-items:center;gap:9px;padding:13px 22px;color:#fff;font-size:12px;font-weight:500;white-space:nowrap;font-family:inherit}
+.t3u-ti:not(:last-child){border-right:1px solid rgba(255,255,255,.14)}
+.t3u-ti strong{color:#FFC97A;display:block;font-size:12.5px;font-weight:700}
+.t3u-ti small{opacity:.65;font-size:11px;display:block}
+.t3u-ticon{font-size:16px;flex-shrink:0}
+
+/* GRID */
+#t3u-gw{max-width:1200px;margin:0 auto;padding:28px 24px 0}
+#t3u-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+
+/* PRODUCT CARD */
+.t3u-card{background:#fff;border-radius:var(--r);border:1px solid var(--bd);overflow:hidden;transition:box-shadow .25s,transform .25s,border-color .25s;display:flex;flex-direction:column;position:relative}
+.t3u-card:hover{box-shadow:var(--shh);transform:translateY(-3px);border-color:transparent}
+.t3u-clink{position:absolute;inset:0;z-index:1;display:block}
+.t3u-imgw{position:relative;overflow:hidden;background:var(--bg);flex-shrink:0}
+.t3u-imgw img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .4s}
+.t3u-card:hover .t3u-imgw img{transform:scale(1.04)}
+.t3u-bs{position:absolute;top:10px;left:10px;background:var(--or);color:#fff;font-size:11px;font-weight:800;padding:3px 9px;border-radius:6px;z-index:2;pointer-events:none}
+.t3u-body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
+.t3u-name{font-size:14px;font-weight:700;color:var(--nv);line-height:1.4;margin:0 0 8px}
+.t3u-pr{display:flex;align-items:baseline;gap:7px;margin:0 0 14px}
+.t3u-price{font-size:18px;font-weight:900;color:var(--nv)}
+.t3u-was{font-size:12.5px;color:var(--mu);text-decoration:line-through}
+.t3u-foot{margin-top:auto;position:relative;z-index:2}
+.t3u-atc{width:100%;background:var(--nv);color:#fff;border:none;border-radius:9px;padding:11px 16px;font-size:13px;font-weight:800;cursor:pointer;transition:background .2s;font-family:inherit}
+.t3u-atc:hover{background:var(--or)}
+.t3u-atc.loading{opacity:.65;pointer-events:none}
+.t3u-atc.done{background:var(--gr)!important}
+
+/* HERO LINKS SECTION */
+#t3u-heroes{max-width:1200px;margin:0 auto;padding:48px 24px 0}
+.t3u-heroes-lbl{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--or);text-align:center;margin-bottom:6px}
+.t3u-heroes-h2{font-size:clamp(20px,2.5vw,30px);font-weight:900;color:var(--nv);text-align:center;letter-spacing:-.6px;margin:0 0 6px}
+.t3u-heroes-sub{font-size:14px;color:var(--mu);text-align:center;margin:0 0 24px;line-height:1.6}
+#t3u-heroes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.t3u-hero-card{background:var(--b2);border-radius:var(--r);border:1px solid var(--bd);overflow:hidden;text-decoration:none;transition:box-shadow .25s,transform .25s}
+.t3u-hero-card:hover{box-shadow:var(--shh);transform:translateY(-3px)}
+.t3u-hero-card img{width:100%;height:180px;object-fit:cover;display:block}
+.t3u-hero-body{padding:14px 16px}
+.t3u-hero-name{font-size:14px;font-weight:800;color:var(--nv);margin:0 0 4px}
+.t3u-hero-price{font-size:16px;font-weight:900;color:var(--or);margin:0 0 8px}
+.t3u-hero-cta{font-size:12px;font-weight:700;color:var(--nv);display:flex;align-items:center;gap:4px}
+
+/* SEO CONTENT */
+#t3u-seo{max-width:1200px;margin:0 auto;padding:48px 24px 0}
+#t3u-seo-inner{background:var(--bg);border-radius:var(--r);padding:32px;border:1px solid var(--bd)}
+#t3u-seo h2{font-size:22px;font-weight:800;color:var(--nv);margin:0 0 12px}
+#t3u-seo h3{font-size:17px;font-weight:700;color:var(--nv);margin:18px 0 8px}
+#t3u-seo p{font-size:14px;color:#334155;line-height:1.7;margin:0 0 14px}
+#t3u-seo ul{font-size:14px;color:#334155;line-height:1.8;margin:0 0 14px;padding-left:20px}
+#t3u-seo a{color:var(--or);font-weight:600;text-decoration:none}
+#t3u-seo a:hover{text-decoration:underline}
+
+/* FAQ */
+#t3u-faq{max-width:1200px;margin:0 auto;padding:48px 24px 52px}
+#t3u-faq h2{font-size:22px;font-weight:800;color:var(--nv);margin:0 0 20px;text-align:center}
+.t3u-fq{border:1px solid var(--bd);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.t3u-fq summary{font-size:14px;font-weight:700;color:var(--nv);padding:16px 20px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;transition:background .15s}
+.t3u-fq summary:hover{background:var(--bg)}
+.t3u-fq summary::-webkit-details-marker{display:none}
+.t3u-fq summary::after{content:'+';font-size:18px;font-weight:700;color:var(--or);transition:transform .2s}
+.t3u-fq[open] summary::after{transform:rotate(45deg)}
+.t3u-fq-a{padding:0 20px 16px;font-size:13.5px;color:#475569;line-height:1.7}
+.t3u-fq-a a{color:var(--or);font-weight:600;text-decoration:none}
+.t3u-fq-a a:hover{text-decoration:underline}
+
+/* CART DRAWER */
+#t3u-ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9998;opacity:0;pointer-events:none;transition:opacity .25s}
+#t3u-ov.open{opacity:1;pointer-events:auto}
+#t3u-dr{position:fixed;top:0;right:-420px;width:400px;max-width:92vw;height:100%;background:#fff;z-index:9999;transition:right .3s;display:flex;flex-direction:column;font-family:'Inter',sans-serif}
+#t3u-dr.open{right:0}
+#t3u-drhead{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--bd)}
+#t3u-drhead h3{margin:0;font-size:16px;font-weight:800;color:var(--nv)}
+#t3u-drclose{background:none;border:none;font-size:22px;cursor:pointer;color:var(--mu);padding:4px}
+#t3u-ship{padding:10px 20px;background:var(--bg);font-size:12px;color:var(--nv)}
+#t3u-ship-bar{height:4px;background:var(--bd);border-radius:4px;margin-top:6px;overflow:hidden}
+#t3u-ship-fill{height:100%;background:var(--or);border-radius:4px;transition:width .4s;width:0}
+#t3u-ship.done #t3u-ship-fill{background:var(--gr)}
+#t3u-drbody{flex:1;overflow-y:auto;padding:12px 20px}
+.t3u-dritem{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--bd)}
+.t3u-dritem img{width:64px;height:64px;object-fit:cover;border-radius:8px;flex-shrink:0}
+.t3u-drinfo{flex:1;min-width:0}
+.t3u-driname{font-size:13px;font-weight:700;color:var(--nv);margin:0 0 2px}
+.t3u-drivar{font-size:11px;color:var(--mu);margin:0 0 4px}
+.t3u-drirow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.t3u-drip{font-size:14px;font-weight:800;color:var(--nv)}
+.t3u-drqty{display:flex;align-items:center;gap:0;border:1.5px solid var(--bd);border-radius:8px;overflow:hidden}
+.t3u-drqb{width:30px;height:30px;background:#fff;border:none;cursor:pointer;font-size:14px;font-weight:700;color:var(--nv);transition:background .15s}
+.t3u-drqb:hover{background:var(--bg)}
+.t3u-drqb.danger{color:#EF4444}
+.t3u-drqn{width:30px;text-align:center;font-size:13px;font-weight:700;color:var(--nv)}
+#t3u-drfoot{padding:16px 20px;border-top:1px solid var(--bd)}
+.t3u-drtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:800;color:var(--nv);margin-bottom:12px}
+#t3u-co{display:block;width:100%;background:var(--nv);color:#fff;border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:800;cursor:pointer;text-align:center;text-decoration:none;transition:background .2s;font-family:inherit}
+#t3u-co:hover{background:var(--or)}
+.t3u-drempty{text-align:center;color:var(--mu);padding:40px 0;font-size:14px}
+
+/* TOAST */
+#t3u-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--nv);color:#fff;padding:12px 24px;border-radius:10px;font-size:13px;font-weight:600;z-index:10000;opacity:0;transition:transform .3s,opacity .3s;pointer-events:none;font-family:'Inter',sans-serif}
+#t3u-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  #t3u-grid,#t3u-heroes-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  #t3u-grid{grid-template-columns:repeat(2,1fr)}
+  #t3u-heroes-grid{grid-template-columns:repeat(2,1fr)}
+  #t3u-strip{flex-direction:column}
+  .t3u-ti{padding:8px 16px;border-right:none!important}
+  .t3u-ti:not(:last-child){border-bottom:1px solid rgba(255,255,255,.14)}
+  #t3u-hd{flex-direction:column;align-items:flex-start}
+  #t3u-seo-inner{padding:24px 20px}
+}
+@media(max-width:480px){
+  #t3u-grid{gap:12px}
+  .t3u-imgw img{height:160px}
+  #t3u-heroes-grid{grid-template-columns:1fr}
+}
+</style>
+
+<div id="t3u">
+
+  <!-- Breadcrumb -->
+  <nav id="t3u-bc" aria-label="Breadcrumb">
+    <a href="/">Home</a> <span>›</span>
+    <a href="/collections">Collections</a> <span>›</span>
+    <span>Problem Solving Products</span>
+  </nav>
+
+  <!-- Collection Header -->
+  <div id="t3u-hd">
+    <div id="t3u-hd-l">
+      <div class="t3u-lbl">Smart Solutions for Kids</div>
+      <h1 id="t3u-h1">Problem Solving Products for Kids in the UAE</h1>
+      <p id="t3u-sub">Practical products that solve real parenting challenges — from building healthy routines to fuelling creativity. Free next-day delivery across the UAE.</p>
+      <p id="t3u-cnt">{{ collection.products_count }} products</p>
+    </div>
+    <div id="t3u-sort">
+      <label for="t3u-sort-sel">Sort</label>
+      <select id="t3u-sort-sel" onchange="location.href=this.value">
+        {%- for option in collection.sort_options -%}
+          <option value="{{ base_url }}?sort_by={{ option.value }}" {% if current_sort == option.value %}selected{% endif %}>{{ option.name }}</option>
+        {%- endfor -%}
+      </select>
+    </div>
+  </div>
+
+  <!-- Trust Strip -->
+  <div id="t3u-strip">
+    <div class="t3u-ti"><span class="t3u-ticon">🚚</span><div><strong>Free Next Day</strong><small>Delivery across UAE</small></div></div>
+    <div class="t3u-ti"><span class="t3u-ticon">💵</span><div><strong>Cash on Delivery</strong><small>No card required</small></div></div>
+    <div class="t3u-ti"><span class="t3u-ticon">🔒</span><div><strong>Safe & Non-Toxic</strong><small>All products tested</small></div></div>
+    <div class="t3u-ti"><span class="t3u-ticon">🔄</span><div><strong>14-Day Returns</strong><small>Zero questions asked</small></div></div>
+  </div>
+
+  <!-- Product Grid -->
+  <div id="t3u-gw">
+    <div id="t3u-grid">
+      {%- for product in collection.products -%}
+        {%- assign first_variant = product.selected_or_first_available_variant -%}
+        <div class="t3u-card">
+          <a href="{{ product.url }}" class="t3u-clink" aria-label="{{ product.title }}"></a>
+          <div class="t3u-imgw">
+            {%- if product.compare_at_price > product.price -%}
+              {%- assign pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+              <span class="t3u-bs">-{{ pct }}%</span>
+            {%- endif -%}
+            {%- if product.featured_image -%}
+              <img src="{{ product.featured_image | image_url: width: 480 }}"
+                   alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                   width="480" height="480" loading="lazy">
+            {%- else -%}
+              <img src="{{ 'no-image.svg' | asset_url }}" alt="{{ product.title | escape }}" width="480" height="480" loading="lazy">
+            {%- endif -%}
+          </div>
+          <div class="t3u-body">
+            <p class="t3u-name">{{ product.title }}</p>
+            <div class="t3u-pr">
+              <span class="t3u-price">{{ product.price | money }}</span>
+              {%- if product.compare_at_price > product.price -%}
+                <span class="t3u-was">{{ product.compare_at_price | money }}</span>
+              {%- endif -%}
+            </div>
+            <div class="t3u-foot">
+              {%- if product.variants.size > 1 -%}
+                <a href="{{ product.url }}" class="t3u-atc" style="text-align:center;text-decoration:none;display:block">Choose Options</a>
+              {%- else -%}
+                <button class="t3u-atc" onclick="t3uATC({{ first_variant.id }},this)">Add to Cart</button>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if collection.products.size == 0 -%}
+      <p style="text-align:center;color:var(--mu);padding:40px 0;font-size:14px">No products found in this collection.</p>
+    {%- endif -%}
+  </div>
+
+  <!-- Hero Products -->
+  <div id="t3u-heroes">
+    <div class="t3u-heroes-lbl">Best Sellers</div>
+    <h2 class="t3u-heroes-h2">Our Hero Products — Pair Them for Maximum Impact</h2>
+    <p class="t3u-heroes-sub">These top-rated products solve the biggest parenting challenges. Add the accessories above to get the full experience.</p>
+    <div id="t3u-heroes-grid">
+
+      {%- if toothbrush and toothbrush.available -%}
+      <a href="{{ toothbrush.url }}" class="t3u-hero-card">
+        {%- if toothbrush.featured_image -%}
+          <img src="{{ toothbrush.featured_image | image_url: width: 400 }}" alt="{{ toothbrush.title | escape }}" width="400" height="300" loading="lazy">
+        {%- endif -%}
+        <div class="t3u-hero-body">
+          <p class="t3u-hero-name">{{ toothbrush.title }}</p>
+          <p class="t3u-hero-price">{{ toothbrush.price | money }}</p>
+          <span class="t3u-hero-cta">Shop Now &rarr;</span>
+        </div>
+      </a>
+      {%- endif -%}
+
+      {%- if robot and robot.available -%}
+      <a href="{{ robot.url }}" class="t3u-hero-card">
+        {%- if robot.featured_image -%}
+          <img src="{{ robot.featured_image | image_url: width: 400 }}" alt="{{ robot.title | escape }}" width="400" height="300" loading="lazy">
+        {%- endif -%}
+        <div class="t3u-hero-body">
+          <p class="t3u-hero-name">{{ robot.title }}</p>
+          <p class="t3u-hero-price">{{ robot.price | money }}</p>
+          <span class="t3u-hero-cta">Shop Now &rarr;</span>
+        </div>
+      </a>
+      {%- endif -%}
+
+      {%- if bubble and bubble.available -%}
+      <a href="{{ bubble.url }}" class="t3u-hero-card">
+        {%- if bubble.featured_image -%}
+          <img src="{{ bubble.featured_image | image_url: width: 400 }}" alt="{{ bubble.title | escape }}" width="400" height="300" loading="lazy">
+        {%- endif -%}
+        <div class="t3u-hero-body">
+          <p class="t3u-hero-name">{{ bubble.title }}</p>
+          <p class="t3u-hero-price">{{ bubble.price | money }}</p>
+          <span class="t3u-hero-cta">Shop Now &rarr;</span>
+        </div>
+      </a>
+      {%- endif -%}
+
+      {%- if toothpaste and toothpaste.available -%}
+      <a href="{{ toothpaste.url }}" class="t3u-hero-card">
+        {%- if toothpaste.featured_image -%}
+          <img src="{{ toothpaste.featured_image | image_url: width: 400 }}" alt="{{ toothpaste.title | escape }}" width="400" height="300" loading="lazy">
+        {%- endif -%}
+        <div class="t3u-hero-body">
+          <p class="t3u-hero-name">{{ toothpaste.title }}</p>
+          <p class="t3u-hero-price">{{ toothpaste.price | money }}</p>
+          <span class="t3u-hero-cta">Shop Now &rarr;</span>
+        </div>
+      </a>
+      {%- endif -%}
+
+    </div>
+  </div>
+
+  <!-- SEO/GEO Content Block -->
+  <div id="t3u-seo">
+    <div id="t3u-seo-inner">
+      <h2>Problem Solving Products for Kids — What UAE Parents Trust</h2>
+      <p>Parenting in the UAE comes with unique challenges: building healthy habits, keeping kids engaged during screen-free time, and finding safe products that actually work. TipTop360 curates problem-solving products for kids that address these challenges head-on — from oral care routines to creative STEM play.</p>
+
+      <h3>Dental Care Solutions That Kids Love</h3>
+      <p>Getting children to brush properly is one of the most common parenting struggles. Our <a href="/products/kids-u-shaped-toothbrush-uae">U-Shaped Kids Toothbrush</a> solves this with a 45-second automatic cleaning cycle that covers every tooth simultaneously. Pair it with <a href="/products/kids-u-brush-heads-uae">replacement silicone brush heads</a>, a <a href="/products/dental-floss-for-kids">BPA-free kids dental flosser</a>, and <a href="/products/kids-brushing-stickers-uae">brushing reward stickers</a> to build a complete dental routine that children actually look forward to.</p>
+
+      <h3>Creative Play & STEM Learning Tools</h3>
+      <p>Screen-free engagement is a real challenge for UAE families. Our <a href="/products/kids-drawing-robot">STEM Drawing Robot</a> teaches geometry and art simultaneously, while <a href="/products/kids-dual-tip-markers-uae">washable dual-tip markers</a>, <a href="/products/color-pencils">non-toxic colour pencils</a>, <a href="/products/kids-wax-crayons-uae">wax crayons</a>, and <a href="/products/kids-water-colour-pens-uae">watercolour pens</a> keep children creating for hours. Every art supply is certified non-toxic and washable — safe for toddlers, easy cleanup for parents.</p>
+
+      <h3>Routine & Responsibility Builders</h3>
+      <p>Our <a href="/products/kids-chore-chart-uae">Kids Routine Chore Chart</a> turns daily tasks into a rewarding game, helping children aged 3-12 build independence and responsibility. Combined with <a href="/products/kids-brushing-stickers-uae">reward chart stickers</a>, it creates a visual system that motivates kids without nagging.</p>
+
+      <p>All problem-solving products ship with free next-day delivery across the UAE. Cash on delivery available. Most items start from just AED 10.</p>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div id="t3u-faq">
+    <h2>Frequently Asked Questions</h2>
+
+    <details class="t3u-fq">
+      <summary>What are the best problem-solving products for kids in the UAE?</summary>
+      <div class="t3u-fq-a">TipTop360 offers a curated range of products that solve common parenting challenges: the <a href="/products/kids-u-shaped-toothbrush-uae">U-Shaped Kids Toothbrush</a> for effortless dental hygiene, the <a href="/products/kids-drawing-robot">STEM Drawing Robot</a> for screen-free creative learning, and <a href="/products/kids-chore-chart-uae">chore charts</a> for building daily routines. All products ship free across the UAE.</div>
+    </details>
+
+    <details class="t3u-fq">
+      <summary>Are these products safe and non-toxic for toddlers?</summary>
+      <div class="t3u-fq-a">Every product in this collection meets international child safety standards. Art supplies including markers, crayons, and colour pencils are certified non-toxic with washable formulas. Dental products use food-grade silicone that is BPA-free and safe for children aged 2 and above.</div>
+    </details>
+
+    <details class="t3u-fq">
+      <summary>Do you offer free delivery for kids products in the UAE?</summary>
+      <div class="t3u-fq-a">Yes. Every order ships with free next-day delivery across the entire UAE when placed before 2 PM. We also offer cash on delivery on all orders — no card required.</div>
+    </details>
+
+    <details class="t3u-fq">
+      <summary>Which accessories pair with the U-Shaped Toothbrush?</summary>
+      <div class="t3u-fq-a">The <a href="/products/kids-u-shaped-toothbrush-uae">U-Shaped Toothbrush</a> pairs with <a href="/products/kids-u-brush-heads-uae">silicone replacement brush heads</a> (replace every 2-3 months), <a href="/products/kids-foam-toothpaste-uae">foam toothpaste</a>, <a href="/products/dental-floss-for-kids">BPA-free dental flossers</a>, and <a href="/products/kids-brushing-stickers-uae">brushing reward stickers</a> to create a complete oral care kit.</div>
+    </details>
+
+    <details class="t3u-fq">
+      <summary>What art supplies work with the STEM Drawing Robot?</summary>
+      <div class="t3u-fq-a">The <a href="/products/kids-drawing-robot">Drawing Robot</a> works with any standard markers or pencils. We recommend our <a href="/products/kids-dual-tip-markers-uae">washable dual-tip markers</a>, <a href="/products/kids-drawing-marker-set">robot drawing marker set</a>, and <a href="/products/color-pencils">non-toxic colour pencils</a> for the best results with the included drawing templates.</div>
+    </details>
+
+    <details class="t3u-fq">
+      <summary>How do chore charts help kids build routines?</summary>
+      <div class="t3u-fq-a">The <a href="/products/kids-chore-chart-uae">Kids Routine Chore Chart</a> uses a visual reward system where children track daily tasks like brushing teeth, tidying rooms, and completing homework. Combined with <a href="/products/kids-brushing-stickers-uae">reward stickers</a>, it turns responsibilities into a positive game that builds independence in children aged 3-12.</div>
+    </details>
+
+    <details class="t3u-fq">
+      <summary>Can I return products if my child doesn't like them?</summary>
+      <div class="t3u-fq-a">We offer a 14-day return policy with zero questions asked. If any product doesn't meet your expectations, contact us at info@tiptop360.com or call +971 585156033 for a hassle-free return or exchange.</div>
+    </details>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div id="t3u-ov" onclick="t3uCloseCart()"></div>
+  <div id="t3u-dr">
+    <div id="t3u-drhead">
+      <h3>Your Cart (<span id="t3u-drcnt">0</span>)</h3>
+      <button id="t3u-drclose" onclick="t3uCloseCart()" aria-label="Close cart">&#10005;</button>
+    </div>
+    <div id="t3u-ship">
+      <span id="t3u-ship-txt">Add items for free delivery</span>
+      <div id="t3u-ship-bar"><div id="t3u-ship-fill"></div></div>
+    </div>
+    <div id="t3u-drbody"></div>
+    <div id="t3u-drfoot" style="display:none">
+      <div class="t3u-drtotal"><span>Total</span><span id="t3u-total">AED 0</span></div>
+      <a href="/checkout" id="t3u-co">Checkout</a>
+    </div>
+  </div>
+  <div id="t3u-toast"></div>
+
+</div>
+
+<!-- FAQPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What are the best problem-solving products for kids in the UAE?","acceptedAnswer":{"@type":"Answer","text":"TipTop360 offers a curated range of products that solve common parenting challenges: the U-Shaped Kids Toothbrush for effortless dental hygiene, the STEM Drawing Robot for screen-free creative learning, and chore charts for building daily routines. All products ship free across the UAE."}},
+    {"@type":"Question","name":"Are these products safe and non-toxic for toddlers?","acceptedAnswer":{"@type":"Answer","text":"Every product in this collection meets international child safety standards. Art supplies including markers, crayons, and colour pencils are certified non-toxic with washable formulas. Dental products use food-grade silicone that is BPA-free and safe for children aged 2 and above."}},
+    {"@type":"Question","name":"Do you offer free delivery for kids products in the UAE?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every order ships with free next-day delivery across the entire UAE when placed before 2 PM. Cash on delivery available on all orders."}},
+    {"@type":"Question","name":"Which accessories pair with the U-Shaped Toothbrush?","acceptedAnswer":{"@type":"Answer","text":"The U-Shaped Toothbrush pairs with silicone replacement brush heads, foam toothpaste, BPA-free dental flossers, and brushing reward stickers to create a complete oral care kit."}},
+    {"@type":"Question","name":"What art supplies work with the STEM Drawing Robot?","acceptedAnswer":{"@type":"Answer","text":"The Drawing Robot works with any standard markers or pencils. We recommend washable dual-tip markers, the robot drawing marker set, and non-toxic colour pencils for the best results."}},
+    {"@type":"Question","name":"How do chore charts help kids build routines?","acceptedAnswer":{"@type":"Answer","text":"The Kids Routine Chore Chart uses a visual reward system where children track daily tasks. Combined with reward stickers, it turns responsibilities into a positive game that builds independence in children aged 3-12."}},
+    {"@type":"Question","name":"Can I return products if my child doesn't like them?","acceptedAnswer":{"@type":"Answer","text":"TipTop360 offers a 14-day return policy with zero questions asked. Contact info@tiptop360.com or call +971 585156033 for a hassle-free return or exchange."}}
+  ]
+}
+</script>
+
+
+<script>
+(function(){
+'use strict';
+var FREE=20000;
+function fmt(c){return 'AED '+Math.round(c/100);}
+function toast(msg){var t=document.getElementById('t3u-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2400);}
+function setCount(n){
+  var b=document.getElementById('t3u-drcnt');if(b)b.textContent=n;
+  ['[data-cart-count]','[data-cart-item-count]','.cart-count','#CartCount','.cart__count','.site-header__cart-count','.cart-icon__bubble','.cart-count-bubble'].forEach(function(s){document.querySelectorAll(s).forEach(function(e){e.textContent=n;e.style.display=n>0?'':'none';});});
+  document.dispatchEvent(new CustomEvent('cart:updated',{detail:{cartCount:n}}));
+}
+function shipBar(total){
+  var bar=document.getElementById('t3u-ship');
+  var txt=document.getElementById('t3u-ship-txt');
+  var fill=document.getElementById('t3u-ship-fill');
+  if(!bar)return;
+  if(total>=FREE){bar.classList.add('done');txt.innerHTML='<strong>Free delivery unlocked!</strong>';fill.style.width='100%';}
+  else{var rem=Math.round((FREE-total)/100);bar.classList.remove('done');txt.innerHTML='Add <strong>AED '+rem+'</strong> more for free delivery';fill.style.width=Math.min(Math.round(total/FREE*100),99)+'%';}
+}
+function renderCart(cart){
+  var body=document.getElementById('t3u-drbody');
+  var foot=document.getElementById('t3u-drfoot');
+  var tot=document.getElementById('t3u-total');
+  var co=document.getElementById('t3u-co');
+  if(!body)return;
+  setCount(cart.item_count);
+  shipBar(cart.total_price);
+  if(!cart.items||!cart.items.length){body.innerHTML='<p class="t3u-drempty">Your cart is empty</p>';if(foot)foot.style.display='none';return;}
+  if(foot)foot.style.display='block';
+  if(tot)tot.textContent=fmt(cart.total_price);
+  if(co)co.innerHTML='Checkout &mdash; '+fmt(cart.total_price);
+  var h='';
+  cart.items.forEach(function(it){
+    h+='<div class="t3u-dritem"><img src="'+it.image+'" alt="'+it.product_title+'" width="64" height="64" loading="lazy">';
+    h+='<div class="t3u-drinfo"><p class="t3u-driname">'+it.product_title+'</p>';
+    if(it.variant_title&&it.variant_title!=='Default Title')h+='<p class="t3u-drivar">'+it.variant_title+'</p>';
+    h+='<div class="t3u-drirow"><span class="t3u-drip">'+fmt(it.final_line_price)+'</span>';
+    h+='<div class="t3u-drqty">';
+    h+='<button class="t3u-drqb'+(it.quantity===1?' danger':'')+'" onclick="t3uQty(\''+it.key+'\','+(it.quantity-1)+')">'+(it.quantity===1?'&#128465;':'&minus;')+'</button>';
+    h+='<span class="t3u-drqn">'+it.quantity+'</span>';
+    h+='<button class="t3u-drqb" onclick="t3uQty(\''+it.key+'\','+(it.quantity+1)+')">+</button>';
+    h+='</div></div></div></div>';
+  });
+  body.innerHTML=h;
+}
+function fetchCart(){return fetch('/cart.js',{headers:{'X-Requested-With':'XMLHttpRequest'}}).then(function(r){return r.json();}).then(function(c){renderCart(c);return c;});}
+window.t3uOpenCart=function(){document.getElementById('t3u-ov').classList.add('open');document.getElementById('t3u-dr').classList.add('open');document.body.style.overflow='hidden';fetchCart();};
+window.t3uCloseCart=function(){document.getElementById('t3u-ov').classList.remove('open');document.getElementById('t3u-dr').classList.remove('open');document.body.style.overflow='';};
+window.t3uQty=function(key,qty){fetch('/cart/change.js',{method:'POST',headers:{'Content-Type':'application/json','X-Requested-With':'XMLHttpRequest'},body:JSON.stringify({id:key,quantity:qty})}).then(function(r){return r.json();}).then(renderCart);};
+window.t3uATC=function(vid,btn){
+  if(!btn||btn.classList.contains('loading'))return;
+  var orig=btn.textContent;
+  btn.classList.add('loading');btn.textContent='Adding...';
+  fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json','X-Requested-With':'XMLHttpRequest'},body:JSON.stringify({id:vid,quantity:1})})
+  .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
+  .then(function(){btn.classList.remove('loading');btn.classList.add('done');btn.textContent='Added!';fetchCart().then(function(){t3uOpenCart();});setTimeout(function(){btn.classList.remove('done');btn.textContent=orig;},2500);})
+  .catch(function(){btn.classList.remove('loading');btn.textContent='Try again';toast('Error adding item. Please try again.');setTimeout(function(){btn.textContent=orig;},2200);});
+};
+(function(){
+  var dr=document.getElementById('t3u-dr');if(!dr)return;
+  var sY=0,sT=0;
+  dr.addEventListener('touchstart',function(e){sY=e.touches[0].clientY;sT=Date.now();},{passive:true});
+  dr.addEventListener('touchend',function(e){var dy=e.changedTouches[0].clientY-sY;var dt=Date.now()-sT;if(dy>80||(dy>40&&dt<250))t3uCloseCart();},{passive:true});
+})();
+document.addEventListener('keydown',function(e){if(e.key==='Escape')t3uCloseCart();});
+fetchCart();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Upsell Collection",
+  "tag": "div",
+  "class": "tt360-upsell-col",
+  "settings": [],
+  "presets": [{ "name": "Upsell Collection" }]
+}
+{% endschema %}

@@ -41,10 +41,6 @@
           },
           "blocks": {}
         },
-        "judge_me_reviews_all_reviews_text_nNdUre": {
-          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_text/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        },
         "ai_gen_block_d447fb7_rAJBaG": {
           "type": "ai_gen_block_d447fb7",
           "name": "CSS Optimizer",
@@ -59,7 +55,6 @@
       },
       "block_order": [
         "ai_gen_block_f44e08e_cMfCgb",
-        "judge_me_reviews_all_reviews_text_nNdUre",
         "ai_gen_block_d447fb7_rAJBaG"
       ],
       "settings": {}

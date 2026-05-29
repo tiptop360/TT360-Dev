@@ -1,0 +1,244 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360_upsell_body": {
+      "type": "tt360-upsell-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": { "text": "✅ Non-Toxic & Safe", "style": "green" }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": { "text": "🎯 Perfect Add-On", "style": "orange" }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": { "icon": "📦", "label": "Free Next Day" }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": { "icon": "💵", "label": "Cash on Delivery" }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": { "icon": "🔄", "label": "14-Day Returns" }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": { "icon": "🔒", "label": "Secure Checkout" }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "⭐",
+            "title": "Visual Reward System",
+            "desc": "Kids place stickers after brushing — turns oral hygiene into a daily achievement they look forward to."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🦷",
+            "title": "Builds Brushing Consistency",
+            "desc": "Weekly format tracks morning and bedtime brushing. Children see their streak grow and stay motivated."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🎨",
+            "title": "Fun Sticker Designs",
+            "desc": "Colourful reward stickers kids actually want to collect. No nagging — the chart does the motivating."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "📅",
+            "title": "Weekly Tracker Format",
+            "desc": "Monday to Sunday layout with AM/PM brushing slots for complete routine tracking."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🪥",
+            "title": "Pairs with U-Brush",
+            "desc": "Designed to complement the Kids U-Shaped Toothbrush for a complete dental routine."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "📵",
+            "title": "Screen-Free Motivation",
+            "desc": "No apps, no batteries — a tangible reward system that builds real habits."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "♻️",
+            "title": "Reusable Chart Surface",
+            "desc": "Wipeable chart can be reset weekly. Stickers included for multiple weeks of use."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "👶",
+            "title": "Ages 2-8",
+            "desc": "Simple enough for toddlers starting their first routine, engaging enough for older children."
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": { "spec_name": "Type", "spec_value": "Brushing Reward Chart + Stickers" }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": { "spec_name": "Recommended Age", "spec_value": "2-8 Years" }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": { "spec_name": "Format", "spec_value": "Weekly (Mon-Sun, AM/PM)" }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": { "spec_name": "Material", "spec_value": "Non-Toxic, Child-Safe" }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": { "spec_name": "Pairs With", "spec_value": "U-Shaped Toothbrush, Dental Flosser" }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "My daughter now reminds ME it's brushing time. She loves placing the stickers every morning and night. The chart pairs perfectly with the U-Brush we bought last month.",
+            "name": "Noura K.",
+            "location": "Dubai · Brushing Chart",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Bought this as an add-on with the toothbrush. My 4-year-old went from fighting brushing to asking for it. The weekly format keeps him motivated to fill every slot.",
+            "name": "Khalid R.",
+            "location": "Abu Dhabi · Brushing Chart",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "text": "Great value for the price. We hang it in the bathroom and both kids compete to fill their charts first. COD was convenient for Sharjah delivery.",
+            "name": "Mariam S.",
+            "location": "Sharjah · Brushing Chart",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "What age is the Brushing Reward Chart designed for?",
+            "answer": "<p>The chart is designed for children aged 2 to 8. Toddlers love the sticker-placing action, while older kids enjoy tracking their weekly streaks and building consistency.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Does this pair with the Kids U-Shaped Toothbrush?",
+            "answer": "<p>Yes — the chart is designed as a companion to the U-Shaped Toothbrush. After each 45-second brushing session, children place a reward sticker to mark the habit complete. Many UAE parents buy them together.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How many weeks of stickers are included?",
+            "answer": "<p>The chart includes enough reward stickers for multiple weeks of daily brushing (morning and evening). The chart surface is reusable — wipe clean and start a new week.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Are the stickers non-toxic and safe?",
+            "answer": "<p>Yes. All stickers use non-toxic adhesive and child-safe inks. Safe for small hands and compliant with UAE safety standards.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to all UAE emirates?",
+            "answer": "<p>Free next-day delivery to all 7 emirates — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available everywhere.</p>"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": { "label": "Kids Collection UAE", "url": "/collections/kids-collection-uae" }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": { "label": "U-Shaped Toothbrush", "url": "/products/kids-u-shaped-toothbrush-uae" }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": { "label": "Kids Chore Chart", "url": "/products/kids-chore-chart-uae" }
+        }
+      },
+      "block_order": [
+        "badge_1", "badge_2",
+        "trust_1", "trust_2", "trust_3", "trust_4",
+        "hl_1", "hl_2", "hl_3",
+        "feat_1", "feat_2", "feat_3", "feat_4", "feat_5",
+        "spec_1", "spec_2", "spec_3", "spec_4", "spec_5",
+        "rev_1", "rev_2", "rev_3",
+        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5",
+        "ilink_1", "ilink_2", "ilink_3"
+      ],
+      "settings": {
+        "seo_h1": "Kids Brushing Reward Chart — Build Dental Habits Ages 2-8",
+        "hero_alt": "Kids brushing reward chart with stickers for building dental hygiene habits in UAE — TipTop360",
+        "collection_handle": "problem-solving-products-uae",
+        "collection_name": "Problem Solving Products",
+        "hero_product": "kids-u-shaped-toothbrush-uae",
+        "hero_link_label": "Goes Great With",
+        "hero_link_sub": "See the U-Shaped Toothbrush →",
+        "rating_value": "4.8",
+        "review_count": "35",
+        "atc_text": "Add to Cart",
+        "hl_lbl": "Why UAE Parents Love It",
+        "hl_title": "3 Reasons Kids Brush Without Being Asked",
+        "hl_sub": "Stickers turn brushing from a battle into a game kids want to win.",
+        "feat_lbl": "Built for Daily Routines",
+        "feat_title": "Chart Features",
+        "feat_sub": "Everything you need to build a brushing habit that sticks.",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "cta_title": "Add Brushing Motivation to Your Order",
+        "cta_sub": "AED 40 — free next-day delivery. Cash on delivery. 14-day returns.",
+        "specs_title": "Product Specifications",
+        "related_title": "More Problem Solving Products",
+        "ilinks_title": "Explore More at TipTop360"
+      }
+    }
+  },
+  "order": ["tt360_upsell_body"]
+}

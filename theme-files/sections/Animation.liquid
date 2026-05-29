@@ -167,15 +167,29 @@ For inquiries or permissions, contact daniel@section.store
 
 <div class="sticker-{{ section.id }}">
   {% for block in section.blocks %}
-    <{% if block.settings.url != blank %}a href="{{ block.settings.url }}"{% else %}div{% endif %} class="sticker-stamp-{{ block.id }}">
+    {% if block.settings.url != blank %}
+      <a href="{{ block.settings.url }}" class="sticker-stamp-{{ block.id }}">
+    {% else %}
+      <div class="sticker-stamp-{{ block.id }}">
+    {% endif %}
       <div class="sticker-stamp-inner-{{ block.id }}">
         {% if block.settings.image != blank %}
-          <img loading="lazy" src="{{ block.settings.image | image_url }}" alt="{{ block.settings.image.alt }}" {% if lazy %}loading="lazy"{% endif %}>
+          <img
+            src="{{ block.settings.image | image_url: width: block.settings.image_size }}"
+            alt="{{ block.settings.image.alt | escape }}"
+            width="{{ block.settings.image.width }}"
+            height="{{ block.settings.image.height }}"
+            {% if lazy %}loading="lazy"{% endif %}
+          >
         {% else %}
           {{ 'image' | placeholder_svg_tag }}
         {% endif %}
       </div>
-    </{% if block.settings.url != blank %}a{% else %}div{% endif %}>
+    {% if block.settings.url != blank %}
+      </a>
+    {% else %}
+      </div>
+    {% endif %}
   {% endfor %}
 </div>
 

@@ -1,0 +1,156 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360_upsell_body": {
+      "type": "tt360-upsell-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": { "text": "📧 Instant Email Delivery", "style": "green" }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": { "text": "🎁 Perfect Gift", "style": "orange" }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": { "icon": "📧", "label": "Instant Delivery" }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": { "icon": "🎁", "label": "Any Product" }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": { "icon": "🛒", "label": "Easy to Redeem" }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": { "icon": "🔒", "label": "Secure Checkout" }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "📧",
+            "title": "Instant Email Delivery",
+            "desc": "Gift card delivered to the recipient's inbox within minutes. No waiting, no shipping."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🎁",
+            "title": "Let Them Choose",
+            "desc": "Redeemable on any TipTop360 product — from the U-Shaped Toothbrush to the STEM Drawing Robot."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🕌",
+            "title": "Perfect for Eid & Birthdays",
+            "desc": "The ideal gift when you're not sure what to buy. Parents in the UAE love choosing for themselves."
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "How is the gift card delivered?",
+            "answer": "<p>Instantly via email. After purchase, the recipient receives a beautifully designed email with the gift card code and redemption instructions. No physical shipping required.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Does the gift card expire?",
+            "answer": "<p>TipTop360 gift cards do not expire. The recipient can redeem their card whenever they are ready to shop.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Can the gift card be used on any product?",
+            "answer": "<p>Yes. The gift card is redeemable on every product in the TipTop360 store — including the U-Shaped Toothbrush, STEM Drawing Robot, Smoke Bubble Machine, art supplies, and all accessories.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Can the recipient use Cash on Delivery?",
+            "answer": "<p>The gift card covers the product cost at checkout. If the order total exceeds the card value, the recipient can pay the remaining balance via any payment method including Cash on Delivery.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "What denominations are available?",
+            "answer": "<p>Multiple denominations are available to suit different budgets. Select your preferred amount when adding to cart.</p>"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": { "label": "U-Shaped Toothbrush", "url": "/products/kids-u-shaped-toothbrush-uae" }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": { "label": "STEM Drawing Robot", "url": "/products/kids-drawing-robot" }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": { "label": "Smoke Bubble Machine", "url": "/products/smoke-bubble-machine" }
+        },
+        "ilink_4": {
+          "type": "internal_link",
+          "settings": { "label": "Kids Chore Chart", "url": "/products/kids-chore-chart-uae" }
+        },
+        "ilink_5": {
+          "type": "internal_link",
+          "settings": { "label": "Kids Collection UAE", "url": "/collections/kids-collection-uae" }
+        }
+      },
+      "block_order": [
+        "badge_1", "badge_2",
+        "trust_1", "trust_2", "trust_3", "trust_4",
+        "hl_1", "hl_2", "hl_3",
+        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5",
+        "ilink_1", "ilink_2", "ilink_3", "ilink_4", "ilink_5"
+      ],
+      "settings": {
+        "seo_h1": "TipTop360 Digital Gift Card UAE — Instant Email Delivery",
+        "hero_alt": "TipTop360 digital gift card UAE instant email delivery for kids products — Eid birthday baby shower gift",
+        "collection_handle": "problem-solving-products-uae",
+        "collection_name": "Problem Solving Products",
+        "hero_product": "",
+        "hero_link_label": "",
+        "hero_link_sub": "",
+        "rating_value": "5.0",
+        "review_count": "15",
+        "atc_text": "Buy Gift Card",
+        "hl_lbl": "The Perfect Kids Gift",
+        "hl_title": "Why Parents Choose Gift Cards",
+        "hl_sub": "Instant delivery, any product, no guessing — the perfect Eid, birthday, or thank-you gift.",
+        "feat_lbl": "",
+        "feat_title": "",
+        "feat_sub": "",
+        "rev_lbl": "",
+        "rev_title": "",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "cta_title": "Give the Gift of Choice",
+        "cta_sub": "Instant email delivery. Redeemable on any TipTop360 product. No expiry.",
+        "specs_title": "",
+        "related_title": "Products They Can Choose From",
+        "ilinks_title": "Popular Products to Gift"
+      }
+    }
+  },
+  "order": ["tt360_upsell_body"]
+}

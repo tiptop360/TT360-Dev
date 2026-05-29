@@ -15,10 +15,11 @@
   "sections": {
     "footer": {
       "settings": {
-        "background": "#fff5e6",
-        "border-copryright": "#202025",
-        "text": "#000000",
-        "title": "#000000",
+        "background": "#12395e",
+        "border-copryright": "#ffffff",
+        "text": "#ffffff",
+        "text_hover": "#54e8cc",
+        "title": "#ffffff",
         "payment_info": "svg"
       },
       "blocks": {}

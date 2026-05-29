@@ -1,0 +1,486 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360-about": {
+      "type": "tt360-about-page",
+      "blocks": {
+        "trust_1": {
+          "type": "trust_badge",
+          "settings": {
+            "text": "Free Next-Day Delivery UAE"
+          }
+        },
+        "trust_2": {
+          "type": "trust_badge",
+          "settings": {
+            "text": "Cash on Delivery"
+          }
+        },
+        "trust_3": {
+          "type": "trust_badge",
+          "settings": {
+            "text": "14-Day Returns"
+          }
+        },
+        "trust_4": {
+          "type": "trust_badge",
+          "settings": {
+            "text": "Dubai Municipality Approved"
+          }
+        },
+        "trust_5": {
+          "type": "trust_badge",
+          "settings": {
+            "text": "WhatsApp Support"
+          }
+        },
+        "prob_1": {
+          "type": "problem",
+          "settings": {
+            "title": "Brushing battles",
+            "description": "Kids who refuse to brush, parents who lose patience. Our kids oral care collection — U-shaped toothbrushes, strawberry foam toothpaste, and complete dental bundles — turns brushing from a fight into a fun routine."
+          }
+        },
+        "prob_2": {
+          "type": "problem",
+          "settings": {
+            "title": "Screen time overload",
+            "description": "Tablets and phones dominate childhood. Our screen-free STEM toys and educational drawing robots give kids creative, engaging play without Wi-Fi or apps."
+          }
+        },
+        "prob_3": {
+          "type": "problem",
+          "settings": {
+            "title": "Gift anxiety",
+            "description": "Birthday parties, Eid celebrations, back-to-school — finding meaningful kids gifts in UAE shouldn't be stressful. We curate gifts children actually use and parents appreciate."
+          }
+        },
+        "prob_4": {
+          "type": "problem",
+          "settings": {
+            "title": "Delivery uncertainty",
+            "description": "Waiting weeks for products, paying hidden fees, dealing with unreliable shipping. We offer free next-day delivery across all UAE emirates with Cash on Delivery for complete peace of mind."
+          }
+        },
+        "cat_1": {
+          "type": "category",
+          "settings": {
+            "title": "Kids Oral Care UAE",
+            "description": "U-shaped toothbrushes that clean all teeth in 2 minutes, strawberry foam toothpaste kids actually want to use, and complete dental care bundles. Every product Dubai Municipality approved, BPA-free, and non-toxic.",
+            "link_url": "shopify://products/kids-dental-bundle-uae",
+            "link_text": "Shop Kids Oral Care"
+          }
+        },
+        "cat_2": {
+          "type": "category",
+          "settings": {
+            "title": "STEM & Educational Toys UAE",
+            "description": "Screen-free, teacher-approved learning toys. Our Kids STEM Drawing Robot guides children through 100+ templates, developing fine motor skills and creative confidence — all without Wi-Fi or apps.",
+            "link_url": "shopify://products/kids-drawing-robot",
+            "link_text": "Explore STEM Toys"
+          }
+        },
+        "cat_3": {
+          "type": "category",
+          "settings": {
+            "title": "Screen-Free Creative Play UAE",
+            "description": "From the Smoke Bubble Machine creating 500+ magical bubbles per minute to creative learning tools that keep kids focused for hours. UAE safety certified and mess-free.",
+            "link_url": "shopify://products/smoke-bubble-machine",
+            "link_text": "Shop Screen-Free Toys"
+          }
+        },
+        "cat_4": {
+          "type": "category",
+          "settings": {
+            "title": "Kids Gifts UAE",
+            "description": "Educational gifts, creative presents, and practical essentials children use daily. Perfect for birthdays, Eid celebrations, and back-to-school in Dubai, Abu Dhabi, and Sharjah.",
+            "link_url": "shopify://collections/kids-dental-care-uae",
+            "link_text": "Find Kids Gifts"
+          }
+        },
+        "step_1": {
+          "type": "curation_step",
+          "settings": {
+            "title": "Problem ID",
+            "description": "Does this solve a real parenting problem?"
+          }
+        },
+        "step_2": {
+          "type": "curation_step",
+          "settings": {
+            "title": "Safety Check",
+            "description": "Dubai Municipality approved and non-toxic?"
+          }
+        },
+        "step_3": {
+          "type": "curation_step",
+          "settings": {
+            "title": "Parent Tested",
+            "description": "Real UAE parents report positive results?"
+          }
+        },
+        "step_4": {
+          "type": "curation_step",
+          "settings": {
+            "title": "Value Check",
+            "description": "Fair price for the quality delivered?"
+          }
+        },
+        "step_5": {
+          "type": "curation_step",
+          "settings": {
+            "title": "Delivery Ready",
+            "description": "Free delivery across all UAE within 24h?"
+          }
+        },
+        "prom_1": {
+          "type": "promise",
+          "settings": {
+            "title": "Curated by usefulness, not trends",
+            "description": "Every item solves a real problem. No gimmicks."
+          }
+        },
+        "prom_2": {
+          "type": "promise",
+          "settings": {
+            "title": "Designed for UAE families",
+            "description": "Fast delivery, COD payment, and products suited to UAE homes and lifestyles."
+          }
+        },
+        "prom_3": {
+          "type": "promise",
+          "settings": {
+            "title": "Safety above all",
+            "description": "Dubai Municipality approved. BPA-free. Non-toxic. Always."
+          }
+        },
+        "prom_4": {
+          "type": "promise",
+          "settings": {
+            "title": "Parent-friendly support",
+            "description": "Real humans on WhatsApp. No chatbots, no automated responses."
+          }
+        },
+        "prom_5": {
+          "type": "promise",
+          "settings": {
+            "title": "Honest pricing",
+            "description": "Transparent costs. No hidden fees. No surprise charges at checkout."
+          }
+        },
+        "prom_6": {
+          "type": "promise",
+          "settings": {
+            "title": "Stress-free routines",
+            "description": "Products that make mornings smoother, bedtimes easier, and weekends more fun."
+          }
+        },
+        "del_1": {
+          "type": "delivery_feature",
+          "settings": {
+            "title": "Free Next-Day",
+            "description": "All 7 UAE emirates"
+          }
+        },
+        "del_2": {
+          "type": "delivery_feature",
+          "settings": {
+            "title": "Cash on Delivery",
+            "description": "Pay when you receive"
+          }
+        },
+        "del_3": {
+          "type": "delivery_feature",
+          "settings": {
+            "title": "14-Day Returns",
+            "description": "No questions asked"
+          }
+        },
+        "del_4": {
+          "type": "delivery_feature",
+          "settings": {
+            "title": "Order by 8 PM",
+            "description": "Next-day delivery"
+          }
+        },
+        "del_5": {
+          "type": "delivery_feature",
+          "settings": {
+            "title": "WhatsApp Tracking",
+            "description": "Real-time updates"
+          }
+        },
+        "del_6": {
+          "type": "delivery_feature",
+          "settings": {
+            "title": "Careful Handling",
+            "description": "Every package with care"
+          }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "quote": "My daughter refused to brush until we got the dental bundle. Now she brushes twice a day without me asking. The pink U-shaped toothbrush was her pick — she loves it.",
+            "author": "Noor A., Dubai",
+            "product_name": "Kids Dental Care Bundle"
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "quote": "The drawing robot replaced 2 hours of tablet time completely. My 6-year-old uses it every afternoon and her drawing skills have improved so much.",
+            "author": "Fatima A., Dubai",
+            "product_name": "Kids STEM Drawing Robot"
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "quote": "Bought the smoke bubble machine for my son's birthday party and it was the absolute star. Every kid was chasing bubbles for an hour. Worth every dirham.",
+            "author": "Fatima K., Dubai",
+            "product_name": "Smoke Bubble Machine"
+          }
+        },
+        "rev_4": {
+          "type": "review",
+          "settings": {
+            "quote": "Free next-day delivery and COD made ordering so easy. The products are genuinely useful — not just another toy that sits in a box.",
+            "author": "Khalid M., Abu Dhabi",
+            "product_name": "Kids Dental Care Bundle"
+          }
+        },
+        "val_1": {
+          "type": "value",
+          "settings": {
+            "title": "Parent-First Design",
+            "description": "Every product chosen because it makes a parent's life easier."
+          }
+        },
+        "val_2": {
+          "type": "value",
+          "settings": {
+            "title": "Safety Above All",
+            "description": "Dubai Municipality approved. BPA-free. Non-toxic. Always."
+          }
+        },
+        "val_3": {
+          "type": "value",
+          "settings": {
+            "title": "Practical Over Trendy",
+            "description": "We stock useful solutions, not viral gimmicks."
+          }
+        },
+        "val_4": {
+          "type": "value",
+          "settings": {
+            "title": "UAE-Focused Service",
+            "description": "Fast delivery, COD payment, and support that understands UAE families."
+          }
+        },
+        "val_5": {
+          "type": "value",
+          "settings": {
+            "title": "Honest Pricing",
+            "description": "No hidden fees. No surprise charges. What you see is what you pay."
+          }
+        },
+        "val_6": {
+          "type": "value",
+          "settings": {
+            "title": "Community-Driven",
+            "description": "We listen to UAE parents and evolve our collection based on real feedback."
+          }
+        },
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is TipTop360 a UAE-based company?",
+            "answer": "Yes. TipTop360 is operated by Sylo Commerce FZ-LLC, licensed in the UAE under Trade License No. 45009298, issued by the Ras Al Khaimah Economic Zone. We are a fully registered local business serving UAE families."
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you deliver to all UAE emirates?",
+            "answer": "We offer free next-day delivery to Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, and Umm Al Quwain. Cash on Delivery is available across all emirates."
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your kids products safe and certified?",
+            "answer": "Every kids product in our store is Dubai Municipality approved, BPA-free, and non-toxic. We only stock items that meet strict UAE safety standards."
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What makes TipTop360 different from other kids stores in UAE?",
+            "answer": "We curate practical, problem-solving products specifically for UAE parents — kids oral care that makes brushing easier, STEM toys that replace screen time, and gifts kids actually use. Plus free next-day delivery and COD."
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What types of kids products do you specialize in?",
+            "answer": "We specialize in four core categories: kids oral care (U-shaped toothbrushes, foam toothpaste, dental bundles), STEM and educational toys (drawing robots, learning toys), screen-free creative play (bubble machines, imagination toys), and practical kids gifts for birthdays, Eid, and everyday occasions."
+          }
+        },
+        "faq_6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I contact TipTop360 for support?",
+            "answer": "We offer real human support via WhatsApp. No chatbots, no automated responses — just fast, helpful answers from our team."
+          }
+        },
+        "faq_7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer Cash on Delivery?",
+            "answer": "Yes. COD is available for all orders across all UAE emirates. Pay when your order arrives."
+          }
+        },
+        "faq_8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your returns policy?",
+            "answer": "14-day easy returns, no questions asked. If a product doesn't work for your family, we'll make it right."
+          }
+        },
+        "coll_1": {
+          "type": "collection_card",
+          "settings": {
+            "emoji": "🦷",
+            "title": "Kids Oral Care UAE",
+            "description": "Toothbrushes, toothpaste & dental bundles",
+            "url": "/collections/kids-oral-care-uae"
+          }
+        },
+        "coll_2": {
+          "type": "collection_card",
+          "settings": {
+            "emoji": "🎨",
+            "title": "STEM & Educational Toys",
+            "description": "Screen-free learning toys",
+            "url": "/collections/stem-toys-uae"
+          }
+        },
+        "coll_3": {
+          "type": "collection_card",
+          "settings": {
+            "emoji": "🫧",
+            "title": "Screen-Free Toys",
+            "description": "Creative play, spark imagination",
+            "url": "/collections/screen-free-toys-uae"
+          }
+        },
+        "coll_4": {
+          "type": "collection_card",
+          "settings": {
+            "emoji": "🎁",
+            "title": "Kids Gifts UAE",
+            "description": "Meaningful, practical gifts",
+            "url": "/collections/kids-gifts-uae"
+          }
+        }
+      },
+      "block_order": [
+        "trust_1",
+        "trust_2",
+        "trust_3",
+        "trust_4",
+        "trust_5",
+        "prob_1",
+        "prob_2",
+        "prob_3",
+        "prob_4",
+        "cat_1",
+        "cat_2",
+        "cat_3",
+        "cat_4",
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "step_5",
+        "prom_1",
+        "prom_2",
+        "prom_3",
+        "prom_4",
+        "prom_5",
+        "prom_6",
+        "del_1",
+        "del_2",
+        "del_3",
+        "del_4",
+        "del_5",
+        "del_6",
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "rev_4",
+        "val_1",
+        "val_2",
+        "val_3",
+        "val_4",
+        "val_5",
+        "val_6",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "faq_8",
+        "coll_1",
+        "coll_2",
+        "coll_3",
+        "coll_4"
+      ],
+      "settings": {
+        "seo_title": "About TipTop360 UAE | Curated Kids Products for UAE Families",
+        "meta_description": "Learn about TipTop360 — a UAE-based store curating practical kids products, oral care essentials, STEM toys & parenting solutions. Free delivery & COD.",
+        "org_description": "UAE-based online store curating practical kids products, oral care essentials, STEM educational toys, and parenting solutions for UAE families.",
+        "instagram_url": "",
+        "facebook_url": "",
+        "tiktok_url": "",
+        "pinterest_url": "",
+        "founding_location": "Ras Al Khaimah, UAE",
+        "address_region": "Ras Al Khaimah",
+        "hero_heading": "About TipTop360 — Kids Products Curated for UAE Parents",
+        "hero_subheading": "TipTop360 is a UAE-based online store built by parents, for parents. We curate practical kids oral care, STEM educational toys, screen-free creative products, and useful parenting essentials delivered free across Dubai, Abu Dhabi, Sharjah, and all UAE emirates.",
+        "who_heading": "Who We Are",
+        "who_content": "<p>At <strong>TipTop360</strong>, we don't just sell products — we solve real parenting problems faced by families across the UAE.</p><p>We are a <strong>UAE-registered company</strong> (Sylo Commerce FZ-LLC, Trade License No. 45009298, Ras Al Khaimah Economic Zone) built on one simple belief: parents deserve better than endless scrolling through generic marketplaces.</p><p>Every product in our store is <strong>handpicked, tested, and parent-approved</strong>. From kids oral care that makes brushing easier to STEM toys that replace screen time with creative play, we only stock items that genuinely improve daily life for UAE families.</p>",
+        "why_heading": "Why We Created TipTop360",
+        "why_intro": "We started TipTop360 because we were tired of the same problem every UAE parent faces: finding useful kids products that actually work. Most online stores in the UAE are cluttered with random trends, overpriced gadgets, and products that look good in photos but disappoint in real life.",
+        "problems_heading": "The problems we set out to solve:",
+        "cats_heading": "What Products We Curate for UAE Families",
+        "curation_heading": "Our Curation Process: Why TipTop360 Products Are Different",
+        "curation_intro": "Every product in our store passes a 5-step vetting process:",
+        "curation_tagline": "We don't follow trends. We follow results.",
+        "promises_heading": "Our Promise to UAE Parents",
+        "promises_intro": "When you shop at TipTop360, you get more than a product — you get a parenting partner committed to your family's wellbeing.",
+        "delivery_heading": "Fast Delivery & Trusted Service Across All UAE Emirates",
+        "delivery_intro": "As a local UAE business, we understand that speed and reliability matter.",
+        "reviews_heading": "What UAE Parents Say About TipTop360",
+        "reviews_badge": "4.9/5 from 800+ verified UAE parent reviews",
+        "values_heading": "Our Values",
+        "faq_heading": "Frequently Asked Questions",
+        "colls_heading": "Shop Our Collections",
+        "footer_heading": "TipTop360 — Your Trusted Kids Products Store in UAE"
+      }
+    }
+  },
+  "order": [
+    "tt360-about"
+  ]
+}

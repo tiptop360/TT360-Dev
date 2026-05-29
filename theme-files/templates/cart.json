@@ -17,15 +17,6 @@
     },
     "1766077263c431e11a": {
       "type": "apps",
-      "blocks": {
-        "wrapin_gift_wrap_options_app_block_8Gatiy": {
-          "type": "shopify://apps/wrapin-gift-wrap-options/blocks/app-block/31c9fd89-9221-4847-aeee-86a226a0a620",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "wrapin_gift_wrap_options_app_block_8Gatiy"
-      ],
       "settings": {
         "animation": "",
         "setwidth": "container",

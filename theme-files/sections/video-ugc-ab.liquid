@@ -8,11 +8,6 @@
   ---------------------------------------------------------
 {% endcomment %}
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
->
-
 {%- liquid
   assign padding_horizontal = section.settings.padding_horizontal
   assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile
@@ -172,7 +167,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: {{ card_overlay_color | hex_to_rgba: card_overlay }};
+    background-color: {{ card_overlay_color | color_modify: 'alpha', card_overlay }};
     z-index: 0;
     /* display: none; */
   }
@@ -333,7 +328,7 @@
     height: {{ action_size_mobile }}px;
     border: {{ action_border_thickness }}px solid {{ action_border_color }};
     border-radius: 50%;
-    background: {{ action_bg_color | hex_to_rgba: 0.3 }};
+    background: {{ action_bg_color | color_modify: 'alpha', 0.3 }};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -357,7 +352,7 @@
   .slider-action-{{ section.id }}:hover {
     transition: all 0.3s ease 0s;
     border: {{ action_border_thickness }}px solid {{ action_border_hover_color }};
-    background: {{ action_bg_hover_color | hex_to_rgba: 0.3 }};
+    background: {{ action_bg_hover_color | color_modify: 'alpha', 0.3 }};
   }
 
   .slider-action-{{ section.id }}:hover svg path {
@@ -382,7 +377,7 @@
     height: {{ sound_size_mobile }}px;
     border: {{ sound_border_thickness }}px solid {{ action_border_color }};
     border-radius: 50%;
-    background: {{ action_bg_color | hex_to_rgba: 0.3 }};
+    background: {{ action_bg_color | color_modify: 'alpha', 0.3 }};
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -396,7 +391,7 @@
   .slider-sound-{{ section.id }}:hover {
     transition: all 0.25s ease 0s;
     border: {{ sound_border_thickness }}px solid {{ action_border_hover_color }};
-    background: {{ action_bg_hover_color | hex_to_rgba: 0.3 }};
+    background: {{ action_bg_hover_color | color_modify: 'alpha', 0.3 }};
   }
 
   .slider-sound-{{ section.id }} svg {
@@ -540,7 +535,7 @@
     }
 
     .slider-slide-{{ section.id }} {
-      box-shadow: 1px 1px 10px {{ card_shadow_color | hex_to_rgba: 0.3 }};
+      box-shadow: 1px 1px 10px {{ card_shadow_color | color_modify: 'alpha', 0.3 }};
     }
   </style>
 {% endif %}
@@ -836,9 +831,11 @@
                         {% if stars_icon != blank %}
                           {% assign custom_stars_cound = block.settings.stars_count | round: 0 %}
                           {% for item in (1..custom_stars_cound) %}
-                            <img
-                              src="{{ stars_icon | image_url }}"
-                              alt="{{ stars_icon.alt }}"
+	                            <img
+	                              src="{{ stars_icon | image_url: width: stars_size }}"
+	                              alt="{{ stars_icon.alt | escape }}"
+	                              width="{{ stars_icon.width }}"
+	                              height="{{ stars_icon.height }}"
                               {% if lazy %}
                                 loading="lazy"
                               {% endif %}
@@ -960,8 +957,6 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.min.js"></script>
-
 {% assign slider_view_tablet = slider_view | times: 0.5 %}
 {% assign slider_view_tablet = slider_view | round: 0 %}
 
@@ -980,7 +975,9 @@
     function initSlider2(sectionId) {
       document.querySelector(`.slider-slider-${sectionId}`).classList.remove('preview');
 
-      var lazyLoadInstance = new LazyLoad();
+      if (window.LazyLoad) {
+        var lazyLoadInstance = new LazyLoad();
+      }
 
       window.addEventListener(
         "LazyLoad::Initialized",

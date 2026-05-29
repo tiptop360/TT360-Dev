@@ -1,0 +1,1236 @@
+{%- comment -%}
+  tt360-about-page.liquid
+  Full About page — SEO + GEO optimized, all content editable via theme editor
+  JSON-LD: Organization + AboutPage + BreadcrumbList + FAQPage (auto-generated)
+{%- endcomment -%}
+
+{%- assign s = section.settings -%}
+
+{%- comment -%} ── JSON-LD STRUCTURED DATA ── {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": {{ s.seo_title | default: "About TipTop360 UAE" | json }},
+  "description": {{ s.meta_description | default: "Learn about TipTop360 — a UAE-based store curating practical kids products for UAE families." | json }},
+  "url": "{{ shop.url }}/pages/about-tiptop360",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "alternateName": "TipTop360 UAE",
+    "url": {{ shop.url | json }},
+    "logo": "{{ shop.url }}{{ s.logo | default: shop.brand.logo | image_url: width: 500 }}",
+    "description": {{ s.org_description | default: "UAE-based online store curating practical kids products, oral care essentials, STEM educational toys, and parenting solutions for UAE families." | json }},
+    "foundingLocation": { "@type": "Place", "name": {{ s.founding_location | default: "Ras Al Khaimah, UAE" | json }} },
+    "areaServed": { "@type": "Country", "name": "United Arab Emirates" },
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "AE",
+      "addressRegion": {{ s.address_region | default: "Ras Al Khaimah" | json }}
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Support",
+      "availableLanguage": ["English", "Arabic"],
+      "contactOption": "WhatsApp"
+    },
+    "sameAs": [
+      {%- if s.instagram_url != blank %}"{{ s.instagram_url }}"{% endif -%}
+      {%- if s.facebook_url != blank %},  "{{ s.facebook_url }}"{% endif -%}
+      {%- if s.tiktok_url != blank %},  "{{ s.tiktok_url }}"{% endif -%}
+      {%- if s.pinterest_url != blank %},  "{{ s.pinterest_url }}"{% endif -%}
+    ],
+    "knowsAbout": ["Kids Oral Care UAE","STEM Toys UAE","Educational Toys UAE","Screen-Free Toys UAE","Kids Gifts UAE","Parenting Products UAE"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Kids Products UAE",
+      "itemListElement": [
+        {"@type":"Offer","itemOffered":{"@type":"Product","name":"Kids Oral Care Products UAE"}},
+        {"@type":"Offer","itemOffered":{"@type":"Product","name":"STEM Educational Toys UAE"}},
+        {"@type":"Offer","itemOffered":{"@type":"Product","name":"Screen-Free Creative Toys UAE"}},
+        {"@type":"Offer","itemOffered":{"@type":"Product","name":"Kids Gifts UAE"}}
+      ]
+    }
+  }
+}
+</script>
+
+{%- comment -%} BreadcrumbList now handled by schema-controller in theme.liquid {%- endcomment -%}
+
+{%- comment -%} FAQ Schema — auto-generated from FAQ blocks {%- endcomment -%}
+{%- assign faq_blocks = section.blocks | where: "type", "faq_item" -%}
+{%- if faq_blocks.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for block in faq_blocks -%}
+    {
+      "@type": "Question",
+      "name": {{ block.settings.question | json }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ block.settings.answer | json }}
+      }
+    }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+
+<style>
+/* ── VARIABLES & RESET ─────────────────────────────── */
+.tt360-about *{box-sizing:border-box;margin:0;padding:0}
+.tt360-about{
+  --ink:#0e1c2a;--ink2:rgba(14,28,42,.55);--ink3:rgba(14,28,42,.25);
+  --navy:#12395e;--mint:#ff6f2e;--teal:#439b94;--coral:#ff6f2e;
+  --cream:#faf8f4;--white:#fff;--border:rgba(14,28,42,.08);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--ink);line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.tt360-about a{color:var(--teal);text-decoration:none;transition:color .2s}
+.tt360-about a:hover{color:var(--coral)}
+
+/* ── LAYOUT ────────────────────────────────────────── */
+.tt360-about__wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.tt360-about__section{padding:56px 0}
+.tt360-about__section:nth-child(even){background:var(--cream)}
+.tt360-about__section:nth-child(odd){background:var(--white)}
+.tt360-about__section--navy{background:var(--navy)!important;color:var(--white)}
+.tt360-about__section--navy h2{color:#fff}
+.tt360-about__section--navy p{color:rgba(255,255,255,.85)}
+.tt360-about__section--navy a{color:var(--mint)}
+.tt360-about__section--navy a:hover{color:var(--white)}
+
+/* ── TYPOGRAPHY ────────────────────────────────────── */
+.tt360-about h1{font-size:clamp(26px,5vw,38px);font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px}
+.tt360-about h2{font-size:clamp(22px,4vw,30px);font-weight:700;letter-spacing:-.01em;line-height:1.25;margin-bottom:16px}
+.tt360-about h3{font-size:clamp(18px,3.5vw,22px);font-weight:600;line-height:1.3;margin-bottom:12px}
+.tt360-about p{margin-bottom:16px;font-size:15px}
+.tt360-about ul,.tt360-about ol{margin:0 0 20px 20px;font-size:15px}
+.tt360-about li{margin-bottom:8px}
+.tt360-about strong{font-weight:600}
+
+/* ── HERO ──────────────────────────────────────────── */
+.tt360-about__hero{
+  background:var(--navy);color:var(--white);
+  padding:72px 0 56px;text-align:center;position:relative;overflow:hidden;
+}
+.tt360-about__hero::before{
+  content:'';position:absolute;top:-50%;right:-30%;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(84,232,204,.08),transparent 70%);
+  pointer-events:none;
+}
+.tt360-about__hero h1{color:var(--white);margin-bottom:8px}
+.tt360-about__hero-sub{
+  font-size:clamp(14px,2.5vw,17px);color:rgba(255,255,255,.75);
+  max-width:680px;margin:0 auto 32px;line-height:1.65;
+}
+
+/* ── TRUST BAR ─────────────────────────────────────── */
+.tt360-about__trust{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:12px;
+  margin-top:8px;
+}
+.tt360-about__trust-item{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;padding:10px 18px;font-size:13px;font-weight:500;
+  display:flex;align-items:center;gap:8px;
+  backdrop-filter:blur(8px);
+}
+.tt360-about__trust-item svg{flex-shrink:0;width:18px;height:18px}
+
+/* ── PROBLEM BLOCKS ────────────────────────────────── */
+.tt360-about__problems{display:grid;gap:20px;margin-top:24px}
+.tt360-about__problem{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:24px;
+}
+.tt360-about__problem h4{font-size:16px;font-weight:600;margin-bottom:8px;color:var(--navy)}
+
+/* ── CATEGORY CARDS ────────────────────────────────── */
+.tt360-about__cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:24px}
+.tt360-about__cat{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:16px;padding:32px 24px;transition:transform .2s,box-shadow .2s;
+}
+.tt360-about__cat:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(14,28,42,.08)}
+.tt360-about__cat h3{color:var(--navy)}
+.tt360-about__cat-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--teal);font-weight:600;font-size:14px;margin-top:12px;
+}
+.tt360-about__cat-cta:hover{color:var(--coral)}
+.tt360-about__cat-cta::after{content:'\2192'}
+
+/* ── CURATION STEPS ────────────────────────────────── */
+.tt360-about__steps{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:20px;margin-top:28px;counter-reset:step;
+}
+.tt360-about__step{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:24px 20px;text-align:center;
+  counter-increment:step;position:relative;
+}
+.tt360-about__step::before{
+  content:counter(step);display:flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;background:var(--mint);
+  color:var(--navy);font-weight:700;font-size:15px;
+  margin:0 auto 12px;
+}
+.tt360-about__step h4{font-size:14px;font-weight:600;margin-bottom:6px}
+.tt360-about__step p{font-size:13px;color:var(--ink2);margin:0}
+
+/* ── PROMISES ──────────────────────────────────────── */
+.tt360-about__promises{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:24px}
+.tt360-about__promise{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:20px;background:var(--white);border:1px solid var(--border);
+  border-radius:12px;
+}
+.tt360-about__promise-icon{
+  flex-shrink:0;width:40px;height:40px;border-radius:10px;
+  background:rgba(255,111,46,.12);display:flex;align-items:center;justify-content:center;
+}
+.tt360-about__promise-icon svg{width:20px;height:20px;color:var(--teal)}
+.tt360-about__promise h4{font-size:15px;font-weight:600;margin-bottom:4px}
+.tt360-about__promise p{font-size:13px;color:var(--ink2);margin:0}
+
+/* ── DELIVERY ──────────────────────────────────────── */
+.tt360-about__delivery-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:16px;margin-top:24px;
+}
+.tt360-about__delivery-item{
+  text-align:center;padding:24px 16px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  border-radius:12px;
+}
+.tt360-about__delivery-item strong{display:block;font-size:15px;margin-bottom:4px;color:#fff}
+.tt360-about__delivery-item span{font-size:13px;color:rgba(255,255,255,.7)}
+
+/* ── TESTIMONIALS ──────────────────────────────────── */
+.tt360-about__reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:24px}
+.tt360-about__review{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;padding:28px 24px;position:relative;
+}
+.tt360-about__review::before{
+  content:'\201C';font-size:48px;line-height:1;color:var(--mint);
+  position:absolute;top:16px;left:20px;font-family:Georgia,serif;
+}
+.tt360-about__review blockquote{
+  font-size:14px;line-height:1.7;font-style:italic;
+  margin:0 0 16px;padding-top:24px;border:none;
+}
+.tt360-about__review-author{font-size:13px;font-weight:600}
+.tt360-about__review-product{font-size:12px;color:var(--ink2)}
+.tt360-about__review-stars{color:var(--coral);font-size:14px;margin-bottom:8px}
+
+/* ── VALUES ────────────────────────────────────────── */
+.tt360-about__values{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:24px}
+.tt360-about__value{padding:24px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px}
+.tt360-about__value h4{font-size:15px;font-weight:600;margin-bottom:6px;color:var(--mint)}
+.tt360-about__value p{font-size:14px;color:rgba(255,255,255,.8);margin:0}
+
+/* ── FAQ ───────────────────────────────────────────── */
+.tt360-about__faq-list{margin-top:24px}
+.tt360-about__faq{
+  border-bottom:1px solid var(--border);
+}
+.tt360-about__faq:first-child{border-top:1px solid var(--border)}
+.tt360-about__faq-q{
+  width:100%;background:none;border:none;text-align:left;
+  padding:20px 44px 20px 0;cursor:pointer;position:relative;
+  font-family:inherit;font-size:15px;font-weight:600;color:var(--ink);
+  line-height:1.4;
+}
+.tt360-about__faq-q::after{
+  content:'+';position:absolute;right:0;top:50%;transform:translateY(-50%);
+  font-size:22px;font-weight:300;color:var(--ink3);transition:transform .2s;
+}
+.tt360-about__faq-q[aria-expanded="true"]::after{content:'\2212'}
+.tt360-about__faq-a{
+  max-height:0;overflow:hidden;transition:max-height .3s ease;
+}
+.tt360-about__faq-a-inner{padding:0 0 20px;font-size:14px;line-height:1.7;color:var(--ink2)}
+
+/* ── COLLECTIONS GRID ──────────────────────────────── */
+.tt360-about__colls{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:24px}
+.tt360-about__coll{
+  background:var(--navy);color:var(--white);border-radius:14px;
+  padding:28px 20px;text-align:center;text-decoration:none;
+  transition:transform .2s,box-shadow .2s;display:block;
+}
+.tt360-about__coll:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(14,28,42,.15);color:var(--white)}
+.tt360-about__coll-emoji{font-size:32px;margin-bottom:10px;display:block}
+.tt360-about__coll-title{font-size:15px;font-weight:600;margin-bottom:6px}
+.tt360-about__coll-desc{font-size:12px;color:rgba(255,255,255,.75)}
+
+/* ── FOOTER TRUST ──────────────────────────────────── */
+.tt360-about__footer-trust{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:20px;
+  margin-top:24px;
+}
+.tt360-about__footer-trust-item{font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px}
+.tt360-about__footer-trust-item svg{width:16px;height:16px;color:var(--mint)}
+
+/* ── RESPONSIVE ────────────────────────────────────── */
+@media(max-width:600px){
+  .tt360-about__section{padding:40px 0}
+  .tt360-about__hero{padding:56px 0 40px}
+  .tt360-about__trust{gap:8px}
+  .tt360-about__trust-item{padding:8px 12px;font-size:12px}
+  .tt360-about__steps{grid-template-columns:repeat(2,1fr)}
+  .tt360-about__cats{grid-template-columns:1fr}
+  .tt360-about__delivery-grid{grid-template-columns:repeat(2,1fr)}
+  .tt360-about__colls{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+
+<div class="tt360-about">
+
+  {%- comment -%} ═══ HERO ═══ {%- endcomment -%}
+  <div class="tt360-about__hero">
+    <div class="tt360-about__wrap">
+      <h1>{{ s.hero_heading | default: "About TipTop360 — Kids Products Curated for UAE Parents" }}</h1>
+      <p class="tt360-about__hero-sub">{{ s.hero_subheading | default: "TipTop360 is a UAE-based online store built by parents, for parents. We curate practical kids oral care, STEM educational toys, screen-free creative products, and useful parenting essentials delivered free across Dubai, Abu Dhabi, Sharjah, and all UAE emirates." }}</p>
+
+      <div class="tt360-about__trust">
+        {%- assign trust_blocks = section.blocks | where: "type", "trust_badge" -%}
+        {%- if trust_blocks.size > 0 -%}
+          {%- for block in trust_blocks -%}
+            <div class="tt360-about__trust-item" {{ block.shopify_attributes }}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              {{ block.settings.text }}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="tt360-about__trust-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Free Next-Day Delivery UAE
+          </div>
+          <div class="tt360-about__trust-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Cash on Delivery
+          </div>
+          <div class="tt360-about__trust-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            14-Day Returns
+          </div>
+          <div class="tt360-about__trust-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Dubai Municipality Approved
+          </div>
+          <div class="tt360-about__trust-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            WhatsApp Support
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ═══ SECTION 1: WHO WE ARE ═══ {%- endcomment -%}
+  <div class="tt360-about__section">
+    <div class="tt360-about__wrap">
+      <h2>{{ s.who_heading | default: "Who We Are" }}</h2>
+      <div>{{ s.who_content | default: "<p>At <strong>TipTop360</strong>, we don't just sell products — we solve real parenting problems faced by families across the UAE.</p><p>We are a <strong>UAE-registered company</strong> (Sylo Commerce FZ-LLC, Trade License No. 45009298, Ras Al Khaimah Economic Zone) built on one simple belief: parents deserve better than endless scrolling through generic marketplaces.</p><p>Every product in our store is <strong>handpicked, tested, and parent-approved</strong>. From kids oral care that makes brushing easier to STEM toys that replace screen time with creative play, we only stock items that genuinely improve daily life for UAE families.</p>" }}</div>
+    </div>
+  </div>
+
+  {%- comment -%} ═══ SECTION 2: WHY WE CREATED ═══ {%- endcomment -%}
+  <div class="tt360-about__section">
+    <div class="tt360-about__wrap">
+      <h2>{{ s.why_heading | default: "Why We Created TipTop360" }}</h2>
+      <p>{{ s.why_intro | default: "We started TipTop360 because we were tired of the same problem every UAE parent faces: finding useful kids products that actually work. Most online stores in the UAE are cluttered with random trends, overpriced gadgets, and products that look good in photos but disappoint in real life." }}</p>
+
+      <h3>{{ s.problems_heading | default: "The problems we set out to solve:" }}</h3>
+      <div class="tt360-about__problems">
+        {%- assign problem_blocks = section.blocks | where: "type", "problem" -%}
+        {%- if problem_blocks.size > 0 -%}
+          {%- for block in problem_blocks -%}
+            <div class="tt360-about__problem" {{ block.shopify_attributes }}>
+              <h4>{{ block.settings.title }}</h4>
+              <p>{{ block.settings.description }}</p>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="tt360-about__problem">
+            <h4>Brushing battles</h4>
+            <p>Kids who refuse to brush, parents who lose patience. Our kids oral care collection — U-shaped toothbrushes, strawberry foam toothpaste, and complete dental bundles — turns brushing from a fight into a fun routine.</p>
+          </div>
+          <div class="tt360-about__problem">
+            <h4>Screen time overload</h4>
+            <p>Tablets and phones dominate childhood. Our screen-free STEM toys and educational drawing robots give kids creative, engaging play without Wi-Fi or apps.</p>
+          </div>
+          <div class="tt360-about__problem">
+            <h4>Gift anxiety</h4>
+            <p>Birthday parties, Eid celebrations, back-to-school — finding meaningful kids gifts in UAE shouldn't be stressful. We curate gifts children actually use and parents appreciate.</p>
+          </div>
+          <div class="tt360-about__problem">
+            <h4>Delivery uncertainty</h4>
+            <p>Waiting weeks for products, paying hidden fees, dealing with unreliable shipping. We offer free next-day delivery across all UAE emirates with Cash on Delivery for complete peace of mind.</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ═══ SECTION 3: PRODUCT CATEGORIES ═══ {%- endcomment -%}
+  <div class="tt360-about__section">
+    <div class="tt360-about__wrap">
+      <h2>{{ s.cats_heading | default: "What Products We Curate for UAE Families" }}</h2>
+
+      <div class="tt360-about__cats">
+        {%- assign cat_blocks = section.blocks | where: "type", "category" -%}
+        {%- if cat_blocks.size > 0 -%}
+          {%- for block in cat_blocks -%}
+            <div class="tt360-about__cat" {{ block.shopify_attributes }}>
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.description }}</p>
+              {%- if block.settings.link_url != blank -%}
+                <a href="{{ block.settings.link_url }}" class="tt360-about__cat-cta">{{ block.settings.link_text | default: "Shop Now" }}</a>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="tt360-about__cat">
+            <h3>Kids Oral Care UAE</h3>
+            <p>U-shaped toothbrushes that clean all teeth in 2 minutes, strawberry foam toothpaste kids actually want to use, and complete dental care bundles. Every product Dubai Municipality approved, BPA-free, and non-toxic.</p>
+            <a href="/collections/kids-oral-care-uae" class="tt360-about__cat-cta">Shop Kids Oral Care</a>
+          </div>
+          <div class="tt360-about__cat">
+            <h3>STEM & Educational Toys UAE</h3>
+            <p>Screen-free, teacher-approved learning toys. Our Kids STEM Drawing Robot guides children through 100+ templates, developing fine motor skills and creative confidence — all without Wi-Fi or apps.</p>
+            <a href="/collections/stem-toys-uae" class="tt360-about__cat-cta">Explore STEM Toys</a>
+          </div>
+          <div class="tt360-about__cat">
+            <h3>Screen-Free Creative Play UAE</h3>
+            <p>From the Smoke Bubble Machine creating 500+ magical bubbles per minute to creative learning tools that keep kids focused for hours. UAE safety certified and mess-free.</p>
+            <a href="/collections/screen-free-toys-uae" class="tt360-about__cat-cta">Shop Screen-Free Toys</a>
+          </div>
+          <div class="tt360-about__cat">
+            <h3>Kids Gifts UAE</h3>
+            <p>Educational gifts, creative presents, and practical essentials children use daily. Perfect for birthdays, Eid celebrations, and back-to-school in Dubai, Abu Dhabi, and Sharjah.</p>
+            <a href="/collections/kids-gifts-uae" class="tt360-about__cat-cta">Find Kids Gifts</a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ═══ SECTION 4: CURATION PROCESS ═══ {%- endcomment -%}
+  <div class="tt360-about__section">
+    <div class="tt360-about__wrap">
+      <h2>{{ s.curation_heading | default: "Our Curation Process: Why TipTop360 Products Are Different" }}</h2>
+      <p>{{ s.curation_intro | default: "Every product in our store passes a 5-step vetting process:" }}</p>
+
+      <div class="tt360-about__steps">
+        {%- assign step_blocks = section.blocks | where: "type", "curation_step" -%}
+        {%- if step_blocks.size > 0 -%}
+          {%- for block in step_blocks -%}
+            <div class="tt360-about__step" {{ block.shopify_attributes }}>
+              <h4>{{ block.settings.title }}</h4>
+              <p>{{ block.settings.description }}</p>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="tt360-about__step"><h4>Problem ID</h4><p>Does this solve a real parenting problem?</p></div>
+          <div class="tt360-about__step"><h4>Safety Check</h4><p>Dubai Municipality approved and non-toxic?</p></div>
+          <div class="tt360-about__step"><h4>Parent Tested</h4><p>Real UAE parents report positive results?</p></div>
+          <div class="tt360-about__step"><h4>Value Check</h4><p>Fair price for the quality delivered?</p></div>
+          <div class="tt360-about__step"><h4>Delivery Ready</h4><p>Free delivery across all UAE within 24h?</p></div>
+        {%- endif -%}
+      </div>
+
+      <p style="margin-top:24px;font-weight:600;font-size:16px;text-align:center">{{ s.curation_tagline | default: "We don't follow trends. We follow results." }}</p>
+    </div>
+  </div>
+
+  {%- comment -%} ═══ SECTION 5: PROMISES ═══ {%- endcomment -%}
+  <div class="tt360-about__section">
+    <div class="tt360-about__wrap">
+      <h2>{{ s.promises_heading | default: "Our Promise to UAE Parents" }}</h2>
+      <p>{{ s.promises_intro | default: "When you shop at TipTop360, you get more than a product — you get a parenting partner committed to your family's wellbeing." }}</p>
+
+      <div class="tt360-about__promises">
+        {%- assign promise_blocks = section.blocks | where: "type", "promise" -%}
+        {%- if promise_blocks.size > 0 -%}
+          {%- for block in promise_blocks -%}
+            <div class="tt360-about__promise" {{ block.shopify_attributes }}>
+              <div class="tt360-about__promise-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <h4>{{ block.settings.title }}</h4>
+                <p>{{ block.settings.description }}</p>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="tt360-about__promise">
+            <div class="tt360-about__promise-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><h4>Curated by usefulness, not trends</h4><p>Every item solves a real problem. No gimmicks.</p></div>
+          </div>
+          <div class="tt360-about__promise">
+            <div class="tt360-about__promise-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><h4>Designed for UAE families</h4><p>Fast delivery, COD payment, and products suited to UAE homes and lifestyles.</p></div>
+          </div>
+          <div class="tt360-about__promise">
+            <div class="tt360-about__promise-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><h4>Safety above all</h4><p>Dubai Municipality approved. BPA-free. Non-toxic. Always.</p></div>
+          </div>
+          <div class="tt360-about__promise">
+            <div class="tt360-about__promise-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><h4>Parent-friendly support</h4><p>Real humans on WhatsApp. No chatbots, no automated responses.</p></div>
+          </div>
+          <div class="tt360-about__promise">
+            <div class="tt360-about__promise-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><h4>Honest pricing</h4><p>Transparent costs. No hidden fees. No surprise charges at checkout.</p></div>
+          </div>
+          <div class="tt360-about__promise">
+            <div class="tt360-about__promise-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div><h4>Stress-free routines</h4><p>Products that make mornings smoother, bedtimes easier, and weekends more fun.</p></div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ═══ SECTION 6: DELIVERY ═══ {%- endcomment -%}
+  <div class="tt360-about__section tt360-about__section--navy">
+    <div class="tt360-about__wrap">
+      <h2>{{ s.delivery_heading | default: "Fast Delivery & Trusted Service Across All UAE Emirates" }}</h2>
+      <p>{{ s.delivery_intro | default: "As a local UAE business, we understand that speed and reliability matter." }}</p>
+
+      <div class="tt360-about__delivery-grid">
+        {%- assign delivery_blocks = section.blocks | where: "type", "delivery_feature" -%}
+        {%- if delivery_blocks.size > 0 -%}
+          {%- for block in delivery_blocks -%}
+            <div class="tt360-about__delivery-item" {{ block.shopify_attributes }}>
+              <strong>{{ block.settings.title }}</strong>
+              <span>{{ block.settings.description }}</span>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="tt360-about__delivery-item"><strong>Free Next-Day</strong><span>All 7 UAE emirates</span></div>
+          <div class="tt360-about__delivery-item"><strong>Cash on Delivery</strong><span>Pay when you receive</span></div>
+          <div class="tt360-about__delivery-item"><strong>14-Day Returns</strong><span>No questions asked</span></div>
+          <div class="tt360-about__delivery-item"><strong>Order by 8 PM</strong><span>Next-day delivery</span></div>
+          <div class="tt360-about__delivery-item"><strong>WhatsApp Tracking</strong><span>Real-time updates</span></div>
+          <div class="tt360-about__delivery-item"><strong>Careful Handling</strong><span>Every package with care</span></div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ═══ SECTION 7: TESTIMONIALS ═══ {%- endcomment -%}
+  {%- assign review_blocks = section.blocks | where: "type", "review" -%}
+  <div class="tt360-about__section">
+    <div class="tt360-about__wrap">
+      <h2>{{ s.reviews_heading | default: "What UAE Parents Say About TipTop360" }}</h2>
+      <p>{{ s.reviews_badge | default: "4.9/5 from 800+ verified UAE parent reviews" }}</p>
+
+      <div class="tt360-about__reviews">
+        {%- if review_blocks.size > 0 -%}
+          {%- for block in review_blocks -%}
+            <div class="tt360-about__review" {{ block.shopify_attributes }}>
+              <div class="tt360-about__review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <blockquote>{{ block.settings.quote }}</blockquote>
+              <div class="tt360-about__review-author">{{ block.settings.author }}</div>
+              <div class="tt360-about__review-product">{{ block.settings.product_name }}</div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="tt360-about__review">
+            <div class="tt360-about__review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>My daughter refused to brush until we got the dental bundle. Now she brushes twice a day without me asking. The pink U-shaped toothbrush was her pick — she loves it.</blockquote>
+            <div class="tt360-about__review-author">Noor A., Dubai</div>
+            <div class="tt360-about__review-product">Kids Dental Care Bundle</div>
+          </div>
+          <div class="tt360-about__review">
+            <div class="tt360-about__review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>The drawing robot replaced 2 hours of tablet time completely. My 6-year-old uses it every afternoon and her drawing skills have improved so much.</blockquote>
+            <div class="tt360-about__review-author">Fatima A., Dubai</div>
+            <div class="tt360-about__review-product">Kids STEM Drawing Robot</div>
+          </div>
+          <div class="tt360-about__review">
+            <div class="tt360-about__review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>Bought the smoke bubble machine for my son's birthday party and it was the absolute star. Every kid was chasing bubbles for an hour. Worth every dirham.</blockquote>
+            <div class="tt360-about__review-author">Fatima K., Dubai</div>
+            <div class="tt360-about__review-product">Smoke Bubble Machine</div>
+          </div>
+          <div class="tt360-about__review">
+            <div class="tt360-about__review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>Free next-day delivery and COD made ordering so easy. The products are genuinely useful — not just another toy that sits in a box.</blockquote>
+            <div class="tt360-about__review-author">Khalid M., Abu Dhabi</div>
+            <div class="tt360-about__review-product">Kids Dental Care Bundle</div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ═══ SECTION 8: VALUES ═══ {%- endcomment -%}
+  <div class="tt360-about__section tt360-about__section--navy">
+    <div class="tt360-about__wrap">
+      <h2>{{ s.values_heading | default: "Our Values" }}</h2>
+
+      <div class="tt360-about__values">
+        {%- assign value_blocks = section.blocks | where: "type", "value" -%}
+        {%- if value_blocks.size > 0 -%}
+          {%- for block in value_blocks -%}
+            <div class="tt360-about__value" {{ block.shopify_attributes }}>
+              <h4>{{ block.settings.title }}</h4>
+              <p>{{ block.settings.description }}</p>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="tt360-about__value"><h4>Parent-First Design</h4><p>Every product chosen because it makes a parent's life easier.</p></div>
+          <div class="tt360-about__value"><h4>Safety Above All</h4><p>Dubai Municipality approved. BPA-free. Non-toxic. Always.</p></div>
+          <div class="tt360-about__value"><h4>Practical Over Trendy</h4><p>We stock useful solutions, not viral gimmicks.</p></div>
+          <div class="tt360-about__value"><h4>UAE-Focused Service</h4><p>Fast delivery, COD payment, and support that understands UAE families.</p></div>
+          <div class="tt360-about__value"><h4>Honest Pricing</h4><p>No hidden fees. No surprise charges. What you see is what you pay.</p></div>
+          <div class="tt360-about__value"><h4>Community-Driven</h4><p>We listen to UAE parents and evolve our collection based on real feedback.</p></div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ═══ SECTION 9: FAQ ═══ {%- endcomment -%}
+  <div class="tt360-about__section">
+    <div class="tt360-about__wrap">
+      <h2>{{ s.faq_heading | default: "Frequently Asked Questions" }}</h2>
+
+      <div class="tt360-about__faq-list">
+        {%- if faq_blocks.size > 0 -%}
+          {%- for block in faq_blocks -%}
+            <div class="tt360-about__faq" {{ block.shopify_attributes }}>
+              <button class="tt360-about__faq-q" aria-expanded="false" aria-controls="tt360-faq-{{ block.id }}">
+                {{ block.settings.question }}
+              </button>
+              <div class="tt360-about__faq-a" id="tt360-faq-{{ block.id }}">
+                <div class="tt360-about__faq-a-inner">{{ block.settings.answer }}</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- assign default_faqs = "Is TipTop360 a UAE-based company?|Yes. TipTop360 is operated by Sylo Commerce FZ-LLC, licensed in the UAE under Trade License No. 45009298, issued by the Ras Al Khaimah Economic Zone.||Do you deliver to all UAE emirates?|We offer free next-day delivery to Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, and Umm Al Quwain. Cash on Delivery is available across all emirates.||Are your kids products safe and certified?|Every kids product in our store is Dubai Municipality approved, BPA-free, and non-toxic. We only stock items that meet strict UAE safety standards.||What makes TipTop360 different from other kids stores in UAE?|We curate practical, problem-solving products specifically for UAE parents — kids oral care that makes brushing easier, STEM toys that replace screen time, and gifts kids actually use. Plus free next-day delivery and COD.||What types of kids products do you specialize in?|We specialize in four core categories: kids oral care (U-shaped toothbrushes, foam toothpaste, dental bundles), STEM and educational toys (drawing robots, learning toys), screen-free creative play (bubble machines, imagination toys), and practical kids gifts for birthdays, Eid, and everyday occasions.||How do I contact TipTop360?|We offer real human support via WhatsApp. No chatbots, no automated responses — just fast, helpful answers from our team.||Do you offer Cash on Delivery?|Yes. COD is available for all orders across all UAE emirates. Pay when your order arrives.||What is your returns policy?|14-day easy returns, no questions asked. If a product doesn't work for your family, we'll make it right." -%}
+          {%- assign faq_pairs = default_faqs | split: "||" -%}
+          {%- for pair in faq_pairs -%}
+            {%- assign qa = pair | split: "|" -%}
+            <div class="tt360-about__faq">
+              <button class="tt360-about__faq-q" aria-expanded="false" aria-controls="tt360-faq-default-{{ forloop.index }}">{{ qa[0] }}</button>
+              <div class="tt360-about__faq-a" id="tt360-faq-default-{{ forloop.index }}">
+                <div class="tt360-about__faq-a-inner">{{ qa[1] }}</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ═══ SECTION 10: SHOP COLLECTIONS ═══ {%- endcomment -%}
+  <div class="tt360-about__section">
+    <div class="tt360-about__wrap">
+      <h2>{{ s.colls_heading | default: "Shop Our Collections" }}</h2>
+
+      <div class="tt360-about__colls">
+        {%- assign coll_blocks = section.blocks | where: "type", "collection_card" -%}
+        {%- if coll_blocks.size > 0 -%}
+          {%- for block in coll_blocks -%}
+            <a href="{{ block.settings.url }}" class="tt360-about__coll" {{ block.shopify_attributes }}>
+              <span class="tt360-about__coll-emoji">{{ block.settings.emoji }}</span>
+              <div class="tt360-about__coll-title">{{ block.settings.title }}</div>
+              <div class="tt360-about__coll-desc">{{ block.settings.description }}</div>
+            </a>
+          {%- endfor -%}
+        {%- else -%}
+          <a href="/collections/kids-oral-care-uae" class="tt360-about__coll">
+            <span class="tt360-about__coll-emoji">&#x1F9B7;</span>
+            <div class="tt360-about__coll-title">Kids Oral Care UAE</div>
+            <div class="tt360-about__coll-desc">Toothbrushes, toothpaste & dental bundles</div>
+          </a>
+          <a href="/collections/stem-toys-uae" class="tt360-about__coll">
+            <span class="tt360-about__coll-emoji">&#x1F3A8;</span>
+            <div class="tt360-about__coll-title">STEM & Educational Toys</div>
+            <div class="tt360-about__coll-desc">Screen-free learning toys</div>
+          </a>
+          <a href="/collections/screen-free-toys-uae" class="tt360-about__coll">
+            <span class="tt360-about__coll-emoji">&#x1FAE7;</span>
+            <div class="tt360-about__coll-title">Screen-Free Toys</div>
+            <div class="tt360-about__coll-desc">Creative play, spark imagination</div>
+          </a>
+          <a href="/collections/kids-gifts-uae" class="tt360-about__coll">
+            <span class="tt360-about__coll-emoji">&#x1F381;</span>
+            <div class="tt360-about__coll-title">Kids Gifts UAE</div>
+            <div class="tt360-about__coll-desc">Meaningful, practical gifts</div>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ═══ FOOTER TRUST BLOCK ═══ {%- endcomment -%}
+  <div class="tt360-about__section" style="padding:32px 0;background:var(--cream)">
+    <div class="tt360-about__wrap" style="text-align:center">
+      <p style="font-weight:700;font-size:17px;margin-bottom:16px">{{ s.footer_heading | default: "TipTop360 — Your Trusted Kids Products Store in UAE" }}</p>
+      <div class="tt360-about__footer-trust">
+        <span class="tt360-about__footer-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Free Next-Day Delivery
+        </span>
+        <span class="tt360-about__footer-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Cash on Delivery
+        </span>
+        <span class="tt360-about__footer-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          14-Day Returns
+        </span>
+        <span class="tt360-about__footer-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Dubai Municipality Approved
+        </span>
+        <span class="tt360-about__footer-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Licensed UAE Business
+        </span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{%- comment -%} ═══ FAQ ACCORDION JS ═══ {%- endcomment -%}
+<script>
+(function(){
+  var qs=document.querySelectorAll('.tt360-about__faq-q');
+  qs.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var ex=this.getAttribute('aria-expanded')==='true';
+      qs.forEach(function(b){
+        b.setAttribute('aria-expanded','false');
+        b.nextElementSibling.style.maxHeight=null;
+      });
+      if(!ex){
+        this.setAttribute('aria-expanded','true');
+        var panel=this.nextElementSibling;
+        panel.style.maxHeight=panel.scrollHeight+'px';
+      }
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "TT360 About Page",
+  "tag": "section",
+  "class": "tt360-about-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "SEO Settings"
+    },
+    {
+      "type": "text",
+      "id": "seo_title",
+      "label": "SEO Title",
+      "default": "About TipTop360 UAE | Curated Kids Products for UAE Families"
+    },
+    {
+      "type": "textarea",
+      "id": "meta_description",
+      "label": "Meta Description",
+      "default": "Learn about TipTop360 — a UAE-based store curating practical kids products, oral care essentials, STEM toys & parenting solutions. Free delivery & COD."
+    },
+    {
+      "type": "textarea",
+      "id": "org_description",
+      "label": "Organization Schema Description",
+      "default": "UAE-based online store curating practical kids products, oral care essentials, STEM educational toys, and parenting solutions for UAE families."
+    },
+    {
+      "type": "header",
+      "content": "Social Links (Schema)"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "url",
+      "id": "pinterest_url",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "header",
+      "content": "Business Info (Schema)"
+    },
+    {
+      "type": "text",
+      "id": "founding_location",
+      "label": "Founding Location",
+      "default": "Ras Al Khaimah, UAE"
+    },
+    {
+      "type": "text",
+      "id": "address_region",
+      "label": "Address Region",
+      "default": "Ras Al Khaimah"
+    },
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero Heading (H1)",
+      "default": "About TipTop360 — Kids Products Curated for UAE Parents"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subheading",
+      "label": "Hero Subheading",
+      "default": "TipTop360 is a UAE-based online store built by parents, for parents. We curate practical kids oral care, STEM educational toys, screen-free creative products, and useful parenting essentials delivered free across Dubai, Abu Dhabi, Sharjah, and all UAE emirates."
+    },
+    {
+      "type": "header",
+      "content": "Who We Are"
+    },
+    {
+      "type": "text",
+      "id": "who_heading",
+      "label": "Section Heading",
+      "default": "Who We Are"
+    },
+    {
+      "type": "richtext",
+      "id": "who_content",
+      "label": "Content (Rich Text)",
+      "default": "<p>At <strong>TipTop360</strong>, we don't just sell products — we solve real parenting problems faced by families across the UAE.</p><p>We are a <strong>UAE-registered company</strong> (Sylo Commerce FZ-LLC, Trade License No. 45009298, Ras Al Khaimah Economic Zone) built on one simple belief: parents deserve better than endless scrolling through generic marketplaces.</p><p>Every product in our store is <strong>handpicked, tested, and parent-approved</strong>. From kids oral care that makes brushing easier to STEM toys that replace screen time with creative play, we only stock items that genuinely improve daily life for UAE families.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Why We Created TipTop360"
+    },
+    {
+      "type": "text",
+      "id": "why_heading",
+      "label": "Section Heading",
+      "default": "Why We Created TipTop360"
+    },
+    {
+      "type": "textarea",
+      "id": "why_intro",
+      "label": "Intro Text",
+      "default": "We started TipTop360 because we were tired of the same problem every UAE parent faces: finding useful kids products that actually work. Most online stores in the UAE are cluttered with random trends, overpriced gadgets, and products that look good in photos but disappoint in real life."
+    },
+    {
+      "type": "text",
+      "id": "problems_heading",
+      "label": "Problems Sub-Heading",
+      "default": "The problems we set out to solve:"
+    },
+    {
+      "type": "header",
+      "content": "Product Categories"
+    },
+    {
+      "type": "text",
+      "id": "cats_heading",
+      "label": "Section Heading",
+      "default": "What Products We Curate for UAE Families"
+    },
+    {
+      "type": "header",
+      "content": "Curation Process"
+    },
+    {
+      "type": "text",
+      "id": "curation_heading",
+      "label": "Section Heading",
+      "default": "Our Curation Process: Why TipTop360 Products Are Different"
+    },
+    {
+      "type": "text",
+      "id": "curation_intro",
+      "label": "Intro Text",
+      "default": "Every product in our store passes a 5-step vetting process:"
+    },
+    {
+      "type": "text",
+      "id": "curation_tagline",
+      "label": "Tagline",
+      "default": "We don't follow trends. We follow results."
+    },
+    {
+      "type": "header",
+      "content": "Promises"
+    },
+    {
+      "type": "text",
+      "id": "promises_heading",
+      "label": "Section Heading",
+      "default": "Our Promise to UAE Parents"
+    },
+    {
+      "type": "textarea",
+      "id": "promises_intro",
+      "label": "Intro Text",
+      "default": "When you shop at TipTop360, you get more than a product — you get a parenting partner committed to your family's wellbeing."
+    },
+    {
+      "type": "header",
+      "content": "Delivery"
+    },
+    {
+      "type": "text",
+      "id": "delivery_heading",
+      "label": "Section Heading",
+      "default": "Fast Delivery & Trusted Service Across All UAE Emirates"
+    },
+    {
+      "type": "textarea",
+      "id": "delivery_intro",
+      "label": "Intro Text",
+      "default": "As a local UAE business, we understand that speed and reliability matter."
+    },
+    {
+      "type": "header",
+      "content": "Reviews"
+    },
+    {
+      "type": "text",
+      "id": "reviews_heading",
+      "label": "Section Heading",
+      "default": "What UAE Parents Say About TipTop360"
+    },
+    {
+      "type": "text",
+      "id": "reviews_badge",
+      "label": "Review Badge Text",
+      "default": "4.9/5 from 800+ verified UAE parent reviews"
+    },
+    {
+      "type": "header",
+      "content": "Values"
+    },
+    {
+      "type": "text",
+      "id": "values_heading",
+      "label": "Section Heading",
+      "default": "Our Values"
+    },
+    {
+      "type": "header",
+      "content": "FAQ"
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "Section Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "header",
+      "content": "Collections"
+    },
+    {
+      "type": "text",
+      "id": "colls_heading",
+      "label": "Section Heading",
+      "default": "Shop Our Collections"
+    },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "text",
+      "id": "footer_heading",
+      "label": "Footer Heading",
+      "default": "TipTop360 — Your Trusted Kids Products Store in UAE"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Badge Text",
+          "default": "Free Next-Day Delivery UAE"
+        }
+      ]
+    },
+    {
+      "type": "problem",
+      "name": "Problem Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Problem Title",
+          "default": "Brushing battles"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Kids who refuse to brush, parents who lose patience. Our kids oral care collection turns brushing from a fight into a fun routine."
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "name": "Product Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "Kids Oral Care UAE"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Shop Now"
+        }
+      ]
+    },
+    {
+      "type": "curation_step",
+      "name": "Curation Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Problem ID"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Step Description",
+          "default": "Does this solve a real parenting problem?"
+        }
+      ]
+    },
+    {
+      "type": "promise",
+      "name": "Promise",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Promise Title",
+          "default": "Curated by usefulness"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Every item solves a real problem. No gimmicks."
+        }
+      ]
+    },
+    {
+      "type": "delivery_feature",
+      "name": "Delivery Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "Free Next-Day"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "All 7 UAE emirates"
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Customer Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Review Quote"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name & City",
+          "default": "Noor A., Dubai"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name",
+          "default": "Kids Dental Care Bundle"
+        }
+      ]
+    },
+    {
+      "type": "value",
+      "name": "Company Value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Value Title",
+          "default": "Parent-First Design"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Every product chosen because it makes a parent's life easier."
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    },
+    {
+      "type": "collection_card",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji Icon",
+          "default": "🦷"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Collection Title",
+          "default": "Kids Oral Care UAE"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Short Description",
+          "default": "Toothbrushes, toothpaste & dental bundles"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Collection URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TT360 About Page",
+      "blocks": [
+        { "type": "trust_badge", "settings": { "text": "Free Next-Day Delivery UAE" } },
+        { "type": "trust_badge", "settings": { "text": "Cash on Delivery" } },
+        { "type": "trust_badge", "settings": { "text": "14-Day Returns" } },
+        { "type": "trust_badge", "settings": { "text": "Dubai Municipality Approved" } },
+        { "type": "trust_badge", "settings": { "text": "WhatsApp Support" } },
+        { "type": "problem", "settings": { "title": "Brushing battles", "description": "Kids who refuse to brush, parents who lose patience. Our kids oral care collection — U-shaped toothbrushes, strawberry foam toothpaste, and complete dental bundles — turns brushing from a fight into a fun routine." } },
+        { "type": "problem", "settings": { "title": "Screen time overload", "description": "Tablets and phones dominate childhood. Our screen-free STEM toys and educational drawing robots give kids creative, engaging play without Wi-Fi or apps." } },
+        { "type": "problem", "settings": { "title": "Gift anxiety", "description": "Birthday parties, Eid celebrations, back-to-school — finding meaningful kids gifts in UAE shouldn't be stressful. We curate gifts children actually use and parents appreciate." } },
+        { "type": "problem", "settings": { "title": "Delivery uncertainty", "description": "Waiting weeks for products, paying hidden fees, dealing with unreliable shipping. We offer free next-day delivery across all UAE emirates with Cash on Delivery for complete peace of mind." } },
+        { "type": "category", "settings": { "title": "Kids Oral Care UAE", "description": "U-shaped toothbrushes that clean all teeth in 2 minutes, strawberry foam toothpaste kids actually want to use, and complete dental care bundles. Every product Dubai Municipality approved, BPA-free, and non-toxic.", "link_text": "Shop Kids Oral Care", "link_url": "/collections/kids-oral-care-uae" } },
+        { "type": "category", "settings": { "title": "STEM & Educational Toys UAE", "description": "Screen-free, teacher-approved learning toys. Our Kids STEM Drawing Robot guides children through 100+ templates, developing fine motor skills and creative confidence — all without Wi-Fi or apps.", "link_text": "Explore STEM Toys", "link_url": "/collections/stem-toys-uae" } },
+        { "type": "category", "settings": { "title": "Screen-Free Creative Play UAE", "description": "From the Smoke Bubble Machine creating 500+ magical bubbles per minute to creative learning tools that keep kids focused for hours. UAE safety certified and mess-free.", "link_text": "Shop Screen-Free Toys", "link_url": "/collections/screen-free-toys-uae" } },
+        { "type": "category", "settings": { "title": "Kids Gifts UAE", "description": "Educational gifts, creative presents, and practical essentials children use daily. Perfect for birthdays, Eid celebrations, and back-to-school in Dubai, Abu Dhabi, and Sharjah.", "link_text": "Find Kids Gifts", "link_url": "/collections/kids-gifts-uae" } },
+        { "type": "curation_step", "settings": { "title": "Problem ID", "description": "Does this solve a real parenting problem?" } },
+        { "type": "curation_step", "settings": { "title": "Safety Check", "description": "Dubai Municipality approved and non-toxic?" } },
+        { "type": "curation_step", "settings": { "title": "Parent Tested", "description": "Real UAE parents report positive results?" } },
+        { "type": "curation_step", "settings": { "title": "Value Check", "description": "Fair price for the quality delivered?" } },
+        { "type": "curation_step", "settings": { "title": "Delivery Ready", "description": "Free delivery across all UAE within 24h?" } },
+        { "type": "promise", "settings": { "title": "Curated by usefulness, not trends", "description": "Every item solves a real problem. No gimmicks." } },
+        { "type": "promise", "settings": { "title": "Designed for UAE families", "description": "Fast delivery, COD payment, and products suited to UAE homes and lifestyles." } },
+        { "type": "promise", "settings": { "title": "Safety above all", "description": "Dubai Municipality approved. BPA-free. Non-toxic. Always." } },
+        { "type": "promise", "settings": { "title": "Parent-friendly support", "description": "Real humans on WhatsApp. No chatbots, no automated responses." } },
+        { "type": "promise", "settings": { "title": "Honest pricing", "description": "Transparent costs. No hidden fees. No surprise charges at checkout." } },
+        { "type": "promise", "settings": { "title": "Stress-free routines", "description": "Products that make mornings smoother, bedtimes easier, and weekends more fun." } },
+        { "type": "delivery_feature", "settings": { "title": "Free Next-Day", "description": "All 7 UAE emirates" } },
+        { "type": "delivery_feature", "settings": { "title": "Cash on Delivery", "description": "Pay when you receive" } },
+        { "type": "delivery_feature", "settings": { "title": "14-Day Returns", "description": "No questions asked" } },
+        { "type": "delivery_feature", "settings": { "title": "Order by 8 PM", "description": "Next-day delivery" } },
+        { "type": "delivery_feature", "settings": { "title": "WhatsApp Tracking", "description": "Real-time updates" } },
+        { "type": "delivery_feature", "settings": { "title": "Careful Handling", "description": "Every package with care" } },
+        { "type": "review", "settings": { "quote": "My daughter refused to brush until we got the dental bundle. Now she brushes twice a day without me asking. The pink U-shaped toothbrush was her pick — she loves it.", "author": "Noor A., Dubai", "product_name": "Kids Dental Care Bundle" } },
+        { "type": "review", "settings": { "quote": "The drawing robot replaced 2 hours of tablet time completely. My 6-year-old uses it every afternoon and her drawing skills have improved so much.", "author": "Fatima A., Dubai", "product_name": "Kids STEM Drawing Robot" } },
+        { "type": "review", "settings": { "quote": "Bought the smoke bubble machine for my son's birthday party and it was the absolute star. Every kid was chasing bubbles for an hour. Worth every dirham.", "author": "Fatima K., Dubai", "product_name": "Smoke Bubble Machine" } },
+        { "type": "review", "settings": { "quote": "Free next-day delivery and COD made ordering so easy. The products are genuinely useful — not just another toy that sits in a box.", "author": "Khalid M., Abu Dhabi", "product_name": "Kids Dental Care Bundle" } },
+        { "type": "value", "settings": { "title": "Parent-First Design", "description": "Every product chosen because it makes a parent's life easier." } },
+        { "type": "value", "settings": { "title": "Safety Above All", "description": "Dubai Municipality approved. BPA-free. Non-toxic. Always." } },
+        { "type": "value", "settings": { "title": "Practical Over Trendy", "description": "We stock useful solutions, not viral gimmicks." } },
+        { "type": "value", "settings": { "title": "UAE-Focused Service", "description": "Fast delivery, COD payment, and support that understands UAE families." } },
+        { "type": "value", "settings": { "title": "Honest Pricing", "description": "No hidden fees. No surprise charges. What you see is what you pay." } },
+        { "type": "value", "settings": { "title": "Community-Driven", "description": "We listen to UAE parents and evolve our collection based on real feedback." } },
+        { "type": "faq_item", "settings": { "question": "Is TipTop360 a UAE-based company?", "answer": "Yes. TipTop360 is operated by Sylo Commerce FZ-LLC, licensed in the UAE under Trade License No. 45009298, issued by the Ras Al Khaimah Economic Zone. We are a fully registered local business serving UAE families." } },
+        { "type": "faq_item", "settings": { "question": "Do you deliver to all UAE emirates?", "answer": "We offer free next-day delivery to Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah, and Umm Al Quwain. Cash on Delivery is available across all emirates." } },
+        { "type": "faq_item", "settings": { "question": "Are your kids products safe and certified?", "answer": "Every kids product in our store is Dubai Municipality approved, BPA-free, and non-toxic. We only stock items that meet strict UAE safety standards." } },
+        { "type": "faq_item", "settings": { "question": "What makes TipTop360 different from other kids stores in UAE?", "answer": "We curate practical, problem-solving products specifically for UAE parents — kids oral care that makes brushing easier, STEM toys that replace screen time, and gifts kids actually use. Plus free next-day delivery and COD." } },
+        { "type": "faq_item", "settings": { "question": "What types of kids products do you specialize in?", "answer": "We specialize in four core categories: kids oral care (U-shaped toothbrushes, foam toothpaste, dental bundles), STEM and educational toys (drawing robots, learning toys), screen-free creative play (bubble machines, imagination toys), and practical kids gifts for birthdays, Eid, and everyday occasions." } },
+        { "type": "faq_item", "settings": { "question": "How do I contact TipTop360 for support?", "answer": "We offer real human support via WhatsApp. No chatbots, no automated responses — just fast, helpful answers from our team." } },
+        { "type": "faq_item", "settings": { "question": "Do you offer Cash on Delivery?", "answer": "Yes. COD is available for all orders across all UAE emirates. Pay when your order arrives." } },
+        { "type": "faq_item", "settings": { "question": "What is your returns policy?", "answer": "14-day easy returns, no questions asked. If a product doesn't work for your family, we'll make it right." } },
+        { "type": "collection_card", "settings": { "emoji": "🦷", "title": "Kids Oral Care UAE", "description": "Toothbrushes, toothpaste & dental bundles", "url": "/collections/kids-oral-care-uae" } },
+        { "type": "collection_card", "settings": { "emoji": "🎨", "title": "STEM & Educational Toys", "description": "Screen-free learning toys", "url": "/collections/stem-toys-uae" } },
+        { "type": "collection_card", "settings": { "emoji": "🫧", "title": "Screen-Free Toys", "description": "Creative play, spark imagination", "url": "/collections/screen-free-toys-uae" } },
+        { "type": "collection_card", "settings": { "emoji": "🎁", "title": "Kids Gifts UAE", "description": "Meaningful, practical gifts", "url": "/collections/kids-gifts-uae" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

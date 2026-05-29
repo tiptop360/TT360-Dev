@@ -35,11 +35,13 @@ Supports single + multiple product layouts
             <div class="product-card">
               
               <a href="{{ product.url }}">
-                <img 
-                  src="{{ product.featured_image | image_url: width: 800 }}" 
-                  alt="{{ product.title }}"
-                  loading="lazy"
-                >
+	                <img
+	                  src="{{ product.featured_image | image_url: width: 800 }}"
+	                  alt="{{ product.title | escape }}"
+	                  width="{{ product.featured_image.width }}"
+	                  height="{{ product.featured_image.height }}"
+	                  loading="lazy"
+	                >
               </a>
 
               <div class="product-content">

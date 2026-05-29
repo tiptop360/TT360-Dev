@@ -1,0 +1,244 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360_upsell_body": {
+      "type": "tt360-upsell-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": { "text": "✅ BPA-Free Silicone", "style": "green" }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": { "text": "🔄 Replacement Head", "style": "navy" }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": { "icon": "📦", "label": "Free Next Day" }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": { "icon": "💵", "label": "Cash on Delivery" }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": { "icon": "🔄", "label": "14-Day Returns" }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": { "icon": "🔒", "label": "Secure Checkout" }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🔄",
+            "title": "Perfect-Fit Replacement",
+            "desc": "Snap-on design fits the Kids U-Shaped Toothbrush exactly. No guessing, no compatibility issues."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Food-Grade Silicone",
+            "desc": "BPA-free, food-grade silicone bristles that are gentle on teeth and gums. Safe for daily use."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "📦",
+            "title": "Hygienic Sealed Packs",
+            "desc": "Each head comes individually sealed for freshness. Stock up and replace every 3 months as dentists recommend."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🪥",
+            "title": "360° Cleaning Coverage",
+            "desc": "U-shape design cleans all tooth surfaces simultaneously in 45 seconds."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "👶",
+            "title": "Multiple Size Options",
+            "desc": "Available for ages 2-6 and 6-12 — select the right size for your child."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🧹",
+            "title": "Easy to Clean",
+            "desc": "Rinse under running water after each use. Silicone dries quickly and resists bacteria buildup."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "📅",
+            "title": "3-Month Replacement Cycle",
+            "desc": "Dentists recommend replacing brush heads every 90 days for optimal hygiene."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "💰",
+            "title": "AED 15 — Stock Up Price",
+            "desc": "Affordable refills so you never skip a replacement cycle."
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": { "spec_name": "Material", "spec_value": "Food-Grade Silicone, BPA-Free" }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": { "spec_name": "Compatible With", "spec_value": "Kids U-Shaped Toothbrush" }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": { "spec_name": "Sizes Available", "spec_value": "Ages 2-6 / Ages 6-12" }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": { "spec_name": "Replace Every", "spec_value": "3 Months (Dentist Recommended)" }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": { "spec_name": "Packaging", "spec_value": "Individually Sealed" }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Perfect replacement heads for the U-Brush. They snap right on and the silicone feels exactly like the original. We order a new set every 3 months now.",
+            "name": "Lina A.",
+            "location": "Dubai · U Brush Heads",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Ordered two packs — one for each size since we have a 3-year-old and a 7-year-old. Fast delivery, great quality, and much cheaper than buying a whole new brush.",
+            "name": "Hassan M.",
+            "location": "Sharjah · U Brush Heads",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "text": "Good quality silicone heads. My son doesn't notice the difference from the original. The sealed packaging is a nice hygienic touch. COD to RAK was easy.",
+            "name": "Maha F.",
+            "location": "Ras Al Khaimah · U Brush Heads",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Which toothbrush are these compatible with?",
+            "answer": "<p>These replacement heads are designed exclusively for the TipTop360 Kids U-Shaped Toothbrush. They snap on and off with a secure click-fit mechanism.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "How often should I replace the brush head?",
+            "answer": "<p>Dentists recommend replacing brush heads every 3 months, or sooner if the silicone bristles appear flattened or worn. Regular replacement ensures optimal cleaning performance.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Are these BPA-free and safe for toddlers?",
+            "answer": "<p>Yes. Made from food-grade silicone that is 100% BPA-free. Safe for children of all ages, including toddlers who may chew on the brush head during brushing.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "What sizes are available?",
+            "answer": "<p>Available in two sizes: Ages 2-6 (smaller U-shape for baby teeth) and Ages 6-12 (larger U-shape for mixed dentition). Select the correct size when ordering.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to all UAE emirates?",
+            "answer": "<p>Free next-day delivery to all 7 emirates — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available everywhere.</p>"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": { "label": "U-Shaped Toothbrush", "url": "/products/kids-u-shaped-toothbrush-uae" }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": { "label": "Dental Flosser", "url": "/products/dental-floss-for-kids" }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": { "label": "Brushing Reward Chart", "url": "/products/kids-brushing-stickers-uae" }
+        }
+      },
+      "block_order": [
+        "badge_1", "badge_2",
+        "trust_1", "trust_2", "trust_3", "trust_4",
+        "hl_1", "hl_2", "hl_3",
+        "feat_1", "feat_2", "feat_3", "feat_4", "feat_5",
+        "spec_1", "spec_2", "spec_3", "spec_4", "spec_5",
+        "rev_1", "rev_2", "rev_3",
+        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5",
+        "ilink_1", "ilink_2", "ilink_3"
+      ],
+      "settings": {
+        "seo_h1": "Kids Silicone U Brush Heads — Replacement for U-Shaped Toothbrush",
+        "hero_alt": "Kids silicone U brush replacement heads BPA-free food-grade for U-shaped toothbrush UAE — TipTop360",
+        "collection_handle": "problem-solving-products-uae",
+        "collection_name": "Problem Solving Products",
+        "hero_product": "kids-u-shaped-toothbrush-uae",
+        "hero_link_label": "Replacement For",
+        "hero_link_sub": "See the U-Shaped Toothbrush →",
+        "rating_value": "4.8",
+        "review_count": "25",
+        "atc_text": "Add to Cart",
+        "hl_lbl": "Essential Replacement",
+        "hl_title": "Why Stock Up on Brush Heads",
+        "hl_sub": "Dentists recommend replacing every 3 months for optimal dental hygiene.",
+        "feat_lbl": "Designed for the U-Brush",
+        "feat_title": "Brush Head Features",
+        "feat_sub": "Same quality as the original — perfect fit, safe materials, easy replacement.",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "cta_title": "Stock Up on Replacement Heads",
+        "cta_sub": "AED 15 — free next-day delivery. Cash on delivery. 14-day returns.",
+        "specs_title": "Product Specifications",
+        "related_title": "Complete Your Dental Routine",
+        "ilinks_title": "Explore More at TipTop360"
+      }
+    }
+  },
+  "order": ["tt360_upsell_body"]
+}

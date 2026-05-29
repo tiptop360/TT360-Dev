@@ -1,0 +1,180 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360_upsell_product_body_6whUpB": {
+      "type": "tt360-upsell-product-body",
+      "blocks": {
+        "badge_AEnjCD": {
+          "type": "badge",
+          "settings": {
+            "text": "✅ Non-Toxic & Safe",
+            "style": "green"
+          }
+        },
+        "badge_bynKbV": {
+          "type": "badge",
+          "settings": {
+            "text": "🎯 Perfect Add-On",
+            "style": "orange"
+          }
+        },
+        "trust_XAGXba": {
+          "type": "trust",
+          "settings": {
+            "icon": "📦",
+            "label": "Free Next Day"
+          }
+        },
+        "trust_aae6bP": {
+          "type": "trust",
+          "settings": {
+            "icon": "💵",
+            "label": "Cash on Delivery"
+          }
+        },
+        "trust_NRhRFn": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔄",
+            "label": "14-Day Returns"
+          }
+        },
+        "trust_rQhHrM": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔒",
+            "label": "Secure Checkout"
+          }
+        },
+        "highlight_KB6zyT": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🛡️",
+            "title": "UAE Safety Certified",
+            "desc": "Non-toxic, child-safe materials tested for UAE compliance."
+          }
+        },
+        "highlight_akmMPi": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🎁",
+            "title": "Perfect Bundle Add-On",
+            "desc": "Designed to complement our hero products for a complete set."
+          }
+        },
+        "highlight_NrixPe": {
+          "type": "highlight",
+          "settings": {
+            "icon": "💰",
+            "title": "Great Value",
+            "desc": "Affordable essential that extends the life of your main purchase."
+          }
+        },
+        "faq_7kHQ8a": {
+          "type": "faq",
+          "settings": {
+            "question": "Is this product safe for young children?",
+            "answer": "<p>Yes — all TipTop360 products are Dubai Municipality approved and made with non-toxic, child-safe materials.</p>"
+          }
+        },
+        "faq_PmUJqf": {
+          "type": "faq",
+          "settings": {
+            "question": "How fast is delivery in the UAE?",
+            "answer": "<p>Free next-day delivery to all 7 UAE emirates. Cash on delivery available everywhere.</p>"
+          }
+        },
+        "faq_GixmFf": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I return this if not satisfied?",
+            "answer": "<p>Absolutely. We offer a 14-day hassle-free return policy with free return shipping.</p>"
+          }
+        },
+        "internal_link_UH9kWR": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Kids Art Supplies UAE",
+            "url": ""
+          }
+        },
+        "internal_link_efrghm": {
+          "type": "internal_link",
+          "settings": {
+            "label": "STEM Toys Dubai",
+            "url": ""
+          }
+        },
+        "internal_link_b8TMFr": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Kids Dental Care",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "badge_AEnjCD",
+        "badge_bynKbV",
+        "trust_XAGXba",
+        "trust_aae6bP",
+        "trust_NRhRFn",
+        "trust_rQhHrM",
+        "highlight_KB6zyT",
+        "highlight_akmMPi",
+        "highlight_NrixPe",
+        "faq_7kHQ8a",
+        "faq_PmUJqf",
+        "faq_GixmFf",
+        "internal_link_UH9kWR",
+        "internal_link_efrghm",
+        "internal_link_b8TMFr"
+      ],
+      "name": "TT360 Upsell Product",
+      "settings": {
+        "seo_h1": "Kids Routine Chore Chart",
+        "hero_alt": "Kids Routine Chore Chart",
+        "collection_handle": "kids-collection-uae",
+        "collection_name": "Kids Collection",
+        "hero_product_ref": "",
+        "hero_product": "",
+        "hero_link_label": "Goes Great With",
+        "hero_link_sub": "See the main product →",
+        "hero_product_2_ref": "",
+        "hero_product_3_ref": "",
+        "secondary_heroes_title": "Other Products Parents Love",
+        "bundle_label": "🔥 Popular Pairing",
+        "bundle_btn_text": "Add Both to Cart",
+        "rating_value": "4.8",
+        "review_count": "50",
+        "atc_text": "Add to Cart",
+        "hl_lbl": "",
+        "hl_title": "Why Add This to Your Order",
+        "hl_sub": "",
+        "feat_lbl": "",
+        "feat_title": "Product Features",
+        "feat_sub": "",
+        "rev_lbl": "",
+        "rev_title": "What Parents Say",
+        "faq_lbl": "",
+        "faq_title": "Frequently Asked Questions",
+        "cta_title": "Complete Your Set Today",
+        "cta_sub": "Free next-day delivery. Cash on delivery. 14-day returns.",
+        "specs_title": "Product Specifications",
+        "related_title": "More from This Collection",
+        "ilinks_title": "Shop More at TipTop360"
+      }
+    }
+  },
+  "order": [
+    "tt360_upsell_product_body_6whUpB"
+  ]
+}

@@ -91,7 +91,7 @@
         "530e8311-5377-448b-8611-a539f687d003": {
           "type": "html",
           "settings": {
-            "code": "<p>Don't see your role? <a href=\"#\"> Send us your resume. <\/a><\/p>",
+            "code": "<p>Don't see your role? <a href=\"#\"> Send us your resume. <\/a><\/p>",
             "width": "100%",
             "align": "auto"
           }

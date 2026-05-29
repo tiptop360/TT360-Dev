@@ -1,0 +1,677 @@
+{% comment %}
+  TipTop360 — Kids Collection Section v2
+  Matches homepage design exactly: Inter, navy #1A3557, orange #F46A1A
+{% endcomment %}
+
+{%- assign current_sort = collection.sort_by | default: collection.default_sort_by -%}
+{%- assign base_url     = collection.url -%}
+{%- assign chore      = all_products['kids-chore-chart-uae'] -%}
+{%- assign stickers   = all_products['kids-brushing-stickers-uae'] -%}
+{%- assign markers    = all_products['kids-dual-tip-markers-uae'] -%}
+{%- assign pencils    = all_products['color-pencils'] -%}
+{%- assign brushheads = all_products['kids-u-brush-heads-uae'] -%}
+{%- assign giftwrap   = all_products['gift-wrap-1'] -%}
+{%- assign flosser    = all_products['dental-floss-for-kids'] -%}
+{%- assign crayons    = all_products['kids-wax-crayons-uae'] -%}
+{%- assign waterpens  = all_products['kids-water-colour-pens-uae'] -%}
+{%- assign drawmark   = all_products['kids-drawing-marker-set'] -%}
+
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script>
+(function(){
+  var T='Kids Collection UAE — Safety Certified Toys & Dental Care | TipTop360';
+  var D="Shop UAE's top-rated kids products — drawing robots, bubble machines, U-shaped toothbrushes & more. Dubai Municipality approved. Free next-day delivery. Cash on delivery.";
+  document.title=T;
+  var m=document.querySelector('meta[name="description"]');
+  if(m){m.setAttribute('content',D);}else{var n=document.createElement('meta');n.name='description';n.content=D;document.head.appendChild(n);}
+})();
+</script>
+
+<style>
+/* ─────────────────────────────────────────
+   BASE — scoped to #t3c, no aggressive reset
+   ───────────────────────────────────────── */
+#t3c{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:#0F172A;background:#fff;-webkit-font-smoothing:antialiased}
+#t3c *{box-sizing:border-box}
+
+/* VARS */
+#t3c{
+  --nv:#1A3557;--or:#F46A1A;--or2:#d45a12;--gr:#10B981;--gd:#F59E0B;
+  --mu:#64748B;--bg:#F8FAFC;--b2:#F0F7FF;--bd:#E2E8F0;--r:14px;
+  --sh:0 4px 20px rgba(26,53,87,.08);--shh:0 8px 32px rgba(26,53,87,.14);
+}
+
+/* ── ANNOUNCEMENT BAR ── */
+#t3c-ann{background:var(--nv);color:#fff;font-size:12.5px;font-weight:600;text-align:center;padding:10px 16px;line-height:1.5;letter-spacing:.01em}
+
+/* ── BREADCRUMB ── */
+#t3c-bc{max-width:1200px;margin:0 auto;padding:14px 24px 0;font-size:12px;color:var(--mu);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+#t3c-bc a{color:var(--mu);text-decoration:none;transition:color .15s}
+#t3c-bc a:hover{color:var(--nv)}
+
+/* ── COLLECTION HEADER ── */
+#t3c-hd{max-width:1200px;margin:0 auto;padding:22px 24px 0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+#t3c-hd-l{flex:1;min-width:180px}
+.t3c-lbl{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--or);margin-bottom:6px}
+#t3c-h1{font-size:clamp(22px,3vw,34px);font-weight:900;color:var(--nv);letter-spacing:-.8px;line-height:1.15;margin:0 0 6px}
+#t3c-sub{font-size:14px;color:var(--mu);line-height:1.6;margin:0 0 6px}
+#t3c-cnt{font-size:12px;color:var(--mu);font-weight:500;margin:0}
+#t3c-sort{display:flex;align-items:center;gap:8px;flex-shrink:0}
+#t3c-sort label{font-size:12.5px;font-weight:600;color:var(--mu);white-space:nowrap}
+#t3c-sort-sel{border:1.5px solid var(--bd);border-radius:9px;padding:9px 34px 9px 14px;font-size:13px;font-weight:600;color:var(--nv);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A3557' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;cursor:pointer;font-family:inherit;outline:none;transition:border-color .2s;appearance:none;-webkit-appearance:none}
+#t3c-sort-sel:focus{border-color:var(--or)}
+
+/* ── TRUST STRIP ── */
+#t3c-strip{display:flex;align-items:center;justify-content:center;background:var(--nv);margin-top:22px;flex-wrap:wrap}
+.t3c-ti{display:flex;align-items:center;gap:9px;padding:13px 22px;color:#fff;font-size:12px;font-weight:500;white-space:nowrap;font-family:inherit}
+.t3c-ti:not(:last-child){border-right:1px solid rgba(255,255,255,.14)}
+.t3c-ti strong{color:#FFC97A;display:block;font-size:12.5px;font-weight:700}
+.t3c-ti small{opacity:.65;font-size:11px;display:block}
+.t3c-ticon{font-size:16px;flex-shrink:0}
+
+/* ── GRID WRAPPER ── */
+#t3c-gw{max-width:1200px;margin:0 auto;padding:28px 24px 52px}
+
+/* ── PRODUCT GRID ── */
+#t3c-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+
+/* ── PRODUCT CARD ── */
+.t3c-card{background:#fff;border-radius:var(--r);border:1px solid var(--bd);overflow:hidden;transition:box-shadow .25s,transform .25s,border-color .25s;display:flex;flex-direction:column;position:relative}
+.t3c-card:hover{box-shadow:var(--shh);transform:translateY(-3px);border-color:transparent}
+.t3c-clink{position:absolute;inset:0;z-index:1;display:block}
+.t3c-imgw{position:relative;overflow:hidden;background:var(--bg);flex-shrink:0}
+.t3c-imgw img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .4s}
+.t3c-card:hover .t3c-imgw img{transform:scale(1.04)}
+.t3c-bs{position:absolute;top:10px;left:10px;background:var(--or);color:#fff;font-size:11px;font-weight:800;padding:3px 9px;border-radius:6px;z-index:2;pointer-events:none}
+.t3c-bt{position:absolute;top:10px;right:10px;background:var(--nv);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:6px;z-index:2;pointer-events:none}
+.t3c-body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
+.t3c-name{font-size:14px;font-weight:700;color:var(--nv);line-height:1.4;margin:0 0 8px}
+.t3c-pr{display:flex;align-items:baseline;gap:7px;margin:0 0 14px}
+.t3c-price{font-size:18px;font-weight:900;color:var(--nv)}
+.t3c-was{font-size:12.5px;color:var(--mu);text-decoration:line-through}
+.t3c-foot{margin-top:auto;position:relative;z-index:2}
+.t3c-atc{width:100%;background:var(--nv);color:#fff;border:none;border-radius:9px;padding:11px 16px;font-size:13px;font-weight:800;cursor:pointer;transition:background .2s;font-family:inherit}
+.t3c-atc:hover{background:var(--or)}
+.t3c-atc.loading{opacity:.65;pointer-events:none}
+.t3c-atc.done{background:var(--gr)!important}
+.t3c-atc:disabled{opacity:.45;cursor:not-allowed;pointer-events:none}
+.t3c-opts{width:100%;display:block;text-align:center;background:var(--b2);color:var(--nv);border:1.5px solid var(--bd);border-radius:9px;padding:10px 16px;font-size:13px;font-weight:700;text-decoration:none;transition:border-color .2s,color .2s}
+.t3c-opts:hover{border-color:var(--or);color:var(--or)}
+
+/* ── EMPTY ── */
+#t3c-empty{text-align:center;padding:64px 20px;color:var(--mu)}
+#t3c-empty h2{font-size:22px;font-weight:800;color:var(--nv);margin:0 0 12px}
+#t3c-empty a{display:inline-block;margin-top:16px;background:var(--or);color:#fff;border-radius:9px;padding:12px 28px;font-size:14px;font-weight:700;text-decoration:none}
+
+/* ── PAGINATION ── */
+#t3c-pag{display:flex;align-items:center;justify-content:center;gap:8px;padding-top:32px;flex-wrap:wrap}
+.t3c-pg{background:#fff;border:1.5px solid var(--bd);border-radius:9px;padding:9px 16px;font-size:13.5px;font-weight:700;color:var(--nv);text-decoration:none;transition:border-color .2s,background .2s,color .2s;font-family:inherit;line-height:1;display:inline-flex;align-items:center}
+.t3c-pg:hover,.t3c-pg.cur{background:var(--nv);color:#fff;border-color:var(--nv)}
+
+/* ─────────────────────────────────────────
+   SECTION HELPERS (shared across all below)
+   ───────────────────────────────────────── */
+.t3c-sec{padding:52px 24px}
+.t3c-sec-alt{background:var(--b2)}
+.t3c-sec-dk{background:var(--bg)}
+.t3c-wrap{max-width:1200px;margin:0 auto}
+.t3c-shd{text-align:center;margin-bottom:36px}
+.t3c-shd .t3c-lbl{display:block;margin-bottom:8px}
+.t3c-h2{font-size:clamp(22px,3vw,34px);font-weight:900;color:var(--nv);letter-spacing:-.7px;line-height:1.2;margin:0 0 10px}
+.t3c-ssub{font-size:15px;color:var(--mu);line-height:1.65;margin:0}
+
+/* ── UPSELL CAROUSEL ── */
+.t3c-car-outer{position:relative}
+.t3c-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 2px 16px;scrollbar-width:none}
+.t3c-track::-webkit-scrollbar{display:none}
+.t3c-arr{position:absolute;top:38%;transform:translateY(-50%);width:38px;height:38px;background:#fff;border:1px solid var(--bd);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--nv);box-shadow:var(--sh);z-index:10;transition:background .2s,color .2s,border-color .2s;line-height:1;font-family:inherit}
+.t3c-arr:hover{background:var(--nv);color:#fff;border-color:var(--nv)}
+.t3c-arr.prev{left:-16px}
+.t3c-arr.next{right:-16px}
+.t3c-mc{flex:0 0 184px;scroll-snap-align:start;background:#fff;border-radius:12px;border:1px solid var(--bd);overflow:hidden;transition:box-shadow .2s,transform .2s;position:relative}
+.t3c-mc:hover{box-shadow:var(--sh);transform:translateY(-2px)}
+.t3c-mc-lnk{position:absolute;inset:0;z-index:1;display:block}
+.t3c-mc img{width:100%;height:126px;object-fit:cover;display:block}
+.t3c-mc-bd{padding:10px 12px 12px}
+.t3c-mc-nm{font-size:12.5px;font-weight:600;color:var(--nv);margin:0 0 8px;line-height:1.3}
+.t3c-mc-ft{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+.t3c-mc-pr{font-size:14px;font-weight:900;color:var(--nv)}
+.t3c-mc-btn{background:var(--b2);color:var(--nv);border:none;border-radius:6px;padding:5px 11px;font-size:11.5px;font-weight:800;cursor:pointer;transition:background .18s,color .18s;font-family:inherit;position:relative;z-index:2}
+.t3c-mc-btn:hover{background:var(--or);color:#fff}
+.t3c-mc-btn.loading{opacity:.6;pointer-events:none}
+.t3c-mc-btn.done{background:var(--gr)!important;color:#fff}
+
+/* ── TRUST BADGE CARDS ── */
+.t3c-bgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.t3c-bcard{background:#fff;border:1px solid var(--bd);border-radius:var(--r);padding:28px 22px;text-align:center;transition:box-shadow .2s,transform .2s,border-color .2s}
+.t3c-bcard:hover{box-shadow:var(--sh);transform:translateY(-3px);border-color:transparent}
+.t3c-bicon{font-size:36px;display:block;line-height:1;margin:0 auto 14px}
+.t3c-bttl{font-size:15px;font-weight:800;color:var(--nv);margin:0 0 8px}
+.t3c-bdesc{font-size:13px;color:var(--mu);line-height:1.65;margin:0}
+
+/* ── REVIEWS ── */
+.t3c-rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.t3c-rcard{background:#fff;border-radius:var(--r);border:1px solid var(--bd);padding:28px;transition:box-shadow .2s,border-color .2s}
+.t3c-rcard:hover{box-shadow:var(--sh);border-color:transparent}
+.t3c-stars{color:var(--gd);font-size:15px;letter-spacing:2px;display:block;margin:0 0 14px}
+.t3c-rtext{font-size:14px;color:#334155;line-height:1.78;margin:0 0 20px;font-style:italic}
+.t3c-rauth{display:flex;align-items:center;gap:12px}
+.t3c-rav{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0}
+.t3c-rname{font-size:13.5px;font-weight:700;color:var(--nv);display:block;margin:0 0 2px}
+.t3c-rloc{font-size:12px;color:var(--mu);display:block}
+.t3c-rvfy{margin-left:auto;background:rgba(16,185,129,.10);color:#059669;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700;white-space:nowrap;flex-shrink:0}
+
+/* ── TOAST ── */
+#t3c-toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--nv);color:#fff;padding:12px 22px;border-radius:12px;font-size:13.5px;font-weight:600;z-index:9998;opacity:0;transition:opacity .28s,transform .28s;pointer-events:none;white-space:nowrap;box-shadow:0 8px 30px rgba(0,0,0,.2);font-family:'Inter',-apple-system,sans-serif}
+#t3c-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── STICKY MOBILE ── */
+#t3c-sticky{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--nv);padding:10px 16px;z-index:900;box-shadow:0 -4px 24px rgba(26,53,87,.25)}
+#t3c-sticky a{display:flex;align-items:center;justify-content:center;width:100%;background:var(--or);color:#fff;font-weight:700;font-size:15px;padding:14px 20px;border-radius:12px;text-decoration:none;transition:background .2s;font-family:inherit}
+#t3c-sticky a:hover{background:var(--or2)}
+
+/* ── CART DRAWER ── */
+#t3c-ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:8000;opacity:0;pointer-events:none;transition:opacity .28s}
+#t3c-ov.open{opacity:1;pointer-events:all}
+#t3c-dr{position:fixed;bottom:-100%;left:0;right:0;height:88dvh;height:88vh;background:#fff;z-index:8001;display:flex;flex-direction:column;transition:bottom .35s cubic-bezier(.4,0,.2,1);box-shadow:0 -8px 40px rgba(0,0,0,.18);border-radius:20px 20px 0 0;overflow:hidden;font-family:'Inter',-apple-system,sans-serif}
+#t3c-dr.open{bottom:0}
+@media(min-width:769px){
+  #t3c-dr{top:0;right:-460px;bottom:auto;left:auto;width:min(440px,100vw);height:100vh;border-radius:0;box-shadow:-8px 0 40px rgba(0,0,0,.18);transition:right .3s cubic-bezier(.4,0,.2,1)}
+  #t3c-dr.open{right:0}
+}
+.t3c-drh{display:flex;justify-content:center;padding:10px 0 4px;flex-shrink:0}
+.t3c-drh-bar{width:40px;height:4px;background:#E2E8F0;border-radius:2px}
+@media(min-width:769px){.t3c-drh{display:none}}
+.t3c-drhead{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 14px;border-bottom:1px solid #E2E8F0;flex-shrink:0}
+.t3c-drtitle{font-size:17px;font-weight:800;color:#1A3557;display:flex;align-items:center;gap:8px}
+.t3c-drbadge{background:#F46A1A;color:#fff;font-size:11px;font-weight:800;border-radius:9px;padding:2px 8px;min-width:20px;text-align:center}
+.t3c-drx{background:none;border:none;cursor:pointer;font-size:22px;color:#64748B;line-height:1;padding:4px;font-family:inherit;transition:color .15s}
+.t3c-drx:hover{color:#1A3557}
+.t3c-drship{padding:10px 20px;background:#F0F7FF;border-bottom:1px solid #E2E8F0;flex-shrink:0}
+.t3c-drship-txt{font-size:12.5px;font-weight:600;color:#1A3557;margin:0 0 6px}
+.t3c-drship-bar{height:5px;background:#E2E8F0;border-radius:3px;overflow:hidden}
+.t3c-drship-fill{height:100%;background:#F46A1A;border-radius:3px;transition:width .4s}
+.t3c-drship.done .t3c-drship-fill{background:#10B981}
+.t3c-drbody{flex:1;overflow-y:auto;padding:14px 20px;-webkit-overflow-scrolling:touch}
+.t3c-drempty{text-align:center;padding:48px 20px;color:#64748B;font-size:14px;margin:0}
+.t3c-dritem{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #F1F5F9;align-items:flex-start}
+.t3c-dritem:last-child{border-bottom:none}
+.t3c-dritem img{width:64px;height:64px;object-fit:cover;border-radius:10px;flex-shrink:0;border:1px solid #E2E8F0}
+.t3c-drinfo{flex:1;min-width:0}
+.t3c-driname{font-size:13px;font-weight:600;color:#1A3557;line-height:1.3;margin:0 0 2px}
+.t3c-drivar{font-size:11.5px;color:#64748B;margin:0 0 6px}
+.t3c-drirow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.t3c-drip{font-size:14px;font-weight:800;color:#1A3557}
+.t3c-drqty{display:flex;align-items:center;border:1px solid #E2E8F0;border-radius:8px;overflow:hidden}
+.t3c-drqb{background:#F7FAFD;border:none;width:30px;height:30px;cursor:pointer;font-size:16px;color:#1A3557;font-weight:700;display:flex;align-items:center;justify-content:center;transition:background .15s;font-family:inherit;line-height:1}
+.t3c-drqb:hover{background:#EEF4FB}
+.t3c-drqb.danger{color:#EF4444}
+.t3c-drqn{width:30px;text-align:center;font-size:13px;font-weight:700;color:#1A3557}
+.t3c-drfoot{padding:14px 20px;border-top:1px solid #E2E8F0;background:#FAFAFA;flex-shrink:0}
+.t3c-drtrow{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}
+.t3c-drtlbl{font-size:13.5px;font-weight:600;color:#64748B}
+.t3c-drtval{font-size:20px;font-weight:900;color:#1A3557}
+.t3c-drco{width:100%;background:#F46A1A;color:#fff;border:none;border-radius:12px;padding:15px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;text-decoration:none;display:block;text-align:center;margin:0 0 10px;transition:background .2s}
+.t3c-drco:hover{background:#d45a12}
+.t3c-drcont{width:100%;background:transparent;color:#1A3557;border:2px solid #E2E8F0;border-radius:12px;padding:12px;font-size:13.5px;font-weight:700;cursor:pointer;transition:border-color .2s,background .2s;font-family:inherit}
+.t3c-drcont:hover{border-color:#1A3557;background:#F7FAFD}
+.t3c-drtrust{display:flex;align-items:center;justify-content:center;gap:14px;margin:10px 0 0;flex-wrap:wrap}
+.t3c-drtrust span{font-size:11px;color:#64748B;font-weight:500}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  #t3c-grid{grid-template-columns:repeat(3,1fr)}
+  .t3c-bgrid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:768px){
+  #t3c-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .t3c-imgw img{height:180px}
+  .t3c-bgrid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .t3c-rgrid{grid-template-columns:1fr}
+  .t3c-arr{display:none}
+  #t3c-strip .t3c-ti:not(:last-child){border-right:none;border-bottom:1px solid rgba(255,255,255,.12)}
+  #t3c-strip{flex-direction:column;align-items:stretch}
+  .t3c-ti{justify-content:center}
+  #t3c-sticky{display:block}
+  #t3c-gw{padding-bottom:80px}
+  .t3c-sec{padding:36px 16px}
+}
+@media(max-width:480px){
+  #t3c-hd{flex-direction:column;align-items:flex-start}
+  #t3c-sort{width:100%}
+  #t3c-sort-sel{width:100%}
+  .t3c-imgw img{height:160px}
+  .t3c-name{font-size:13.5px}
+  .t3c-bgrid{grid-template-columns:repeat(2,1fr)}
+  .t3c-bcard{padding:20px 14px}
+  .t3c-bicon{font-size:28px;margin-bottom:10px}
+}
+</style>
+
+{%- paginate collection.products by 16 -%}
+
+<div id="t3c">
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div id="t3c-ann">🚚 Free Next Day Delivery across UAE &nbsp;|&nbsp; 💵 Cash on Delivery &nbsp;|&nbsp; 🔄 14-Day Returns &nbsp;|&nbsp; Order before 8PM</div>
+
+  <!-- BREADCRUMB -->
+  <nav id="t3c-bc" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">{{ collection.title }}</span>
+  </nav>
+
+  <!-- COLLECTION HEADER -->
+  <div id="t3c-hd">
+    <div id="t3c-hd-l">
+      <div class="t3c-lbl">Kids Collection</div>
+      <h1 id="t3c-h1">{{ collection.title }}</h1>
+      <p id="t3c-sub">Curated, tested &amp; safety-certified — free next-day delivery across UAE.</p>
+      <p id="t3c-cnt">{{ collection.products_count }} products</p>
+    </div>
+    <div id="t3c-sort">
+      <label for="t3c-sel">Sort</label>
+      <select id="t3c-sel" onchange="window.location=this.value" aria-label="Sort products">
+        <option value="{{ base_url }}?sort_by=manual"{% if current_sort == 'manual' %} selected{% endif %}>Featured</option>
+        <option value="{{ base_url }}?sort_by=best-selling"{% if current_sort == 'best-selling' %} selected{% endif %}>Best Selling</option>
+        <option value="{{ base_url }}?sort_by=price-ascending"{% if current_sort == 'price-ascending' %} selected{% endif %}>Price: Low to High</option>
+        <option value="{{ base_url }}?sort_by=price-descending"{% if current_sort == 'price-descending' %} selected{% endif %}>Price: High to Low</option>
+        <option value="{{ base_url }}?sort_by=created-descending"{% if current_sort == 'created-descending' %} selected{% endif %}>Newest</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- TRUST STRIP -->
+  <div id="t3c-strip" role="list">
+    <div class="t3c-ti" role="listitem"><span class="t3c-ticon">📦</span><div><strong>Free Next Day</strong><small>Delivery across UAE</small></div></div>
+    <div class="t3c-ti" role="listitem"><span class="t3c-ticon">💵</span><div><strong>Cash on Delivery</strong><small>No card required</small></div></div>
+    <div class="t3c-ti" role="listitem"><span class="t3c-ticon">🏛️</span><div><strong>Gov't Approved</strong><small>Dubai Municipality</small></div></div>
+    <div class="t3c-ti" role="listitem"><span class="t3c-ticon">🔄</span><div><strong>14-Day Returns</strong><small>Zero questions asked</small></div></div>
+  </div>
+
+  <!-- PRODUCT GRID -->
+  <div id="t3c-gw">
+    {% if collection.products.size > 0 %}
+      <div id="t3c-grid">
+        {%- for product in collection.products -%}
+          {%- assign has_sale = false -%}
+          {%- if product.compare_at_price_max > product.price_min -%}{%- assign has_sale = true -%}{%- endif -%}
+          {%- assign disc = 0 -%}
+          {%- if has_sale -%}{%- assign disc = product.compare_at_price_max | minus: product.price_min | times: 100 | divided_by: product.compare_at_price_max | round -%}{%- endif -%}
+
+          <article class="t3c-card" itemscope itemtype="https://schema.org/Product">
+            <a class="t3c-clink" href="{{ product.url }}" aria-label="{{ product.title | escape }}"></a>
+            <div class="t3c-imgw">
+              {%- if has_sale -%}<span class="t3c-bs">−{{ disc }}%</span>{%- endif -%}
+              {%- if product.tags contains 'best-seller' -%}<span class="t3c-bt">⭐ Best Seller</span>
+              {%- elsif product.tags contains 'new' -%}<span class="t3c-bt">NEW</span>{%- endif -%}
+              {%- if product.featured_image -%}
+                <img
+                  src="{{ product.featured_image | image_url: width: 600 }}"
+                  srcset="{{ product.featured_image | image_url: width: 300 }} 300w, {{ product.featured_image | image_url: width: 600 }} 600w"
+                  sizes="(max-width:480px) 50vw, (max-width:768px) 50vw, (max-width:1024px) 33vw, 25vw"
+                  alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                  width="600" height="450"
+                  {% if forloop.index <= 4 %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}
+                  decoding="async" itemprop="image">
+              {%- else -%}
+                <div style="width:100%;height:220px;background:#E2E8F0;display:flex;align-items:center;justify-content:center;color:#94A3B8;font-size:12px;font-family:inherit">No image</div>
+              {%- endif -%}
+            </div>
+            <div class="t3c-body">
+              <div class="t3c-name" itemprop="name">{{ product.title }}</div>
+              <div class="t3c-pr" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <span class="t3c-price" itemprop="price" content="{{ product.price_min | divided_by: 100.0 }}">{{ product.price_min | money_without_trailing_zeros }}</span>
+                {%- if has_sale -%}<span class="t3c-was">{{ product.compare_at_price_max | money_without_trailing_zeros }}</span>{%- endif -%}
+                <meta itemprop="priceCurrency" content="AED">
+                <meta itemprop="availability" content="{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}">
+              </div>
+              <div class="t3c-foot">
+                {%- if product.available == false -%}
+                  <button class="t3c-atc" disabled>Sold Out</button>
+                {%- elsif product.variants.size == 1 -%}
+                  <button class="t3c-atc" onclick="t3cATC({{ product.variants.first.id }},this)">Add to Cart</button>
+                {%- else -%}
+                  <a class="t3c-opts" href="{{ product.url }}">Choose Options →</a>
+                {%- endif -%}
+              </div>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <nav id="t3c-pag" aria-label="Pagination">
+          {%- if paginate.previous -%}<a class="t3c-pg" href="{{ paginate.previous.url }}">&#8249; Prev</a>{%- endif -%}
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}<a class="t3c-pg" href="{{ part.url }}">{{ part.title }}</a>
+            {%- else -%}<span class="t3c-pg cur" aria-current="page">{{ part.title }}</span>{%- endif -%}
+          {%- endfor -%}
+          {%- if paginate.next -%}<a class="t3c-pg" href="{{ paginate.next.url }}">Next &#8250;</a>{%- endif -%}
+        </nav>
+      {%- endif -%}
+
+    {% else %}
+      <div id="t3c-empty">
+        <h2>No products found</h2>
+        <p>Check back soon — we're always adding new products.</p>
+        <a href="/">Back to Home</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- ═══ SMALL TOOLS CAROUSEL ═══ -->
+  <section class="t3c-sec t3c-sec-alt" aria-labelledby="t3c-ups-h">
+    <div class="t3c-wrap">
+      <div class="t3c-shd">
+        <span class="t3c-lbl">Complete the Set</span>
+        <h2 class="t3c-h2" id="t3c-ups-h">Small Tools. Big Convenience.</h2>
+        <p class="t3c-ssub">Everything your kids need, starting from AED 9 — delivered with your order.</p>
+      </div>
+      <div class="t3c-car-outer">
+        <button class="t3c-arr prev" onclick="document.getElementById('t3c-ct').scrollBy({left:-200,behavior:'smooth'})" aria-label="Scroll left">&#8249;</button>
+        <div class="t3c-track" id="t3c-ct" role="list">
+
+          <div class="t3c-mc" role="listitem">
+            <a class="t3c-mc-lnk" href="{{ chore.url }}" aria-label="{{ chore.title | escape }}"></a>
+            <img src="{{ chore.featured_image | image_url: width: 400 }}" alt="{{ chore.title | escape }}" width="400" height="300" loading="lazy" decoding="async">
+            <div class="t3c-mc-bd"><p class="t3c-mc-nm">{{ chore.title }}</p><div class="t3c-mc-ft"><span class="t3c-mc-pr">{{ chore.price | money_without_trailing_zeros }}</span><button class="t3c-mc-btn" onclick="t3cATC(44173033439347,this)">+ Add</button></div></div>
+          </div>
+
+          <div class="t3c-mc" role="listitem">
+            <a class="t3c-mc-lnk" href="{{ stickers.url }}" aria-label="{{ stickers.title | escape }}"></a>
+            <img src="{{ stickers.featured_image | image_url: width: 400 }}" alt="{{ stickers.title | escape }}" width="400" height="300" loading="lazy" decoding="async">
+            <div class="t3c-mc-bd"><p class="t3c-mc-nm">{{ stickers.title }}</p><div class="t3c-mc-ft"><span class="t3c-mc-pr">{{ stickers.price | money_without_trailing_zeros }}</span><button class="t3c-mc-btn" onclick="t3cATC(43041147650163,this)">+ Add</button></div></div>
+          </div>
+
+          <div class="t3c-mc" role="listitem">
+            <a class="t3c-mc-lnk" href="{{ markers.url }}" aria-label="{{ markers.title | escape }}"></a>
+            <img src="{{ markers.featured_image | image_url: width: 400 }}" alt="{{ markers.title | escape }}" width="400" height="300" loading="lazy" decoding="async">
+            <div class="t3c-mc-bd"><p class="t3c-mc-nm">{{ markers.title }}</p><div class="t3c-mc-ft"><span class="t3c-mc-pr">{{ markers.price | money_without_trailing_zeros }}</span><button class="t3c-mc-btn" onclick="t3cATC(43154055790707,this)">+ Add</button></div></div>
+          </div>
+
+          <div class="t3c-mc" role="listitem">
+            <a class="t3c-mc-lnk" href="{{ pencils.url }}" aria-label="{{ pencils.title | escape }}"></a>
+            <img src="{{ pencils.featured_image | image_url: width: 400 }}" alt="{{ pencils.title | escape }}" width="400" height="300" loading="lazy" decoding="async">
+            <div class="t3c-mc-bd"><p class="t3c-mc-nm">{{ pencils.title }}</p><div class="t3c-mc-ft"><span class="t3c-mc-pr">{{ pencils.price | money_without_trailing_zeros }}</span><button class="t3c-mc-btn" onclick="t3cATC(43024774561907,this)">+ Add</button></div></div>
+          </div>
+
+          <div class="t3c-mc" role="listitem">
+            <a class="t3c-mc-lnk" href="{{ brushheads.url }}" aria-label="{{ brushheads.title | escape }}"></a>
+            <img src="{{ brushheads.featured_image | image_url: width: 400 }}" alt="{{ brushheads.title | escape }}" width="400" height="300" loading="lazy" decoding="async">
+            <div class="t3c-mc-bd"><p class="t3c-mc-nm">{{ brushheads.title }}</p><div class="t3c-mc-ft"><span class="t3c-mc-pr">{{ brushheads.price | money_without_trailing_zeros }}</span><button class="t3c-mc-btn" onclick="t3cATC(43990730014835,this)">+ Add</button></div></div>
+          </div>
+
+          <div class="t3c-mc" role="listitem">
+            <a class="t3c-mc-lnk" href="{{ flosser.url }}" aria-label="{{ flosser.title | escape }}"></a>
+            <img src="{{ flosser.featured_image | image_url: width: 400 }}" alt="{{ flosser.title | escape }}" width="400" height="300" loading="lazy" decoding="async">
+            <div class="t3c-mc-bd"><p class="t3c-mc-nm">{{ flosser.title }}</p><div class="t3c-mc-ft"><span class="t3c-mc-pr">{{ flosser.price | money_without_trailing_zeros }}</span><button class="t3c-mc-btn" onclick="t3cATC(43030367142003,this)">+ Add</button></div></div>
+          </div>
+
+          <div class="t3c-mc" role="listitem">
+            <a class="t3c-mc-lnk" href="{{ crayons.url }}" aria-label="{{ crayons.title | escape }}"></a>
+            <img src="{{ crayons.featured_image | image_url: width: 400 }}" alt="{{ crayons.title | escape }}" width="400" height="300" loading="lazy" decoding="async">
+            <div class="t3c-mc-bd"><p class="t3c-mc-nm">{{ crayons.title }}</p><div class="t3c-mc-ft"><span class="t3c-mc-pr">{{ crayons.price | money_without_trailing_zeros }}</span><button class="t3c-mc-btn" onclick="t3cATC(43154133549171,this)">+ Add</button></div></div>
+          </div>
+
+          <div class="t3c-mc" role="listitem">
+            <a class="t3c-mc-lnk" href="{{ waterpens.url }}" aria-label="{{ waterpens.title | escape }}"></a>
+            <img src="{{ waterpens.featured_image | image_url: width: 400 }}" alt="{{ waterpens.title | escape }}" width="400" height="300" loading="lazy" decoding="async">
+            <div class="t3c-mc-bd"><p class="t3c-mc-nm">{{ waterpens.title }}</p><div class="t3c-mc-ft"><span class="t3c-mc-pr">{{ waterpens.price | money_without_trailing_zeros }}</span><button class="t3c-mc-btn" onclick="t3cATC(43154118639731,this)">+ Add</button></div></div>
+          </div>
+
+          <div class="t3c-mc" role="listitem">
+            <a class="t3c-mc-lnk" href="{{ drawmark.url }}" aria-label="{{ drawmark.title | escape }}"></a>
+            <img src="{{ drawmark.featured_image | image_url: width: 400 }}" alt="{{ drawmark.title | escape }}" width="400" height="300" loading="lazy" decoding="async">
+            <div class="t3c-mc-bd"><p class="t3c-mc-nm">{{ drawmark.title }}</p><div class="t3c-mc-ft"><span class="t3c-mc-pr">{{ drawmark.price | money_without_trailing_zeros }}</span><button class="t3c-mc-btn" onclick="t3cATC(44146726994035,this)">+ Add</button></div></div>
+          </div>
+
+          <div class="t3c-mc" role="listitem">
+            <a class="t3c-mc-lnk" href="{{ giftwrap.url }}" aria-label="{{ giftwrap.title | escape }}"></a>
+            <img src="{{ giftwrap.featured_image | image_url: width: 400 }}" alt="{{ giftwrap.title | escape }}" width="400" height="300" loading="lazy" decoding="async">
+            <div class="t3c-mc-bd"><p class="t3c-mc-nm">{{ giftwrap.title }}</p><div class="t3c-mc-ft"><span class="t3c-mc-pr">{{ giftwrap.price | money_without_trailing_zeros }}</span><button class="t3c-mc-btn" onclick="t3cATC(44168885174387,this)">+ Add</button></div></div>
+          </div>
+
+        </div>
+        <button class="t3c-arr next" onclick="document.getElementById('t3c-ct').scrollBy({left:200,behavior:'smooth'})" aria-label="Scroll right">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TRUST BADGES ═══ -->
+  <section class="t3c-sec" aria-labelledby="t3c-trust-h">
+    <div class="t3c-wrap">
+      <div class="t3c-shd">
+        <span class="t3c-lbl">Why 50,000+ UAE Families Choose Us</span>
+        <h2 class="t3c-h2" id="t3c-trust-h">Shop with Complete Confidence</h2>
+      </div>
+      <div class="t3c-bgrid">
+        <div class="t3c-bcard">
+          <span class="t3c-bicon">📦</span>
+          <h3 class="t3c-bttl">Free Next-Day Delivery</h3>
+          <p class="t3c-bdesc">Order before 8PM — receive your order tomorrow in Dubai, Abu Dhabi, Sharjah, or anywhere across the UAE.</p>
+        </div>
+        <div class="t3c-bcard">
+          <span class="t3c-bicon">💵</span>
+          <h3 class="t3c-bttl">Cash on Delivery</h3>
+          <p class="t3c-bdesc">No card required. Pay cash at your door. Available across all 7 UAE emirates with zero hidden fees.</p>
+        </div>
+        <div class="t3c-bcard">
+          <span class="t3c-bicon">🏛️</span>
+          <h3 class="t3c-bttl">Government Approved</h3>
+          <p class="t3c-bdesc">Dubai Municipality and UAE Health Department certified. BPA-free, non-toxic, safe for children from age 2.</p>
+        </div>
+        <div class="t3c-bcard">
+          <span class="t3c-bicon">🔄</span>
+          <h3 class="t3c-bttl">14-Day Returns</h3>
+          <p class="t3c-bdesc">Not happy? Return within 14 days, zero questions asked. We cover the return — your satisfaction is guaranteed.</p>
+        </div>
+        <div class="t3c-bcard">
+          <span class="t3c-bicon">🔒</span>
+          <h3 class="t3c-bttl">Secure Checkout</h3>
+          <p class="t3c-bdesc">SSL-encrypted checkout. Your data is always protected. Order online or call us — equally safe either way.</p>
+        </div>
+        <div class="t3c-bcard">
+          <span class="t3c-bicon">🇦🇪</span>
+          <h3 class="t3c-bttl">UAE-Based Business</h3>
+          <p class="t3c-bdesc">RAK Free Zone licensed and UAE-operated. Local WhatsApp support at +971 585 156 033 — always here for you.</p>
+        </div>
+        <div class="t3c-bcard">
+          <span class="t3c-bicon">🧸</span>
+          <h3 class="t3c-bttl">Tested by Real Parents</h3>
+          <p class="t3c-bdesc">Hand-picked and reviewed by UAE parents. We only carry products we would give our own children.</p>
+        </div>
+        <div class="t3c-bcard">
+          <span class="t3c-bicon">⭐</span>
+          <h3 class="t3c-bttl">4.9 Average Rating</h3>
+          <p class="t3c-bdesc">400+ verified UAE parent reviews. Highest-rated kids products in Dubai and Abu Dhabi in their categories.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PARENT REVIEWS ═══ -->
+  <section class="t3c-sec t3c-sec-dk" aria-labelledby="t3c-rev-h">
+    <div class="t3c-wrap">
+      <div class="t3c-shd">
+        <span class="t3c-lbl">Real UAE Parents</span>
+        <h2 class="t3c-h2" id="t3c-rev-h">What Parents Are Saying</h2>
+        <p class="t3c-ssub">400+ verified reviews from UAE families across Dubai, Abu Dhabi &amp; Sharjah.</p>
+      </div>
+      <div class="t3c-rgrid">
+
+        <article class="t3c-rcard" itemscope itemtype="https://schema.org/Review">
+          <span class="t3c-stars" aria-label="5 stars">★★★★★</span>
+          <p class="t3c-rtext" itemprop="reviewBody">"My 5-year-old has been using the Drawing Robot every single day after school. He's now better at drawing than I was at 10! No screen time, no Wi-Fi — just pure creativity. Next-day delivery arrived before noon in Jumeirah. Absolutely love this."</p>
+          <div class="t3c-rauth" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="t3c-rav" style="background:linear-gradient(135deg,#667eea,#764ba2)" aria-hidden="true">F</div>
+            <div><span class="t3c-rname" itemprop="name">Fatima K.</span><span class="t3c-rloc">Dubai &middot; Kids Drawing Robot</span></div>
+            <span class="t3c-rvfy">✓ Verified</span>
+          </div>
+        </article>
+
+        <article class="t3c-rcard" itemscope itemtype="https://schema.org/Review">
+          <span class="t3c-stars" aria-label="5 stars">★★★★★</span>
+          <p class="t3c-rtext" itemprop="reviewBody">"Brushing teeth used to be a 20-minute battle every night. Since we got the U-shaped toothbrush, my daughter actually asks to brush before bed. Life-changing for parents with toddlers. The foam toothpaste smells amazing — she loves the strawberry flavour!"</p>
+          <div class="t3c-rauth" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="t3c-rav" style="background:linear-gradient(135deg,#f093fb,#f5576c)" aria-hidden="true">S</div>
+            <div><span class="t3c-rname" itemprop="name">Sara H.</span><span class="t3c-rloc">Abu Dhabi &middot; U-Shaped Toothbrush</span></div>
+            <span class="t3c-rvfy">✓ Verified</span>
+          </div>
+        </article>
+
+        <article class="t3c-rcard" itemscope itemtype="https://schema.org/Review">
+          <span class="t3c-stars" aria-label="5 stars">★★★★★</span>
+          <p class="t3c-rtext" itemprop="reviewBody">"Ordered the Bubble Machine for my kids' birthday party in Sharjah — it was the star of the show. Every child wanted one by the end of the party. Excellent quality, packed well, arrived the next morning. Cash on delivery made it so easy. Will order again."</p>
+          <div class="t3c-rauth" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <div class="t3c-rav" style="background:linear-gradient(135deg,#4facfe,#00f2fe)" aria-hidden="true">M</div>
+            <div><span class="t3c-rname" itemprop="name">Mohammad R.</span><span class="t3c-rloc">Sharjah &middot; Smoke Bubble Machine</span></div>
+            <span class="t3c-rvfy">✓ Verified</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</div><!-- /#t3c -->
+
+<!-- STICKY MOBILE BAR -->
+<div id="t3c-sticky">
+  <a href="#t3c-grid">Browse {{ collection.products_count }} Products ↑</a>
+</div>
+
+<!-- TOAST -->
+<div id="t3c-toast" role="status" aria-live="polite"></div>
+
+<!-- CART OVERLAY + DRAWER -->
+<div id="t3c-ov" onclick="t3cCloseCart()" role="presentation"></div>
+<div id="t3c-dr" role="dialog" aria-modal="true" aria-label="Shopping cart">
+  <div class="t3c-drh"><div class="t3c-drh-bar"></div></div>
+  <div class="t3c-drhead">
+    <div class="t3c-drtitle">🛒 Your Cart <span class="t3c-drbadge" id="t3c-cnt">0</span></div>
+    <button class="t3c-drx" onclick="t3cCloseCart()" aria-label="Close cart">✕</button>
+  </div>
+  <div class="t3c-drship" id="t3c-ship">
+    <p class="t3c-drship-txt" id="t3c-ship-txt">Loading…</p>
+    <div class="t3c-drship-bar"><div class="t3c-drship-fill" id="t3c-ship-fill" style="width:0%"></div></div>
+  </div>
+  <div class="t3c-drbody" id="t3c-drbody">
+    <p class="t3c-drempty">Your cart is empty</p>
+  </div>
+  <div class="t3c-drfoot" id="t3c-drfoot" style="display:none">
+    <div class="t3c-drtrow">
+      <span class="t3c-drtlbl">Subtotal</span>
+      <span class="t3c-drtval" id="t3c-total">AED 0</span>
+    </div>
+    <a href="/checkout" class="t3c-drco" id="t3c-co">🔒 Checkout</a>
+    <button class="t3c-drcont" onclick="t3cCloseCart()">Continue Shopping</button>
+    <div class="t3c-drtrust">
+      <span>🔒 SSL Secure</span><span>💵 Cash on Delivery</span><span>🔄 14-Day Returns</span>
+    </div>
+  </div>
+</div>
+
+{%- endpaginate -%}
+
+<!-- JSON-LD -->
+{%- comment -%} CollectionPage + BreadcrumbList now handled by schema-controller in theme.liquid {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Do you deliver kids toys to Dubai, Abu Dhabi and Sharjah?","acceptedAnswer":{"@type":"Answer","text":"Yes — free next-day delivery to all 7 UAE emirates. Order before 8PM for delivery the next day. Cash on delivery available everywhere."}},
+    {"@type":"Question","name":"Are TipTop360 kids products government certified?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every product is Dubai Municipality and UAE Health Department certified. BPA-free, non-toxic, safe from age 2."}},
+    {"@type":"Question","name":"Can I pay cash on delivery for kids toys in UAE?","acceptedAnswer":{"@type":"Answer","text":"Yes. All TipTop360 orders support Cash on Delivery across all UAE emirates. No credit card required."}},
+    {"@type":"Question","name":"What is the best kids gift to order in UAE with next-day delivery?","acceptedAnswer":{"@type":"Answer","text":"Top picks: Kids Drawing Robot (AED 110, ages 4-12), U-Shaped Toothbrush Bundle (AED 129-158, ages 2-12), Smoke Bubble Machine (AED 99, all ages). All next-day delivery, free."}}
+  ]
+}
+</script>
+
+<script>
+(function(){
+'use strict';
+var FREE=20000;
+function fmt(c){return 'AED '+Math.round(c/100);}
+function toast(msg){var t=document.getElementById('t3c-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2400);}
+function setCount(n){
+  var b=document.getElementById('t3c-cnt');if(b)b.textContent=n;
+  ['[data-cart-count]','[data-cart-item-count]','.cart-count','#CartCount','.cart__count','.site-header__cart-count','.cart-icon__bubble','.cart-count-bubble'].forEach(function(s){document.querySelectorAll(s).forEach(function(e){e.textContent=n;e.style.display=n>0?'':'none';});});
+  document.dispatchEvent(new CustomEvent('cart:updated',{detail:{cartCount:n}}));
+}
+function shipBar(total){
+  var bar=document.getElementById('t3c-ship');
+  var txt=document.getElementById('t3c-ship-txt');
+  var fill=document.getElementById('t3c-ship-fill');
+  if(!bar)return;
+  if(total>=FREE){bar.classList.add('done');txt.innerHTML='<strong>Free delivery unlocked!</strong> 🎉';fill.style.width='100%';}
+  else{var rem=Math.round((FREE-total)/100);bar.classList.remove('done');txt.innerHTML='Add <strong>AED '+rem+'</strong> more for free delivery';fill.style.width=Math.min(Math.round(total/FREE*100),99)+'%';}
+}
+function renderCart(cart){
+  var body=document.getElementById('t3c-drbody');
+  var foot=document.getElementById('t3c-drfoot');
+  var tot=document.getElementById('t3c-total');
+  var co=document.getElementById('t3c-co');
+  if(!body)return;
+  setCount(cart.item_count);
+  shipBar(cart.total_price);
+  if(!cart.items||!cart.items.length){body.innerHTML='<p class="t3c-drempty">Your cart is empty</p>';if(foot)foot.style.display='none';return;}
+  if(foot)foot.style.display='block';
+  if(tot)tot.textContent=fmt(cart.total_price);
+  if(co)co.innerHTML='🔒 Checkout &mdash; '+fmt(cart.total_price);
+  var h='';
+  cart.items.forEach(function(it){
+    h+='<div class="t3c-dritem"><img src="'+it.image+'" alt="'+it.product_title+'" width="64" height="64" loading="lazy">';
+    h+='<div class="t3c-drinfo"><p class="t3c-driname">'+it.product_title+'</p>';
+    if(it.variant_title&&it.variant_title!=='Default Title')h+='<p class="t3c-drivar">'+it.variant_title+'</p>';
+    h+='<div class="t3c-drirow"><span class="t3c-drip">'+fmt(it.final_line_price)+'</span>';
+    h+='<div class="t3c-drqty">';
+    h+='<button class="t3c-drqb'+(it.quantity===1?' danger':'')+'" onclick="t3cQty(\''+it.key+'\','+(it.quantity-1)+')">'+(it.quantity===1?'🗑':'−')+'</button>';
+    h+='<span class="t3c-drqn">'+it.quantity+'</span>';
+    h+='<button class="t3c-drqb" onclick="t3cQty(\''+it.key+'\','+(it.quantity+1)+')">+</button>';
+    h+='</div></div></div></div>';
+  });
+  body.innerHTML=h;
+}
+function fetchCart(){return fetch('/cart.js',{headers:{'X-Requested-With':'XMLHttpRequest'}}).then(function(r){return r.json();}).then(function(c){renderCart(c);return c;});}
+window.t3cOpenCart=function(){document.getElementById('t3c-ov').classList.add('open');document.getElementById('t3c-dr').classList.add('open');document.body.style.overflow='hidden';fetchCart();};
+window.t3cCloseCart=function(){document.getElementById('t3c-ov').classList.remove('open');document.getElementById('t3c-dr').classList.remove('open');document.body.style.overflow='';};
+window.t3cQty=function(key,qty){fetch('/cart/change.js',{method:'POST',headers:{'Content-Type':'application/json','X-Requested-With':'XMLHttpRequest'},body:JSON.stringify({id:key,quantity:qty})}).then(function(r){return r.json();}).then(renderCart);};
+window.t3cATC=function(vid,btn){
+  if(!btn||btn.classList.contains('loading'))return;
+  var orig=btn.textContent;
+  btn.classList.add('loading');btn.textContent='Adding…';
+  fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json','X-Requested-With':'XMLHttpRequest'},body:JSON.stringify({id:vid,quantity:1})})
+  .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
+  .then(function(){btn.classList.remove('loading');btn.classList.add('done');btn.textContent='✓ Added!';fetchCart().then(function(){t3cOpenCart();});setTimeout(function(){btn.classList.remove('done');btn.textContent=orig;},2500);})
+  .catch(function(){btn.classList.remove('loading');btn.textContent='Try again';toast('Error adding item. Please try again.');setTimeout(function(){btn.textContent=orig;},2200);});
+};
+(function(){
+  var dr=document.getElementById('t3c-dr');if(!dr)return;
+  var sY=0,sT=0;
+  dr.addEventListener('touchstart',function(e){sY=e.touches[0].clientY;sT=Date.now();},{passive:true});
+  dr.addEventListener('touchend',function(e){var dy=e.changedTouches[0].clientY-sY;var dt=Date.now()-sT;if(dy>80||(dy>40&&dt<250))t3cCloseCart();},{passive:true});
+})();
+document.addEventListener('keydown',function(e){if(e.key==='Escape')t3cCloseCart();});
+fetchCart();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Kids Collection",
+  "tag": "div",
+  "class": "tt360-kids-col",
+  "settings": [
+    {"type":"checkbox","id":"ann_enable","label":"Show announcement bar","default":true},
+    {"type":"text","id":"ann_text","label":"Announcement bar text","default":"🚚 Free Next Day Delivery across UAE | 💵 Cash on Delivery | 🔄 14-Day Returns | Order before 8PM"}
+  ],
+  "presets":[{"name":"Kids Collection"}]
+}
+{% endschema %}

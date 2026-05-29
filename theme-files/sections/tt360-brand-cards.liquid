@@ -1,0 +1,118 @@
+<style>
+/* ── TipTop360 Product Card Brand Overrides ─────────────────────────── */
+:root {
+  --tt-navy: #12395e;
+  --tt-mint: #54e8cc;
+  --tt-coral: #ff6b6b;
+  --tt-cream: #fff5e6;
+  --tt-border: #e0e8f0;
+}
+
+/* Card shell */
+.product-card--style9,
+.product-card--style1 {
+  border-radius: 14px !important;
+  overflow: hidden;
+  border: 1px solid var(--tt-border) !important;
+  box-shadow: 0 2px 10px rgba(18,57,94,.07) !important;
+  transition: transform .22s ease, box-shadow .22s ease !important;
+  background: #fff;
+}
+.product-card--style9:hover,
+.product-card--style1:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 28px rgba(18,57,94,.13) !important;
+}
+
+/* Image wrapper */
+.product-card--style9 .product-card__image-wr,
+.product-card--style1 .product-card__image-wr {
+  border-radius: 0 !important;
+  overflow: hidden;
+}
+
+/* Info area */
+.product-card--style9 .product-card__info,
+.product-card--style1 .product-card__info {
+  padding: 12px 14px 14px !important;
+  background: #fff;
+}
+
+/* Title */
+.product-card__name a,
+.d-block.product-card__name {
+  color: var(--tt-navy) !important;
+  font-weight: 600 !important;
+  font-size: 13.5px !important;
+  line-height: 1.4 !important;
+}
+.product-card__name a:hover {
+  color: #1a5080 !important;
+}
+
+/* Price — regular */
+.product-card__price {
+  color: var(--tt-navy) !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  margin-top: 6px !important;
+}
+/* Price — sale */
+.product-card__pricesale .product-card__regular-price {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+}
+.product-card__pricesale > span:not(.product-card__regular-price):not(.visually-hidden) {
+  color: var(--tt-coral) !important;
+}
+
+/* ATC button in card */
+.product-card-cart .btn-theme.js-grid-cart {
+  background: var(--tt-navy) !important;
+  border-color: var(--tt-navy) !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: .3px !important;
+  transition: background .2s ease, border-color .2s ease !important;
+}
+.product-card-cart .btn-theme.js-grid-cart:hover {
+  background: var(--tt-mint) !important;
+  border-color: var(--tt-mint) !important;
+  color: var(--tt-navy) !important;
+}
+
+/* Label badge */
+.product-label {
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+}
+
+/* Overlay buttons */
+.product-card__overlay-btn.btn-theme {
+  background: var(--tt-navy) !important;
+  border-color: var(--tt-navy) !important;
+}
+.product-card__overlay-btn.btn-theme:hover {
+  background: var(--tt-mint) !important;
+  border-color: var(--tt-mint) !important;
+  color: var(--tt-navy) !important;
+}
+
+/* Swiper section title */
+.productlist-swiper .section-heading__title,
+.section-heading__title {
+  color: var(--tt-navy) !important;
+}
+</style>
+
+{% schema %}
+{
+  "name": "TT360 Brand Card Styles",
+  "settings": [],
+  "presets": [{ "name": "TT360 Brand Card Styles" }]
+}
+{% endschema %}

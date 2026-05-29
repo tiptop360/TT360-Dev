@@ -1,0 +1,40 @@
+{%- if template.name == 'product' -%}
+<style>
+.tt360-sticky-atc{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;padding:8px 12px;background:#12395e;box-shadow:0 -2px 10px rgba(0,0,0,.15);transform:translateY(100%);transition:transform .25s ease}
+.tt360-sticky-atc.is-visible{transform:translateY(0)}
+.tt360-sticky-atc__inner{display:flex;align-items:center;gap:10px;max-width:600px;margin:0 auto}
+.tt360-sticky-atc__info{flex:1;min-width:0;color:#fff}
+.tt360-sticky-atc__price{font-size:16px;font-weight:700}
+.tt360-sticky-atc__old{font-size:12px;text-decoration:line-through;opacity:.6;margin-left:4px}
+.tt360-sticky-atc__btn{flex-shrink:0;padding:12px 20px;min-height:48px;background:#ff6f2e;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.tt360-sticky-atc__btn:active{background:#e5632a}
+@media(min-width:769px){.tt360-sticky-atc{display:none!important}}
+</style>
+<div class="tt360-sticky-atc" id="tt360StickyAtc">
+  <div class="tt360-sticky-atc__inner">
+    <div class="tt360-sticky-atc__info">
+      <span class="tt360-sticky-atc__price">{{ product.selected_or_first_available_variant.price | money }}</span>
+      {%- if product.compare_at_price > product.price -%}
+        <span class="tt360-sticky-atc__old">{{ product.compare_at_price | money }}</span>
+      {%- endif -%}
+    </div>
+    <button type="button" class="tt360-sticky-atc__btn" id="tt360StickyAtcBtn">Add to Cart</button>
+  </div>
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('tt360StickyAtc');
+  if(!bar)return;
+  var mainBtn=document.querySelector('#t-atc-btn, button[name="add"], .product-form [type="submit"], .t-atc');
+  if(!mainBtn)return;
+  var shown=false;
+  var io=new IntersectionObserver(function(entries){
+    var vis=entries[0].isIntersecting;
+    if(!vis&&!shown){bar.style.display='block';requestAnimationFrame(function(){bar.classList.add('is-visible')});shown=true}
+    else if(vis&&shown){bar.classList.remove('is-visible');setTimeout(function(){if(!bar.classList.contains('is-visible'))bar.style.display='none'},300);shown=false}
+  },{threshold:0});
+  io.observe(mainBtn);
+  document.getElementById('tt360StickyAtcBtn').addEventListener('click',function(){mainBtn.click()});
+})();
+</script>
+{%- endif -%}

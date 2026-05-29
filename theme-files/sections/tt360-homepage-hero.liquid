@@ -1,0 +1,267 @@
+{%- liquid
+  assign hp = all_products[section.settings.hero_handle]
+  assign sale_pct = 0
+  if hp.compare_at_price > hp.price
+    assign diff = hp.compare_at_price | minus: hp.price
+    assign sale_pct = diff | times: 100 | divided_by: hp.compare_at_price
+  endif
+-%}
+<style>
+#tt360-h *{box-sizing:border-box}
+#tt360-h{
+  background:{{ section.settings.bg | default: '#f5f7fa' }};
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+.tt360-h-wrap{
+  max-width:1200px;margin:0 auto;padding:52px 24px 0;
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+}
+/* LEFT */
+.tt360-h-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#e8f8f0;color:#108474;
+  font-size:13px;font-weight:600;padding:7px 16px;
+  border-radius:100px;margin-bottom:22px;
+}
+.tt360-h-dot{width:9px;height:9px;background:#10b981;border-radius:50%;display:inline-block;flex-shrink:0}
+.tt360-h-title{
+  font-size:clamp(34px,4vw,52px);font-weight:800;line-height:1.1;
+  color:#1e293b;margin:0 0 16px;
+}
+.tt360-h-title em{color:#f46a1a;font-style:normal}
+.tt360-h-sub{
+  color:#475569;font-size:16px;line-height:1.65;
+  margin:0 0 28px;max-width:480px;
+}
+.tt360-h-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.tt360-h-btn1{
+  background:#f46a1a;color:#fff;text-decoration:none;
+  padding:14px 26px;border-radius:8px;font-weight:700;font-size:15px;
+  transition:background .2s;display:inline-block;
+}
+.tt360-h-btn1:hover{background:#d45a0e;color:#fff}
+.tt360-h-btn2{
+  background:transparent;color:#1e293b;text-decoration:none;
+  border:2px solid #1e293b;padding:12px 22px;border-radius:8px;
+  font-weight:600;font-size:15px;transition:all .2s;display:inline-block;
+}
+.tt360-h-btn2:hover{background:#1e293b;color:#fff}
+.tt360-h-proof{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;color:#64748b;flex-wrap:wrap;
+}
+.tt360-h-avs{display:flex}
+.tt360-h-avs span{
+  width:32px;height:32px;border-radius:50%;border:2px solid #fff;
+  margin-right:-8px;display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.tt360-h-stars{color:#f59e0b;font-size:15px;margin-left:10px}
+.tt360-h-proof strong{color:#1e293b;font-size:14px}
+/* RIGHT – product card */
+.tt360-h-right{display:flex;justify-content:center;align-items:center}
+.tt360-h-card{
+  background:#fff;border-radius:20px;
+  box-shadow:0 8px 40px rgba(0,0,0,.14);
+  overflow:hidden;max-width:360px;width:100%;position:relative;
+}
+.tt360-h-card-top{position:relative}
+.tt360-h-bdgs{
+  position:absolute;top:12px;left:12px;right:12px;
+  display:flex;justify-content:space-between;z-index:2;
+}
+.tt360-hb-sale{
+  background:#f46a1a;color:#fff;
+  font-size:11px;font-weight:800;padding:5px 11px;border-radius:100px;
+}
+.tt360-hb-best{
+  background:#12395e;color:#fff;
+  font-size:11px;font-weight:700;padding:5px 11px;border-radius:100px;
+}
+.tt360-h-card-img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+.tt360-h-card-body{padding:16px 20px 20px}
+.tt360-hc-name{
+  font-size:16px;font-weight:700;color:#1e293b;
+  margin:0 0 6px;line-height:1.3;
+}
+.tt360-hc-rev{
+  display:flex;align-items:center;gap:5px;
+  font-size:12px;color:#64748b;margin-bottom:10px;
+}
+.tt360-hc-rev-stars{color:#f59e0b;font-size:13px}
+.tt360-hc-price{
+  display:flex;align-items:baseline;gap:10px;margin-bottom:14px;
+}
+.tt360-hc-price-now{font-size:22px;font-weight:800;color:#1e293b}
+.tt360-hc-price-was{font-size:13px;color:#94a3b8;text-decoration:line-through}
+.tt360-hc-atc{
+  display:block;width:100%;
+  background:#f46a1a;color:#fff;text-align:center;
+  padding:12px 16px;border-radius:8px;
+  font-weight:700;font-size:15px;text-decoration:none;
+  transition:background .2s;
+}
+.tt360-hc-atc:hover{background:#d45a0e;color:#fff}
+/* TRUST BAR */
+.tt360-h-trust{
+  background:#12395e;margin-top:48px;padding:22px 24px;
+}
+.tt360-h-trust-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:12px;
+}
+.tt360-h-ti{
+  display:flex;align-items:center;gap:10px;color:#fff;
+}
+.tt360-h-ti-icon{font-size:26px;line-height:1;flex-shrink:0}
+.tt360-h-ti-txt b{display:block;font-size:13px;font-weight:700;color:#fff}
+.tt360-h-ti-txt span{font-size:11px;color:rgba(255,255,255,.7)}
+/* MOBILE */
+@media(max-width:900px){
+  .tt360-h-wrap{grid-template-columns:1fr;padding-top:32px;gap:32px}
+  .tt360-h-right{order:-1}
+  .tt360-h-trust-inner{grid-template-columns:repeat(2,1fr);gap:16px}
+  .tt360-h-title{font-size:30px}
+}
+@media(max-width:480px){
+  .tt360-h-ctas{flex-direction:column}
+  .tt360-h-btn1,.tt360-h-btn2{text-align:center}
+  .tt360-h-trust-inner{grid-template-columns:1fr;gap:14px}
+}
+</style>
+
+<section id="tt360-h">
+  <div class="tt360-h-wrap">
+
+    {%- comment %} LEFT COLUMN {%- endcomment %}
+    <div class="tt360-h-left">
+      <div class="tt360-h-badge">
+        <span class="tt360-h-dot"></span>
+        Trusted by {{ section.settings.trust_count }} UAE Families
+      </div>
+
+      <h1 class="tt360-h-title">
+        {{ section.settings.h1_plain }} <em>{{ section.settings.h1_accent }}</em><br>
+        {{ section.settings.h2_plain }} <em>{{ section.settings.h2_accent }}</em>
+      </h1>
+
+      <p class="tt360-h-sub">{{ section.settings.subheadline }}</p>
+
+      <div class="tt360-h-ctas">
+        <a href="{{ section.settings.cta1_link }}" class="tt360-h-btn1">{{ section.settings.cta1_text }}</a>
+        <a href="{{ section.settings.cta2_link }}" class="tt360-h-btn2">{{ section.settings.cta2_text }}</a>
+      </div>
+
+      <div class="tt360-h-proof">
+        <div class="tt360-h-avs">
+          <span style="background:#7c3aed">A</span>
+          <span style="background:#f46a1a">F</span>
+          <span style="background:#12395e">D</span>
+          <span style="background:#10b981">S</span>
+        </div>
+        <span class="tt360-h-stars">★★★★★</span>
+        <strong>{{ section.settings.rating }}</strong>
+        <span>from {{ section.settings.review_count }} reviews</span>
+      </div>
+    </div>
+
+    {%- comment %} RIGHT COLUMN – product card {%- endcomment %}
+    <div class="tt360-h-right">
+      {%- if hp != blank -%}
+      <div class="tt360-h-card">
+        <div class="tt360-h-card-top">
+          <div class="tt360-h-bdgs">
+            {%- if sale_pct > 0 -%}
+              <span class="tt360-hb-sale">-{{ sale_pct }}% OFF</span>
+            {%- else -%}
+              <span></span>
+            {%- endif -%}
+            <span class="tt360-hb-best">⭐ BEST SELLER</span>
+          </div>
+          <a href="{{ hp.url }}">
+            <img src="{{ hp.featured_image | image_url: width: 600 }}"
+                 srcset="{{ hp.featured_image | image_url: width: 400 }} 400w, {{ hp.featured_image | image_url: width: 600 }} 600w"
+                 sizes="(max-width: 900px) 90vw, 360px"
+                 alt="{{ hp.title | escape }}"
+                 class="tt360-h-card-img"
+                 loading="eager"
+                 fetchpriority="high"
+                 width="600" height="450">
+          </a>
+        </div>
+        <div class="tt360-h-card-body">
+          <p class="tt360-hc-name">{{ hp.title }}</p>
+          {%- if section.settings.show_hero_reviews -%}
+          <div class="tt360-hc-rev">
+            <span class="tt360-hc-rev-stars">★★★★★</span>
+            <span>({{ section.settings.hero_review_text }})</span>
+          </div>
+          {%- endif -%}
+          <div class="tt360-hc-price">
+            <span class="tt360-hc-price-now">{{ hp.price | money }}</span>
+            {%- if hp.compare_at_price > hp.price -%}
+              <span class="tt360-hc-price-was">{{ hp.compare_at_price | money }}</span>
+            {%- endif -%}
+          </div>
+          <a href="{{ hp.url }}" class="tt360-hc-atc">Add to Cart</a>
+        </div>
+      </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+
+  {%- comment %} TRUST BAR {%- endcomment %}
+  <div class="tt360-h-trust">
+    <div class="tt360-h-trust-inner">
+      <div class="tt360-h-ti">
+        <span class="tt360-h-ti-icon">🚚</span>
+        <div class="tt360-h-ti-txt"><b>Next Day Delivery</b><span>Across the UAE</span></div>
+      </div>
+      <div class="tt360-h-ti">
+        <span class="tt360-h-ti-icon">💵</span>
+        <div class="tt360-h-ti-txt"><b>Cash on Delivery</b><span>No card required</span></div>
+      </div>
+      <div class="tt360-h-ti">
+        <span class="tt360-h-ti-icon">🏛️</span>
+        <div class="tt360-h-ti-txt"><b>Gov't Approved</b><span>Dubai Municipality</span></div>
+      </div>
+      <div class="tt360-h-ti">
+        <span class="tt360-h-ti-icon">🔄</span>
+        <div class="tt360-h-ti-txt"><b>30-Day Returns</b><span>Zero questions asked</span></div>
+      </div>
+      <div class="tt360-h-ti">
+        <span class="tt360-h-ti-icon">💬</span>
+        <div class="tt360-h-ti-txt"><b>24/7 WhatsApp</b><span>+971 585 156 033</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "TT360 Homepage Hero",
+  "settings": [
+    { "type": "text", "id": "hero_handle", "label": "Hero Product Handle", "default": "kids-u-shaped-electric-toothbrush-tiptop360-best-kids-gift" },
+    { "type": "color", "id": "bg", "label": "Background Color", "default": "#f5f7fa" },
+    { "type": "header", "content": "Headline" },
+    { "type": "text", "id": "h1_plain", "label": "Line 1 Plain", "default": "Kids Will" },
+    { "type": "text", "id": "h1_accent", "label": "Line 1 Accent", "default": "Love It." },
+    { "type": "text", "id": "h2_plain", "label": "Line 2 Plain", "default": "Parents Will" },
+    { "type": "text", "id": "h2_accent", "label": "Line 2 Accent", "default": "Trust It." },
+    { "type": "textarea", "id": "subheadline", "label": "Subheadline", "default": "Smart, safe, and actually fun — Dubai Municipality approved kids' products delivered next day to your door." },
+    { "type": "header", "content": "CTAs" },
+    { "type": "text", "id": "cta1_text", "label": "Primary Button Text", "default": "Shop Kids Collection →" },
+    { "type": "url", "id": "cta1_link", "label": "Primary Button Link" },
+    { "type": "text", "id": "cta2_text", "label": "Secondary Button Text", "default": "See Why UAE Moms Love Us" },
+    { "type": "url", "id": "cta2_link", "label": "Secondary Button Link" },
+    { "type": "header", "content": "Social Proof" },
+    { "type": "text", "id": "trust_count", "label": "Trusted Families Count", "default": "50,000+" },
+    { "type": "text", "id": "rating", "label": "Star Rating", "default": "4.9" },
+    { "type": "text", "id": "review_count", "label": "Review Count", "default": "386+" },
+    { "type": "checkbox", "id": "show_hero_reviews", "label": "Show Product Review Line", "default": true },
+    { "type": "text", "id": "hero_review_text", "label": "Product Review Text", "default": "142 reviews · Dubai Approved" }
+  ],
+  "presets": [{ "name": "TT360 Homepage Hero" }]
+}
+{% endschema %}

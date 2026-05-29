@@ -57,7 +57,7 @@
         <span  class="link js-btn-quickview small mt-1 d-block" data-toggle="modal" 
           data-target="#jsQuickview" data-handle="{{ product.handle }}"
           data-pavailable="{% if product.available %}true{% else %}false{% endif %}"
-        {% if settings.enable_review %} data-viewjdmg="{{ product.metafields.judgeme.badge }}" {% endif %} "
+        {% if settings.enable_review %} data-viewjdmg="{{ product.metafields.judgeme.badge | escape }}" {% endif %}
           >
           <span class="d-block">
             {{ 'products.product.quickview_text' | t }}

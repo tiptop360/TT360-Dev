@@ -1,0 +1,89 @@
+<meta name="tt360-schema-guard" content="v2-active">
+{%- comment -%}Product schema is now handled inline by tt360-product-body section (richer: reviews + specs + audience). This snippet is disabled to prevent duplicate @id. Keep file for fallback if ever needed.{%- endcomment -%}
+{%- if false -%}
+{%- assign v = product.selected_or_first_available_variant -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "@id": "{{ shop.url }}{{ product.url }}#product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | strip_newlines | truncatewords: 50 | json }},
+  "url": "{{ shop.url }}{{ product.url }}",
+  "image": [
+    {%- for image in product.images limit: 5 -%}
+      "https:{{ image | image_url: width: 1600 }}"{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "brand": {
+    "@type": "Brand",
+    "name": {{ shop.name | json }}
+  },
+  "sku": {{ v.sku | default: v.id | json }}
+  {%- if v.barcode and v.barcode != blank -%}
+    {%- assign barcode_len = v.barcode | size -%}
+    {%- if barcode_len == 13 -%}
+  ,"gtin13": {{ v.barcode | json }}
+    {%- elsif barcode_len == 12 -%}
+  ,"gtin12": {{ v.barcode | json }}
+    {%- elsif barcode_len == 8 -%}
+  ,"gtin8": {{ v.barcode | json }}
+    {%- endif -%}
+  {%- endif -%}
+  ,"offers": {
+    "@type": "Offer",
+    "url": "{{ shop.url }}{{ product.url }}",
+    "priceCurrency": "{{ cart.currency.iso_code | default: 'AED' }}",
+    "price": "{{ v.price | divided_by: 100.0 }}",
+    "priceValidUntil": "{{ 'now' | date: '%s' | plus: 7776000 | date: '%Y-%m-%d' }}",
+    "availability": "https://schema.org/{% if v.available %}InStock{% else %}OutOfStock{% endif %}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": {
+      "@type": "Organization",
+      "name": "TipTop360"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "AED"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "AE"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "d" },
+        "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 3, "unitCode": "d" }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "AE",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 14,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    }
+    {%- if v.compare_at_price > v.price -%}
+    ,"priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": {{ v.price | divided_by: 100.0 | json }},
+      "priceCurrency": "{{ cart.currency.iso_code | default: 'AED' }}"
+    }
+    {%- endif -%}
+  }
+  {%- if product.metafields.custom.rating != blank -%}
+  ,"aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ product.metafields.custom.rating }}",
+    "reviewCount": "{{ product.metafields.custom.review_count | default: 1 }}",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+  {%- endif -%}
+}
+</script>
+{%- endif -%}

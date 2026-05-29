@@ -22,6 +22,8 @@
       bottom: 0;
       z-index: 997;
       background: var(--sticky-cart-mix);
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+      border-top: 1px solid rgba(0,0,0,0.07);
         left:0;
         -webkit-transition: all ease .45s;
         -o-transition: all ease .45s;
@@ -229,7 +231,6 @@
             var dataName = $(this).data('title').toLowerCase();
             var selectedOption = $(this).find('option:selected');
             var selectedDataValue = selectedOption.data('value');
-            console.log('Data Name:', dataName);
             var buttonId = "#ProductSelect-option-" + dataName + "-" + selectedDataValue;
             $(buttonId).trigger('click');
         });
@@ -241,7 +242,7 @@ $('fieldset input:checked').each(function() {
   $('.js-contact-soldout').addClass('hide');
   }
 });
-});
+}, 1000);
     });
 </script>
   <script>

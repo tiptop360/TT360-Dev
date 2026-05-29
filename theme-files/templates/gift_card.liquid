@@ -113,7 +113,7 @@
       --g-height-border-btnline: {{ settings.height_border_btn }}px;
     }
   </style>
-  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'theme.aio.min.css' | asset_url | stylesheet_tag }}
 
   <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer="defer"></script>
 
@@ -129,7 +129,7 @@
   <div class="page-width text-center">
     <header class="giftcard__header" role="banner">
       <h1 class="site-header__logo h2" {% comment remove microdata structured data %}itemscope{% endcomment %} itemtype="http://schema.org/Organization">
-        <a href="/" itemprop="url">{{ shop.name }}</a>
+        <a href="{{ routes.root_url }}" itemprop="url">{{ shop.name }}</a>
       </h1>
       <div class="giftcard__shop-url">{{ shop.url | escape }}</div>
     </header>

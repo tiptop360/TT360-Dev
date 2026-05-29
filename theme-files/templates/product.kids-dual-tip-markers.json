@@ -1,0 +1,244 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360_upsell_body": {
+      "type": "tt360-upsell-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": { "text": "✅ Non-Toxic & Washable", "style": "green" }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": { "text": "🎯 Perfect Add-On", "style": "orange" }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": { "icon": "📦", "label": "Free Next Day" }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": { "icon": "💵", "label": "Cash on Delivery" }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": { "icon": "🔄", "label": "14-Day Returns" }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": { "icon": "🔒", "label": "Secure Checkout" }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "✏️",
+            "title": "Dual Tips — Fine & Broad",
+            "desc": "Fine tip for detail work, broad tip for colouring. Two markers in one for maximum creative range."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🧼",
+            "title": "Truly Washable",
+            "desc": "Washes off skin, clothes, and most surfaces with just water. No stain panic for UAE parents."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🤖",
+            "title": "Drawing Robot Compatible",
+            "desc": "Designed to fit the STEM Drawing Robot holder for precision robot-drawn art."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎨",
+            "title": "18 Vibrant Colours",
+            "desc": "Full colour spectrum for any creative project — from homework to masterpieces."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Non-Toxic Certified",
+            "desc": "Safe for children ages 3+. No harmful chemicals in the ink formula."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "💪",
+            "title": "Durable Felt Tips",
+            "desc": "Pressure-resistant tips that won't fray even with enthusiastic young artists."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "📐",
+            "title": "Ergonomic Grip",
+            "desc": "Designed for small hands — comfortable barrel that prevents fatigue during long drawing sessions."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "📦",
+            "title": "Organised Storage Case",
+            "desc": "Comes in a snap-shut case that keeps markers organised and travel-ready."
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": { "spec_name": "Colours", "spec_value": "18 Vibrant Shades" }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": { "spec_name": "Tip Type", "spec_value": "Dual — Fine + Broad" }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": { "spec_name": "Ink", "spec_value": "Water-Based, Washable" }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": { "spec_name": "Recommended Age", "spec_value": "3+ Years" }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": { "spec_name": "Robot Compatible", "spec_value": "Yes — STEM Drawing Robot" }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "These markers are brilliant with the Drawing Robot. My son uses the fine tip in the holder and the broad tip for freehand colouring. Truly washable — tested on our sofa.",
+            "name": "Sara M.",
+            "location": "Dubai · Washable Markers",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "18 colours for this price is incredible value. My twins use them daily for school projects and creative play. Washes off clothes in one cycle.",
+            "name": "Fatima H.",
+            "location": "Abu Dhabi · Washable Markers",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "text": "Good quality dual-tip markers. The fine tip is great for writing and the broad tip covers large areas fast. My 6-year-old loves the storage case.",
+            "name": "Omar J.",
+            "location": "Sharjah · Washable Markers",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Are these markers truly washable from clothes?",
+            "answer": "<p>Yes. The water-based ink formula washes out of most fabrics in a standard wash cycle. For best results, rinse the stain with cold water before washing. They also wipe clean from skin and most hard surfaces with just water.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Do these work with the STEM Drawing Robot?",
+            "answer": "<p>Yes — the marker barrel is designed to fit the Drawing Robot's pen holder. Use the fine tip for precision robot-drawn patterns and the broad tip for freehand colouring.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "What age are these suitable for?",
+            "answer": "<p>Recommended for ages 3 and above. The dual-tip design works for both toddlers learning to colour (broad tip) and older children doing detailed work (fine tip).</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How many colours are included?",
+            "answer": "<p>The set includes 18 vibrant colours covering the full spectrum — from primary colours to pastels and earth tones. Each marker has both a fine tip and a broad tip.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver across all UAE emirates?",
+            "answer": "<p>Free next-day delivery to all 7 emirates — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available everywhere.</p>"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": { "label": "Kids Collection UAE", "url": "/collections/kids-collection-uae" }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": { "label": "STEM Drawing Robot", "url": "/products/kids-drawing-robot" }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": { "label": "Wax Crayons", "url": "/products/kids-wax-crayons-uae" }
+        }
+      },
+      "block_order": [
+        "badge_1", "badge_2",
+        "trust_1", "trust_2", "trust_3", "trust_4",
+        "hl_1", "hl_2", "hl_3",
+        "feat_1", "feat_2", "feat_3", "feat_4", "feat_5",
+        "spec_1", "spec_2", "spec_3", "spec_4", "spec_5",
+        "rev_1", "rev_2", "rev_3",
+        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5",
+        "ilink_1", "ilink_2", "ilink_3"
+      ],
+      "settings": {
+        "seo_h1": "Kids Dual-Tip Washable Markers — 18 Colours, Robot Compatible",
+        "hero_alt": "Kids dual-tip washable markers 18 colours for STEM drawing robot and creative play UAE — TipTop360",
+        "collection_handle": "problem-solving-products-uae",
+        "collection_name": "Problem Solving Products",
+        "hero_product": "kids-drawing-robot",
+        "hero_link_label": "Goes Great With",
+        "hero_link_sub": "See the STEM Drawing Robot →",
+        "rating_value": "4.7",
+        "review_count": "40",
+        "atc_text": "Add to Cart",
+        "hl_lbl": "Why Parents Choose These",
+        "hl_title": "3 Reasons Kids Love These Markers",
+        "hl_sub": "Dual tips, truly washable, and compatible with the Drawing Robot.",
+        "feat_lbl": "Made for Young Artists",
+        "feat_title": "Marker Features",
+        "feat_sub": "Everything creative kids need — and nothing parents need to worry about.",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "cta_title": "Add Creative Colour to Your Order",
+        "cta_sub": "AED 20 — free next-day delivery. Cash on delivery. 14-day returns.",
+        "specs_title": "Product Specifications",
+        "related_title": "More Problem Solving Products",
+        "ilinks_title": "Explore More at TipTop360"
+      }
+    }
+  },
+  "order": ["tt360_upsell_body"]
+}

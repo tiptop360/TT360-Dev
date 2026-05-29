@@ -26,7 +26,15 @@
     -o-transition: height .6s cubic-bezier(.44,.13,.48,.87);
     transition: height .6s cubic-bezier(.44,.13,.48,.87);
   }
-  
+
+  @media only screen and (max-width:749px) {
+    .slideshow {
+      height: auto;
+      min-height: 56.25vw;
+      max-height: 80vh;
+    }
+  }
+
   @media only screen and (min-width:750px) {
     .slideshow {
       position: relative;
@@ -568,33 +576,65 @@
             </div>
           </div>
           {%- else -%}
-          <div class="{% if block.settings.image_mobile != blank %} d-none d-lg-block {% endif %} slideshow__image box ratio-container lazyload js{%- unless forloop.first -%} lazypreload{%- endunless -%}"
-               data-bgset="{%- render 'bgset', image: block.settings.image -%}"
+          <div class="{% if block.settings.image_mobile != blank %} d-none d-lg-block {% endif %} slideshow__image box ratio-container{% unless forloop.first %} lazyload{% endunless %} js{%- unless forloop.first -%} lazypreload{%- endunless -%}"
+               {% unless forloop.first %}data-bgset="{%- render 'bgset', image: block.settings.image -%}"
                data-sizes="auto"
-               data-parent-fit="contain"
+               data-parent-fit="contain"{% endunless %}
                style="background-position: {{ block.settings.alignment }};">
+               {%- if forloop.first -%}
+               <img src="{{ block.settings.image | image_url: width: 1920 }}"
+                    srcset="{{ block.settings.image | image_url: width: 800 }} 800w, {{ block.settings.image | image_url: width: 1200 }} 1200w, {{ block.settings.image | image_url: width: 1920 }} 1920w"
+                    sizes="100vw"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    fetchpriority="high"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:{{ block.settings.alignment }};">
+               {%- endif -%}
           </div>
             
           {% if block.settings.image_mobile != blank %}
           {%- assign image_mb = block.settings.image_mobile -%}
             {%- if section.settings.slideshow_mobile -%}
-            <div class="img_mobile d-lg-none slideshow__image box ratio-container lazyload js{%- unless forloop.first -%} lazypreload{%- endunless -%}"
-                  data-bgset="{%- render 'bgset', image: block.settings.image_mobile -%}"
+            <div class="img_mobile d-lg-none slideshow__image box ratio-container{% unless forloop.first %} lazyload{% endunless %} js{%- unless forloop.first -%} lazypreload{%- endunless -%}"
+                  {% unless forloop.first %}data-bgset="{%- render 'bgset', image: block.settings.image_mobile -%}"
                   data-sizes="auto"
-                  data-parent-fit="cover">
+                  data-parent-fit="cover"{% endunless %}>
+                  {%- if forloop.first -%}
+                  <img src="{{ block.settings.image_mobile | image_url: width: 800 }}"
+                       srcset="{{ block.settings.image_mobile | image_url: width: 400 }} 400w, {{ block.settings.image_mobile | image_url: width: 600 }} 600w, {{ block.settings.image_mobile | image_url: width: 800 }} 800w"
+                       sizes="100vw"
+                       alt="{{ block.settings.image_mobile.alt | escape }}"
+                       width="{{ block.settings.image_mobile.width }}"
+                       height="{{ block.settings.image_mobile.height }}"
+                       fetchpriority="high"
+                       style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+                  {%- endif -%}
                   {%- if section.settings.show_overlay -%}<div class="slideshow__overlay {% if section.settings.gradient_overlay %} gradient_overlay {% endif %}"></div>{%- endif -%}
             </div>
             {%- else -%}
             <div class="img_mobile d-lg-none image-content__image-wrapper position-relative" style="padding-top:{{ 1 | divided_by: image_mb.aspect_ratio | times: 100 }}%;" >
+              {%- if forloop.first -%}
+              <img src="{{ image_mb | image_url: width: 800 }}"
+                  srcset="{{ image_mb | image_url: width: 400 }} 400w, {{ image_mb | image_url: width: 600 }} 600w, {{ image_mb | image_url: width: 800 }} 800w"
+                  sizes="100vw"
+                  alt="{{ image_mb.alt | escape }}"
+                  width="{{ image_mb.width }}"
+                  height="{{ image_mb.height }}"
+                  fetchpriority="high"
+                  decoding="sync"
+                  style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+              {%- else -%}
               {%- assign img_mburl = image_mb | image_url: width: 1 | replace: 'width=1', 'width={width}' -%}
               <img class="lazyload"
                   data-src="{{ img_mburl }}"
                   src="{{ image_mb | image_url: width: 1, height: 1 }}"
                   data-sizes="auto"
-                  alt="{{ img_mburl.alt | escape }}"
+                  alt="{{ image_mb.alt | escape }}"
                   loading="lazy"
-                  width="{{ img_mburl.width }}"
-                  height="{{ img_mburl.height }}">
+                  width="{{ image_mb.width }}"
+                  height="{{ image_mb.height }}">
+              {%- endif -%}
             </div>
             {%- endif -%}
           {% endif %}

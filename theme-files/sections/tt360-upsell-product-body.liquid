@@ -1,0 +1,1135 @@
+{% comment %} tt360-upsell-product-body.liquid — Upsell/accessory product section with hero product linkage {% endcomment %}
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign product_images  = product.images %}
+
+{%- comment -%} ── PRELOAD HERO IMAGE ── {%- endcomment -%}
+{%- if product_images.size > 0 -%}
+  {%- assign hero_img = product_images[0] -%}
+  <link rel="preload" as="image"
+    imagesrcset="{{ hero_img | image_url: width: 400 }} 400w, {{ hero_img | image_url: width: 800 }} 800w, {{ hero_img | image_url: width: 1200 }} 1200w"
+    imagesizes="(max-width:768px) 100vw, 50vw"
+    href="{{ hero_img | image_url: width: 800 }}">
+{%- endif -%}
+
+{%- comment -%} ── JSON-LD: Section-specific schema (Product + Breadcrumb handled by schema-controller in theme.liquid) ── {%- endcomment -%}
+
+{%- comment -%} ── FAQ SCHEMA ── {%- endcomment -%}
+{%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
+{%- if faq_blocks.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for block in faq_blocks -%}
+    {
+      "@type": "Question",
+      "name": {{ block.settings.question | json }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ block.settings.answer | strip_html | json }}
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- comment -%} ── SCHEMA: ItemList (Related Products for AI/GEO) ── {%- endcomment -%}
+{%- assign hero_ref = section.settings.hero_product_ref -%}
+{%- assign hero2_ref = section.settings.hero_product_2_ref -%}
+{%- assign hero3_ref = section.settings.hero_product_3_ref -%}
+{%- if hero_ref or hero2_ref or hero3_ref -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Recommended products for {{ product.title | escape }}",
+  "itemListElement": [
+    {%- assign il_pos = 0 -%}
+    {%- if hero_ref -%}
+      {%- assign il_pos = il_pos | plus: 1 -%}
+      {
+        "@type": "ListItem",
+        "position": {{ il_pos }},
+        "name": {{ hero_ref.title | json }},
+        "url": "{{ shop.url }}{{ hero_ref.url }}",
+        "image": "{{ hero_ref.featured_image | image_url: width: 600 }}"
+      }
+    {%- endif -%}
+    {%- if hero2_ref -%}
+      {%- assign il_pos = il_pos | plus: 1 -%}
+      {%- if il_pos > 1 -%},{%- endif -%}
+      {
+        "@type": "ListItem",
+        "position": {{ il_pos }},
+        "name": {{ hero2_ref.title | json }},
+        "url": "{{ shop.url }}{{ hero2_ref.url }}",
+        "image": "{{ hero2_ref.featured_image | image_url: width: 600 }}"
+      }
+    {%- endif -%}
+    {%- if hero3_ref -%}
+      {%- assign il_pos = il_pos | plus: 1 -%}
+      {%- if il_pos > 1 -%},{%- endif -%}
+      {
+        "@type": "ListItem",
+        "position": {{ il_pos }},
+        "name": {{ hero3_ref.title | json }},
+        "url": "{{ shop.url }}{{ hero3_ref.url }}",
+        "image": "{{ hero3_ref.featured_image | image_url: width: 600 }}"
+      }
+    {%- endif -%}
+  ]
+}
+</script>
+{%- endif -%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<script>
+(function(){
+  function rmGap(){
+    var sec=document.getElementById('shopify-section-tt360-upsell-product-body');
+    if(!sec)return;
+    sec.style.setProperty('margin','0','important');
+    sec.style.setProperty('padding','0','important');
+    var el=sec.parentElement;
+    while(el&&el!==document.body&&el!==document.documentElement){
+      try{
+        var cs=window.getComputedStyle(el);
+        if(parseFloat(cs.paddingTop)>0)el.style.setProperty('padding-top','0','important');
+        if(parseFloat(cs.marginTop)>0)el.style.setProperty('margin-top','0','important');
+      }catch(e){}
+      el=el.parentElement;
+    }
+    var prev=sec.previousElementSibling;
+    if(prev){prev.style.setProperty('margin-bottom','0','important');prev.style.setProperty('padding-bottom','0','important');}
+    document.querySelectorAll('footer,.site-footer,#footer,[id*="footer"]').forEach(function(f){
+      f.style.setProperty('margin-top','0','important');
+    });
+  }
+  rmGap();
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',rmGap);}
+  window.addEventListener('load',function(){rmGap();setTimeout(rmGap,500);});
+})();
+</script>
+
+{%- assign review_blocks = section.blocks | where: 'type', 'review' -%}
+{%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
+{%- assign feature_blocks = section.blocks | where: 'type', 'feature' -%}
+{%- assign highlight_blocks = section.blocks | where: 'type', 'highlight' -%}
+
+<style>
+#tt360-upsell *{box-sizing:border-box;margin:0;padding:0}
+#tt360-upsell{
+  --navy:#1A3557;--navy2:#142844;--orange:#F46A1A;
+  --green:#10B981;--gold:#F59E0B;--border:#E2E8F0;
+  --bg2:#F8FAFC;--muted:#64748B;--text:#1E293B;
+  --r:14px;--sh:0 8px 32px rgba(0,0,0,.10);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--text);font-size:15px;line-height:1.6;
+}
+#tt360-upsell a{text-decoration:none;color:inherit}
+#tt360-upsell img{display:block;max-width:100%;height:auto}
+#tt360-upsell button{font-family:inherit;cursor:pointer}
+
+/* BREADCRUMB */
+#tt360-upsell .u-bc{background:#F8FAFC;border-bottom:1px solid var(--border);padding:10px 20px;font-size:12px;color:var(--muted)}
+#tt360-upsell .u-bc a{color:var(--muted)}
+#tt360-upsell .u-bc a:hover{color:var(--navy)}
+#tt360-upsell .u-bc span{color:var(--text);font-weight:600}
+
+/* WRAP */
+#tt360-upsell .u-wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* HERO */
+#tt360-upsell .u-hero{padding:28px 20px 0}
+#tt360-upsell .u-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;max-width:1100px;margin:0 auto}
+
+/* GALLERY */
+#tt360-upsell .u-gallery{position:sticky;top:72px}
+#tt360-upsell .u-gal-main{border-radius:var(--r);overflow:hidden;background:var(--bg2);border:1px solid var(--border);aspect-ratio:1/1;position:relative;contain:layout}
+#tt360-upsell .u-gal-main img{width:100%;height:100%;object-fit:cover;cursor:zoom-in}
+#tt360-upsell .u-gal-badge{position:absolute;top:12px;left:12px;background:var(--orange);color:#fff;font-size:11px;font-weight:800;border-radius:7px;padding:4px 11px;z-index:2}
+#tt360-upsell .u-thumbs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+#tt360-upsell .u-thumb{width:62px;height:62px;border-radius:9px;overflow:hidden;border:2px solid var(--border);cursor:pointer;flex-shrink:0;transition:border-color .15s}
+#tt360-upsell .u-thumb.active{border-color:var(--orange)}
+#tt360-upsell .u-thumb img{width:100%;height:100%;object-fit:cover}
+
+/* INFO PANEL */
+#tt360-upsell .u-info{padding-bottom:48px}
+#tt360-upsell .u-badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+#tt360-upsell .u-chip{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:4px 12px;font-size:11px;font-weight:700}
+#tt360-upsell .u-chip-g{background:rgba(16,185,129,.1);color:#059669;border:1px solid rgba(16,185,129,.2)}
+#tt360-upsell .u-chip-o{background:rgba(244,106,26,.1);color:var(--orange);border:1px solid rgba(244,106,26,.2)}
+#tt360-upsell .u-chip-n{background:rgba(26,53,87,.08);color:var(--navy);border:1px solid rgba(26,53,87,.15)}
+
+#tt360-upsell .u-title{font-size:clamp(19px,2.8vw,28px);font-weight:900;color:var(--navy);line-height:1.15;letter-spacing:-.4px;margin-bottom:12px}
+#tt360-upsell .u-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+#tt360-upsell .u-stars{color:var(--gold);font-size:14px;letter-spacing:1px}
+#tt360-upsell .u-rating strong{color:var(--text)}
+
+/* PRICE */
+#tt360-upsell .u-price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px}
+#tt360-upsell .u-price-now{font-size:30px;font-weight:900;color:var(--navy)}
+#tt360-upsell .u-price-was{font-size:15px;color:var(--muted);text-decoration:line-through}
+#tt360-upsell .u-save{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;border-radius:99px;padding:3px 10px;font-size:11.5px;font-weight:800}
+#tt360-upsell .u-stock{font-size:12.5px;color:var(--green);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:5px}
+
+/* VARIANT PICKER */
+#tt360-upsell .u-opt-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:8px;margin-top:16px}
+#tt360-upsell .u-size-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+#tt360-upsell .u-size-pill{padding:7px 16px;border:2px solid var(--border);border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;color:var(--navy);transition:border-color .15s,background .15s;user-select:none}
+#tt360-upsell .u-size-pill.active{border-color:var(--orange);background:rgba(244,106,26,.06);color:var(--orange)}
+
+/* QTY + ATC */
+#tt360-upsell .u-qty-row{display:flex;align-items:center;gap:14px;padding:4px 0 12px}
+#tt360-upsell .u-qty-ctrl{display:flex;align-items:center;border:2px solid var(--border);border-radius:9px;overflow:hidden}
+#tt360-upsell .u-qty-btn{width:38px;height:38px;border:none;background:#f8fafc;color:var(--navy);font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:background .15s;font-family:inherit}
+#tt360-upsell .u-qty-btn:hover{background:#e2e8f0}
+#tt360-upsell .u-qty-btn:disabled{opacity:.35;cursor:not-allowed}
+#tt360-upsell .u-qty-val{min-width:40px;height:38px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:var(--navy);border-left:1.5px solid var(--border);border-right:1.5px solid var(--border)}
+#tt360-upsell .u-atc-row{display:flex;gap:10px;margin-bottom:16px}
+#tt360-upsell .u-atc{flex:1;background:var(--orange);color:#fff;border:none;border-radius:12px;padding:15px 20px;font-size:15px;font-weight:800;transition:background .2s;box-shadow:0 4px 18px rgba(244,106,26,.35);display:flex;align-items:center;justify-content:center;gap:8px}
+#tt360-upsell .u-atc:hover{background:#d45a12}
+#tt360-upsell .u-atc.loading{opacity:.7;pointer-events:none}
+#tt360-upsell .u-atc.done{background:var(--green)!important}
+
+/* TRUST ICONS */
+#tt360-upsell .u-trust{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+#tt360-upsell .u-ti{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 8px;text-align:center}
+#tt360-upsell .u-ti-icon{font-size:19px;margin-bottom:4px}
+#tt360-upsell .u-ti-txt{font-size:10px;font-weight:600;color:var(--navy);line-height:1.3}
+
+/* HERO PRODUCT LINK */
+#tt360-upsell .u-hero-link{background:linear-gradient(135deg,rgba(26,53,87,.04),rgba(244,106,26,.04));border:2px solid var(--border);border-radius:var(--r);padding:16px 20px;display:flex;align-items:center;gap:14px;margin-bottom:20px;transition:border-color .2s,box-shadow .2s}
+#tt360-upsell .u-hero-link:hover{border-color:var(--orange);box-shadow:0 4px 16px rgba(244,106,26,.12)}
+#tt360-upsell .u-hero-link-img{width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;background:var(--bg2)}
+#tt360-upsell .u-hero-link-info{flex:1;min-width:0}
+#tt360-upsell .u-hero-link-lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-bottom:3px}
+#tt360-upsell .u-hero-link-name{font-size:13.5px;font-weight:700;color:var(--navy);line-height:1.3}
+#tt360-upsell .u-hero-link-sub{font-size:12px;color:var(--muted);margin-top:2px}
+#tt360-upsell .u-hero-link-arrow{font-size:18px;color:var(--orange);flex-shrink:0}
+
+/* SECTIONS */
+#tt360-upsell .u-sec{padding:44px 20px}
+#tt360-upsell .u-sec-alt{background:var(--bg2)}
+#tt360-upsell .u-lbl{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+#tt360-upsell .u-h2{font-size:clamp(20px,3vw,30px);font-weight:900;color:var(--navy);letter-spacing:-.5px;line-height:1.2;margin-bottom:8px}
+#tt360-upsell .u-sub{font-size:14.5px;color:var(--muted);max-width:480px;line-height:1.65;margin-bottom:28px}
+#tt360-upsell .u-ctr{text-align:center}
+#tt360-upsell .u-ctr .u-sub{margin-left:auto;margin-right:auto;text-align:center}
+
+/* HIGHLIGHTS */
+#tt360-upsell .u-hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+#tt360-upsell .u-hl-card{text-align:center}
+#tt360-upsell .u-hl-card-icon{font-size:38px;margin-bottom:14px;line-height:1}
+#tt360-upsell .u-hl-card-title{font-size:13.5px;font-weight:800;color:var(--navy);margin-bottom:5px;line-height:1.3}
+#tt360-upsell .u-hl-card-desc{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* FEATURES */
+#tt360-upsell .u-feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+#tt360-upsell .u-feat{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:20px 14px;text-align:center;transition:box-shadow .2s,transform .2s}
+#tt360-upsell .u-feat:hover{box-shadow:var(--sh);transform:translateY(-3px)}
+#tt360-upsell .u-fi{font-size:30px;margin-bottom:10px}
+#tt360-upsell .u-ft{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:4px;line-height:1.3}
+#tt360-upsell .u-fd{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* REVIEWS */
+#tt360-upsell .u-rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+#tt360-upsell .u-rc{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:22px;transition:box-shadow .2s}
+#tt360-upsell .u-rc:hover{box-shadow:var(--sh)}
+#tt360-upsell .u-rstars{color:var(--gold);font-size:13px;margin-bottom:10px;letter-spacing:1px}
+#tt360-upsell .u-rtext{font-size:13.5px;color:#334155;line-height:1.7;font-style:italic;margin-bottom:14px}
+#tt360-upsell .u-rauth{display:flex;align-items:center;gap:9px}
+#tt360-upsell .u-rav{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0}
+#tt360-upsell .u-rname{font-size:12.5px;font-weight:700;color:var(--navy)}
+#tt360-upsell .u-rloc{font-size:11px;color:var(--muted)}
+#tt360-upsell .u-rvfy{margin-left:auto;background:rgba(16,185,129,.10);color:#059669;border-radius:5px;padding:2px 7px;font-size:10.5px;font-weight:700;white-space:nowrap}
+
+/* FAQ */
+#tt360-upsell .u-faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+#tt360-upsell .u-faq-item{border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+#tt360-upsell .u-faq-q{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;font-weight:700;font-size:14px;color:var(--navy);cursor:pointer;gap:12px;user-select:none;background:#fff;transition:background .15s}
+#tt360-upsell .u-faq-q:hover{background:var(--bg2)}
+#tt360-upsell .u-faq-icon{font-size:20px;color:var(--orange);font-weight:300;flex-shrink:0;transition:transform .2s;line-height:1}
+#tt360-upsell .u-faq-a{display:none;padding:14px 20px 18px;font-size:13.5px;color:var(--muted);line-height:1.75;border-top:1px solid var(--border);background:#fafcff}
+#tt360-upsell .u-faq-item.open .u-faq-icon{transform:rotate(45deg)}
+#tt360-upsell .u-faq-item.open .u-faq-a{display:block}
+
+/* FINAL CTA */
+#tt360-upsell .u-fcta{background:linear-gradient(135deg,#FFF5EE,#FFF0E5);padding:44px 20px;text-align:center}
+#tt360-upsell .u-fcta .u-h2{margin-bottom:8px}
+#tt360-upsell .u-fcta .u-sub{margin:0 auto 22px}
+#tt360-upsell .u-btn-final{background:var(--orange);color:#fff;border:none;border-radius:14px;padding:16px 44px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 6px 24px rgba(244,106,26,.35);display:inline-flex;align-items:center;gap:8px;transition:background .2s}
+#tt360-upsell .u-btn-final:hover{background:#d45a12}
+#tt360-upsell .u-ftrust{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);font-weight:500}
+
+/* INTERNAL LINKS */
+#tt360-upsell .u-ilinks{background:var(--bg2);border-radius:var(--r);padding:32px 24px;margin:0 auto;max-width:900px}
+#tt360-upsell .u-ilinks-nav{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+#tt360-upsell .u-ilink-pill{display:inline-flex;align-items:center;padding:10px 20px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--navy);font-weight:600;font-size:13.5px;min-height:48px;transition:all .15s}
+#tt360-upsell .u-ilink-pill:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* BUNDLE FORM */
+#tt360-upsell .u-bundle{margin-top:12px;background:linear-gradient(135deg,rgba(244,106,26,.04),rgba(26,53,87,.04));border:2px solid var(--border);border-radius:var(--r);padding:16px;transition:border-color .2s}
+#tt360-upsell .u-bundle:hover{border-color:var(--orange)}
+#tt360-upsell .u-bundle-lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-bottom:8px}
+#tt360-upsell .u-bundle-items{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:13px;color:var(--muted)}
+#tt360-upsell .u-bundle-items strong{color:var(--text)}
+#tt360-upsell .u-bundle-plus{font-size:18px;font-weight:700;color:var(--orange)}
+#tt360-upsell .u-btn-bundle{width:100%;background:var(--navy);color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s;box-shadow:0 4px 18px rgba(26,53,87,.25);min-height:48px;font-family:inherit}
+#tt360-upsell .u-btn-bundle:hover{background:#142844}
+#tt360-upsell .u-btn-bundle.loading{opacity:.7;pointer-events:none}
+#tt360-upsell .u-btn-bundle.done{background:var(--green)!important}
+#tt360-upsell .u-bundle-note{text-align:center;font-size:11.5px;color:var(--muted);margin-top:8px}
+
+/* SECONDARY HEROES */
+#tt360-upsell .u-sec-heroes{padding:44px 20px}
+#tt360-upsell .u-sh-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+#tt360-upsell .u-sh-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:box-shadow .2s,transform .2s}
+#tt360-upsell .u-sh-card:hover{box-shadow:var(--sh);transform:translateY(-3px)}
+#tt360-upsell .u-sh-card a{display:block;text-decoration:none;color:inherit}
+#tt360-upsell .u-sh-card img{width:100%;aspect-ratio:1/1;object-fit:cover}
+#tt360-upsell .u-sh-card-info{padding:14px}
+#tt360-upsell .u-sh-card-badge{display:inline-block;background:var(--gold);color:#1a1a1a;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:800;margin-bottom:6px}
+#tt360-upsell .u-sh-card h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;line-height:1.3}
+#tt360-upsell .u-sh-card .u-sh-price{font-size:16px;font-weight:800;color:var(--orange)}
+#tt360-upsell .u-sh-card .u-sh-cta{display:block;margin-top:8px;font-size:12.5px;font-weight:600;color:var(--orange)}
+
+/* SPECS TABLE */
+#tt360-upsell .u-specs-grid{display:grid;grid-template-columns:1fr;gap:0;max-width:600px;margin:24px auto 0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+#tt360-upsell .u-spec-row{display:grid;grid-template-columns:140px 1fr;border-bottom:1px solid var(--border)}
+#tt360-upsell .u-spec-row:last-child{border-bottom:none}
+#tt360-upsell .u-spec-name{padding:12px 16px;font-weight:700;font-size:13px;color:var(--navy);background:var(--bg2)}
+#tt360-upsell .u-spec-val{padding:12px 16px;font-size:13px;color:var(--muted)}
+
+/* RELATED PRODUCTS */
+#tt360-upsell .u-related{padding:44px 20px}
+#tt360-upsell .u-rel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+#tt360-upsell .u-rel-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:border-color .2s,box-shadow .2s}
+#tt360-upsell .u-rel-card:hover{border-color:var(--orange);box-shadow:var(--sh)}
+#tt360-upsell .u-rel-card a{display:block;text-decoration:none;color:inherit;padding:10px}
+#tt360-upsell .u-rel-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;margin-bottom:8px}
+#tt360-upsell .u-rel-card h4{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:4px;line-height:1.3}
+#tt360-upsell .u-rel-card .u-rel-price{font-size:14px;font-weight:800;color:var(--orange)}
+#tt360-upsell .u-rel-viewall{text-align:center;margin-top:20px}
+#tt360-upsell .u-rel-viewall a{display:inline-block;padding:12px 32px;border:2px solid var(--navy);color:var(--navy);border-radius:10px;font-weight:700;font-size:13.5px;transition:all .2s;min-height:48px}
+#tt360-upsell .u-rel-viewall a:hover{background:var(--navy);color:#fff}
+
+/* STICKY BAR */
+#tt360-upsell-sticky{display:none;position:fixed;bottom:0;left:0;right:0;background:#1A3557;padding:12px 16px;z-index:900;box-shadow:0 -4px 24px rgba(26,53,87,.25)}
+#tt360-upsell-sticky button{display:flex;align-items:center;justify-content:center;width:100%;background:#F46A1A;color:#fff;font-weight:700;font-size:15px;padding:14px 20px;border-radius:12px;border:none;cursor:pointer;font-family:inherit}
+
+/* TOAST */
+#tt360-upsell-toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:opacity .28s,transform .28s;pointer-events:none;white-space:nowrap;box-shadow:0 8px 30px rgba(0,0,0,.2);font-family:'Inter',-apple-system,sans-serif}
+#tt360-upsell-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  #tt360-upsell .u-hero-grid{gap:32px}
+  #tt360-upsell .u-feat-grid{grid-template-columns:repeat(2,1fr)}
+  #tt360-upsell .u-rev-grid{grid-template-columns:repeat(2,1fr)}
+  #tt360-upsell .u-hl-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  #tt360-upsell .u-sec{padding:36px 18px}
+  #tt360-upsell .u-rel-grid{grid-template-columns:repeat(2,1fr)}
+  #tt360-upsell .u-sec-heroes{padding:36px 18px}
+  #tt360-upsell .u-related{padding:36px 18px}
+}
+@media(max-width:768px){
+  #tt360-upsell .u-hero-grid{grid-template-columns:1fr;gap:16px}
+  #tt360-upsell .u-gallery{position:static}
+  #tt360-upsell .u-gal-main{aspect-ratio:1/1!important}
+  #tt360-upsell .u-hero{padding:12px 12px 0}
+  #tt360-upsell .u-info{padding-bottom:0}
+  #tt360-upsell .u-sec{padding:24px 14px}
+  #tt360-upsell .u-feat-grid{grid-template-columns:1fr 1fr;gap:10px}
+  #tt360-upsell .u-rev-grid{grid-template-columns:1fr}
+  #tt360-upsell .u-trust{grid-template-columns:repeat(2,1fr);gap:6px}
+  #tt360-upsell .u-hl-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  #tt360-upsell .u-fcta{padding:24px 14px}
+  #tt360-upsell .u-sh-grid{grid-template-columns:1fr 1fr;gap:10px}
+  #tt360-upsell .u-rel-grid{grid-template-columns:1fr 1fr;gap:10px}
+  #tt360-upsell .u-sec-heroes{padding:24px 14px}
+  #tt360-upsell .u-related{padding:24px 14px}
+  #tt360-upsell .u-spec-row{grid-template-columns:110px 1fr}
+  #tt360-upsell .u-h2{font-size:clamp(18px,5vw,24px)}
+  #tt360-upsell .u-sub{font-size:13.5px;margin-bottom:18px}
+  #tt360-upsell-sticky{display:block}
+  #shopify-section-tt360-upsell-product-body{margin-top:0!important;padding-top:0!important;margin-bottom:0!important;padding-bottom:0!important}
+  .site-footer,footer{margin-top:0!important}
+}
+@media(max-width:480px){
+  #tt360-upsell .u-price-now{font-size:24px}
+  #tt360-upsell .u-title{font-size:17px}
+  #tt360-upsell .u-thumbs{gap:6px}
+  #tt360-upsell .u-thumb{width:52px;height:52px}
+  #tt360-upsell .u-ilinks{padding:24px 14px}
+  #tt360-upsell .u-ilink-pill{padding:8px 14px;font-size:12.5px}
+}
+/* GAP REMOVAL */
+#shopify-section-tt360-upsell-product-body{margin:0!important;padding:0!important}
+.site-footer{margin-top:0!important}
+#MainContent,main#MainContent,[id="MainContent"],.main-content,.page-container{padding-top:0!important}
+/* LIGHTBOX */
+#tt360-upsell-lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out}
+#tt360-upsell-lb.open{display:flex}
+#tt360-upsell-lb img{max-width:92vw;max-height:88vh;object-fit:contain;border-radius:8px;box-shadow:0 24px 80px rgba(0,0,0,.6)}
+#tt360-upsell-lb-close{position:absolute;top:16px;right:20px;color:#fff;font-size:32px;font-weight:300;cursor:pointer;background:none;border:none}
+</style>
+
+<div id="tt360-upsell">
+<div id="tt360-upsell-toast" role="status" aria-live="polite"></div>
+
+<!-- BREADCRUMB -->
+<nav class="u-bc" aria-label="Breadcrumb">
+  <a href="/">Home</a> ›
+  <a href="/collections/{{ section.settings.collection_handle | default: 'kids-collection-uae' }}">{{ section.settings.collection_name | default: 'Kids Collection' }}</a> ›
+  <span>{{ product.title }}</span>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="u-hero">
+  <div class="u-hero-grid">
+
+    <!-- GALLERY -->
+    <div class="u-gallery" role="region" aria-label="Product images">
+      <div class="u-gal-main" id="u-main-media">
+        {% if current_variant.compare_at_price > current_variant.price %}
+          {%- assign save_pct = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round -%}
+          <div class="u-gal-badge">SAVE {{ save_pct }}%</div>
+        {% endif %}
+        {%- if product_images.size > 0 -%}
+          {%- if section.settings.hero_alt != blank -%}
+            {%- assign alt_fallback = section.settings.hero_alt -%}
+          {%- else -%}
+            {%- assign alt_fallback = product.title | append: ' — TipTop360 UAE' | escape -%}
+          {%- endif -%}
+          <img id="u-main-img"
+               src="{{ product_images[0] | image_url: width: 800 }}"
+               srcset="{{ product_images[0] | image_url: width: 400 }} 400w, {{ product_images[0] | image_url: width: 800 }} 800w, {{ product_images[0] | image_url: width: 1200 }} 1200w"
+               sizes="(max-width:768px) 100vw, 50vw"
+               alt="{{ product_images[0].alt | escape | default: alt_fallback }}"
+               width="{{ product_images[0].width }}" height="{{ product_images[0].height }}"
+               fetchpriority="high" loading="eager" decoding="sync">
+        {%- endif -%}
+      </div>
+      <div class="u-thumbs" role="list">
+        {%- for img in product_images limit: 6 -%}
+        <div class="u-thumb {% if forloop.first %}active{% endif %}"
+             role="listitem"
+             data-src="{{ img | image_url: width: 800 }}"
+             data-srcset="{{ img | image_url: width: 400 }} 400w, {{ img | image_url: width: 800 }} 800w, {{ img | image_url: width: 1200 }} 1200w"
+             data-alt="{{ img.alt | escape | default: alt_fallback }}"
+             tabindex="0" aria-label="View image {{ forloop.index }}">
+          <img src="{{ img | image_url: width: 120 }}" alt="{{ img.alt | escape | default: alt_fallback }}" width="62" height="62" loading="lazy" decoding="async">
+        </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div class="u-info">
+
+      <!-- BADGES -->
+      {% assign badge_blocks = section.blocks | where: 'type', 'badge' %}
+      {% if badge_blocks.size > 0 %}
+      <div class="u-badges">
+        {% for block in badge_blocks %}
+          {%- assign chip_class = 'u-chip-n' -%}
+          {%- if block.settings.style == 'green' -%}{%- assign chip_class = 'u-chip-g' -%}{%- endif -%}
+          {%- if block.settings.style == 'orange' -%}{%- assign chip_class = 'u-chip-o' -%}{%- endif -%}
+          <span class="u-chip {{ chip_class }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {%- if section.settings.seo_h1 != blank -%}
+        <h1 class="u-title">{{ section.settings.seo_h1 }}</h1>
+      {%- else -%}
+        <h1 class="u-title">{{ product.title }}</h1>
+      {%- endif -%}
+
+      <!-- RATING -->
+      <div class="u-rating">
+        <span class="u-stars" aria-label="{{ section.settings.rating_value | default: '4.8' }} out of 5 stars">
+          {%- assign rv = section.settings.rating_value | default: 4.8 | times: 1 -%}
+          {%- assign full = rv | floor -%}
+          {%- for i in (1..5) -%}{%- if i <= full -%}★{%- else -%}☆{%- endif -%}{%- endfor -%}
+        </span>
+        <strong>{{ section.settings.rating_value | default: '4.8' }}</strong>
+        <span>· {{ section.settings.review_count | default: '50' }}+ reviews</span>
+      </div>
+
+      <!-- PRICE -->
+      <div class="u-price-row">
+        <span class="u-price-now">{{ current_variant.price | money_without_trailing_zeros }}</span>
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <span class="u-price-was">{{ current_variant.compare_at_price | money_without_trailing_zeros }}</span>
+          <span class="u-save">SAVE {{ save_pct }}%</span>
+        {% endif %}
+      </div>
+      <div class="u-stock">
+        {% if current_variant.available %}
+          ✅ In stock — next-day delivery across UAE
+        {% else %}
+          ❌ Out of stock
+        {% endif %}
+      </div>
+
+      <!-- VARIANT PICKER -->
+      {%- for opt in product.options_with_values -%}
+        <div class="u-opt-lbl">{{ opt.name }} — <span id="u-chosen-{{ forloop.index0 }}">{{ current_variant.options[forloop.index0] }}</span></div>
+        <div class="u-size-pills" data-option-index="{{ forloop.index0 }}">
+          {% for val in opt.values %}
+            <div class="u-size-pill {% if current_variant.options[forloop.parentloop.index0] == val %}active{% endif %}" data-value="{{ val | escape }}" tabindex="0">{{ val }}</div>
+          {% endfor %}
+        </div>
+      {%- endfor -%}
+
+      <!-- QTY + ATC -->
+      <div class="u-qty-row">
+        <div class="u-qty-ctrl">
+          <button class="u-qty-btn" id="u-qty-minus" aria-label="Decrease" disabled>−</button>
+          <span class="u-qty-val" id="u-qty-val">1</span>
+          <button class="u-qty-btn" id="u-qty-plus" aria-label="Increase">+</button>
+        </div>
+      </div>
+      <div class="u-atc-row" id="u-atc-wrap">
+        <button class="u-atc" id="u-atc-btn" aria-label="Add to cart">
+          🛒 <span id="u-atc-label">{{ section.settings.atc_text | default: 'Add to Cart' }} — {{ current_variant.price | money_without_trailing_zeros }}</span>
+        </button>
+      </div>
+
+      <!-- TRUST ICONS -->
+      {% assign trust_blocks = section.blocks | where: 'type', 'trust' %}
+      {% if trust_blocks.size > 0 %}
+      <div class="u-trust" role="list" aria-label="Trust signals">
+        {% for block in trust_blocks limit: 4 %}
+        <div class="u-ti" role="listitem" {{ block.shopify_attributes }}>
+          <div class="u-ti-icon">{{ block.settings.icon }}</div>
+          <div class="u-ti-txt">{{ block.settings.label }}</div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- HERO PRODUCT LINK -->
+      {%- if section.settings.hero_product_ref != blank -%}
+        {%- assign hero_prod = section.settings.hero_product_ref -%}
+        <a href="{{ hero_prod.url }}" class="u-hero-link">
+          <img class="u-hero-link-img" src="{{ hero_prod.featured_image | image_url: width: 120 }}" alt="{{ hero_prod.title | escape }}" width="56" height="56" loading="lazy">
+          <div class="u-hero-link-info">
+            <div class="u-hero-link-lbl">{{ section.settings.hero_link_label | default: 'Goes Great With' }}</div>
+            <div class="u-hero-link-name">{{ hero_prod.title }}</div>
+            <div class="u-hero-link-sub">{{ section.settings.hero_link_sub | default: 'See the main product →' }}</div>
+          </div>
+          <span class="u-hero-link-arrow">→</span>
+        </a>
+      {%- elsif section.settings.hero_product != blank -%}
+        <a href="/products/{{ section.settings.hero_product }}" class="u-hero-link">
+          <div class="u-hero-link-info">
+            <div class="u-hero-link-lbl">{{ section.settings.hero_link_label | default: 'Goes Great With' }}</div>
+            <div class="u-hero-link-name">{{ section.settings.hero_product | replace: '-', ' ' | capitalize }}</div>
+            <div class="u-hero-link-sub">{{ section.settings.hero_link_sub | default: 'See the main product →' }}</div>
+          </div>
+          <span class="u-hero-link-arrow">→</span>
+        </a>
+      {%- endif -%}
+
+      <!-- BUNDLE: ADD BOTH TO CART -->
+      {%- if section.settings.hero_product_ref != blank -%}
+        {%- assign bundle_hero = section.settings.hero_product_ref -%}
+        {%- if bundle_hero.available -%}
+        <div class="u-bundle">
+          <div class="u-bundle-lbl">{{ section.settings.bundle_label | default: '🔥 Popular Pairing' }}</div>
+          <div class="u-bundle-items">
+            <strong>{{ product.title | truncate: 30 }}</strong>
+            <span class="u-bundle-plus">+</span>
+            <strong>{{ bundle_hero.title | truncate: 30 }}</strong>
+          </div>
+          <button class="u-btn-bundle" id="u-btn-bundle"
+            data-current-id="{{ current_variant.id }}"
+            data-hero-id="{{ bundle_hero.selected_or_first_available_variant.id }}"
+            aria-label="Add both products to cart">
+            🛒 <span id="u-bundle-label">{{ section.settings.bundle_btn_text | default: 'Add Both to Cart' }} — {{ current_variant.price | plus: bundle_hero.selected_or_first_available_variant.price | money_without_trailing_zeros }}</span>
+          </button>
+          <p class="u-bundle-note">Save time — get the complete set in one click. Free UAE delivery.</p>
+        </div>
+        {%- endif -%}
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCT DESCRIPTION ═══ -->
+{%- if product.description != blank -%}
+<section class="u-sec">
+  <div class="u-wrap" style="max-width:720px">
+    <div style="font-size:15px;line-height:1.8;color:var(--text)">{{ product.description }}</div>
+  </div>
+</section>
+{%- endif -%}
+
+<!-- ═══ SECONDARY HERO PRODUCTS ═══ -->
+{%- if section.settings.hero_product_2_ref != blank or section.settings.hero_product_3_ref != blank -%}
+<section class="u-sec-heroes u-sec-alt" aria-labelledby="u-sh-title">
+  <div class="u-wrap">
+    <h2 class="u-h2 u-ctr" id="u-sh-title">{{ section.settings.secondary_heroes_title | default: 'Other Products Parents Love' }}</h2>
+    <div class="u-sh-grid">
+      {%- if section.settings.hero_product_2_ref != blank -%}
+        {%- assign sh2 = section.settings.hero_product_2_ref -%}
+        <div class="u-sh-card">
+          <a href="{{ sh2.url }}">
+            <img src="{{ sh2.featured_image | image_url: width: 400 }}"
+                 alt="{{ sh2.title | escape }} — popular kids product in UAE"
+                 width="400" height="400" loading="lazy" decoding="async">
+            <div class="u-sh-card-info">
+              <span class="u-sh-card-badge">⭐ Popular</span>
+              <h4>{{ sh2.title }}</h4>
+              <span class="u-sh-price">{{ sh2.price | money_without_trailing_zeros }}</span>
+              <span class="u-sh-cta">View Product →</span>
+            </div>
+          </a>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.hero_product_3_ref != blank -%}
+        {%- assign sh3 = section.settings.hero_product_3_ref -%}
+        <div class="u-sh-card">
+          <a href="{{ sh3.url }}">
+            <img src="{{ sh3.featured_image | image_url: width: 400 }}"
+                 alt="{{ sh3.title | escape }} — popular kids product in UAE"
+                 width="400" height="400" loading="lazy" decoding="async">
+            <div class="u-sh-card-info">
+              <span class="u-sh-card-badge">⭐ Popular</span>
+              <h4>{{ sh3.title }}</h4>
+              <span class="u-sh-price">{{ sh3.price | money_without_trailing_zeros }}</span>
+              <span class="u-sh-cta">View Product →</span>
+            </div>
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<!-- ═══ WHY THIS ACCESSORY (highlights) ═══ -->
+{% if highlight_blocks.size > 0 %}
+<section class="u-sec u-sec-alt" aria-labelledby="u-hl-title">
+  <div class="u-wrap">
+    {% if section.settings.hl_lbl != blank %}<div class="u-lbl u-ctr">{{ section.settings.hl_lbl }}</div>{% endif %}
+    <h2 class="u-h2 u-ctr" id="u-hl-title">{{ section.settings.hl_title | default: 'Why Add This to Your Order' }}</h2>
+    <p class="u-sub u-ctr" style="margin-bottom:36px">{{ section.settings.hl_sub }}</p>
+    <div class="u-hl-grid">
+      {% for block in highlight_blocks %}
+      <div class="u-hl-card" {{ block.shopify_attributes }}>
+        <div class="u-hl-card-icon">{{ block.settings.icon }}</div>
+        <div class="u-hl-card-title">{{ block.settings.title }}</div>
+        <div class="u-hl-card-desc">{{ block.settings.desc }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ FEATURES ═══ -->
+{% if feature_blocks.size > 0 %}
+<section class="u-sec" aria-labelledby="u-feat-title">
+  <div class="u-wrap">
+    {% if section.settings.feat_lbl != blank %}<div class="u-lbl u-ctr">{{ section.settings.feat_lbl }}</div>{% endif %}
+    <h2 class="u-h2 u-ctr" id="u-feat-title">{{ section.settings.feat_title | default: 'Product Features' }}</h2>
+    <p class="u-sub u-ctr" style="margin-bottom:36px">{{ section.settings.feat_sub }}</p>
+    <div class="u-feat-grid">
+      {% for block in feature_blocks %}
+      <div class="u-feat" {{ block.shopify_attributes }}>
+        <div class="u-fi">{{ block.settings.icon }}</div>
+        <div class="u-ft">{{ block.settings.title }}</div>
+        <div class="u-fd">{{ block.settings.desc }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ SPECS TABLE ═══ -->
+{%- assign spec_blocks = section.blocks | where: 'type', 'spec' -%}
+{%- if spec_blocks.size > 0 -%}
+<section class="u-sec" aria-labelledby="u-specs-title">
+  <div class="u-wrap">
+    <h2 class="u-h2 u-ctr" id="u-specs-title">{{ section.settings.specs_title | default: 'Product Specifications' }}</h2>
+    <div class="u-specs-grid">
+      {%- for block in spec_blocks -%}
+      <div class="u-spec-row" {{ block.shopify_attributes }}>
+        <div class="u-spec-name">{{ block.settings.spec_name }}</div>
+        <div class="u-spec-val">{{ block.settings.spec_value }}</div>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<!-- ═══ REVIEWS ═══ -->
+{% if review_blocks.size > 0 %}
+<section class="u-sec u-sec-alt" aria-labelledby="u-rev-title">
+  <div class="u-wrap">
+    {% if section.settings.rev_lbl != blank %}<div class="u-lbl u-ctr">{{ section.settings.rev_lbl }}</div>{% endif %}
+    <h2 class="u-h2 u-ctr" id="u-rev-title">{{ section.settings.rev_title | default: 'What Parents Say' }}</h2>
+    <div class="u-rev-grid" style="margin-top:24px">
+      {% for block in review_blocks %}
+      {%- assign stars = block.settings.stars | default: 5 -%}
+      <div class="u-rc" {{ block.shopify_attributes }}>
+        <div class="u-rstars" aria-label="{{ stars }} stars">
+          {%- for i in (1..5) -%}{%- if i <= stars -%}★{%- else -%}☆{%- endif -%}{%- endfor -%}
+        </div>
+        <p class="u-rtext">"{{ block.settings.text }}"</p>
+        <div class="u-rauth">
+          <div class="u-rav" style="background:{{ block.settings.avatar_color | default: '#1A3557' }}">{{ block.settings.name | slice: 0 }}</div>
+          <div>
+            <div class="u-rname">{{ block.settings.name }}</div>
+            <div class="u-rloc">{{ block.settings.location }}</div>
+          </div>
+          {% if block.settings.verified %}<div class="u-rvfy">✓ Verified</div>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ FAQ ═══ -->
+{% if faq_blocks.size > 0 %}
+<section class="u-sec" aria-labelledby="u-faq-title">
+  <div class="u-wrap">
+    {% if section.settings.faq_lbl != blank %}<div class="u-lbl u-ctr">{{ section.settings.faq_lbl }}</div>{% endif %}
+    <h2 class="u-h2 u-ctr" id="u-faq-title">{{ section.settings.faq_title | default: 'Frequently Asked Questions' }}</h2>
+    <div class="u-faq-list" style="margin-top:24px">
+      {% for block in faq_blocks %}
+      <div class="u-faq-item" {{ block.shopify_attributes }}>
+        <div class="u-faq-q" role="button" tabindex="0" aria-expanded="false">
+          {{ block.settings.question }}
+          <span class="u-faq-icon" aria-hidden="true">+</span>
+        </div>
+        <div class="u-faq-a">{{ block.settings.answer }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══ RELATED PRODUCTS ═══ -->
+{%- assign rel_collection = product.collections.first -%}
+{%- if rel_collection -%}
+<section class="u-related" aria-labelledby="u-rel-title">
+  <div class="u-wrap">
+    <h2 class="u-h2 u-ctr" id="u-rel-title">{{ section.settings.related_title | default: 'More from This Collection' }}</h2>
+    <div class="u-rel-grid">
+      {%- for related in rel_collection.products limit: 5 -%}
+        {%- if related.id != product.id -%}
+        <div class="u-rel-card">
+          <a href="{{ related.url }}">
+            <img src="{{ related.featured_image | image_url: width: 400 }}"
+                 alt="{{ related.title | escape }} — kids product UAE"
+                 width="400" height="400" loading="lazy" decoding="async">
+            <h4>{{ related.title }}</h4>
+            <span class="u-rel-price">{{ related.price | money_without_trailing_zeros }}</span>
+          </a>
+        </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="u-rel-viewall">
+      <a href="{{ rel_collection.url }}">View All {{ rel_collection.title }} →</a>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="u-fcta">
+  <div class="u-wrap">
+    <h2 class="u-h2">{{ section.settings.cta_title | default: 'Complete Your Set Today' }}</h2>
+    <p class="u-sub">{{ section.settings.cta_sub | default: 'Free next-day delivery. Cash on delivery. 14-day returns.' }}</p>
+    <button class="u-btn-final" id="u-btn-final">🛒 {{ section.settings.atc_text | default: 'Add to Cart' }} — {{ current_variant.price | money_without_trailing_zeros }}</button>
+    <div class="u-ftrust">
+      <span>📦 Free Delivery</span>
+      <span>💵 Cash on Delivery</span>
+      <span>🔄 14-Day Returns</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INTERNAL LINKS ═══ -->
+{%- assign ilink_blocks = section.blocks | where: 'type', 'internal_link' -%}
+{%- if ilink_blocks.size > 0 -%}
+<section class="u-sec u-ilinks" aria-labelledby="u-ilinks-title">
+  <div class="u-wrap">
+    <h2 class="u-h2 u-ctr" id="u-ilinks-title">{{ section.settings.ilinks_title | default: 'Shop More at TipTop360' }}</h2>
+    <nav class="u-ilinks-nav" aria-label="Related categories">
+      {%- for block in ilink_blocks -%}
+        {%- if block.settings.url != blank and block.settings.label != blank -%}
+        <a href="{{ block.settings.url }}" class="u-ilink-pill" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+  </div>
+</section>
+{%- endif -%}
+
+</div><!-- /#tt360-upsell -->
+
+<!-- STICKY MOBILE ATC -->
+<div id="tt360-upsell-sticky">
+  <button id="u-sticky-btn">🛒 Add to Cart — {{ current_variant.price | money_without_trailing_zeros }}</button>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="tt360-upsell-lb" aria-hidden="true">
+  <button id="tt360-upsell-lb-close" aria-label="Close">×</button>
+  <img src="" alt="">
+</div>
+
+<!-- ═══ JAVASCRIPT ═══ -->
+<script>
+(function(){
+  var product = {{ product | json }};
+  var variants = product.variants;
+  var currentVariant = variants.find(function(v){return v.id === {{ current_variant.id }};}) || variants[0];
+  var qty = 1;
+
+  /* Thumbnail gallery */
+  var thumbs = document.querySelectorAll('#tt360-upsell .u-thumb');
+  var mainImg = document.getElementById('u-main-img');
+  thumbs.forEach(function(t){
+    t.addEventListener('click',function(){
+      thumbs.forEach(function(x){x.classList.remove('active')});
+      t.classList.add('active');
+      if(mainImg){
+        mainImg.src = t.dataset.src;
+        mainImg.srcset = t.dataset.srcset || '';
+        mainImg.alt = t.dataset.alt || '';
+      }
+    });
+  });
+
+  /* Lightbox */
+  if(mainImg){
+    mainImg.addEventListener('click',function(){
+      var lb = document.getElementById('tt360-upsell-lb');
+      var lbImg = lb.querySelector('img');
+      lbImg.src = mainImg.src;
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+    });
+  }
+  var lbClose = document.getElementById('tt360-upsell-lb-close');
+  var lb = document.getElementById('tt360-upsell-lb');
+  if(lbClose) lbClose.addEventListener('click',function(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');});
+  if(lb) lb.addEventListener('click',function(e){if(e.target===lb){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');}});
+
+  /* Variant pills */
+  var pillGroups = document.querySelectorAll('#tt360-upsell .u-size-pills');
+  pillGroups.forEach(function(group){
+    var pills = group.querySelectorAll('.u-size-pill');
+    pills.forEach(function(pill){
+      pill.addEventListener('click',function(){
+        pills.forEach(function(p){p.classList.remove('active')});
+        pill.classList.add('active');
+        var idx = parseInt(group.dataset.optionIndex);
+        var chosenEl = document.getElementById('u-chosen-'+idx);
+        if(chosenEl) chosenEl.textContent = pill.dataset.value;
+        selectVariant();
+      });
+    });
+  });
+
+  function selectVariant(){
+    var selected = [];
+    pillGroups.forEach(function(g){
+      var active = g.querySelector('.u-size-pill.active');
+      if(active) selected.push(active.dataset.value);
+    });
+    var match = variants.find(function(v){
+      for(var i=0;i<selected.length;i++){
+        if(v.options[i] !== selected[i]) return false;
+      }
+      return true;
+    });
+    if(match){
+      currentVariant = match;
+      updatePrice();
+    }
+  }
+
+  function updatePrice(){
+    var priceNow = document.querySelector('#tt360-upsell .u-price-now');
+    if(priceNow) priceNow.textContent = formatMoney(currentVariant.price);
+    var atcLabel = document.getElementById('u-atc-label');
+    if(atcLabel) atcLabel.textContent = '{{ section.settings.atc_text | default: "Add to Cart" }} — ' + formatMoney(currentVariant.price * qty);
+    var stickyBtn = document.getElementById('u-sticky-btn');
+    if(stickyBtn) stickyBtn.textContent = '🛒 Add to Cart — ' + formatMoney(currentVariant.price * qty);
+    var finalBtn = document.getElementById('u-btn-final');
+    if(finalBtn) finalBtn.textContent = '🛒 {{ section.settings.atc_text | default: "Add to Cart" }} — ' + formatMoney(currentVariant.price * qty);
+  }
+
+  function formatMoney(cents){
+    return 'Dhs. ' + (cents/100).toFixed(cents%100===0?0:2);
+  }
+
+  /* QTY */
+  var minusBtn = document.getElementById('u-qty-minus');
+  var plusBtn = document.getElementById('u-qty-plus');
+  var qtyVal = document.getElementById('u-qty-val');
+  if(plusBtn) plusBtn.addEventListener('click',function(){if(qty<10){qty++;qtyVal.textContent=qty;minusBtn.disabled=false;updatePrice();}});
+  if(minusBtn) minusBtn.addEventListener('click',function(){if(qty>1){qty--;qtyVal.textContent=qty;if(qty===1)minusBtn.disabled=true;updatePrice();}});
+
+  /* ATC */
+  function addToCart(btn){
+    if(!currentVariant||!currentVariant.available)return;
+    btn.classList.add('loading');
+    fetch('/cart/add.js',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({items:[{id:currentVariant.id,quantity:qty}]})
+    }).then(function(r){return r.json()}).then(function(){
+      btn.classList.remove('loading');
+      btn.classList.add('done');
+      showToast('✓ Added to cart!');
+      setTimeout(function(){btn.classList.remove('done')},2000);
+      /* Open cart drawer if available */
+      if(window.tt360OpenDrawer) window.tt360OpenDrawer();
+    }).catch(function(){
+      btn.classList.remove('loading');
+      showToast('Error — please try again');
+    });
+  }
+
+  var atcBtn = document.getElementById('u-atc-btn');
+  if(atcBtn) atcBtn.addEventListener('click',function(){addToCart(atcBtn)});
+  var stickyBtn2 = document.getElementById('u-sticky-btn');
+  if(stickyBtn2) stickyBtn2.addEventListener('click',function(){addToCart(stickyBtn2)});
+  var finalBtn2 = document.getElementById('u-btn-final');
+  if(finalBtn2) finalBtn2.addEventListener('click',function(){addToCart(finalBtn2)});
+
+  /* Toast */
+  function showToast(msg){
+    var t=document.getElementById('tt360-upsell-toast');
+    if(!t)return;t.textContent=msg;t.classList.add('show');
+    setTimeout(function(){t.classList.remove('show')},2800);
+  }
+
+  /* Bundle ATC */
+  var bundleBtn = document.getElementById('u-btn-bundle');
+  if(bundleBtn){
+    bundleBtn.addEventListener('click',function(){
+      bundleBtn.classList.add('loading');
+      var cid = parseInt(bundleBtn.dataset.currentId);
+      var hid = parseInt(bundleBtn.dataset.heroId);
+      fetch('/cart/add.js',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({items:[{id:cid,quantity:1},{id:hid,quantity:1}]})
+      }).then(function(r){return r.json()}).then(function(){
+        bundleBtn.classList.remove('loading');
+        bundleBtn.classList.add('done');
+        showToast('✓ Both items added to cart!');
+        setTimeout(function(){bundleBtn.classList.remove('done')},2000);
+        if(window.tt360OpenDrawer) window.tt360OpenDrawer();
+      }).catch(function(){
+        bundleBtn.classList.remove('loading');
+        showToast('Error — please try again');
+      });
+    });
+  }
+
+  /* FAQ accordion */
+  document.querySelectorAll('#tt360-upsell .u-faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var item=q.parentElement;
+      var isOpen=item.classList.contains('open');
+      document.querySelectorAll('#tt360-upsell .u-faq-item').forEach(function(x){x.classList.remove('open')});
+      if(!isOpen)item.classList.add('open');
+      q.setAttribute('aria-expanded',(!isOpen).toString());
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "TT360 Upsell Product",
+  "tag": "section",
+  "class": "tt360-upsell-section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    { "type": "header", "content": "SEO & Metadata" },
+    { "type": "text", "id": "seo_h1", "label": "Custom H1 (blank = product title)", "info": "Override the product title for SEO" },
+    { "type": "text", "id": "hero_alt", "label": "Hero Image Alt Text Override" },
+    { "type": "text", "id": "collection_handle", "label": "Breadcrumb Collection Handle", "default": "kids-collection-uae" },
+    { "type": "text", "id": "collection_name", "label": "Breadcrumb Collection Name", "default": "Kids Collection" },
+
+    { "type": "header", "content": "Hero Product Link" },
+    { "type": "product", "id": "hero_product_ref", "label": "Hero Product (picker)" },
+    { "type": "text", "id": "hero_product", "label": "Hero Product Handle (fallback)", "info": "Used if picker is empty — e.g. kids-drawing-robot" },
+    { "type": "text", "id": "hero_link_label", "label": "Link Label", "default": "Goes Great With" },
+    { "type": "text", "id": "hero_link_sub", "label": "Link Subtitle", "default": "See the main product →" },
+
+    { "type": "header", "content": "Secondary Hero Products" },
+    { "type": "product", "id": "hero_product_2_ref", "label": "Secondary Hero Product 2" },
+    { "type": "product", "id": "hero_product_3_ref", "label": "Secondary Hero Product 3" },
+    { "type": "text", "id": "secondary_heroes_title", "label": "Section Heading", "default": "Other Products Parents Love" },
+
+    { "type": "header", "content": "Bundle (Add Both)" },
+    { "type": "text", "id": "bundle_label", "label": "Bundle Badge Text", "default": "🔥 Popular Pairing" },
+    { "type": "text", "id": "bundle_btn_text", "label": "Bundle Button Text", "default": "Add Both to Cart" },
+
+    { "type": "header", "content": "Rating & Social Proof" },
+    { "type": "text", "id": "rating_value", "label": "Rating Value", "default": "4.8" },
+    { "type": "text", "id": "review_count", "label": "Review Count", "default": "50" },
+
+    { "type": "header", "content": "Add to Cart" },
+    { "type": "text", "id": "atc_text", "label": "ATC Button Text", "default": "Add to Cart" },
+
+    { "type": "header", "content": "Highlights Section" },
+    { "type": "text", "id": "hl_lbl", "label": "Section Label" },
+    { "type": "text", "id": "hl_title", "label": "Heading", "default": "Why Add This to Your Order" },
+    { "type": "textarea", "id": "hl_sub", "label": "Subheading" },
+
+    { "type": "header", "content": "Features Section" },
+    { "type": "text", "id": "feat_lbl", "label": "Section Label" },
+    { "type": "text", "id": "feat_title", "label": "Heading", "default": "Product Features" },
+    { "type": "textarea", "id": "feat_sub", "label": "Subheading" },
+
+    { "type": "header", "content": "Reviews Section" },
+    { "type": "text", "id": "rev_lbl", "label": "Section Label" },
+    { "type": "text", "id": "rev_title", "label": "Heading", "default": "What Parents Say" },
+
+    { "type": "header", "content": "FAQ Section" },
+    { "type": "text", "id": "faq_lbl", "label": "Section Label" },
+    { "type": "text", "id": "faq_title", "label": "Heading", "default": "Frequently Asked Questions" },
+
+    { "type": "header", "content": "Final CTA" },
+    { "type": "text", "id": "cta_title", "label": "CTA Heading", "default": "Complete Your Set Today" },
+    { "type": "textarea", "id": "cta_sub", "label": "CTA Subheading", "default": "Free next-day delivery. Cash on delivery. 14-day returns." },
+
+    { "type": "header", "content": "Specifications Section" },
+    { "type": "text", "id": "specs_title", "label": "Heading", "default": "Product Specifications" },
+
+    { "type": "header", "content": "Related Products" },
+    { "type": "text", "id": "related_title", "label": "Heading", "default": "More from This Collection" },
+
+    { "type": "header", "content": "Internal Links" },
+    { "type": "text", "id": "ilinks_title", "label": "Section Heading", "default": "Shop More at TipTop360" }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Badge Text", "default": "✅ Non-Toxic" },
+        { "type": "select", "id": "style", "label": "Style", "options": [
+          { "value": "green", "label": "Green" },
+          { "value": "orange", "label": "Orange" },
+          { "value": "navy", "label": "Navy" }
+        ], "default": "green" }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "Trust Icon",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "📦" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Free Delivery" }
+      ]
+    },
+    {
+      "type": "highlight",
+      "name": "Highlight Card",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "🎨" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Key Benefit" },
+        { "type": "textarea", "id": "desc", "label": "Description", "default": "Why this matters for your child." }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Feature Card",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji Icon", "default": "⭐" },
+        { "type": "text", "id": "title", "label": "Feature Title", "default": "Feature Name" },
+        { "type": "textarea", "id": "desc", "label": "Description", "default": "Short benefit description." }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Customer Review",
+      "settings": [
+        { "type": "range", "id": "stars", "label": "Star Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Review Text", "default": "Great addition to our order!" },
+        { "type": "text", "id": "name", "label": "Reviewer Name", "default": "Fatima A." },
+        { "type": "text", "id": "location", "label": "City · Product", "default": "Dubai" },
+        { "type": "color", "id": "avatar_color", "label": "Avatar Colour", "default": "#1A3557" },
+        { "type": "checkbox", "id": "verified", "label": "Show Verified Badge", "default": true }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Is this safe for kids?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Yes, all TipTop360 products meet UAE safety standards.</p>" }
+      ]
+    },
+    {
+      "type": "spec",
+      "name": "Product Spec (Schema)",
+      "settings": [
+        { "type": "text", "id": "spec_name", "label": "Spec Name", "default": "Material" },
+        { "type": "text", "id": "spec_value", "label": "Spec Value", "default": "Non-Toxic" }
+      ]
+    },
+    {
+      "type": "internal_link",
+      "name": "Internal Link Pill",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Link Label", "default": "Kids Art Supplies UAE" },
+        { "type": "url", "id": "url", "label": "Link URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TT360 Upsell Product",
+      "blocks": [
+        { "type": "badge", "settings": { "text": "✅ Non-Toxic & Safe", "style": "green" } },
+        { "type": "badge", "settings": { "text": "🎯 Perfect Add-On", "style": "orange" } },
+        { "type": "trust", "settings": { "icon": "📦", "label": "Free Next Day" } },
+        { "type": "trust", "settings": { "icon": "💵", "label": "Cash on Delivery" } },
+        { "type": "trust", "settings": { "icon": "🔄", "label": "14-Day Returns" } },
+        { "type": "trust", "settings": { "icon": "🔒", "label": "Secure Checkout" } },
+        { "type": "highlight", "settings": { "icon": "🛡️", "title": "UAE Safety Certified", "desc": "Non-toxic, child-safe materials tested for UAE compliance." } },
+        { "type": "highlight", "settings": { "icon": "🎁", "title": "Perfect Bundle Add-On", "desc": "Designed to complement our hero products for a complete set." } },
+        { "type": "highlight", "settings": { "icon": "💰", "title": "Great Value", "desc": "Affordable essential that extends the life of your main purchase." } },
+        { "type": "faq", "settings": { "question": "Is this product safe for young children?", "answer": "<p>Yes — all TipTop360 products are Dubai Municipality approved and made with non-toxic, child-safe materials.</p>" } },
+        { "type": "faq", "settings": { "question": "How fast is delivery in the UAE?", "answer": "<p>Free next-day delivery to all 7 UAE emirates. Cash on delivery available everywhere.</p>" } },
+        { "type": "faq", "settings": { "question": "Can I return this if not satisfied?", "answer": "<p>Absolutely. We offer a 14-day hassle-free return policy with free return shipping.</p>" } },
+        { "type": "internal_link", "settings": { "label": "Kids Art Supplies UAE" } },
+        { "type": "internal_link", "settings": { "label": "STEM Toys Dubai" } },
+        { "type": "internal_link", "settings": { "label": "Kids Dental Care" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

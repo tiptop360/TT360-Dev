@@ -1,0 +1,244 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360_upsell_body": {
+      "type": "tt360-upsell-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": { "text": "✅ Non-Toxic Certified", "style": "green" }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": { "text": "🎯 Perfect Add-On", "style": "orange" }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": { "icon": "📦", "label": "Free Next Day" }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": { "icon": "💵", "label": "Cash on Delivery" }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": { "icon": "🔄", "label": "14-Day Returns" }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": { "icon": "🔒", "label": "Secure Checkout" }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Certified Non-Toxic",
+            "desc": "Safe for children ages 3+. No harmful chemicals — tested and compliant with international child safety standards."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "💪",
+            "title": "Break-Resistant Cores",
+            "desc": "Strong pigment cores resist snapping under pressure. Built to survive enthusiastic young artists."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🎨",
+            "title": "Smooth Colour Laydown",
+            "desc": "Rich pigment formula glides on paper. Blendable colours for shading and layering techniques."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🌈",
+            "title": "12 Vibrant Colours",
+            "desc": "Full spectrum from primary to earth tones — covers every school project and creative need."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🤖",
+            "title": "Robot Art Companion",
+            "desc": "Use alongside the STEM Drawing Robot for detail work on robot-drawn outlines."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "✏️",
+            "title": "Built-In Sharpener",
+            "desc": "Includes a sharpener in the case — always ready, no searching for supplies."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "📚",
+            "title": "School Ready",
+            "desc": "Perfect for homework, art class, and school projects. Compact case fits in any school bag."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "💰",
+            "title": "AED 15 — Best Value",
+            "desc": "Premium quality at the lowest add-on price point. Stock up for siblings or classrooms."
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": { "spec_name": "Colours", "spec_value": "12 Vibrant Shades" }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": { "spec_name": "Core Type", "spec_value": "Break-Resistant Pigment" }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": { "spec_name": "Safety", "spec_value": "Non-Toxic Certified" }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": { "spec_name": "Recommended Age", "spec_value": "3+ Years" }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": { "spec_name": "Includes", "spec_value": "12 Pencils + Sharpener" }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Great school pencils at an amazing price. My daughter uses them daily and they haven't broken once. The colours are vibrant and the sharpener is a nice bonus.",
+            "name": "Aisha T.",
+            "location": "Dubai · Color Pencils",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Bought 3 sets — one for each child. They use them with the Drawing Robot to colour in the outlines. Smooth, vibrant, and truly non-toxic.",
+            "name": "Youssef B.",
+            "location": "Abu Dhabi · Color Pencils",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "text": "Good quality for the price. Colours blend well and the cores don't snap. My 5-year-old presses hard and they hold up. Fast delivery to Ajman.",
+            "name": "Reem A.",
+            "location": "Ajman · Color Pencils",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Are these pencils truly non-toxic?",
+            "answer": "<p>Yes. These colour pencils are certified non-toxic and comply with international child safety standards. Safe for children ages 3 and above — no harmful chemicals in the pigments or wood casing.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Will the cores break easily under pressure?",
+            "answer": "<p>No. The pencils feature break-resistant pigment cores designed to handle the pressure of young children who press hard. They are significantly more durable than standard colour pencils.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Do these work with the STEM Drawing Robot?",
+            "answer": "<p>They complement the Drawing Robot perfectly. Children use the pencils to shade and colour robot-drawn outlines, adding detail and depth to their STEM art projects.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How many colours are in the set?",
+            "answer": "<p>The set includes 12 vibrant colours covering the full spectrum — from primary colours to earth tones. A built-in sharpener is included in the storage case.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to all UAE emirates?",
+            "answer": "<p>Free next-day delivery to all 7 emirates — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available everywhere.</p>"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": { "label": "Kids Collection UAE", "url": "/collections/kids-collection-uae" }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": { "label": "STEM Drawing Robot", "url": "/products/kids-drawing-robot" }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": { "label": "Washable Markers", "url": "/products/kids-dual-tip-markers-uae" }
+        }
+      },
+      "block_order": [
+        "badge_1", "badge_2",
+        "trust_1", "trust_2", "trust_3", "trust_4",
+        "hl_1", "hl_2", "hl_3",
+        "feat_1", "feat_2", "feat_3", "feat_4", "feat_5",
+        "spec_1", "spec_2", "spec_3", "spec_4", "spec_5",
+        "rev_1", "rev_2", "rev_3",
+        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5",
+        "ilink_1", "ilink_2", "ilink_3"
+      ],
+      "settings": {
+        "seo_h1": "Non-Toxic Kids Colour Pencils — 12 Break-Resistant Colours Ages 3+",
+        "hero_alt": "Non-toxic kids colour pencils 12 vibrant colours with break-resistant cores for school and creative play UAE — TipTop360",
+        "collection_handle": "problem-solving-products-uae",
+        "collection_name": "Problem Solving Products",
+        "hero_product": "kids-drawing-robot",
+        "hero_link_label": "Goes Great With",
+        "hero_link_sub": "See the STEM Drawing Robot →",
+        "rating_value": "4.7",
+        "review_count": "30",
+        "atc_text": "Add to Cart",
+        "hl_lbl": "Why Parents Choose These",
+        "hl_title": "3 Reasons These Pencils Stand Out",
+        "hl_sub": "Non-toxic, break-resistant, and smooth enough for young artists to love.",
+        "feat_lbl": "Built for Young Artists",
+        "feat_title": "Pencil Features",
+        "feat_sub": "School-ready colour pencils that parents trust and kids enjoy.",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "cta_title": "Add Colour to Your Order",
+        "cta_sub": "AED 15 — free next-day delivery. Cash on delivery. 14-day returns.",
+        "specs_title": "Product Specifications",
+        "related_title": "More Problem Solving Products",
+        "ilinks_title": "Explore More at TipTop360"
+      }
+    }
+  },
+  "order": ["tt360_upsell_body"]
+}

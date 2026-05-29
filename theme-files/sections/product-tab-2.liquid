@@ -123,7 +123,7 @@
                                   <div class="position-absolute p-tab2--text {{ positiontxt }} w-100 d-flex" 
                                     style="--tab-opacity:{{ opacity_bgbox | divided_by: 100.0 }}; --tab-overlay:{{ bg_overlay.red }}, {{ bg_overlay.green }}, {{ bg_overlay.blue }};">
                                       <div>
-                                        <h3><a href="{{ collection.url }}" style="color:{{ block.settings.colortabimage }}">{{ block.settings.title }}</a></h4>
+                                        <h3><a href="{{ collection.url }}" style="color:{{ block.settings.colortabimage }}">{{ block.settings.title }}</a></h3>
                                         <a href="{{ collection.url }}" style="color:{{ block.settings.colortabimage }}">{{ collection.products_count | default: 0 }} {{ collection.products_count | pluralize: 'product', 'products' }}</a>
                                         {%- if block.settings.button != blank -%}
                                           <div class="mt-3">

@@ -1,4 +1,4 @@
-{%- comment -%} TipTop360 — Mobile UX overhaul + desktop swiper sizing {%- endcomment -%}
+{%- comment -%} TipTop360 — Mobile readability & UX fixes {%- endcomment -%}
 <style>
 /* =========================================
    DESKTOP — swiper image sizing
@@ -29,70 +29,23 @@
 }
 
 /* =========================================
-   MOBILE UX OVERHAUL (≤768px)
+   MOBILE READABILITY (≤768px)
+   Optimal sizes: body 17px, descriptions 16px,
+   labels 14px+, buttons 17-18px, badges 13px+
    ========================================= */
 @media (max-width: 768px) {
-  
-  /* === KILL HORIZONTAL SCROLL (safe, targeted) === */
+
+  /* === KILL HORIZONTAL SCROLL === */
   html, body {
     overflow-x: clip !important;
     max-width: 100vw !important;
   }
-  /* Target overflow-prone elements (not universal *) */
   .container, .wrapper, section, header, footer, main {
     max-width: 100% !important;
   }
-  /* Images can never overflow */
   img, video, iframe { max-width: 100% !important; height: auto !important; }
-  /* Tables get horizontal scroll instead of breaking layout */
   table { display: block !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; max-width: 100% !important; }
-  
-  /* === TYPOGRAPHY (readable) === */
-  body, p, li { font-size: 16px !important; line-height: 1.6 !important; }
-  
-  /* Headings */
-  .product-single__title, h1.product__title, h1 { font-size: 24px !important; line-height: 1.25 !important; font-weight: 700 !important; }
-  h2 { font-size: 22px !important; line-height: 1.3 !important; }
-  h3 { font-size: 19px !important; line-height: 1.3 !important; }
-  
-  /* Bump tiny text (no <14px on body content) */
-  [style*="font-size: 10px"], [style*="font-size:10px"],
-  [style*="font-size: 11px"], [style*="font-size:11px"] { font-size: 13px !important; }
-  [style*="font-size: 12px"], [style*="font-size:12px"] { font-size: 14px !important; }
-  
-  /* === PRODUCT PAGE CRITICAL === */
-  .product-single__price { font-size: 24px !important; font-weight: 700 !important; }
-  .product-form__cart-submit {
-    font-size: 17px !important;
-    min-height: 56px !important;
-    font-weight: 700 !important;
-    border-radius: 10px !important;
-    letter-spacing: 0.02em !important;
-  }
-  
-  /* === PRODUCT CARDS (collection + home) === */
-  .product-card__title { font-size: 14px !important; line-height: 1.35 !important; min-height: 38px !important; }
-  .product-card__price { font-size: 16px !important; font-weight: 700 !important; }
-  .product-card__rating { font-size: 12px !important; }
-  
-  /* === CRO BLOCKS === */
-  .cro-rating-badge { font-size: 15px !important; }
-  .cro-trust-band { font-size: 13px !important; padding: 12px !important; gap: 8px !important; }
-  .cro-trust-band > div { gap: 6px !important; }
-  .cro-risk-reversal { font-size: 13px !important; padding: 14px !important; }
-  .cro-comparison { padding: 14px 8px !important; margin: 24px -4px !important; border-radius: 8px !important; }
-  .cro-comparison h3 { font-size: 18px !important; text-align: center !important; }
-  .cro-comparison table { min-width: 360px !important; font-size: 12px !important; }
-  .cro-comparison th, .cro-comparison td { padding: 8px 5px !important; }
-  .cro-fbt { padding: 14px !important; margin: 24px -4px !important; border-radius: 8px !important; }
-  .cro-fbt h3 { font-size: 18px !important; text-align: center !important; }
-  .cro-fbt > div:nth-child(2) > div { min-width: 80px !important; max-width: 110px !important; }
-  
-  /* === TAP TARGETS (Apple HIG: 44px+, ours: 48px) === */
-  button, a.btn, .btn, [role="button"], input[type="submit"] {
-    min-height: 48px !important;
-  }
-  
+
   /* === FORMS — prevent iOS zoom-on-focus === */
   input[type="text"],
   input[type="email"],
@@ -106,7 +59,7 @@
     padding: 12px !important;
     border-radius: 8px !important;
   }
-  
+
   /* === SWIPER ON MOBILE === */
   section[class*="product-list"] .swiper-slide,
   .product-list-swiper .swiper-slide {
@@ -116,16 +69,13 @@
     max-width: 100% !important;
     height: auto !important;
   }
-  
-  /* === IMAGES — sharper on mobile === */
+
+  /* === PRODUCT IMAGES === */
   .product-single__photos img { border-radius: 8px !important; }
-  
+
   /* === SAFE EDGE SPACING === */
   .container, .wrapper { padding-left: 16px !important; padding-right: 16px !important; }
-  
-  /* === REDUCE EXCESSIVE PADDING === */
-  section { padding-top: 24px !important; padding-bottom: 24px !important; }
-  
+
   /* === STICKY ATC IMPROVEMENTS === */
   .sticky-atc, [class*="sticky"][class*="cart"] {
     backdrop-filter: blur(10px) !important;
@@ -133,25 +83,148 @@
     background: rgba(255,255,255,0.95) !important;
     box-shadow: 0 -2px 12px rgba(0,0,0,0.08) !important;
   }
-  
-  /* === BETTER VARIANT SELECTOR === */
+
+  /* === VARIANT SELECTOR === */
   .variant-selector, [class*="variant-input"] {
     margin-bottom: 12px !important;
   }
-  
-  /* === REVIEW WIDGET === */
-  .jdgm-rev, [class*="judge-me"] { font-size: 14px !important; }
+
+  /* ─── AIVOX PDP — MOBILE FONT BUMPS ─── */
+  .aivox-topbar { font-size: 14px !important; padding: 11px 14px !important; }
+  .aivox-crumb { font-size: 14px !important; }
+  .aivox-cat { font-size: 14px !important; }
+  .aivox-title { font-size: 32px !important; line-height: 1.2 !important; }
+  .aivox-stars { font-size: 17px !important; }
+  .aivox-rtxt { font-size: 16px !important; }
+  .aivox-sold { font-size: 14px !important; }
+  .aivox-price-main { font-size: 42px !important; }
+  .aivox-price-was { font-size: 18px !important; }
+  .aivox-price-save { font-size: 15px !important; }
+  .aivox-deal-lbl { font-size: 13px !important; }
+  .aivox-deal-h { font-size: 24px !important; }
+  .aivox-deal-pt { font-size: 16px !important; line-height: 1.6 !important; }
+  .aivox-stock { font-size: 16px !important; }
+  .aivox-btn-cart { font-size: 18px !important; padding: 18px !important; font-weight: 700 !important; }
+  .aivox-btn-cod { font-size: 18px !important; padding: 18px !important; font-weight: 700 !important; }
+  .aivox-btn-wa { font-size: 16px !important; padding: 15px !important; }
+  .aivox-secure { font-size: 14px !important; }
+  .aivox-pill { font-size: 14px !important; padding: 10px 16px !important; }
+  .aivox-sec-lbl { font-size: 13px !important; }
+  .aivox-snum { font-size: 34px !important; }
+  .aivox-sunit { font-size: 16px !important; }
+  .aivox-slbl { font-size: 14px !important; }
+  .aivox-sk { font-size: 15px !important; }
+  .aivox-sv { font-size: 15px !important; }
+  .aivox-fhead { font-size: 17px !important; }
+  .aivox-fbody { font-size: 16px !important; line-height: 1.65 !important; }
+  .aivox-gh { font-size: 22px !important; }
+  .aivox-gd { font-size: 15px !important; line-height: 1.6 !important; }
+  .aivox-rv-big { font-size: 56px !important; }
+  .aivox-rv-stars { font-size: 18px !important; }
+  .aivox-rv-sub { font-size: 14px !important; }
+  .aivox-rvs { font-size: 16px !important; }
+  .aivox-rvt { font-size: 16px !important; line-height: 1.75 !important; }
+  .aivox-rvn { font-size: 15px !important; }
+  .aivox-rvl { font-size: 14px !important; }
+  .aivox-rvv { font-size: 13px !important; }
+  .aivox-faq-q { font-size: 17px !important; }
+  .aivox-faq-a { font-size: 16px !important; line-height: 1.7 !important; }
+  .aivox-faq-ic { font-size: 18px !important; }
+  .aivox-ctr { font-size: 14px !important; }
+  .aivox-spec-row { padding: 13px 16px !important; }
+
+  /* ─── CRO BLOCKS ─── */
+  .cro-rating-badge { font-size: 17px !important; }
+  .cro-trust-band { font-size: 16px !important; padding: 16px !important; gap: 10px !important; }
+  .cro-trust-band > div { gap: 8px !important; }
+  .cro-risk-reversal { font-size: 16px !important; padding: 16px !important; line-height: 1.6 !important; }
+  .cro-comparison { padding: 16px 10px !important; margin: 24px -4px !important; border-radius: 8px !important; }
+  .cro-comparison h3 { font-size: 22px !important; text-align: center !important; }
+  .cro-comparison table { min-width: 360px !important; font-size: 15px !important; }
+  .cro-comparison th, .cro-comparison td { padding: 11px 7px !important; }
+  .cro-fbt { padding: 16px !important; margin: 24px -4px !important; border-radius: 8px !important; }
+  .cro-fbt h3 { font-size: 22px !important; text-align: center !important; }
+  .cro-fbt > div:nth-child(2) > div { min-width: 80px !important; max-width: 110px !important; }
+
+  /* ─── PRODUCT CARDS ─── */
+  .product-card__title { font-size: 16px !important; line-height: 1.4 !important; }
+  .product-card__price { font-size: 18px !important; font-weight: 700 !important; }
+  .product-card__rating { font-size: 15px !important; }
+
+  /* ─── REVIEW WIDGET ─── */
+  .jdgm-rev, [class*="judge-me"] { font-size: 16px !important; }
+
+  /* ─── GYMBAG PDP — MOBILE FONT BUMPS ─── */
+  .gb-crumb { font-size: 14px !important; }
+  .gb-tick { font-size: 14px !important; }
+  .gb-ctr { font-size: 14px !important; }
+  .gb-cat { font-size: 14px !important; }
+  .gb-sub { font-size: 16px !important; line-height: 1.65 !important; }
+  .gb-sold { font-size: 14px !important; }
+  .gb-price-note { font-size: 14px !important; }
+  .gb-color-lbl { font-size: 14px !important; }
+  .gb-variant-stock { font-size: 13px !important; }
+  .gb-mag-lbl { font-size: 13px !important; }
+  .gb-mag-desc { font-size: 14px !important; }
+  .gb-stock { font-size: 16px !important; }
+  .gb-btn-buy { font-size: 19px !important; padding: 18px !important; }
+  .gb-btn-cod { font-size: 18px !important; padding: 17px !important; }
+  .gb-btn-wa { font-size: 16px !important; padding: 15px !important; }
+  .gb-secure { font-size: 14px !important; }
+  .gb-fhead { font-size: 17px !important; }
+  .gb-fbody { font-size: 16px !important; line-height: 1.65 !important; }
+  .gb-sk { font-size: 15px !important; }
+  .gb-sv { font-size: 15px !important; }
+  .gb-faq-q { font-size: 17px !important; }
+  .gb-faq-a { font-size: 16px !important; }
+
+  /* ─── HOMEPAGE BODY — MOBILE FONT BUMPS ─── */
+  #tt360-body .t360-bar { font-size: 14px !important; }
+  #tt360-body .t360-sub { font-size: 17px !important; line-height: 1.65 !important; }
+  #tt360-body .t360-btn-p { font-size: 16px !important; padding: 16px 28px !important; }
+  #tt360-body .t360-hd-disc { font-size: 14px !important; }
+  #tt360-body .t360-hd-best { font-size: 13px !important; }
+  #tt360-body .t360-hcard-name { font-size: 17px !important; }
+  #tt360-body .t360-hcard-stars span { font-size: 14px !important; }
+  #tt360-body .t360-sec-sub { font-size: 16px !important; line-height: 1.65 !important; }
+  #tt360-body .t360-lbl { font-size: 13px !important; }
+  #tt360-body .t360-pname { font-size: 16px !important; }
+  #tt360-body .t360-b-sale { font-size: 14px !important; }
+  #tt360-body .t360-b-best { font-size: 13px !important; }
+  #tt360-body .t360-pstars span { font-size: 14px !important; }
+  #tt360-body .t360-pm { font-size: 20px !important; }
+  #tt360-body .t360-var-lbl { font-size: 14px !important; }
+  #tt360-body .t360-vbtn { font-size: 14px !important; padding: 6px 12px !important; }
+  #tt360-body .t360-ti small { font-size: 14px !important; }
+  #tt360-body .t360-av { font-size: 11px !important; }
+
+  /* ─── THEME DEFAULT PDP ─── */
+  .product-single__title { font-size: 26px !important; line-height: 1.25 !important; }
+  .product-single__price { font-size: 26px !important; font-weight: 700 !important; }
+  .product-form__cart-submit { font-size: 18px !important; min-height: 56px !important; font-weight: 700 !important; }
+
+  /* ─── GLOBAL — FLOOR TINY TEXT EVERYWHERE ─── */
+  .announcement-bar-slide { font-size: 14px !important; }
+
+  /* ─── TAP TARGETS ─── */
+  button, a.btn, .btn, [role="button"], input[type="submit"] {
+    min-height: 48px !important;
+  }
 }
 
 /* =========================================
    SMALL PHONES (≤380px iPhone SE)
    ========================================= */
 @media (max-width: 380px) {
-  body, p, li { font-size: 15px !important; }
-  .product-single__title, h1.product__title { font-size: 22px !important; }
-  .cro-comparison table { min-width: 320px !important; font-size: 11px !important; }
-  .cro-comparison th, .cro-comparison td { padding: 6px 4px !important; }
-  .product-form__cart-submit { font-size: 16px !important; }
+  .aivox-title { font-size: 28px !important; }
+  .aivox-price-main { font-size: 38px !important; }
+  .aivox-btn-cart { font-size: 17px !important; }
+  .aivox-btn-cod { font-size: 17px !important; }
+  .gb-btn-buy { font-size: 17px !important; }
+  .gb-btn-cod { font-size: 16px !important; }
+  .product-form__cart-submit { font-size: 17px !important; }
+  .cro-comparison table { min-width: 320px !important; font-size: 14px !important; }
+  .cro-comparison th, .cro-comparison td { padding: 9px 5px !important; }
 }
 
 /* =========================================
@@ -162,5 +235,36 @@
     outline: 2px solid #12395e !important;
     outline-offset: 2px !important;
   }
+}
+
+/* =========================================
+   BEST PRACTICES — deprecated overflow fix
+   ========================================= */
+img, video, canvas {
+  overflow: clip !important;
+}
+
+/* =========================================
+   ACCESSIBILITY — contrast fixes (WCAG AA)
+   ========================================= */
+caption, .text-muted, .form-text {
+  color: #545b62 !important;
+}
+::placeholder {
+  color: #5a6268 !important;
+  opacity: 1 !important;
+}
+.breadcrumb-item + .breadcrumb-item::before,
+.breadcrumb-item.active {
+  color: #545b62 !important;
+}
+.badge-secondary {
+  background-color: #545b62 !important;
+}
+.tt360-h-ti-txt span {
+  color: rgba(255,255,255,.85) !important;
+}
+.tt360-hc-price-was {
+  color: #6b7280 !important;
 }
 </style>

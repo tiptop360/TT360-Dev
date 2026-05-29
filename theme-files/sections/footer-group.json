@@ -50,6 +50,7 @@
         },
         "social_9GRFaA": {
           "type": "social",
+          "disabled": true,
           "settings": {
             "title": "",
             "width": "25%"
@@ -72,10 +73,10 @@
             "width": "25%"
           }
         },
-        "1562342622030": {
+        "menu_4nRtmE": {
           "type": "menu",
           "settings": {
-            "link_list": "policies",
+            "link_list": "footer",
             "width": "25%"
           }
         },
@@ -105,7 +106,7 @@
         "social_9GRFaA",
         "menu_gY3jk6",
         "text_6DjzyX",
-        "1562342622030",
+        "menu_4nRtmE",
         "contact_W7rXbk",
         "text_YPfB8n"
       ],

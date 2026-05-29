@@ -13,6 +13,7 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
+      "disabled": true,
       "settings": {
         "enable": true,
         "animation": "",
@@ -27,7 +28,7 @@
         "enable_language_topbar": false,
         "enable_social_topbar": true,
         "enable_login_topbar": false,
-        "text_topbar": "🎯 Trusted by 50,000+ UAE Families",
+        "text_topbar": "🔥 Free Next-Day Delivery Across UAE — Order Before 2PM",
         "buttonall_topbar": "",
         "buttonall_link_topbar": ""
       }
@@ -38,7 +39,7 @@
         "afb084a9-2a31-4207-9d23-694c0f6b1281": {
           "type": "Item",
           "settings": {
-            "code": "<b>🌟 FREE Delivery on 100+ AED | Secure Checkout | 30-Day Money-Back Guarantee</b>",
+            "code": "<b>🌟 Free delivery over AED 100 | Secure checkout | UAE support</b>",
             "button_text": "Shop Securely",
             "button_link": ""
           }
@@ -54,7 +55,7 @@
         "item_eeEczM": {
           "type": "Item",
           "settings": {
-            "code": "<b>🚚 Fast 1-2 Day Delivery | Trusted by 50,000+ UAE Families | WhatsApp Support 24/7</b>",
+            "code": "<b>🚚 UAE delivery available | Practical products | WhatsApp support</b>",
             "button_text": "Browse Products",
             "button_link": ""
           }
@@ -82,6 +83,7 @@
     },
     "line_x6Dc99": {
       "type": "line",
+      "disabled": true,
       "name": "Divider",
       "settings": {
         "animation": "",
@@ -95,11 +97,13 @@
     },
     "blocks_KyEzUT": {
       "type": "_blocks",
+      "disabled": true,
       "name": "Text and paragraph",
       "settings": {}
     },
     "1776399216b491474a": {
       "type": "_blocks",
+      "disabled": true,
       "settings": {}
     },
     "header": {
@@ -113,12 +117,12 @@
         "logo": "shopify://shop_images/Logo.png",
         "logo_white": "shopify://shop_images/Logo.png",
         "logo_max_width": 100,
-        "enable_transparent": false,
+        "enable_transparent": true,
         "hover_transparent": false,
-        "enable_white": true,
+        "enable_white": false,
         "setwidth": "container",
         "layout_header": "logo-center-navigation-center",
-        "type_sticky": "sticky",
+        "type_sticky": "sticky-top",
         "height_header": "small",
         "background": "#ffffff",
         "textcolor": "#000000",
@@ -147,7 +151,7 @@
         "enable_menu_vertical": false,
         "sl_menu_vertical": "click-menu",
         "main_linklist_vertical": "",
-        "link_list_search": "header-menu-ai-vox-voice",
+        "link_list_search": "",
         "sidebar_search": true,
         "e_hd_currency": false,
         "enable_image": false,
@@ -163,11 +167,13 @@
     },
     "blocks_Vaw6Q9": {
       "type": "_blocks",
+      "disabled": true,
       "name": "Product hero",
       "settings": {}
     },
     "1776399126320d26b8": {
       "type": "_blocks",
+      "disabled": true,
       "settings": {}
     },
     "1776336011eb850647": {
@@ -231,10 +237,12 @@
       "block_order": [
         "ai_gen_block_5fc96c1_RLCKVf"
       ],
+      "disabled": true,
       "settings": {}
     },
     "177633476116dada9d": {
       "type": "_blocks",
+      "disabled": true,
       "settings": {}
     },
     "1776334620facbe8dc": {
@@ -272,19 +280,23 @@
       "block_order": [
         "ai_gen_block_fa0ee33_NBk6Xg"
       ],
+      "disabled": true,
       "settings": {}
     },
     "177633439768ff87b1": {
       "type": "_blocks",
+      "disabled": true,
       "settings": {}
     },
     "blocks_GwrNCM": {
       "type": "_blocks",
+      "disabled": true,
       "name": "Text and paragraph",
       "settings": {}
     },
     "1773656316ff1a7330": {
       "type": "_blocks",
+      "disabled": true,
       "settings": {}
     },
     "176580368722289a63": {
@@ -324,6 +336,7 @@
     },
     "store-messages": {
       "type": "store-messages",
+      "disabled": true,
       "settings": {
         "enable": false,
         "enable_homepage": false,

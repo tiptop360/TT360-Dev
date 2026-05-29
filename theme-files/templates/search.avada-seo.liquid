@@ -1,22 +1,22 @@
 {%- layout none -%}
 
-{%- assign pageurl = content_for_header| split:'"pageurl":"' | last | split:'"' | first -%}
+{%- assign pageurl = request.path | append: '?' | append: request.query_string -%}
 
 {%- if pageurl contains 'preview=1' -%}
 {%- assign lim = 1 -%}
 {%- else -%}
-{%- assign lim = 1000 -%}
+{%- assign lim = 250 -%}
 {%- endif -%}
 
 {%- if pageurl contains 'type=collection' -%}
-{%- paginate collections by 1000 -%}
+{%- paginate collections by 250 -%}
 {%- assign page_count = paginate.pages -%}
 {%- endpaginate -%}
 {
 "pageCount": {{ page_count }},
 "items":
 [
-{%- paginate collections by 1000 -%}
+{%- paginate collections by 250 -%}
 {% for collection in collections %}
 {
 {%- if pageurl contains 'preview=1' -%}
@@ -91,7 +91,7 @@
 {%- if pageurl contains 'count=1' -%}
   "images": [
   {% for image in product.images %}
-    "{{ image | img_url: 'master' }}"
+    "{{ image | image_url }}"
     {%- if forloop.last == false -%},{% endif -%}
   {% endfor %}
   ],

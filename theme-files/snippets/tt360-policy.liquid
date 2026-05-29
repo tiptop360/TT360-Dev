@@ -1,0 +1,150 @@
+{%- comment -%}
+  tt360-policy.liquid (snippet)
+  Brand styling + SEO schema for Shopify policy pages.
+  Rendered when request.path contains '/policies/'.
+{%- endcomment -%}
+
+{%- comment -%} 1. Brand CSS — override default .shopify-policy__* classes {%- endcomment -%}
+<style>
+.shopify-policy__container{max-width:780px;margin:0 auto;padding:12px 20px 64px}
+.shopify-policy__title{margin-bottom:0;padding-bottom:20px;border-bottom:2px solid #12395e}
+.shopify-policy__title h1{color:#12395e;font-size:34px;font-weight:800;line-height:1.25;letter-spacing:-.02em;margin:0;text-align:left}
+.shopify-policy__body{margin-top:32px}
+.shopify-policy__body .rte h2{color:#12395e;font-size:21px;font-weight:700;margin:40px 0 14px;padding:12px 0 12px 16px;border-left:4px solid #ff6f2e;background:linear-gradient(90deg,#f8fafc 0%,transparent 100%)}
+.shopify-policy__body .rte p{color:#374151;font-size:16px;line-height:1.75;margin:0 0 14px}
+.shopify-policy__body .rte ul,.shopify-policy__body .rte ol{color:#374151;font-size:16px;line-height:1.75;padding-left:20px;margin:0 0 14px}
+.shopify-policy__body .rte li{margin-bottom:6px;padding-left:4px}
+.shopify-policy__body .rte li::marker{color:#ff6f2e}
+.shopify-policy__body .rte strong{color:#111827;font-weight:700}
+.shopify-policy__body .rte a{color:#ff6f2e;text-decoration:none;font-weight:600;border-bottom:1px solid transparent;transition:border-color .2s}
+.shopify-policy__body .rte a:hover{border-bottom-color:#ff6f2e;color:#12395e}
+.tt360-pol-crumbs{max-width:780px;margin:0 auto;padding:24px 20px 0;display:flex;align-items:center;gap:6px;font-size:13px;color:#9ca3af}
+.tt360-pol-crumbs a{color:#12395e;text-decoration:none;font-weight:500}
+.tt360-pol-crumbs a:hover{text-decoration:underline;color:#ff6f2e}
+@media(max-width:768px){
+.shopify-policy__container{padding:8px 16px 48px}
+.shopify-policy__title h1{font-size:26px}
+.shopify-policy__body .rte h2{font-size:18px;margin:32px 0 12px;padding:10px 0 10px 14px}
+.tt360-pol-crumbs{padding:16px 16px 0}
+}
+</style>
+
+{%- comment -%} 2. Inject visual breadcrumb via vanilla JS {%- endcomment -%}
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var c=document.querySelector('.shopify-policy__container');
+  if(!c)return;
+  var h=document.querySelector('.shopify-policy__title h1');
+  if(!h)return;
+  var n=document.createElement('nav');
+  n.className='tt360-pol-crumbs';
+  n.setAttribute('aria-label','Breadcrumb');
+  n.innerHTML='<a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">'+h.textContent+'</span>';
+  c.parentNode.insertBefore(n,c);
+});
+</script>
+
+{%- comment -%} 3. SEO: FAQPage schema — refund policy page only {%- endcomment -%}
+{%- assign path_lc = request.path | downcase -%}
+{%- if path_lc contains 'refund' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is TipTop360's return policy in the UAE?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Returns are accepted within 3 days of receiving your order. Items must be unused, undamaged, and in their original packaging. Contact info@tiptop360.com with your order number and reason for return."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a TipTop360 refund take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once a return is received, inspected, and confirmed to meet return conditions, a refund will be issued within 5–7 business days to the original payment method."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which items cannot be returned to TipTop360?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Personal care and hygiene products (e.g., toothbrushes, grooming tools), items sold as part of a clearance sale or final markdown, and custom-made or personalized products are not eligible for return or refund."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are shipping fees refundable at TipTop360?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shipping fees are non-refundable unless the return is due to TipTop360's error or a defective product."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is TipTop360's return policy compliant with UAE law?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The return policy is compliant with the UAE Consumer Protection Law – Federal Law No. (15) of 2020."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I contact TipTop360 about a return?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Email info@tiptop360.com or WhatsApp +971 585156033 with your order number and reason for return."
+      }
+    }
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- comment -%} 4. SEO: WebPage schema for all policy pages {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": {{ page_title | append: ' | TipTop360' | json }},
+  "description": "TipTop360 policy page for UAE customers. Returns, refunds, shipping, and consumer rights.",
+  "url": "{{ canonical_url }}",
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "TipTop360",
+    "url": "{{ shop.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TipTop360",
+    "url": "{{ shop.url }}"
+  }
+}
+</script>
+
+{%- comment -%} 5. SEO: BreadcrumbList schema for policy pages {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ shop.url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ page_title | json }},
+      "item": "{{ canonical_url }}"
+    }
+  ]
+}
+</script>

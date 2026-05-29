@@ -1,0 +1,20 @@
+{%- if template.name == 'page' and page -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "{{ shop.url }}{{ page.url }}#webpage",
+  "name": {{ page.title | json }},
+  "description": {{ page.content | strip_html | truncatewords: 30 | json }},
+  "url": "{{ shop.url }}{{ page.url }}",
+  "inLanguage": "en-AE",
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://tiptop360.com/#website"
+  },
+  "publisher": {
+    "@id": "https://tiptop360.com/#organization"
+  }
+}
+</script>
+{%- endif -%}

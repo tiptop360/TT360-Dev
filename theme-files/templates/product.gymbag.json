@@ -1,11 +1,563 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "main": {
-      "type": "gymbag-pdp",
-      "settings": {}
+    "tt360-product-body": {
+      "type": "tt360-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "text": "🧲 Hands-Free Magnetic",
+            "style": "green"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "text": "💧 Weatherproof",
+            "style": "orange"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "text": "🏋️ Gym to Street",
+            "style": "navy"
+          }
+        },
+        "badge_safety": {
+          "type": "badge",
+          "settings": {
+            "text": "🛡️ Phone & Card Safe",
+            "style": "green"
+          }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": {
+            "icon": "📦",
+            "label": "Free Next Day Delivery"
+          }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": {
+            "icon": "💵",
+            "label": "Cash on Delivery"
+          }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔄",
+            "label": "14-Day Returns"
+          }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔒",
+            "label": "Secure Checkout"
+          }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🧲",
+            "title": "Snaps to Any Metal Surface",
+            "desc": "Powerful magnets grip any gym rack, machine, or locker — your bag never touches the floor again."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "💧",
+            "title": "Weatherproof & Splash-Resistant",
+            "desc": "Built for UAE sweat, rain, and pool days — inside and outside the gym."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "👜",
+            "title": "Wet/Dry Compartment",
+            "desc": "Sweaty gear separated from your phone, keys, and essentials — always."
+          }
+        },
+        "hl_4": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Phone & Card Safe",
+            "desc": "Shielded neodymium magnets — tested safe for smartphones, credit cards, and all electronics inside the bag."
+          }
+        },
+        "content_def": {
+          "type": "content_section",
+          "settings": {
+            "label": "What It Is",
+            "heading": "What Is a Magnetic Gym Bag?",
+            "subheading": "",
+            "body": "<p>A <strong>magnetic gym bag</strong> is a sports bag with built-in neodymium magnets that snap securely to any metal surface — gym racks, cable machines, locker frames, bench supports. Unlike traditional gym bags that sit on dirty floors or hang from overcrowded hooks, a magnetic gym bag attaches hands-free to the equipment you are already using.</p><p>The <strong>GymGear Magnetic Gym Bag</strong> by TipTop360 is the first <strong>magnetic closure</strong> gym bag designed for <strong>UAE gym culture</strong> — weatherproof for Dubai's humidity, splash-resistant for pool days, and compact enough for daily carry across all seven emirates. Whether you call it a <strong>gym bag Dubai</strong>, a <strong>waterproof sports bag</strong>, or a hands-free training accessory — GymGear replaces every bag that came before it.</p>",
+            "alt_bg": false
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🧲",
+            "title": "Magnetic Attachment",
+            "desc": "Snaps to any metal rack, machine, or locker in one click."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "💧",
+            "title": "Weatherproof Build",
+            "desc": "Rain, sweat, pool — built for every UAE environment."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "👜",
+            "title": "Wet/Dry Separation",
+            "desc": "Clean gear stays clean, always — no cross-contamination."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎽",
+            "title": "Unisex Design",
+            "desc": "Black or Gray — looks sharp on everyone."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "📦",
+            "title": "Multi-Purpose",
+            "desc": "Gym, office, school run, day trips — one bag for all."
+          }
+        },
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Snap It On",
+            "desc": "The magnets click onto any metal gym rack, machine, or locker in one second."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Load Your Essentials",
+            "desc": "Phone, keys, towel, bottle, headphones — everything in reach at exactly the right height."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Train Hands-Free",
+            "desc": "Your bag stays put through every set. No straps. No floor contact. No germs."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "Detach & Go",
+            "desc": "One pull and you're out the door — cleaner, faster, smarter."
+          }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "I used to waste so much time looking for my bag between sets. This just clips on and stays. Every gym-goer in Dubai needs one.",
+            "name": "Nour A.",
+            "location": "Dubai · GymGear",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Got the gray one — quality is excellent and it holds more than you'd expect. Came next day with COD. Couldn't be easier.",
+            "name": "Omar H.",
+            "location": "Abu Dhabi · GymGear",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Finally a bag that doesn't touch the floor. The magnetic clip is super strong — I tried shaking it off the machine and it held perfectly.",
+            "name": "Layla M.",
+            "location": "Sharjah · GymGear",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "faq_safety": {
+          "type": "faq",
+          "settings": {
+            "question": "Will the magnets damage my phone, credit cards, or electronics?",
+            "answer": "<p><strong>No.</strong> GymGear uses shielded neodymium magnets with a directionally focused magnetic field. They are strong enough to hold 5+ kg against metal surfaces but completely safe for all smartphones, credit cards, hotel key cards, Apple Watch, AirPods, and other electronics stored inside the bag. The shielded design ensures no magnetic interference with your belongings.</p>"
+          }
+        },
+        "faq_strength": {
+          "type": "faq",
+          "settings": {
+            "question": "How strong is the magnetic hold — will my bag fall off?",
+            "answer": "<p>GymGear's neodymium magnets are rated for <strong>5+ kg of hold strength</strong>. That means your loaded gym bag stays locked to squat racks, cable machines, and metal lockers through your entire workout. The magnets grip any ferromagnetic metal surface — steel, iron, nickel-coated equipment. One pull detaches it cleanly when you're done.</p>"
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "What is a magnetic gym bag and how does GymGear work?",
+            "answer": "<p>GymGear has powerful neodymium magnets built into the back panel that snap securely to any metal gym rack, machine, or locker. Your bag stays off dirty floors and at perfect grab height while you train — no hooks, no straps, no setup.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Is GymGear only for the gym, or can I use it outdoors?",
+            "answer": "<p>GymGear is built for multi-purpose use — gym, outdoor training, pool, office runs, school pickup. The weatherproof shell handles UAE rain, humidity, and sweat without a second thought.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "How much can the GymGear Magnetic Bag hold?",
+            "answer": "<p>Despite its sleek profile, GymGear fits a standard water bottle, phone, keys, towel, earphones, and small accessories — everything you need for a full session without the bulk.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Is the GymGear Magnetic Bag unisex?",
+            "answer": "<p>Yes — GymGear comes in Black and Gray, designed to look great on everyone. It's our most popular gift choice across the UAE for gym-goers of all ages.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to Abu Dhabi, Sharjah & other emirates?",
+            "answer": "<p>Yes! TipTop360 delivers free to all UAE emirates — Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah & Umm Al Quwain. Cash on Delivery available everywhere.</p>"
+          }
+        },
+        "faq_shoe": {
+          "type": "faq",
+          "settings": {
+            "question": "Is GymGear good for shoe compartment storage?",
+            "answer": "<p>GymGear is designed as a compact accessories bag, not a full-size duffel. It does not include a dedicated shoe compartment — it is optimised for essentials like your phone, keys, towel, bottle, and supplements. If you need shoe storage, pair GymGear with your regular gym bag: clip GymGear to the rack for quick-access items, keep your shoes in your main bag. Many UAE gym-goers use this two-bag setup for maximum convenience and hygiene.</p>"
+          }
+        },
+        "usecase_1": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🏋️",
+            "title": "At the Gym",
+            "desc": "Snaps to squat racks, cable machines, and locker frames. Your bag stays off the wet, dirty gym floor."
+          }
+        },
+        "usecase_2": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🏃",
+            "title": "CrossFit & Outdoor Workouts",
+            "desc": "Attaches to metal fences, poles, and outdoor rig frames. Keeps gear clean and accessible mid-WOD."
+          }
+        },
+        "usecase_3": {
+          "type": "usecase",
+          "settings": {
+            "icon": "✈️",
+            "title": "Travel & Business",
+            "desc": "Waterproof and magnetic — perfect for airport lockers, hotel gyms, and business trip workouts across the UAE."
+          }
+        },
+        "usecase_4": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🎁",
+            "title": "Corporate & Eid Gifts",
+            "desc": "Sleek unisex design makes it the perfect fitness gift for colleagues, friends, and family."
+          }
+        },
+        "content_1": {
+          "type": "content_section",
+          "settings": {
+            "label": "About This Product",
+            "heading": "Magnetic Hands-Free Gym Bag — The Smarter Way to Carry Your Gear",
+            "subheading": "",
+            "body": "<p>The GymGear <strong>Magnetic Gym Bag</strong> uses <strong>built-in neodymium magnets</strong> with a <strong>magnetic closure</strong> system that snaps onto any stable metal surface — squat racks, cable machines, locker frames, bench supports. Your <strong>sports bag</strong> stays elevated, accessible, and off the dirty gym floor.</p><p>No hooks. No clips. No balancing acts. Just <strong>walk up, snap on, and train hands-free</strong>. When you are done, grab and go in one motion.</p><p><strong>The best gym bag Dubai has to offer.</strong> Whether you train at Fitness First in Dubai Marina, a CrossFit box in JLT, or a hotel gym in Abu Dhabi — this <strong>waterproof gym bag</strong> keeps your phone, keys, wallet, and supplements within arm's reach without touching a single shared surface.</p><p>The <strong>waterproof</strong> nylon fabric handles sweat, rain, and spills. Multiple compartments keep wet gear separate from dry items. Unisex design works for everyone — the ultimate <strong>gym bag Dubai</strong> athletes trust.</p><p><strong>Premium build quality.</strong> Reinforced stitching, heavy-duty zippers, and magnets rated for 5+ kg of hold strength. Compact enough for daily carry, spacious enough for a full gym kit.</p><p>TipTop360 delivers <strong>free next day across all 7 UAE emirates</strong> — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available. 14-day hassle-free returns.</p>",
+            "alt_bg": true
+          }
+        },
+        "content_geo_humidity": {
+          "type": "content_section",
+          "settings": {
+            "label": "UAE Climate Ready",
+            "heading": "Built for Dubai's Humidity and UAE Weather",
+            "subheading": "",
+            "body": "<p>UAE gyms generate extreme moisture — from air-conditioned interiors to open-air CrossFit boxes in 45°C heat. The GymGear <strong>waterproof gym bag</strong> is built with waterproof nylon that handles <strong>Dubai humidity</strong>, Abu Dhabi sweat sessions, and Sharjah's coastal air without absorbing odours or breaking down.</p><p>The wet/dry compartment keeps damp towels and sweaty clothes completely separated from your phone, wallet, and clean gear — critical in a climate where condensation and perspiration are constant. Whether you train at Fitness First in Dubai Marina, Gold's Gym in Abu Dhabi, or an outdoor Hyrox circuit in JLT — this <strong>sports bag</strong> is engineered for the UAE environment.</p>",
+            "alt_bg": false
+          }
+        },
+        "content_geo_magnets": {
+          "type": "content_section",
+          "settings": {
+            "label": "Magnet Safety",
+            "heading": "Are Magnets Safe for Your Phone and Cards?",
+            "subheading": "",
+            "body": "<p>GymGear uses <strong>shielded neodymium magnets</strong> with a directional magnetic field — the same technology used in MagSafe accessories and laptop closures. The magnets are focused outward toward the metal surface, not inward toward the bag contents.</p><p>Your iPhone, Samsung Galaxy, Apple Watch, AirPods, credit cards, hotel key cards, and Emirates ID are completely safe inside the bag. We have tested this with every major smartphone brand available in the UAE — zero interference, zero data loss, zero demagnetisation. The <strong>magnetic closure</strong> system is designed to hold your bag securely while keeping your electronics protected.</p>",
+            "alt_bg": true
+          }
+        },
+        "content_geo_sizing": {
+          "type": "content_section",
+          "settings": {
+            "label": "Sizing Guide",
+            "heading": "GymGear Sizing and Capacity Guide",
+            "subheading": "",
+            "body": "<p>The GymGear <strong>Magnetic Gym Bag</strong> measures 25 cm W × 18 cm H × 10 cm D — compact enough to clip onto any standard gym rack without blocking access, yet spacious enough for a full training session.</p><p><strong>What fits inside:</strong> a standard 500 ml water bottle, phone, keys, towel, wireless earphones, wallet, and small supplements. The 3-zone compartment system separates wet items from dry, and electronics from everything else. Available in Black and Gray — both in a <strong>unisex design</strong> that works for men and women across all ages.</p>",
+            "alt_bg": false
+          }
+        },
+        "content_compare": {
+          "type": "content_section",
+          "settings": {
+            "label": "Comparison",
+            "heading": "Magnetic vs. Zipper vs. Drawstring — Which Gym Bag Is Best?",
+            "subheading": "",
+            "body": "<p>Not all gym bags are equal. Here is how the three most common closure types compare for UAE gym-goers:</p><h3>Magnetic Gym Bag (GymGear)</h3><ul><li><strong>Hands-Free Attachment:</strong> Snaps to any metal surface — racks, machines, lockers</li><li><strong>Waterproof:</strong> Yes — waterproof nylon shell built for Dubai humidity</li><li><strong>Wet/Dry Separation:</strong> Built-in 3-zone compartment system</li><li><strong>Hygiene:</strong> Never touches the gym floor</li><li><strong>Phone/Card Safe:</strong> Shielded neodymium magnets protect all electronics</li><li><strong>Best For:</strong> Gym, CrossFit, travel, hotel gyms across the UAE</li></ul><h3>Traditional Zipper Bag</h3><ul><li><strong>Hands-Free:</strong> No — sits on the floor or bench</li><li><strong>Waterproof:</strong> Varies by brand</li><li><strong>Wet/Dry Separation:</strong> Some premium models only</li><li><strong>Hygiene:</strong> Constant floor contact</li><li><strong>Best For:</strong> General use when floor hygiene is not a concern</li></ul><h3>Drawstring Bag</h3><ul><li><strong>Hands-Free:</strong> No — sits on the floor</li><li><strong>Waterproof:</strong> Rarely</li><li><strong>Wet/Dry Separation:</strong> No compartments</li><li><strong>Hygiene:</strong> Constant floor contact, thin fabric absorbs moisture</li><li><strong>Best For:</strong> Light gym sessions, casual use only</li></ul>",
+            "alt_bg": true
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Magnet Type",
+            "spec_value": "Neodymium — 5+ kg Hold"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Material",
+            "spec_value": "Waterproof Nylon"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Design",
+            "spec_value": "Unisex"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Compartments",
+            "spec_value": "3 Separate Zones"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Closure",
+            "spec_value": "Heavy-Duty YKK Zippers"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Fitness & Lifestyle Collection",
+            "url": "/collections/fitness-lifestyle"
+          }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": {
+            "label": "AI Voice Recorder",
+            "url": "/products/ai-voice-recorder"
+          }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Digital Gift Card",
+            "url": "/products/digital-gift-card-uae"
+          }
+        },
+        "ilink_blog_1": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Magnetic vs Zipper vs Drawstring Gym Bags",
+            "url": "/blogs/fitness-lifestyle/magnetic-vs-zipper-vs-drawstring-gym-bags"
+          }
+        },
+        "ilink_blog_2": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Best Gym Bags for Dubai Humidity",
+            "url": "/blogs/fitness-lifestyle/best-gym-bags-dubai-humidity"
+          }
+        },
+        "ilink_blog_3": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Gym Bag Packing Guide UAE",
+            "url": "/blogs/fitness-lifestyle/gym-bag-packing-guide-uae"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "badge_safety",
+        "trust_1",
+        "trust_2",
+        "trust_3",
+        "trust_4",
+        "hl_1",
+        "hl_2",
+        "hl_3",
+        "hl_4",
+        "content_def",
+        "feat_1",
+        "feat_2",
+        "feat_3",
+        "feat_4",
+        "feat_5",
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "faq_safety",
+        "faq_strength",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_shoe",
+        "usecase_1",
+        "usecase_2",
+        "usecase_3",
+        "usecase_4",
+        "content_1",
+        "content_geo_humidity",
+        "content_geo_magnets",
+        "content_geo_sizing",
+        "content_compare",
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "ilink_1",
+        "ilink_2",
+        "ilink_3",
+        "ilink_blog_1",
+        "ilink_blog_2",
+        "ilink_blog_3"
+      ],
+      "settings": {
+        "seo_title": "Magnetic Gym Bag UAE | GymGear™ | TipTop360",
+        "seo_h1": "Magnetic Hands-Free Gym Bag — Never Touch a Dirty Floor Again",
+        "hero_alt": "Magnetic hands-free gym bag that attaches to metal surfaces in the gym UAE — TipTop360",
+        "seo_description": "UAE's only hands-free magnetic gym bag. Snaps to any metal gym equipment. Weatherproof. Wet/dry compartment. Free next-day delivery. Cash on delivery.",
+        "collection_handle": "fitness-lifestyle",
+        "collection_name": "Fitness & Lifestyle",
+        "scarcity_text": "43 sold this week in Dubai — Limited stock",
+        "usecase_lbl": "Built for Active Lifestyles",
+        "usecase_title": "Where It Shines",
+        "usecase_sub": "From gym racks to hotel lockers — your bag never touches a dirty surface again.",
+        "howto_schema_enable": true,
+        "howto_name": "How to Use the Magnetic Hands-Free Gym Bag",
+        "howto_desc": "Walk into the gym, snap your bag onto any metal surface — rack, locker, bench frame — and it stays put. Hands free, floor free. Grab and go when done.",
+        "howto_time": "PT30S",
+        "ann_enable": true,
+        "ann_text": "🚚 Free Next Day Delivery across UAE  |  💵 Cash on Delivery  |  🔄 14-Day Returns  |  Order before 8 PM",
+        "hero_badge2": "🏆 #1 Gym Bag UAE",
+        "show_sold_out": false,
+        "rating_value": "4.8",
+        "proof_lbl_rating": "Average rating",
+        "review_count": "107",
+        "review_label": "verified UAE reviews",
+        "proof_num_delivery": "Next Day",
+        "proof_lbl_shipping": "Delivery across UAE",
+        "proof_lbl_free": "Free next-day delivery",
+        "atc_text": "Add to Cart — Pay on Delivery",
+        "sticky_text": "Add to Cart",
+        "bms_enable": true,
+        "bms_stepper": false,
+        "bms_qty2": 2,
+        "bms_disc2": 5,
+        "bms_qty3": 3,
+        "bms_disc3": 10,
+        "bms_orig_price": 0,
+        "bms_price1": 0,
+        "bms_price2": 210,
+        "bms_price3": 300,
+        "feat_lbl": "Why UAE Gym-Goers Love It",
+        "feat_title": "5 Reasons GymGear Replaces Your Old Bag",
+        "feat_sub": "Hands-free, weatherproof, and built for every gym in the UAE.",
+        "steps_lbl": "Simple to Use",
+        "steps_title": "How It Works",
+        "steps_sub": "Snap it on in seconds — no setup, no straps, no sweat.",
+        "video_enable": true,
+        "section_video": "https://youtube.com/shorts/Li6TxH66VoM",
+        "video_lbl": "See It in Action",
+        "video_title": "Watch GymGear Snap On & Stay Secure",
+        "video_sub": "One click. Magnetic grip locks on. Bag stays off the floor — through every single set.",
+        "video_placeholder": "🎬 Product demo coming soon. In the meantime — order today with free next-day delivery and Cash on Delivery.",
+        "rev_lbl": "UAE Gym-Goers Trust It",
+        "rev_title": "What Our Customers Say",
+        "rev_sub": "107 verified reviews from UAE gym members.",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "ilinks_title": "Explore More at TipTop360",
+        "gift_bag_handle": "gift-wrap-1",
+        "gift_bag_title": "🎁 Add Gift Box",
+        "gift_bag_sub": "make it special",
+        "gift_bag_btn": "+ Add",
+        "gift_bag_price": "9",
+        "upsell_1": "ai-voice-recorder",
+        "upsell_2": "digital-gift-card-uae",
+        "upsell_3": "gift-wrap-1",
+        "cta_lbl": "Limited Time Offer",
+        "cta_title": "Stop Putting Your Bag on the Floor",
+        "cta_sub": "GymGear Magnetic Gym Bag — AED 110. Free next-day delivery across UAE. Cash on delivery. 14-day returns.",
+        "cta_btn": "Add to Cart",
+        "cta_trust_1": "📦 Free Next Day Delivery",
+        "cta_trust_2": "💵 Cash on Delivery",
+        "cta_trust_3": "🔄 14-Day Returns",
+        "cta_trust_4": "🔒 Secure Checkout"
+      }
     }
   },
   "order": [
-    "main"
+    "tt360-product-body"
   ]
 }

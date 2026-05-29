@@ -1,0 +1,244 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360_upsell_body": {
+      "type": "tt360-upsell-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": { "text": "✅ Extra-Soft for Sensitive Gums", "style": "green" }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": { "text": "🔄 Replacement Head", "style": "navy" }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": { "icon": "📦", "label": "Free Next Day" }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": { "icon": "💵", "label": "Cash on Delivery" }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": { "icon": "🔄", "label": "14-Day Returns" }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": { "icon": "🔒", "label": "Secure Checkout" }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🍼",
+            "title": "Ultra-Gentle for Toddlers",
+            "desc": "Extra-soft silicone bristles designed for sensitive gums and new teeth. Perfect for first-time U-Brush users."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Food-Grade & BPA-Free",
+            "desc": "Same medical-grade silicone as baby teethers. Safe even if your toddler chews on the brush head."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🔄",
+            "title": "Snap-On Replacement",
+            "desc": "Click-fit design for the U-Shaped Toothbrush. Swap in seconds, no tools needed."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🦷",
+            "title": "Sensitive Gum Formula",
+            "desc": "Softer bristle density than standard heads — ideal for teething toddlers and children with gum sensitivity."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "👶",
+            "title": "Ages 2-6 Focus",
+            "desc": "Sized and softened specifically for younger children with developing teeth and delicate gums."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🧹",
+            "title": "Easy Hygiene",
+            "desc": "Rinse clean under water. Silicone resists bacteria buildup better than nylon bristles."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "📅",
+            "title": "Replace Every 3 Months",
+            "desc": "Maintain optimal softness and hygiene with regular 90-day replacement cycles."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "📦",
+            "title": "Sealed Packaging",
+            "desc": "Each head individually sealed for freshness. Perfect for stocking up."
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": { "spec_name": "Material", "spec_value": "Extra-Soft Food-Grade Silicone" }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": { "spec_name": "Compatible With", "spec_value": "Kids U-Shaped Toothbrush" }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": { "spec_name": "Best For", "spec_value": "Sensitive Gums, Ages 2-6" }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": { "spec_name": "Replace Every", "spec_value": "3 Months" }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": { "spec_name": "Safety", "spec_value": "BPA-Free, Non-Toxic" }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "My 2-year-old has very sensitive gums and these soft heads are perfect. No crying during brushing anymore. The silicone is noticeably softer than the standard heads.",
+            "name": "Dina W.",
+            "location": "Dubai · Soft Brush Heads",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "We switched to the soft version after our dentist recommended it for our 3-year-old who's still teething. Much gentler and he doesn't fuss at all now.",
+            "name": "Tariq N.",
+            "location": "Abu Dhabi · Soft Brush Heads",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "text": "Good alternative to the regular heads for younger kids. My daughter was hesitant with the standard version but loves the soft one. Quick delivery to Fujairah.",
+            "name": "Hanan K.",
+            "location": "Fujairah · Soft Brush Heads",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "How is this different from the regular U Brush Heads?",
+            "answer": "<p>The soft version uses a lower-density bristle pattern with ultra-soft silicone — specifically designed for toddlers with sensitive gums, children who are teething, or kids who find the standard brush head too firm.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Is this safe for a 2-year-old?",
+            "answer": "<p>Yes. Made from food-grade, BPA-free silicone — the same material used in baby teethers. Safe even if your child chews on the brush head during brushing, which toddlers commonly do.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Will it still clean teeth effectively?",
+            "answer": "<p>Yes. The U-shaped design still provides 360° coverage of all tooth surfaces. The softer bristles clean gently but thoroughly, especially important for young children with developing enamel.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How often should I replace it?",
+            "answer": "<p>Every 3 months, or sooner if the bristles appear flattened. Toddlers who chew on the head may need more frequent replacement.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to all UAE emirates?",
+            "answer": "<p>Free next-day delivery to all 7 emirates — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available everywhere.</p>"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": { "label": "U-Shaped Toothbrush", "url": "/products/kids-u-shaped-toothbrush-uae" }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": { "label": "Regular U Brush Heads", "url": "/products/kids-u-brush-heads-uae" }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": { "label": "Kids Foam Toothpaste", "url": "/products/kids-foam-toothpaste-uae" }
+        }
+      },
+      "block_order": [
+        "badge_1", "badge_2",
+        "trust_1", "trust_2", "trust_3", "trust_4",
+        "hl_1", "hl_2", "hl_3",
+        "feat_1", "feat_2", "feat_3", "feat_4", "feat_5",
+        "spec_1", "spec_2", "spec_3", "spec_4", "spec_5",
+        "rev_1", "rev_2", "rev_3",
+        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5",
+        "ilink_1", "ilink_2", "ilink_3"
+      ],
+      "settings": {
+        "seo_h1": "Soft Silicone Kids Brush Heads — Gentle Replacement for Sensitive Gums",
+        "hero_alt": "Soft silicone kids brush heads gentle replacement for U-shaped toothbrush sensitive gums UAE — TipTop360",
+        "collection_handle": "problem-solving-products-uae",
+        "collection_name": "Problem Solving Products",
+        "hero_product": "kids-u-shaped-toothbrush-uae",
+        "hero_link_label": "Gentle Replacement For",
+        "hero_link_sub": "See the U-Shaped Toothbrush →",
+        "rating_value": "4.8",
+        "review_count": "20",
+        "atc_text": "Add to Cart",
+        "hl_lbl": "Gentle Dental Care",
+        "hl_title": "Why Choose the Soft Version",
+        "hl_sub": "Ultra-gentle bristles for toddlers, teething children, and sensitive gums.",
+        "feat_lbl": "Designed for Delicate Gums",
+        "feat_title": "Soft Brush Head Features",
+        "feat_sub": "Same cleaning coverage, gentler touch — because little gums need extra care.",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "cta_title": "Protect Sensitive Gums Today",
+        "cta_sub": "AED 15 — free next-day delivery. Cash on delivery. 14-day returns.",
+        "specs_title": "Product Specifications",
+        "related_title": "Complete Your Dental Routine",
+        "ilinks_title": "Explore More at TipTop360"
+      }
+    }
+  },
+  "order": ["tt360_upsell_body"]
+}

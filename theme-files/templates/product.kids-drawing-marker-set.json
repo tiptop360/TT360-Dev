@@ -1,0 +1,244 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360_upsell_body": {
+      "type": "tt360-upsell-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": { "text": "✅ Non-Toxic Ink", "style": "green" }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": { "text": "🤖 Robot Compatible", "style": "orange" }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": { "icon": "📦", "label": "Free Next Day" }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": { "icon": "💵", "label": "Cash on Delivery" }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": { "icon": "🔄", "label": "14-Day Returns" }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": { "icon": "🔒", "label": "Secure Checkout" }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🤖",
+            "title": "Made for the Drawing Robot",
+            "desc": "Barrel diameter and tip size engineered to fit the STEM Drawing Robot pen holder perfectly."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "✏️",
+            "title": "Precision Fine Tips",
+            "desc": "Fine-point tips deliver clean, detailed lines — essential for the geometric patterns the Robot draws."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🎨",
+            "title": "Vibrant Replacement Set",
+            "desc": "Refill or expand your marker collection. Multiple colours for multi-colour Robot art projects."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Non-Toxic Safe Ink",
+            "desc": "Water-based, non-toxic ink formula safe for children ages 3+."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🔄",
+            "title": "Swap Colours Easily",
+            "desc": "Quick-change design lets kids swap markers in the Robot between colours for multi-tone drawings."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "✍️",
+            "title": "Standalone Use Too",
+            "desc": "Works great for freehand drawing, writing, and school projects — not just for the Robot."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "💪",
+            "title": "Durable Tips",
+            "desc": "Pressure-resistant felt tips that maintain their shape even with heavy use."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "📐",
+            "title": "Precision Geometry Art",
+            "desc": "Fine tips are ideal for the spirograph and geometric patterns the Drawing Robot creates."
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": { "spec_name": "Tip Type", "spec_value": "Fine Point, Precision" }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": { "spec_name": "Ink", "spec_value": "Water-Based, Non-Toxic" }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": { "spec_name": "Compatibility", "spec_value": "STEM Drawing Robot" }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": { "spec_name": "Recommended Age", "spec_value": "3+ Years" }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": { "spec_name": "Use", "spec_value": "Robot Drawing + Freehand" }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "These fit the Drawing Robot perfectly. My son creates multi-colour patterns by swapping markers between runs. The fine tips give much cleaner lines than regular markers.",
+            "name": "Rashid K.",
+            "location": "Dubai · Robot Markers",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Great refill set. We use the Robot daily and the original markers started running low after 2 months. These are identical quality and the colours are vibrant.",
+            "name": "Sana P.",
+            "location": "Abu Dhabi · Robot Markers",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "text": "Good markers for both the Robot and regular drawing. My 8-year-old uses them for school art projects too. Next-day delivery to Ajman was a bonus.",
+            "name": "Jamal T.",
+            "location": "Ajman · Robot Markers",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Are these compatible with the STEM Drawing Robot?",
+            "answer": "<p>Yes. These markers are specifically designed to fit the Drawing Robot's pen holder. The barrel diameter matches exactly for secure placement during automated drawing sessions.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I use these for regular drawing too?",
+            "answer": "<p>Absolutely. While designed for the Robot, these fine-point markers work great for freehand drawing, writing, school projects, and colouring. They are a versatile addition to any art kit.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Are the markers non-toxic?",
+            "answer": "<p>Yes. Water-based, non-toxic ink formula safe for children ages 3 and above. No harmful chemicals in the ink or barrel materials.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How many markers are in the set?",
+            "answer": "<p>The set includes multiple vibrant colours with fine-point precision tips — enough to create multi-colour Robot drawings and cover a range of creative projects.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to all UAE emirates?",
+            "answer": "<p>Free next-day delivery to all 7 emirates — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available everywhere.</p>"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": { "label": "STEM Drawing Robot", "url": "/products/kids-drawing-robot" }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": { "label": "Washable Markers", "url": "/products/kids-dual-tip-markers-uae" }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": { "label": "Color Pencils", "url": "/products/color-pencils" }
+        }
+      },
+      "block_order": [
+        "badge_1", "badge_2",
+        "trust_1", "trust_2", "trust_3", "trust_4",
+        "hl_1", "hl_2", "hl_3",
+        "feat_1", "feat_2", "feat_3", "feat_4", "feat_5",
+        "spec_1", "spec_2", "spec_3", "spec_4", "spec_5",
+        "rev_1", "rev_2", "rev_3",
+        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5",
+        "ilink_1", "ilink_2", "ilink_3"
+      ],
+      "settings": {
+        "seo_h1": "Kids Robot Drawing Markers — Precision Pens for STEM Robot",
+        "hero_alt": "Kids robot drawing markers precision fine-tip pens for STEM drawing robot creative play UAE — TipTop360",
+        "collection_handle": "problem-solving-products-uae",
+        "collection_name": "Problem Solving Products",
+        "hero_product": "kids-drawing-robot",
+        "hero_link_label": "Designed For",
+        "hero_link_sub": "See the STEM Drawing Robot →",
+        "rating_value": "4.7",
+        "review_count": "20",
+        "atc_text": "Add to Cart",
+        "hl_lbl": "Robot-Ready Art",
+        "hl_title": "3 Reasons to Add These Markers",
+        "hl_sub": "Precision-fit for the Drawing Robot, versatile for freehand, non-toxic safe.",
+        "feat_lbl": "Engineered for STEM Art",
+        "feat_title": "Marker Features",
+        "feat_sub": "Fine-point precision meets Robot compatibility — plus standalone versatility.",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "cta_title": "Add Robot Markers to Your Order",
+        "cta_sub": "AED 20 — free next-day delivery. Cash on delivery. 14-day returns.",
+        "specs_title": "Product Specifications",
+        "related_title": "More Art Supplies",
+        "ilinks_title": "Explore More at TipTop360"
+      }
+    }
+  },
+  "order": ["tt360_upsell_body"]
+}

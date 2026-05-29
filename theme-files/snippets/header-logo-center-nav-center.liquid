@@ -3,9 +3,9 @@
   <div class="header-top__wrap d-flex pt-2 align-items-center w-100">
       <div class="d-flex d-lg-none toggle-menu-mobile align-items-center">
           {%- render 'button-toggle-menu-mobile' -%}
-          <span class="modal__toggle-search-mobile" aria-hidden="true" focusable="false" role="presentation">
+          <button type="button" class="modal__toggle-search-mobile text-link" aria-label="{{ 'general.search.search' | t }}">
             {% render 'icon-search' %}
-          </span>
+          </button>
         </div>
       <div class="col_bottom__left d-flex align-items-center">
             {%- if enable_menu_vertical and sl_menu_vertical == 'click-menu' -%}

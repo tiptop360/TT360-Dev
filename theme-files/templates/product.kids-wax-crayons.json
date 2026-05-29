@@ -1,0 +1,244 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360_upsell_body": {
+      "type": "tt360-upsell-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": { "text": "✅ Non-Toxic & Safe", "style": "green" }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": { "text": "💰 AED 10 Best Value", "style": "orange" }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": { "icon": "📦", "label": "Free Next Day" }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": { "icon": "💵", "label": "Cash on Delivery" }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": { "icon": "🔄", "label": "14-Day Returns" }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": { "icon": "🔒", "label": "Secure Checkout" }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Non-Toxic & Taste-Safe",
+            "desc": "Safe even for toddlers who put crayons in their mouths. No harmful chemicals in the wax formula."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🖍️",
+            "title": "Smooth Wax Formula",
+            "desc": "Glides on paper with minimal pressure. Vibrant colour payoff that keeps young artists engaged."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "💰",
+            "title": "AED 10 — Lowest Add-On",
+            "desc": "The most affordable way to add creative play to any order. Perfect for stocking up."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🌈",
+            "title": "Vibrant Colour Range",
+            "desc": "Full set of bright, saturated colours that look great on white and coloured paper."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "👶",
+            "title": "Chunky Grip Design",
+            "desc": "Thick barrel sized for toddler hands. Easy to grip, hard to break."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🧼",
+            "title": "Washable from Surfaces",
+            "desc": "Wipes clean from most hard surfaces and washes out of fabrics. Minimal cleanup."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "📵",
+            "title": "Screen-Free Creative Time",
+            "desc": "No batteries, no apps — just pure creative play that develops fine motor skills."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "📦",
+            "title": "Compact Box Storage",
+            "desc": "Tidy storage box keeps crayons organised. Travel-friendly for restaurants and road trips."
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": { "spec_name": "Type", "spec_value": "Wax Crayons" }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": { "spec_name": "Safety", "spec_value": "Non-Toxic, Taste-Safe" }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": { "spec_name": "Recommended Age", "spec_value": "2+ Years" }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": { "spec_name": "Grip", "spec_value": "Chunky Toddler-Friendly" }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": { "spec_name": "Washable", "spec_value": "Yes — Surfaces & Fabrics" }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Best crayons for the price in the UAE. My 2-year-old loves them and I don't worry when she puts them near her mouth. Colours are bright and they don't break easily.",
+            "name": "Samia H.",
+            "location": "Dubai · Wax Crayons",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "We take these everywhere — restaurants, car rides, visiting family. The chunky size is perfect for my toddler and they wash off the table easily. AED 10 is a steal.",
+            "name": "Ali G.",
+            "location": "Sharjah · Wax Crayons",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "text": "Good starter crayons. Smooth colour and safe for little ones. My 3-year-old uses them alongside the Drawing Robot markers for different textures in her art.",
+            "name": "Layla Z.",
+            "location": "Abu Dhabi · Wax Crayons",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Are these safe if my toddler puts them in their mouth?",
+            "answer": "<p>Yes. These wax crayons are made with a non-toxic, taste-safe formula. While they are not food, they will not harm your child if chewed or licked — which toddlers commonly do during play.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Will the wax wash off furniture and walls?",
+            "answer": "<p>Yes. The wax formula wipes clean from most hard surfaces (tables, tiles, walls) with a damp cloth. For fabrics, pre-treat with warm water and soap before a standard wash cycle.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "What age are these suitable for?",
+            "answer": "<p>Recommended for ages 2 and above. The chunky grip design is specifically sized for toddler hands, making them the ideal first crayons for young children.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How do these compare to markers and pencils?",
+            "answer": "<p>Wax crayons offer a different texture experience — smoother, softer marks that are great for broad colouring. Pair them with markers (for bold lines) and pencils (for detail) to give your child a complete art toolkit.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to all UAE emirates?",
+            "answer": "<p>Free next-day delivery to all 7 emirates — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available everywhere.</p>"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": { "label": "Kids Collection UAE", "url": "/collections/kids-collection-uae" }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": { "label": "Washable Markers", "url": "/products/kids-dual-tip-markers-uae" }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": { "label": "Color Pencils", "url": "/products/color-pencils" }
+        }
+      },
+      "block_order": [
+        "badge_1", "badge_2",
+        "trust_1", "trust_2", "trust_3", "trust_4",
+        "hl_1", "hl_2", "hl_3",
+        "feat_1", "feat_2", "feat_3", "feat_4", "feat_5",
+        "spec_1", "spec_2", "spec_3", "spec_4", "spec_5",
+        "rev_1", "rev_2", "rev_3",
+        "faq_1", "faq_2", "faq_3", "faq_4", "faq_5",
+        "ilink_1", "ilink_2", "ilink_3"
+      ],
+      "settings": {
+        "seo_h1": "Kids Non-Toxic Wax Crayons — Safe Colouring Ages 2+",
+        "hero_alt": "Kids non-toxic wax crayons safe colouring chunky grip for toddlers ages 2+ UAE — TipTop360",
+        "collection_handle": "problem-solving-products-uae",
+        "collection_name": "Problem Solving Products",
+        "hero_product": "kids-drawing-robot",
+        "hero_link_label": "Goes Great With",
+        "hero_link_sub": "See the STEM Drawing Robot →",
+        "rating_value": "4.7",
+        "review_count": "25",
+        "atc_text": "Add to Cart",
+        "hl_lbl": "Toddler-Safe Art",
+        "hl_title": "3 Reasons Parents Stock Up",
+        "hl_sub": "Non-toxic, washable, and the lowest-price add-on in the store.",
+        "feat_lbl": "First Crayons Done Right",
+        "feat_title": "Crayon Features",
+        "feat_sub": "Safe enough for toddlers, vibrant enough for older kids.",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "cta_title": "Add Crayons to Your Order",
+        "cta_sub": "AED 10 — free next-day delivery. Cash on delivery. 14-day returns.",
+        "specs_title": "Product Specifications",
+        "related_title": "More Art Supplies",
+        "ilinks_title": "Explore More at TipTop360"
+      }
+    }
+  },
+  "order": ["tt360_upsell_body"]
+}

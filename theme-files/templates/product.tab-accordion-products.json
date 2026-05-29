@@ -18,10 +18,6 @@
             "e_label": true
           }
         },
-        "judge_me_reviews_preview_badge_MT3pxV": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        },
         "icon_with_text_jNhtXt": {
           "type": "icon_with_text",
           "settings": {
@@ -135,10 +131,6 @@
             "size_color": "small-38"
           }
         },
-        "wrapin_gift_wrap_options_app_block_NnMhfh": {
-          "type": "shopify://apps/wrapin-gift-wrap-options/blocks/app-block/31c9fd89-9221-4847-aeee-86a226a0a620",
-          "settings": {}
-        },
         "tabcustom_wxEUEF": {
           "type": "tabcustom",
           "name": "Why You’ll Love It",
@@ -195,10 +187,6 @@
             "stab_content4": ""
           }
         },
-        "selleasy_lb_upsell_widget_bl_zVGCQq": {
-          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-bl/790c1a03-a71f-4bc1-9869-00dad526d3c2",
-          "settings": {}
-        },
         "ab3c624e-4b26-4bb4-b6bc-f283badc9347": {
           "type": "separator",
           "disabled": true,
@@ -207,7 +195,6 @@
       },
       "block_order": [
         "989bce2f-7961-4267-8e6c-40ff4bb0ed64",
-        "judge_me_reviews_preview_badge_MT3pxV",
         "icon_with_text_jNhtXt",
         "icon_with_text_mPJGp6",
         "c5c11045-e3b5-47e4-80d1-25e86ec844cc",
@@ -220,14 +207,12 @@
         "73a647c7-afc5-4d87-aaea-1438dd5ecb92",
         "icon_with_text_4eThPk",
         "8288910a-1ad6-47df-b127-118bc1d2ce24",
-        "wrapin_gift_wrap_options_app_block_NnMhfh",
         "tabcustom_wxEUEF",
         "separator_a9kQ6w",
         "tabcustom_iiHPiV",
         "separator_EU3TPw",
         "tabcustom_qcFAgp",
         "a405ef88-bdbe-486d-9fb3-6c91aa4e1509",
-        "selleasy_lb_upsell_widget_bl_zVGCQq",
         "ab3c624e-4b26-4bb4-b6bc-f283badc9347"
       ],
       "custom_css": [
@@ -249,11 +234,11 @@
         "upsell_decline": "No, thanks",
         "upsell_time": 1,
         "enable": true,
-        "mix_1": "#f9655d",
-        "mix_2": "#ffffff",
-        "text_cl": "#ffffff",
-        "cart_bg": "#ffffff",
-        "cart_cl": "#0f307a",
+        "mix_1": "#ffffff",
+        "mix_2": "#f5f5f5",
+        "text_cl": "#12395e",
+        "cart_bg": "#FF7A3D",
+        "cart_cl": "#ffffff",
         "cart_cl_hover": "#ffffff"
       }
     },
@@ -406,20 +391,6 @@
     },
     "1765782433b8344cce": {
       "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_NJWWnt": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "real_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "hide_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_NJWWnt"
-      ],
       "custom_css": [
         "h2 {font-size: 28px;}"
       ],
@@ -457,15 +428,6 @@
     },
     "16956665928504d885": {
       "type": "apps",
-      "blocks": {
-        "selleasy_lb_upsell_widget_bl_fTacTD": {
-          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-bl/790c1a03-a71f-4bc1-9869-00dad526d3c2",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "selleasy_lb_upsell_widget_bl_fTacTD"
-      ],
       "disabled": true,
       "settings": {
         "animation": "",

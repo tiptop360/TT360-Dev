@@ -293,7 +293,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </script>
 
   <!-- Lazy image preloader script (if used in theme) -->
-  {{ 'tiny-img-link-preloader.s.min.js' | asset_url | script_tag }}
+  <script src="{{ 'tiny-img-link-preloader.s.min.js' | asset_url }}" defer></script>
 
 </body>
 </html>
+

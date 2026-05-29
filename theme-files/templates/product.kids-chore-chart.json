@@ -1,0 +1,443 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360-product-body": {
+      "type": "tt360-product-body",
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "text": "✅ Non-Toxic & Safe",
+            "style": "green"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "text": "🎯 Perfect Add-On",
+            "style": "orange"
+          }
+        },
+        "trust_1": {
+          "type": "trust",
+          "settings": {
+            "icon": "📦",
+            "label": "Free Next Day"
+          }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": {
+            "icon": "💵",
+            "label": "Cash on Delivery"
+          }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔄",
+            "label": "14-Day Returns"
+          }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔒",
+            "label": "Secure Checkout"
+          }
+        },
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "📋",
+            "title": "Visual Sliding Checklist",
+            "desc": "Children slide tokens to mark tasks done — tactile, engaging, no nagging needed."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "🧠",
+            "title": "Builds Real Independence",
+            "desc": "Kids aged 3-10 manage morning and bedtime routines themselves with pride."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "📵",
+            "title": "Screen-Free & Interactive",
+            "desc": "No batteries, no Wi-Fi — hands-on habit building away from devices."
+          }
+        },
+        "hl_4": {
+          "type": "highlight",
+          "settings": {
+            "icon": "♻️",
+            "title": "Durable & Reusable",
+            "desc": "Wipe-clean surface with repositionable elements. Grows with your child."
+          }
+        },
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "📋",
+            "title": "Sliding Checklist System",
+            "desc": "Tactile tokens kids move themselves — builds ownership."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🧠",
+            "title": "Independence Builder",
+            "desc": "Children manage routines without parental prompting."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "📐",
+            "title": "Compact 20×12 cm",
+            "desc": "Fits bedroom walls, kitchen doors, study corners."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "📵",
+            "title": "Zero Screen Time",
+            "desc": "No batteries, no apps, no subscriptions — ever."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Non-Toxic & BPA-Free",
+            "desc": "Safe wipeable materials for daily use by small hands."
+          }
+        },
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Hang It Up",
+            "desc": "Mount the compact chart on any wall, door, or study corner — takes 30 seconds."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Set Daily Tasks",
+            "desc": "Choose morning, afternoon, or bedtime routines using the reusable task cards."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Kids Slide & Check",
+            "desc": "Children slide each token as they complete tasks — satisfying tactile feedback."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "Reset & Repeat",
+            "desc": "Wipe clean and reset daily. Add new tasks as your child grows in confidence."
+          }
+        },
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Mornings used to be a battle. Now my 5-year-old checks off her tasks before I even ask. We bought a second one for bedtime routine.",
+            "name": "Huda M.",
+            "location": "Dubai · Chore Chart",
+            "avatar_color": "#667eea",
+            "verified": true
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Got this as an Eid gift with the Drawing Robot. My nephew loves sliding the checklist — it makes chores feel like a game. Great quality for the price.",
+            "name": "Layla K.",
+            "location": "Abu Dhabi · Chore Chart",
+            "avatar_color": "#f093fb",
+            "verified": true
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "text": "Perfect add-on to our routine. My 8-year-old manages his own morning tasks now. Compact, well made, and COD made ordering easy.",
+            "name": "Ahmed S.",
+            "location": "Sharjah · Chore Chart",
+            "avatar_color": "#4facfe",
+            "verified": true
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Is the Kids Routine Chore Chart safe for children under 3?",
+            "answer": "<p>Designed for ages 3 and up. Toddlers under 3 may lack the fine motor control for the sliding checklist. With direct parental guidance, younger children can still benefit, but it works best from age 3 onwards.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "How is this different from a regular printed chore chart?",
+            "answer": "<p>Unlike static printed charts that fade and need marker rewrites, this features a wipeable, reusable sliding system. Children physically interact with the checklist — sliding tokens — which keeps them engaged through tactile feedback.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Is this suitable for a 10-year-old?",
+            "answer": "<p>Yes. While younger children (3-6) enjoy the tactile sliding element, children aged 7-10 benefit from the independence and responsibility it fosters. Older kids appreciate managing their own routine without parental prompting.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver to all UAE emirates?",
+            "answer": "<p>Yes! TipTop360 delivers free to all UAE emirates — Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah & Umm Al Quwain. Cash on Delivery available everywhere.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "What TipTop360 products pair well with the chore chart?",
+            "answer": "<p>Parents love using the chore chart as a reward system — finish morning tasks, earn creative time with the Drawing Robot. The Brushing Reward Chart pairs perfectly for dental hygiene routines, and the U-Shaped Toothbrush makes bedtime brushing part of the checklist.</p>"
+          }
+        },
+        "usecase_1": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🌅",
+            "title": "Morning Routine",
+            "desc": "Brush teeth, get dressed, pack bag — kids complete tasks independently without being asked 5 times."
+          }
+        },
+        "usecase_2": {
+          "type": "usecase",
+          "settings": {
+            "icon": "📚",
+            "title": "After-School Homework",
+            "desc": "Homework, reading, tidy room — the chart turns responsibility into a satisfying slide-to-green game."
+          }
+        },
+        "usecase_3": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🌙",
+            "title": "Bedtime Routine",
+            "desc": "Bath, brush teeth, pyjamas, story — kids follow the chart and put themselves to bed on time."
+          }
+        },
+        "usecase_4": {
+          "type": "usecase",
+          "settings": {
+            "icon": "🎁",
+            "title": "Eid & Birthday Gift",
+            "desc": "The screen-free gift that teaches independence. Parents across the UAE call it a game-changer."
+          }
+        },
+        "content_1": {
+          "type": "content_section",
+          "settings": {
+            "label": "About This Product",
+            "heading": "Kids Routine Chore Chart — The Screen-Free Habit Builder",
+            "subheading": "",
+            "body": "<p>The Kids Routine Chore Chart uses a simple <strong>slide-to-green checklist</strong> that children operate themselves. Each task has a physical slider that moves from red to green when completed — giving kids a tangible sense of accomplishment with every routine.</p><p>Designed for <strong>ages 3 to 10</strong>, the chart covers morning, afternoon, and evening routines. Customisable task labels let you tailor it to your family's specific needs — from brushing teeth to homework to packing school bags.</p><p><strong>Built for UAE families.</strong> Whether you are managing a busy household in Dubai, homeschooling in Abu Dhabi, or teaching independence to a toddler in Sharjah — this chart replaces nagging with a system kids actually enjoy following.</p><p>The <strong>durable wooden construction</strong> is built to last years. No batteries, no screens, no apps — just a physical tool that builds real habits through daily repetition and visual feedback.</p><p><strong>Parent-approved results.</strong> UAE families report that children complete routines independently within the first week. The visual progress system triggers intrinsic motivation — kids want to see all sliders turn green.</p><p>TipTop360 delivers <strong>free next day across all 7 UAE emirates</strong> — Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain. Cash on Delivery available. 14-day hassle-free returns.</p>",
+            "alt_bg": true
+          }
+        },
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Material",
+            "spec_value": "Durable Wood Construction"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Recommended Age",
+            "spec_value": "3-10 Years"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Task Slots",
+            "spec_value": "Customisable Labels"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Power",
+            "spec_value": "No Batteries Required"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "spec_name": "Orientation",
+            "spec_value": "Wall-Mounted"
+          }
+        },
+        "ilink_1": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Kids Collection UAE",
+            "url": "/collections/kids-collection-uae"
+          }
+        },
+        "ilink_2": {
+          "type": "internal_link",
+          "settings": {
+            "label": "STEM Drawing Robot",
+            "url": "/products/kids-drawing-robot"
+          }
+        },
+        "ilink_3": {
+          "type": "internal_link",
+          "settings": {
+            "label": "Smoke Bubble Machine",
+            "url": "/products/smoke-bubble-machine"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "trust_1",
+        "trust_2",
+        "trust_3",
+        "trust_4",
+        "hl_1",
+        "hl_2",
+        "hl_3",
+        "hl_4",
+        "feat_1",
+        "feat_2",
+        "feat_3",
+        "feat_4",
+        "feat_5",
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "usecase_1",
+        "usecase_2",
+        "usecase_3",
+        "usecase_4",
+        "content_1",
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "ilink_1",
+        "ilink_2",
+        "ilink_3"
+      ],
+      "settings": {
+        "seo_title": "Kids Routine Chore Chart UAE | Sliding Checklist Ages 3-10 | Dhs. 55",
+        "seo_h1": "Kids Routine Chore Chart — Build Daily Habits Ages 3-10",
+        "hero_alt": "Kids routine chore chart with sliding checklist for building daily habits and independence UAE — TipTop360",
+        "seo_description": "Build independence and daily habits with the Kids Routine Chore Chart. Sliding checklist for ages 3-10. Non-toxic, BPA-free, screen-free. Free next-day delivery across UAE. Cash on Delivery available.",
+        "collection_handle": "kids-collection-uae",
+        "collection_name": "Kids Collection",
+        "scarcity_text": "72 sold this month — Parents love it",
+        "usecase_lbl": "For Every Family Routine",
+        "usecase_title": "When It Works Best",
+        "usecase_sub": "Morning rush, homework time, bedtime — kids take ownership of their own routines.",
+        "howto_schema_enable": true,
+        "howto_name": "How to Use the Kids Routine Chore Chart",
+        "howto_desc": "Hang the chart at your child's eye level. Slide each task marker from red to green as they complete morning, afternoon, and evening routines. Reset daily.",
+        "howto_time": "PT1M",
+        "ann_enable": true,
+        "ann_text": "🚚 Free Next Day Delivery across UAE  |  💵 Cash on Delivery  |  🔄 14-Day Returns  |  Order before 8 PM",
+        "hero_badge2": "🎯 Perfect Add-On",
+        "show_sold_out": false,
+        "rating_value": "4.8",
+        "proof_lbl_rating": "Average rating",
+        "review_count": "50",
+        "review_label": "UAE parent reviews",
+        "proof_num_delivery": "Next Day",
+        "proof_lbl_shipping": "Delivery across UAE",
+        "proof_lbl_free": "Free next-day delivery",
+        "atc_text": "Add to Cart",
+        "sticky_text": "Add to Cart",
+        "bms_enable": false,
+        "bms_qty2": 2,
+        "bms_disc2": 0,
+        "bms_qty3": 3,
+        "bms_disc3": 0,
+        "bms_orig_price": 55,
+        "bms_price1": 55,
+        "bms_price2": 99,
+        "bms_price3": 139,
+        "feat_lbl": "Why UAE Families Love It",
+        "feat_title": "5 Reasons Parents Say Yes",
+        "feat_sub": "Screen-free, tactile, and kids actually want to complete their routines.",
+        "steps_lbl": "Simple to Start",
+        "steps_title": "How It Works",
+        "steps_sub": "Ready in under a minute — hang, set tasks, done.",
+        "video_enable": false,
+        "section_video": "",
+        "video_lbl": "",
+        "video_title": "",
+        "video_sub": "",
+        "video_placeholder": "",
+        "rev_lbl": "Real UAE Parents",
+        "rev_title": "What Parents Are Saying",
+        "rev_sub": "50+ verified reviews from UAE families.",
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "ilinks_title": "Explore More at TipTop360",
+        "gift_bag_handle": "gift-wrap-1",
+        "gift_bag_title": "🎁 Add Gift Box",
+        "gift_bag_sub": "make it special",
+        "gift_bag_btn": "+ Add",
+        "gift_bag_price": "9",
+        "upsell_1": "kids-drawing-robot",
+        "upsell_2": "kids-u-shaped-toothbrush-uae",
+        "upsell_3": "kids-brushing-stickers-uae",
+        "cta_lbl": "Perfect Add-On",
+        "cta_title": "Add Structure to Your Child's Day",
+        "cta_sub": "Dhs. 55 — free next-day delivery. Cash on delivery. 14-day returns.",
+        "cta_btn": "Add to Cart",
+        "cta_trust_1": "📦 Free Next Day Delivery",
+        "cta_trust_2": "💵 Cash on Delivery",
+        "cta_trust_3": "🔄 14-Day Returns",
+        "cta_trust_4": "🔒 Secure Checkout"
+      }
+    }
+  },
+  "order": [
+    "tt360-product-body"
+  ]
+}

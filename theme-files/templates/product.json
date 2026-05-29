@@ -1,0 +1,109 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tt360-product-body": {
+      "type": "tt360-product-body",
+      "blocks": {
+        "trust_1": {
+          "type": "trust",
+          "settings": {
+            "icon": "📦",
+            "label": "Free Next Day Delivery"
+          }
+        },
+        "trust_2": {
+          "type": "trust",
+          "settings": {
+            "icon": "💵",
+            "label": "Cash on Delivery"
+          }
+        },
+        "trust_3": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔄",
+            "label": "14-Day Returns"
+          }
+        },
+        "trust_4": {
+          "type": "trust",
+          "settings": {
+            "icon": "🔒",
+            "label": "Secure Checkout"
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you deliver across all UAE emirates?",
+            "answer": "<p>Yes — TipTop360 delivers <strong>free</strong> to all UAE emirates: Dubai, Abu Dhabi, Sharjah, Ajman, RAK, Fujairah &amp; Umm Al Quwain. Order before 8 PM for next-day delivery.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I pay Cash on Delivery?",
+            "answer": "<p>Yes — Cash on Delivery is available on all orders across the UAE. No online payment required. Pay when your order arrives at your door.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a <strong>14-day hassle-free return policy</strong>. If you're not satisfied, contact us and we'll arrange a return or exchange at no cost to you.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I track my order?",
+            "answer": "<p>You'll receive an SMS and WhatsApp confirmation once your order ships. For order status, contact us on WhatsApp — we typically respond within minutes.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "trust_1",
+        "trust_2",
+        "trust_3",
+        "trust_4",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4"
+      ],
+      "settings": {
+        "ann_enable": true,
+        "ann_text": "🚚 Free Next Day Delivery across UAE  |  💵 Cash on Delivery  |  🔄 14-Day Returns  |  Order before 8 PM",
+        "show_sold_out": false,
+        "proof_lbl_free": "Free next-day delivery",
+        "proof_num_delivery": "Next Day",
+        "proof_lbl_shipping": "Delivery across UAE",
+        "atc_text": "Add to Cart — Pay on Delivery",
+        "sticky_text": "Add to Cart",
+        "bms_enable": false,
+        "faq_lbl": "Got Questions?",
+        "faq_title": "Frequently Asked Questions",
+        "gift_bag_handle": "gift-wrap-1",
+        "gift_bag_title": "🎁 Add Gift Box",
+        "gift_bag_sub": "make it a special gift",
+        "gift_bag_btn": "+ Add",
+        "gift_bag_price": "9",
+        "cta_trust_1": "📦 Free Next Day Delivery",
+        "cta_trust_2": "💵 Cash on Delivery",
+        "cta_trust_3": "🔄 14-Day Returns",
+        "cta_trust_4": "🔒 Secure Checkout"
+      }
+    }
+  },
+  "order": [
+    "tt360-product-body"
+  ]
+}

@@ -1,0 +1,27 @@
+{%- comment -%}
+  Schema Controller — Centralized JSON-LD injection point
+  Placed in layout/theme.liquid <head>
+  Routes to appropriate schema snippets based on current template
+{%- endcomment -%}
+
+{%- comment -%} Site-wide: Organization + WebSite @graph {%- endcomment -%}
+{%- render 'schema-organization' -%}
+
+{%- comment -%} Page-specific schemas {%- endcomment -%}
+<!-- DEBUG: template.name={{ template.name }} template={{ template }} -->
+{%- if template.name == 'product' -%}
+  {%- render 'schema-product' -%}
+{%- elsif template.name == 'collection' -%}
+  {%- render 'schema-collection', collection: collection -%}
+{%- elsif template.name == 'article' -%}
+  {%- render 'schema-article', article: article, blog: blog -%}
+{%- elsif template.name == 'page' and template.suffix == blank -%}
+  {%- render 'schema-webpage', page: page -%}
+{%- elsif template.name == 'index' -%}
+  {%- render 'schema-localbusiness' -%}
+{%- endif -%}
+
+{%- comment -%} Breadcrumbs — all pages except homepage {%- endcomment -%}
+{%- unless template.name == 'index' -%}
+  {%- render 'schema-breadcrumbs' -%}
+{%- endunless -%}

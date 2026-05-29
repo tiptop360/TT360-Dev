@@ -18,192 +18,187 @@
   ],
   "sections": {
     "17654448977f8b4a77": {
-      "block_order": [
-        "ai_gen_block_f44e08e_aJhUTL"
-      ],
+      "type": "_blocks",
       "blocks": {
         "ai_gen_block_f44e08e_aJhUTL": {
-          "blocks": {},
+          "type": "ai_gen_block_f44e08e",
           "disabled": true,
           "settings": {
-            "accent_color": "#54e8cc",
-            "background_color": "#ffffff",
-            "badge_bg_color": "#12395e",
+            "padding_vertical": 60,
+            "padding_horizontal": 30,
             "badge_text": "New Arrival",
-            "badge_text_color": "#ffffff",
-            "button_bg_color": "#54e8cc",
-            "button_hover_color": "#12395e",
-            "button_link": "",
-            "button_text": "Shop Now",
-            "button_text_color": "#12395e",
+            "heading": "Discover Our Best Products",
+            "heading_size": 44,
             "description": "<p>Experience quality and innovation with our carefully curated collection designed for families in the UAE.</p>",
+            "text_size": 14,
+            "show_features": true,
             "feature_1": "Premium quality materials",
             "feature_2": "Free & Next Day Delivery",
             "feature_3": "Safe for kids and families",
-            "heading": "Discover Our Best Products",
-            "heading_color": "#12395e",
-            "heading_size": 44,
-            "padding_horizontal": 30,
-            "padding_vertical": 60,
-            "show_features": true,
-            "text_color": "#202025",
-            "text_size": 14
-          },
-          "type": "ai_gen_block_f44e08e"
-        }
-      },
-      "settings": {},
-      "type": "_blocks"
-    },
-    "17656043340f8de152": {
-      "block_order": [
-        "ai_gen_block_f44e08e_cMfCgb",
-        "judge_me_reviews_all_reviews_text_nNdUre",
-        "ai_gen_block_d447fb7_rAJBaG"
-      ],
-      "blocks": {
-        "ai_gen_block_d447fb7_rAJBaG": {
-          "blocks": {},
-          "name": "CSS Optimizer",
-          "settings": {
-            "defer_non_critical": true,
-            "enable_critical_css": true,
-            "minify_inline_css": true,
-            "preload_fonts": true
-          },
-          "type": "ai_gen_block_d447fb7"
-        },
-        "ai_gen_block_f44e08e_cMfCgb": {
-          "blocks": {},
-          "name": "Product banner",
-          "settings": {
-            "accent_color": "#54e8cc",
+            "button_text": "Shop Now",
+            "button_link": "",
             "background_color": "#ffffff",
+            "heading_color": "#12395e",
+            "text_color": "#202025",
+            "accent_color": "#54e8cc",
             "badge_bg_color": "#12395e",
-            "badge_text": "",
             "badge_text_color": "#ffffff",
             "button_bg_color": "#54e8cc",
-            "button_hover_color": "#12395e",
-            "button_link": "",
-            "button_text": "",
             "button_text_color": "#12395e",
+            "button_hover_color": "#12395e"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f44e08e_aJhUTL"
+      ],
+      "settings": {}
+    },
+    "17656043340f8de152": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d447fb7_rAJBaG": {
+          "type": "ai_gen_block_d447fb7",
+          "name": "CSS Optimizer",
+          "settings": {
+            "enable_critical_css": true,
+            "preload_fonts": true,
+            "defer_non_critical": true,
+            "minify_inline_css": true
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_f44e08e_cMfCgb": {
+          "type": "ai_gen_block_f44e08e",
+          "name": "Product banner",
+          "settings": {
+            "padding_vertical": 30,
+            "padding_horizontal": 30,
+            "badge_text": "",
+            "heading": "Discover Our Best Products",
+            "heading_size": 44,
             "description": "<p>Experience quality and innovation with our carefully curated collection designed for families in the UAE.</p>",
+            "text_size": 14,
+            "show_features": true,
             "feature_1": "Premium quality materials",
             "feature_2": "Fast delivery across UAE",
             "feature_3": "Safe for kids and families",
-            "heading": "Discover Our Best Products",
+            "button_text": "",
+            "button_link": "",
+            "background_color": "#ffffff",
             "heading_color": "#12395e",
-            "heading_size": 44,
-            "padding_horizontal": 30,
-            "padding_vertical": 30,
-            "show_features": true,
             "text_color": "#202025",
-            "text_size": 14
+            "accent_color": "#54e8cc",
+            "badge_bg_color": "#12395e",
+            "badge_text_color": "#ffffff",
+            "button_bg_color": "#54e8cc",
+            "button_text_color": "#12395e",
+            "button_hover_color": "#12395e"
           },
-          "type": "ai_gen_block_f44e08e"
-        },
-        "judge_me_reviews_all_reviews_text_nNdUre": {
-          "settings": {},
-          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_text/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8"
+          "blocks": {}
         }
       },
-      "settings": {},
-      "type": "_blocks"
+      "block_order": [
+        "ai_gen_block_f44e08e_cMfCgb",
+        "ai_gen_block_d447fb7_rAJBaG"
+      ],
+      "settings": {}
     },
     "collection-banner": {
-      "custom_css": [],
+      "type": "main-collection-banner",
       "disabled": true,
+      "custom_css": [],
       "settings": {
-        "bg_color": "#349494",
-        "des_all": "",
-        "enable_collection": true,
-        "enable_count": false,
-        "heading_size": "h1",
-        "image_overlay_color": "#000000",
-        "image_overlay_opacity": 30,
-        "image_text_color": "#ffffff",
-        "img_height": "250px",
-        "link_list_head": "customer-account-main-menu",
-        "save_allproducts": true,
         "show_breadcrumb": false,
+        "width_breadcrumb": "container-fluid",
         "show_collection_description": false,
         "show_collection_image": false,
-        "style_banner": "full",
+        "save_allproducts": true,
         "title_all": "All Products",
-        "width_breadcrumb": "container-fluid"
-      },
-      "type": "main-collection-banner"
+        "des_all": "",
+        "style_banner": "full",
+        "heading_size": "h1",
+        "img_height": "250px",
+        "bg_color": "#349494",
+        "image_text_color": "#ffffff",
+        "image_overlay_color": "#000000",
+        "image_overlay_opacity": 30,
+        "enable_collection": true,
+        "enable_count": false,
+        "link_list_head": "customer-account-main-menu"
+      }
     },
     "product-grid": {
+      "type": "main-collection-template",
       "settings": {
-        "collection_perrow": "4",
         "collection_width": "container-fluid",
-        "enable_color": true,
-        "enable_edit_item": false,
-        "enable_filtering": false,
-        "enable_list_collection": false,
-        "enable_sorting": true,
+        "products_per_page": 8,
+        "collection_perrow": "4",
+        "type_pagination": "click",
         "enable_viewcolumn": true,
+        "enable_filtering": false,
+        "enable_sorting": true,
         "filter_type": "horizontal",
         "first_group": false,
-        "link_list_head": "",
         "open_group": true,
-        "padding_bottom": 0,
-        "padding_top": 0,
-        "products_per_page": 8,
-        "select_item": "product-7",
+        "enable_color": true,
+        "type_color": true,
         "style_color": "color_grid",
         "style_size": "grid",
-        "type_color": true,
-        "type_pagination": "click"
-      },
-      "type": "main-collection-template"
+        "enable_edit_item": false,
+        "select_item": "product-7",
+        "enable_list_collection": false,
+        "link_list_head": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     },
     "product_list_R7qfcc": {
+      "type": "product-list",
       "name": "Product list (carousel)",
       "settings": {
-        "align-heading": "center",
         "animation": "",
-        "arrows": true,
-        "bgsection": "#ffffff",
-        "collection": "problem-solving-products-uae",
-        "des": "",
-        "dots": true,
-        "draggable": true,
-        "infinite": true,
-        "limit": 14,
-        "marginmobile": "0px 0px 0px 0px",
-        "marginsection": "0px 0px 0px 0px",
-        "paddingmobile": "20px 0px 20px 0px",
-        "paddingsection": "0px 0px 0px 0px",
-        "rows": "2",
         "setwidth": "container",
-        "show": 3,
+        "bgsection": "#ffffff",
+        "title_top": "Sub Title Top",
         "title": "Small Tools. Big Convenience",
-        "title_top": "Sub Title Top"
-      },
-      "type": "product-list"
+        "des": "",
+        "align-heading": "center",
+        "collection": "problem-solving-products-uae",
+        "arrows": true,
+        "draggable": true,
+        "dots": true,
+        "infinite": true,
+        "rows": "2",
+        "limit": 14,
+        "show": 3,
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "20px 0px 20px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
     },
     "rich_text_QWy67W": {
+      "type": "rich-text",
       "disabled": true,
       "name": "Rich text",
       "settings": {
-        "align-content": "center",
-        "align-heading": "center",
         "animation": "fade-down",
+        "setwidth": "full",
         "bgsection": "#ffffff",
         "gradient_bg": "",
-        "marginmobile": "0px 0px 0px 0px",
-        "marginsection": "0px 0px 0px 0px",
-        "paddingmobile": "10px 0px 0px 0px",
-        "paddingsection": "0px 0px 0px 0px",
-        "setwidth": "full",
-        "text": "",
-        "title": "New Arrivals Top-Selling Products in UAE",
         "title_color": "rgba(0,0,0,0)",
-        "title_top": ""
-      },
-      "type": "rich-text"
+        "title_top": "",
+        "title": "New Arrivals Top-Selling Products in UAE",
+        "text": "",
+        "align-heading": "center",
+        "align-content": "center",
+        "paddingsection": "0px 0px 0px 0px",
+        "paddingmobile": "10px 0px 0px 0px",
+        "marginsection": "0px 0px 0px 0px",
+        "marginmobile": "0px 0px 0px 0px"
+      }
     }
   }
 }

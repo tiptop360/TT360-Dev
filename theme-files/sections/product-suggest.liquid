@@ -28,13 +28,13 @@
 <section class="product-notification" data-time="{{ section.settings.duration | times: 1000 }}" >
   <span  title="Close" class="close-notifi">{% render 'icon-close-solid' %}</span>
   <div class="product-suggest ">
-    <a class="product-image " href="/" title="">
+    <a class="product-image " href="{{ routes.root_url }}" title="">
       <span class="w-100 d-block product-notification-img position-relative {{ settings.size_image_grid }}">
-        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" loading="lazy" width="150" height="">
+        <img src="{{ 'loading.gif' | asset_url }}" alt="" loading="lazy" width="150" height="150">
       </span>
     </a>
     <div class="column-right">
-      <label class="pr-2 mb-1">{{ section.settings.text }} <a class="product-name" href="/"></a></label>
+      <label class="pr-2 mb-1">{{ section.settings.text }} <a class="product-name" href="{{ routes.root_url }}"></a></label>
       <div class="from-ago"></div>
       <div class="d-flex gap-3">
         <div class="d-flex gap-1 align-items-center">
@@ -78,7 +78,7 @@
 {% schema %}
 {
   "name": "Product Suggest",
-  "max_blocks": 100,
+  "max_blocks": 50,
   "settings": [
     {
       "type": "checkbox",

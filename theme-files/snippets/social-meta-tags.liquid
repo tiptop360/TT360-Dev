@@ -6,6 +6,16 @@
   assign og_description = page_description | default: shop.description | default: shop.name
 -%}
 
+{%- if template.name == 'index' -%}
+  {%- liquid
+    assign og_title = 'TipTop360 | Problem-Solving Products UAE'
+    assign og_url = 'https://tiptop360.com/'
+    assign og_description = 'Curated smart gadgets, kids essentials & wellness tools with free next-day delivery across the UAE. Cash on delivery available.'
+  -%}
+  {%- capture og_image_tags -%}<meta property="og:image" content="https://tiptop360.com/cdn/shop/files/Logo.png?v=1760682550&width=1200">{%- endcapture -%}
+  {%- capture og_image_secure_url_tags -%}<meta property="og:image:secure_url" content="https://tiptop360.com/cdn/shop/files/Logo.png?v=1760682550&width=1200">{%- endcapture -%}
+{%- endif -%}
+
 {%- if settings.share_image -%}
   {%- capture og_image_tags -%}<meta property="og:image" content="http:{{ settings.share_image | image_url: width: 1200, height: 1200 }}">{%- endcapture -%}
   {%- capture og_image_secure_url_tags -%}<meta property="og:image:secure_url" content="https:{{ settings.share_image | image_url: width: 1200, height: 1200 }}">{%- endcapture -%}

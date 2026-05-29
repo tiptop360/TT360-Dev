@@ -15,7 +15,7 @@
     "sectionheading": "heading-1",
     "loading": "grow",
     "favicon": "shopify://shop_images/Favicon.png",
-    "meta_description": "Discover curated everyday products that solve real problems. TipTop360 delivers smart, useful finds fast – for home, family, and lifestyle. Shop smarter today.",
+    "meta_description": "Discover curated everyday products that solve real problems. TipTop360 delivers smart, useful finds fast – for home, family, and lifestyle.",
     "enable_radius_allimg": true,
     "color_primary": "#12395e",
     "color_secondary": "#202025",
@@ -135,7 +135,7 @@
     "sidebar_html_title": "",
     "sidebar_html": "",
     "enable_compare": false,
-    "enable_wishlsit": false,
+    "enable_wishlsit": true,
     "page_wishlist": "wishlist",
     "enable_popuptext": false,
     "enable_popuptext_new": "Get 15% Off",
@@ -404,6 +404,14 @@
     "checkout_call_to_action_color": "#006eff",
     "checkout_use_header_image": false,
     "color_newsletter_input": "#1a1a1a",
+    "block_order": [
+      "18228966181090706294",
+      "17985673643287205206",
+      "855628211100114053",
+      "442549160356511856",
+      "14060646107696862457",
+      "6159598353363395418"
+    ],
     "sections": {
       "product-suggest": {
         "type": "product-suggest",
@@ -2180,6 +2188,8 @@
           "pnew-height": 480,
           "pnewletter_time_delay": 3,
           "pnewletter_time": 20,
+          "pnewletter_scroll_pct": 60,
+          "pnewletter_idle_seconds": 45,
           "pnewletter_background": "#ffffff",
           "subtitle": "FIRST TIMER?",
           "pnewletter_title": "Sign Up & Save 10%",
@@ -2331,35 +2341,8 @@
       "1660925094098c539e"
     ],
     "blocks": {
-      "6544682535036668446": {
-        "type": "shopify://apps/pumper-bundles-quantity-breaks/blocks/app-embed/0856870d-2aca-4b1e-a662-cf1797f61270",
-        "disabled": false,
-        "settings": {}
-      },
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      },
-      "18228966181090706294": {
-        "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
-        "disabled": false,
-        "settings": {
-          "storefrontAccessToken": ""
-        }
-      },
-      "17985673643287205206": {
-        "type": "shopify://apps/c-edd-estimated-delivery-date/blocks/app_setting/4a0685bc-c234-45b2-8382-5ad6a8e3e3fd",
-        "disabled": true,
-        "settings": {}
-      },
       "855628211100114053": {
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
-        "disabled": false,
-        "settings": {}
-      },
-      "13694372020385051692": {
-        "type": "shopify://apps/analyzely-google-analytics-4/blocks/analyzely/b3a3a697-6f42-4507-a5ae-c447f6da2c9d",
         "disabled": false,
         "settings": {}
       },
@@ -2368,13 +2351,19 @@
         "disabled": false,
         "settings": {}
       },
+      "6159598353363395418": {
+        "type": "shopify://apps/google-youtube/blocks/store_widget/14ec7bd0-ac77-49a9-9417-90752398bdff",
+        "disabled": true,
+        "settings": {
+          "widget_position": "LEFT_BOTTOM",
+          "side_margin": 36,
+          "bottom_margin": 36,
+          "mobile_side_margin": 16,
+          "mobile_bottom_margin": 46
+        }
+      },
       "53419374109736018": {
         "type": "shopify://apps/nabu-redirect-manager/blocks/script-block/1ec76215-4f32-4e94-950a-ce6073ea1b48",
-        "disabled": false,
-        "settings": {}
-      },
-      "12188375666603589044": {
-        "type": "shopify://apps/storerank-ai/blocks/script/20267567-9216-4bad-b7a9-f17b46b79883",
         "disabled": false,
         "settings": {}
       }
@@ -3096,3 +3085,4 @@
     ]
   }
 }
+

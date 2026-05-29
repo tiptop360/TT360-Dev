@@ -21,13 +21,13 @@
               {{ 'cart.label.total' | t }}: <span class="js-cart-total">{{ cart.total_price | money }}</span>
             </div>
             <div class="mini-cart-btns mt-3 d-flex ">
-              <a class="btn btn-outline js-cart-btn-cart px-3 col " href="/cart">{{ 'cart.general.view' | t }}</a>
-              <a class="btn btn-theme gradient-theme js-cart-btn-checkout px-3 col {% if cart.item_count == 0 %} disabled{% endif %}" href="/checkout">{{ 'cart.general.checkout' | t }}</a>
+              <a class="btn btn-outline js-cart-btn-cart px-3 col " href="{{ routes.cart_url }}">{{ 'cart.general.view' | t }}</a>
+              <a class="btn btn-theme gradient-theme js-cart-btn-checkout px-3 col {% if cart.item_count == 0 %} disabled{% endif %}" href="{{ routes.checkout_url }}">{{ 'cart.general.checkout' | t }}</a>
             </div>
             {%- if settings.safe_checkout_pcart != blank -%}
             <div class="mini-cart-safe-checkout">
               <img class="lazyload" loading="lazy" 
-                src={{ settings.safe_checkout_pcart | image_url: width: 1, height: 1 }}"
+                src="{{ settings.safe_checkout_pcart | image_url: width: 1, height: 1 }}"
                 data-src="{{ settings.safe_checkout_pcart | image_url: width: 500 }}" 
                 width ="{{ settings.safe_checkout_pcart.width }}"
                 height = "{{ settings.safe_checkout_pcart.height }}" />

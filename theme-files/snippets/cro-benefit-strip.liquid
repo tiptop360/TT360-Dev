@@ -1,0 +1,20 @@
+{% comment %} cro-benefit-strip.liquid — 5-icon horizontal benefit strip for PDP. Reads from section settings (ben_icon_1..5, ben_txt_1..5). Falls back to generic shipping/payment if not set. {% endcomment %}
+{%- assign bi1 = section.settings.ben_icon_1 | default: '🚚' -%}
+{%- assign bt1 = section.settings.ben_txt_1 | default: 'Free Ship' -%}
+{%- assign bi2 = section.settings.ben_icon_2 | default: '💵' -%}
+{%- assign bt2 = section.settings.ben_txt_2 | default: 'COD' -%}
+{%- assign bi3 = section.settings.ben_icon_3 | default: '🔄' -%}
+{%- assign bt3 = section.settings.ben_txt_3 | default: 'Returns' -%}
+{%- assign bi4 = section.settings.ben_icon_4 | default: '🔒' -%}
+{%- assign bt4 = section.settings.ben_txt_4 | default: 'Secure' -%}
+{%- assign bi5 = section.settings.ben_icon_5 -%}
+{%- assign bt5 = section.settings.ben_txt_5 -%}
+<div class="cro-benefits" role="list" aria-label="Product benefits">
+  <div class="cro-ben" role="listitem"><span class="cro-ben-icon">{{ bi1 }}</span><span class="cro-ben-txt">{{ bt1 }}</span></div>
+  <div class="cro-ben" role="listitem"><span class="cro-ben-icon">{{ bi2 }}</span><span class="cro-ben-txt">{{ bt2 }}</span></div>
+  <div class="cro-ben" role="listitem"><span class="cro-ben-icon">{{ bi3 }}</span><span class="cro-ben-txt">{{ bt3 }}</span></div>
+  <div class="cro-ben" role="listitem"><span class="cro-ben-icon">{{ bi4 }}</span><span class="cro-ben-txt">{{ bt4 }}</span></div>
+  {%- if bt5 != blank -%}
+  <div class="cro-ben" role="listitem"><span class="cro-ben-icon">{{ bi5 }}</span><span class="cro-ben-txt">{{ bt5 }}</span></div>
+  {%- endif -%}
+</div>
