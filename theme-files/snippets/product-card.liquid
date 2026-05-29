@@ -15,10 +15,15 @@
           src="{{ image | image_url: width: 720 }}"
           sizes="(min-width: {{ settings.container }}px) {{ settings.container | minus: 120 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 120px) / 4), (min-width: 750px) ca lc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
           alt="{{ image.alt | escape }}"
-          class="lazyload scale-in first-image"
-          data-sizes="auto"
+          class="scale-in first-image{% unless lcp %} lazyload{% endunless %}"
           data-aspectratio="{{ image.aspect_ratio }}"
-          loading="lazy" 
+          {%- if lcp -%}
+          loading="eager"
+          fetchpriority="high"
+          {%- else -%}
+          data-sizes="auto"
+          loading="lazy"
+          {%- endif -%}
           decoding="async"
           width="{{ image.width }}"
           height="{{ image.height }}"
