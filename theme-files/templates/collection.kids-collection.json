@@ -346,7 +346,7 @@
         "collection_perrow": "3",
         "type_pagination": "click",
         "enable_viewcolumn": true,
-        "enable_filtering": false,
+        "enable_filtering": true,
         "enable_sorting": true,
         "filter_type": "horizontal",
         "first_group": false,
