@@ -1,0 +1,55 @@
+{
+  "_comment": "DNS record source-of-truth for tiptop360.com managed via Cloudflare API. Copy to cf-dns.config.json (git-ignored) and replace example targets with the EXACT values Klaviyo's wizard shows you (Settings -> Domains). See docs/CLOUDFLARE_KLAVIYO_STRATEGY.md.",
+  "_rules": "Every email/Klaviyo record (DKIM, return-path, click tracking) MUST stay proxied:false (grey cloud). cf-dns-apply.mjs will REFUSE proxied:true on those names.",
+  "zone": "tiptop360.com",
+  "records": [
+    {
+      "type": "CNAME",
+      "name": "kl._domainkey.send",
+      "content": "dkim2.klaviyomail.com",
+      "proxied": false,
+      "ttl": 1,
+      "purpose": "Klaviyo DKIM selector (REPLACE with exact target from Klaviyo wizard)"
+    },
+    {
+      "type": "CNAME",
+      "name": "kl2._domainkey.send",
+      "content": "dkim3.klaviyomail.com",
+      "proxied": false,
+      "ttl": 1,
+      "purpose": "Klaviyo DKIM second selector if shown (REPLACE or remove)"
+    },
+    {
+      "type": "CNAME",
+      "name": "send",
+      "content": "bounce.klaviyomail.com",
+      "proxied": false,
+      "ttl": 1,
+      "purpose": "Klaviyo return-path / bounce alignment (REPLACE with exact target)"
+    },
+    {
+      "type": "CNAME",
+      "name": "tracking",
+      "content": "clicks.klaviyomail.com",
+      "proxied": false,
+      "ttl": 1,
+      "purpose": "Klaviyo branded click/link tracking domain (REPLACE with exact target)"
+    },
+    {
+      "type": "TXT",
+      "name": "send",
+      "content": "v=spf1 include:_spf.klaviyo.com ~all",
+      "proxied": false,
+      "ttl": 1,
+      "purpose": "SPF for sending host. Merge ALL legitimate senders; keep under 10 DNS lookups; tighten ~all to -all once stable"
+    },
+    {
+      "type": "TXT",
+      "name": "_dmarc",
+      "content": "v=DMARC1; p=none; rua=mailto:dmarc@tiptop360.com; fo=1; adkim=r; aspf=r",
+      "proxied": false,
+      "ttl": 1,
+      "purpose": "DMARC stage 1 (monitor). Advance to p=quarantine then p=reject per strategy doc go/no-go"
+    }
+  ]
+}

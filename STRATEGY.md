@@ -339,6 +339,8 @@ Save script as `.cjs` (project uses ES modules). Run from project root (needs no
 
 ## SOP 3 — Cloudflare cache purge
 
+> Full Cloudflare + Klaviyo strategy (branded sending domain, DMARC, cache rules, WAF): see **docs/CLOUDFLARE_KLAVIYO_STRATEGY.md**. DNS automation: `npm run cf:dns:plan` / `cf:dns:apply` / `cf:dns:verify`.
+
 ```bash
 echo -n "Cloudflare API Token: "
 read CF_TOKEN
