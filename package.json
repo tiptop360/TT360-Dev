@@ -21,6 +21,8 @@
     "theme:release-note": "node scripts/theme-release.mjs release-note",
     "theme:apply-phase1": "bash scripts/apply-phase1-cleanup.sh",
     "theme:audit-assets": "node validators/theme-asset-audit.mjs",
+    "theme:build-zip": "bash scripts/build-theme-zip.sh theme-files dist/theme-clean.zip --exclude-dead",
+    "theme:deploy-clean": "node scripts/deploy-clean-theme.mjs",
     "gitflow:init": "bash scripts/init-git-flow.sh"
   },
   "dependencies": {

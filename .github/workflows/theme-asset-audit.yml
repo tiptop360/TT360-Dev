@@ -23,7 +23,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      # Non-strict: fails only on backup-pattern files (the regression we prevent).
-      # Switch to `--strict` once the 41 known-dead assets are removed to also gate
-      # on any newly-unreferenced asset.
-      - run: node validators/theme-asset-audit.mjs
+      # Strict: fails on backup-pattern files AND any unreferenced asset.
+      # (Enabled after the Phase 1 cleanup removed the 41 dead assets.)
+      - run: node validators/theme-asset-audit.mjs --strict
