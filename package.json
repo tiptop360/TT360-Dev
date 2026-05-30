@@ -19,6 +19,16 @@
     "theme:publish:staging": "node scripts/theme-release.mjs publish-staging",
     "theme:preview": "node scripts/theme-release.mjs preview",
     "theme:release-note": "node scripts/theme-release.mjs release-note",
+    "cf:dns:plan": "node scripts/cf-dns-apply.mjs",
+    "cf:dns:apply": "node scripts/cf-dns-apply.mjs --apply",
+    "cf:dns:verify": "node scripts/cf-dns-verify.mjs",
+    "klaviyo:login": "node scripts/klaviyo-cf-automation.mjs login klaviyo",
+    "cf:login": "node scripts/klaviyo-cf-automation.mjs login cloudflare",
+    "klaviyo:extract": "node scripts/klaviyo-cf-automation.mjs extract",
+    "cf:ui:apply": "node scripts/klaviyo-cf-automation.mjs cf-apply-ui",
+    "klaviyo:verify": "node scripts/klaviyo-cf-automation.mjs verify",
+    "klaviyo:run": "node scripts/klaviyo-cf-automation.mjs run",
+    "session:b64": "node scripts/klaviyo-cf-automation.mjs session-b64",
     "gitflow:init": "bash scripts/init-git-flow.sh"
   },
   "dependencies": {
