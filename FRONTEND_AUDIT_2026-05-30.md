@@ -45,14 +45,22 @@ Both `snippets/header-js.liquid` (rendered at body end) **and** `layout/theme.li
 `layout/theme.liquid`; kept `lazysizes.min.js` (only loaded there). `header-js.liquid` still loads
 both, earlier in document order, so load order is preserved.
 
-### F2 — ~169 KB of render-blocking inline CSS in `<head>` — RECOMMENDED (needs QA)
-**Severity:** Performance (highest impact) · **Risk:** high · **Status:** not applied — staged follow-up.
+### F2 — 169 KB Bootstrap framework inlined render-blocking in `<head>` — APPLIED to preview
+**Severity:** Performance (highest impact) · **Risk:** medium (needs browser QA) · **Status:** applied to preview copy.
 
-`snippets/header-css.liquid` inlines ~169 KB of CSS in a single `<style>` block (lines 1–44)
-while `theme.aio.min.css` (230 KB) is *also* loaded (async-preloaded). The stylesheet is
-effectively shipped twice, the inline copy blocking first render on every page. Proper fix:
-reduce the inline block to a true above-the-fold critical subset and rely on the async sheet.
-**Must be done on a preview theme with browser QA** (FOUC / layout-shift risk) — do not push blind.
+`snippets/header-css.liquid` inlined ~169 KB of CSS in a single render-blocking `<style>` block
+on **every** page. Verification showed this is **not** a duplicate of `theme.aio.min.css`
+(0% rule overlap, ~6% selector overlap) — it is the **entire Bootstrap framework**
+(`.col-*`, `.offset-md-*`, `.custom-control-*`, `.btn-*`, `.d-xl-*`, grid/utilities). HTML
+responses are not cacheable, so this 169 KB was re-sent and re-parsed on every navigation.
+
+**Fix applied:** extracted the block verbatim into a new cacheable asset
+`assets/tt360-bootstrap.css` and replaced the inline block with
+`{{ 'tt360-bootstrap.css' | asset_url | stylesheet_tag }}` in the same position (render-blocking,
+so cascade and first-paint behavior are unchanged — Bootstrap still loads before the theme
+styles, no FOUC/CLS introduced). Result: **−169 KB of HTML on every page** and the framework is
+now browser-cached across pages/visits. CSS content is byte-identical. **Browser-QA the preview**
+to confirm layout (grid, forms, buttons) renders identically before publishing.
 
 ### F3 — Repo source-of-truth is broken (pipeline would regress live) — see warning below
 **Severity:** Repo integrity · **Risk:** none to live (repo/docs only).
