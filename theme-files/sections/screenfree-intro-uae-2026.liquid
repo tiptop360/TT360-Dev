@@ -7,11 +7,13 @@ File: sections/screenfree-intro-uae-2026.liquid
     
     <div class="intro-image">
       {% if section.settings.image != blank %}
-        <img 
-          src="{{ section.settings.image | image_url: width: 1000 }}" 
-          alt="{{ section.settings.heading | escape }}"
-          loading="lazy"
-        >
+	        <img
+	          src="{{ section.settings.image | image_url: width: 1000 }}"
+	          alt="{{ section.settings.heading | escape }}"
+	          width="{{ section.settings.image.width }}"
+	          height="{{ section.settings.image.height }}"
+	          loading="lazy"
+	        >
       {% endif %}
     </div>
 

@@ -1,0 +1,18 @@
+{% comment %} cro-bundle-crosssell.liquid — Settings-driven cross-sell card above ATC. Reads bundle_handle, bundle_title, bundle_sub from section settings. Hidden when bundle_handle is blank or product unavailable. {% endcomment %}
+{%- assign bh = section.settings.bundle_handle -%}
+{%- if bh != blank -%}
+  {%- assign bundle = all_products[bh] -%}
+  {%- if bundle != nil and bundle != empty and bundle.available -%}
+  <div class="cro-bundle">
+    <div class="cro-bundle-body">
+      <div class="cro-bundle-text">
+        <div class="cro-bundle-title">{{ section.settings.bundle_title | default: '🎁 Complete Your Setup' }}</div>
+        <div class="cro-bundle-sub">{{ section.settings.bundle_sub | default: bundle.description | strip_html | truncate: 80 }}</div>
+      </div>
+      <a href="{{ bundle.url }}" class="cro-bundle-btn">
+        {{ section.settings.bundle_btn | default: 'See Bundle' }} · {{ bundle.price | money_without_trailing_zeros }} →
+      </a>
+    </div>
+  </div>
+  {%- endif -%}
+{%- endif -%}

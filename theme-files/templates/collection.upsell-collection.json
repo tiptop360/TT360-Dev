@@ -8,21 +8,13 @@
  * ------------------------------------------------------------
  */
 {
-  "parent": "footer-group.json",
-  "context": {
-    "market": "ae"
-  },
   "sections": {
-    "footer": {
-      "settings": {
-        "background": "#12395e",
-        "border-copryright": "#ffffff",
-        "text": "#ffffff",
-        "text_hover": "#54e8cc",
-        "title": "#ffffff",
-        "payment_info": "svg"
-      },
-      "blocks": {}
+    "tt360_upsell_col": {
+      "type": "tt360-upsell-collection",
+      "settings": {}
     }
-  }
+  },
+  "order": [
+    "tt360_upsell_col"
+  ]
 }

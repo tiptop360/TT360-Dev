@@ -1,0 +1,52 @@
+<style>
+#tt360-tb *{box-sizing:border-box}
+#tt360-tb{
+  background:#12395e;padding:20px 24px;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+.tt360-tb-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+.tt360-tb-item{
+  display:flex;align-items:center;gap:12px;color:#fff;
+}
+.tt360-tb-icon{font-size:28px;line-height:1;flex-shrink:0}
+.tt360-tb-txt b{display:block;font-size:13.5px;font-weight:700;color:#fff}
+.tt360-tb-txt span{font-size:12px;color:rgba(255,255,255,.72)}
+@media(max-width:768px){
+  .tt360-tb-inner{grid-template-columns:repeat(2,1fr);gap:14px}
+}
+@media(max-width:440px){
+  .tt360-tb-inner{grid-template-columns:1fr;gap:14px}
+}
+</style>
+
+<div id="tt360-tb">
+  <div class="tt360-tb-inner">
+    <div class="tt360-tb-item">
+      <span class="tt360-tb-icon">📦</span>
+      <div class="tt360-tb-txt"><b>Free Next Day</b><span>Delivery across UAE</span></div>
+    </div>
+    <div class="tt360-tb-item">
+      <span class="tt360-tb-icon">💳</span>
+      <div class="tt360-tb-txt"><b>Cash on Delivery</b><span>No card required</span></div>
+    </div>
+    <div class="tt360-tb-item">
+      <span class="tt360-tb-icon">🏛️</span>
+      <div class="tt360-tb-txt"><b>Gov't Approved</b><span>Dubai Municipality</span></div>
+    </div>
+    <div class="tt360-tb-item">
+      <span class="tt360-tb-icon">🔄</span>
+      <div class="tt360-tb-txt"><b>14-Day Returns</b><span>Zero questions asked</span></div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TT360 Trust Bar",
+  "settings": [],
+  "presets": [{ "name": "TT360 Trust Bar" }]
+}
+{% endschema %}

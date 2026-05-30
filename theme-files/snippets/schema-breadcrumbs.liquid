@@ -1,0 +1,90 @@
+{%- if template.name == 'product' and template.suffix != blank -%}
+  {%- comment -%}Custom product templates have inline BreadcrumbList schema — skip snippet{%- endcomment -%}
+{%- elsif request.path contains '/policies/' -%}
+  {%- comment -%}Policy pages have breadcrumbs in tt360-policy snippet{%- endcomment -%}
+{%- elsif template.name != 'index' and template.name != 'cart' and template.name != 'password' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ shop.url }}"
+    }
+    {%- if template.name == 'product' -%}
+    {%- if collection -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ collection.title | json }},
+      "item": "{{ shop.url }}{{ collection.url }}"
+    }
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ product.title | json }},
+      "item": "{{ shop.url }}{{ product.url }}"
+    }
+    {%- else -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ product.type | default: 'Products' | escape }}",
+      "item": "{{ shop.url }}/collections/all"
+    }
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ product.title | json }},
+      "item": "{{ shop.url }}{{ product.url }}"
+    }
+    {%- endif -%}
+    {%- elsif template.name == 'collection' -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ collection.title | json }},
+      "item": "{{ shop.url }}{{ collection.url }}"
+    }
+    {%- elsif template.name == 'article' -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ blog.title | json }},
+      "item": "{{ shop.url }}{{ blog.url }}"
+    }
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | json }},
+      "item": "{{ shop.url }}{{ article.url }}"
+    }
+    {%- elsif template.name == 'page' -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ page.title | json }},
+      "item": "{{ shop.url }}{{ page.url }}"
+    }
+    {%- elsif template.name == 'blog' -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ blog.title | json }},
+      "item": "{{ shop.url }}{{ blog.url }}"
+    }
+    {%- elsif template.name == 'policy' -%}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ policy.title | json }},
+      "item": "{{ shop.url }}{{ policy.url }}"
+    }
+    {%- endif -%}
+  ]
+}
+</script>
+{%- endif -%}

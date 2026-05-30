@@ -72,12 +72,41 @@ Neither `theme-files/` nor `theme-files-clean/` matches the live theme (40+ file
 The documented release pipeline (`scripts/theme-release.mjs` → `npm run theme:push:staging`)
 deploys from **`theme-files/`**, which is **missing the mobile fixes that are live**.
 
-> ⚠️ **DO NOT run `npm run theme:push:staging` / publish from `theme-files/` as-is — it will
-> regress the live mobile bug fixes.** Re-pull the live theme into a single clean source tree
-> first to re-establish a trustworthy source of truth.
+**Reconcile status (2026-05-30):**
+- Applied F1 + F2 + the missing live mobile fixes into `theme-files/` (committed).
+- Partial mirror of the production copy (`145829265523`) into `theme-files/`: **48 divergent
+  files pulled and md5-verified** (25 updated, 23 that were missing).
+- **130 files still divergent** (mostly large JSON/locales up to 292 KB). A faithful pull of
+  those through the Admin API isn't reliable (bodies return inline only); **finish with the
+  Shopify CLI:** `shopify theme pull --theme 145829265523 --path theme-files` — the 48 verified
+  files will simply re-match.
+- Stale theme IDs in `EXECUTION_PLAN.md` corrected. Current live = **`145821040755`**.
 
-Also: theme IDs in `EXECUTION_PLAN.md` (`#145753800819`, `#143636463731`, dev `#145784406131`)
-are **stale**. Current live = **`145821040755`**.
+> ⚠️ Until the CLI pull completes the remaining 130 files, **do not blind-push `theme-files/`
+> to a theme.** The production change set is shipped via the verified copy, not this tree.
+
+### Asset cleanup — 129 backup assets removed from repo
+The reconcile found **200 files in `theme-files/` that do not exist on the live theme**. Of these,
+**129 were `*-backup.*` asset duplicates** (`beerslider-backup.*`, `cart-draw-backup.*`,
+`component-card-backup.*`, …) — pure repo cruft (the **live theme never had them**), unreferenced
+by any Liquid/JSON. **Removed from the repo** (zero live impact). The remaining ~71 local-only
+files (legacy `avada-seo-*`, `gp-*` snippets, `templates/metaobject/*`, etc.) are listed in
+`/tmp/f3-reconcile-report.txt` and left for manual review.
+
+## Regression results (2026-05-30)
+Static validation of the reconciled `theme-files/` + production-artifact diff. **PASSED ✅**
+- **121/121** JSON files valid (parsed as JSONC — Shopify allows comment headers).
+- **160** section/block `{% schema %}` blocks valid (incl. `product-template-1` real schema:
+  35 settings / 24 blocks).
+- `theme.liquid` JSON-LD `@graph` braces balanced (44).
+- All fix/feature markers present: F1 (no dup scripts), F2 (Bootstrap externalized + asset
+  present + inline removed), Areas 1–6, Clarity, mobile fixes (`theme.s.min.js` == live-fixed,
+  3× touch-action).
+- **No malware patterns.**
+- **Production artifact (copy vs live) differs in EXACTLY the intended files:** `theme.liquid`
+  (F1), `header-css.liquid` (F2), `tt360-bootstrap.css` (added). Every other file
+  (vendor, theme.s.min.js, settings_data, header-js, critical-css, …) is byte-identical by
+  checksum. No unintended changes.
 
 ### F4 — Tech debt (not in this pass)
 Heavy `!important` layering; `lazysizes` instead of native `loading="lazy"`; jQuery dependency.

@@ -1,0 +1,35 @@
+{%- if template.name == 'article' and article -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "{{ shop.url }}{{ article.url }}#article",
+  "headline": {{ article.title | json }},
+  "description": {{ article.excerpt_or_content | strip_html | truncatewords: 30 | json }},
+  "image": [
+    {%- if article.image -%}
+    "{{ article.image | image_url: width: 1200 }}"
+    {%- else -%}
+    "{{ shop.url }}{{ shop.brand.cover_image | default: shop.brand.logo | image_url: width: 1200 }}"
+    {%- endif -%}
+  ],
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%d' }}",
+  "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+  "author": {
+    "@type": "Organization",
+    "name": "TipTop360",
+    "url": "{{ shop.url }}"
+  },
+  "publisher": {
+    "@id": "https://tiptop360.com/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ article.url }}"
+  }
+  {%- if article.tags.size > 0 -%}
+  ,"keywords": {{ article.tags | join: ', ' | json }}
+  {%- endif -%}
+}
+</script>
+{%- endif -%}
