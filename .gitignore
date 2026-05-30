@@ -10,3 +10,6 @@ audits/geo-logs/
 .release-work/
 .indexnow-key
 scripts/cf-dns.config.json
+scripts/klaviyo-automation.config.json
+.klaviyo-session.json
+.klaviyo-automation/

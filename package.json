@@ -22,6 +22,10 @@
     "cf:dns:plan": "node scripts/cf-dns-apply.mjs",
     "cf:dns:apply": "node scripts/cf-dns-apply.mjs --apply",
     "cf:dns:verify": "node scripts/cf-dns-verify.mjs",
+    "klaviyo:login": "node scripts/klaviyo-cf-automation.mjs login",
+    "klaviyo:extract": "node scripts/klaviyo-cf-automation.mjs extract",
+    "klaviyo:verify": "node scripts/klaviyo-cf-automation.mjs verify",
+    "klaviyo:run": "node scripts/klaviyo-cf-automation.mjs run",
     "gitflow:init": "bash scripts/init-git-flow.sh"
   },
   "dependencies": {

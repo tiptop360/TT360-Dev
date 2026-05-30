@@ -1,0 +1,14 @@
+{
+  "_comment": "Optional overrides for scripts/klaviyo-cf-automation.mjs. Copy to klaviyo-automation.config.json (git-ignored) ONLY if the defaults need adjusting (e.g. Klaviyo moved the Domains page, or selectors drifted). On first run, check the screenshots in .klaviyo-automation/ and tweak here.",
+  "loginUrl": "https://www.klaviyo.com/login",
+  "domainsUrl": "https://www.klaviyo.com/settings/account/domains",
+  "sendingDomain": "send.tiptop360.com",
+  "zone": "tiptop360.com",
+  "selectors": {
+    "loggedInMarker": "nav, [data-testid=\"global-nav\"], a[href*=\"/dashboard\"]",
+    "recordRow": "tr",
+    "verifyButton": "button:has-text(\"Verify\"), button:has-text(\"Re-verify\")",
+    "statusBadge": ":text(\"Verified\"), :text(\"Authenticated\"), :text(\"Pending\")"
+  },
+  "klaviyoTargetHints": ["klaviyomail.com", "klaviyodelivery.com", "klclick.com", "klaviyo.com"]
+}
