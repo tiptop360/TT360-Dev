@@ -1,14 +1,23 @@
 {
-  "_comment": "Optional overrides for scripts/klaviyo-cf-automation.mjs. Copy to klaviyo-automation.config.json (git-ignored) ONLY if the defaults need adjusting (e.g. Klaviyo moved the Domains page, or selectors drifted). On first run, check the screenshots in .klaviyo-automation/ and tweak here.",
+  "_comment": "Optional overrides for scripts/klaviyo-cf-automation.mjs. Copy to klaviyo-automation.config.json (git-ignored) ONLY if defaults need adjusting (e.g. a dashboard moved a page or changed markup). On first run, check .klaviyo-automation/ screenshots and tweak the URLs/selectors here.",
   "loginUrl": "https://www.klaviyo.com/login",
   "domainsUrl": "https://www.klaviyo.com/settings/account/domains",
+  "cloudflareLoginUrl": "https://dash.cloudflare.com/login",
+  "cloudflareDashUrl": "https://dash.cloudflare.com",
+  "cloudflareDnsUrl": "",
   "sendingDomain": "send.tiptop360.com",
   "zone": "tiptop360.com",
+  "klaviyoTargetHints": ["klaviyomail.com", "klaviyodelivery.com", "klclick.com", "klaviyo.com"],
   "selectors": {
-    "loggedInMarker": "nav, [data-testid=\"global-nav\"], a[href*=\"/dashboard\"]",
-    "recordRow": "tr",
-    "verifyButton": "button:has-text(\"Verify\"), button:has-text(\"Re-verify\")",
-    "statusBadge": ":text(\"Verified\"), :text(\"Authenticated\"), :text(\"Pending\")"
+    "verifyButton": "button:has-text(\"Verify\"), button:has-text(\"Re-verify\")"
   },
-  "klaviyoTargetHints": ["klaviyomail.com", "klaviyodelivery.com", "klclick.com", "klaviyo.com"]
+  "cfSelectors": {
+    "dnsNav": "a:has-text(\"DNS\"), a:has-text(\"Records\")",
+    "addRecordButton": "button:has-text(\"Add record\"), button:has-text(\"Create record\")",
+    "typeSelect": "select[name=\"type\"], [data-testid=\"dns-record-type\"]",
+    "nameInput": "input[name=\"name\"], [data-testid=\"dns-record-name\"]",
+    "contentInput": "input[name=\"content\"], [name=\"target\"], [data-testid=\"dns-record-content\"]",
+    "proxyToggle": "[data-testid=\"dns-record-proxy-toggle\"], button[role=\"switch\"]",
+    "saveButton": "button:has-text(\"Save\"), button[type=\"submit\"]:has-text(\"Save\")"
+  }
 }

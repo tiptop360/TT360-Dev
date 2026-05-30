@@ -1,0 +1,56 @@
+name: Klaviyo sending domain (browser agent)
+
+# Manually triggered. Runs the Playwright automation headless, using saved browser
+# sessions supplied as base64 secrets. Produce the secrets locally with:
+#   npm run klaviyo:login && npm run session:b64 -- klaviyo      -> KLAVIYO_STORAGE_STATE_B64
+#   npm run cf:login      && npm run session:b64 -- cloudflare   -> CLOUDFLARE_STORAGE_STATE_B64  (only for cf-mode=ui)
+# Note: dashboard sessions are short-lived + IP-bound; refresh the secrets if a run hits a login wall.
+
+on:
+  workflow_dispatch:
+    inputs:
+      cf_mode:
+        description: "How to write Cloudflare DNS records"
+        type: choice
+        default: api
+        options: [api, ui]
+
+jobs:
+  setup-sending-domain:
+    runs-on: ubuntu-latest
+    env:
+      CI: "true"
+      CF_ZONE: ${{ secrets.CF_ZONE }}
+      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+      KLAVIYO_STORAGE_STATE_B64: ${{ secrets.KLAVIYO_STORAGE_STATE_B64 }}
+      CLOUDFLARE_STORAGE_STATE_B64: ${{ secrets.CLOUDFLARE_STORAGE_STATE_B64 }}
+      KLAVIYO_SENDING_DOMAIN: ${{ vars.KLAVIYO_SENDING_DOMAIN || 'send.tiptop360.com' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Seed cf-dns config (SPF/DMARC defaults)
+        run: |
+          if [ ! -f scripts/cf-dns.config.json ]; then
+            cp scripts/cf-dns.config.example.json scripts/cf-dns.config.json
+          fi
+
+      - name: Run sending-domain automation
+        run: node scripts/klaviyo-cf-automation.mjs run --headless --cf-mode "${{ github.event.inputs.cf_mode }}"
+
+      - name: Upload audit screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: klaviyo-automation-audit
+          path: .klaviyo-automation/
+          if-no-files-found: ignore

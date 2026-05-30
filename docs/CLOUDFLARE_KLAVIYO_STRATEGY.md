@@ -55,10 +55,35 @@ By default Klaviyo sends from a shared domain and recipients see "via klaviyomai
 - **Dedicated sending domain / dedicated IP:** worth it at **sustained high volume** (roughly **100k+ emails/month** for a dedicated IP). Requires deliberate warm-up. Don't take a dedicated IP at low volume — an under-warmed dedicated IP *hurts* deliverability.
 
 ### How to generate the records
+
+#### Option A — Automated (browser agent, recommended — eliminates copy-paste errors)
+`scripts/klaviyo-cf-automation.mjs` drives the whole flow so no DNS value is ever typed by hand.
+
+It can apply the records two ways:
+- **`--cf-mode api`** *(default, most reliable):* Playwright scrapes Klaviyo's records, then the Cloudflare **API** writes them (with the grey-cloud guard). Fewer moving parts.
+- **`--cf-mode ui`** *(full browser automation):* Playwright also drives the **Cloudflare dashboard** to create each record, explicitly setting email records to DNS-only. End-to-end browser, but more brittle (dashboard markup + bot checks) — use when you specifically want zero API tokens.
+
+**Local first-time setup:**
+```bash
+npm install
+npx playwright install chromium
+cp scripts/cf-dns.config.example.json scripts/cf-dns.config.json   # SPF/DMARC defaults
+# for --cf-mode api: set CF_ZONE and CF_API_TOKEN (Zone->DNS->Edit) in .env
+npm run klaviyo:login        # headed browser, sign in to Klaviyo + 2FA once (session saved)
+npm run cf:login             # only needed for --cf-mode ui: sign in to Cloudflare once
+npm run klaviyo:run          # scrape -> apply -> wait -> verify   (add: -- --cf-mode ui)
+```
+- Every step writes a screenshot/HTML to `.klaviyo-automation/` as an audit trail.
+- If a dashboard's markup shifted, copy `scripts/klaviyo-automation.config.example.json` → `klaviyo-automation.config.json` and adjust URLs/selectors.
+- Granular: `npm run klaviyo:extract`, `npm run cf:dns:apply` (api) or `npm run cf:ui:apply` (ui), `npm run klaviyo:verify`. Preview with `npm run klaviyo:run -- --no-apply`.
+
+**CI (headless, non-interactive):** see `.github/workflows/klaviyo-sending-domain.yml`. Log in once locally, export the sessions as base64 (`npm run session:b64 -- klaviyo`, `npm run session:b64 -- cloudflare`), store them plus `CF_ZONE`/`CF_API_TOKEN` as repo secrets, then trigger the workflow. Note: dashboard sessions are short-lived and IP-bound, so CI runs may need a fresh exported session periodically.
+
+#### Option B — Manual
 1. Klaviyo → **Settings → Domains & hosting** (a.k.a. *Domains*).
 2. Click **Add a sending domain** / **Set up dedicated sending domain** and enter `send.tiptop360.com`.
 3. Klaviyo displays a set of **CNAME records** with exact targets. **These targets are unique to your account — copy them.**
-4. Paste each into `scripts/cf-dns.config.json` (copy from `cf-dns.config.example.json`), then run the apply script.
+4. Paste each into `scripts/cf-dns.config.json` (copy from `cf-dns.config.example.json`), then run `npm run cf:dns:apply`.
 5. Return to Klaviyo and click **Verify**. DNS can take minutes to a few hours to propagate.
 
 ### Records to add (all CNAME, **grey cloud / DNS-only**)
