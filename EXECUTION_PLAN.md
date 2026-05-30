@@ -1,8 +1,13 @@
 # TipTop360 — Execution Plan (Live Tracker)
 
+> ⚠️ **Theme IDs below are STALE** (corrected 2026-05-30 audit). The themes
+> referenced here (`#145784406131`, `#145753800819`, `#143636463731`) no longer
+> exist. **Current live = `TT360 | Production` → `145821040755`.** See
+> `FRONTEND_AUDIT_2026-05-30.md`.
+
 **Branch:** `claude/hopeful-brown-6oflm`
-**Staging theme:** TT360 | Dev — `#145784406131`
-**Live theme:** TT360 | live — `#145753800819`
+**Staging theme:** _(stale)_ TT360 | Dev — `#145784406131`
+**Live theme:** **TT360 | Production — `145821040755`** _(was wrongly listed as `#145753800819`)_
 **Gate:** Per-area pause for explicit "publish live" approval before promotion.
 
 ---
